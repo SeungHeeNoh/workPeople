@@ -1,0 +1,39 @@
+@import url(reset.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+* {
+	font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+	color : #222;
+}
+
+button {
+	background: inherit;
+	border:none;
+	box-shadow:none;
+	border-radius:0px;
+	padding:0;
+	overflow:visible;
+	cursor:pointer;
+ }
+
+button.green {
+	background-color: #A7D676;
+	color:#FFF;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+button.green:hover {
+	background-color: #96BF69;
+}
+
+button.orange {
+	background-color: #FBC78D;
+	color:#FFF;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+button.orange:hover {
+	background-color: #D6AB7A;
+}
