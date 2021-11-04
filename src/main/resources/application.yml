@@ -1,0 +1,19 @@
+# server port config
+server:  port: 8800
+  
+# oracle driver config
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver 
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: mybatis
+    password: mybatis
+
+#mybatis config
+mybatis:
+  mapper-locations: mappers/**/*.xml
+#loggin level(root level - 전역 설정)
+logging:
+  level:    root: info
+#loggin level (package level - 지역 설정)
+    '[com.kh.rest.book]': trace 
