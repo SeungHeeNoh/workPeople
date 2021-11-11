@@ -13,3 +13,4 @@ abbr,acronym{border:none;}
 img,input{vertical-align:middle;}
 hr{display:none;}
 #skipNavi,.blind{position:absolute;left:0;top:0;width:0;height:0;font-size:0;line-height:0;text-indent:-9999px;overflow:hidden;visibility:hidden;}
+a{text-decoration: none;}
