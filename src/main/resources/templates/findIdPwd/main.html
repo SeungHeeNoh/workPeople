@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>workPeople</title>
+<link rel="stylesheet" th:href="@{/css/common/common.css}">
+<link rel="stylesheet" th:href="@{/css/findIdPwd/main.css}">
+</head>
+<body>
+	<div id="container">
+		<div class="content">
+			<h2>아이디/비밀번호 찾기</h2>
+			<div class="site_idpwd">
+				<h3>가입한 아이디와 비밀번호를 잊으셨습니까?</h3>
+				<ul>
+					<li>개인회원
+						<ul>
+							<li><a th:href="@{/findIdPwd/personal/findId}">아이디 찾기</a>
+							<li><a th:href="@{/findIdPwd/personal/findPwd}">비밀번호 찾기</a>
+						</ul>
+					</li>
+					<li>기업회원
+						<ul>
+							<li><a th:href="@{/findIdPwd/company/findId}">아이디 찾기</a>
+							<li><a th:href="@{/findIdPwd/company/findPwd}">비밀번호 찾기</a>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="sns_idpwd">
+				<h3>간편로그인의 아이디와 비밀번호는 사용하시는 소셜서비스에서 찾아주시길 바랍니다.</h3>
+				<ul>
+					<li><span class="blind">Naver</span>
+						<ul>
+							<li><a href="https://nid.naver.com/user2/help/idInquiry.nhn?menu=idinquiry" target="_blank"  title="새창에서 열기">아이디 찾기</a>
+							<li><a href="https://nid.naver.com/user2/help/pwInquiry.nhn?menu=pwinquiry" target="_blank"  title="새창에서 열기">비밀번호 찾기</a>
+						</ul>
+					</li>
+					<li><span class="blind">Kakao</span>
+						<ul>
+							<li><a href="https://accounts.kakao.com/weblogin/find_account_guide?continue=https%3A%2F%2Faccounts.kakao.com%2Fweblogin%2Faccount%2Finfo" target="_blank" title="새창에서 열기">아이디 찾기</a>
+							<li><a href="https://accounts.kakao.com/weblogin/find_password?continue=https%3A%2F%2Faccounts.kakao.com%2Fweblogin%2Faccount%2Finfo" target="_blank" title="새창에서 열기">비밀번호 찾기</a>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
