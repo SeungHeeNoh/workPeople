@@ -1,0 +1,20 @@
+<form action="" method="post">
+	<link rel="stylesheet" th:href="@{/css/account/login/common-login.css}">
+	<input type="hidden" name="member_type" value="1">
+	<input type="hidden" name="url" value="">
+	<div class="loginSetting">
+		<input type="checkbox" name="auto_login" id="auto_login"><label for="auto_login">로그인 유지</label>
+		<input type="checkbox" name="id_save" id="id_save"><label for="id_save">아이디 저장</label>
+	</div>
+	<div class="lobin_input">
+		<div>
+			<div>
+				<input type="text" name="id" id="id" placeholder="아이디">
+			</div>
+			<div>
+				<input type="password" name="password" id="password" placeholder="비밀번호">
+			</div>
+		</div>
+		<button type="button">로그인</button>
+	</div>
+</form>

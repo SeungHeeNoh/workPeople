@@ -104,11 +104,11 @@
 	padding-left : 50px;
 	box-sizing: border-box;
 	border: 1px solid #DDD;
-	background: url(../../images/login/icon_sns_naver_m.png) 17px 50% no-repeat;
+	background: url(/images/account/login/icon_sns_naver_m.png) 17px 50% no-repeat;
 }
 
 .login_area > .sns_login button:last-of-type{
-	background-image: url(../../images/login/icon_sns_kakao_m.png);
+	background-image: url(/images/account/login/icon_sns_kakao_m.png);
 	float:right;
 }
 
