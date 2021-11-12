@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>workPeople</title>
+	<link rel="stylesheet" th:href="@{/css/common/common.css}">
+	<link rel="stylesheet" th:href="@{/css/account/login/login.css}">
+</head>
+<body>
+		<div id="container">
+		<div class="login_area">
+			<h2>로그인</h2>
+			<ul class="type_change_tab">
+				<li class="active" data-member-type="1">개인회원</li>
+				<li data-member-type="2">기업회원</li>
+			</ul>
+			<div th:replace="account/login/common-login.html"></div>
+			<div class="signup-forgotten">
+				<p><a href="#">회원가입</a></p>
+				<p><a th:href="@{/findIdPwd/main}">아이디/비밀번호 찾기</a></p>
+				<p><a th:href="@{/account/manager-login}">관리자 로그인</a></p>
+			</div>
+			<div class="sns_login">
+				<button>네이버 로그인</button>
+				<button>카카오 로그인</button>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/js/account/login/login.js}"></script>
+</body>
+</html>
