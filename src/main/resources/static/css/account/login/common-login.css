@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .login_area {
 	position: relative;
 	width : 590px;
@@ -42,13 +44,14 @@
 	width : 332px;
 	height: 49px;
 	box-sizing: border-box;
-	padding: 10px 20px;
 	border : 1px solid #CDCDCD;
 }
 
 .login_area > form > .lobin_input > div > div > input {
-	width : 280px;
-	height : 29px;
+	width : 331px;
+	height : 47px;
+	padding: 0 20px;
+	box-sizing: border-box;
 	border : 0;
 	font-size: 14px;
 }
@@ -64,10 +67,6 @@
 .login_area > .signup-forgotten {
 	font-size: 13px;
 	margin: 18px 0 29px;
-}
-
-.login_area > .signup-forgotten a {
-	text-decoration: none;
 }
 
 .login_area > .signup-forgotten > p:first-of-type {
