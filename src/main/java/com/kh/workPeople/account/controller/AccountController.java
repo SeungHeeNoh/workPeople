@@ -17,4 +17,14 @@ public class AccountController {
 	public String mangerLogin() {
 		return "account/login/login_manager";
 	}
+	
+	@GetMapping("/join/personal-join")
+	public String personalJoin() {
+		return "account/join/personalJoin";
+	}
+	
+	@GetMapping("/join/company-join")
+	public String companyJoin() {
+		return "account/join/companyJoin";
+	}
 }
