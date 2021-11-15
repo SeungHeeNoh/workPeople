@@ -27,4 +27,9 @@ public class AccountController {
 	public String companyJoin() {
 		return "account/join/companyJoin";
 	}
+	
+	@GetMapping("/changePassword")
+	public String changePassword() {
+		return "account/join/change_password";
+	}
 }
