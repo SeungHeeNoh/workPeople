@@ -1,4 +1,6 @@
 (function() {
+	let inputValidate = window.common.validate.input;
+
 	let content = document.querySelector(".content"),
 		form = content.querySelector("form"),
 		infoTable = form.querySelector("table"),
@@ -17,7 +19,6 @@
 				label = row.querySelector("label"),
 				input = row.querySelector("input");
 
-				console.log(label.textContent.indexOf("이름") > 0);
 			if(label.textContent == "아이디") {
 				flag = idCheck(input.value);
 				if(!flag) break;
@@ -31,17 +32,15 @@
 		}
 
 		if(flag) {
-			// form.submit();
+			form.submit();
 		}
 
 		function idCheck(value) {
-			let flag = true;
+			let flag = true,
+				result = inputValidate.idCheck(value);
 
-			if(value.length == 0) {
-				alert("아이디를 입력해주세요.");
-				flag = false;
-			} else if(!/^[a-z0-9\_]{4,20}$/gi.test(value)) {
-				alert("4~20자의 영문, 숫자와 특수문자(_)만 입력 가능합니다.");
+			if(result.length > 0) {
+				alert(result);
 				flag = false;
 			}
 
@@ -49,13 +48,11 @@
 		}
 
 		function nameCheck(value) {
-			let flag = true;
+			let flag = true,
+				result = inputValidate.nameCheck(value);
 
-			if(value.length == 0) {
-				alert("이름을 입력해주세요.");
-				flag = false;
-			} else if(!/^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z]{2,}$/.test(value)) {
-				alert("이름에 특수문자, 숫자는 사용하실 수 없습니다.");
+			if(result.length > 0) {
+				alert(result);
 				flag = false;
 			}
 
@@ -63,13 +60,11 @@
 		}
 
 		function emailCheck(value) {
-			let flag = true;
+			let flag = true,
+				result = inputValidate.emailCheck(value);
 
-			if(value.length == 0) {
-				alert("이메일을 입력해주세요.");
-				flag=false;
-			} else if(!/^[a-z0-9.+_-]+@([0-9a-z_-]+\.)+[a-z]{2,10}$/i.test(value)) {
-				alert("유효하지 않은 이메일 형식입니다.");
+			if(result.length > 0) {
+				alert(result);
 				flag = false;
 			}
 
