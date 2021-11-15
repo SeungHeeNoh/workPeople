@@ -37,6 +37,11 @@ input:read-only:focus-visible{
 	width : 498px;
 }
 
+.content > div  button:disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
 .content > div > .type_change_tab::after {
 	content: "";
 	display: block;

@@ -14,7 +14,7 @@
 			<h2>회원가입</h2>
 			<div>
 				<form action="" method="post">
-					<div>
+					<div class="join_row">
 						<p><label for="postcode"><strong>*</strong> 우편번호</label></p>
 						<div class="check_input">
 							<span><input type="text" id="postcode" name="postcode" readonly></span>
@@ -22,20 +22,23 @@
 						</div>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
-					<div>
+					<div class="join_row">
 						<p><label for="road_address"><strong>*</strong> 도로명주소</label></p>
 						<span><input type="text" id="road_address" name="road_address" readonly></span>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
-					<div>
+					<div class="join_row">
 						<p><label for="detail_address"><strong>*</strong> 상세주소</label></p>
 						<span><input type="text" id="detail_address" name="detail_address"></span>
-						<p class="notice">필수 정보입니다.</p>
+						<p class="notice check_notice">필수 정보입니다.</p>
 					</div>
-					<button type="button" class="green">확인</button>
+					<button type="button" class="green confirm_button">가입하기</button>
 				</form>
 			</div>
 		</div>
 	</div>
+	<script th:src="@{/js/common/joinValidate.js}"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script th:src="@{/js/account/join/join.js}"></script>
 </body>
 </html>
