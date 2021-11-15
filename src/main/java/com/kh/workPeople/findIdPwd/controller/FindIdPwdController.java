@@ -1,4 +1,4 @@
-package com.kh.workPeople.findIdPwd;
+package com.kh.workPeople.findIdPwd.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/findIdPwd")
-public class findIdPwdController {
+public class FindIdPwdController {
 	
 	@GetMapping(value={"/", "main"})
 	public String main() {
