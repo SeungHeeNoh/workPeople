@@ -349,7 +349,7 @@ body.modal_open {
 	position: absolute;
 	top : -128px;
 	right : 0;
-	background: url(images/common/btn_layer_close.png) center center no-repeat;
+	background: url(/images/common/btn_layer_close.png) center center no-repeat;
 }
 
 #modal.resume_register_modal {
@@ -398,34 +398,38 @@ body.modal_open {
 	font-weight: bold;
 }
 
-#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > ul {
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div {
 	height : 223px;
-	overflow-y: auto;
 	background-color: #FFF;
 	border-radius: 10px;
 	box-sizing: border-box;
 	padding-left: 16px;
 }
 
-#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > ul > li > label {
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul {
+	height: 100%;
+	overflow-y: auto;
+}
+
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li > label {
 	display: block;
 	position: relative;
-	padding: 12px 12px 19px 35px;
+	padding: 12px 12px 12px 35px;
 	background: url(/images/jobs/vacancyDetail/radio_button_deactive.png) 0 32px no-repeat;
 	background-size: 24px 24px;
 	box-sizing: border-box;
 	border-bottom: 1px solid #DCDCDC;
 }
 
-#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > ul > li:last-of-type > label {
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li:last-of-type > label {
 	border-bottom: none;
 }
 
-#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > ul > li > input:checked+label {
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li > input:checked+label {
 	background-image: url(/images/jobs/vacancyDetail/radio_button_active.png);
 }
 
-#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > ul > li > input {
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li > input {
 	position: absolute;
 	width : 1px;
 	height : 1px;
@@ -434,18 +438,21 @@ body.modal_open {
 	pointer-events: none;
 }
 
-#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > ul > li .register_date {
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li .register_date {
 	display: block;
 	font-size: 12px;
 	color : #999999;
 }
 
-#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > ul > li p {
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li p {
 	margin : 8px 0;
 	font-size: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space:nowrap;
 }
 
-#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > ul > li  p > span {
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li  p > span {
 	display: inline-block;
 	width : 78px;
 	height : 23px;
@@ -458,17 +465,35 @@ body.modal_open {
 	line-height: 23px;
 }
 
-#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > ul > li .buttons {
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li .buttons {
 	display: flex;
 	justify-content: space-between;
 	width: 79px;
 	padding-left: 259px;
 }
 
-#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > ul > li .buttons button {
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li .buttons button {
 	font-size: 12px;
 	font-weight: normal;
 	color:#999;
+}
+
+#modal > .modal_inner > .resume_register_area > .resume_register_content.empty_list > form > div > div {
+	box-sizing: border-box;
+	padding: 89px 53.5px 88px;
+	text-align: center;
+	font-size: 16px;
+}
+
+#modal > .modal_inner > .resume_register_area > .resume_register_content.empty_list > form > div > div p:last-of-type {
+	font-size: 14px;
+	margin-top: 7px;
+}
+
+#modal > .modal_inner > .resume_register_area > .resume_register_content.empty_list > form > div > div p:last-of-type a {
+	margin-left : 15px;
+	color : #A7D676;
+	text-decoration: underline;
 }
 
 #modal > .modal_inner > .resume_register_area > .resume_register_content > form > button {
@@ -482,6 +507,10 @@ body.modal_open {
 	font-size: 16px;
 	font-weight: bold;
 	color : #FFF;
+}
+
+#modal > .modal_inner > .resume_register_area > .resume_register_content.empty_list > form > button {
+	opacity: 0.3;
 }
 
 #modal.resume_register_modal > .close_button {

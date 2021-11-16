@@ -15,7 +15,7 @@
 						<div>
 							<div>
 								<h3><a href="#">CJ푸드빌</a></h3>
-								<button type="button" class="like_button">관심기업 등록<span class="blind">설정</button>
+								<button type="button" class="like_button">관심기업 등록<span class="blind">설정</span></button>
 							</div>
 							<h2>[CJ푸드빌] 재무팀 경력사원 모집</h2>
 						</div>
@@ -115,65 +115,68 @@
 						</div>
 						<div class="resume_register_content">
 							<form action="#" method="post">
+								<input type="hidden" name="jv_no" value="">
 								<div>
 									<h4>이력서</h4>
-									<ul>
-										<li class="resume">
-											<input type="radio" name="resume" value="1" id="1" checked>
-											<label for="1">
-												<span class="register_date">2021.10.23 등록</span>
-												<p><span>대표이력서</span>d언제나 함께하는 행복한 인재가 되겠습니다.</p>
-												<span class="buttons">
-													<button type="button">수정</button>
-													<button type="button">미리보기</button>
-												</span>
-											</label>
-										</li>
-										<li class="resume">
-											<input type="radio" name="resume" value="2" id="2">
-											<label for="2">
-												<span class="register_date">2021.10.23 등록</span>
-												<p>이력서2</p>
-												<span class="buttons">
-													<button type="button">수정</button>
-													<button type="button">미리보기</button>
-												</span>
-											</label>
-										</li>
-										<li class="resume">
-											<input type="radio" name="resume" value="3" id="3">
-											<label for="3">
-												<span class="register_date">2021.10.23 등록</span>
-												<p>이력서3</p>
-												<span class="buttons">
-													<button type="button">수정</button>
-													<button type="button">미리보기</button>
-												</span>
-											</label>
-										</li>
-										<li class="resume">
-											<input type="radio" name="resume" value="4" id="4">
-											<label for="4">
-												<span class="register_date">2021.10.23 등록</span>
-												<p>이력서4</p>
-												<span class="buttons">
-													<button type="button">수정</button>
-													<button type="button">미리보기</button>
-												</span>
-											</label>
-										</li>
-										<li class="resume">
-											<input type="radio" name="resume" value="5" id="5">
-											<label for="5">
-												<span class="register_date">2021.10.23 등록</span>
-												<p>이력서5</p>
-												<span class="buttons">
-													<button type="button">수정</button>
-													<button type="button">미리보기</button>
-												</span>
-											</label>
-										</li>
-									</ul>
+									<div>
+										<ul>
+											<li class="resume">
+												<input type="radio" name="resume" value="1" id="1" checked>
+												<label for="1">
+													<span class="register_date">2021.10.23 등록</span>
+													<p><span>대표이력서</span>d언제나 함께하는 행복한 인재가 되겠습니다.</p>
+													<span class="buttons">
+														<button type="button">수정</button>
+														<button type="button">미리보기</button>
+													</span>
+												</label>
+											</li>
+											<li class="resume">
+												<input type="radio" name="resume" value="2" id="2">
+												<label for="2">
+													<span class="register_date">2021.10.23 등록</span>
+													<p>이력서2</p>
+													<span class="buttons">
+														<button type="button">수정</button>
+														<button type="button">미리보기</button>
+													</span>
+												</label>
+											</li>
+											<li class="resume">
+												<input type="radio" name="resume" value="3" id="3">
+												<label for="3">
+													<span class="register_date">2021.10.23 등록</span>
+													<p>이력서3</p>
+													<span class="buttons">
+														<button type="button">수정</button>
+														<button type="button">미리보기</button>
+													</span>
+												</label>
+											</li>
+											<li class="resume">
+												<input type="radio" name="resume" value="4" id="4">
+												<label for="4">
+													<span class="register_date">2021.10.23 등록</span>
+													<p>이력서4</p>
+													<span class="buttons">
+														<button type="button">수정</button>
+														<button type="button">미리보기</button>
+													</span>
+												</label>
+											</li>
+											<li class="resume">
+												<input type="radio" name="resume" value="5" id="5">
+												<label for="5">
+													<span class="register_date">2021.10.23 등록</span>
+													<p>이력서5</p>
+													<span class="buttons">
+														<button type="button">수정</button>
+														<button type="button">미리보기</button>
+													</span>
+												</label>
+											</li>
+										</ul>
+									</div>
 								</div>
 								<button type="submit">입사지원</button>
 							</form>
@@ -184,5 +187,6 @@
 			</div>
 		</div>
 	</div>
+	<script th:src="@{/js/jobs/vacancyDetail/vacancy-detail.js}"></script>
 </body>
 </html>
