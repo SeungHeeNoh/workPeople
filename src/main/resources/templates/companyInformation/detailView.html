@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+	<link rel="stylesheet" th:href="@{/css/common/common.css}">
+	<link rel="stylesheet" th:href="@{/css/companyInformation/company-information.css}">
+</head>
+<body>
+	<div id="container">
+		<div class="content">
+			<div class="info_header">
+				<div>
+					<img th:src="@{/images/}" alt="더캐리 로고 이미지">
+					<h2>더캐리</h2>
+				</div>
+			</div>
+			<div class="floating-navi">
+				<div class="floating-navi-inner">
+					<ul>
+						<li class="active" data-target="company_info">기업소개</li>
+						<li data-target="recruit_ing">인재채용</li>
+						<li data-target="recruit_closed">지난채용</li>
+					</ul>
+				</div>
+			</div>
+			<div class="information">
+				<div class="company_info">
+					<h3>기업소개</h3>
+					<div class="summary">
+						<ul>
+							<li>
+								<span>설립일</span>
+								<span>-</span>
+							</li>
+							<li>
+								<span>기업형태</span>
+								<span>중소기업</span>
+							</li>
+							<li>
+								<span>사원수</span>
+								<span>-</span>
+							</li>
+						</ul>
+					</div>
+					<div class="company_addional_info">
+						<ul>
+							<li><span class="title">업종</span>판매·유통</li>
+							<li><span class="title">기업주소</span>서울 용산구 이태원로 241, 2층</li>
+						</ul>
+					</div>
+				</div>
+				<div class="recruit_ing">
+					<h3>인재채용</h3>
+					<div>
+						<input type="hidden" id="page" value="1">
+						<table class="empty_result">
+							<thead>
+								<tr>
+									<th scope="col">공고명</th>
+									<th scope="col">공고요약</th>
+									<th scope="col">기한</th>
+									<th scope="col">입사지원</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="4">진행중인 공고가 존재하지 않습니다.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="recruit_closed">
+					<h3>지난채용</h3>
+					<div>
+						<input type="hidden" id="page" value="1">
+						<table class="empty_result">
+							<thead>
+								<tr>
+									<th scope="col">공고명</th>
+									<th scope="col">공고요약</th>
+									<th scope="col">기한</th>
+									<th scope="col">입사지원</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="4">지난 채용 공고가 존재하지 않습니다.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/js/companyInformation/company-information.js}"></script>
+</body>
+</html>
