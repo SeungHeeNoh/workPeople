@@ -171,6 +171,7 @@
 	box-sizing: border-box;
 	border-radius: 10px;
 	border: 1px solid #888;
+	color : #888;
 	font-size: 14px;
 	text-align: center;
 	line-height: 26px;
@@ -188,6 +189,13 @@
 .content > .job_vacancy_summary > table {
 	margin-top : 27px;
 	font-size: 14px;
+}
+.content > .job_vacancy_summary > table tr {
+	border-bottom : 5px solid transparent;
+}
+
+.content > .job_vacancy_summary > table tr:last-of-type {
+	border-bottom: none;
 }
 
 .content > .job_vacancy_summary > table th {
