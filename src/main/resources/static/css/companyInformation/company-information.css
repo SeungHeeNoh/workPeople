@@ -168,6 +168,19 @@
 	white-space: nowrap;
 }
 
+.content > .information > div > div > table.empty_result > tbody > tr {
+	box-sizing: border-box;
+	border-bottom: 1px solid #DCDCDC;
+}
+
+.content > .information > div > div > table.empty_result > tbody > tr td{
+	width: 100%;
+	display: table-cell;
+	padding : 83px 0;
+	font-size: 16px;
+	text-align: center;
+}
+
 .content > .information > .company_info > .summary {
 	height : 248px;
 	margin : 40px 0 34px;
