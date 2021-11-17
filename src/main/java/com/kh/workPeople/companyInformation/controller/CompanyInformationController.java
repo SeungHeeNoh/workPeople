@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/company-information")
-public class companyInformationController {
+public class CompanyInformationController {
 
 	@GetMapping("/detail-view")
 	public String detailView() {
-		return "companyInformation/detailView";
+		return "company-information/detail-view";
 	}
 }
