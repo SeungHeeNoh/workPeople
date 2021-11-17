@@ -34,36 +34,36 @@ public class AccountController {
 		return "account/join/change_password";
 	}
 	
-	@RequestMapping(value={"/findIdPwd/", "/findIdPwd/main"})
+	@RequestMapping(value={"/find-id-pwd/", "/find-id-pwd/main"})
 	public String findIdPwdMain() {
-		return "account/findIdPwd/main";
+		return "account/find-id-pwd/main";
 	}
 	
-	@GetMapping("/findIdPwd/personal/findId")
+	@GetMapping("/find-id-pwd/personal/find-id")
 	public String personalFindId(Model model) {
 		model.addAttribute("member_type", "personal");
 
-		return "account/findIdPwd/findId";
+		return "account/find-id-pwd/find-id";
 	}
 	
-	@GetMapping("/findIdPwd/personal/findPwd")
+	@GetMapping("/find-id-pwd/personal/find-pwd")
 	public String personalFindPwd(Model model) {
 		model.addAttribute("member_type", "personal");
 
-		return "account/findIdPwd/findPwd";
+		return "account/find-id-pwd/find-pwd";
 	}
 	
-	@GetMapping("/findIdPwd/company/findId")
+	@GetMapping("/find-id-pwd/company/find-id")
 	public String companyFindId(Model model) {
 		model.addAttribute("member_type", "company");
 
-		return "account/findIdPwd/findId";
+		return "account/find-id-pwd/find-id";
 	}
 	
-	@GetMapping("/findIdPwd/company/findPwd")
+	@GetMapping("/find-id-pwd/company/find-pwd")
 	public String companyFindPwd(Model model) {
 		model.addAttribute("member_type", "company");
 
-		return "account/findIdPwd/findPwd";
+		return "account/find-id-pwd/find-pwd";
 	}
 }
