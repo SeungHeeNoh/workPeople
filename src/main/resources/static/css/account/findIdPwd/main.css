@@ -70,14 +70,14 @@
 }
 
 .content > .sns_idpwd > ul > li {
-	background : url(/images/findIdpwd/naver_logo.png) 168px 54px no-repeat;
+	background : url(/images/account/findIdpwd/naver_logo.png) 168px 54px no-repeat;
 	background-size: 160px 29px;
 	padding-top: 138px;
 	box-sizing: border-box;
 }
 
 .content > .sns_idpwd > ul > li:last-of-type {
-	background-image: url(/images/findIdpwd/kakao_login.png);
+	background-image: url(/images/account/findIdpwd/kakao_login.png);
 }
 
 .content > .sns_idpwd > ul > li > span {
