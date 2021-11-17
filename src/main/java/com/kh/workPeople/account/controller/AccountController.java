@@ -21,17 +21,17 @@ public class AccountController {
 	
 	@GetMapping("/join/personal-join")
 	public String personalJoin() {
-		return "account/join/personalJoin";
+		return "account/join/personal-join";
 	}
 	
 	@GetMapping("/join/company-join")
 	public String companyJoin() {
-		return "account/join/companyJoin";
+		return "account/join/company-join";
 	}
 	
 	@GetMapping("/changePassword")
 	public String changePassword() {
-		return "account/join/change_password";
+		return "account/join/change-password";
 	}
 	
 	@RequestMapping(value={"/find-id-pwd/", "/find-id-pwd/main"})
