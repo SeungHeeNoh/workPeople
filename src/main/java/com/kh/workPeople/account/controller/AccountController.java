@@ -16,7 +16,7 @@ public class AccountController {
 	
 	@GetMapping("/manager-login")
 	public String mangerLogin() {
-		return "account/login/login_manager";
+		return "account/login/login-manager";
 	}
 	
 	@GetMapping("/join/personal-join")
