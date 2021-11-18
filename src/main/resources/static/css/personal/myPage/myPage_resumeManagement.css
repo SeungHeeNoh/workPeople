@@ -1,0 +1,180 @@
+@charset "utf-8";
+.content1_wrap{
+    width: 800px;
+    height: 208px;
+    border-radius: 10px;
+    background-color: #F9E2AE;
+    margin-left: 17px;
+    margin-bottom: 30px;
+}
+
+.content1_container{
+    width: 679px;
+    height: 158px;
+    margin: 25px;
+    padding-left: 25px;
+    padding-top: 25px;
+}
+
+.content1_1{
+    font-size: 20px;
+    color: #B87F00;
+    margin-bottom: 10px;
+}
+
+.content1_2{
+    font-size: 24px;
+}
+
+#content1_2{
+    margin-bottom: 10px;
+}
+
+.content2_container{
+    display: flex; 
+}
+
+.content2_1{
+    background-color: white;
+    width: 460px;
+    height: 45px;
+    text-align: left;
+    line-height: 42px;
+    padding-left: 20px;
+}
+
+.green1{
+    width: 150px;
+    height: 50px;
+    margin-top: -2px;
+    font-size: 24px;
+    margin-left: 25px;
+}
+
+.content2_img{
+    padding-left: 255px;
+}
+
+.content3_container{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.content3_2{
+    margin : 0 70px 0 5px;
+}
+
+.content3_4{
+    margin-left: 5px;
+}
+
+.content4_container{
+    display: flex;
+}
+
+.content4_1,
+.content4_3{
+    background-color: white;
+    border-radius: 20px;
+    position: relative;
+    width: 160px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.content4_2,
+.content4_4{
+    position: absolute;
+    background-color: #c4c4c4;
+    border-radius: 20px;
+    left: 140px;
+    top: -15px;
+    width: 40px;
+    height: 30px;
+}
+
+
+.content4_3{
+    margin-left: 25px;
+}
+
+
+.green2{
+    width: 125px;
+    height: 40px;
+    font-size: 24px;
+    margin-left: 100px;
+    margin-top: -4px;
+}
+
+.orange1{
+    width: 125px;
+    height: 40px;
+    font-size: 24px;  
+    margin-left: 20px;  
+    margin-top: -4px;
+}
+
+.header_text{
+    font-size: 24px;
+}
+
+.content5_wrap{
+    margin : 15px 5px 15px 55px;
+}
+
+.content5_container{
+    display: flex;
+}
+
+.content5_1{
+    font-size: 16px;
+    background-color: #85CBCC;
+    border-radius: 10px;
+    color: white;
+    width: 110px;
+    height: 30px;
+    text-align: center;
+    line-height: 28px;
+    margin-right: 15px;
+}
+
+.content5_2{
+    font-size: 22px;
+}
+
+.content6_container{
+    display: flex;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.content6_1,
+.content6_2,
+.content6_3,
+.content6_4{
+    font-size: 18px;
+}
+
+.content6_2{
+    margin-left: 10px;
+    margin-right: 45px;
+}
+
+.content6_4{
+    margin-left: 10px;
+    margin-right: 70px;
+}
+
+.green3,
+.orange2{
+    font-size: 25px;
+    width: 125px;
+    height: 38px;    
+    margin-top: -14px;
+}
+
+.orange2{
+    margin-left: 20px;
+}
