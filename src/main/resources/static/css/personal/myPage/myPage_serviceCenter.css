@@ -1,0 +1,42 @@
+@charset "utf-8";
+section{
+    width: 450px;
+    height: 740px;
+    margin-left: calc( 100% - 210px - 450px );
+}
+
+.content1_container{
+    height: 57px;
+    background-color: #FDD67E;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.content1_1{
+    font-size: 26px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.content2_container{
+    height: 624px;
+    background-color: #FFEEC2;
+}
+
+.content3_container{
+    display: flex;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.content3_1{
+    font-size: 24px;
+    opacity: 0.5;
+    padding-top: 3px;
+}
+
+.green1{
+    width: 75px;
+    height: 38px;
+    font-size: 24px;
+    margin-left: 15px;
+}
