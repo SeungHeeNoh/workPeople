@@ -1,0 +1,273 @@
+#wrap {
+  position: relative;
+  min-width: 1440px;
+  background-color: #fffbf1;
+}
+#wrap > #container {
+  position: relative;
+  width: 1100px;
+  margin: 0px auto;
+  padding: 50px 0;
+}
+#wrap #container::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#wrap #container #sideNav {
+  width: 210px;
+  float: left;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(225, 229, 235);
+  border-image: initial;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  text-align: center;
+}
+#sideNav .nav {
+  display: inline-block;
+  width: 168px;
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+#sideNav .nav ul {
+  text-align: center;
+}
+#sideNav .nav li {
+  padding-bottom: 20px;
+}
+#sideNav .nav li > a {
+  color: #323232;
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 1.4;
+}
+#sideNav .nav li > a:hover {
+  color: #85cbcc;
+}
+#sideNav .nav .historySub a {
+  color: #85cbcc;
+}
+
+#wrap #container #content {
+  width: 870px;
+  float: right;
+  box-sizing: border-box;
+}
+
+#content .comInfo_area {
+  box-sizing: border-box;
+  border: 1px solid rgb(225, 229, 235);
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  display: table;
+  width: 100%;
+}
+.personContent {
+  padding: 35px 25px;
+}
+
+.giTit {
+  padding-left: 20px;
+  font-size: 25px;
+  color: #000;
+  font-weight: bold;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #434545;
+}
+.cashKindBox {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+.cashKindBox > div {
+  display: table-cell;
+  width: 50%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.cashKindBox > div .text {
+  display: inline-block;
+  margin-left: 10px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 30px;
+  color: #8c8c8c;
+}
+.txtBlue {
+  color: #36dae1 !important;
+  font-weight: bold;
+}
+.cashKindBox > div + div {
+  border-left: 1px solid #bbbbbb;
+}
+.giTit ~ .topTitle {
+  margin-top: 75px;
+}
+.topTitle .giTit {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.topTitle .text {
+  padding-left: 20px;
+  color: #323232;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  padding-top: 15px;
+}
+.topTitle {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #434545;
+}
+.listsSchArea {
+  margin: 20px 20px 0 30px;
+  position: relative;
+}
+.periodChoice {
+  float: left;
+  margin-right: 20px;
+  padding-right: 20px;
+  border-right: 1px solid #ddd;
+  font-size: 0;
+}
+.periodChoice span {
+  margin: 0 20px;
+  font-size: 13px;
+  color: #000;
+  vertical-align: middle;
+  position: relative;
+  top: -5px;
+}
+.btnMtcTpl {
+  background: #fff;
+  line-height: 35px;
+  display: inline-block;
+  height: 36px;
+  padding: 0 15px;
+  line-height: 34px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  color: #000;
+  letter-spacing: -1px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.periodChoice button + button {
+  border-left: 0;
+}
+.periodChoice button.on {
+  color: #fff;
+  background: #85cbcc;
+}
+.calendarWrap {
+  float: left;
+  position: relative;
+  margin-right: 10px;
+}
+.calendarWrap > .calendarInp,
+.calendarWrap > span {
+  float: left;
+  line-height: 36px;
+}
+.calendarInp {
+  position: relative;
+  border: 1px solid #dddddd;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.calendarInp input[type="text"] {
+  width: 85px;
+  height: 34px;
+  padding: 0;
+  padding-left: 10px;
+  margin: 0;
+  border: 0;
+  line-height: 34px;
+}
+.calendarInp input[type="date"] {
+  border: none;
+  outline: none;
+}
+.calendarWrap > span {
+  margin: 0 5px;
+}
+.listsSchArea .mtcListFillter {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+}
+.btnSearch {
+  height: 36px;
+  padding: 0 15px;
+  margin-top: 2px;
+  margin-left: 10px;
+}
+.listsSchArea:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.blockLists {
+  margin-bottom: 50px;
+}
+.mtcSchListTb {
+  margin-top: 15px;
+}
+.mtcSchListTb table {
+  width: 100%;
+  table-layout: fixed;
+  border-top: 1px solid #bfbfbf;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  border: 0 none;
+}
+.mtcSchListTb thead th {
+  background-color: #fcfcfc;
+  height: 50px;
+  font-size: 16px;
+  color: #333;
+  font-weight: normal;
+  text-align: center;
+}
+.mtcSchListTb thead tr {
+  border: 1px solid #bfbfbf;
+  background-color: #f8f8f8;
+}
+.blockLists .mtcSchListTb table tbody td.searchTdNone {
+  font-size: 16px;
+  padding: 100px 0;
+  color: #999;
+}
+
+.mtcSchListTb table tbody td {
+  vertical-align: top;
+  padding: 10px 5px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  border-bottom: 1px solid #edeef0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.mtcSchListTb tbody td span {
+  color: rgb(255, 0, 0);
+}
+
+.onmouseover {
+  background: rgba(179, 220, 223, 0.21);
+  cursor: pointer;
+}

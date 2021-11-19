@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>결제완료</title>
+    <link rel="stylesheet" href="css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/paidList.css">
+    <link rel="stylesheet" href="css/company/mypage/paidList.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="container">
+            <!-- 사이드바 -->
+            <div id="sideNav">
+                <div class="nav">
+                    <ul>
+                        <li class="promoSub"><a href="#">상품 안내</a></li>
+                        <li class="historySub"><a href="#">유료서비스 이용내역</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- content 영역 -->
+            <div id="content">
+                <div class="comInfo_area">
+                    <div class="personContent">
+                        <h2 class="giTit">유료서비스 이용내역</h2>
+                
+                        <div class="cashKindBox">
+                            <div class="coupon">
+                                <span class="text">이용중 <span class="txtBlue">0</span>건</span>
+                            </div>
+                            <div class="eMoney">
+                                <span class="text">이용완료 <span class="txtBlue">0</span>건</span>
+                            </div>
+                            
+                        </div>
+                
+                        <div class="topTitle">
+                            <h2 class="giTit">결제내역조회</h2>
+                            <p class="text">최근 5년 이내 결제 내역 조회 가능합니다. 그동안 이용했던 결제내역 확인해보세요.</p>
+                        </div>
+                
+                        <div class="mngListArea">
+                            <!-- // 검색영역 -->
+                            <div class="listsSchArea devBaseSrchArea">
+                                <form action="#">
+                                    <input type="hidden" name="searchType" id="searchType">
+                                        <div class="periodChoice">
+                                            <span>기간별 조회</span>
+                                            <button type="button" class="btnMtcTpl devDuringSearch btnWeek1" data-during="Week1" value="Week1">1주일</button>
+                                            <button type="button" class="btnMtcTpl devDuringSearch btnMonth1" data-during="Month1" value="Month1">1개월</button>
+                                            <button type="button" class="btnMtcTpl devDuringSearch btnMonth3" data-during="Month3" value="Month3">3개월</button>
+                                        </div>
+                                        <div class="calendarWrap">
+                                            <div class="calendarInp">
+                                                <input type="date" id="startDt" name="startDt" class="devSearchDtClass" value="" title="조회 시작일자">
+                                            </div>
+                                               <span> ~ </span>
+                                                
+                                            <div class="calendarInp">
+                                                <input type="date" id="endDt" name="endDt" class="devSearchDtClass" value="" title="조회 종료일자" >
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="mtcListFillter">
+                                            <button class="btnSearch devBaseSearch green" type="button">검색</button>
+                                        </div>
+                                </form>
+                            </div>
+                            <!-- 검색영역 // -->
+                            <!-- // 리스트 영역 -->
+                            <div class="schListWrap blockLists" id="PaidList">
+                
+                            <div class="mtcSchListTb">
+                                <table>
+                                    <colgroup>
+                                        <col width="150">
+                                        <col width="*">
+                                        <col width="150">
+                                        <col width="150">
+                                        <col width="150">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">신청일</th>
+                                            <th scope="col">신청상품</th>
+                                            <th scope="col">결제금액</th>
+                                            <th scope="col">결제상태</th>
+                                            <th scope="col">결제증빙</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                     <!-- <tr>
+                                        <td class="searchTdNone" colspan="6">
+                                            조회하신 조건의 결과가 없습니다.
+                                        </td>
+                                    </tr>  -->
+                                    <tr class="mtcSch_tr">
+                                        <td>이용중</td>
+                                        <td>2021-10-24 11:46</td>
+                                        <td>플레티넘 상품</td>
+                                        <td><span>1,000</span>원</td>
+                                        <td>가상계좌</td>
+                                    </tr>
+                                    
+                                  
+                            
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                            <!-- 리스트 영역 // -->
+                        </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+    <script>
+		// 게시글 목록에 mouseover/mouseout 시 onmouseover 클래스 추가/제거 처리
+		const mtcSchListTb = document.querySelector('.mtcSchListTb');
+		
+		mtcSchListTb.addEventListener('mouseover', function(){
+			
+			if(event.target.classList.contains('mtcSch_tr'))
+				event.target.classList.add('onmouseover');
+			else if(event.target.parentNode.classList.contains('mtcSch_tr'))
+				event.target.parentNode.classList.add('onmouseover');
+		});
+		
+		mtcSchListTb.addEventListener('mouseout', function(){
+			
+			if(event.target.classList.contains('mtcSch_tr'))
+				event.target.classList.remove('onmouseover');
+			else if(event.target.parentNode.classList.contains('mtcSch_tr'))
+				event.target.parentNode.classList.remove('onmouseover');
+			
+		});
+		
+
+        $(document).ready(function () {
+            $("Button").click(function(){
+                if(this.value == "Week1"){
+                    $('.btnWeek1').addClass("on");
+                    $('.btnMonth1').removeClass("on");
+                    $('.btnMonth3').removeClass("on");
+                }else if(this.value == "Month1") {
+                    $('.btnWeek1').removeClass("on");
+                    $('.btnMonth1').addClass("on");
+                    $('.btnMonth3').removeClass("on");
+                } else {
+                    $('.btnWeek1').removeClass("on");
+                    $('.btnMonth1').removeClass("on");
+                    $('.btnMonth3').addClass("on");
+                }
+            
+            });
+
+           
+        });
+
+   </script>
+</body>
+</html>

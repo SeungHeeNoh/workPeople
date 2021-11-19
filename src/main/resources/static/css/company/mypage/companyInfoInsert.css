@@ -1,0 +1,384 @@
+#wrap {
+  position: relative;
+  min-width: 1440px;
+  background-color: #fffbf1;
+}
+#wrap > #container {
+  position: relative;
+  width: 1100px;
+  margin: 0px auto;
+  padding: 50px 0;
+}
+#wrap #container::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#wrap #container #sideNav {
+  width: 210px;
+  float: left;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(225, 229, 235);
+  border-image: initial;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  text-align: center;
+}
+#sideNav .nav {
+  display: inline-block;
+  width: 168px;
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+#sideNav .nav ul {
+  text-align: center;
+}
+#sideNav .nav li {
+  padding-bottom: 20px;
+}
+#sideNav .nav li > a {
+  color: #323232;
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 1.4;
+}
+#sideNav .nav li > a:hover {
+  color: #85cbcc;
+}
+#sideNav .nav .comInfoSub a {
+  color: #85cbcc;
+}
+
+#wrap #container #content {
+  width: 870px;
+  float: right;
+}
+
+#wrap #container #content {
+  box-sizing: border-box;
+}
+#content .comInfo_area {
+  box-sizing: border-box;
+  border: 1px solid rgb(225, 229, 235);
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 30px 30px 30px 40px;
+  margin-bottom: 20px;
+  display: table;
+  width: 100%;
+}
+.comInfo_area .ment1 {
+  font-weight: bold;
+  font-size: 28px;
+  display: table-row;
+  vertical-align: middle;
+  color: #323232;
+}
+.comInfo_area .ment2 {
+  font-size: 12px;
+  margin-top: 10px;
+  color: #323232;
+}
+.comInfo_name ul li {
+  float: left;
+}
+.comInfo_name .name {
+  font-size: 30px;
+  padding-right: 30px;
+  line-height: 1.2;
+  letter-spacing: -3px;
+  word-break: break-all;
+  color: #323232;
+}
+.comInfo_name {
+  display: table-cell;
+  vertical-align: middle;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 60px;
+}
+.comInfo_name .register_ment,
+.comInfo_name .register_number {
+  font-size: 15px;
+  padding-top: 8px;
+  text-align: right;
+  white-space: nowrap;
+}
+.comInfo_name .register_ment {
+  color: rgb(124, 124, 124);
+  padding-right: 10px;
+}
+.logo_area {
+  position: relative;
+  width: 248px;
+  border-left: 2px solid #eee;
+  box-sizing: border-box;
+  display: table-cell;
+  vertical-align: middle;
+}
+.logo_area .logo_btn {
+  display: block;
+  width: 120px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #999;
+  padding: 8px 8px;
+  letter-spacing: -1px;
+  box-sizing: border-box;
+}
+.logo_area .logo_btn:before {
+  width: 20px;
+  height: 20px;
+  margin: -2px 6px 0 0;
+  content: "";
+  display: inline-block;
+  background: url(/src/main/resources/static/images/companyMyPage/circle-add.png)
+    50% 50% no-repeat;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.logo_area .logo_btn span {
+  position: relative;
+  color: #999;
+}
+
+.updown {
+  animation: motion 0.5s linear 0s infinite alternate;
+  margin-top: 0;
+}
+@keyframes motion {
+  0% {
+    margin-top: 0px;
+  }
+  100% {
+    margin-top: 10px;
+  }
+}
+
+.txt_box {
+  position: absolute;
+  top: 180px;
+  left: 85.5%;
+  margin-left: -63px;
+  padding: 5px 16px 7px;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: normal;
+  background-color: #36dae1;
+}
+
+.Info_area3 .info_hd {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.Info_area3 .info_hd .hd_ment {
+  font-size: 11px;
+  color: #ff3333;
+  padding-left: 10px;
+}
+.infoTbBx .tbRow {
+  display: table;
+  width: 100%;
+  box-sizing: border-box;
+}
+.artCoBasic .tbCell {
+  width: 33.33%;
+}
+.infoTbBx .tbCell {
+  display: table-cell;
+  vertical-align: middle;
+}
+.info_wrap {
+  position: relative;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.tbCell + .tbCell {
+  padding-left: 10px;
+}
+.tbRow + .tbRow {
+  margin-top: 10px;
+}
+.inpDefault {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+  line-height: 40px;
+  padding-left: 15px;
+  border: none;
+  background-color: #fff;
+  font-size: 13px;
+  letter-spacing: -0.5px;
+}
+
+input:focus {
+  outline: 2px solid #95c9cb;
+}
+
+select:focus {
+  outline: 2px solid #95c9cb;
+}
+input::placeholder {
+  font-size: 13px;
+}
+
+/* 
+input::placeholder {
+  background-image: url(/src/main/resources/static/images/companyMyPage/Vector.png);
+  background-size: 5px;
+  background-position: 0px;
+  background-repeat: no-repeat;
+} */
+
+.inputcnt {
+  font-size: 14px;
+  position: absolute;
+  left: 750px;
+  top: 33px;
+  color: #545454;
+}
+
+select {
+  /* background: url("/src/main/resources/static/images/companyMyPage/chevron-down.png")
+    no-repeat 95% 50%;
+  background-size: 20px; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #767676;
+  padding-left: 10px;
+}
+select::-ms-expand {
+  display: none;
+}
+select option {
+  font-size: 15px;
+}
+
+.icoArrow {
+  position: absolute;
+  top: 18px;
+  right: 0;
+  z-index: 1;
+  width: 40px;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icoArrow img {
+  width: 50%;
+  transition: 0.3s;
+}
+select:focus + .icoArrow img {
+  transform: rotate(180deg);
+}
+
+.addressbtn {
+  font-size: 12px;
+  position: absolute;
+  color: #39f;
+  text-decoration: underline;
+  left: 233px;
+  top: 6px;
+  font-weight: 500;
+}
+.txArea {
+  overflow: auto;
+  font-size: 16px;
+  height: 86px;
+  height: 125px;
+  padding: 15px 17px 0 17px;
+  width: 100%;
+  height: 200px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  resize: none;
+}
+.info_hd_2 {
+  font-size: 18px;
+  color: #323232;
+  margin-bottom: 20px;
+}
+
+textarea:focus {
+  outline: 2px solid #95c9cb;
+}
+textarea::placeholder {
+  font-size: 13px;
+  color: #8c8c8c;
+}
+
+.textareacnt {
+  font-size: 14px;
+  position: absolute;
+  left: 730px;
+  top: 210px;
+  color: #545454;
+}
+.comInfo_wrap {
+  position: relative;
+  background-color: #fff;
+}
+
+body {
+  background: rgb(255, 251, 241);
+}
+.infoBtnApply {
+  width: 208px;
+  height: 64px;
+  font-weight: bold;
+  font-size: 20px;
+  align-items: center;
+}
+.artCoBtn {
+  text-align: center;
+  margin-top: 44px;
+}
+.logo_area {
+  box-sizing: border-box;
+  position: relative;
+}
+.logo_area .logo {
+  width: 188px;
+  height: 79px;
+  padding-left: 10px;
+}
+.logo_area .btn {
+  position: absolute;
+  top: 10px;
+  right: 1px;
+}
+.logo_area .btn button {
+  display: block;
+}
+.infoBtnDel {
+  width: 25px;
+  height: 25px;
+  background-position: -60px 0;
+  background: url(/src/main/resources/static/images/companyMyPage/circle-error.png)
+    no-repeat;
+  vertical-align: middle;
+  box-sizing: border-box;
+  position: relative;
+}
+.logo_area .btn .infoBtnMod {
+  margin-top: 15px;
+}
+.infoBtnMod {
+  width: 25px;
+  height: 25px;
+  background-position: -100px 0;
+  background: url(/src/main/resources/static/images/companyMyPage/edit-alt.png)
+    no-repeat;
+  vertical-align: middle;
+  box-sizing: border-box;
+  position: relative;
+}

@@ -1,0 +1,377 @@
+#wrap {
+  position: relative;
+  min-width: 1440px;
+  background-color: #fffbf1;
+}
+#wrap > #container {
+  position: relative;
+  width: 1100px;
+  margin: 0px auto;
+  padding: 50px 0;
+}
+#wrap #container::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#wrap #container #sideNav {
+  width: 210px;
+  float: left;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(225, 229, 235);
+  border-image: initial;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  text-align: center;
+}
+#sideNav .nav {
+  display: inline-block;
+  width: 168px;
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+#sideNav .nav ul {
+  text-align: center;
+}
+#sideNav .nav li {
+  padding-bottom: 20px;
+}
+#sideNav .nav li > a {
+  color: #323232;
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 1.4;
+}
+#sideNav .nav li > a:hover {
+  color: #85cbcc;
+}
+#sideNav .nav .personRecommend a {
+  color: #85cbcc;
+}
+
+#wrap #container #content {
+  width: 870px;
+  float: right;
+  box-sizing: border-box;
+}
+
+#content .comInfo_area {
+  box-sizing: border-box;
+  border: 1px solid rgb(225, 229, 235);
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  display: table;
+  width: 100%;
+  padding: 45px 25px;
+}
+
+.tplJobListFunc {
+  position: relative;
+}
+.tplJobListFunc .tplJobListTop {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 14px;
+  padding-bottom: 11px;
+}
+.clear {
+  zoom: 1;
+}
+.tplJobListFunc .tplJobManTot,
+.tplJobListFunc .tplJobMan {
+  font-size: 25px;
+  color: #333;
+}
+
+.tplJobListFunc .tplJobMan {
+  font-size: 30px;
+  color: #333;
+  font-weight: 500;
+  padding-right: 50px;
+}
+.tplJobListTop > p {
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 10px;
+}
+.tplJobListTop {
+  padding-left: 15px;
+}
+.tplJobListFunc .tplJobManTot span {
+  color: #36dae1;
+  font-weight: bold;
+  font-size: inherit;
+}
+.clear:after,
+.clearfix:after {
+  content: "";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.table-list {
+  clear: both;
+  width: 100%;
+  margin: 15px 0 -10px;
+  border: 0;
+}
+.tplJobListWrap .search-list .table-list--person {
+  border-top: 1px solid #9aa2b2;
+}
+.table-list table {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+  text-align: center;
+  border-collapse: collapse;
+  border-top: 1px solid #434545;
+}
+.table-list table thead {
+  color: #333;
+}
+.table-list table thead tr {
+  border: 1px solid #bfbfbf;
+  background: #f8f8f8;
+}
+.table-list table thead tr th {
+  font-weight: 400;
+  height: 50px;
+  padding-bottom: 2px;
+  background-color: #fcfcfc;
+  font-size: 16px;
+  color: #333;
+}
+.table-list table tbody tr {
+  border-bottom: 1px solid #eee;
+}
+.table-list--person tbody tr {
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+.table-list table tbody tr td,
+.table-list table tbody tr th {
+  vertical-align: top;
+  height: 100%;
+}
+.table-list table tbody tr th {
+  font-weight: 400;
+}
+.person-info {
+  text-align: left;
+}
+.person-info__wrap {
+  padding: 75px 30px 30px 40px;
+  position: relative;
+}
+.person-info dl {
+  margin-bottom: 10px;
+}
+.person-info--name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+  display: inline-block;
+  position: relative;
+}
+.person-info--personal > span {
+  font-size: 13px;
+  color: #8c8c8c;
+}
+.person-info--sex {
+  position: relative;
+  float: left;
+  font-size: inherit;
+}
+.person-info--sex:after {
+  content: "";
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  width: 1px;
+  height: 10px;
+  background-color: #ccc;
+  margin: 0 6px;
+}
+.person-info--birth:after {
+  content: ",";
+  display: inline-block;
+  position: relative;
+  top: 0;
+  margin: 0 6px 0 1px;
+}
+.person-info--age {
+  position: relative;
+  float: left;
+  font-size: inherit;
+}
+.person-info .button__favorite {
+  position: absolute;
+  top: 32px;
+}
+.person-info .button__favorite:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-image: url(/src/main/resources/static/images/companyMyPage/nonescrap.png);
+  background-size: 22px;
+  background-repeat: no-repeat;
+  /* background-position: -216px 0; */
+}
+.person-resume {
+  text-align: left;
+  padding: 30px 0px;
+}
+.person-resume--title {
+  padding-top: 1px;
+  padding-right: 10px;
+  max-width: 100%;
+}
+.person-resume--title > span:first-of-type {
+  margin-left: 0;
+}
+.person-resume--title > span {
+  float: left;
+  margin-left: 4px;
+  position: relative;
+  top: -1px;
+}
+.person-resume__career--senior {
+  color: #ff6464;
+  border: 1px solid #ff6464;
+}
+.person-resume__career--junior,
+.person-resume__career--senior {
+  padding: 3px 5px;
+  font-size: 12px;
+  font-weight: 700;
+  background-color: #fcfcfc;
+}
+.person-resume--title > span ~ .person-resume--link {
+  margin-left: 9px;
+  max-width: 470px;
+}
+.person-resume--title > a {
+  color: #333;
+}
+.person-resume--link {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  display: inline-block;
+  max-width: 100%;
+}
+.person-resume--title {
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.person-resume--company {
+  margin-top: 11px;
+}
+.person-resume--company > span,
+.person-resume--company .company--career > span {
+  float: left;
+  font-size: 13px;
+  color: #333;
+}
+.person-resume--company .company--career:before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  width: 1px;
+  height: 10px;
+  background-color: #ccc;
+  margin: 0 8px;
+  float: left;
+}
+.table-list--person .col1 {
+  width: 25%;
+}
+.table-list--person .col2 {
+  width: 40%;
+}
+.table-list--person .col3 {
+  width: 20%;
+}
+.table-list--person .col4 {
+  width: 15%;
+}
+.table-list table {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+  text-align: center;
+  border-collapse: collapse;
+  border-top: 1px solid #434545;
+}
+.person-info--birth {
+  position: relative;
+  float: left;
+  font-size: inherit;
+}
+.person-resume--education {
+  margin-top: 11px;
+}
+.person-resume--education > span {
+  float: left;
+  font-size: 13px;
+  color: #333;
+}
+.person-resume--education > .education--major:before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  width: 1px;
+  height: 10px;
+  background-color: #ccc;
+  margin: 0 8px;
+}
+.person-resume--subinfo {
+  margin-top: 15px;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+.person-resume--area {
+  float: left;
+  padding-top: 1px;
+}
+.person-update,
+.person-mail {
+  vertical-align: middle;
+  color: #999;
+  padding: 80px 10px;
+}
+.person-resume--area .area {
+  float: left;
+  font-size: 13px;
+  color: #999;
+  line-height: 100%;
+}
+.person-update > span {
+  font-size: 14px;
+}
+.person-mail .mailbox > a {
+  font-size: 14px;
+  letter-spacing: -0.02em;
+}
+.person-mail .mailbox {
+  width: 70px;
+  height: 28px;
+  background: #f5e3b4;
+  border-radius: 5px;
+  text-align: center;
+}
+.onmouseover {
+  background: rgba(179, 220, 223, 0.21);
+  cursor: pointer;
+}

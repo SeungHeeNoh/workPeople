@@ -1,0 +1,142 @@
+.logoUploadWrap {
+  display: none;
+  position: absolute;
+  top: 320px;
+  right: -1px;
+  left: auto;
+  width: 510px;
+  height: 298px;
+  z-index: 99;
+}
+.popLogoUpload {
+  display: block;
+  position: static;
+  width: 510px;
+}
+.popRecWrap {
+  left: 0;
+  top: 0;
+  border: 1px solid #565d79;
+  background: #fff;
+  box-sizing: border-box;
+}
+.popRecWrap .popHd {
+  font-size: 20px;
+  padding: 20px 20px 20px 25px;
+  border-bottom: 1px solid #e0e3ea;
+  box-sizing: border-box;
+  letter-spacing: -2px;
+}
+.popRecWrap .popHd h1 {
+  color: rgb(116, 116, 116);
+}
+.popLogoUpload .popCont {
+  padding: 35px 43px 43px 43px;
+}
+.popLogoUpload .ntcList {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.popLogoUpload .ntcList li em {
+  color: #00b5bc;
+  font-weight: bold;
+}
+.popLogoUpload .ntcList li {
+  color: #999;
+  padding-bottom: 10px;
+}
+.popLogoUpload .infoFileBx {
+  overflow: hidden;
+  width: 422px;
+  height: 62px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+}
+.clear {
+  zoom: 1;
+}
+.popLogoUpload .fileBx {
+  float: left;
+}
+
+element.style {
+}
+.popLogoUpload .fileBx,
+.popLogoUpload .infoFileBx .btnUpload {
+  float: left;
+}
+.popLogoUpload .fileBx {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  padding: 0 48px 0 18px;
+  height: 62px;
+  line-height: 62px;
+  width: 295px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  background: #fffbf1;
+  letter-spacing: 0;
+  box-shadow: inset 0 -1px 1px rgb(255 255 255 / 30%);
+}
+
+.popLogoUpload .fileBx label {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  color: #999;
+  padding: 0 18px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.popLogoUpload .fileBx:after {
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  width: 18px;
+  height: 17px;
+  background-position: -30px 0;
+  content: "";
+  display: inline-block;
+  background: url(/src/main/resources/static/images/companyMyPage/search.png)
+    no-repeat;
+  line-height: normal;
+  vertical-align: middle;
+  background-size: 19px;
+}
+.popLogoUpload .infoFileBx .btnUpload {
+  display: inline-block;
+  font-size: 15px;
+  color: #323232;
+  width: 128px;
+  height: 62px;
+  margin-left: -1px;
+  border-left: 1px solid #ddd;
+  letter-spacing: -0.1px;
+}
+.clear:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+}
+.popRecWrap .mtcBtnPopClose {
+  position: absolute;
+  top: 19px;
+  right: 18px;
+}
+.mtcBtnPopClose {
+  width: 30px;
+  height: 30px;
+  background-position: -265px -45px;
+  background: url(/src/main/resources/static/images/companyMyPage/close.png)
+    no-repeat;
+}

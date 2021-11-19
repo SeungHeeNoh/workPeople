@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원정보관리</title>
+    <link rel="stylesheet" href="css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/memberInfoUpdate.css">
+    <link rel="stylesheet" href="css/company/mypage/memberInfoUpdate.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="container">
+            <!-- 사이드바 -->
+            <div id="sideNav">
+                <div class="nav">
+                    <ul>
+                        <li class="comInfoSub"><a href="#">기업 정보 관리</a></li>
+                        <li class="memberInfoSub"><a href="#">회원 정보 관리</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- content 영역 -->
+            <div id="content"> 
+                <div class="infoContent memberContent">
+                    <div class="memberMngWrap">
+                        <form id="update_form" method="post" action="">
+                            <input type="hidden" value="" id="" name="id">
+                                <div class="artMemberMng">
+                                    <h3 class="info_hd_3">회원 정보 관리 <span class="point"><em>*</em> 필수정보</span></h3>
+                                    <div class="infoTbBx">
+                                        <div class="tbRow">
+                                            <div class="tbCell">
+                                                <dl class="tbIpt">
+                                                    <dt>아이디 <span class="point">*<span class="blind">필수정보</span></span></dt>
+                                                    <dd>rkskek012</dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                        <!--// 비밀번호 변경 전 -->
+                                        <div class="tbRow tbPw pwNow">
+                                            <div class="elWrap">
+                                                <div class="schInpType">
+                                                    <label class="ph" for="lb_pw">비밀번호 <span class="point">*</span></label>
+                                                    <input type="password" id="lb_pw" class="inpDefault" name="" value="******" disabled="" required>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="infoBtnBd infoBtnPw" id="devBtnChangePwd"><span>비밀번호 변경</span></button>
+                                        </div>
+                                        <!--// 비밀번호 변경 -->
+                                        <div class="tbRow tbPw devPwdChangeArea" style="display: none;">
+                                            <div class="tbBx">
+                                                <div class="elWrap devElWrap ok">
+                                                    <!--[개발] input 선택시 on 추가, 입력 완료시 .ok 추가, 에러인 경우 .error 추가 -->
+                                                    <div class="schInpType">
+                                                        <label class="ph" for="devNewPwd_1">새로운 비밀번호 <span class="point">*<span class="blind">필수정보</span></span></label>
+                                                        <input type="password" id="devNewPwd_1" class="inpDefault devPwdField devAnimPh pw" name="Password" minlength="8" maxlength="16" style="padding-left: 150px;">
+                                                    </div>
+                                                </div>
+                                                <span class="notice check_notice" style="display: none;">비밀번호는 8~16자리 영문 대소문자, 숫자, 특수문자로 이루어져야 합니다.</span>
+                                            </div>
+                                        </div>
+                                        <!--// 비밀번호 확인 -->
+                                        <div class="tbRow tbPw devPwdChangeArea" style="display: none;">
+                                            <div class="tbBx">
+                                                <div class="elWrap devElWrap ok">
+                                                    <div class="schInpType">
+                                                        <label class="ph" for="devNewPwd_2">새로운 비밀번호 확인 <span class="point">*<span class="blind">필수정보</span></span></label>
+                                                        <input type="password" id="devNewPwd_2" class="inpDefault devPwdField devAnimPh pw" name="Password_Confirm"  minlength="8"  maxlength="16" style="padding-left: 180px;">
+                                                    </div>
+                                                </div>
+                                                <span class="notice check_danger" style="display: none;">비밀번호가 일치하지 않습니다.</span>
+                                                <span class="notice check_success" style="display: none; color: rgb(0, 77, 243);">비밀번호가 일치합니다.</span>
+                                            </div>
+                                        </div>
+
+                                    
+                                        <div class="tbRow tbPw">
+                                            <div class="tbCell">
+                                                <div class="tbBx">
+                                                    <div class="elWrap devElWrap ok">
+                                                        <div class="schInpType">
+                                                            <label class="ph" for="phone">가입자 전화번호 <span class="point">*</span></label>
+                                                            <input type="tel" id="phone" class="inpDefault devAnimPh" name="phone" value="" maxlength="11" pattern="[0-9]+" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tbCell">
+                                                <div class="tbBx">
+                                                    <div class="elWrap devElWrap ok">
+                                                        <div class="schInpType">
+                                                            <label class="ph" for="email">가입자 이메일 <span class="point">*</span></label>
+                                                            <input type="email" id="email" class="inpDefault devAnimPh" name="email" value="tjwjd731@naver.com" maxlength="50" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+            
+            
+                                <div class="artBtmFunc">
+                                    <button type="submit" id="devBtnSubmit" class="infoBtnBg infoBtnSave green"><span>저장하기</span></button>
+                                </div>
+                                <a th:href="@{/company/mypage/leave}" class="infoBtnBd infoBtnLeave"><span>회원탈퇴</span></a>
+                        </form>
+                    </div>
+                <!-- content 영역 -->
+                </div>    
+        </div>      
+    </div>  
+
+    <script>
+    $(function() {
+            $("#devBtnChangePwd").click(function(){
+            if($(".devPwdChangeArea").css('display') == 'none') {
+                $(".devPwdChangeArea").css('display','table');
+            } else  {
+                $(".devPwdChangeArea").css('display','none');
+            }
+        });
+    });    
+
+
+    $('.pw').focusout(function(){
+        var pwd1 = $("#devNewPwd_1").val();
+        var pwd2 = $("#devNewPwd_2").val();
+
+        if(!/(?=.*[a-zA-Z](?=.*[0-9])(?=.*[^a-zA-Z0-9])).{8,16}/.test(pwd1)){
+            $(".check_notice").css('display','inline-block');
+        } else {
+            $(".check_notice").css('display','none');
+        }
+
+        if(pwd1 !='' && pwd2 ==''){
+            null;
+        } else if(pwd1 !="" || pwd2 !=""){
+            if(pwd1 == pwd2){
+                $(".check_success").css('display','inline-block');
+                $(".check_danger").css('display','none');
+                console.log(pwd1);
+                console.log(pwd2);
+            } else {
+                $(".check_danger").css('display','inline-block');
+                $(".check_success").css('display','none');
+                console.log(pwd1);
+                console.log(pwd2);
+            }
+
+        } 
+
+    });
+
+    </script>
+</body>
+</html>

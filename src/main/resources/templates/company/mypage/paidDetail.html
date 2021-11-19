@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>결제완료</title>
+    <link rel="stylesheet" href="css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/paidDetail.css">
+    <link rel="stylesheet" href="css/company/mypage/paidDetail.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="container">
+            <!-- 사이드바 -->
+            <div id="sideNav">
+                <div class="nav">
+                    <ul>
+                        <li class="promoSub"><a href="#">상품 안내</a></li>
+                        <li class="historySub"><a href="#">유료서비스 이용내역</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- content 영역 -->
+            <div id="content">
+                <div class="comInfo_area">
+                    <div class="wrap_title">
+                        <h1 class="title_common">결제내역 조회</h1>
+                    </div>
+                        <div id="list_position" class="cont_payment_history">
+                        <div class="wrap_history_detail">
+                            <div style="float:left">
+                                <img src="/src/main/resources/static/images/companyMyPage/rightarrow.png" width="12" height="12" style="position: relative; top: -2px"> 
+                                <b>결제내역 상세보기</b>ㅣ 결제번호 : 313740348                &nbsp;
+                            </div>
+                            <div style="float: right">
+                                <a href="/zf_user/help/inquery" target="_blank" class="btnSizeXS colorWhite">1 :1 이메일 문의</a>
+                            </div>
+                        </div>
+                        <!-- 일반 채용정보 시작 -->
+                        <div class="rec-subtitle area_list_top">
+                            <span class="list_tit">1) 결제 정보</span>
+                        </div>
+                        <div class="tblWrap tbl_payment">
+                            <table>
+                                <colgroup>
+                                    <col style="width:10%">
+                                    <col>
+                                    <col style="width:10%">
+                                    <col style="width:10%">
+                                    <col style="width:10%">
+                                    <col style="width:10%">
+                                    <col style="width:8%">
+                                    <col style="width:9%">
+                                    <col style="width:8%">
+                                    <col style="width:8%">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th scope="col">결제일시</th>
+                                    <th scope="col">이용 상품</th>
+                                    <th scope="col">상품 금액</th>
+                                    <th scope="col">즉시 할인 <a href="javascript:void(0)" onmouseover="showPackageDiscountHelpLayer(this)" class="help-img"><img src="//www.saraminimage.co.kr/service/ecrm/btn_pattern_question.png" style="margin-bottom:-2px"></a></th>
+                                    <th scope="col">쿠폰 금액</th>
+                                    <th scope="col">S포인트 사용</th>
+                                    <th scope="col">맞춤 할인</th>
+                                    <th scope="col">결제 금액</th>
+                                                        <th scope="col">신규 적립</th>
+                                    <th scope="col">결제 상태</th>
+                                </tr>
+                                </thead>
+                                <tbody><tr>
+                                    <td>2021-08-04<br>15:03</td>
+                                    <td style="">TOP 지역+직종 외 3개</td>
+                                    <td>600,000원</td>
+                                    <td>236,000원</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><span class="orange">364,000원</span></td>
+                                                        <td>16,546</td>
+                                    <td>결제 완료</td>
+                                </tr>
+                            </tbody></table>
+                        </div>
+                
+                                    <div class="rec-subtitle area_list_top" style="padding: 45px 0 5px 0; font-weight: bold">
+                                <span class="list_tit">2) 구매 상품 정보</span>
+                            </div>
+                            <div class="tblWrap">
+                                <table>
+                                    <caption class="blind">구매 상품 정보 표</caption>
+                                                            <colgroup>
+                                            <col style="width:60px">
+                                            <col>
+                                            <col style="width:160px">
+                                            <col style="width:160px">
+                                            <col style="width:130px">
+                                            <col style="width:130px">
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">No.</th>
+                                            <th scope="col">이용 상품</th>
+                                            <th scope="col">서비스 시작일</th>
+                                            <th scope="col">서비스 만료일</th>
+                                            <th scope="col">이용기간</th>
+                                            <th scope="col">상품 금액</th>
+                                        </tr>
+                                        </thead>
+                                                                                                                                <tbody><tr>
+                                                <td>1</td>
+                                                <td>TOP 지역+직종</td>
+                                                <td>2021-08-04 15:03</td>
+                                                <td>2021-08-14 23:59</td>
+                                                <td><span class="orange">5일</span><br><span class="txt_onemore_day">+5일(증폭)</span></td>
+                                                <td>165,000원</td>
+                                            </tr>
+                                                                                                <tr>
+                                                <td>2</td>
+                                                <td>TOP 지역+직종 M</td>
+                                                <td>2021-08-04 15:03</td>
+                                                <td>2021-08-14 23:59</td>
+                                                <td><span class="orange">5일</span><br><span class="txt_onemore_day">+5일(증폭)</span></td>
+                                                <td>165,000원</td>
+                                            </tr>
+                                                                                                <tr>
+                                                <td>3</td>
+                                                <td>추천업</td>
+                                                <td>2021-08-04 15:03</td>
+                                                <td>2021-08-10 23:59</td>
+                                                <td><span class="orange">5일</span><br><span class="txt_onemore_day">+1일(무료)</span></td>
+                                                <td>135,000원</td>
+                                            </tr>
+                                                                                                <tr>
+                                                <td>4</td>
+                                                <td>추천업 M</td>
+                                                <td>2021-08-04 15:03</td>
+                                                <td>2021-08-10 23:59</td>
+                                                <td><span class="orange">5일</span><br><span class="txt_onemore_day">+1일(무료)</span></td>
+                                                <td>135,000원</td>
+                                            </tr>
+                                                            </tbody></table>
+                            </div>
+                        
+                                    <div class="rec-subtitle area_list_top" style="padding: 45px 0 5px 0; font-weight: bold">
+                                <span class="list_tit">3) 결제 수단 정보</span>
+                            </div>
+                            <div class="tblWrap">
+                                <table class="sms-breakdown">
+                                    <colgroup>
+                                        <col style="width:150px">
+                                        <col style="width:460px">
+                                        <col style="width:300px">
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>결제수단</th>
+                                        <th>내용</th>
+                                        <th>이메일</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody><tr>
+                                        <td>가상계좌</td>
+                                        <td>KEB하나은행 (구,하나)&nbsp;(20894094801137),&nbsp;(예금주&nbsp;:&nbsp;사람인에이치알)<br>2021년&nbsp;09월&nbsp;03일&nbsp;까지</td>
+                                        <td>joohan@vividmkt.com</td>
+                                    </tr>
+                                                    </tbody></table>
+                            </div>
+                                <div class="btn_wrap">
+                            <a class="btnSizeM orange" href="javascript:history.go(-1)">이전 페이지로</a>
+                            <a class="btnSizeM green" href="/zf_user/memcom/index/main">MY page 메인</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+    <script>
+		// 게시글 목록에 mouseover/mouseout 시 onmouseover 클래스 추가/제거 처리
+		const mtcSchListTb = document.querySelector('.tblWrap');
+		
+		mtcSchListTb.addEventListener('mouseover', function(){
+			
+			if(event.target.classList.contains('mtcSch_tr'))
+				event.target.classList.add('onmouseover');
+			else if(event.target.parentNode.classList.contains('mtcSch_tr'))
+				event.target.parentNode.classList.add('onmouseover');
+		});
+		
+		mtcSchListTb.addEventListener('mouseout', function(){
+			
+			if(event.target.classList.contains('mtcSch_tr'))
+				event.target.classList.remove('onmouseover');
+			else if(event.target.parentNode.classList.contains('mtcSch_tr'))
+				event.target.parentNode.classList.remove('onmouseover');
+			
+		});
+		
+   </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>인재추천</title>
+    <link rel="stylesheet" href="css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/personInfoList.css">
+    <link rel="stylesheet" href="css/company/mypage/personInfoList.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="container">
+            <!-- 사이드바 -->
+            <div id="sideNav">
+                <div class="nav">
+                    <ul>
+                        <li class="personRecommend"><a href="#">인재 추천</a></li>
+                        <li class="personScrap"><a href="#">스크랩 인재</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- content 영역 -->
+            <div id="content">
+                <div class="comInfo_area">
+                     <!-- 인재검색 리스트 -->
+                    <section class="search-list">
+                        <h2 class="blind">전체 인재정보 리스트</h2>
+                        <div id="dvOtherCondition" class="tplJobListFunc">
+                            <div class="tplJobListTop clear">
+                                <span class="tplJobMan">인재 맞춤 추천</span>
+                                <span class="tplJobManTot">전체 <span>10</span>명</span>
+                                <p>기업에게 알맞는 인재를 추천드려요. 메일을 통해 직접 연락해보세요!!</p>
+                            </div>
+                        <!-- 인재검색 리스트 - 결과 -->
+                        <div class="table-list">
+                            <table class="table-list--person">
+                                <colgroup>
+                                    <col class="col1">
+                                    <col class="col2">
+                                    <col class="col3">
+                                    <col class="col4">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="first-cell" style="text-align: center;">이름</th>
+                                        <th scope="col2"  style="text-align: center;">이력서 요약</th>
+                                        <th scope="col3"  style="text-align: center;">등록일</th>
+                                        <th scope="col4"  style="text-align: center;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="person-info_tr">
+                                        <th class="person-info" scope="row">
+                                            <div class="person-info__wrap clearfix">
+                                                <button type="button" class="button__favorite devButtonScrap" data-scrapno="9948605" data-mid="pay4242002">
+                                                </button>
+                                                <dl>
+                                                    <dt class="person-info--name">박OO</dt>
+                                                    <dd class="person-info--personal clearfix">
+                                                        <span class="person-info--sex">여</span>
+                                                        <span class="person-info--birth">1994년</span>
+                                                        <span class="person-info--age">28세</span>
+                                                    </dd>
+                                                </dl>
+                                    
+                                            </div>
+                                        </th>
+                                        <td class="person-resume">
+                                            <div class="person-resume--title clearfix">
+                                                    <span class="person-resume__career--senior">열람</span>
+                                                <a href="/Corp/Person/Find/Resume/View?rNo=9948605" class="person-resume--link" target="_blank">
+                                                    입사 지원서
+                                                </a>
+                                            </div>
+
+                                            <div class="person-resume--company clearfix">
+                                                <span class="company--name">희망업종</span>
+                                                <div class="company--career">
+                                                    <span class="company--status">It.웹.통신</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="person-resume--education clearfix">
+                                                <span class="education--school">대학교(4년) 휴학</span>
+                                                <span class="education--major">울산대학교 디자인학과</span>
+                                            </div>
+                                            <div class="person-resume--subinfo clearfix">
+                                                <div class="person-resume--area clearfix">
+                                                    <span class="area">거주지 - 서울</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="person-update">
+                                            <span class="date">2021-10-24</span>
+                                        </td>
+                                        <td class="person-mail">
+                                            <div class="mailbox">
+                                                <a href="/Corp/Person/Find/Resume/View?rNo=9948605" class="personlink" target="_blank">
+                                                    메일쓰기
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                
+                                </tbody>
+                            </table>
+                        </div>
+
+                       
+
+                    </section>
+                    <!-- 인재정보 리스트 //-->
+
+                </div> 
+            </div>
+        </div>
+    </div>  
+    
+    <script>
+		// 게시글 목록에 mouseover/mouseout 시 onmouseover 클래스 추가/제거 처리
+		const mtcSchListTb = document.querySelector('.table-list');
+		
+		mtcSchListTb.addEventListener('mouseover', function(){
+			
+			if(event.target.classList.contains('person-info_tr'))
+				event.target.classList.add('onmouseover');
+			else if(event.target.parentNode.classList.contains('person-info_tr'))
+				event.target.parentNode.classList.add('onmouseover');
+		});
+		
+		mtcSchListTb.addEventListener('mouseout', function(){
+			
+			if(event.target.classList.contains('person-info_tr'))
+				event.target.classList.remove('onmouseover');
+			else if(event.target.parentNode.classList.contains('person-info_tr'))
+				event.target.parentNode.classList.remove('onmouseover');
+			
+		});
+		
+   </script>
+</body>
+</html>
