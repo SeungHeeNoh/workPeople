@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>페이징</title>
+<style>
+    .paging {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin-top: 50px;
+    }
+    .paging a {
+    display: block;
+    width: 29px;
+    height: 36px;
+    box-sizing: border-box;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #a7a6a6;
+    color: #7e7e7e;
+    text-align: center;
+    line-height: 36px;
+    margin: 0 5px;
+    transition: all 0.3s;
+    }
+    .paging a.btn_prev {
+   
+    margin-right: 10px;
+    }
+    .paging a.btn_next {
+   
+    margin-left: 10px;
+    }
+    .paging a.btn_num {
+    border-radius: 5px;
+    border: 1px solid #a7a6a6;
+    color: #7e7e7e;
+    text-align: center;
+    line-height: 36px;
+    margin: 0 5px;
+    transition: all 0.3s;
+    }
+    .paging a:hover {
+    border: 1px solid #A7D676;
+    color: #A7D676;
+    }
+    .paging a.current_page {
+    border: 2px solid #A7D676;
+    color: #A7D676;
+    }
+    .paging > li:nth-child(1) > a,
+    .paging > li:nth-child(2) > a,
+    .paging > li:nth-last-child(2) > a,
+    .paging > li:nth-last-child(1) > a {
+        border: none;
+    }
+</style>
+</head>
+<body>
+	<div th:with="currentUrl=(${#request.getRequestURI() + '?'})">
+ 	
+ 	  <ul class="paging" >
+			<!-- 검색 결과 화면인 경우 넘겨줄 searchParam 정의 -->
+			<!-- <c:if test="${ !empty param.searchCondition && !empty param.searchValue }">
+				<c:set var="searchParam" value="&searchCondition=${ param.searchCondition }&searchValue=${ param.searchValue }"/>
+			</c:if> -->
+		
+			<!-- 맨 처음으로 (<<) -->
+				 <li><a th:href="@{${ currentUrl}(page=1)}">&lt;&lt;</a></li> 
+				
+			<!-- 이전 페이지 (<) -->
+			<li th:with="condition=${ pi.page > 1 }">
+				 <a th:if="${condition}" th:href="@{${ currentUrl}(page=${ pi.page - 1})}" class="btn_prev">&lt;</a>
+				 <a th:unless="${condition}" href="#">&lt;</a>
+			</li>
+			
+			<!-- 페이지 목록(최대 10개) -->
+			<li th:each="p : ${#numbers.sequence( pi.startPage, pi.endPage)}">
+			   		<a th:if="${ p == pi.page }" href="#" class="current_page" th:text="${p}">${ p }</a>
+			   		<a th:unless="${ p == pi.page }"  th:href="@{${ currentUrl}(page=${ p })}" th:text="${p}">${ p }</a>
+			</li>
+			
+			
+			<!-- 다음 페이지 (>) -->
+			<li th:with="condition=${ pi.page < pi.maxPage }">
+				 <a th:if="${condition}" th:href="@{${ currentUrl}(page=${ pi.page + 1})}" class="btn_next">&gt;</a>
+				 <a th:unless="${condition}" href="#">&gt;</a>
+			</li>		
+				
+			<!-- 맨 끝으로 (>>) -->
+			<li><a th:href="@{${ currentUrl}(page=${ pi.maxPage })}">&gt;&gt;</a></li>	
+						
+	</ul> 
+	</div>
+</body>
+</html>
