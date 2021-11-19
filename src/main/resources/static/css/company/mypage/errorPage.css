@@ -1,0 +1,73 @@
+#wrap {
+  position: relative;
+  min-width: 1440px;
+  background-color: #fffbf1;
+}
+#wrap > #container {
+  position: relative;
+  width: 1100px;
+  margin: 0px auto;
+  padding: 50px 0;
+  box-sizing: border-box;
+}
+
+.Info_area {
+  box-sizing: border-box;
+  border: 1px solid rgb(225, 229, 235);
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 80px 80px 100px 80px;
+  display: table;
+  width: 100%;
+}
+.Info_area .error_area {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+.Info_area .error_area h2 {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 45px;
+}
+.Info_area .error_area .error_img {
+  margin-top: 40px;
+}
+.Info_area .error_area .home,
+.Info_area .error_area .page {
+  width: 171px;
+  height: 62px;
+  font-weight: 500;
+  font-size: 17px;
+  margin-top: 40px;
+}
+.Info_area .error_area .home {
+  margin-right: 20px;
+}
+.SizeM {
+  display: inline-block;
+  width: 176px;
+  height: 62px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #fff;
+  letter-spacing: -1px;
+  line-height: 40px;
+  text-align: center;
+  margin: 40px 20px 20px 0;
+  font-weight: 500;
+  font-size: 18px;
+  padding-top: 10px;
+}
+.SizeM.orange {
+  background-color: #fbc78d;
+}
+.SizeM.green {
+  background-color: #a7d676;
+}
+.SizeM.orange:hover {
+  background-color: #d6ab7a;
+}
+.SizeM.green:hover {
+  background-color: #96bf69;
+}

@@ -1,0 +1,187 @@
+#wrap {
+  position: relative;
+  min-width: 1440px;
+  background-color: #fffbf1;
+}
+#wrap > #container {
+  position: relative;
+  width: 1100px;
+  margin: 0px auto;
+  padding: 50px 0;
+}
+#wrap #container::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#wrap #container #sideNav {
+  width: 210px;
+  float: left;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(225, 229, 235);
+  border-image: initial;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  text-align: center;
+}
+#sideNav .nav {
+  display: inline-block;
+  width: 168px;
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+#sideNav .nav ul {
+  text-align: center;
+}
+#sideNav .nav li {
+  padding-bottom: 20px;
+}
+#sideNav .nav li > a {
+  color: #323232;
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 1.4;
+}
+#sideNav .nav li > a:hover {
+  color: #85cbcc;
+}
+#sideNav .nav .historySub a {
+  color: #85cbcc;
+}
+
+#wrap #container #content {
+  width: 870px;
+  float: right;
+  box-sizing: border-box;
+}
+
+#content .comInfo_area {
+  box-sizing: border-box;
+  border: 1px solid rgb(225, 229, 235);
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  display: table;
+  width: 100%;
+  padding: 45px 25px;
+}
+.wrap_title {
+  padding-bottom: 40px;
+}
+.wrap_title .title_common {
+  display: inline-block;
+  color: #000;
+  font-size: 32px;
+  line-height: 43px;
+  letter-spacing: -2px;
+  vertical-align: top;
+}
+[class*="btnSize"].colorWhite {
+  border: 1px solid #ddd;
+  color: #222;
+  background-color: #fff;
+}
+.btnSizeXS {
+  display: inline-block;
+  padding: 0 10px 3px;
+  height: 24px;
+  border: 1px solid #686868;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: -1px;
+  line-height: 21px;
+  text-align: center;
+  background-color: #686868;
+}
+.wrap_history_detail:after {
+  display: table;
+  clear: both;
+  content: "";
+  table-layout: fixed;
+}
+.area_list_top {
+  position: relative;
+  padding: 20px 0 8px 0;
+  text-align: left;
+}
+.area_list_top .list_tit {
+  display: inline-block;
+  padding-top: 6px;
+  color: #444;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+.area_list_top:after {
+  display: table;
+  clear: both;
+  content: "";
+  table-layout: fixed;
+}
+.tblWrap {
+  border-top: 1px solid #ebebeb;
+}
+.tblWrap table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.cont_payment_history .tbl_payment th,
+.cont_payment_history .tbl_payment tbody td {
+  padding: 13px 5px 15px;
+}
+.tblWrap th,
+.tblWrap td {
+  margin: 0;
+  padding: 13px 15px 15px;
+  border-bottom: 1px solid #ebebeb;
+  box-sizing: border-box;
+  color: #666;
+  font-size: 14px;
+  letter-spacing: -1px;
+  line-height: 18px;
+  text-align: center;
+  word-wrap: break-word;
+  word-break: break-all;
+  background-color: #fafbfc;
+}
+
+.tblWrap td {
+  color: rgb(119, 119, 119);
+  background: none;
+}
+
+.btn_wrap {
+  padding-top: 50px;
+  text-align: center;
+}
+.btnSizeM {
+  display: inline-block;
+  padding: 0 25px 10px;
+  height: 40px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: -1px;
+  line-height: 40px;
+  text-align: center;
+  margin: 40px 20px 20px 0;
+}
+.btnSizeM.orange {
+  background-color: #fbc78d;
+}
+.btnSizeM.green {
+  background-color: #a7d676;
+}
+.btnSizeM.orange:hover {
+  background-color: #d6ab7a;
+}
+.btnSizeM.green:hover {
+  background-color: #96bf69;
+}

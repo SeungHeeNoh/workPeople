@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>기업정보관리</title>
+    <link rel="stylesheet" href="css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/companyInfoInsert.css">
+    <link rel="stylesheet" href="css/company/mypage/companyInfoInsert.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/logoPopup.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/src/main/resources/static/js/company/mypage/companyInfoInsert.js"></script>
+    <!-- Postcodify 로딩 (주소 검색) -->
+	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="container">
+            <!-- 사이드바 -->
+            <div id="sideNav">
+                <div class="nav">
+                    <ul>
+                        <li class="comInfoSub"><a href="#">기업 정보 관리</a></li>
+                        <li class="memberInfoSub"><a href="#">회원 정보 관리</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- content 영역 -->
+            <div id="content">
+                <div class="comInfo_area">
+                    <p class="ment1">기업 정보 관리</p>
+                    <p class="ment2">우리 기업의 정보를 직접 등록해보세요! 최신화된 정보일수록, 더 많은 인재의 관심을 높일 수 있습니다.</p>
+                </div>
+                <form id="devInfoForm" method="post">
+                    <div class="comInfo_area Info_area2">
+                        <div class="comInfo_name"> 
+                            <ul>
+                                <li class="name">회사명</li>
+                                <li class="register_ment">사업자번호</li>
+                                <li class="register_number">178-87-01190</li>
+                            </ul>
+                        </div>
+                        <div class="txt_box updown">직접 등록해보세요!!</div>
+                        <div class="logo_area"> 
+                            <!-- 로고 업로드 전 -->
+                            <button type="button" class="logo_btn" onclick="dis()">
+                                <span>로고업로드</span>
+                            </button>
+                            <!-- 로고 업로드 후 -->
+                            <!-- <p class="logo"><img src="https://img.jobkorea.co.kr/trans/c/200x80/r/k/JK_Co_rkskek012.png?v=20211116115938" alt="잡코리아"></p>
+                            <p class="btn">
+                                <button type="button" class="infoBtn infoBtnDel" id="devLogoDel"><span class="blind">삭제</span></button>
+                                <button type="button" class="infoBtn infoBtnMod" id="devLogoModify"><span class="blind">수정</span></button>
+                            </p> -->
+                        </div> 
+                        <!-- 로고 팝업창 -->
+                        <div class="logoUploadWrap" id="dis">
+                            <form id="frmLogo" method="post" action="" enctype="multipart/form-data">
+                                <input type="hidden" name="ID" value="">
+                                <div class="popRecWrap popLogoUpload">
+                                    <div class="popHd">
+                                        <h1>로고 업로드</h1>
+                                    </div>
+                                    <div class="popCont">
+                                        <ul class="ntcList">
+                                            <li>- <em>JPEG,JPG,PNG</em> 파일형식으로, 200KB 용량 이내의 파일만 등록가능합니다.</li>
+                                            <li>- 로고 업로드 시 자동으로 최적화 되어 노출됩니다.</li>
+                                        </ul>
+                                        <!--// 파일첨부한 경우 -->
+                                        <div class="infoFileBx clear">
+                                            <fieldset>
+                                                <span class="fileBx infoIcnA" id="devSelectLogoDelegator">
+                                                    <label for="devSelectLogo" id="devSelectLogoName">로고선택</label>
+                                                </span>
+                                                <button type="button" class="btnUpload" id="devSubmit"><span>등록하기</span></button>
+                                                <input type="file" id="devSelectLogo" name="up_file" accept=".jpg, .jpeg, .png" style="display:none">
+                                            </fieldset>
+                                        </div>
+                                        <!-- 파일첨부한 경우 //-->
+                                    </div>
+                                    <button type="button" class="mtcBtn mtcBtnPopClose" id="devCloseLayer" onclick="dis()"><span class="blind">로고 업로드 닫기</span></button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- 로고 팝업창 -->
+                    </div>  
+                    <div class="comInfo_area Info_area3 artCoBasic">
+                        <h3 class="info_hd">기본정보<span class="hd_ment">필수정보 *</span></h3>
+                        <div class="infoTbBx">
+                            <div class="tbRow">
+                                <div class="tbCell">
+                                    <div class="info_wrap">
+                                        <input type="text" name="ceoName" id="ceoName" class="inpDefault"  maxlength="10" placeholder="대표자명 *" onfocus="this.placeholder=''" onblur="this.placeholder='대표자명 *'" required>
+                                    </div>
+                                </div>
+                                <div class="tbCell">
+                                    <div class="info_wrap">
+                                        <input type="text" id="date"  class="inpDefault" placeholder="설립일 *" onfocus="this.placeholder=''" onblur="this.placeholder='설립일 *'" required>
+                                    </div>
+                                </div>
+                                <div class="tbCell">
+                                    <div class="info_wrap">
+                                        <input type="text" id="number" class="inpDefault" maxlength="10" placeholder="사원수 *" onfocus="this.placeholder=''" onblur="this.placeholder='사원수 *'" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                    
+                            <div class="tbRow">
+                                <div class="tbCell">
+                                    <div class="info_wrap">
+                                        <select id="sector" name="sector" class="inpDefault" required>
+                                            <option disabled selected >업종 *</option>
+                                            <option value="1">서비스업</option>
+                                            <option value="2">의료·제약·복지</option>
+                                            <option value="3">제조·화학</option>
+                                            <option value="4">판매·유통</option>
+                                            <option value="5">IT·웹·통신</option>
+                                            <option value="6">건설업</option>
+                                            <option value="7">교육업</option>
+                                            <option value="8">미디어·디자인</option>
+                                            <option value="9">은행·금융업</option>
+                                            <option value="10">기관·협회</option>
+                                        </select>
+                                        <span class="icoArrow"><img src="/src/main/resources/static/images/companyMyPage/chevron-down.png" ></span>
+                                    </div>
+                                </div>
+                                <div class="tbCell">
+                                    <div class="info_wrap">
+                                        <select id="company_type" name="company_type" class="inpDefault" required>
+                                            <option disabled selected>기업형태 *</option>
+                                            <option value="1">대기업</option>
+                                            <option value="2">공사/공기업</option>
+                                            <option value="3">중견기업</option>
+                                            <option value="4">중소기업</option>
+                                            <option value="5">스타트업</option>
+                                            <option value="6">외국계기업</option> 
+                                        </select>
+                                        <span class="icoArrow"><img src="/src/main/resources/static/images/companyMyPage/chevron-down.png" ></span>
+                                    </div>
+                                </div>
+                                <div class="tbCell">
+                                    <div class="info_wrap">
+                                            <input type="text" id="homepage" name="homepage" class="inpDefault" placeholder="홈페이지" onfocus="this.placeholder=''" onblur="this.placeholder='홈페이지'">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tbRow">
+                                <div class="tbCell">
+                                    <div class="info_wrap">
+                                        <button type="button" class="addressbtn" id="postcodify_search_button">검색</button>
+                                        <input type="text" name="address" id="postcode" class="inpDefault postcodify_postcode5"  placeholder="우편주소 *" onfocus="this.placeholder=''" onblur="this.placeholder='우편주소 *'" required readonly>
+                                    </div>
+                                </div>
+                                <div class="tbCell">
+                                    <div class="info_wrap">
+                                        <input type="text" id="road_address" name="address" class="inpDefault postcodify_address" placeholder="도로명주소 *" onfocus="this.placeholder=''" onblur="this.placeholder='도로명주소 *'" required readonly>
+                                    </div>
+                                </div>
+                                <div class="tbCell">
+                                    <div class="info_wrap">
+                                        <input type="text" id="detail_address" name="address" class="inpDefault postcodify_details"  placeholder="상세주소 *" onfocus="this.placeholder=''" onblur="this.placeholder='상세주소 *'" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tbRow">
+                                <div class="tbCell">
+                                    <div class="info_wrap">
+                                        <input type="text" name="business_detail" id="business_detail" class="inpDefault"  placeholder="주요사업내용 *" onfocus="this.placeholder=''" onblur="this.placeholder='주요사업내용 *'"  
+                                        maxlength="50" required>
+                                        <span id="counter" class="inputcnt">0/ 50</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    
+                    <div class="comInfo_area">
+                        <div class="comInfo_wrap">
+                            <h3 class="info_hd_2"><label for="lb_History">연혁 및 실적</label></h3>
+                            <textarea rows="3" cols="80" id="lb_History" name="Profile1" class="txArea devTxArea"
+                            placeholder="연혁 및 실적은 기업의 실적 위주로 표현하면 좋습니다. (ex. 2021.10. 올해의 브랜드 대상 수상)"
+                            onfocus="this.placeholder=''" 
+                            onblur="this.placeholder='연혁 및 실적은 기업의 실적 위주로 표현하면 좋습니다. (ex. 2021.10. 올해의 브랜드 대상 수상)'" ></textarea>
+                            <span id="tecounter1" class="textareacnt">0/ 1000</span>
+                        </div>
+                    </div>
+
+                    <div class="comInfo_area">
+                        <div class="comInfo_wrap">
+                            <h3 class="info_hd_2"><label for="lb_overview">기업개요 및 비전</label></h3>
+                            <textarea rows="3" cols="80" id="lb_overview" name="Profile2" class="txArea devTxArea"
+                            placeholder="기업개요와 비젼은 기업의 특징을 요약해서 표현하면 좋습니다.&#13;&#10;(ex. Work People은 2021년에 취업 메타 검색엔진으로 출발하여 성장한리크루팅마켓플레이스입니다.)"
+                            onfocus="this.placeholder=''" 
+                            onblur="this.placeholder='기업개요와 비젼은 기업의 특징을 요약해서 표현하면 좋습니다.\r\n(ex. Work People은 2021년에 취업 메타 검색엔진으로 출발하여 성장한리크루팅마켓플레이스입니다.)'"></textarea>
+                            <span id="tecounter2" class="textareacnt">0/ 1000</span>
+                        </div>
+                    </div>
+
+                    <div class="artCoBtn">
+                        <button type="submit" class="green infoBtnApply">저장하기</button>
+                    </div>
+                </form>
+               
+            </div>
+         
+        </div>
+        
+    </div>
+
+	
+	<!-- 주소 "검색" 팝업 레이어 -->
+	<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+   
+
+  
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>에러페이지</title>
+    <link rel="stylesheet" href="css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/common/common.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/errorPage.css">
+    <link rel="stylesheet" href="css/company/mypage/errorPage.css">
+</head>
+<body>
+    <div id="wrap">
+        <div id="container">
+            <div class="Info_area">
+                <div class="error_area">
+                    <h2>${ message }</h2>
+                    <div class="error_img">
+                        <img src="/src/main/resources/static/images/companyMyPage/error.png" alt="에러이미지">
+                    </div>
+                    <a class="SizeM orange" href="/zf_user/memcom/index/main">홈으로 가기</a>
+                    <a class="SizeM green" href="javascript:history.go(-1)">이전페이지로 가기</a>
+                </div>
+            </div>
+        </div>
+    </div>            
+</body>
+</html>
