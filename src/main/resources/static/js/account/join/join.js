@@ -92,6 +92,30 @@
 					flag = false;
 				} else {
 					updateVlidState(inputId);
+					
+					if(inputId == "register_number") {
+						let xhr = new XMLHttpRequest();
+						xhr.onreadystatechange = function() {
+							if(xhr.readyState == 4) {
+								if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+									if(xhr.response.data) {
+										if(xhr.response.data[0]["tax_type"] == "국세청에 등록되지 않은 사업자등록번호입니다.") {
+											deleteValidState(inputId, "국세청에 등록되지 않은 사업자등록번호입니다.");
+										} else {
+											updateVlidState(inputId);
+										}
+									}
+								} else {
+									console.log("ajax 통신 실패");
+								}
+							}
+						}
+
+						xhr.open("POST", "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=c9hyIZt9CgnuVKtsIKuJUjSvh05L0r5rH%2F7JKVTwAyI9eTtTqB3IXe59mdop%2FQmSV%2Btm8TUv9Pw%2BY4tyjvJ5ig%3D%3D");
+						xhr.setRequestHeader("Content-type", "application/json;");
+						xhr.responseType = "json";
+						xhr.send(JSON.stringify({"b_no":["" + input.value.replaceAll(/-/g, "")]}));
+					}
 				}
 			}
 
@@ -133,21 +157,7 @@
 			if(button.classList.contains("check_button")) {
 				let inputId = button.closest(joinRow).querySelector("input").id;
 
-				if(button.classList.contains("register_number_check_button")) {
-					hideNotice(joinRows[inputId]["joinRow"]);
-
-					if(joinRows[inputId]["input"].value.length != 10) {
-						joinRows[inputId]["checkNotice"].classList.add("show");
-					} else {
-						joinRows[inputId]["checkNotice"].classList.remove("show");
-						// 1. 사업자 등록번호가 존재하는 번호인지 API를 통해 확인
-						// - 존재하지 않는 번호인 경우 : "유효하지 않은 사업자 등록번호입니다." alert 노출
-						// - 존재하는 번호인 경우
-						//	  2. DB에 가입된 회원인지 확인
-						//		- 이미 가입한 회원인 경우 "이미 가입한 기업회원입니다." alert 노출
-						//		- 가입 가능한 회원인 경우 "가입 가능한 기업회원입니다. 등록하시겠습니까?" confirm 노출 => 확인 클릭 시 readonly로 변경, 취소 시 readonly 제거
-					}
-				} else if(button.classList.contains("id_check_button")) {
+				if(button.classList.contains("id_check_button")) {
 					hideNotice(joinRows[inputId]["joinRow"]);
 
 					if(inputValidate.idCheck(joinRows[inputId]["input"].value).length > 0) {
