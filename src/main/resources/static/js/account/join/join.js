@@ -2,7 +2,7 @@
 	let inputValidate = window.common.validate.input;
 
 	let joinRow = ".join_row",
-		checkNotice = ".check_notice";
+		notice = ".notice";
 
 	let content = document.querySelector(".content"),
 		form = content.querySelector("form"),
@@ -16,7 +16,7 @@
 		joinRows[name] = {
 			joinRow : joinRow,
 			input : joinRow.querySelector("input") != null ? joinRow.querySelector("input") : joinRow.querySelector("select"),
-			checkNotice :joinRow.querySelector(checkNotice),
+			notice :joinRow.querySelector(notice),
 			isCertify : joinRow.querySelector("button") != null ? true : false
 		}
 	});
@@ -33,16 +33,16 @@
 
 			if(input.id == "user_check_pwd") {
 				if(isEqualPwdInputs()) {
-					joinRows[input.id]["checkNotice"].classList.remove("show");
+					updateVlidState("user_check_pwd");
 				} else {
-					joinRows[input.id]["checkNotice"].classList.add("show");
+					deleteValidState("user_check_pwd", "비밀번호가 일치하지 않습니다.");
 				}
 			}
 		}
 	}
 
 	function isEqualPwdInputs() {
-		return joinRows["user_pwd"]["input"].value == joinRows["user_check_pwd"]["input"].value;
+		return joinRows["user_check_pwd"]["input"].value.length > 0 && joinRows["user_pwd"]["input"].value == joinRows["user_check_pwd"]["input"].value;
 	}
 
 	function focusoutEventHandler(e) {
@@ -62,42 +62,36 @@
 			switch(inputId) {
 				case "register_number" : 
 					func = "companyRegisterNumber";
-					notice = joinRows[inputId]["checkNotice"];
 					break;
 				case "user_id" : 
 					func = "idCheck";
-					notice = joinRows[inputId]["checkNotice"];
 					break;
 				case "user_pwd" : 
 					func = "passwordCheck";
-					notice = joinRows[inputId]["checkNotice"];
 					break;
 				case "user_name" :
 					func = "nameCheck";
-					notice = joinRows[inputId]["checkNotice"];
 					break;
 				case "phone" :
 					func = "phoneCheck";
-					notice = joinRows[inputId]["checkNotice"];
 					break;
 				case "email" :
 					func = "emailCheck";
-					notice = joinRows[inputId]["checkNotice"];
 					break;
 				case "detail_address" :
 					func = "detailAddressCheck";
-					notice = joinRows[inputId]["checkNotice"];
 					break;
 			}
 
 			if(func.length > 0) {
+				let result = inputValidate[func](joinRows[inputId]["input"].value);
 				hideNotice(joinRows[inputId]["joinRow"]);
 
-				if(inputValidate[func](joinRows[inputId]["input"].value).length > 0) {
-					notice.classList.add("show");
+				if(result.length > 0) {
+					deleteValidState(inputId, result);
 					flag = false;
 				} else {
-					notice.classList.remove("show");
+					updateVlidState(inputId);
 				}
 			}
 
@@ -105,10 +99,10 @@
 				if(inputId == "user_check_pwd") {
 					hideNotice(joinRows[inputId]["joinRow"]);
 
-					if(input.value.length > 0 && isEqualPwdInputs()) {
-						joinRows[inputId]["checkNotice"].classList.remove("show");
+					if(isEqualPwdInputs()) {
+						updateVlidState(inputId, "비밀번호가 일치하지 않습니다.");
 					} else {
-						joinRows[inputId]["checkNotice"].classList.add("show");
+						deleteValidState(inputId);
 						flag = false;
 					}
 				}
@@ -121,14 +115,13 @@
 				hideNotice(joinRows[selectId]["joinRow"]);
 
 				if(select.value == "default") {
-					joinRows[selectId]["checkNotice"].classList.add("show");
+					deleteValidState(selectId);
 					flag = false;
 				} else {
-					joinRows[selectId]["checkNotice"].classList.remove("show");
+					updateVlidState(selectId);
 				}
 			}
 		}
-
 
 		return flag;
 	}
@@ -158,9 +151,9 @@
 					hideNotice(joinRows[inputId]["joinRow"]);
 
 					if(inputValidate.idCheck(joinRows[inputId]["input"].value).length > 0) {
-						joinRows[inputId]["checkNotice"].classList.add("show");
+						joinRows[inputId]["notice"].classList.add("show");
 					} else {
-						joinRows[inputId]["checkNotice"].classList.remove("show");
+						joinRows[inputId]["notice"].classList.remove("show");
 						// DB를 통한 아이디 중복 체크
 						// - 중복 아이디라면 : "사용할 수 없는 아이디입니다." alert 노출
 						// - 중복 아이디가 아니라면 : "사용 가능한 아이디입니다. 사용하시겠습니까?" confirm 노출 => 확인 클릭 시 readonly로 변경, 취소 시 readonly 제거
@@ -169,9 +162,9 @@
 					hideNotice(joinRows[inputId]["joinRow"]);
 
 					if(inputValidate.emailCheck(joinRows[inputId]["input"].value).length > 0) {
-						joinRows[inputId]["checkNotice"].classList.add("show");
+						joinRows[inputId]["notice"].classList.add("show");
 					} else {
-						joinRows[inputId]["checkNotice"].classList.remove("show");
+						joinRows[inputId]["notice"].classList.remove("show");
 						// 이메일 발송
 					}
 				} else if(button.classList.contains("email_check_button")) {
@@ -181,24 +174,18 @@
 						oncomplete: function(data) {
 							joinRows["postcode"]["input"].value = data.zonecode;
 							joinRows["road_address"]["input"].value = data.roadAddress;
-							hideNotice(joinRows["postcode"]["joinRow"]);
-							hideNotice(joinRows["road_address"]["joinRow"]);
+							updateVlidState("postcode");
+							updateVlidState("road_address");
 						}
 					}).open();
 				}
 			} else if(button.classList.contains("confirm_button")){
 				let flag = true;
 
-				for(let input in joinRows) {
-					if(joinRows[input]["isCertify"]) {
-						if(joinRows[input]["input"].readOnly && joinRows[input]["input"] != 0) {
-							joinRows[input]["joinRow"].querySelector(".notice").classList.remove("show");
-						} else {
-							joinRows[input]["joinRow"].querySelector(".notice").classList.add("show");
-							flag = false;
-						}
-					} else {
-						flag = validate(joinRows[input]["input"]);
+				for(let joinRow in joinRows) {
+					if(!joinRows[joinRow]["joinRow"].classList.contains("valid_state")) {
+						deleteValidState(joinRow, "필수 정보입니다.")
+						flag = false;
 					}
 				}
 
@@ -207,6 +194,17 @@
 				}
 			}
 		}
+	}
+
+	function updateVlidState(id) {
+		joinRows[id]["joinRow"].classList.add("valid_state");
+		joinRows[id]["notice"].classList.remove("show");
+	}
+
+	function deleteValidState(id, text) {
+		joinRows[id]["joinRow"].classList.remove("valid_state");
+		if(text != undefined) joinRows[id]["notice"].innerHTML = text;
+		joinRows[id]["notice"].classList.add("show");
 	}
 
 	function hideNotice(inputDiv) {
