@@ -33,7 +33,7 @@
 
 			if(input.id == "user_check_pwd") {
 				if(isEqualPwdInputs()) {
-					updateVlidState("user_check_pwd");
+					updateValidState("user_check_pwd");
 				} else {
 					deleteValidState("user_check_pwd", "비밀번호가 일치하지 않습니다.");
 				}
@@ -91,55 +91,10 @@
 					deleteValidState(inputId, result);
 					flag = false;
 				} else {
-					updateVlidState(inputId);
+					updateValidState(inputId);
 					
 					if(inputId == "register_number") {
-						let isRun = false;
-
-						if(isRun) return;
-						isRun = true;
-						let xhr = new XMLHttpRequest();
-						xhr.onreadystatechange = function() {
-							if(xhr.readyState == 4) {
-								if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-									if(xhr.response.data) {
-										isRun = false;
-										if(xhr.response.data[0]["tax_type"] == "국세청에 등록되지 않은 사업자등록번호입니다.") {
-											deleteValidState(inputId, "국세청에 등록되지 않은 사업자등록번호입니다.");
-										} else {
-											let xhr2 = new XMLHttpRequest();
-											xhr2.onreadystatechange = function() {
-												if(xhr2.readyState == 4) {
-													if((xhr2.status >= 200 && xhr2.status < 300) || xhr2.status == 304) {
-														if(xhr2.response.msg) {
-															if(xhr2.response.msg.length > 0) {
-																deleteValidState(inputId, xhr2.response.msg);
-															} else {
-																updateVlidState(inputId);
-															}
-														}
-													} else {
-														console.log("ajax 통신 실패");
-													}
-												}
-											}
-
-											xhr2.open("GET", "/account/join/checkRegisterNumber/" + input.value.replaceAll(/-/g, ""));
-											xhr2.setRequestHeader("Content-type", "application/json;");
-											xhr2.responseType = "json";
-											xhr2.send();
-										}
-									}
-								} else {
-									console.log("ajax 통신 실패");
-								}
-							}
-						}
-
-						xhr.open("POST", "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=c9hyIZt9CgnuVKtsIKuJUjSvh05L0r5rH%2F7JKVTwAyI9eTtTqB3IXe59mdop%2FQmSV%2Btm8TUv9Pw%2BY4tyjvJ5ig%3D%3D");
-						xhr.setRequestHeader("Content-type", "application/json;");
-						xhr.responseType = "json";
-						xhr.send(JSON.stringify({"b_no":["" + input.value.replaceAll(/-/g, "")]}));
+						checkValidateRegisterNumber(inputId, input.value.replaceAll(/-/g, ""));
 					}
 				}
 			}
@@ -149,7 +104,7 @@
 					hideNotice(joinRows[inputId]["joinRow"]);
 
 					if(isEqualPwdInputs()) {
-						updateVlidState(inputId, "비밀번호가 일치하지 않습니다.");
+						updateValidState(inputId, "비밀번호가 일치하지 않습니다.");
 					} else {
 						deleteValidState(inputId);
 						flag = false;
@@ -167,12 +122,65 @@
 					deleteValidState(selectId);
 					flag = false;
 				} else {
-					updateVlidState(selectId);
+					updateValidState(selectId);
 				}
 			}
 		}
 
 		return flag;
+	}
+
+	function checkValidateRegisterNumber(inputId, registerNumber) {
+		let isRun = false;
+
+		if(isRun) return;
+		isRun = true;
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4) {
+				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+					if(xhr.response.data) {
+						isRun = false,
+						data = xhr.response.data[0];
+
+						if(data["tax_type"] == "국세청에 등록되지 않은 사업자등록번호입니다.") {
+							deleteValidState(inputId, "국세청에 등록되지 않은 사업자등록번호입니다.");
+						} else if(data["b_stt"].indexOf("폐업자") || data["b_stt"].indexOf("휴업자")) {
+							deleteValidState(inputId, "휴/폐업 기업으로 등록된 사업자등록번호로 가입하실 수 없습니다.");
+						} else {
+							let xhr2 = new XMLHttpRequest();
+							xhr2.onreadystatechange = function() {
+								if(xhr2.readyState == 4) {
+									if((xhr2.status >= 200 && xhr2.status < 300) || xhr2.status == 304) {
+										if(xhr2.response.msg) {
+											if(xhr2.response.msg.length > 0) {
+												deleteValidState(inputId, xhr2.response.msg);
+											} else {
+												updateValidState(inputId);
+											}
+										}
+									} else {
+										console.log("ajax 통신 실패");
+									}
+								}
+							}
+
+							xhr2.open("GET", "/account/join/checkRegisterNumber/" + registerNumber);
+							xhr2.setRequestHeader("Content-type", "application/json;");
+							xhr2.responseType = "json";
+							xhr2.send();
+						}
+					}
+				} else {
+					console.log("ajax 통신 실패");
+				}
+			}
+		}
+
+		xhr.open("POST", "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=c9hyIZt9CgnuVKtsIKuJUjSvh05L0r5rH%2F7JKVTwAyI9eTtTqB3IXe59mdop%2FQmSV%2Btm8TUv9Pw%2BY4tyjvJ5ig%3D%3D");
+		xhr.setRequestHeader("Content-type", "application/json;");
+		xhr.responseType = "json";
+		xhr.send(JSON.stringify({"b_no":["" + registerNumber]}));
 	}
 
 	function clickEventHandler(e) {
@@ -209,8 +217,8 @@
 						oncomplete: function(data) {
 							joinRows["postcode"]["input"].value = data.zonecode;
 							joinRows["road_address"]["input"].value = data.roadAddress;
-							updateVlidState("postcode");
-							updateVlidState("road_address");
+							updateValidState("postcode");
+							updateValidState("road_address");
 						}
 					}).open();
 				}
@@ -231,7 +239,7 @@
 		}
 	}
 
-	function updateVlidState(id) {
+	function updateValidState(id) {
 		joinRows[id]["joinRow"].classList.add("valid_state");
 		joinRows[id]["notice"].classList.remove("show");
 	}
