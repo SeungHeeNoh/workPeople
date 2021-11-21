@@ -5,80 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/common/common.css">
-    <link rel="stylesheet" href="../css/myPage/mypage_mainSnb.css">
-    <link rel="stylesheet" href="../css/myPage/myPage_applyCompany.css">
-    <title>입사지원 현황</title>
+    
+    <link rel="stylesheet" href="/css/common/common.css">
+    <link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
+    <link rel="stylesheet" href="/css/personal/myPage/latestPublication.css">
+    
+    <title>최근 본 채용공고</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
 </head>
 <body>
-    <div th:include="mypage_mainSnb"></div>
     <div class="wrapper">
-        <aside>
-            <ul>
-                <a th:href="@{/mypage/myPage/personal/Home}"><li id="snb_1" class="snb_main"><img id="snbImg1" src="/src/main/resources/static/images/personal/myPage/icon/snb1.svg">MY홈</li></a>
-                
-                <li id="snb_2" class="snb_main"><img id="snbImg2" img src="../images/snb2.svg">회원정보 관리</li>
-                <a href="../mypage/myPage_checkPwd.html"><li id="snb_2_1" class="snb_sub">회원정보 수정</li></a>
-                <a href="../mypage/myPage_outOfMember.html"><li id="snb_2_2" class="snb_sub">회원 탈퇴</li></a>
-                
-                <li id="snb_3" class="snb_main"><img id="snbImg3" img src="../icon/snb3.svg">이력서</li>
-                <a href="../mypage/myPage_resumeEnroll.html"><li id="snb_3_1" class="snb_sub">이력서 등록</li></a>
-                <a href="../mypage/myPage_resumeManagement.html"><li id="snb_3_2" class="snb_sub">이력서 관리</li></a>
-                
-                <li id="snb_4" class="snb_main"><img id="snbImg4" img src="../icon/snb4.svg">입사지원 관리</li>
-                <a href="../mypage/myPage_applyCompany.html"><li id="snb_4_1" class="snb_sub">입사지원 현황</li></a>
-                
-                <li id="snb_5" class="snb_main"><img id="snbImg5" img src="../icon/snb5.svg">스크랩/관심기업</li>
-                <a href="../mypage/myPage_scrap.html"><li id="snb_5_1" class="snb_sub">스크랩</li></a>
-                <a href="../mypage/myPage_interestedCompany.html"><li id="snb_5_2" class="snb_sub">관심기업</li></a>
-                <a href="../mypage/myPage_latestPublication.html"><li id="snb_5_3" class="snb_sub">최근 본 채용공고</li></a>
-                
-                <li id="snb_6" class="snb_main"><img id="snbImg6" img src="../icon/snb6.svg">메일/면접</li>
-                <a href="../mypage/myPage_email.html"><li id="snb_6_1" class="snb_sub">메일 현황</li></a>
-                <a href="../mypage/myPage_interview.html"><li id="snb_6_2" class="snb_sub">면접 현황</li></a>
-                
-                <li id="snb_7" class="snb_main"><img id="snbImg7" img src="../icon/snb7.svg">고객센터</li>
-                <a href="../mypage/myPage_serviceCenter.html"><li id="snb_7_1" class="snb_sub">문의내역</li></a>
-                <a href="../mypage/myPage_serviceCenter.html"><li id="snb_7_2" class="snb_sub">새 채팅상담</li></a>
-            </ul>
-        </aside>
+        
+    <div th:include="personal/myPage/mainSnb.html"></div>
 
         <section>
             <div id="content_wrap">
                 
-            <p class="content_title_text3">입사지원 현황</p>
-            <hr>
-
-            <div class="content1_wrap">
-                <div class="content1_container content1_border">
-                    <div class="content1_num">2</div>
-                    <div class="content1_numType">지원완료</div>
-                </div>
-                <div class="content1_container content1_border">
-                    <div class="content1_num">1</div>
-                    <div class="content1_numType">열람</div>
-                </div>
-                <div class="content1_container content1_border">
-                    <div class="content1_num">1</div>
-                    <div class="content1_numType">미열람</div>
-                </div>
-                <div class="content1_container content1_border">
-                    <div class="content1_num">3</div>
-                    <div class="content1_numType">합격</div>
-                </div>
-                <div class="content1_container">
-                    <div class="content1_num">2</div>
-                    <div class="content1_numType">불합격</div>
-                </div>
-            </div>
-
+            <p class="content_title_text3">최근 본 채용공고</p>
             <div class="home_content_3">
                 <div class="home_content_3_1">회사명</div>
                 <div class="home_content_3_2">채용공고</div>
-                <div class="home_content_3_3">지원일/열람일</div>
+                <div class="home_content_3_3">마감일</div>
             </div>
 
             <div class="content_title_text4">
@@ -93,8 +42,8 @@
                     </div>
                 </div>
                 <div class="content_title_text4_detail_wrap2">
-                    <div class="content_title_text4_2">지원일 : 2021.10.23</div>
-                    <div class="content_title_text4_2">열람일 : 2021.10.25</div>
+                    <button class="content_title_text4_btn">즉시지원</button>
+                    <div class="content_title_text4_2">~2021.10.25</div>
                 </div>
             </div>
             <hr class="hr">
@@ -111,8 +60,8 @@
                     </div>
                 </div>
                 <div class="content_title_text4_detail_wrap2">
-                    <div class="content_title_text4_2">지원일 : 2021.10.23</div>
-                    <div class="content_title_text4_2">미열람</div>
+                    <button class="content_title_text4_btn">즉시지원</button>
+                    <div class="content_title_text4_2">~2021.10.25</div>
                 </div>
             </div>
             <hr class="hr">
@@ -128,8 +77,8 @@
                     </div>
                 </div>
                 <div class="content_title_text4_detail_wrap2">
-                    <div class="content_title_text4_2">지원일 : 2021.10.23</div>
-                    <div class="content_title_text4_2">열람일 : 2021.10.25</div>
+                    <button class="content_title_text4_btn">즉시지원</button>
+                    <div class="content_title_text4_2">~2021.10.25</div>
                 </div>
             </div>
             <hr class="hr">
@@ -145,8 +94,8 @@
                     </div>
                 </div>
                 <div class="content_title_text4_detail_wrap2">
-                    <div class="content_title_text4_2">지원일 : 2021.10.23</div>
-                    <div class="content_title_text4_2">열람일 : 2021.10.25</div>
+                    <button class="content_title_text4_btn">즉시지원</button>
+                    <div class="content_title_text4_2">~2021.10.25</div>
                 </div>
             </div>
             <hr class="hr">
@@ -162,8 +111,8 @@
                     </div>
                 </div>
                 <div class="content_title_text4_detail_wrap2">
-                    <div class="content_title_text4_2">지원일 : 2021.10.23</div>
-                    <div class="content_title_text4_2">열람일 : 2021.10.25</div>
+                    <button class="content_title_text4_btn">즉시지원</button>
+                    <div class="content_title_text4_2">~2021.10.25</div>
                 </div>
             </div>
             <hr class="hr">
@@ -179,8 +128,8 @@
                     </div>
                 </div>
                 <div class="content_title_text4_detail_wrap2">
-                    <div class="content_title_text4_2">지원일 : 2021.10.23</div>
-                    <div class="content_title_text4_2">열람일 : 2021.10.25</div>
+                    <button class="content_title_text4_btn">즉시지원</button>
+                    <div class="content_title_text4_2">~2021.10.25</div>
                 </div>
             </div>
             <hr class="hr">
@@ -196,8 +145,8 @@
                     </div>
                 </div>
                 <div class="content_title_text4_detail_wrap2">
-                    <div class="content_title_text4_2">지원일 : 2021.10.23</div>
-                    <div class="content_title_text4_2">열람일 : 2021.10.25</div>
+                    <button class="content_title_text4_btn">즉시지원</button>
+                    <div class="content_title_text4_2">~2021.10.25</div>
                 </div>
             </div>
             <hr class="hr">
@@ -213,8 +162,8 @@
                     </div>
                 </div>
                 <div class="content_title_text4_detail_wrap2">
-                    <div class="content_title_text4_2">지원일 : 2021.10.23</div>
-                    <div class="content_title_text4_2">열람일 : 2021.10.25</div>
+                    <button class="content_title_text4_btn">즉시지원</button>
+                    <div class="content_title_text4_2">~2021.10.25</div>
                 </div>
             </div>
             <hr class="hr">
@@ -230,14 +179,29 @@
                     </div>
                 </div>
                 <div class="content_title_text4_detail_wrap2">
-                    <div class="content_title_text4_2">지원일 : 2021.10.23</div>
-                    <div class="content_title_text4_2">열람일 : 2021.10.25</div>
+                    <button class="content_title_text4_btn">즉시지원</button>
+                    <div class="content_title_text4_2">~2021.10.25</div>
+                </div>
+            </div>
+            <hr class="hr">
+            <div class="content_title_text4">
+                <input type="checkbox" class="checkBtn1">
+                <div class="content_title_text4_1">회사이름</div>
+                <div class="content_title_text4_detail_wrap">
+                    <div>각 분야 신입/경력 채용공고</div>
+                    <div class="content_title_text4_detail">
+                        <div class="content_title_text4_detail_1">신입/경력</div>
+                        <div class="content_title_text4_detail_2">it/웹/통신</div>
+                        <div class="content_title_text4_detail_3">경기도 성남시 분당구</div>
+                    </div>
+                </div>
+                <div class="content_title_text4_detail_wrap2">
+                    <button class="content_title_text4_btn">즉시지원</button>
+                    <div class="content_title_text4_2">~2021.10.25</div>
                 </div>
             </div>
             <hr class="hr">
 
-            
-            <button class="orange orange1">지원취소</button>
             <button class="green green1">삭제</button>
        
         </div>
