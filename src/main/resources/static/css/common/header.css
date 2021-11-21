@@ -1,0 +1,164 @@
+a{
+    color : inherit;
+}
+.mlogo{
+    float:left;
+    margin: 10px;
+}
+
+header .gnb{
+float: left;
+}
+
+header > div > ul.gnb > li {
+    display: inline-block;
+    margin-left: 55px;
+}
+
+header .gnb li a{
+    text-align: center;
+    font-size: 18px;
+}
+
+header .gnb > li:first-child {
+    margin-left: 130px ;
+}
+
+
+
+header > div {
+    width: 1100px;
+    min-width: 1100px;
+    height:110px;
+    margin: 0 auto;
+}
+
+header .gnb {
+    margin-top:30px;
+}
+
+.loginArea{
+    border-radius: 20px;
+    width: 164px;
+    background-color: #F5E3B4;
+    font-size: 18px;
+    color: black;
+    padding: 10px 0px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#menu > ul > li > ul {
+    display: none;
+    position: absolute;
+    background: white;
+}
+#menu > ul > li:hover > ul {
+    display:block;
+  
+}
+
+ul .submenu1 > li {
+    font-size: 12px;
+    margin: 0 35px;
+    text-align: center;
+}
+
+/* 기업 */
+#menu2 > ul > li:hover > ul {
+    display:block;
+  
+}
+#menu2 > ul > li > ul {
+    display: none;
+    position: absolute;
+    background: white;
+}
+#menu2 > ul > li:hover > ul {
+    display:block;
+  
+}
+
+ul .submenu2 > li {
+    font-size: 12px;
+    margin: 0 35px;
+    text-align: center;
+}
+
+header .gnb2{
+    float: left;
+    margin-top:30px;
+    line-height: 92px;
+    }
+    
+header > div > ul.gnb2 > li {
+    display: inline-block;
+    margin-left: 41px;
+}
+    
+ header .gnb2 li a{
+    text-align: center;
+    font-size: 18px;
+}
+    
+header .gnb2 > li:first-child {
+    margin-left: 110px ;
+}
+
+.mlogo2{
+    float:left;
+    margin-left: 30px;
+    
+}
+.corph{
+    float:left;
+    margin-left: 35px;
+    display: block;
+}
+
+.corph p {
+    color:#F3C995;
+    font-size: 26px;
+    margin-left: 10px;
+    float:right;
+    line-height: 42px;
+}
+
+.mleft{
+    display: inline-flex;
+    flex-direction: column; 
+    align-items: center;
+    float:left
+}
+
+.mright{
+    float:left;
+    margin-left: 30px;
+    display:inline;
+}
+
+ul.gnb3 > li {
+    display: inline-block;
+    padding: 0 5px;
+    color: #979797;
+}
+
+.gnb3 {
+    margin: 15px 0 0 24px;
+}
+
+
+
+.mright2{
+    float:left;
+    margin: 30px 0 0 50px;
+    display:inline;
+}
+
+ul.gnb4 > li {
+    display: inline-block;
+    padding: 0 5px;
+    color: #636363;
+    font-size:18px;
+}
+

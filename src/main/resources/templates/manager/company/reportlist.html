@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신고 공고 관리</title>
+	<link rel="stylesheet" th:href="@{/css/common/common.css}">
+	<link rel="stylesheet" th:href="@{/css/manager/company/reportlist.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+</head>
+<div class="container">
+    <!-- 사이드바 -->
+    <div class="wrapper">
+        <div id="sideNav">
+            <div class="nav">
+                <ul>
+                    <li id="" class="nav_tit">관리자 페이지</li>
+
+                    <li id="snb_2"class="snb_main"><a href="#"><img id="snbImg2" src="../../../static/images/common/usersetting.png">회원관리</a></li>
+                    <li id="snb_2_1" class="snb_sub"><a href="#">회원정보</a></li>
+                    <li id="snb_2_2" class="snb_sub"><a href="#">고객센터</a></li>
+                    <li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
+                
+                    <li id="snb_3" class="snb_main"><a href="#"><img id="snbImg3" src="../../../static/images/common/cisetting.png">기업관리</a></li>
+                    <li id="snb_3_1" class="snb_sub"><a href="#">기업공고</a></li>
+                    <li id="snb_3_2" class="snb_sub"><a href="#">신고공고</a></li>
+                    <li id="snb_3_3" class="snb_sub"><a href="#">고객센터</a></li>
+                
+                    <li id="snb_4" class="snb_main"><a href="#"><img id="snbImg4" src="../../../static/images/common/managersetting.png">관리자 정보</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div id="secion">
+            <div class="content">
+                <div class="list_wrap">
+                    <h2 class="h2">신고 공고 관리</h2>
+
+                    <div class="search_box">
+                        <div class="search_bot resident clearfix">
+                            <div class="items clearfix">
+                                <label for="">검색조건</label>
+                                <div class="select">
+                                    <select name="" id="reser_fac">
+                                        <option value="">게시글 번호</option>
+                                        <option value="">공고 제목</option>
+                                        <option value="">기업명</option>
+                                        <option value="">작성일</option>
+                                        <option value="">조회수</option>
+                                        <option value="">신고누적</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="input">
+                                <button type="button" class="btn">검색</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="list_content">
+                        <div class="table_wrap resident_list">
+                            <table class="table">
+                                <colgroup>
+                                    <col width="5%">
+                                    <col width="12%">
+                                    <col width="30%">
+                                    <col width="auto">
+                                    <col width="auto">
+                                    <col width="auto">
+                                </colgroup>
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="checkbox">
+                                            <input type="checkbox" name="checkAll" id="checkAll">
+                                            <label for="checkAll"></label>
+                                            </div>
+                                         </th>
+                                        <th>게시글 번호</th>
+                                        <th>공고 제목</th>
+                                        <th>기업명</th>
+                                        <th>작성일</th>
+                                        <th>조회수</th>
+                                        <th>신고누적</th>
+                                    </tr>
+                                </thead>
+                                
+                                <!-- 게시글일시 -->
+                                <tbody>
+                                    <tr class="warning">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="reportCheck" id="" value="">
+                                                <label for=""></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="report_txt">공고제목이들어가는부분입니다.
+                                        </td>
+                                        <td>
+                                           KH기업
+                                        </td>
+                                        <td>
+                                            <p class="status_after">2021.08.24 21:24</p> 
+                                        </td>
+                                        <td>
+                                            <p class="status_after">13</p>
+                                        </td>
+                                        <td>
+                                            <p class="status_rcount">80</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="reportCheck" id="" value="">
+                                                <label for=""></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="report_txt">공고제목이들어가는부분입니다.
+                                        </td>
+                                        <td>
+                                           KH기업
+                                        </td>
+                                        <td>
+                                            <p class="status_after">2021.08.24 21:24</p> 
+                                        </td>
+                                        <td>
+                                            <p class="status_after">13</p>
+                                        </td>
+                                        <td>
+                                            <p class="status_rcount">80</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="reportCheck" id="" value="">
+                                                <label for=""></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="report_txt">공고제목이들어가는부분입니다.
+                                        </td>
+                                        <td>
+                                           KH기업
+                                        </td>
+                                        <td>
+                                            <p class="status_after">2021.08.24 21:24</p> 
+                                        </td>
+                                        <td>
+                                            <p class="status_after">13</p>
+                                        </td>
+                                        <td>
+                                            <p class="status_rcount">80</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="reportCheck" id="" value="">
+                                                <label for=""></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="report_txt">공고제목이들어가는부분입니다.
+                                        </td>
+                                        <td>
+                                           KH기업
+                                        </td>
+                                        <td>
+                                            <p class="status_after">2021.08.24 21:24</p> 
+                                        </td>
+                                        <td>
+                                            <p class="status_after">13</p>
+                                        </td>
+                                        <td>
+                                            <p class="status_rcount">80</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="reportCheck" id="" value="">
+                                                <label for=""></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="report_txt">공고제목이들어가는부분입니다.
+                                        </td>
+                                        <td>
+                                           KH기업
+                                        </td>
+                                        <td>
+                                            <p class="status_after">2021.08.24 21:24</p> 
+                                        </td>
+                                        <td>
+                                            <p class="status_after">13</p>
+                                        </td>
+                                        <td>
+                                            <p class="status_rcount">80</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="reportCheck" id="" value="">
+                                                <label for=""></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="report_txt">공고제목이들어가는부분입니다.
+                                        </td>
+                                        <td>
+                                           KH기업
+                                        </td>
+                                        <td>
+                                            <p class="status_after">2021.08.24 21:24</p> 
+                                        </td>
+                                        <td>
+                                            <p class="status_after">13</p>
+                                        </td>
+                                        <td>
+                                            <p class="status_rcount">80</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="reportCheck" id="" value="">
+                                                <label for=""></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="report_txt">공고제목이들어가는부분입니다.
+                                        </td>
+                                        <td>
+                                           KH기업
+                                        </td>
+                                        <td>
+                                            <p class="status_after">2021.08.24 21:24</p> 
+                                        </td>
+                                        <td>
+                                            <p class="status_after">13</p>
+                                        </td>
+                                        <td>
+                                            <p class="status_rcount">80</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="reportCheck" id="" value="">
+                                                <label for=""></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="report_txt">공고제목이들어가는부분입니다.
+                                        </td>
+                                        <td>
+                                           KH기업
+                                        </td>
+                                        <td>
+                                            <p class="status_after">2021.08.24 21:24</p> 
+                                        </td>
+                                        <td>
+                                            <p class="status_after">13</p>
+                                        </td>
+                                        <td>
+                                            <p class="status_rcount">80</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="reportCheck" id="" value="">
+                                                <label for=""></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="report_txt">공고제목이들어가는부분입니다.
+                                        </td>
+                                        <td>
+                                           KH기업
+                                        </td>
+                                        <td>
+                                            <p class="status_after">2021.08.24 21:24</p> 
+                                        </td>
+                                        <td>
+                                            <p class="status_after">13</p>
+                                        </td>
+                                        <td>
+                                            <p class="status_rcount">80</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input type="checkbox" name="reportCheck" id="" value="">
+                                                <label for=""></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="report_txt">공고제목이들어가는부분입니다.
+                                        </td>
+                                        <td>
+                                           KH기업
+                                        </td>
+                                        <td>
+                                            <p class="status_after">2021.08.24 21:24</p> 
+                                        </td>
+                                        <td>
+                                            <p class="status_after">13</p>
+                                        </td>
+                                        <td>
+                                            <p class="status_rcount">80</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="btn_box">
+                            <a href="javascript:;" class="disabled">비활성화</a>
+                        </div>
+
+                        <div class="paging_wrap">
+                            <a href="javascript:;" class="btn_prev"></a>
+                            <a href="javascript:;" class="btn_num on">1</a>
+                            <a href="javascript:;" class="btn_num">2</a>
+                            <a href="javascript:;" class="btn_num">3</a>
+                            <a href="javascript:;" class="btn_num">4</a>
+                            <a href="javascript:;" class="btn_num">5</a>
+                            <a href="javascript:;" class="btn_next"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </secion>
+        </div>
+    </div>
+    <div id="popup01">
+        <div class="dim"></div>
+        <div class="item">
+            <h3 class="tit">게시글 삭제</h3>
+            <p class="txt">총 <span class="nub">10</span>건의 기업을 비활성화 하시겠습니까?</p>
+            <div class="btn_box">
+                <a href="javascript:;" class="ok">확인</a>
+                <a href="javascript:;" class="cancle">취소</a>
+            </div>
+        </div>
+    </div>
+  
+</div>
+
+    <script>
+    		let checkboxs = [];
+       $(function(){
+    	// 체크박스
+    	     let checkboxs = [];
+    	     $('#checkAll').change(function(){
+    	    	 let checked = $(this).is(':checked');
+    	    	 if(checked){
+    	    		 $('input[name=reportCheck]').prop('checked', true);
+    	    		 $('input[name=reportCheck]:disabled').prop('checked', false);
+    	    	 }else{
+    	    		 $('input[name=reportCheck]').prop('checked', false);
+    	    	 }
+    	    	 
+    	    	 checkArr();
+    	    	 
+    	    	 
+    	     });
+    	     
+    	     $('input[name=reportCheck]').change(function(){
+    	    	// 체크박스 갯수
+    	    	let checkSize = $('input[name=reportCheck]').length;
+    	    	// 체크갯수
+    	    	let checkOnSize = $('input[name=reportCheck]:checked').length;
+    	    	// disalbled 갯수
+       	    	let checkDis = $('input[name=reportCheck]:disabled').length;
+    	    	
+    	    	if(checkSize - checkDis === checkOnSize){
+    	    		// 전체 체크됐을시
+    	    		$('#checkAll').prop('checked', true);
+    	    	}else{
+    	    		// 체크가 하나라도 풀려있을시
+    	    		$('#checkAll').prop('checked', false);
+    	    	}
+    	    	
+    	    	checkArr();
+    	    	
+    	     });
+    	   
+    	   
+    	   
+       })
+       
+       // 체크박스 배열로 변환
+	     function checkArr(){
+	    	 checkboxs = [];
+	    	 for(let i = 0; i < $('input[name=reportCheck]').length; i++){
+	    		 if($('input[name=reportCheck]').eq(i).is(':checked')){
+	    			 checkboxs.push($('input[name=reportCheck]').eq(i).val());
+	    		 }
+	    	 }
+	    	 
+	    	 // console.log(checkboxs);
+	     }
+       
+        // 게시글 삭제
+     	function remove_popOpen(){
+    	 let check = $('input[name=reportCheck]:checked').length;
+    	 if(check > 0){
+    		 $('.nub').text(check);
+    		 popShow('reportPop1');
+    	 }else{
+    		 alert('체크박스를 1개이상 선택해주세요.');
+    	 }
+     }
+        // 게시글 삭제 2단계
+     	function remove_popOpen2(){
+       	 $.ajax({
+       		 url : "${contextPath}/admin/report/remove",
+       		 traditional : true,
+       		 type: "post",
+       		 data : {"reportChecks" : checkboxs},
+       		 success : function(item){
+       			 // console.log(item)
+       			 if(item >= 0){
+       				 $('#reportPop2 .item .txt').text("총 " + item + "건의 게시글이 삭제되었습니다.");
+       			 }else{
+       				 $('#reportPop2 .item .txt').text("총 " + item + "건의 게시글 삭제를 실패하였습니다.");
+       			 }
+       		 }
+       		 
+       	 })}
+
+         $(document).ready(function ($) {
+        $(".disabled").on("click", function (event) {  //팝업오픈 버튼 누르면
+            $("#popup01").show();   //팝업 오픈
+            $("body").append('<div class="backon"></div>'); //뒷배경 생성
+        });
+
+        $("body").on("click", function (event) {
+            if (event.target.className == 'close' || event.target.className == 'backon') {
+                $("#popup01").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+                $(".backon").hide();
+            }
+        });
+
+    });
+       
+</script>
+     
+
+
+</body>
+
+</html>
