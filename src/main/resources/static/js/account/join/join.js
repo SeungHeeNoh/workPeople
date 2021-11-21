@@ -94,15 +94,40 @@
 					updateVlidState(inputId);
 					
 					if(inputId == "register_number") {
+						let isRun = false;
+
+						if(isRun) return;
+						isRun = true;
 						let xhr = new XMLHttpRequest();
 						xhr.onreadystatechange = function() {
 							if(xhr.readyState == 4) {
 								if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
 									if(xhr.response.data) {
+										isRun = false;
 										if(xhr.response.data[0]["tax_type"] == "국세청에 등록되지 않은 사업자등록번호입니다.") {
 											deleteValidState(inputId, "국세청에 등록되지 않은 사업자등록번호입니다.");
 										} else {
-											updateVlidState(inputId);
+											let xhr2 = new XMLHttpRequest();
+											xhr2.onreadystatechange = function() {
+												if(xhr2.readyState == 4) {
+													if((xhr2.status >= 200 && xhr2.status < 300) || xhr2.status == 304) {
+														if(xhr2.response.msg) {
+															if(xhr2.response.msg.length > 0) {
+																deleteValidState(inputId, xhr2.response.msg);
+															} else {
+																updateVlidState(inputId);
+															}
+														}
+													} else {
+														console.log("ajax 통신 실패");
+													}
+												}
+											}
+
+											xhr2.open("GET", "/account/join/checkRegisterNumber/" + input.value.replaceAll(/-/g, ""));
+											xhr2.setRequestHeader("Content-type", "application/json;");
+											xhr2.responseType = "json";
+											xhr2.send();
 										}
 									}
 								} else {
