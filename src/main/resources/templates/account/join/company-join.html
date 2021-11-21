@@ -51,30 +51,17 @@
 					</div>
 					<div class="join_row">
 						<p><label for="user_name"><strong>*</strong> 기업 형태</label></p>
-						<select id="company_type" name="company_type">
+						<select id="company_type" th:name="company_type">
 							<option value="default">기업 형태 선택</option>
-							<option value="1">대기업</option>
-							<option value="2">공사/공기업</option>
-							<option value="3">중견기업</option>
-							<option value="4">중소기업</option>
-							<option value="5">스타트업</option>
-							<option value="6">외국계기업</option>
+							<option th:each="companyType : ${companyTypeList}" th:value=${companyType.no} th:text=${companyType.name}/>
 						</select>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
 					<div class="join_row">
 						<p><label for="user_name"><strong>*</strong> 업종</label></p>
-						<select id="sector" name="sector">
+						<select id="sector" th:name="sector">
 							<option value="default">업종 선택</option>
-							<option value="1">서비스업</option>
-							<option value="2">의료·제약·복지</option>
-							<option value="3">판매·유통</option>
-							<option value="4">IT·웹·통신</option>
-							<option value="5">건설업</option>
-							<option value="6">교육업</option>
-							<option value="7">미디어·디자인</option>
-							<option value="8">은행·금융업</option>
-							<option value="9">기관·협회</option>
+							<option th:each="sector : ${sectorList}" th:value="${sector.no}" th:text=${sector.name}/>
 						</select>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
