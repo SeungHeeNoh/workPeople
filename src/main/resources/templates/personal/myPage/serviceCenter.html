@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/common/common.css">
+    <link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
+    <link rel="stylesheet" href="/css/personal/myPage/serviceCenter.css">
+    
+    <title>고객센터</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="wrapper">
+        
+    <div th:include="personal/myPage/mainSnb.html"></div>
+
+        <section>
+            <div class="content_wrap">
+                
+                <div class="content1_container">
+                    <div class="content1_1">고객센터</div>
+                </div>
+                <div class="content2_container">
+                    
+                </div>
+                <div class="content3_container">
+                    <div class="content3_1">전송할 메세지를 입력해주세요.</div>
+                    <button class="green green1">전송</button>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
