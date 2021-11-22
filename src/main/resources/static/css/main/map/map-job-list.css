@@ -1,0 +1,240 @@
+
+.border_test {
+    border: 0px solid pink;
+}
+.border_test_r {
+    border: 0px solid red;
+}
+.container{
+    padding-top: 50px;
+    background-color: #FFFBF1;
+    padding-bottom: 50px;
+      
+}
+
+
+.content{
+    margin: 0 auto;
+    width: 1100px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.local_wrap{
+    background-color: #FCEDC7;
+    height: 850px;
+}
+.local_wrap > h1 {
+    text-align: center;
+    padding: 25px 0 35px 0px;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+/* 채용 - 지역별 - 내 주변 채용정보
+.ico-now-marker {display:inline-block; width:21px; height:20px; margin:-4px 0 0 0; padding:0; border:0; vertical-align:middle; text-indent:-9999px; background:url('../../images/mapjoblist/location.png') no-repeat 0 0;}
+ .surround-layer {position:absolute; left:50%; top:50%; width:440px; height:290px; margin:-145px 0 0 -220px; padding:0; background-color:#fff;}
+.wrap {position:relative; width:100%; }
+.wrap .tit {margin:0; padding:30px 0 15px 0; }
+.wrap .cont {text-align:center; font-size:1.071em; color:#333;}
+.wrap .btn-group {padding:20px 0 0 0;}
+.wrap .txt-info {padding:25px 0 0 0; text-align:center; letter-spacing:-1px; font-size:0.9286em}
+.wrap .btn-close-surround-layer {display:block; position:absolute; right:16px; top:16px; width:12px; height:12px; margin:0; padding:0; border:0; background-color:transparent;}
+
+
+/* 위치 수정 레이어 */
+.wrap .top .column.now-location {width:190px;padding:0 20px 0 36px;}
+.column.now-location:before {display:none;}
+.column.now-location i {display:block; position:absolute; left:19px; top:20px; margin:0;}
+.column.now-location .txt {font-size: 18px;overflow:hidden; display:block; max-width:100%; line-height:56px; white-space:nowrap; text-overflow:ellipsis; vertical-align:middle;}
+.column.now-location .button.position {display:block; position:absolute; right:-1px; top:14px; line-height: 2;}
+.column.now-location .layer-down {left:17px; width:292px; min-height:400px;}
+.column.now-location .layer-down .scroll ul {height:325px;}
+
+.wrap {width:100%;}
+.wrap .top {position:relative; z-index:90; height:60px; margin:0; padding:0;}
+.wrap .top:before,
+.wrap .top:after {content:''; display:table;}
+.wrap .top:after {clear:both;}
+.wrap .top .column {float:left; position:relative; padding:0 0 0 16px;}
+.wrap .top .column:before {content:''; display:block; position:absolute; left:0; top:13px; width:1px; height:32px; margin:0; background-color:#e6e6e6;}
+.wrap .top .column .button {min-width:0; text-align: center; background-color:#fff; border-radius: 10px;}
+.wrap .top .column .btn-group .button {min-width:80px; width:auto; padding:0 10px;}
+
+/* button group */
+.btn-group {padding:30px 0 0 0;position:relative;text-align:right;}
+.btn-group:before, .btn-group:after {content:''; display:table;}
+.btn-group:after {clear:both;}
+.btn-group .left {float: left;}
+.btn-group .right {float: right;}
+.btn-group .button + .button {margin:0 0 0 5px;}
+.btn-group.center {text-align:center;}
+.btn-group.center .button,
+.btn-group.a-c .button {margin:0 3px 0 2px;}
+.btn-group.default .button{height:auto;padding:10px 20px;line-height:1.3}
+.btn-group.default .button + .button{margin-left:10px}
+
+.btn-group .pagination {position:absolute;top:0;left:50%;transform:translateX(-50%);}
+
+/* btn-group type2 for Career, My Page */
+.btn-group.type2 {margin:50px 0 40px 0; padding-top:50px;}
+.btn-group.type2 .button {height:52px; line-height:50px;}
+
+.btn-group.topline {border-top:1px #e6ecef solid;}
+.btn-group.btmline{padding-bottom:20px;border-bottom:1px #e6e6e6 solid}
+
+/* button group */
+.button-group {overflow:hidden;}
+.button-group ul {margin:-5px 0 0 -5px;}
+.button-group ul:after {clear:both; display:block; content:"";}
+.button-group ul li {float:left; margin:5px 0 0 5px;}
+.button-group ul li label {display:block; width:77px; height:32px; line-height:32px; text-align:center; background-color:#ecf0f3; color:#333; font-weight:700;}
+.button-group ul li label:hover,
+.button-group ul li.curr label {background-color:#41506e; color:#fff;}
+.button-group ul li label + input {visibility:hidden; position:absolute; height:0;}
+
+/* 하단으로 출력되는 레이어 공통 */
+.layer-down {display:none; position:absolute; left:0; top:58px; margin:0; padding:0 15px 20px 15px; border:1px solid #8890a0; border-width:0 1px 1px 1px; background-color:#fff; box-shadow:2px 2px 1px rgba(0,0,0,0.1); }
+.layer-down .search {position:relative; width:100%; margin:0 0 10px 0; padding:0 90px 0 0;}
+.layer-down .search .input-text {display:block; width:100%;}
+.layer-down .search .button {display:block; position:absolute; right:0; top:0; width:80px;}
+.layer-down .scroll-wrap {overflow:hidden; border:1px solid #d4dae4;}
+.layer-down .scroll-wrap .scroll {float:left; width:100%;}
+.layer-down .scroll-wrap .scroll .tit {margin:0; padding:0; line-height:36px; text-align:center; border-left:1px solid #cbd2dc; color:#333; font-weight:700; background-color:#dce1e9;}
+.layer-down .scroll-wrap .scroll ul {overflow:hidden; overflow-y:scroll;}
+.layer-down .scroll-wrap .scroll ul li {}
+.layer-down .scroll-wrap .scroll ul li .btn,
+.layer-down .scroll-wrap .scroll ul li .label {display:block; width:100%; margin:0; padding:8px 7px 7px 7px; line-height:1.5; border:0; text-align:left; font-weight:700; color:#666; background-color:transparent;}
+.layer-down .scroll-wrap .scroll ul li .label {position:relative; padding-left:35px;}
+.layer-down .scroll-wrap .scroll ul li .label input[type='checkbox'],
+.layer-down .scroll-wrap .scroll ul li .label input[type='radfio'] {position:absolute; left:10px; top:11px;}
+.layer-down .scroll-wrap .scroll ul li.on {background-color:#f3f6f7;}
+.layer-down .scroll-wrap .scroll ul li.on .btn,
+.layer-down .scroll-wrap .scroll ul li.on .label {color:#1a5586;}
+.layer-down .scroll-wrap.col-2 {}
+.layer-down .scroll-wrap.col-2 .scroll {width:50%;}
+.layer-down .scroll-wrap.col-3 {}
+.layer-down .scroll-wrap.col-3 .scroll {width:33.3%;}
+.layer-down .scroll-wrap.col-3 .scroll:first-child {width:33.4%;}
+.layer-down .scroll-wrap.col-3 .scroll:first-child .tit {border-left:0;}
+.layer-down .btn-group {padding:15px 0 0 0;}
+.layer-down .search-result-layer {display:none;}
+.layer-down .search-result-layer.on {display:block;}
+.layer-down .btn-close-search {display:none;}
+.wrap .top .column.on .button.btn-open-layer-down {color:#fff; border:0; background-color:#2973af;}
+.wrap .top .column.on .layer-down {display:block;}
+
+/* 현재위치 목록 및 지도 영억 */
+.wrap .bottom {overflow:hidden; position:relative; z-index:50; height:calc(100% - 60px); border:1px solid #8890a0; border-width:0 1px 1px 1px; background-color:#fff;}
+.surround-list {position:relative; z-index:100; float:left; width:410px; height:100%; padding:0; background-color:#fff;}
+.wrap .surround-list .scroll {overflow:hidden;}
+.surround-list .counting {padding: 25px 0 8px 27px; border-bottom:2px solid #000; margin:0; letter-spacing:-1px; color:#333; font-size:18; font-weight: 500;}
+.wrap .surround-list .counting em {color:#a25c4e; letter-spacing:0;}
+.wrap  .surround-list .list-sorting {margin:0 0 5px 0; text-align:right;}
+.wrap  .surround-list .list-sorting span {position:relative; display:inline-block; vertical-align:middle; margin:0 0 0 3px; padding:0 0 0 7px;}
+.wrap  .surround-list .list-sorting span:before {content:''; display:block; position:absolute; left:0; top:50%; width:1px; height:12px; margin:-6px 0 0 0; background-color:#7a7a7a;}
+.wrap  .surround-list .list-sorting span:first-child:before {display:none;}
+.wrap  .surround-list .list-sorting span .btn {margin:0; padding:0; border:0; font-weight:700; color:#666; background-color:#fff;}
+.wrap  .surround-list .list-sorting span.on .btn {color:#236daa;}
+.wrap  .surround-list .list {margin:0; padding:0;}
+.wrap  .surround-list .list ul {border-bottom:1px solid #333;}
+.wrap  .surround-list .list ul li {padding:5px 0; border-bottom:1px solid #e6e6e6;}
+.wrap  .surround-list .list ul li.chk-location-agree {padding:30px 0; border-bottom:0; text-align:center;}
+.wrap  .surround-list .list ul li .block p {position:relative; display:inline-block; margin:0 3px 0 0; padding:0 6px 0 0; vertical-align:middle;}
+.wrap  .surround-list .list ul li .block p:after {content:''; display:block; position:absolute; right:0; top:50%; width:1px; height:12px; margin:-6px 0 0 0; background-color:#e1e1e1;}
+.wrap  .surround-list .list ul li .block p:last-child:after {display:none;}
+.wrap  .surround-list .list ul li .block p.left {max-width:71%; margin:0; padding:0;}
+.wrap  .surround-list .list ul li .block p.left:after {display:none;}
+.wrap  .surround-list .list ul li .block p.right {margin:0; padding:0 0 0 5px;}
+.wrap  .surround-list .list ul li .block.small p.left {max-width:85%; margin:0; padding:0;}
+
+.wrap  .surround-list .list ul li .name {display:block; font-size:0.9286em; max-width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+ .wrap  .surround-list .list ul li .distance {font-size:0.9286em;}
+.wrap  .surround-list .list ul li .tit {display:block; margin:0; padding:0; border:0; background-color:transparent; color:#333; max-width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+ .wrap  .surround-list .list ul li .d-day {display:inline-block; height:26px; margin:0; padding:0 12px; font-weight:700; color:#ff9000; border:1px solid #ff9000; border-radius:13px;}
+ .wrap  .surround-list .btn-map-list-toggle {position:absolute; right:-25px; top:50%; width:24px; height:64px; margin:-32px 0 0 0;}
+ .wrap .surround-list .btn-map-list-toggle .btn-map-list {display:block; width:24px; height:64px; margin:0; padding:0; border:0; text-indent:-9999px; background-position:0 0; background-repeat:no-repeat; background-color:transparent;}
+ .wrap  .surround-list .btn-map-list-toggle .btn-map-list.close {display:block; background-image:url('../images/careers/btn-map-list-close.png');}
+ .wrap  .surround-list .btn-map-list-toggle .btn-map-list.open {display:none; background-image:url('../images/careers/btn-map-list-open.png');}
+
+.off .wrap  .surround-list {margin:0 0 0 -410px;}
+.off .wrap  .btn-map-list-toggle {}
+.off .wrap .btn-map-list-toggle .btn-map-list.close {display:none;}
+.off .wrap  .btn-map-list-toggle .btn-map-list.open {display:block;}
+
+
+ .wrap .bottom .map-area {float:left; width:calc(100% - 410px); height:100%; background-color:#fff;}
+ .wrap .bottom .map-area .ico-now-marker {margin:0;}
+
+ .wrap .bottom .map-area .size-control {overflow:hidden; margin:0; padding:0;}
+ .wrap .bottom .map-area .size-control button {float:left; display:block; width:36px; height:36px; margin:0; padding:0; text-indent:-9999px; border:1px solid #000; background-color:#fff; background-repeat:no-repeat; background-position:center;}
+ .wrap .bottom .map-area .size-control .btn-map-plus {background-image:url('../images/careers/btn-map-plus.png');}
+ .wrap .bottom .map-area .size-control .btn-map-minus {border-left:0; background-image:url('../images/careers/btn-map-minus.png');}
+ .wrap .bottom .map-area .btn-map-maker {display:block; width:41px; height:40px; margin:0; padding:0; border:0; text-indent:-9999px; background:url('../images/careers/btn-map-maker.png') no-repeat 0 0;}
+ .wrap .bottom .map-area .btn-map-maker.open {background:url('../images/careers/btn-map-maker-open.png') no-repeat 0 0;}
+
+ .wrap .bottom .map-area .map-info-layer {}
+ .wrap .bottom .map-area .map-info-layer .wrap {position:relative; margin:0; padding:10px 15px 15px 15px; border:2px solid #236daa; background-color:#fff;}
+ .wrap .bottom .map-area .map-info-layer .wrap:before {content:''; display:block; position:absolute; left:-2px; top:-14px; width:12px; height:14px; background:url('../images/careers/bg-map-info-layer.png') no-repeat 0 0;}
+ .wrap .bottom .map-area .map-info-layer .wrap p {margin:0; padding:0;}
+ .wrap .bottom .map-area .map-info-layer .wrap .map-list {}
+ .wrap .bottom .map-area .map-info-layer .wrap .map-list .count {padding:0 0 10px 0; color:#333; font-weight:700; font-size:1.1429em;}
+ .wrap .bottom .map-area .map-info-layer .wrap .map-list .count em {color:#a25c4e;}
+ .wrap .bottom .map-area .map-info-layer .wrap .map-list .list {}
+ .wrap .bottom .map-area .map-info-layer .wrap .map-list .list ul {border-top:1px solid #8890a0;}
+ .wrap .bottom .map-area .map-info-layer .wrap .map-list .list ul li {border-bottom:1px solid #e6e6e6;}
+ .wrap .bottom .map-area .map-info-layer .wrap .map-list .list ul li a {display:block; padding:10px;}
+ .wrap .bottom .map-area .map-info-layer .wrap .map-list .list ul li a .name {display:block; overflow:hidden; width:100%; white-space:nowrap; text-overflow:ellipsis;}
+ .wrap .bottom .map-area .map-info-layer .wrap .map-list .list ul li a .tit {display:block; overflow:hidden; width:100%; white-space:nowrap; text-overflow:ellipsis;}
+
+ .wrap .bottom .map-area .map-info-layer .wrap .view {}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .name {display:inline-block; font-size:1.1429em; color:#333; font-weight:700; vertical-align:middle;}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .cp-icon {display:inline-block; vertical-align:middle;}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .address {}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .address .add {color:#333; font-weight:700;}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .cont {margin:10px 0 0 0; padding:10px 0 0 0; border-top:1px solid #e6e6e6;}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .cont .tit {color:#236daa; font-weight:700;}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .btn-more {padding-top:15px; text-align:center;}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .btn-more.col-3 {overflow:hidden;}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .btn-more.col-3 .button {float:left; margin-left:3px;}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .btn-more.col-3 .button:first-child {margin-left:0;}
+ .wrap .bottom .map-area .map-info-layer .wrap .view .btn-more.col-3 .button.width {width:229px;}
+ .wrap .bottom .map-area .map-info-layer .wrap .btn-group {padding:15px 0 0 0;}
+ .wrap .bottom .map-area .map-info-layer .wrap .btn-group .button {margin:0;}
+ .wrap .bottom .map-area .map-info-layer .wrap .btn-group.justify {margin:15px 0 0 0; padding:10px 0 0 0; border-top:1px solid #e6e6e6;}
+ .wrap .bottom .map-area .map-info-layer .wrap .btn-map-info-layer-close {display:block; margin:0; position:absolute; right:15px; top:15px;}
+
+ .wrap .bottom .map-area .map-info-layer.small .wrap {padding:5px 10px;}
+ .wrap .bottom .map-area .map-info-layer.small .wrap .name {color:#333; font-weight:700;}
+.off .wrap .bottom .map-area {width:100%;}
+
+.corp > span > a {
+    max-width: 90%;
+    font-size: 20px;
+    margin-left: 38px;
+    color: #A7D676;
+}
+
+.tit > span > a {
+    font-size: 16px;
+    margin: 0px 0px 30px 38px;
+    color: black;
+   
+}
+.sname{ padding: 5px 0 0 50px;}
+.sname > span {
+    font-size: 16px;
+    color: #979797;
+    display: block;
+}
+
+/* 임시 페이징 */
+.paging_wrap{display: flex; align-items: center; justify-content: center; padding-top: 50px;}
+.paging_wrap.type02{margin-top: 20px;}
+.paging_wrap a{display: block; width: 29px; height: 36px; box-sizing: border-box; font-weight: bold;}
+.paging_wrap a.btn_prev{background:url(../images/ico_prev.png) no-repeat 50% 50%; margin-right: 10px;}
+.paging_wrap a.btn_next{background:url(../images/ico_next.png) no-repeat 50% 50%; margin-left: 10px;}
+.paging_wrap a.btn_num{border-radius:5px; border:1px solid #D2D6DC; color:#AEA9A9; text-align: center; line-height: 36px; margin: 0 5px; transition: all .3s;}
+.paging_wrap a.btn_num:hover{border-color:#4094F7; color:#4094F7;}
+.paging_wrap a.btn_num.on{border-color:#4094F7; color:#4094F7;}
+

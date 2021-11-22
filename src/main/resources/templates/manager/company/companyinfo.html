@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기업 정보 관리</title>
+	<link rel="stylesheet" th:href="@{/css/common/common.css}">
+	<link rel="stylesheet" th:href="@{/css/manager/company/companyinfo.css}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<div class="container">
+    <div class="wrapper">
+        <div id="sideNav">
+            <div class="nav">
+                <ul>
+                    <li id="" class="nav_tit">관리자 페이지</li>
+
+                    <li id="snb_2" class="snb_main"><a href="#"><img id="snbImg2"
+                                src="../../../static/images/common/usersetting.png">회원관리</a></li>
+                    <li id="snb_2_1" class="snb_sub"><a href="#">회원정보</a></li>
+                    <li id="snb_2_2" class="snb_sub"><a href="#">고객센터</a></li>
+                    <li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
+
+                    <li id="snb_3" class="snb_main"><a href="#"><img id="snbImg3"
+                                src="../../../static/images/common/cisetting.png">기업관리</a></li>
+                    <li id="snb_3_1" class="snb_sub"><a href="#">기업공고</a></li>
+                    <li id="snb_3_2" class="snb_sub"><a href="#">신고공고</a></li>
+                    <li id="snb_3_3" class="snb_sub"><a href="#">고객센터</a></li>
+
+                    <li id="snb_4" class="snb_main"><a href="#"><img id="snbImg4"
+                                src="../../../static/images/common/managersetting.png">관리자 정보</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="secion">
+            <div class="content">
+                <div class="list_wrap">
+                    <h2 class="h2">기업 정보 관리</h2>
+
+                    <div class="search_box">
+                        <div class="search_bot resident clearfix">
+                            <div class="items clearfix">
+                                <label for="">검색조건</label>
+                                <div class="select">
+                                    <select name="" id="reser_fac">
+                                        <option value="">기업로고</option>
+                                        <option value="">기업명</option>
+                                        <option value="">사업자 등록번호</option>
+                                        <option value="">이메일</option>
+                                        <option value="">주소</option>
+                                        <option value="">연락처</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="input">
+                                <button type="button" class="btn">검색</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="list_content">
+                        <div class="table_wrap resident_list">
+                            <table class="table">
+                                <colgroup>
+                                    <col width="auto">
+                                    <col width="auto">
+                                    <col width="auto">
+                                    <col width="auto">
+                                    <col width="auto">
+                                    <col width="auto">
+                                </colgroup>
+
+                                <thead>
+                                    <tr>
+                                        <th>기업로고</th>
+                                        <th>기업명</th>
+                                        <th>사업자 등록번호</th>
+                                        <th>이메일</th>
+                                        <th>가입일</th>
+                                        <th>계정상태</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td>기아(주)</td>
+                                        <td>605-32-08942</td>
+                                        <td>kia22@naver.com</td>
+                                        <td>2021-10-23</td>
+                                        <td>활성화</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td>기아(주)</td>
+                                        <td>605-32-08942</td>
+                                        <td>kia22@naver.com</td>
+                                        <td>2021-10-23</td>
+                                        <td>활성화</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td>기아(주)</td>
+                                        <td>605-32-08942</td>
+                                        <td>kia22@naver.com</td>
+                                        <td>2021-10-23</td>
+                                        <td>활성화</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td>기아(주)</td>
+                                        <td>605-32-08942</td>
+                                        <td>kia22@naver.com</td>
+                                        <td>2021-10-23</td>
+                                        <td>활성화</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td>기아(주)</td>
+                                        <td>605-32-08942</td>
+                                        <td>kia22@naver.com</td>
+                                        <td>2021-10-23</td>
+                                        <td>활성화</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td>기아(주)</td>
+                                        <td>605-32-08942</td>
+                                        <td>kia22@naver.com</td>
+                                        <td>2021-10-23</td>
+                                        <td>활성화</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td>기아(주)</td>
+                                        <td>605-32-08942</td>
+                                        <td>kia22@naver.com</td>
+                                        <td>2021-10-23</td>
+                                        <td>활성화</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td>기아(주)</td>
+                                        <td>605-32-08942</td>
+                                        <td>kia22@naver.com</td>
+                                        <td>2021-10-23</td>
+                                        <td>활성화</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td>기아(주)</td>
+                                        <td>605-32-08942</td>
+                                        <td>kia22@naver.com</td>
+                                        <td>2021-10-23</td>
+                                        <td>활성화</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td>기아(주)</td>
+                                        <td>605-32-08942</td>
+                                        <td>kia22@naver.com</td>
+                                        <td>2021-10-23</td>
+                                        <td>활성화</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="paging_wrap">
+                            <a href="javascript:;" class="btn_prev"></a>
+                            <a href="javascript:;" class="btn_num on">1</a>
+                            <a href="javascript:;" class="btn_num">2</a>
+                            <a href="javascript:;" class="btn_num">3</a>
+                            <a href="javascript:;" class="btn_num">4</a>
+                            <a href="javascript:;" class="btn_num">5</a>
+                            <a href="javascript:;" class="btn_next"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </secion>
+        </div>
+    </div>
+</div>
+<div id="popup01">
+    <div class="dim"></div>
+    <div class="item">
+        <h3 class="corp">기아(주)</h3>
+        <p class="txt">공고 조회 총 <span class="nub">n</span>개</p>
+        <div class="ptable_wrap">
+            <table class="table">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="30%">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>공고제목</th>
+                        <th>공고지역</th>
+                        <th>공고상태</th>
+                        <th>마감일</th>
+                    </tr>
+                </thead>
+                </table>
+                <div class="pmain_table">
+                    <table class="table">
+                        <colgroup>
+                            <col width="10%">
+                            <col width="30%">
+                            <col width="20%">
+                            <col width="20%">
+                            <col width="20%">
+                        </colgroup>
+                        <tbody>
+                        <tr class="item_list">
+                            <td class="pnum">1</td>
+                            <td class="ptit">각 부문별 신입/경력 채용</td>
+                            <td>서울 서초구</td>
+                            <td>공고중</td>
+                            <td>2021-10-28</td>
+                        </tr>
+                        <tr class="item_list">
+                            <td class="pnum">2</td>
+                            <td class="ptit">각 부문별 신입/경력 채용</td>
+                            <td>서울 서초구</td>
+                            <td>공고마감</td>
+                            <td>2010-10-03</td>
+                        </tr>
+                        <tr class="item_list">
+                            <td class="pnum">3</td>
+                            <td class="ptit">각 부문별 신입/경력 채용</td>
+                            <td>서울 서초구</td>
+                            <td>공고마감</td>
+                            <td>2010-10-03</td>
+                        </tr>
+                        <tr class="item_list">
+                            <td class="pnum">4</td>
+                            <td class="ptit">각 부문별 신입/경력 채용</td>
+                            <td>서울 서초구</td>
+                            <td>공고마감</td>
+                            <td>2010-10-03</td>
+                        </tr>
+                        <tr class="item_list">
+                            <td class="pnum">5</td>
+                            <td class="ptit">각 부문별 신입/경력 채용</td>
+                            <td>서울 서초구</td>
+                            <td>공고마감</td>
+                            <td>2010-10-03</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+            <div class="btn_box">
+                <a href="javascript:;" class="ok">닫기</a>
+            </div>
+        </div>
+           
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    $(document).ready(function ($) {
+        $(".tag").on("click", function (event) {  //팝업오픈 버튼 누르면
+            $("#popup01").show();   //팝업 오픈
+            $("body").append('<div class="backon"></div>'); //뒷배경 생성
+        });
+
+        $("body").on("click", function (event) {
+            if (event.target.className == 'ok' || event.target.className == 'backon') {
+                $("#popup01").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+                $(".backon").hide();
+            }
+        });
+
+    });
+</script>
+</body>
+
+
+
+
+</body>
+
+</html>

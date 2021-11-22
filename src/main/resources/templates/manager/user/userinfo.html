@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원 정보 관리</title>
+<link rel="stylesheet" th:href="@{/css/common/common.css}">
+<link rel="stylesheet" th:href="@{/css/manager/user/userinfo.css}">
+
+</head>
+
+<body>
+	<div class="container">
+		<!-- 사이드바 -->
+		<div class="wrapper">
+			<div id="sideNav">
+				<div class="nav">
+					<ul>
+						<li id="" class="nav_tit">관리자 페이지</li>
+
+						<li id="snb_2" class="snb_main"><a href="#"><img
+								id="snbImg2" src="../../../static/images/common/usersetting.png">회원관리</a></li>
+						<li id="snb_2_1" class="snb_sub"><a href="#">회원정보</a></li>
+						<li id="snb_2_2" class="snb_sub"><a href="#">고객센터</a></li>
+						<li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
+
+						<li id="snb_3" class="snb_main"><a href="#"><img
+								id="snbImg3" src="../../../static/images/common/cisetting.png">기업관리</a></li>
+						<li id="snb_3_1" class="snb_sub"><a href="#">기업공고</a></li>
+						<li id="snb_3_2" class="snb_sub"><a href="#">신고공고</a></li>
+						<li id="snb_3_3" class="snb_sub"><a href="#">고객센터</a></li>
+
+						<li id="snb_4" class="snb_main"><a href="#"><img
+								id="snbImg4"
+								src="../../../static/images/common/managersetting.png">관리자
+								정보</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div id="secion">
+				<div class="content">
+					<div class="list_wrap">
+						<h2 class="h2">회원 정보 관리</h2>
+
+						<div class="search_box">
+							<div class="search_bot resident clearfix">
+								<div class="items clearfix">
+									<label for="">검색조건</label>
+									<div class="select">
+										<select name="" id="reser_fac">
+											<option value="">아이디</option>
+											<option value="">이름</option>
+											<option value="">이메일</option>
+											<option value="">주소</option>
+											<option value="">연락처</option>
+											<option value="">가입일</option>
+										</select>
+									</div>
+									<input type="text" class="input">
+									<button type="button" class="btn">검색</button>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="list_content">
+							<div class="table_wrap resident_list">
+								<table class="table">
+									<colgroup>
+										<col width="auto">
+										<col width="auto">
+										<col width="auto">
+										<col width="auto">
+										<col width="auto">
+										<col width="auto">
+									</colgroup>
+
+									<thead>
+										<tr>
+											<th>아이디</th>
+											<th>이름</th>
+											<th>이메일</th>
+											<th>주소</th>
+											<th>연락처</th>
+											<th>가입일</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>idid1101</td>
+											<td>신짱구</td>
+											<td>sinoske05@naver.com</td>
+											<td>서울 송파구</td>
+											<td>010-0000-0000</td>
+											<td>2021-10-28</td>
+										</tr>
+										<tr>
+											<td>idid1101</td>
+											<td>신짱구</td>
+											<td>sinoske05@naver.com</td>
+											<td>서울 송파구</td>
+											<td>010-0000-0000</td>
+											<td>2021-10-28</td>
+										</tr>
+										<tr>
+											<td>idid1101</td>
+											<td>신짱구</td>
+											<td>sinoske05@naver.com</td>
+											<td>서울 송파구</td>
+											<td>010-0000-0000</td>
+											<td>2021-10-28</td>
+										</tr>
+										<tr>
+											<td>idid1101</td>
+											<td>신짱구</td>
+											<td>sinoske05@naver.com</td>
+											<td>서울 송파구</td>
+											<td>010-0000-0000</td>
+											<td>2021-10-28</td>
+										</tr>
+										<tr>
+											<td>idid1101</td>
+											<td>신짱구</td>
+											<td>sinoske05@naver.com</td>
+											<td>서울 송파구</td>
+											<td>010-0000-0000</td>
+											<td>2021-10-28</td>
+										</tr>
+										<tr>
+											<td>idid1101</td>
+											<td>신짱구</td>
+											<td>sinoske05@naver.com</td>
+											<td>서울 송파구</td>
+											<td>010-0000-0000</td>
+											<td>2021-10-28</td>
+										</tr>
+										<tr>
+											<td>idid1101</td>
+											<td>신짱구</td>
+											<td>sinoske05@naver.com</td>
+											<td>서울 송파구</td>
+											<td>010-0000-0000</td>
+											<td>2021-10-28</td>
+										</tr>
+										<tr>
+											<td>idid1101</td>
+											<td>신짱구</td>
+											<td>sinoske05@naver.com</td>
+											<td>서울 송파구</td>
+											<td>010-0000-0000</td>
+											<td>2021-10-28</td>
+										</tr>
+										<tr>
+											<td>idid1101</td>
+											<td>신짱구</td>
+											<td>sinoske05@naver.com</td>
+											<td>서울 송파구</td>
+											<td>010-0000-0000</td>
+											<td>2021-10-28</td>
+										</tr>
+										<tr>
+											<td>idid1101</td>
+											<td>신짱구</td>
+											<td>sinoske05@naver.com</td>
+											<td>서울 송파구</td>
+											<td>010-0000-0000</td>
+											<td>2021-10-28</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="paging_wrap">
+								<a href="javascript:;" class="btn_prev"></a> <a
+									href="javascript:;" class="btn_num on">1</a> <a
+									href="javascript:;" class="btn_num">2</a> <a
+									href="javascript:;" class="btn_num">3</a> <a
+									href="javascript:;" class="btn_num">4</a> <a
+									href="javascript:;" class="btn_num">5</a> <a
+									href="javascript:;" class="btn_next"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				</secion>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

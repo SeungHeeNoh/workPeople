@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header</title>
+   	<link rel="stylesheet" th:href="@{/css/common/common.css}">
+	<link rel="stylesheet" th:href="@{/css/common/header.css}">
+</head>
+
+<body>
+
+    <header id="wrap">
+        <div>
+            <div class="mlogo">
+                <a href="#"><img src="../../../resources/static/images/common/hlogo.png"></a>
+            </div>
+            <ul class="gnb">
+                <li><a href="#">지역별</a></li>
+                <li><a href="#">직종별</a></li>
+                <li><a href="#">내 주변 공고별</a></li>
+                <li><a href="#">면접 후기</a></li>
+
+                <li>
+                    <div class="loginArea">
+                        <a class="" href="#">회원가입</a> |
+                        <a class="" href="#">로그인</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- 로그인 햇을 때  -->
+    <header id="wrap">
+        <div id="menu">
+            <div class="mlogo">
+                <a href="#"><img src="../../../resources/static/images/common/hlogo.png"></a>
+            </div>
+            <ul class="gnb">
+                <li><a href="#">지역별</a></li>
+                <li><a href="#">직종별</a></li>
+                <li><a href="#">내 주변 공고별</a></li>
+                <li><a href="#">면접 후기</a></li>
+
+                <li>
+                    <div class="loginArea">
+                        <span>봉미선</span>님<span>▼</span>
+                    </div>
+
+                    <ul class="submenu1">
+                        <li><a href="#">마이페이지</a></li>
+                        <li><a href="#">로그아웃</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+        <!-- 기업   -->
+        <header id="wrap">
+            <div id="menu2">
+                <div class="mleft">
+                    <div class="mlogo2">
+                        <a href="#"><img src="../../static/images/header/mlogo2.png"></a>
+                    </div>
+              
+                    
+                    <div class="corph">
+                        <div>
+                        <a href="#"><img src="../../static/images/header/home.png">
+                        <p>회사명</p>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="gnb2">
+                    <li><a href="#">공고등록</a></li>
+                    <li><a href="#">공고·지원자관리</a></li>
+                    <li><a href="#">인재맞춤추천</a></li>
+                    <li><a href="#">기업정보</a></li>
+                </ul>
+
+                <div class="mright">
+                    <ul class="gnb3">
+                        <li><a href="#">기업회원 홈</a></li> |
+                        <li><a href="#">로그아웃</a></li>
+                    </ul>
+                </div>
+                <div class="mright2">
+                    <ul class="gnb4">
+                        <li><a href="#"><img src="../../static/images/header/cash.png">유료 서비스</a></li>
+                        <li><a href="#"><img src="../../static/images/header/mail.png">메일</a></li>
+                    </ul>
+                </div>
+               
+            </div>
+        </header>
+
+
+
+
+
+</body>
+
+</html>

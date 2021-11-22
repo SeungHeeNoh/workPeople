@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 정보</title>
+<link rel="stylesheet" th:href="@{/css/common/common.css}">
+<link rel="stylesheet" th:href="@{/css/manager/manager/managerinfo.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+        .bgLayer {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: .5;
+            filter: alpha(opacity=50);
+            z-index: 10;
+        }
+    </style>
+
+</head>
+<div class="container">
+ <div class="wrapper">
+    <div id="sideNav">
+        <div class="nav">
+            <ul>
+                <li id="" class="nav_tit">관리자 페이지</li>
+
+                <li id="snb_2"class="snb_main"><a href="#"><img id="snbImg2" src="../../../static/images/common/usersetting.png">회원관리</a></li>
+                <li id="snb_2_1" class="snb_sub"><a href="#">회원정보</a></li>
+                <li id="snb_2_2" class="snb_sub"><a href="#">고객센터</a></li>
+                <li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
+            
+                <li id="snb_3" class="snb_main"><a href="#"><img id="snbImg3" src="../../../static/images/common/cisetting.png">기업관리</a></li>
+                <li id="snb_3_1" class="snb_sub"><a href="#">기업공고</a></li>
+                <li id="snb_3_2" class="snb_sub"><a href="#">신고공고</a></li>
+                <li id="snb_3_3" class="snb_sub"><a href="#">고객센터</a></li>
+            
+                <li id="snb_4" class="snb_main"><a href="#"><img id="snbImg4" src="../../../static/images/common/managersetting.png">관리자 정보</a></li>
+            </ul>
+        </div>
+    </div>
+        <div id="secion">
+            <div class="content">
+                <div class="list_wrap">
+                    <h2 class="h2">관리자 정보</h2>
+
+                    <div class="search_box">
+                        <div class="search_bot resident clearfix">
+                            <div class="items clearfix">
+                                <label for="">검색조건</label>
+                                <div class="select">
+                                    <select name="" id="reser_fac">
+                                        <option value="">계정</option>
+                                        <option value="">이름</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="input">
+                                <button type="button" class="btn">검색</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list_content">
+                        <div class="table_wrap resident_list">
+                            <table class="table">
+                                <colgroup>
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="30%">
+                                    <col width="20%">
+                                    <col width="4%">
+                                </colgroup>
+
+                                <thead>
+                                    <tr>
+
+                                        <th>관리자 번호</th>
+                                        <th>계정</th>
+                                        <th>이름</th>
+                                        <th>계급</th>
+                                        <th>수정</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                        <td>1</td>
+                                        <td>admin</td>
+                                        <td>신짱아</td>
+                                        <td>총관리자</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">변경</a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>2</td>
+                                        <td>admin</td>
+                                        <td>신짱아</td>
+                                        <td>관리자</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">변경</a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>3</td>
+                                        <td>admin</td>
+                                        <td>신짱아</td>
+                                        <td>관리자</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">변경</a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>4</td>
+                                        <td>admin</td>
+                                        <td>신짱아</td>
+                                        <td>관리자</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">변경</a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>5</td>
+                                        <td>admin</td>
+                                        <td>신짱아</td>
+                                        <td>관리자</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">변경</a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>6</td>
+                                        <td>admin</td>
+                                        <td>신짱아</td>
+                                        <td>관리자</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">변경</a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>7</td>
+                                        <td>admin</td>
+                                        <td>신짱아</td>
+                                        <td>관리자</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">변경</a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>admin</td>
+                                        <td>신짱아</td>
+                                        <td>관리자</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">변경</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>admin</td>
+                                        <td>신짱아</td>
+                                        <td>관리자</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">변경</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>admin</td>
+                                        <td>신짱아</td>
+                                        <td>관리자</td>
+                                        <td>
+                                            <a href="javascript:;" class="tag">변경</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="btn_box">
+                            <a href="javascript:;" class="add">관리자 추가</a>
+                        </div>
+
+                        <div class="paging_wrap">
+                            <a href="javascript:;" class="btn_prev"></a>
+                            <a href="javascript:;" class="btn_num on">1</a>
+                            <a href="javascript:;" class="btn_num">2</a>
+                            <a href="javascript:;" class="btn_num">3</a>
+                            <a href="javascript:;" class="btn_num">4</a>
+                            <a href="javascript:;" class="btn_num">5</a>
+                            <a href="javascript:;" class="btn_next"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </secion>
+        </div>
+    </div>
+</div>
+
+<div id="popup01">
+    <div class="dim"></div>
+    <div class="item">
+        <form name="managerClassFrm">
+           <div class="new_admin">
+               <div class="title">관리자 직급 변경</div>
+               <input type="hidden" name="" value=""/>
+               <input type="hidden" name="" id=""/>
+               <div class="new_item">
+                   <label for="">계정</label>
+                   <input type="text" name="" id="" disabled>
+               </div>
+               <div class="new_item">
+                   <label for="">이름</label>
+                   <input type="text" name="" id="" disabled>
+               </div>
+                <div class="new_item">
+                    <label for="">직급</label>
+                    <select name="" id="">
+                        <option value="">관리자</option>
+                        <option value="">총관리자</option>
+                    </select>
+                </div>
+           </div>
+       </form>
+       <div class="new_btn_box">
+           <a href="javascript:;" class="ok">등록하기</a>
+           <a href="javascript:popHide('');" class="cancle">취소하기</a>
+       </div>
+    </div>
+</div>
+
+<div id="popup02">
+    <div class="dim"></div>
+    <div class="item">
+        <form name="newManagerFrm">
+            <div class="new_admin">
+                <div class="title">신규 관리자 추가</div>
+                <div class="new_item">
+                    <label for="">계정</label>
+                    <input type="text" name="" id="">
+                    <a href="javascript:;" class="idCheck">중복확인</a>
+                </div>
+                <div class="new_item">
+                    <label for="">비밀번호</label>
+                    <input type="password" name="" id="">
+                </div>
+                <div class="new_item">
+                    <label for="">비밀번호 확인</label>
+                    <input type="password" name="" id="">
+                </div>
+                <div class="new_item">
+                    <label for="">이름</label>
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+            <div class="close">close</div>
+            <div class="new_btn_box">
+                <a href="javascript:;" class="ok">등록하기</a>
+                <a href="javascript:popHide('');" class="cancle">취소하기</a>
+            </div>
+    </div>
+</div>
+
+<script>
+ $(function() {
+     $(window).scroll(function() { 
+         if ($(this).scrollTop() > 200) { 
+             $('#topBtn').fadeIn(); } 
+         else { $('#topBtn').fadeOut(); }
+     }); 
+     $("#topBtn").click(function() { 
+        $('html, body').animate({ scrollTop : 0  }, 300); 
+     return false; });
+ });
+ </script>
+<script>
+    $(document).ready(function ($) {
+        $(".tag").on("click", function (event) {  //팝업오픈 버튼 누르면
+            $("#popup01").show();   //팝업 오픈
+            $("body").append('<div class="backon"></div>'); //뒷배경 생성
+        });
+
+        $("body").on("click", function (event) {
+            if (event.target.className == 'close' || event.target.className == 'backon') {
+                $("#popup01").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+                $(".backon").hide();
+            }
+        });
+
+    });
+
+    $(document).ready(function ($) {
+        $(".add").on("click", function (event) {  //팝업오픈 버튼 누르면
+            $("#popup02").show();   //팝업 오픈
+            $("body").append('<div class="backon"></div>'); //뒷배경 생성
+        });
+
+        $("body").on("click", function (event) {
+            if (event.target.className == 'close' || event.target.className == 'backon') {
+                $("#popup02").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+                $(".backon").hide();
+            }
+        });
+
+    });
+
+
+
+
+</script>
+
+
+
+
+</body>
+
+
+</html>
