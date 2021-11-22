@@ -94,7 +94,9 @@
 					updateValidState(inputId);
 					
 					if(inputId == "register_number") {
-						checkValidateRegisterNumber(inputId, input.value.replaceAll(/-/g, ""));
+						checkValidateRegisterNumber(inputId, joinRows[inputId]["input"].value.replaceAll(/-/g, ""));
+					} else if(inputId == "user_id") {
+						checkId(inputId, joinRows[inputId]["input"].value);
 					}
 				}
 			}
@@ -183,6 +185,34 @@
 		xhr.send(JSON.stringify({"b_no":["" + registerNumber]}));
 	}
 
+	function checkId(inputId, id) {
+		let isRun = false;
+
+		if(isRun) return;
+		isRun = true;
+
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4) {
+				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+					if(xhr.response.msg) {
+						if(xhr.response.msg.length > 0) {
+							deleteValidState(inputId, xhr.response.msg);
+						} else {
+							updateValidState(inputId);
+						}
+					}
+				} else {
+					console.log("ajax 통신 실패");
+				}
+			}
+		}
+
+		xhr.open("GET", "/account/join/checkId/" + id);
+		xhr.responseType = "json";
+		xhr.send();
+	}
+
 	function clickEventHandler(e) {
 		if(e.target.tagName == "BUTTON") {
 			let button = e.target;
@@ -190,18 +220,7 @@
 			if(button.classList.contains("check_button")) {
 				let inputId = button.closest(joinRow).querySelector("input").id;
 
-				if(button.classList.contains("id_check_button")) {
-					hideNotice(joinRows[inputId]["joinRow"]);
-
-					if(inputValidate.idCheck(joinRows[inputId]["input"].value).length > 0) {
-						joinRows[inputId]["notice"].classList.add("show");
-					} else {
-						joinRows[inputId]["notice"].classList.remove("show");
-						// DB를 통한 아이디 중복 체크
-						// - 중복 아이디라면 : "사용할 수 없는 아이디입니다." alert 노출
-						// - 중복 아이디가 아니라면 : "사용 가능한 아이디입니다. 사용하시겠습니까?" confirm 노출 => 확인 클릭 시 readonly로 변경, 취소 시 readonly 제거
-					}
-				} else if(button.classList.contains("send_email_button")) {
+				if(button.classList.contains("send_email_button")) {
 					hideNotice(joinRows[inputId]["joinRow"]);
 
 					if(inputValidate.emailCheck(joinRows[inputId]["input"].value).length > 0) {

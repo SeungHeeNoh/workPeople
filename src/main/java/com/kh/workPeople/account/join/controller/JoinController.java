@@ -40,6 +40,17 @@ public class JoinController {
 		return "account/join/company-join";
 	}
 	
+	@GetMapping(value="/checkId/{id}")
+	@ResponseBody
+	public Map<String, String> checkId(@PathVariable String id) {
+		Map<String, String> map = new HashMap<>();
+		String msg = joinService.checkId(id) > 0 ? "이미 사용중인 아이디입니다." : "";
+
+		map.put("msg", msg);
+		
+		return map;
+	}
+	
 	@GetMapping(value="/checkRegisterNumber/{registerNumber}", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public Map<String, String> checkRegisterNumber(@PathVariable int registerNumber) throws Exception {

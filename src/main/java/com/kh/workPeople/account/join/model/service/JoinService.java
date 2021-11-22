@@ -12,4 +12,6 @@ public interface JoinService {
 	public List<CompanyType> selectCompanyTypeList();
 
 	public List<Sector> selectSectorList();
+
+	public int checkId(String id);
 }

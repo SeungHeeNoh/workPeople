@@ -27,4 +27,10 @@
 		     , S_NAME
 		  FROM SECTOR
 	</select>
+	<select id="checkId" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM MEMBER
+		 WHERE M_ID = #{id}
+	</select>
 </mapper>

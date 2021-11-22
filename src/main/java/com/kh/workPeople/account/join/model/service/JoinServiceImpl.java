@@ -30,4 +30,9 @@ public class JoinServiceImpl implements JoinService {
 		return joinMapper.selectSectorList();
 	}
 
+	@Override
+	public int checkId(String id) {
+		return joinMapper.checkId(id);
+	}
+
 }

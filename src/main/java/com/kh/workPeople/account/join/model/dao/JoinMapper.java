@@ -15,4 +15,6 @@ public interface JoinMapper {
 	List<CompanyType> selectCompanyTypeList();
 
 	List<Sector> selectSectorList();
+
+	int checkId(String id);
 }
