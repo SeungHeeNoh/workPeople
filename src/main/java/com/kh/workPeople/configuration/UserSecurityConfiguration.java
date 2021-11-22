@@ -54,7 +54,12 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))
 				.deleteCookies("JESSIONID")
 				.invalidateHttpSession(true)
-				.logoutSuccessUrl("/main");
+				.logoutSuccessUrl("/main")
+			.and()
+				.rememberMe()
+				.rememberMeParameter("remember-me")
+				.tokenValiditySeconds(60*60*24*15)
+				.userDetailsService(loginService);
 	}
 
 	@Override
