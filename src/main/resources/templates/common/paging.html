@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>페이징</title>
+<link rel="stylesheet" th:href="@{/css/common/common.css}">
 <style>
     .paging {
     display: flex;
@@ -93,7 +94,7 @@
 			<!-- 맨 끝으로 (>>) -->
 			<li><a th:href="@{${ currentUrl}(page=${ pi.maxPage })}">&gt;&gt;</a></li>	
 						
-	</ul> 
+		</ul> 
 	</div>
 </body>
 </html>

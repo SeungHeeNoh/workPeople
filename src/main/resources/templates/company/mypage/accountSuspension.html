@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http:/www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>에러페이지</title>
-    <link rel="stylesheet" href="css/common/common.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/common/common.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/accountSuspension.css">
-    <link rel="stylesheet" href="css/company/mypage/accountSuspension.css">
+    <title>기업계정정지모달창</title>
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/company/mypage/accountSuspension.css}">
 </head>
 <body>
     <div id="wrap">
@@ -18,7 +16,7 @@
                         <div class="bg"></div>
                         <div class="modalBox">
                             <div class="text_area">
-                                <img src="/src/main/resources/static/images/companyMyPage/Warning.png" width="42%" height="42%">
+                                <img th:src="@{/images/companyMyPage/Warning.png}" width="42%" height="42%">
                                 <ul>
                                     <li><span class="name">발렌티노 코리아</span>님</li>
                                     <li>계정이 <span class="point">정지</span>되어 접근이 <br>불가합니다.</li>
@@ -31,7 +29,7 @@
                                     <li>문의가 있으신 경우 02-123-4567 으로 연락주세요.</li>
                                 </ul>
                             </div>
-                             <button type="button" class="closeBtn btn1" id="disagree_btn"><img src="/src/main/resources/static/images/companyMyPage/modal_close.png"></button>
+                             <button type="button" class="closeBtn btn1" id="disagree_btn"><img th:src="@{/images/companyMyPage/modal_close.png}"></button>
                         </div>
                     </div>
                        <!-- // 모달창 -->
