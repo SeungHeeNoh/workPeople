@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.workPeople.account.login.model.dao.LoginMapper">
+	<resultMap type="com.kh.workPeople.common.vo.Member" id="loginMemberResultMap">
+		<id property="no" column="M_NO"/>
+		<result property="id" column="M_ID"/>
+		<result property="pwd" column="M_PWD"/>
+		<result property="name" column="M_NAME"/>
+		<result property="phone" column="M_PHONE"/>
+		<result property="email" column="M_EMAIL"/>
+		<result property="postCode" column="M_POSTCODE"/>
+		<result property="roadAddress" column="M_ROADADDRESS"/>
+		<result property="detailAddress" column="M_DETAILADDRESS"/>
+		<result property="enrollDate" column="M_ENROLL_DATE"/>
+		<result property="modifyDate" column="M_MODIFY_DATE"/>
+		<result property="loginFailCount" column="M_LOGIN_FAIL_COUNT"/>
+		<result property="isLock" column="M_IS_LOCK"/>
+		<result property="lastestTryLoginDate" column="M_LATEST_TRY_LOGIN_DATE"/>
+		<result property="lockCount" column="M_LOCK_COUNT"/>
+		<result property="status" column="M_STATUS"/>
+		<result property="tempPwdYn" column="M_TEMP_PWD_YN"/>
+		<collection property="memberRoleList" resultMap="memberRoleResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.MemberRole" id="memberRoleResultMap">
+		<id property="userNo" column="REF_MEMBER_NO"/>
+		<id property="authorityCode" column="REF_AUTHORITY_CODE"/>
+		<association property="authority" resultMap="authorityResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Authority" id="authorityResultMap">
+		<id property="code" column="A_CODE"/>
+		<id property="name" column="A_NAME"/>
+		<id property="desc" column="A_DESC"/>
+	</resultMap>
+	<select id="findMemberById" resultMap="loginMemberResultMap">
+		SELECT 
+		      M.M_NO
+		    , M.M_ID
+		    , M.M_PWD
+		    , M.M_NAME
+		    , M.M_PHONE
+		    , M.M_EMAIL
+		    , M.M_POSTCODE
+		    , M.M_ROADADDRESS
+		    , M.M_DETAILADDRESS
+		    , M.M_ENROLL_DATE
+		    , M.M_MODIFY_DATE
+		    , M.M_LOGIN_FAIL_COUNT
+		    , M.M_IS_LOCK
+		    , M.M_LATEST_TRY_LOGIN_DATE
+		    , M.M_LOCK_COUNT
+		    , M.M_STATUS
+		    , M.M_TEMP_PWD_YN
+		    , MR.M_NO REF_MEMBER_NO
+		    , MR.A_CODE REF_AUTHORITY_CODE
+		    , A.A_CODE
+		    , A.A_NAME
+		    , A.A_DESC
+		 FROM MEMBER M
+		 LEFT JOIN MEMBER_ROLE MR ON(M.M_NO = MR.M_NO)
+		 LEFT JOIN AUTHORITY A ON(MR.A_CODE = A.A_CODE)
+		WHERE M.M_ID = #{userId}
+	</select>
+</mapper>

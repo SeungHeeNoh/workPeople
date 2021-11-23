@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 #container {
 	height: 659px;
 	position: relative;
@@ -26,4 +28,121 @@
 
 #container > .login_area .loginSetting > label:first-of-type {
 	display: none;
+}
+
+.login_area {
+	position: relative;
+	width : 590px;
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 70px 80px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.login_area > h2 {
+	font-size: 34px;
+	line-height: 43px;
+	height : 43px;
+	text-align: center;
+}
+
+.login_area > form {
+	margin-top : 28px;
+}
+
+.login_area > form > .loginSetting {
+	font-size: 12px;
+	color : #666;
+	margin-bottom: 7px;
+}
+
+.login_area > form > .loginSetting > input {
+	margin-right : 5px;
+}
+
+.login_area > form > .loginSetting > label:first-of-type {
+	margin-right: 17px;
+}
+
+.login_area > form > .lobin_input {
+	display: flex;
+	justify-content: space-between;
+}
+
+.login_area > form > .lobin_input > div > div {
+	width : 332px;
+	height: 49px;
+	box-sizing: border-box;
+	border : 1px solid #CDCDCD;
+}
+
+.login_area > form > .lobin_input > div > div > input {
+	width : 331px;
+	height : 47px;
+	padding: 0 20px;
+	box-sizing: border-box;
+	border : 0;
+	font-size: 14px;
+}
+
+.login_area > form > .lobin_input > button {
+	width : 98px;
+	height : 98px;
+	background-color: #A7D676;
+	color : #FFF;
+	font-size: 16px;
+}
+
+.login_area > .signup-forgotten {
+	font-size: 13px;
+	margin: 18px 0 29px;
+}
+
+.login_area > .signup-forgotten > p:first-of-type {
+	float: left;
+	padding-right: 9px;
+	margin-right: 9px;
+	border-right: 1px solid #222;
+	box-sizing: border-box;
+	font-weight: bold;
+}
+
+.login_area > .signup-forgotten > p:nth-of-type(2) {
+	float:left;
+}
+
+.login_area > .signup-forgotten > p:last-of-type {
+	float:right;
+}
+
+.login_area > .signup-forgotten:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.login_area > .sns_login button {
+	width : 210px;
+	height : 38px;
+	float:left;
+	color:#666;
+	font-size: 12px;
+	line-height: 38px;
+	text-align: left;
+	padding-left : 50px;
+	box-sizing: border-box;
+	border: 1px solid #DDD;
+	background: url(../../../images/account/icon_sns_naver_m.png) 17px 50% no-repeat;
+}
+
+.login_area > .sns_login button:last-of-type{
+	background-image: url(../../../images/account/icon_sns_kakao_m.png);
+	float:right;
+}
+
+.login_area > .sns_login:after {
+	content: "";
+	display: block;
+	clear: both;
 }
