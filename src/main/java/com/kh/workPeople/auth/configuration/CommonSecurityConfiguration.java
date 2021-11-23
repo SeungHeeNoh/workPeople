@@ -1,4 +1,4 @@
-package com.kh.workPeople.configuration;
+package com.kh.workPeople.auth.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
