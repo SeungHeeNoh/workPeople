@@ -172,11 +172,11 @@
   height: 65px;
 }
 input[type="checkbox"]:checked + label {
-  background-image: url(/src/main/resources/static/images/companyMyPage/checkboxon.png);
+  background-image: url(/images/companyMyPage/checkboxon.png);
 }
 input[type="checkbox"] + label {
   height: 16px;
-  background: url(/src/main/resources/static/images/companyMyPage/checkbox.png)
+  background: url(/images/companyMyPage/checkbox.png)
     no-repeat 0 0;
   margin: 0 auto;
 }

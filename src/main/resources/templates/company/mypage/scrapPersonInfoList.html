@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http:/www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>인재추천</title>
-    <link rel="stylesheet" href="css/common/common.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/common/common.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/scrapPersonInfoList.css">
-    <link rel="stylesheet" href="css/company/mypage/scrapPersonInfoList.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet"th:href="@{/css/company/mypage/scrapPersonInfoList.css}">
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="wrap">
@@ -97,7 +95,7 @@
                                         </td>
                                         <td class="person-mail">
                                             <div class="mailbox">
-                                                <a href="/Corp/Person/Find/Resume/View?rNo=9948605" class="personlink" target="_blank">
+                                                <a th:href="@{/Corp/Person/Find/Resume/View?rNo=9948605}" class="personlink" target="_blank">
                                                     메일쓰기
                                                 </a>
                                             </div>
