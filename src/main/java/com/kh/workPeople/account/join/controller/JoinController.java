@@ -42,7 +42,7 @@ public class JoinController {
 			rttr.addFlashAttribute("successMessage", "회원가입이 완료되었습니다.");
 		}
 
-		return "redirect:/";
+		return "redirect:/main";
 	}
 	
 	@GetMapping("/company-join")
@@ -53,6 +53,17 @@ public class JoinController {
 		model.addAttribute("companyTypeList", companyTypeList);
 		model.addAttribute("sectorList", sectorList);
 		return "account/join/company-join";
+	}
+
+	@PostMapping("/company-signUp")
+	public String companySignUp(Member member, CompanyInfo companyInfo, RedirectAttributes rttr) {
+		int result = joinService.join(member, companyInfo);
+		
+		if(result > 0) {
+			rttr.addFlashAttribute("successMessage", "회원가입이 완료되었습니다.");
+		}
+		
+		return "redirect:/main";
 	}
 	
 	@GetMapping(value="/checkId/{id}")

@@ -53,9 +53,6 @@ public class JoinServiceImpl implements JoinService {
 		member.setPwd(passwordEncoder.encode(member.getPwd()));
 		MemberRole memberRole = new MemberRole();
 		memberRole.setAuthorityCode(1);
-		MemberType memberType = new MemberType();
-		memberType.setNo(1);
-		member.setMemberType(memberType);
 
 		int result1 = joinMapper.insertMember(member);
 		int result2 = joinMapper.insertMemberRole(memberRole);
