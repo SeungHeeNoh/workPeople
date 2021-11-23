@@ -89,7 +89,7 @@
 		 , #{authorityCode}
 		)
 	</insert>
-	<insert id="insertCompanyInfo" parameterType="com.kh.workPeople.common.vo.CompanyInfo">
+	<insert id="insertCompanyInformation" parameterType="com.kh.workPeople.common.vo.CompanyInformation">
 		INSERT INTO COMPANY_INFO
 		(
 		    CI_NO

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.workPeople.account.join.model.service.JoinService;
-import com.kh.workPeople.common.vo.CompanyInfo;
+import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.CompanyType;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.Sector;
@@ -56,8 +56,8 @@ public class JoinController {
 	}
 
 	@PostMapping("/company-signUp")
-	public String companySignUp(Member member, CompanyInfo companyInfo, RedirectAttributes rttr) {
-		int result = joinService.join(member, companyInfo);
+	public String companySignUp(Member member, CompanyInformation companyInformation, RedirectAttributes rttr) {
+		int result = joinService.join(member, companyInformation);
 		
 		if(result > 0) {
 			rttr.addFlashAttribute("successMessage", "회원가입이 완료되었습니다.");

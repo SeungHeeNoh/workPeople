@@ -2,7 +2,7 @@ package com.kh.workPeople.common.vo;
 
 import java.util.Date;
 
-public class CompanyInfo {
+public class CompanyInformation {
 
 	private int no;
 	private String registerNumber;
@@ -17,9 +17,9 @@ public class CompanyInfo {
 	private Sector sector;
 	private CompanyType companyType;
 	
-	public CompanyInfo() {}
+	public CompanyInformation() {}
 
-	public CompanyInfo(int no, String registerNumber, String ceoName, Date foundingDate, int employeeNumber,
+	public CompanyInformation(int no, String registerNumber, String ceoName, Date foundingDate, int employeeNumber,
 			String businessDetail, String companyHistory, String companyVision, String homepage, Attachment attachment,
 			Sector sector, CompanyType companyType) {
 		super();

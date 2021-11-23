@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.kh.workPeople.common.vo.CompanyInfo;
+import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.CompanyType;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.MemberRole;

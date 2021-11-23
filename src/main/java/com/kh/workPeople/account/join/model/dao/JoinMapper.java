@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.kh.workPeople.common.vo.CompanyInfo;
+import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.CompanyType;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.MemberRole;
@@ -25,5 +25,5 @@ public interface JoinMapper {
 
 	int insertMemberRole(MemberRole memberRole);
 	
-	int insertCompanyInfo(CompanyInfo companyInfo);
+	int insertCompanyInformation(CompanyInformation companyInformation);
 }

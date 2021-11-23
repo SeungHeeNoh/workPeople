@@ -94,7 +94,7 @@
 					updateValidState(inputId);
 					
 					if(inputId == "register_number") {
-						checkValidateRegisterNumber(inputId, joinRows[inputId]["input"].value.replaceAll(/-/g, ""));
+						checkValidateRegisterNumber(inputId, joinRows[inputId]["input"].value);
 					} else if(inputId == "user_id") {
 						checkId(inputId, joinRows[inputId]["input"].value);
 					}
@@ -182,7 +182,7 @@
 		xhr.open("POST", "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=c9hyIZt9CgnuVKtsIKuJUjSvh05L0r5rH%2F7JKVTwAyI9eTtTqB3IXe59mdop%2FQmSV%2Btm8TUv9Pw%2BY4tyjvJ5ig%3D%3D");
 		xhr.setRequestHeader("Content-type", "application/json;");
 		xhr.responseType = "json";
-		xhr.send(JSON.stringify({"b_no":["" + registerNumber]}));
+		xhr.send(JSON.stringify({"b_no":["" + registerNumber.replaceAll(/-/g, "")]}));
 	}
 
 	function checkId(inputId, id) {

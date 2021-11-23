@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.workPeople.account.join.model.dao.JoinMapper;
-import com.kh.workPeople.common.vo.CompanyInfo;
+import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.CompanyType;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.MemberRole;
@@ -62,14 +62,14 @@ public class JoinServiceImpl implements JoinService {
 	
 	@Transactional
 	@Override
-	public int join(Member member, CompanyInfo companyInfo) {
+	public int join(Member member, CompanyInformation companyInformation) {
 		member.setPwd(passwordEncoder.encode(member.getPwd()));
 		MemberRole memberRole = new MemberRole();
 		memberRole.setAuthorityCode(2);
 		
 		int result1 = joinMapper.insertMember(member);
 		int result2 = joinMapper.insertMemberRole(memberRole);
-		int result3 = joinMapper.insertCompanyInfo(companyInfo);
+		int result3 = joinMapper.insertCompanyInformation(companyInformation);
 		
 		return (result1 > 0 && result2 > 0 && result3 > 0) ? 1 : 0;
 		
