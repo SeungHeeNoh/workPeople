@@ -9,7 +9,7 @@ import com.kh.workPeople.common.vo.Sector;
 
 public interface JoinService {
 
-	int checkRegisterNumber(int registerNumber);
+	int checkRegisterNumber(String registerNumber);
 
 	List<CompanyType> selectCompanyTypeList();
 

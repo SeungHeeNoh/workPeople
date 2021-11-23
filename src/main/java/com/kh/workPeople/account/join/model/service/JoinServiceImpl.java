@@ -27,7 +27,7 @@ public class JoinServiceImpl implements JoinService {
 	}
 
 	@Override
-	public int checkRegisterNumber(int registerNumber) {
+	public int checkRegisterNumber(String registerNumber) {
 		return joinMapper.checkRegisterNumber(registerNumber);
 	}
 

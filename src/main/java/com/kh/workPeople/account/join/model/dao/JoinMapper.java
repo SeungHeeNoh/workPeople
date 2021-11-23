@@ -13,7 +13,7 @@ import com.kh.workPeople.common.vo.Sector;
 @Mapper
 public interface JoinMapper {
 
-	int checkRegisterNumber(int registerNumber);
+	int checkRegisterNumber(String registerNumber);
 
 	List<CompanyType> selectCompanyTypeList();
 

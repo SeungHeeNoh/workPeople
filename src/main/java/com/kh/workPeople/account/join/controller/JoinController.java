@@ -53,7 +53,7 @@ public class JoinController {
 	
 	@GetMapping(value="/checkRegisterNumber/{registerNumber}", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public Map<String, String> checkRegisterNumber(@PathVariable int registerNumber) throws Exception {
+	public Map<String, String> checkRegisterNumber(@PathVariable String registerNumber) throws Exception {
 		Map<String, String> map = new HashMap<>();
 		String msg = joinService.checkRegisterNumber(registerNumber) > 0 ? "이미 가입한 기업회원입니다."  : "";
 
