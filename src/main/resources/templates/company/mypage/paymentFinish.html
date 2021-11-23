@@ -13,8 +13,8 @@
             <div id="sideNav">
                 <div class="nav">
                     <ul>
-                        <li class="promoSub"><a  th:href="@{#}">상품 안내</a></li>
-                        <li class="historySub"><a  th:href="@{#}">유료서비스 이용내역</a></li>
+                        <li class="promoSub"><a th:href="@{/company/mypage/promotionView}">상품 안내</a></li>
+                        <li class="historySub"><a th:href="@{/company/mypage/paidList}">유료서비스 이용내역</a></li>
                     </ul>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <div class="pay_area">
                         <h2>결제가 완료되었어요</h2>
                         <div class="pay_img">
-                            <img th:src="@{images/companyMyPage/pay.png}" alt="결제이미지">
+                            <img th:src="@{/images/companyMyPage/pay.png}" alt="결제이미지">
                         </div>
                         <button class="orange home">홈으로 가기</button>
                         <button class="green page">이용내역으로 가기</button>
