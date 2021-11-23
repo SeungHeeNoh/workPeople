@@ -14,23 +14,19 @@
 		<div id="sideNav">
 			<div class="nav">
 				<ul>
-					<li id="" class="nav_tit">관리자 페이지</li>
+                <li id="" class="nav_tit">관리자 페이지</li>
 
-					<li id="snb_2" class="snb_main"><img id="snbImg2"
-						src="../../../static/images/common/usersetting.png">회원관리</li>
-					<li id="snb_2_1" class="snb_sub"><a href="#">회원정보</a></li>
-					<li id="snb_2_2" class="snb_sub"><a href="#">고객센터</a></li>
-					<li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
-
-					<li id="snb_3" class="snb_main"><img id="snbImg3"
-						src="../../../static/images/common/cisetting.png">기업관리</li>
-					<li id="snb_3_1" class="snb_sub"><a href="#">기업공고</a></li>
-					<li id="snb_3_2" class="snb_sub"><a href="#">신고공고</a></li>
-					<li id="snb_3_3" class="snb_sub"><a href="#">고객센터</a></li>
-
-					<li id="snb_4" class="snb_main"><img id="snbImg4" src="../../../static/images/common/managersetting.png">
-					관리자정보
-					</li>
+                <li id="snb_2"class="snb_main"><img id="snbImg2" th:src="@{/images/common/usersetting.png}">회원관리</li>
+                <li id="snb_2_1" class="snb_sub"><a href="@{user/user/userinfo}">회원정보</a></li>
+                <li id="snb_2_2" class="snb_sub"><a href="@{user/user/customerservice}">고객센터</a></li>
+                <li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
+            
+                <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
+                <li id="snb_3_1" class="snb_sub"><a href="@{manager/company/companyinfo}">기업공고</a></li>
+                <li id="snb_3_2" class="snb_sub"><a href="@{manager/company/reportlit}">신고공고</a></li>
+                <li id="snb_3_3" class="snb_sub"><a href="@{manager/company/customerservice}">고객센터</a></li>
+            
+                <li id="snb_4" class="snb_main"><a href="@{manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
 				</ul>
 			</div>
 		</div>

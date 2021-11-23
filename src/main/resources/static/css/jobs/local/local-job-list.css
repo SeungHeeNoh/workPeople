@@ -254,7 +254,7 @@ span.radiWrap .on{position:absolute; display:inline-block; box-sizing:border-box
 
     .txt button {
         color: transparent;
-        background: url(../../images/locallist/X.png) no-repeat;
+        background: url(/images/jobs/local/X.png) no-repeat;
     }
 
 li > input{

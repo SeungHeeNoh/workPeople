@@ -5,25 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 정보</title>
-<link rel="stylesheet" th:href="@{/css/common/common.css}">
-<link rel="stylesheet" th:href="@{/css/manager/manager/managerinfo.css}">
+	<link rel="stylesheet" th:href="@{/css/common/common.css}">
+	<link rel="stylesheet" th:href="@{/css/manager/manager/managerinfo.css}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-    <style>
-        .bgLayer {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            opacity: .5;
-            filter: alpha(opacity=50);
-            z-index: 10;
-        }
-    </style>
 
 </head>
 <div class="container">
@@ -33,17 +18,17 @@
             <ul>
                 <li id="" class="nav_tit">관리자 페이지</li>
 
-                <li id="snb_2"class="snb_main"><a href="#"><img id="snbImg2" src="../../../static/images/common/usersetting.png">회원관리</a></li>
-                <li id="snb_2_1" class="snb_sub"><a href="#">회원정보</a></li>
-                <li id="snb_2_2" class="snb_sub"><a href="#">고객센터</a></li>
+                <li id="snb_2"class="snb_main"><img id="snbImg2" th:src="@{/images/common/usersetting.png}">회원관리</li>
+                <li id="snb_2_1" class="snb_sub"><a href="@{user/user/userinfo}">회원정보</a></li>
+                <li id="snb_2_2" class="snb_sub"><a href="@{user/user/customerservice}">고객센터</a></li>
                 <li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
             
-                <li id="snb_3" class="snb_main"><a href="#"><img id="snbImg3" src="../../../static/images/common/cisetting.png">기업관리</a></li>
-                <li id="snb_3_1" class="snb_sub"><a href="#">기업공고</a></li>
-                <li id="snb_3_2" class="snb_sub"><a href="#">신고공고</a></li>
-                <li id="snb_3_3" class="snb_sub"><a href="#">고객센터</a></li>
+                <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
+                <li id="snb_3_1" class="snb_sub"><a href="@{manager/company/companyinfo}">기업공고</a></li>
+                <li id="snb_3_2" class="snb_sub"><a href="@{manager/company/reportlit}">신고공고</a></li>
+                <li id="snb_3_3" class="snb_sub"><a href="@{manager/company/customerservice}">고객센터</a></li>
             
-                <li id="snb_4" class="snb_main"><a href="#"><img id="snbImg4" src="../../../static/images/common/managersetting.png">관리자 정보</a></li>
+                <li id="snb_4" class="snb_main"><a href="@{manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
             </ul>
         </div>
     </div>
@@ -51,7 +36,6 @@
             <div class="content">
                 <div class="list_wrap">
                     <h2 class="h2">관리자 정보</h2>
-
                     <div class="search_box">
                         <div class="search_bot resident clearfix">
                             <div class="items clearfix">
@@ -81,18 +65,15 @@
 
                                 <thead>
                                     <tr>
-
                                         <th>관리자 번호</th>
                                         <th>계정</th>
                                         <th>이름</th>
                                         <th>계급</th>
                                         <th>수정</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-
                                         <td>1</td>
                                         <td>admin</td>
                                         <td>신짱아</td>
@@ -100,10 +81,8 @@
                                         <td>
                                             <a href="javascript:;" class="tag">변경</a>
                                         </td>
-
                                     </tr>
                                     <tr>
-
                                         <td>2</td>
                                         <td>admin</td>
                                         <td>신짱아</td>
@@ -111,7 +90,6 @@
                                         <td>
                                             <a href="javascript:;" class="tag">변경</a>
                                         </td>
-
                                     </tr>
                                     <tr>
 

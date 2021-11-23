@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>지역별 공고</title>
 	<link rel="stylesheet" th:href="@{/css/common/common.css}">
-	<link rel="stylesheet" th:href="@{/css/main/local/local-job-list.css}">
+	<link rel="stylesheet" th:href="@{/css/jobs/local/local-job-list.css}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
@@ -189,7 +189,7 @@
                                     <div class="opt-area">
                                         <div class="item_reset" onclick="removeAllItem()">
 
-                                            <span class="ico"><img src="../../static/images/locallist/reset.png"></span>
+                                            <span class="ico"><img th:src="@{/images/jobs/local/reset.png}"></span>
                                             초기화
                                         </div>
                                     </div>
