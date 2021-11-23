@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.workPeople.account.join.model.dao.JoinMapper">
+	<resultMap type="com.kh.workPeople.common.vo.CompanyType" id="companyTypeResultMap">
+		<id property="no" column="CT_NO"/>
+		<result property="name" column="CT_NAME"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Sector" id="sectorResultMap">
+		<id property="no" column="S_NO"/>
+		<result property="name" column="S_NAME"/>
+	</resultMap>
+	<select id="checkRegisterNumber" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM COMPANY_INFO
+		 WHERE CI_COMPANY_REGISTER_NUMBER = #{registerNumber}
+	</select>
+	<select id="selectCompanyTypeList" resultMap="companyTypeResultMap">
+		SELECT
+		       CT_NO
+		     , CT_NAME
+		  FROM COMPANY_TYPE
+	</select>
+	<select id="selectSectorList" resultMap="sectorResultMap">
+		SELECT
+		       S_NO
+		     , S_NAME
+		  FROM SECTOR
+	</select>
+	<select id="checkId" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM MEMBER
+		 WHERE M_ID = #{id}
+	</select>
+</mapper>

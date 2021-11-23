@@ -200,6 +200,7 @@ input:read-only:focus-visible{
 .content > div > form select {
 	width : 498px;
 	height : 46px;
+	padding : 0 20px;
 	font-size: 15px;
 	border: 1px solid #CDCDCD;
 	box-sizing: border-box;
