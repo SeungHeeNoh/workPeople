@@ -22,6 +22,7 @@ $(function() {
             $('.btn1_1').addClass('colorInvert');
             $('.wrap1').removeClass('expand');
         }
+        
     });
     // 상세버튼(베이직 영역)
     $(".btn2").click(function(){
@@ -58,7 +59,14 @@ $(function() {
             alert('노출 기간을 설정해주세요. (상세 버튼 클릭)');
         } else {
             $( '.option_start' ).text( date );
-            $( '.option_day' ).text( popular1 );
+            if(popular1 < 10){
+            	$( '.option_day' ).text( popular1 );
+            } else if(popular1 == 10){
+            	$( '.option_day' ).text( Number(popular1) + 2 );
+            } else {
+           	 	$( '.option_day' ).text( Number(popular1) + 4 );
+            }
+            
             document.querySelector(".modalDrawer").classList.add("show");
             document.querySelector(".dimmed").style.display = 'block';
         }
@@ -122,6 +130,25 @@ $(function() {
     document.querySelector(".btnC3").addEventListener("click", close3);
     document.querySelector(".dim3").addEventListener("click", close3);
 
+
+	// 플레티넘 기간 선택시 금액 변경
+	$("#top_term_popular1").on("change", function(){
+    	let selOne = $("#top_term_popular1 option:selected").val();
+    	
+    	selOne2 = $.numberWithCommas(selOne * 1000);
+    	
+    	
+    	$( '#total1' ).text( selOne2  );
+    	
+    	let ll = $( '#total1' ).text();
+    	console.log(ll);	
+    });
+	
+	$.numberWithCommas = function (x) {
+	  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	}
+
+	
 
     // 결제 api 
     $(".total_btn").click(function () { 
@@ -189,11 +216,10 @@ $(function() {
     });
 
     
+	
 
+	
 
-
-
-    
 
 });
 
