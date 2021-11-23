@@ -1,4 +1,4 @@
-package com.kh.workPeople.company.mypage.promotion;
+package com.kh.workPeople.company.mypage.promotion.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

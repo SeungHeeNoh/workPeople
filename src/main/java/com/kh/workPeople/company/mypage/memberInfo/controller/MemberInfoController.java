@@ -1,4 +1,4 @@
-package com.kh.workPeople.company.mypage.memberInfo;
+package com.kh.workPeople.company.mypage.memberInfo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
