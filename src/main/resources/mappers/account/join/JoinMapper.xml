@@ -33,4 +33,80 @@
 		  FROM MEMBER
 		 WHERE M_ID = #{id}
 	</select>
+	<insert id="insertMember" parameterType="com.kh.workPeople.common.vo.Member">
+		INSERT INTO MEMBER
+		(
+		   M_NO
+		 , MT_NO
+		 , M_ID
+		 , M_PWD
+		 , M_NAME
+		 , M_PHONE
+		 , M_EMAIL
+		 , M_POSTCODE
+		 , M_ROADADDRESS
+		 , M_DETAILADDRESS
+		 , M_ENROLL_DATE
+		 , M_MODIFY_DATE
+		 , M_LOGIN_FAIL_COUNT
+		 , M_IS_LOCK
+		 , M_LATEST_TRY_LOGIN_DATE
+		 , M_LOCK_COUNT
+		 , M_STATUS
+		 , M_TEMP_PWD_YN
+		)
+		VALUES
+		(
+		   SEQ_MEMBER_NO.NEXTVAL
+		 , #{memberType.no}
+		 , #{id}
+		 , #{pwd}
+		 , #{name}
+		 , #{phone}
+		 , #{email}
+		 , #{postCode}
+		 , #{roadAddress}
+		 , #{detailAddress}
+		 , DEFAULT
+		 , DEFAULT
+		 , DEFAULT
+		 , DEFAULT
+		 , NULL
+		 , DEFAULT
+		 , DEFAULT
+		 , DEFAULT
+		)
+	</insert>
+	<insert id="insertMemberRole" parameterType="com.kh.workPeople.common.vo.MemberRole">
+		INSERT INTO MEMBER_ROLE
+		(
+		   M_NO
+		 , A_CODE
+		)
+		VALUES
+		(
+		   SEQ_MEMBER_NO.CURRVAL
+		 , #{authorityCode}
+		)
+	</insert>
+	<insert id="insertCompanyInfo" parameterType="com.kh.workPeople.common.vo.CompanyInfo">
+		INSERT INTO COMPANY_INFO
+		(
+		    CI_NO
+		  , CI_COMPANY_REGISTER_NUMBER
+		  , CI_STATUS_YN
+		  , CT_NO
+		  , M_NO
+		  , S_NO
+		)
+		VALUES
+		(
+		    SEQ_COMPANY_INFO_NO.NEXTVAL
+		  , #{registerNumber}
+		  , DEFAULT
+		  , #{companyType.no}
+		  , SEQ_MEMBER_NO.CURRVAL
+		  , #{sector.no}
+		)
+	</insert>
 </mapper>
