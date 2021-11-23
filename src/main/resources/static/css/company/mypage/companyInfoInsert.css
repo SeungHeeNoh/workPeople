@@ -134,7 +134,7 @@
   margin: -2px 6px 0 0;
   content: "";
   display: inline-block;
-  background: url(/src/main/resources/static/images/companyMyPage/circle-add.png)
+  background: url(/images/companyMyPage/circle-add.png)
     50% 50% no-repeat;
   vertical-align: middle;
   box-sizing: border-box;
@@ -245,7 +245,7 @@ input::placeholder {
 }
 
 select {
-  /* background: url("/src/main/resources/static/images/companyMyPage/chevron-down.png")
+  /* background: url("/images/companyMyPage/chevron-down.png")
     no-repeat 95% 50%;
   background-size: 20px; */
   -webkit-appearance: none;
@@ -363,7 +363,7 @@ body {
   width: 25px;
   height: 25px;
   background-position: -60px 0;
-  background: url(/src/main/resources/static/images/companyMyPage/circle-error.png)
+  background: url(/images/companyMyPage/circle-error.png)
     no-repeat;
   vertical-align: middle;
   box-sizing: border-box;
@@ -376,7 +376,7 @@ body {
   width: 25px;
   height: 25px;
   background-position: -100px 0;
-  background: url(/src/main/resources/static/images/companyMyPage/edit-alt.png)
+  background: url(/images/companyMyPage/edit-alt.png)
     no-repeat;
   vertical-align: middle;
   box-sizing: border-box;

@@ -19,11 +19,11 @@
 
 		if(value.length == 0) {
 			result = "사업자 등록번호를 입력해주세요.";
-		} else if(!/^[0-9]{2}-[0-9]{3}-[0-9]{5}$/.test(value)) {
-			result = "4~20자의 영문, 숫자와 특수문자(_)만 입력 가능합니다.";
+		} else if(!/^[0-9]{3}-[0-9]{2}-[0-9]{5}$/.test(value)) {
+			result = "사업자 등록번호 형식에 맞춰 입력해주세요.";
 		}
 
-		return result;		
+		return result;
 	}
 
 	inputValidate.idCheck = function idCheck(value) {
@@ -43,7 +43,7 @@
 
 		if(value.length == 0) {
 			result = "이름을 입력해주세요.";
-		} else if(!/^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z]{2,}$/.test(value)) {
+		} else if(!/^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z\s()]{2,}$/.test(value)) {
 			result = "이름에 특수문자, 숫자를 제외한 글자가 두 글자 이상 입력되어야 합니다.";
 		}
 

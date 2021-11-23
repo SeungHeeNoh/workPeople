@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http:/www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>기업정보관리</title>
-    <link rel="stylesheet" href="css/common/common.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/common/common.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/companyInfoInsert.css">
-    <link rel="stylesheet" href="css/company/mypage/companyInfoInsert.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/logoPopup.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="/src/main/resources/static/js/company/mypage/companyInfoInsert.js"></script>
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/company/mypage/companyInfoInsert.css}">
+    <link rel="stylesheet" th:href="@{/css/company/mypage/logoPopup.css}">
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script th:src="@{/js/company/mypage/companyInfoInsert.js}"></script>
     <!-- Postcodify 로딩 (주소 검색) -->
-	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+	<script th:src="@{//d1p7wdleee1q2z.cloudfront.net/post/search.min.js}"></script>
 </head>
 
 <body>
@@ -21,8 +19,8 @@
             <div id="sideNav">
                 <div class="nav">
                     <ul>
-                        <li class="comInfoSub"><a href="#">기업 정보 관리</a></li>
-                        <li class="memberInfoSub"><a href="#">회원 정보 관리</a></li>
+                        <li class="comInfoSub"><a th:href="@{/company/mypage/companyInfoInsert}">기업 정보 관리</a></li>
+                        <li class="memberInfoSub"><a th:href="@{/company/mypage/memberInfoPwd}">회원 정보 관리</a></li>
                     </ul>
                 </div>
             </div>
@@ -32,7 +30,7 @@
                     <p class="ment1">기업 정보 관리</p>
                     <p class="ment2">우리 기업의 정보를 직접 등록해보세요! 최신화된 정보일수록, 더 많은 인재의 관심을 높일 수 있습니다.</p>
                 </div>
-                <form id="devInfoForm" method="post">
+                <form id="devInfoForm" method="post" th:actio="@{/company/mypage/companyInfoInsert}">
                     <div class="comInfo_area Info_area2">
                         <div class="comInfo_name"> 
                             <ul>
@@ -48,7 +46,7 @@
                                 <span>로고업로드</span>
                             </button>
                             <!-- 로고 업로드 후 -->
-                            <!-- <p class="logo"><img src="https://img.jobkorea.co.kr/trans/c/200x80/r/k/JK_Co_rkskek012.png?v=20211116115938" alt="잡코리아"></p>
+                            <!-- <p class="logo"><img th:src="@{https://img.jobkorea.co.kr/trans/c/200x80/r/k/JK_Co_rkskek012.png?v=20211116115938}" alt="잡코리아"></p>
                             <p class="btn">
                                 <button type="button" class="infoBtn infoBtnDel" id="devLogoDel"><span class="blind">삭제</span></button>
                                 <button type="button" class="infoBtn infoBtnMod" id="devLogoModify"><span class="blind">수정</span></button>
@@ -56,7 +54,7 @@
                         </div> 
                         <!-- 로고 팝업창 -->
                         <div class="logoUploadWrap" id="dis">
-                            <form id="frmLogo" method="post" action="" enctype="multipart/form-data">
+                            <form id="frmLogo" method="post" action="" enctype="multipart/form-data"> 
                                 <input type="hidden" name="ID" value="">
                                 <div class="popRecWrap popLogoUpload">
                                     <div class="popHd">
@@ -123,7 +121,7 @@
                                             <option value="9">은행·금융업</option>
                                             <option value="10">기관·협회</option>
                                         </select>
-                                        <span class="icoArrow"><img src="/src/main/resources/static/images/companyMyPage/chevron-down.png" ></span>
+                                        <span class="icoArrow"><img th:src="@{/images/companyMyPage/chevron-down.png}" ></span>
                                     </div>
                                 </div>
                                 <div class="tbCell">
@@ -137,7 +135,7 @@
                                             <option value="5">스타트업</option>
                                             <option value="6">외국계기업</option> 
                                         </select>
-                                        <span class="icoArrow"><img src="/src/main/resources/static/images/companyMyPage/chevron-down.png" ></span>
+                                        <span class="icoArrow"><img th:src="@{/images/companyMyPage/chevron-down.png}" ></span>
                                     </div>
                                 </div>
                                 <div class="tbCell">

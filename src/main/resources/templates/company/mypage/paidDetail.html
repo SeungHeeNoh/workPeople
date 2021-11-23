@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http:/www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>결제완료</title>
-    <link rel="stylesheet" href="css/common/common.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/common/common.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/company/mypage/paidDetail.css">
-    <link rel="stylesheet" href="css/company/mypage/paidDetail.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>유료서비스 이용내역(세부사항)</title>
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/company/mypage/paidDetail.css}">
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="wrap">
@@ -30,11 +28,11 @@
                         <div id="list_position" class="cont_payment_history">
                         <div class="wrap_history_detail">
                             <div style="float:left">
-                                <img src="/src/main/resources/static/images/companyMyPage/rightarrow.png" width="12" height="12" style="position: relative; top: -2px"> 
+                                <img th:src="@{/images/companyMyPage/rightarrow.png}" width="12" height="12" style="position: relative; top: -2px"> 
                                 <b>결제내역 상세보기</b>ㅣ 결제번호 : 313740348                &nbsp;
                             </div>
                             <div style="float: right">
-                                <a href="/zf_user/help/inquery" target="_blank" class="btnSizeXS colorWhite">1 :1 이메일 문의</a>
+                                <a th:href="@{/zf_user/help/inquery}" target="_blank" class="btnSizeXS colorWhite">1 :1 이메일 문의</a>
                             </div>
                         </div>
                         <!-- 일반 채용정보 시작 -->
