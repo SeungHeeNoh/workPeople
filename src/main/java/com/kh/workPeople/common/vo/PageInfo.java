@@ -1,4 +1,4 @@
-package com.kh.crud.menu.model.vo;
+package com.kh.workPeople.common.vo;
 
 public class PageInfo {
 	private int page;             // 요청페이지
