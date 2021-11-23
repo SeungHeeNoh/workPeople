@@ -94,7 +94,7 @@
 					updateValidState(inputId);
 					
 					if(inputId == "register_number") {
-						checkValidateRegisterNumber(inputId, joinRows[inputId]["input"].value.replaceAll(/-/g, ""));
+						checkValidateRegisterNumber(inputId, joinRows[inputId]["input"].value);
 					} else if(inputId == "user_id") {
 						checkId(inputId, joinRows[inputId]["input"].value);
 					}
@@ -147,7 +147,7 @@
 
 						if(data["tax_type"] == "국세청에 등록되지 않은 사업자등록번호입니다.") {
 							deleteValidState(inputId, "국세청에 등록되지 않은 사업자등록번호입니다.");
-						} else if(data["b_stt"].indexOf("폐업자") || data["b_stt"].indexOf("휴업자")) {
+						} else if(data["b_stt"].indexOf("폐업자") > 0 || data["b_stt"].indexOf("휴업자") > 0) {
 							deleteValidState(inputId, "휴/폐업 기업으로 등록된 사업자등록번호로 가입하실 수 없습니다.");
 						} else {
 							let xhr2 = new XMLHttpRequest();
@@ -182,7 +182,7 @@
 		xhr.open("POST", "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=c9hyIZt9CgnuVKtsIKuJUjSvh05L0r5rH%2F7JKVTwAyI9eTtTqB3IXe59mdop%2FQmSV%2Btm8TUv9Pw%2BY4tyjvJ5ig%3D%3D");
 		xhr.setRequestHeader("Content-type", "application/json;");
 		xhr.responseType = "json";
-		xhr.send(JSON.stringify({"b_no":["" + registerNumber]}));
+		xhr.send(JSON.stringify({"b_no":["" + registerNumber.replaceAll(/-/g, "")]}));
 	}
 
 	function checkId(inputId, id) {
