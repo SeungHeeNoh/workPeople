@@ -9,11 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.workPeople.account.join.model.service.JoinService;
+import com.kh.workPeople.common.vo.CompanyInfo;
 import com.kh.workPeople.common.vo.CompanyType;
+import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.Sector;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +32,17 @@ public class JoinController {
 	@GetMapping("/personal-join")
 	public String personalJoin() {
 		return "account/join/personal-join";
+	}
+	
+	@PostMapping("/personal-signUp")
+	public String personalSignUp(Member member, RedirectAttributes rttr) {
+		int result = joinService.join(member);
+		
+		if(result > 0) {
+			rttr.addFlashAttribute("successMessage", "회원가입이 완료되었습니다.");
+		}
+
+		return "redirect:/";
 	}
 	
 	@GetMapping("/company-join")

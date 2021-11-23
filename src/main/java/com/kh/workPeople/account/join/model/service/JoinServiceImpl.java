@@ -12,6 +12,7 @@ import com.kh.workPeople.common.vo.CompanyInfo;
 import com.kh.workPeople.common.vo.CompanyType;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.MemberRole;
+import com.kh.workPeople.common.vo.MemberType;
 import com.kh.workPeople.common.vo.Sector;
 
 @Service()
@@ -52,6 +53,9 @@ public class JoinServiceImpl implements JoinService {
 		member.setPwd(passwordEncoder.encode(member.getPwd()));
 		MemberRole memberRole = new MemberRole();
 		memberRole.setAuthorityCode(1);
+		MemberType memberType = new MemberType();
+		memberType.setNo(1);
+		member.setMemberType(memberType);
 
 		int result1 = joinMapper.insertMember(member);
 		int result2 = joinMapper.insertMemberRole(memberRole);
