@@ -1,4 +1,4 @@
-package com.kh.workPeople.personal.mypage.interestedCompany;
+package com.kh.workPeople.personal.mypage.interestedCompany.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class InterestedCompanyController {
 
     @GetMapping("interestedCompany")
-    public void interestedCompany(){}
+    public String interestedCompany(){
+
+
+
+
+
+        return "personal/mypage/InterestedCompany";
+    }
 
 }
