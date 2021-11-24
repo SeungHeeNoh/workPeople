@@ -43,7 +43,7 @@
 
 		if(value.length == 0) {
 			result = "이름을 입력해주세요.";
-		} else if(!/^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z]{2,}$/.test(value)) {
+		} else if(!/^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z\s()]{2,}$/.test(value)) {
 			result = "이름에 특수문자, 숫자를 제외한 글자가 두 글자 이상 입력되어야 합니다.";
 		}
 

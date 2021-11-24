@@ -51,7 +51,7 @@
                                         <h2 class="item_name"><span class="option_txt">(메인페이지 노출 - 기간 설정)</span></h2> 
                                         <div class="area_payment">
                                             <dl class="price_info">
-                                                <dd class="total_price">총 <ins><b class="typo_num">364,000</b>원</ins></dd> 
+                                                <dd class="total_price">총 <ins><b class="typo_num" id="total1">1,000</b>원</ins></dd> 
                                             </dl> 
                                             <button type="button" class="btnSizeL colorWhite btn_detail btn1">상세</button> 
                                             <div class="wrap_btn_payment">
@@ -164,7 +164,7 @@
                                             <dt>기간 설정</dt> 
                                             <dd class="period_start">
                                                 <div class="date_area">
-                                                    <input type="date" name="date" class="date_start">
+                                                    <input type="date" name="date" class="date_start" id="startDate1">
                                                 </div>
                                                 <div class="datepicker-trigger">                                        
                                                     <span class="unit_period">부터</span>
@@ -172,10 +172,11 @@
                                                             
                                                     <div class="inpSel">
                                                         <select id="top_term_popular1" onchange="setTimeout(function(){try{dataLayer.push({'event': 'optionchange','productposition':'1'}); } catch (e) {}},500)">
-                                                            <option value="5">5일 (혜택없음)</option>
-                                                            <option value="7">7일 (혜택없음)</option>
-                                                            <option value="12">10일 (+2일 기간증폭)</option>
-                                                            <option value="18">14일 (+4일 기간증폭)</option>
+                                                            <option disabled selected>이용기간 선택하세요</option>
+                                                            <option th:value="${5}">5일 (혜택없음)</option>
+                                                            <option th:value="${7}">7일 (혜택없음)</option>
+                                                            <option th:value="${10}">10일 (+2일 기간증폭)</option>
+                                                            <option th:value="${14}">14일 (+4일 기간증폭)</option>
                                                         </select>
                                                         <span class="icoArrow"><img th:src="@{/images/companyMyPage/chevron-down.png}" ></span>
                                                     </div>
@@ -349,6 +350,7 @@
                                                         
                                                 <div class="inpSel">
                                                     <select id="top_term_popular2" onchange="setTimeout(function(){try{dataLayer.push({'event': 'optionchange','productposition':'1'}); } catch (e) {}},500)">
+                                                        <option disabled selected>이용기간 선택하세요</option>
                                                         <option value="2">2일</option>
                                                         <option value="3">3일</option>
                                                         <option value="4">4일</option>
@@ -529,6 +531,7 @@
                                                           
                                                 <div class="inpSel">
                                                     <select id="top_term_popular3" onchange="setTimeout(function(){try{dataLayer.push({'event': 'optionchange','productposition':'1'}); } catch (e) {}},500)">
+                                                        <option disabled selected>이용기간 선택하세요</option>
                                                         <option value="2">2일</option>
                                                         <option value="3">3일</option>
                                                         <option value="4">4일</option>

@@ -9,11 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.workPeople.account.join.model.service.JoinService;
+import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.CompanyType;
+import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.Sector;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +34,17 @@ public class JoinController {
 		return "account/join/personal-join";
 	}
 	
+	@PostMapping("/personal-signUp")
+	public String personalSignUp(Member member, RedirectAttributes rttr) {
+		int result = joinService.join(member);
+		
+		if(result > 0) {
+			rttr.addFlashAttribute("successMessage", "회원가입이 완료되었습니다.");
+		}
+
+		return "redirect:/main";
+	}
+	
 	@GetMapping("/company-join")
 	public String companyJoin(Model model) {
 		List<CompanyType> companyTypeList = joinService.selectCompanyTypeList();
@@ -38,6 +53,17 @@ public class JoinController {
 		model.addAttribute("companyTypeList", companyTypeList);
 		model.addAttribute("sectorList", sectorList);
 		return "account/join/company-join";
+	}
+
+	@PostMapping("/company-signUp")
+	public String companySignUp(Member member, CompanyInformation companyInformation, RedirectAttributes rttr) {
+		int result = joinService.join(member, companyInformation);
+		
+		if(result > 0) {
+			rttr.addFlashAttribute("successMessage", "회원가입이 완료되었습니다.");
+		}
+		
+		return "redirect:/main";
 	}
 	
 	@GetMapping(value="/checkId/{id}")
@@ -53,7 +79,7 @@ public class JoinController {
 	
 	@GetMapping(value="/checkRegisterNumber/{registerNumber}", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public Map<String, String> checkRegisterNumber(@PathVariable int registerNumber) throws Exception {
+	public Map<String, String> checkRegisterNumber(@PathVariable String registerNumber) throws Exception {
 		Map<String, String> map = new HashMap<>();
 		String msg = joinService.checkRegisterNumber(registerNumber) > 0 ? "이미 가입한 기업회원입니다."  : "";
 

@@ -17,21 +17,21 @@
 					<li><a th:href="@{/account/join/personal-join}">개인회원</a></li>
 					<li class="active"><a th:href="@{/account/join/company-join}">기업회원</a></li>
 				</ul>
-				<form action="" method="post">
-					<input type="hidden" name="member_type" value="2">
+				<form th:action="@{/account/join/company-signUp}" method="post">
+					<input type="hidden" name="memberType.no" value="2">
 					<div class="join_row">
 						<p><label for="register_number"><strong>*</strong> 사업자 등록번호</label></p>
-						<span><input type="text" id="register_number" name="register_number"></span>
+						<span><input type="text" id="register_number" name="registerNumber"></span>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
 					<div class="join_row">
 						<p><label for="user_id"><strong>*</strong> 아이디</label></p>
-						<span><input type="text" id="user_id" name="user_id"></span>
+						<span><input type="text" id="user_id" name="id"></span>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
 					<div class="join_row">
 						<p><label for="user_pwd"><strong>*</strong> 비밀번호</label></p>
-						<span><input type="password" id="user_pwd" name="user_pwd" maxlength="16"></span>
+						<span><input type="password" id="user_pwd" name="pwd" maxlength="16"></span>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
 					<div class="join_row">
@@ -41,12 +41,12 @@
 					</div>
 					<div class="join_row">
 						<p><label for="user_name"><strong>*</strong> 기업명</label></p>
-						<span><input type="text" id="user_name" name="user_name" maxlength="5"></span>
+						<span><input type="text" id="user_name" name="name" maxlength="15"></span>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
 					<div class="join_row">
 						<p><label for="user_name"><strong>*</strong> 기업 형태</label></p>
-						<select id="company_type" th:name="company_type">
+						<select id="company_type" th:name="companyType.no">
 							<option value="default">기업 형태 선택</option>
 							<option th:each="companyType : ${companyTypeList}" th:value=${companyType.no} th:text=${companyType.name}/>
 						</select>
@@ -54,7 +54,7 @@
 					</div>
 					<div class="join_row">
 						<p><label for="user_name"><strong>*</strong> 업종</label></p>
-						<select id="sector" th:name="sector">
+						<select id="sector" th:name="sector.no">
 							<option value="default">업종 선택</option>
 							<option th:each="sector : ${sectorList}" th:value="${sector.no}" th:text=${sector.name}/>
 						</select>
@@ -83,19 +83,19 @@
 					<div class="join_row">
 						<p><label for="postcode"><strong>*</strong> 우편번호</label></p>
 						<div class="check_input">
-							<span><input type="text" id="postcode" name="postcode" readonly></span>
+							<span><input type="text" id="postcode" name="postCode" readonly></span>
 							<button type="button" class="address_search_button check_button">검색</button>
 						</div>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
 					<div class="join_row">
 						<p><label for="road_address"><strong>*</strong> 도로명주소</label></p>
-						<span><input type="text" id="road_address" name="road_address" readonly></span>
+						<span><input type="text" id="road_address" name="roadAddress" readonly></span>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
 					<div class="join_row">
 						<p><label for="detail_address"><strong>*</strong> 상세주소</label></p>
-						<span><input type="text" id="detail_address" name="detail_address"></span>
+						<span><input type="text" id="detail_address" name="detailAddress"></span>
 						<p class="notice">필수 정보입니다.</p>
 					</div>
 					<button type="button" class="green confirm_button">가입하기</button>
