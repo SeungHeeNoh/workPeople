@@ -69,4 +69,15 @@
 		     , M_LATEST_TRY_LOGIN_DATE = SYSDATE
 		 WHERE M_ID = #{id}
 	</update>
+	<update id="updateFailureCount" parameterType="string">
+		UPDATE MEMBER
+		   SET M_LOGIN_FAIL_COUNT = M_LOGIN_FAIL_COUNT + 1
+		 WHERE M_ID = #{id}
+	</update>
+	<update id="updateAccountLock" parameterType="string">
+		UPDATE MEMBER
+		   SET M_IS_LOCK = 'Y'
+		     , M_LATEST_TRY_LOGIN_DATE = SYSDATE
+		 WHERE M_ID = #{id}
+	</update>
 </mapper>

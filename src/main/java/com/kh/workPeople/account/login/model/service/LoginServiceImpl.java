@@ -55,11 +55,27 @@ public class LoginServiceImpl implements LoginService {
 		
 		return user;
 	}
+	
+	@Override
+	public Member findMemberById(String id) {
+		return loginMapper.findMemberById(id);
+	}
 
 	@Override
 	public int updateLoginInformation(UserImpl userImpl) {
 		int result = loginMapper.updateLoginInformation(userImpl);
 		return result;
+	}
+
+	@Override
+	public void updateFailureCount(String id) {
+		loginMapper.updateFailureCount(id);
+	}
+
+	@Override
+	public void updateAccountLock(String id) {
+		loginMapper.updateAccountLock(id);
+		
 	}
 
 }

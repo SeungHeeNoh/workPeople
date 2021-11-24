@@ -11,5 +11,9 @@ public interface LoginMapper {
 	Member findMemberById(String userId);
 
 	int updateLoginInformation(UserImpl userImpl);
+
+	void updateFailureCount(String id);
+
+	void updateAccountLock(String id);
 	
 }
