@@ -52,7 +52,7 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))
-				.deleteCookies("JESSIONID")
+				.deleteCookies("JESSIONID", "remember-me")
 				.invalidateHttpSession(true)
 				.logoutSuccessUrl("/main")
 			.and()
