@@ -6,7 +6,7 @@
 <body>
 	<form th:action="@{/account/login}" method="post">
 		<input type="hidden" name="member_type" value="1">
-		<input type="hidden" name="url" value="">
+		<input type="hidden" name="loginRedirect" th:value="${loginRedirect}">
 		<div class="loginSetting">
 			<input type="checkbox" name="remember-me" id="remember-me"><label for="remember-me">로그인 유지</label>
 			<input type="checkbox" name="remember_id" id="remember_id"><label for="remember_id">아이디 저장</label>
@@ -14,7 +14,7 @@
 		<div class="lobin_input">
 			<div>
 				<div>
-					<input type="text" name="id" id="id" placeholder="아이디">
+					<input type="text" name="id" id="id" th:value="${id}" placeholder="아이디">
 				</div>
 				<div>
 					<input type="password" name="password" id="password" placeholder="비밀번호">

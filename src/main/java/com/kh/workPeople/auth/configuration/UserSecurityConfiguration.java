@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.kh.workPeople.account.login.model.service.LoginService;
+import com.kh.workPeople.auth.handler.MemberLoginFailureHandler;
 import com.kh.workPeople.auth.handler.MemberLoginSuccessHandler;
 
 @Order(1)
@@ -51,6 +52,7 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.passwordParameter("password")
 				.successForwardUrl("/main")
 				.successHandler(new MemberLoginSuccessHandler(loginService))
+				.failureHandler(new MemberLoginFailureHandler(loginService))
 			.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))
