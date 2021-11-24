@@ -1,12 +1,14 @@
 package com.kh.workPeople.auth.handler;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
@@ -37,6 +39,14 @@ public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 		String redirectUrl = "";
 		UserImpl userImpl= (UserImpl)authentication.getPrincipal();
+		
+		if(userImpl.getIsLock().equals("Y")) {
+			long now = Calendar.getInstance().getTimeInMillis();
+					
+			if(now < userImpl.getLastestTryLoginDate().getTime() + (1000 * 60 * 10)) {
+				throw new LockedException("");
+			}
+		}
 		
 		loginService.updateLoginInformation(userImpl);	
 		clearAuthenticationAttributes(request);
