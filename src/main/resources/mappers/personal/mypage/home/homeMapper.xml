@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.workPeople.personal.mypage.home.model.dao.HomeMapper">
+
+<resultMap id="simpleResume" type="com.kh.workPeople.common.vo.Resume">
+    <id property="no" column="R_NO"/>
+    <result property="enrollDate" column="R_ENROLL_DATE"/>
+    <result property="statusYN" column="R_STATUS_YN"/>
+    <result property="title" column="BI_TITLE"/>
+    <result property="s_name" column="S_NAME"/>
+</resultMap>
+
+<select id="selectResumeStatusY" resultMap="simpleResume">
+    SELECT
+        R_NO,
+        R_ENROLL_DATE,
+        R_STATUS_YN,
+        BI_TITLE,
+        S_NAME
+    FROM RESUME
+    JOIN BASIC_INFO BI USING(R_NO)
+    JOIN SECTOR S ON (BI.SECTOR_NO = S.S_NO)
+    WHERE M_NO = #{ no }
+      AND R_STATUS_YN='Y'
+</select>
+
+</mapper>

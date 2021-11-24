@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/common/common.css">
+    <link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
+    <link rel="stylesheet" href="/css/personal/myPage/home.css">
+
+    <title>마이페이지 홈</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrapper">
+
+    <div th:include="personal/mypage/mainSnb.html"></div>
+
+    <section>
+        <div id="content_wrap">
+            <p class="header_text">MY 홈</p>
+            <hr>
+            <div class="content_wrap_2">
+
+                <div id="home_content_header_wrap">
+                    <div class="content_header_text">지원 현황</div>
+                    <div class="content_header_wrap">
+                        <div class="content_header_num">1</div>
+                    </div>
+                    <div class="content_header_text">이력서 열람</div>
+                    <div class="content_header_wrap">
+                        <div class="content_header_num">1</div>
+                    </div>
+                    <div class="content_header_text">스크랩 공고</div>
+                    <div class="content_header_wrap">
+                        <div class="content_header_num">1</div>
+                    </div>
+                    <div class="content_header_text">관심기업 공고</div>
+                    <div class="content_header_wrap">
+                        <div class="content_header_num">1</div>
+                    </div>
+                    <div class="content_header_text">채팅 현황</div>
+                    <div class="content_header_wrap">
+                        <div class="content_header_num">1</div>
+                    </div>
+                </div>
+                <div class="home_contents_wrap">
+                    <div class="home_content_header_contents_detail">
+                        <img src="../images/snb4.svg" class="home_content_header_contents_detail_img"><span
+                            class="home_content_header_contents_detail_1">입사지원 완료</span>
+                        <p class="home_content_header_contents_detail_2">회사이름1</p>
+                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                    </div>
+                    <div class="home_content_header_contents_detail">
+                        <img src="../images/snb4.svg" class="home_content_header_contents_detail_img"><span
+                            class="home_content_header_contents_detail_1">입사지원 완료</span>
+                        <p class="home_content_header_contents_detail_2">회사이름1</p>
+                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                    </div>
+                    <div class="home_content_header_contents_detail">
+                        <img src="../images/snb4.svg" class="home_content_header_contents_detail_img"><span
+                            class="home_content_header_contents_detail_1">입사지원 완료</span>
+                        <p class="home_content_header_contents_detail_2">회사이름1</p>
+                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                    </div>
+
+                </div>
+                <hr class="hr">
+
+                <div th:object="${resume}">
+                    <p class="content_title_text2">나의 이력서</p>
+                    <div class="home_contents_wrap_2">
+                        <div class="home_content_2_1">대표 이력서</div>
+                        <div class="home_content_2_2" th:text="*{title}"></div>
+                        <br>
+                    </div>
+                    <div class="home_contents_wrap_2 home_interval_1">
+                        <div class="home_content_2_3">희망 업종 :</div>
+                        <div class="home_content_2_4" th:text="*{s_name}"></div>
+                        <div class="home_content_2_5">등록일 : </div>
+                        <div class="home_content_2_6" th:text="${resumeEnrollDate}"></div>
+                        <button class="green">수정하기</button>
+                        <button class="orange">삭제하기</button>
+                    </div>
+                    <hr class="hr">
+                </div>
+
+                    <p class="content_title_text3">Work People 추천 공고</p>
+                    <div class="home_content_3">
+                        <div class="home_content_3_1">회사명</div>
+                        <div class="home_content_3_2">채용공고</div>
+                        <div class="home_content_3_3">마감일</div>
+                    </div>
+
+
+                <!-- 공고 가데이터 생성시 반복문 출력 -->
+
+                <div class="content_title_text4">
+                    <div class="content_title_text4_1">회사이름</div>
+                    <div class="content_title_text4_detail_wrap">
+                        <div>각 분야 신입/경력 채용공고</div>
+                        <div class="content_title_text4_detail">
+                            <div class="content_title_text4_detail_1">신입/경력</div>
+                            <div class="content_title_text4_detail_2">it/웹/통신</div>
+                            <div class="content_title_text4_detail_3">경기도 성남시 분당구</div>
+                        </div>
+                    </div>
+                    <div class="content_title_text4_detail_wrap2">
+                        <button class="content_title_text4_btn">즉시지원</button>
+                        <div class="content_title_text4_2">~2021.10.25</div>
+                    </div>
+                </div>
+                <hr class="hr">
+
+
+
+
+
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+
+</html>
