@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.workPeople.manager.model.dao.ManagerMapper">
+	<resultMap type="com.kh.workPeople.manager.model.vo.Manager" id="ManagerResultMap">
+		<id property="imNo" column="IM_NO"/>
+		<result property="imId" column="IM_ID"/>
+		<result property="imPwd" column="IM_PWD"/>
+		<result property="imName" column="IM_NAME"/>
+		<result property="managerRole" column="A_CODE"/>
+		<collection property="managerRoleList" resultMap="managerRoleResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.manager.model.vo.ManagerRole" id="managerRoleResultMap">
+		<id property="userNo" column="REF_MEMBER_NO"/>
+		<id property="authorityCode" column="REF_AUTHORITY_CODE"/>
+		<association property="authority" resultMap="authorityResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Authority" id="authorityResultMap">
+		<id property="code" column="A_CODE"/>
+		<id property="name" column="A_NAME"/>
+		<id property="desc" column="A_DESC"/>
+	</resultMap>
+	
+	<select id="selectList" resultMap="ManagerResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
+		SELECT
+         *
+		  FROM(SELECT
+		       IM_NO
+		     , IM_ID
+		     , IM_PWD
+		     , IM_NAME
+		     , A_NAME
+		     , A_DESC
+		     , A_CODE
+		  FROM INFO_MANAGER 
+		  JOIN MANAGER_ROLE USING(IM_NO)
+          JOIN AUTHORITY USING(A_CODE)
+		  ORDER BY A_CODE ASC, IM_NO)
+	</select>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		 FROM INFO_MANAGER
+	</select>
+	
+	  
+</mapper>

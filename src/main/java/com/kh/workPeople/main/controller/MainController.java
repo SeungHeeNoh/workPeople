@@ -13,8 +13,8 @@ public class MainController {
 		return "main/main";
 	}
 	
-	@PostMapping("/")
-	public String redirectmain() {
+	@PostMapping(value= {"/", "/main"})
+	public String redirectMain() {
 		return "redirect:/";
 	}
 }

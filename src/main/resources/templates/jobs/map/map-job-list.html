@@ -8,10 +8,9 @@
     <title>내 주변 공고</title>
 	<link rel="stylesheet" th:href="@{/css/common/common.css}">
 	<link rel="stylesheet" th:href="@{/css/jobs/map/map-job-list.css}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script type="text/javascript"
-        src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=510967f5d1aaa678fb7954c8eb0a5ad0"></script>
+    <script th:src="@{https://dapi.kakao.com/v2/maps/sdk.js?appkey=510967f5d1aaa678fb7954c8eb0a5ad0}" type="text/javascript"></script>
 </head>
 
 <body>
@@ -219,7 +218,6 @@
             </div>
         </div>
     </div>
-    </div>
     <script>
         var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
         var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -255,8 +253,6 @@
             let obj = $(e.target);
             obj.toggleClass("on");
         });
-
-        
     </script>
 </body>
 
