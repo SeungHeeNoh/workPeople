@@ -110,8 +110,8 @@ $(function() {
             $('#counter').html("50 / 50");
         }
     
-    });
-});
+     });
+  });
 $(document).ready(function() {
   $('#lb_History').on('keyup', function() {
       $('#tecounter1').html($(this).val().length+"/ 1000");
@@ -152,6 +152,8 @@ $(document).ready(function() {
 });
 // 글자 수 카운팅
 
+
+
 // 로고 팝업창 숨기기
 function dis(){
   if($('#dis').css('display') == 'none'){
@@ -163,19 +165,21 @@ function dis(){
 // 로고 팝업창 숨기기
 
 // 로고 팝업창 
-(function ($) {
-  //$('#frmLogo').resetForm();
+
+$(function() {
+  
 
   /* 파일선택 완료시 */
   $('#devSelectLogo').on('change', function () {
       var $me = $(this);
       var selectedFileName = $me.val();
+      alert(selectedFileName);
       selectedFileName = CorpInfo.Util.Path.getFileName(selectedFileName);
-
+      
       var logoFileName = $('#devSelectLogoName');
 
       var fileExt = CorpInfo.Util.Path.getExtension(selectedFileName).toLowerCase();
-      if (fileExt !== 'gif' && fileExt !== 'jpeg' && fileExt !== 'jpg' && fileExt !== 'png') {
+      if (fileExt !== 'jpeg' && fileExt !== 'jpg' && fileExt !== 'png') {
           $('#devSelectLogo').val('');
           logoFileName.html('');
           alert('파일 형식이 올바르지 않습니다.');
@@ -204,24 +208,29 @@ function dis(){
   $('#devSubmit').on('click', function () {
       if (isValidForm()) {
           var ua = navigator.userAgent.toLowerCase();
-          if (ua.indexOf('msie') > -1 || ua.indexOf('trident') > -1 || ua.indexOf('edge') > -1) {
+          if (ua.indexOf('msie') > -1 || ua.indexOf('trident') > -1 || ua.indexOf('edge') > -1) {     
               document.charset = "euc-kr";
-          }
-
+	      }
           $('#frmLogo').submit();
-      }
-  })
-})(jQuery);
-
-var isValidForm = function () {
-  var $fileLogo = $('#devSelectLogo');
-  var selectedFileName = $fileLogo.val();
-
-  if (!selectedFileName) {
-      alert('로고를 선택해 주십시오.');
-      return false;
-  }
-
-  return true;
-}
-// 로고 팝업창 
+         
+	      }
+	  })
+	
+	
+	var isValidForm = function () {
+	var $fileLogo = $('#devSelectLogo');
+	var selectedFileName = $fileLogo.val();
+	
+	  if (!selectedFileName) {
+	      alert('로고를 선택해 주십시오.');
+	      return false;
+	  }
+	
+	  return true;
+     
+    }
+    
+    
+    
+    
+});

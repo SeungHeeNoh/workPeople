@@ -1,11 +1,10 @@
 package com.kh.workPeople.company.mypage.companyInfo.serivce;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-
+import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.company.mypage.companyInfo.dao.CompanyInfoMapper;
 
@@ -22,19 +21,25 @@ public class CompanyInfoServiceImpl implements CompanyInfoService{
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Member member = companyInfoMapper.findMemberById(username);
-		System.out.println(member);
-		
-		
-		
-		return null;
+	public Member memberInfoSelect(String userId) {
+		return companyInfoMapper.memberInfoSelect(userId);
 	}
 
+
 	@Override
-	public void companyInfoSelect(Member member) {
-		// TODO Auto-generated method stub
-		
+	public CompanyInformation companyInfoSelect(int userNo) {
+		return companyInfoMapper.companyInfoSelect(userNo);
 	}
+
+
+	@Override
+	public int info(Member member, CompanyInformation companyInformation) {
+		int result1 = companyInfoMapper.updateMember(member);
+		int result2 = companyInfoMapper.updateCompany(companyInformation);
+		
+		return (result1 > 0 && result2 > 0) ? 1 : 0;
+	}
+
+	
 
 }
