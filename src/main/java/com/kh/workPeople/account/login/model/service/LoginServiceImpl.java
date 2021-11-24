@@ -55,4 +55,10 @@ public class LoginServiceImpl implements LoginService {
 		return user;
 	}
 
+	@Override
+	public int updateLoginInformation(UserImpl userImpl) {
+		int result = loginMapper.updateLoginInformation(userImpl);
+		return result;
+	}
+
 }

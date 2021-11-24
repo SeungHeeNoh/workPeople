@@ -60,4 +60,13 @@
 		 LEFT JOIN AUTHORITY A ON(MR.A_CODE = A.A_CODE)
 		WHERE M.M_ID = #{userId}
 	</select>
+	<update id="updateLoginInformation" parameterType="com.kh.workPeople.common.vo.UserImpl">
+		UPDATE MEMBER
+		   SET M_LOGIN_FAIL_COUNT = 0
+		   <if test='isLock.equals("Y")'>
+		     , M_IS_LOCK = 'N'
+		   </if>
+		     , M_LATEST_TRY_LOGIN_DATE = SYSDATE
+		 WHERE M_ID = #{id}
+	</update>
 </mapper>
