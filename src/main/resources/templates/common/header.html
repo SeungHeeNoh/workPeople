@@ -12,13 +12,13 @@
 
 <body>
 <!-- 로그인 전 -->
-<span sec:authentication="principal"></span>
+<!-- <span sec:authentication="principal"></span> -->
 	<th:block sec:authorize="isAnonymous()">
 	
-    <header id="wrap">
+    <header id="hwrap">
         <div>
             <div class="mlogo">
-                <a href="#"><img th:src="@{images/common/hlogo.png}"></a>
+                <a href="/main"><img th:src="@{/images/common/hlogo.png}"></a>
             </div>
             <ul class="gnb">
                 <li><a href="jobs/job/big-job-list">지역별</a></li>
@@ -27,7 +27,7 @@
                 <li><a href="#">면접 후기</a></li>
                 <li>
                     <div class="loginArea">
-                        <a class="" href="/account/member/join">회원가입</a> |
+                        <a class="" href="/account/join/personal-join">회원가입</a> |
                         <a class="" href="/account/member/login">로그인</a>
                     </div>
                 </li>
@@ -35,12 +35,12 @@
         </div>
     </header>
     </th:block>
+    <!-- 유저 -->
      <th:block sec:authorize="hasRole('PERSONAL') ">
-    <!-- 로그인 후(관리자), (유저)  -->
-    <header id="wrap">
+    <header id="hwrap">
         <div id="menu">
             <div class="mlogo">
-                <a href="/main"><img th:src="@{images/common/hlogo.png}"></a>
+                <a href=""><img th:src="@{/images/common/hlogo.png}"></a>
             </div>
             <ul class="gnb">
                  <li><a href="jobs/job/big-job-list">지역별</a></li>
@@ -54,19 +54,19 @@
                     </div>
                     <ul class="submenu1">
                         <li><a href="#">마이페이지</a></li>
-                        <li><a href="#">로그아웃</a></li>
+                        <li><a href="/account/manager/logout">로그아웃</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </header>
 	</th:block>
+	<!-- 관리자 -->
 	 <th:block sec:authorize="hasRole('ADMIN') ">
-    <!-- 로그인 후(관리자), (유저)  -->
-    <header id="wrap">
+    <header id="hwrap">
         <div id="menu">
             <div class="mlogo">
-                <a href="#"><img th:src="@{images/common/hlogo.png}"></a>
+                <a href="/main"><img th:src="@{/images/common/hlogo.png}"></a>
             </div>
             <ul class="gnb">
                  <li><a href="jobs/job/big-job-list">지역별</a></li>
@@ -79,21 +79,21 @@
                         <span sec:authentication="principal.Username"></span>님<span>▼</span>
                     </div>
                     <ul class="submenu1">
-                        <li><a href="#">마이페이지</a></li>
-                        <li><a href="#">로그아웃</a></li>
+                        <li><a href="manager/manager/managerinfo">마이페이지</a></li>
+                        <li><a href="/account/manager/logout">로그아웃</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </header>
 	</th:block>
-        <!-- 기업   -->
+        <!-- 기업 -->
         <th:block sec:authorize="hasRole('COMPANY')"> 
-        <header id="wrap">
+        <header id="hwrap">
             <div id="menu2">
                 <div class="mleft">
                     <div class="mlogo2">
-                        <a href="#"><img th:src="@{images/common/header/mlogo2.png}"></a>
+                        <a href="/main"><img th:src="@{images/common/header/mlogo2.png}"></a>
                     </div>
                     <div class="corph">
                         <div>
@@ -114,7 +114,7 @@
                 <div class="mright">
                     <ul class="gnb3">
                         <li><a href="#">기업회원 홈</a></li> |
-                        <li><a href="#">로그아웃</a></li>
+                        <li><a href="/account/manager/logout">로그아웃</a></li>
                     </ul>
                 </div>
                 <div class="mright2">
