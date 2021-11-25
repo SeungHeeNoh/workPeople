@@ -7,9 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.workPeople.common.vo.Manager;
 import com.kh.workPeople.common.vo.PageInfo;
 import com.kh.workPeople.manager.model.dao.ManagerMapper;
-import com.kh.workPeople.manager.model.vo.Manager;
 
 @Service
 public class ManagerServiceImpl implements ManagerService{

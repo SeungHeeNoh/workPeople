@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import com.kh.workPeople.manager.model.vo.Manager;
-import com.kh.workPeople.manager.model.vo.ManagerRole;
 
 public class ManagerImpl extends User {
 	private int imNo;

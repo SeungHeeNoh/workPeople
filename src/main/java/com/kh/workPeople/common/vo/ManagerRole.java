@@ -1,4 +1,4 @@
-package com.kh.workPeople.manager.model.vo;
+package com.kh.workPeople.common.vo;
 
 import com.kh.workPeople.common.vo.Authority;
 
