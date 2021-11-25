@@ -4,7 +4,7 @@
 	<link rel="stylesheet" th:href="@{/css/account/login/common-login.css}">
 </head>
 <body>
-	<form th:action="@{/account/login}" method="post">
+	<form th:action="@{/account/member/login}" method="post">
 		<input type="hidden" name="member_type" value="1">
 		<input type="hidden" name="loginRedirect" th:value="${loginRedirect}">
 		<div class="loginSetting">

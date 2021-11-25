@@ -1,7 +1,7 @@
 package com.kh.workPeople.auth.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,9 +15,8 @@ import com.kh.workPeople.account.login.model.service.LoginService;
 import com.kh.workPeople.auth.handler.MemberLoginFailureHandler;
 import com.kh.workPeople.auth.handler.MemberLoginSuccessHandler;
 
-@Order(1)
-@Configuration
 @EnableWebSecurity
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	private LoginService loginService;
@@ -43,11 +42,16 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()
-				.anyRequest().permitAll()
+			.requestMatchers()
+				.antMatchers("/account/member/**")
+				.antMatchers("/member/**")
+			.and()
+				.authorizeRequests()
+				.antMatchers("/persoanl/**").hasRole("PERSONAL")
+				.antMatchers("/company/**").hasRole("COMPANY")
 			.and()
 				.formLogin()
-				.loginPage("/account/login")
+				.loginPage("/account/member/login")
 				.usernameParameter("id")
 				.passwordParameter("password")
 				.successForwardUrl("/main")
@@ -55,7 +59,7 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.failureHandler(new MemberLoginFailureHandler(loginService))
 			.and()
 				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))
+				.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
 				.deleteCookies("JESSIONID", "remember-me")
 				.invalidateHttpSession(true)
 				.logoutSuccessUrl("/main")

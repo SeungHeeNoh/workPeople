@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/account")
 public class LoginController {
 
-	@RequestMapping("/login")
+	@RequestMapping("/member/login")
 	public String login() {
 		return "account/login/login";
 	}
 	
-	@GetMapping("/manager-login")
+	@RequestMapping("/manager/login")
 	public String mangerLogin() {
 		return "account/login/login-manager";
 	}
 	
-	@GetMapping("/change-password")
+	@GetMapping("member/change-password")
 	public String changePassword() {
 		return "account/join/change-password";
 	}
