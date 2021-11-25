@@ -29,80 +29,16 @@
                     <div class="home_content_3_2">채용공고</div>
                     <div class="home_content_3_3">SNS 수신여부</div>
                 </div>
-    
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">채용중 4개</div>
-                    <button class="content_title_text4_3">수신</button>
-                </div>
-                <hr class="hr">
 
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">채용중 4개</div>
-                    <button class="content_title_text4_3">비수신</button>
+                <div th:each="job : ${jobList}">
+                    <div class="content_title_text4">
+                        <input type="checkbox" class="checkBtn1">
+                        <div class="content_title_text4_1" th:text="${job.name}"></div>
+                        <div class="content_title_text4_2">채용중 <div th:text="${job.count}"></div>개</div>
+                        <button class="content_title_text4_3">수신</button>
+                    </div>
+                    <hr class="hr">
                 </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">채용중 4개</div>
-                    <button class="content_title_text4_3">비수신</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">채용중 4개</div>
-                    <button class="content_title_text4_3">비수신</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">채용중 4개</div>
-                    <button class="content_title_text4_3">비수신</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">채용중 4개</div>
-                    <button class="content_title_text4_3">비수신</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">채용중 4개</div>
-                    <button class="content_title_text4_3">비수신</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">채용중 4개</div>
-                    <button class="content_title_text4_3">비수신</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">채용중 4개</div>
-                    <button class="content_title_text4_3">비수신</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">채용중 4개</div>
-                    <button class="content_title_text4_3">비수신</button>
-                </div>
-                <hr class="hr">
-
-               
 
                 <button class="green green1">삭제</button>
 

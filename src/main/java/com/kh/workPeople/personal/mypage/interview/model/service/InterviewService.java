@@ -1,9 +1,9 @@
-package com.kh.workPeople.personal.mypage.interestedCompany.model.service;
+package com.kh.workPeople.personal.mypage.interview.model.service;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUpSimple;
 
 import java.util.List;
 
-public interface InterestedCompanyService {
+public interface InterviewService {
     List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList(int no);
 }
