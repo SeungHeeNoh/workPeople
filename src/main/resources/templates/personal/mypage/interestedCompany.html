@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/common/common.css">
+    <link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
+    <link rel="stylesheet" href="/css/personal/myPage/interestedCompany.css">
+    
+    <title>관심 기업</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="wrapper">
+       
+    <div th:include="personal/mypage/mainSnb.html"></div>
+
+        <section>
+            <div id="content_wrap">
+                <p class="header_text">관심기업</p>
+
+                <div class="home_content_3">
+                    <div class="home_content_3_1">회사명</div>
+                    <div class="home_content_3_2">채용공고</div>
+                    <div class="home_content_3_3">SNS 수신여부</div>
+                </div>
+
+                <div th:each="job : ${jobList}">
+                    <div class="content_title_text4">
+                        <input type="checkbox" class="checkBtn1">
+                        <div class="content_title_text4_1" th:text="${job.name}"></div>
+                        <div class="content_title_text4_2">채용중 <div th:text="${job.count}"></div>개</div>
+                        <button class="content_title_text4_3">수신</button>
+                    </div>
+                    <hr class="hr">
+                </div>
+
+                <button class="green green1">삭제</button>
+
+            
+
+            
+
+            
+
+
+
+       
+        </div>
+        </section>
+    </div>
+</body>
+
+</html>

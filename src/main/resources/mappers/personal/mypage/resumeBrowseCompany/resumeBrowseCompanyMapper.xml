@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.workPeople.personal.mypage.resumeBrowseCompany.model.dao.ResumeBrowseCompanyMapper">
+
+    <resultMap id="resumeBrowseCompanyResultMap" type="com.kh.workPeople.common.vo.ResumeBrowseCompany">
+        <id property="m_no" column="M_NO"/>
+        <result property="m_name" column="M_NAME"/>
+        <result property="m_roadAddress" column="M_ROADADDRESS"/>
+        <result property="s_name" column="S_NAME"/>
+        <result property="rb_date" column="RB_DATE"/>
+    </resultMap>
+    <select id="selectResumeBrowseCompanyList" resultMap="resumeBrowseCompanyResultMap">
+
+     <!-- 쿼리 수정 예정 -->
+        SELECT
+            M_NO,
+            M_NAME,
+            M_ROADADDRESS,
+            S_NAME,
+            RB_DATE
+        FROM MEMBER
+                 JOIN COMPANY_INFO USING(M_NO)
+                 JOIN SECTOR USING(S_NO)
+                 JOIN RESUME_BROWSE USING(CI_NO)
+
+    </select>
+
+</mapper>

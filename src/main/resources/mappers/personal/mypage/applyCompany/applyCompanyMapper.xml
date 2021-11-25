@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.workPeople.personal.mypage.applyCompany.model.dao.ApplyCompanyMapper">
+    <resultMap id="jobVacancy" type="com.kh.workPeople.common.vo.JobVacancyLookUp">
+
+
+    </resultMap>
+
+
+<!-- 다시 -->
+    <select id="jobVacancyLookUpList" resultMap="jobVacancy">
+        SELECT
+            JV.JV_NO,
+            JV.JV_TITLE,
+            JV.JV_ADDRESS,
+            JV.JV_PERIOD_END,
+            M.M_NAME,
+            EL.EL_NAME,
+            S.S_NAME,
+            AC.AC_DATE,
+            RB.RB_DATE
+        FROM JOB_VACANCY JV
+        JOIN COMPANY_INFO CI USING(CI_NO)
+        JOIN MEMBER M USING(M_NO)
+        JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
+        JOIN EXPERIENCE_LEVEL EL USING(EL_NO)
+        JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
+        JOIN SECTOR S USING(S_NO)
+        JOIN APPLY_COMPANY AC USING(JV_NO)
+        JOIN RESUME_BROWSE RB USING(CI_NO);
+    </select>
+
+    <select id="applyCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLY_COMPANY
+        JOIN RESUME USING(R_NO)
+        WHERE M_NO=#{no}
+          AND AC_TYPE = 'apply'
+    </select>
+
+    <select id="passCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLY_COMPANY
+                 JOIN RESUME USING(R_NO)
+        WHERE M_NO=#{no}
+          AND AC_TYPE = 'pass'
+    </select>
+
+    <select id="interviewCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLY_COMPANY
+                 JOIN RESUME USING(R_NO)
+        WHERE M_NO=#{no}
+          AND AC_TYPE = 'interview'
+    </select>
+
+    <select id="passAllCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLY_COMPANY
+                 JOIN RESUME USING(R_NO)
+        WHERE M_NO=#{no}
+          AND AC_TYPE = 'passAll'
+    </select>
+
+    <select id="failureCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLY_COMPANY
+                 JOIN RESUME USING(R_NO)
+        WHERE M_NO=#{no}
+          AND AC_TYPE = 'failure'
+    </select>
+
+</mapper>

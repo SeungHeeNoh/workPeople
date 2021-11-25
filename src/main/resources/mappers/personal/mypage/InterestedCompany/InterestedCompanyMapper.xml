@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.workPeople.personal.mypage.interestedCompany.model.dao.InterestedCompanyMapper">
+
+    <resultMap id="jobVacancySimple" type="com.kh.workPeople.personal.mypage.interestedCompany.model.dao.InterestedCompanyMapper">
+        <id property="No" column="CI_NO"/>
+        <result property="name" column="M_NAME"/>
+        <result property="count" column="JOBCOUNT"/>
+    </resultMap>
+
+    <select id="jobVacancyLookUpSimpleList" resultMap="jobVacancySimple">
+        SELECT
+            CI_NO,
+            M_NAME,
+            (
+                SELECT
+                    COUNT(*)
+                FROM JOB_VACANCY
+            ) AS "JOBCOUNT"
+                FROM INTERESTED_COMPANY
+                 JOIN MEMBER USING(M_NO)
+                 LEFT JOIN COMPANY_INFO USING(CI_NO)
+                 LEFT JOIN JOB_VACANCY USING(CI_NO)
+                WHERE
+
+
+    </select>
+
+
+
+</mapper>
