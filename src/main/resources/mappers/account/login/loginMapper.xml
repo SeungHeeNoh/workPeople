@@ -31,7 +31,7 @@
 		<id property="name" column="A_NAME"/>
 		<id property="desc" column="A_DESC"/>
 	</resultMap>
-	<resultMap type="com.kh.workPeople.manager.model.vo.Manager" id="managerResultMap">
+	<resultMap type="com.kh.workPeople.common.vo.Manager" id="managerResultMap">
 		<id property="imNo" column="IM_NO"/>
 		<result property="imId" column="IM_ID"/>
 		<result property="imPwd" column="IM_PWD"/>
