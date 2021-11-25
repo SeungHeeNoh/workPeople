@@ -1,7 +1,7 @@
 package com.kh.workPeople.personal.mypage.home.controller;
 
+import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.common.vo.Resume;
-import com.kh.workPeople.common.vo.UserImpl;
 import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,7 +17,7 @@ import java.util.Date;
 @RequestMapping("/personal/mypage")
 public class HomeController {
 
-	private HomeService homeService;
+	private final HomeService homeService;
 
 	@Autowired
 	public HomeController(HomeService homeService) {
@@ -25,7 +25,7 @@ public class HomeController {
 	}
 
 	@GetMapping("home")
-	public String mypageHome(Model model, @AuthenticationPrincipal UserImpl user) {
+	public String mypageHome(Model model, @AuthenticationPrincipal MemberImpl user) {
 
 		Resume resume = homeService.selectResumeStatusY(user.getNo());
 

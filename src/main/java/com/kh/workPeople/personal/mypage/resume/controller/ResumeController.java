@@ -1,7 +1,7 @@
 package com.kh.workPeople.personal.mypage.resume.controller;
 
+import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.common.vo.Resume;
-import com.kh.workPeople.common.vo.UserImpl;
 import com.kh.workPeople.personal.mypage.resume.model.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/personal/mypage")
 public class ResumeController {
 
-	private ResumeService resumeService;
+	private final ResumeService resumeService;
 
 	@Autowired
 	public ResumeController(ResumeService resumeService) {
@@ -28,7 +28,7 @@ public class ResumeController {
 	}
 
 	@GetMapping("resumeManagement")
-	public String resumeManagement(Model model, @AuthenticationPrincipal UserImpl user) {
+	public String resumeManagement(Model model, @AuthenticationPrincipal MemberImpl user) {
 
 		List<Resume> resumeList = resumeService.resumeList(user.getNo());
 		String rep = "N";

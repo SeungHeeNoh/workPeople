@@ -1,7 +1,7 @@
 package com.kh.workPeople.personal.mypage.interview.controller;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUpSimple;
-import com.kh.workPeople.common.vo.UserImpl;
+import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.personal.mypage.interview.model.service.InterviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/personal/mypage")
 public class InterviewController {
 
-    private InterviewService interviewService;
+    private final InterviewService interviewService;
 
     @Autowired
     public InterviewController(InterviewService interviewService) {
@@ -24,7 +24,7 @@ public class InterviewController {
     }
 
     @GetMapping("interview")
-    public String interview(Model model, @AuthenticationPrincipal UserImpl user){
+    public String interview(Model model, @AuthenticationPrincipal MemberImpl user){
 
         List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList = interviewService.jobVacancyLookUpSimpleList(user.getNo());
 
