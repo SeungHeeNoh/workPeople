@@ -18,8 +18,12 @@ import java.util.List;
 @RequestMapping("personal/mypage")
 public class ResumeBrowseCompanyController {
 
-    @Autowired
     private ResumeBrowseCompanyService resumeBrowseCompanyService;
+
+    @Autowired
+    public ResumeBrowseCompanyController(ResumeBrowseCompanyService resumeBrowseCompanyService) {
+        this.resumeBrowseCompanyService = resumeBrowseCompanyService;
+    }
 
     @GetMapping("resumeBrowseCompany")
     public String resumeBrowseCompany(Model model, @AuthenticationPrincipal UserImpl user){

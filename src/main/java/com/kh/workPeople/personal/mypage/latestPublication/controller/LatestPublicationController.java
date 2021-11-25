@@ -27,7 +27,6 @@ public class LatestPublicationController {
         this.latestPublicationService = latestPublicationService;
     }
 
-
     @GetMapping("latestPublication")
     public String latestPublication(Model model, @AuthenticationPrincipal UserImpl user){
 

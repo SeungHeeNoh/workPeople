@@ -30,85 +30,27 @@
                     <div class="home_content_3_3">상태</div>
                     <div class="home_content_3_3">면접방 입장</div>
                 </div>
-    
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBox">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">2021.10.23 16:30</div>
-                    <div class="content_title_text4_3">면접 대기</div>
-                    <button class="content_title_text4_4">입장하기</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBox">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">2021.10.23 16:30</div>
-                    <div class="content_title_text4_3">면접 대기</div>
-                    <button class="content_title_text4_4">입장하기</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBox">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">2021.10.23 16:30</div>
-                    <div class="content_title_text4_3">면접 대기</div>
-                    <button class="content_title_text4_4">입장하기</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBox">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">2021.10.23 16:30</div>
-                    <div class="content_title_text4_3">면접 대기</div>
-                    <button class="content_title_text4_4">입장하기</button>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBox">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">2021.10.23 16:30</div>
-                    <div class="content_title_text4_3">면접 종료</div>
-                </div>
-                <hr class="hr">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBox">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">2021.10.23 16:30</div>
-                    <div class="content_title_text4_3">면접 종료</div>
-                </div>
-                <hr class="hr">
 
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBox">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">2021.10.23 16:30</div>
-                    <div class="content_title_text4_3">면접 종료</div>
-                </div>
-                <hr class="hr">
+                <div th:each="job : ${jobVacancyLookUpSimpleList}">
+                    <div class="content_title_text4">
+                        <input type="checkbox" class="checkBox">
+                        <div class="content_title_text4_1" th:text="${job.name}"></div>
+                        <div class="content_title_text4_2"><div th:text="${job.aiDateFormat}"></div> <div th:text="${job.aiTimeFormat}"></div></div>
 
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBox">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">2021.10.23 16:30</div>
-                    <div class="content_title_text4_3">면접 종료</div>
-                </div>
-                <hr class="hr">
+                        <th:block th:if="${#strings.equals(job.type,'interview')}">
+                            <div class="content_title_text4_3">면접 대기</div>
+                        </th:block>
 
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBox">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">2021.10.23 16:30</div>
-                    <div class="content_title_text4_3">면접 종료</div>
-                </div>
-                <hr class="hr">
+                        <th:block th:if="!${#strings.equals(job.type,'interview')}">
+                            <div class="content_title_text4_3">면접 종료</div>
+                        </th:block>
 
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBox">
-                    <div class="content_title_text4_1">회사이름</div>
-                    <div class="content_title_text4_2">2021.10.23 16:30</div>
-                    <div class="content_title_text4_3">면접 종료</div>
+                        <th:block th:if="${#strings.equals(job.type,'interview')}">
+                            <button class="content_title_text4_4">입장하기</button>
+                        </th:block>
+                    </div>
+                    <hr class="hr">
                 </div>
-                <hr class="hr">
 
 
                 

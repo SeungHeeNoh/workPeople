@@ -16,9 +16,12 @@ import java.util.List;
 @RequestMapping("/personal/mypage")
 public class InterestedCompanyController {
 
-    @Autowired
     public InterestedCompanyService interestedCompanyService;
 
+    @Autowired
+    public InterestedCompanyController(InterestedCompanyService interestedCompanyService) {
+        this.interestedCompanyService = interestedCompanyService;
+    }
 
     @GetMapping("interestedCompany")
     public String interestedCompany(Model model, @AuthenticationPrincipal UserImpl user){

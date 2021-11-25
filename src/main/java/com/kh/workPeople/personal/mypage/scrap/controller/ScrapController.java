@@ -18,8 +18,12 @@ import java.util.List;
 @RequestMapping("/personal/mypage")
 public class ScrapController {
 
+	private ScrapService scrapService;
+
 	@Autowired
-	public ScrapService scrapService;
+	public ScrapController(ScrapService scrapService) {
+		this.scrapService = scrapService;
+	}
 
 	@GetMapping("scrap")
 	public String scrap(Model model, @AuthenticationPrincipal UserImpl user) {

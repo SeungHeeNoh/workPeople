@@ -20,9 +20,12 @@ import java.util.List;
 @RequestMapping("/personal/mypage")
 public class ResumeController {
 
-	@Autowired
 	private ResumeService resumeService;
 
+	@Autowired
+	public ResumeController(ResumeService resumeService) {
+		this.resumeService = resumeService;
+	}
 
 	@GetMapping("resumeManagement")
 	public String resumeManagement(Model model, @AuthenticationPrincipal UserImpl user) {

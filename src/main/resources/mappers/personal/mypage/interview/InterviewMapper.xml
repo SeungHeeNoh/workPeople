@@ -4,12 +4,30 @@
 <mapper namespace="com.kh.workPeople.personal.mypage.interview.model.dao.InterviewMapper">
 
     <resultMap id="jobVacancy" type="com.kh.workPeople.common.vo.JobVacancyLookUpSimple">
-        
+        <id property="no" column="CI_NO"/>
+        <result property="name" column="M_NAME"/>
+        <result property="Type" column="AC_TYPE"/>
+        <result property="aiDate" column="AI_DATE"/>
+        <result property="aiTime" column="AI_TIME"/>
+        <result property="aiDateFormat" column="AI_DATEFORMAT"/>
+        <result property="aiTimeFormat" column="AI_TIMEFORMAT"/>
 
     </resultMap>
 
     <select id="jobVacancyLookUpList" resultMap="jobVacancy">
-
+        SELECT
+            CI_NO
+             , M_NAME
+             , AC_TYPE
+             , AI_DATE
+             , AI_TIME
+             , TO_CHAR(AI_DATE,'YYYY.MM.dd') AS "AI_DATEFORMAT"
+             , TO_CHAR(AI_TIME,'hh24:mi') AS "AI_TIMEFORMAT"
+        FROM COMPANY_INFO
+         JOIN MEMBER USING(M_NO)
+         JOIN JOB_VACANCY USING(CI_NO)
+         JOIN APPLY_COMPANY USING(JV_NO)
+         JOIN APPLY_INTERVIEW USING(JV_NO,R_NO)
 
     </select>
 

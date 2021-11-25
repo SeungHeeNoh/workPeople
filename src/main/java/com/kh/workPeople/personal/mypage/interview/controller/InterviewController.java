@@ -28,8 +28,7 @@ public class InterviewController {
 
         List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList = interviewService.jobVacancyLookUpSimpleList(user.getNo());
 
-
-
+        model.addAttribute("jobVacancyLookUpSimpleList",jobVacancyLookUpSimpleList);
 
         return "personal/mypage/interview";
     }

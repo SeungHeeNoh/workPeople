@@ -17,14 +17,12 @@ import java.util.Date;
 @RequestMapping("/personal/mypage")
 public class HomeController {
 
-	@Autowired
 	private HomeService homeService;
 
-	@GetMapping("homeRe")
-	public String mypageHome(){
-		return "redirect:/personal/mypage/home";
+	@Autowired
+	public HomeController(HomeService homeService) {
+		this.homeService = homeService;
 	}
-
 
 	@GetMapping("home")
 	public String mypageHome(Model model, @AuthenticationPrincipal UserImpl user) {
