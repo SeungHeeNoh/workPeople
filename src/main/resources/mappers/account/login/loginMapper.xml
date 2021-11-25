@@ -38,7 +38,7 @@
 		<result property="imName" column="IM_NAME"/>
 		<collection property="managerRoleList" resultMap="managerRoleResultMap"/>
 	</resultMap>
-	<resultMap type="com.kh.workPeople.manager.model.vo.ManagerRole" id="managerRoleResultMap">
+	<resultMap type="com.kh.workPeople.common.vo.ManagerRole" id="managerRoleResultMap">
 		<id property="imNo" column="REF_MANAGER_NO"/>
 		<id property="aCode" column="REF_AUTHORITY_CODE"/>
 		<association property="authority" resultMap="authorityResultMap"/>
