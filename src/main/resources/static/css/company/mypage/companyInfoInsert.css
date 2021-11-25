@@ -134,8 +134,7 @@
   margin: -2px 6px 0 0;
   content: "";
   display: inline-block;
-  background: url(/images/companyMyPage/circle-add.png)
-    50% 50% no-repeat;
+  background: url(/images/companyMyPage/circle-add.png) 50% 50% no-repeat;
   vertical-align: middle;
   box-sizing: border-box;
 }
@@ -177,7 +176,7 @@
 }
 .Info_area3 .info_hd .hd_ment {
   font-size: 11px;
-  color: #ff3333;
+  color: rgb(0, 0, 0);
   padding-left: 10px;
 }
 .infoTbBx .tbRow {
@@ -210,11 +209,23 @@
   width: 100%;
   height: 60px;
   line-height: 40px;
-  padding-left: 15px;
+  padding: 0 10px 0 80px;
   border: none;
   background-color: #fff;
   font-size: 13px;
   letter-spacing: -0.5px;
+}
+
+.info_wrap .ph {
+  font-size: 13px;
+  color: #868686;
+  letter-spacing: -0.5px;
+  position: absolute;
+  left: 10px;
+  top: 21px;
+}
+.point {
+  color: #ff0000;
 }
 
 input:focus {
@@ -251,7 +262,6 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  color: #767676;
   padding-left: 10px;
 }
 select::-ms-expand {
@@ -292,7 +302,7 @@ select:focus + .icoArrow img {
 }
 .txArea {
   overflow: auto;
-  font-size: 16px;
+  font-size: 13px;
   height: 86px;
   height: 125px;
   padding: 15px 17px 0 17px;
@@ -317,9 +327,9 @@ textarea::placeholder {
 }
 
 .textareacnt {
-  font-size: 14px;
+  font-size: 13px;
   position: absolute;
-  left: 730px;
+  left: 720px;
   top: 210px;
   color: #545454;
 }
@@ -359,12 +369,12 @@ body {
 .logo_area .btn button {
   display: block;
 }
+
 .infoBtnDel {
   width: 25px;
   height: 25px;
   background-position: -60px 0;
-  background: url(/images/companyMyPage/circle-error.png)
-    no-repeat;
+  background: url(/images/companyMyPage/circle-error.png) no-repeat;
   vertical-align: middle;
   box-sizing: border-box;
   position: relative;
@@ -376,8 +386,7 @@ body {
   width: 25px;
   height: 25px;
   background-position: -100px 0;
-  background: url(/images/companyMyPage/edit-alt.png)
-    no-repeat;
+  background: url(/images/companyMyPage/edit-alt.png) no-repeat;
   vertical-align: middle;
   box-sizing: border-box;
   position: relative;

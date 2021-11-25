@@ -1,11 +1,16 @@
 package com.kh.workPeople.company.mypage.companyInfo.serivce;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
 
+import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.Member;
 
-public interface CompanyInfoService extends UserDetailsService{
+public interface CompanyInfoService {
 
-	void companyInfoSelect(Member member);
+	CompanyInformation companyInfoSelect(int userNo);
+
+	Member memberInfoSelect(String userId);
+
+	int info(Member member, CompanyInformation companyInformation);
+
 
 }

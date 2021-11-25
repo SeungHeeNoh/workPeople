@@ -7,9 +7,63 @@
     <title>관리자 정보</title>
 	<link rel="stylesheet" th:href="@{/css/common/common.css}">
 	<link rel="stylesheet" th:href="@{/css/manager/manager/managerinfo.css}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+        <style>
+        .paging {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin-top: 50px;
+    }
+    .paging a {
+    display: block;
+    width: 29px;
+    height: 36px;
+    box-sizing: border-box;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #a7a6a6;
+    color: #7e7e7e;
+    text-align: center;
+    line-height: 36px;
+    margin: 0 5px;
+    transition: all 0.3s;
+    }
+    .paging a.btn_prev {
+   
+    margin-right: 10px;
+    }
+    .paging a.btn_next {
+   
+    margin-left: 10px;
+    }
+    .paging a.btn_num {
+    border-radius: 5px;
+    border: 1px solid #a7a6a6;
+    color: #7e7e7e;
+    text-align: center;
+    line-height: 36px;
+    margin: 0 5px;
+    transition: all 0.3s;
+    }
+    .paging a:hover {
+    border: 1px solid #A7D676;
+    color: #A7D676;
+    }
+    .paging a.current_page {
+    border: 2px solid #A7D676;
+    color: #A7D676;
+    }
+    .paging > li:nth-child(1) > a,
+    .paging > li:nth-child(2) > a,
+    .paging > li:nth-last-child(2) > a,
+    .paging > li:nth-last-child(1) > a {
+        border: none;
+    }
+        </style>
 </head>
 <div class="container">
  <div class="wrapper">
@@ -37,6 +91,7 @@
                 <div class="list_wrap">
                     <h2 class="h2">관리자 정보</h2>
                     <div class="search_box">
+                    	 <form action="@{manager/manager/list}" method="get">
                         <div class="search_bot resident clearfix">
                             <div class="items clearfix">
                                 <label for="">검색조건</label>
@@ -50,6 +105,7 @@
                                 <button type="button" class="btn">검색</button>
                             </div>
                         </div>
+                        </form>
                     </div>
                     <div class="list_content">
                         <div class="table_wrap resident_list">
@@ -62,7 +118,6 @@
                                     <col width="20%">
                                     <col width="4%">
                                 </colgroup>
-
                                 <thead>
                                     <tr>
                                         <th>관리자 번호</th>
@@ -73,105 +128,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>admin</td>
-                                        <td>신짱아</td>
-                                        <td>총관리자</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">변경</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>admin</td>
-                                        <td>신짱아</td>
-                                        <td>관리자</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">변경</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>3</td>
-                                        <td>admin</td>
-                                        <td>신짱아</td>
-                                        <td>관리자</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">변경</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <td>4</td>
-                                        <td>admin</td>
-                                        <td>신짱아</td>
-                                        <td>관리자</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">변경</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <td>5</td>
-                                        <td>admin</td>
-                                        <td>신짱아</td>
-                                        <td>관리자</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">변경</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <td>6</td>
-                                        <td>admin</td>
-                                        <td>신짱아</td>
-                                        <td>관리자</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">변경</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <td>7</td>
-                                        <td>admin</td>
-                                        <td>신짱아</td>
-                                        <td>관리자</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">변경</a>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>admin</td>
-                                        <td>신짱아</td>
-                                        <td>관리자</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">변경</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>admin</td>
-                                        <td>신짱아</td>
-                                        <td>관리자</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">변경</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>admin</td>
-                                        <td>신짱아</td>
-                                        <td>관리자</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">변경</a>
-                                        </td>
+                                    <tr th:each="manager : ${managerList}">
+	                                    <td th:text="${manager.imNo}"></td>
+	                                     <td th:text="${manager.imId}"></td>
+	                                     <td th:text="${manager.imName}"></td>
+	                                     <td th:if="${manager.managerRole}==3">총관리자</td>
+	                                     <td th:if="${manager.managerRole}==4">관리자</td>
+	                                     <td>
+	                                     	<input type="hidden" name="" value="">
+	                                         <a href="javascript:;" class="tag">변경</a>
+	                                     </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -180,19 +146,10 @@
                             <a href="javascript:;" class="add">관리자 추가</a>
                         </div>
 
-                        <div class="paging_wrap">
-                            <a href="javascript:;" class="btn_prev"></a>
-                            <a href="javascript:;" class="btn_num on">1</a>
-                            <a href="javascript:;" class="btn_num">2</a>
-                            <a href="javascript:;" class="btn_num">3</a>
-                            <a href="javascript:;" class="btn_num">4</a>
-                            <a href="javascript:;" class="btn_num">5</a>
-                            <a href="javascript:;" class="btn_next"></a>
-                        </div>
+                      <div th:replace="common/paging.html"></div>
                     </div>
                 </div>
             </div>
-            </secion>
         </div>
     </div>
 </div>
@@ -232,36 +189,108 @@
 <div id="popup02">
     <div class="dim"></div>
     <div class="item">
-        <form name="newManagerFrm">
+        <form name="newManagerFrm" method="post">
             <div class="new_admin">
                 <div class="title">신규 관리자 추가</div>
                 <div class="new_item">
                     <label for="">계정</label>
-                    <input type="text" name="" id="">
+                    <input type="text" name="imId" id="imId">
                     <a href="javascript:;" class="idCheck">중복확인</a>
                 </div>
                 <div class="new_item">
                     <label for="">비밀번호</label>
-                    <input type="password" name="" id="">
+                    <input type="password" name="imPwd" id="imPwd">
                 </div>
                 <div class="new_item">
                     <label for="">비밀번호 확인</label>
-                    <input type="password" name="" id="">
+                    <input type="password" name="imPwd2" id="imPwd2">
                 </div>
                 <div class="new_item">
                     <label for="">이름</label>
-                    <input type="text" name="" id="">
+                    <input type="text" name="imName" id="imName">
                 </div>
             </div>
             <div class="close">close</div>
+             </form>
             <div class="new_btn_box">
                 <a href="javascript:;" class="ok">등록하기</a>
                 <a href="javascript:popHide('');" class="cancle">취소하기</a>
             </div>
+           
     </div>
 </div>
 
 <script>
+
+let regCheck = false;
+// 아이디 중복체크
+function idCheck(){
+	let mId = $('#mId');
+	//console.log(mId.val());
+	
+	if(mId.val().length >= 1){
+		$.ajax({
+			url : "${contextPath}/admin/idCheck",
+			type : "post",
+			data : {mId : mId.val()},
+			success : function(item){
+				if(item != 0){
+					// 계정 생성불가능
+					alert(mId.val() + "는 이미 존재하는 계정입니다.");
+					mId.attr('readonly', false);
+					mId.select();
+					regCheck = false;
+				}else{
+					// 계정생성 가능
+					alert(mId.val() + "의 계정이 사용가능합니다.");
+					mId.attr('readonly', true);
+					regCheck = true;
+					
+				}
+			}
+		})
+	}else{
+		alert("계정을 입력해주세요!");
+		mId.select();
+	}
+	
+	
+}
+
+// 계정생성
+function mCreate(){
+	let mId = $('#mId');
+	let mPwd1 = $("#mPwd1");
+	let mPwd2 = $("#mPwd2");
+	let mPhone = $("#mPhone");
+	if(!regCheck){
+		// 중복확인을 하지않아 값이 false일시 계정생성 불가능
+		alert("계정 중복확인 해주세요!");
+		mId.select();
+		return;
+	}
+	
+	//비밀번호, 비밀번호 확인 값이 같은지 확인
+	if((mPwd1.val() !== mPwd2.val()) && mPwd1.val() != 0 && mPwd2.val() != 0){
+		alert("비밀번호 값을 확인해주세요!");
+		mPwd2.select();
+		return;
+	}
+	
+	// 휴대폰 번호 입력하였는지 확인
+	if(mPhone.val() < 0){
+		alert("휴대폰 번호를 입력해주세요!");
+		mPhone.select();
+		return; 
+	}
+	
+	document.forms.newManagerFrm.method = "post";
+	document.forms.newManagerFrm.action = "${contextPath}/admin/manager/create";
+	document.forms.newManagerFrm.submit();
+	
+	
+}
+
  $(function() {
      $(window).scroll(function() { 
          if ($(this).scrollTop() > 200) { 

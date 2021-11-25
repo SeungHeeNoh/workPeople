@@ -1,19 +1,33 @@
 package com.kh.workPeople.manager.model.vo;
 
+import java.util.List;
+
 public class Manager {
 	private int imNo;
 	private String imId;
 	private String imPwd;
 	private String imName;
+	private List<ManagerRole> managerRoleList;
+	private int managerRole;
 	
-	Manager() {}
-	
-	public Manager(int imNo, String imId, String imPwd, String imName) {
+	public Manager() {}
+
+	public Manager(int imNo, String imId, String imPwd, String imName, List<ManagerRole> managerRoleList) {
 		super();
 		this.imNo = imNo;
 		this.imId = imId;
 		this.imPwd = imPwd;
 		this.imName = imName;
+		this.managerRoleList = managerRoleList;
+	}
+
+	
+	public int getManagerRole() {
+		return managerRole;
+	}
+
+	public void setManagerRole(int managerRole) {
+		this.managerRole = managerRole;
 	}
 
 	public int getImNo() {
@@ -48,9 +62,18 @@ public class Manager {
 		this.imName = imName;
 	}
 
+	public List<ManagerRole> getManagerRoleList() {
+		return managerRoleList;
+	}
+
+	public void setManagerRoleList(List<ManagerRole> managerRoleList) {
+		this.managerRoleList = managerRoleList;
+	}
+
 	@Override
 	public String toString() {
-		return "Manager [imNo=" + imNo + ", imId=" + imId + ", imPwd=" + imPwd + ", imName=" + imName + "]";
+		return "Manager [imNo=" + imNo + ", imId=" + imId + ", imPwd=" + imPwd + ", imName=" + imName
+				+ ", managerRoleList=" + managerRoleList + "]";
 	}
 	
 	
