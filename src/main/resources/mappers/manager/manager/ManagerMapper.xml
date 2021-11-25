@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.workPeople.manager.model.dao.ManagerMapper">
-	<resultMap type="com.kh.workPeople.manager.model.vo.Manager" id="ManagerResultMap">
+	<resultMap type="com.kh.workPeople.common.vo.Manager" id="ManagerResultMap">
 		<id property="imNo" column="IM_NO"/>
 		<result property="imId" column="IM_ID"/>
 		<result property="imPwd" column="IM_PWD"/>
@@ -9,7 +9,7 @@
 		<result property="managerRole" column="A_CODE"/>
 		<collection property="managerRoleList" resultMap="managerRoleResultMap"/>
 	</resultMap>
-	<resultMap type="com.kh.workPeople.manager.model.vo.ManagerRole" id="managerRoleResultMap">
+	<resultMap type="com.kh.workPeople.common.vo.ManagerRole" id="managerRoleResultMap">
 		<id property="userNo" column="REF_MEMBER_NO"/>
 		<id property="authorityCode" column="REF_AUTHORITY_CODE"/>
 		<association property="authority" resultMap="authorityResultMap"/>
