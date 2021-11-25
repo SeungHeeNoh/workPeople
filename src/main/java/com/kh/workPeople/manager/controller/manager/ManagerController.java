@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.workPeople.manager.model.service.ManagerService;
-import com.kh.workPeople.manager.model.vo.Manager;
+import com.kh.workPeople.common.vo.Manager;
 
 import lombok.extern.slf4j.Slf4j;
 
