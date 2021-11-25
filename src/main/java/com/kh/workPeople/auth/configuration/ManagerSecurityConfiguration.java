@@ -40,7 +40,6 @@ public class ManagerSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/account/manager/login").permitAll()
 				.antMatchers("/manager/**").hasRole("ADMIN")
 			.and()
 				.formLogin()
@@ -52,7 +51,7 @@ public class ManagerSecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.failureHandler(new ManagerLoginFailureHandler())
 			.and()
 				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/manager/logout"))
+				.logoutRequestMatcher(new AntPathRequestMatcher("/account/manager/logout"))
 				.deleteCookies("JESSIONID")
 				.invalidateHttpSession(true)
 				.logoutSuccessUrl("/main");

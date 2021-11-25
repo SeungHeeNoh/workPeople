@@ -19,7 +19,7 @@ public class MemberLoginFailureHandler implements AuthenticationFailureHandler {
 	
 	private final int MAX_FAILURE_COUNT = 5;
 	private LoginService loginService;
-	private String defaultUrl ="/account/login";
+	private String defaultUrl ="/account/member/login";
 	
 	public MemberLoginFailureHandler(LoginService loginService) {
 		this.loginService = loginService;

@@ -52,7 +52,7 @@ public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
 		clearAuthenticationAttributes(request);
 		
 		if(userImpl.getTempPwdYn().equals("Y")) {
-			redirectUrl = "/account/change-password";
+			redirectUrl = "/account/member/change-password";
 		} else {
 			SavedRequest savedRequest = requestCache.getRequest(request, response);
 			

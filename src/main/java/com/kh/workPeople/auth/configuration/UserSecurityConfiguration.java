@@ -44,7 +44,6 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 			.requestMatchers()
 				.antMatchers("/account/member/**")
-				.antMatchers("/member/**")
 			.and()
 				.authorizeRequests()
 				.antMatchers("/persoanl/**").hasRole("PERSONAL")
@@ -59,7 +58,7 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.failureHandler(new MemberLoginFailureHandler(loginService))
 			.and()
 				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+				.logoutRequestMatcher(new AntPathRequestMatcher("/account/member/logout"))
 				.deleteCookies("JESSIONID", "remember-me")
 				.invalidateHttpSession(true)
 				.logoutSuccessUrl("/main")
