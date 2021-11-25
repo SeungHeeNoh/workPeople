@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-public class UserImpl extends User {
+public class MemberImpl extends User {
 	private int no;
 	private String id;
 	private String pwd;
@@ -27,7 +27,7 @@ public class UserImpl extends User {
 	private String tempPwdYn;
 	private List<MemberRole> memberRoleList;
 
-	public UserImpl(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+	public MemberImpl(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
 	}
 	

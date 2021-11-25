@@ -12,17 +12,17 @@ import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-import com.kh.workPeople.account.login.model.service.LoginService;
+import com.kh.workPeople.account.login.model.service.MemberLoginService;
 import com.kh.workPeople.common.vo.Member;
 
 public class MemberLoginFailureHandler implements AuthenticationFailureHandler {
 	
 	private final int MAX_FAILURE_COUNT = 5;
-	private LoginService loginService;
+	private MemberLoginService memberLoginService;
 	private String defaultUrl ="/account/member/login";
 	
-	public MemberLoginFailureHandler(LoginService loginService) {
-		this.loginService = loginService;
+	public MemberLoginFailureHandler(MemberLoginService memberLoginService) {
+		this.memberLoginService = memberLoginService;
 	}
 
 	@Override
@@ -35,13 +35,13 @@ public class MemberLoginFailureHandler implements AuthenticationFailureHandler {
 			message = "존재하지 않는 ID입니다.";
 		} else if(exception instanceof BadCredentialsException) {
 			message = "아이디 혹은 비밀번호가 맞지 않습니다.";
-			Member member = loginService.findMemberById(id);
+			Member member = memberLoginService.findMemberById(id);
 
 			if(member != null) {
 				if(member.getLoginFailCount() < MAX_FAILURE_COUNT) {
-					loginService.updateFailureCount(member.getId());
+					memberLoginService.updateFailureCount(member.getId());
 				} else {
-					loginService.updateAccountLock(member.getId());
+					memberLoginService.updateAccountLock(member.getId());
 					message = "6회 이상 시도로 계정이 잠겼습니다. 10분 후 재접속해주세요.";
 				}
 			}

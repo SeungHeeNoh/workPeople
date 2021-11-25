@@ -88,7 +88,7 @@
 		 LEFT JOIN AUTHORITY A ON(MR.A_CODE = A.A_CODE)
 		WHERE IM.IM_ID = #{id}
 	</select>
-	<update id="updateLoginInformation" parameterType="com.kh.workPeople.common.vo.UserImpl">
+	<update id="updateLoginInformation" parameterType="com.kh.workPeople.common.vo.MemberImpl">
 		UPDATE MEMBER
 		   SET M_LOGIN_FAIL_COUNT = 0
 		   <if test='isLock.equals("Y")'>

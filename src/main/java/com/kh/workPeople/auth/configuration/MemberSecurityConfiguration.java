@@ -11,20 +11,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.kh.workPeople.account.login.model.service.LoginService;
+import com.kh.workPeople.account.login.model.service.MemberLoginService;
 import com.kh.workPeople.auth.handler.MemberLoginFailureHandler;
 import com.kh.workPeople.auth.handler.MemberLoginSuccessHandler;
 
 @EnableWebSecurity
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class MemberSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
-	private LoginService loginService;
+	private MemberLoginService memberLoginService;
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UserSecurityConfiguration(LoginService loginService, PasswordEncoder passwordEncoder) {
-		this.loginService = loginService;
+	public MemberSecurityConfiguration(MemberLoginService memberLoginService, PasswordEncoder passwordEncoder) {
+		this.memberLoginService = memberLoginService;
 		this.passwordEncoder = passwordEncoder;
 	}
 	
@@ -54,8 +54,8 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.usernameParameter("id")
 				.passwordParameter("password")
 				.successForwardUrl("/main")
-				.successHandler(new MemberLoginSuccessHandler(loginService))
-				.failureHandler(new MemberLoginFailureHandler(loginService))
+				.successHandler(new MemberLoginSuccessHandler(memberLoginService))
+				.failureHandler(new MemberLoginFailureHandler(memberLoginService))
 			.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/account/member/logout"))
@@ -66,12 +66,12 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.rememberMe()
 				.rememberMeParameter("remember-me")
 				.tokenValiditySeconds(60*60*24*15)
-				.userDetailsService(loginService);
+				.userDetailsService(memberLoginService);
 	}
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(loginService).passwordEncoder(passwordEncoder);
+		auth.userDetailsService(memberLoginService).passwordEncoder(passwordEncoder);
 	}
 
 }

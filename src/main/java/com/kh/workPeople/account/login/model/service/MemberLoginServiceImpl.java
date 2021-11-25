@@ -14,16 +14,16 @@ import com.kh.workPeople.account.login.model.dao.LoginMapper;
 import com.kh.workPeople.common.vo.Authority;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.MemberRole;
-import com.kh.workPeople.common.vo.UserImpl;
+import com.kh.workPeople.common.vo.MemberImpl;
 
 
 @Service
-public class LoginServiceImpl implements LoginService {
+public class MemberLoginServiceImpl implements MemberLoginService {
 	
 	private LoginMapper loginMapper;
 	
 	@Autowired
-	public LoginServiceImpl(LoginMapper loginMapper) {
+	public MemberLoginServiceImpl(LoginMapper loginMapper) {
 		this.loginMapper = loginMapper;
 	}
 
@@ -49,7 +49,7 @@ public class LoginServiceImpl implements LoginService {
 				}
 			}
 		}
-		UserImpl user = new UserImpl(member.getId(), member.getPwd(), authorities);
+		MemberImpl user = new MemberImpl(member.getId(), member.getPwd(), authorities);
 		user.setDetails(member);
 		
 		return user;
@@ -61,7 +61,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public int updateLoginInformation(UserImpl userImpl) {
+	public int updateLoginInformation(MemberImpl userImpl) {
 		int result = loginMapper.updateLoginInformation(userImpl);
 		return result;
 	}
