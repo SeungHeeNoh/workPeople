@@ -11,18 +11,73 @@
     <result property="s_name" column="S_NAME"/>
 </resultMap>
 
-<select id="selectResumeStatusY" resultMap="simpleResume">
-    SELECT
-        R_NO,
-        R_ENROLL_DATE,
-        R_STATUS_YN,
-        BI_TITLE,
-        S_NAME
-    FROM RESUME
-    JOIN BASIC_INFO BI USING(R_NO)
-    JOIN SECTOR S ON (BI.SECTOR_NO = S.S_NO)
-    WHERE M_NO = #{ no }
-      AND R_STATUS_YN='Y'
-</select>
+    <select id="selectResumeStatusY" resultMap="simpleResume">
+        SELECT
+            R_NO,
+            R_ENROLL_DATE,
+            R_STATUS_YN,
+            BI_TITLE,
+            S_NAME
+        FROM RESUME
+        JOIN BASIC_INFO BI USING(R_NO)
+        JOIN SECTOR S ON (BI.SECTOR_NO = S.S_NO)
+        WHERE M_NO = #{ no }
+          AND R_STATUS_YN='Y'
+    </select>
+
+    <select id="applyCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM RESUME
+                 JOIN APPLY_COMPANY USING(R_NO)
+        WHERE M_NO = #{no}
+    </select>
+
+    <select id="resumeBrowseCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM RESUME
+                 JOIN RESUME_BROWSE USING(R_NO)
+        WHERE RB_BROWSE = 'recommened'
+          AND M_NO = #{no}
+
+    </select>
+
+    <select id="scrapCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM SCRAP
+        WHERE M_NO=#{no}
+
+    </select>
+
+    <select id="interestedCompanyCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM INTERESTED_COMPANY IC
+                 JOIN COMPANY_INFO USING (CI_NO)
+                 JOIN JOB_VACANCY USING (CI_NO)
+        WHERE IC.M_NO=#{no}
+
+    </select>
+
+    <select id="chatCount" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM CHAT_LOG
+        WHERE M_NO = #{no}
+
+    </select>
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

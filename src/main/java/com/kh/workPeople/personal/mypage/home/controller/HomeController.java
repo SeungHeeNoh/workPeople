@@ -27,21 +27,33 @@ public class HomeController {
 	@GetMapping("home")
 	public String mypageHome(Model model, @AuthenticationPrincipal MemberImpl user) {
 
+		int applyCount = homeService.applyCount(user.getNo());
+		int resumeBrowseCount = homeService.resumeBrowseCount(user.getNo());
+		int scrapCount = homeService.scrapCount(user.getNo());
+		int interestedCompanyCount = homeService.interestedCompanyCount(user.getNo());
+		int chatCount = homeService.chatCount(user.getNo());
+
 		Resume resume = homeService.selectResumeStatusY(user.getNo());
-
 		Date beforeDate = resume.getEnrollDate();
-
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
 		String afterDate = simpleDateFormat.format(beforeDate);
-//		System.out.println("beforeDate : "+ beforeDate);
-//		System.out.println("afterDate = "+afterDate);
-//		System.out.println(resume);
+
+
+		model.addAttribute("applyCount",applyCount);
+		model.addAttribute("resumeBrowseCount",resumeBrowseCount);
+		model.addAttribute("scrapCount",scrapCount);
+		model.addAttribute("interestedCompanyCount",interestedCompanyCount);
+		model.addAttribute("chatCount",chatCount);
+
 		model.addAttribute("resumeEnrollDate",afterDate);
 		model.addAttribute("resume",resume);
 
 		return "personal/mypage/home";
 	} 
-	
+
+
+
+
 
 
 
