@@ -31,6 +31,18 @@
 		<id property="name" column="A_NAME"/>
 		<id property="desc" column="A_DESC"/>
 	</resultMap>
+	<resultMap type="com.kh.workPeople.manager.model.vo.Manager" id="managerResultMap">
+		<id property="imNo" column="IM_NO"/>
+		<result property="imId" column="IM_ID"/>
+		<result property="imPwd" column="IM_PWD"/>
+		<result property="imName" column="IM_NAME"/>
+		<collection property="managerRoleList" resultMap="managerRoleResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.manager.model.vo.ManagerRole" id="managerRoleResultMap">
+		<id property="imNo" column="REF_MANAGER_NO"/>
+		<id property="aCode" column="REF_AUTHORITY_CODE"/>
+		<association property="authority" resultMap="authorityResultMap"/>
+	</resultMap>
 	<select id="findMemberById" resultMap="loginMemberResultMap">
 		SELECT 
 		      M.M_NO
@@ -60,4 +72,40 @@
 		 LEFT JOIN AUTHORITY A ON(MR.A_CODE = A.A_CODE)
 		WHERE M.M_ID = #{userId}
 	</select>
+	<select id="findManagerById" resultMap="managerResultMap">
+		SELECT 
+		      IM.IM_NO
+		    , IM.IM_ID
+		    , IM.IM_PWD
+		    , IM.IM_NAME
+		    , MR.IM_NO REF_MANAGER_NO
+		    , MR.A_CODE REF_AUTHORITY_CODE
+		    , A.A_CODE
+		    , A.A_NAME
+		    , A.A_DESC
+		 FROM INFO_MANAGER IM
+		 LEFT JOIN MANAGER_ROLE MR ON(IM.IM_NO = MR.IM_NO)
+		 LEFT JOIN AUTHORITY A ON(MR.A_CODE = A.A_CODE)
+		WHERE IM.IM_ID = #{id}
+	</select>
+	<update id="updateLoginInformation" parameterType="com.kh.workPeople.common.vo.MemberImpl">
+		UPDATE MEMBER
+		   SET M_LOGIN_FAIL_COUNT = 0
+		   <if test='isLock.equals("Y")'>
+		     , M_IS_LOCK = 'N'
+		   </if>
+		     , M_LATEST_TRY_LOGIN_DATE = SYSDATE
+		 WHERE M_ID = #{id}
+	</update>
+	<update id="updateFailureCount" parameterType="string">
+		UPDATE MEMBER
+		   SET M_LOGIN_FAIL_COUNT = M_LOGIN_FAIL_COUNT + 1
+		 WHERE M_ID = #{id}
+	</update>
+	<update id="updateAccountLock" parameterType="string">
+		UPDATE MEMBER
+		   SET M_IS_LOCK = 'Y'
+		     , M_LATEST_TRY_LOGIN_DATE = SYSDATE
+		 WHERE M_ID = #{id}
+	</update>
 </mapper>

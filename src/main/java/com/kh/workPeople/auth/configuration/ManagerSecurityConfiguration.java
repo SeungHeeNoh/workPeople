@@ -1,8 +1,6 @@
 package com.kh.workPeople.auth.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -11,19 +9,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.kh.workPeople.account.login.model.service.LoginService;
+import com.kh.workPeople.account.login.model.service.ManagerLoginService;
+import com.kh.workPeople.auth.handler.ManagerLoginFailureHandler;
+import com.kh.workPeople.auth.handler.ManagerLoginSuccessHandler;
 
-@Order(1)
-@Configuration
 @EnableWebSecurity
-public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class ManagerSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
-	private LoginService loginService;
+	private ManagerLoginService managerLoginService;
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UserSecurityConfiguration(LoginService loginService, PasswordEncoder passwordEncoder) {
-		this.loginService = loginService;
+	public ManagerSecurityConfiguration(ManagerLoginService managerLoginService, PasswordEncoder passwordEncoder) {
+		this.managerLoginService = managerLoginService;
 		this.passwordEncoder = passwordEncoder;
 	}
 	
@@ -42,29 +40,26 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.anyRequest().permitAll()
+				.antMatchers("/manager/**").hasRole("ADMIN")
 			.and()
 				.formLogin()
-				.loginPage("/account/login")
+				.loginPage("/account/manager/login")
 				.usernameParameter("id")
 				.passwordParameter("password")
-				.successForwardUrl("/main")
+				.successForwardUrl("/")
+				.successHandler(new ManagerLoginSuccessHandler())
+				.failureHandler(new ManagerLoginFailureHandler())
 			.and()
 				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))
+				.logoutRequestMatcher(new AntPathRequestMatcher("/account/manager/logout"))
 				.deleteCookies("JESSIONID")
 				.invalidateHttpSession(true)
-				.logoutSuccessUrl("/main")
-			.and()
-				.rememberMe()
-				.rememberMeParameter("remember-me")
-				.tokenValiditySeconds(60*60*24*15)
-				.userDetailsService(loginService);
+				.logoutSuccessUrl("/main");
 	}
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(loginService).passwordEncoder(passwordEncoder);
+		auth.userDetailsService(managerLoginService).passwordEncoder(passwordEncoder);
 	}
 
 }
