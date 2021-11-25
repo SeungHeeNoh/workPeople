@@ -1,7 +1,7 @@
 package com.kh.workPeople.personal.mypage.resumeBrowseCompany.controller;
 
+import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.common.vo.ResumeBrowseCompany;
-import com.kh.workPeople.common.vo.UserImpl;
 import com.kh.workPeople.personal.mypage.resumeBrowseCompany.model.service.ResumeBrowseCompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("personal/mypage")
 public class ResumeBrowseCompanyController {
 
-    private ResumeBrowseCompanyService resumeBrowseCompanyService;
+    private final ResumeBrowseCompanyService resumeBrowseCompanyService;
 
     @Autowired
     public ResumeBrowseCompanyController(ResumeBrowseCompanyService resumeBrowseCompanyService) {
@@ -26,7 +26,7 @@ public class ResumeBrowseCompanyController {
     }
 
     @GetMapping("resumeBrowseCompany")
-    public String resumeBrowseCompany(Model model, @AuthenticationPrincipal UserImpl user){
+    public String resumeBrowseCompany(Model model, @AuthenticationPrincipal MemberImpl user){
 
         List<ResumeBrowseCompany> resumeBrowseCompanyList = resumeBrowseCompanyService.selectResumeBrowseCompanyList(user.getNo());
 

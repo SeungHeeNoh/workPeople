@@ -1,7 +1,7 @@
 package com.kh.workPeople.personal.mypage.scrap.controller;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
-import com.kh.workPeople.common.vo.UserImpl;
+import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.personal.mypage.scrap.model.service.ScrapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/personal/mypage")
 public class ScrapController {
 
-	private ScrapService scrapService;
+	private final ScrapService scrapService;
 
 	@Autowired
 	public ScrapController(ScrapService scrapService) {
@@ -26,7 +26,7 @@ public class ScrapController {
 	}
 
 	@GetMapping("scrap")
-	public String scrap(Model model, @AuthenticationPrincipal UserImpl user) {
+	public String scrap(Model model, @AuthenticationPrincipal MemberImpl user) {
 
 		List<JobVacancyLookUp> jobVacancyLookUpList = scrapService.jobVacancyLookUpList(user.getNo());
 

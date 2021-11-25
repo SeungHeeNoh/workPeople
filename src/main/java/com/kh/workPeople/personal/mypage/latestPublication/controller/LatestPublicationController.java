@@ -1,7 +1,7 @@
 package com.kh.workPeople.personal.mypage.latestPublication.controller;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
-import com.kh.workPeople.common.vo.UserImpl;
+import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.personal.mypage.latestPublication.model.service.LatestPublicationService;
 import org.apache.ibatis.javassist.Loader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/personal/mypage")
 public class LatestPublicationController {
 
-    private LatestPublicationService latestPublicationService;
+    private final LatestPublicationService latestPublicationService;
 
     @Autowired
     public LatestPublicationController(LatestPublicationService latestPublicationService) {
@@ -28,7 +28,7 @@ public class LatestPublicationController {
     }
 
     @GetMapping("latestPublication")
-    public String latestPublication(Model model, @AuthenticationPrincipal UserImpl user){
+    public String latestPublication(Model model, @AuthenticationPrincipal MemberImpl user){
 
         List<JobVacancyLookUp> jobVacancyLookUpList = latestPublicationService.jobVacancyLookUpList(user.getNo());
 

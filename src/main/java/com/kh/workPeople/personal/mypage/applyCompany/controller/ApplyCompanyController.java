@@ -1,7 +1,7 @@
 package com.kh.workPeople.personal.mypage.applyCompany.controller;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
-import com.kh.workPeople.common.vo.UserImpl;
+import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.personal.mypage.applyCompany.model.service.ApplyCompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/personal/mypage")
 public class ApplyCompanyController {
 
-	private ApplyCompanyService applyCompanyService;
+	private final ApplyCompanyService applyCompanyService;
 
 	@Autowired
 	public ApplyCompanyController(ApplyCompanyService applyCompanyService) {
@@ -26,7 +26,7 @@ public class ApplyCompanyController {
 	}
 
 	@GetMapping("applyCompany")
-	public String applyCompany(Model model, @AuthenticationPrincipal UserImpl user) {
+	public String applyCompany(Model model, @AuthenticationPrincipal MemberImpl user) {
 
 		int applyCount = applyCompanyService.applyCount(user.getNo());
 		int passCount = applyCompanyService.passCount(user.getNo());

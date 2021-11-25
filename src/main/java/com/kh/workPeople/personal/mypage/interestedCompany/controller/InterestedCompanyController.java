@@ -1,7 +1,7 @@
 package com.kh.workPeople.personal.mypage.interestedCompany.controller;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUpSimple;
-import com.kh.workPeople.common.vo.UserImpl;
+import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.personal.mypage.interestedCompany.model.service.InterestedCompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/personal/mypage")
 public class InterestedCompanyController {
 
-    public InterestedCompanyService interestedCompanyService;
+    private final InterestedCompanyService interestedCompanyService;
 
     @Autowired
     public InterestedCompanyController(InterestedCompanyService interestedCompanyService) {
@@ -24,7 +24,7 @@ public class InterestedCompanyController {
     }
 
     @GetMapping("interestedCompany")
-    public String interestedCompany(Model model, @AuthenticationPrincipal UserImpl user){
+    public String interestedCompany(Model model, @AuthenticationPrincipal MemberImpl user){
 
         List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList = interestedCompanyService.jobVacancyLookUpSimpleList(user.getNo());
 
