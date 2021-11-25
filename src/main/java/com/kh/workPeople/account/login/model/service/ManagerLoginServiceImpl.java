@@ -30,6 +30,7 @@ public class ManagerLoginServiceImpl implements ManagerLoginService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		Manager manager = loginMapper.findManagerById(username);
+
 		if(manager == null) {
 			throw new UsernameNotFoundException("");
 		}
