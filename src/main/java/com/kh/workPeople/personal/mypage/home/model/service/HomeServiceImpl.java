@@ -47,9 +47,9 @@ public class HomeServiceImpl implements HomeService {
     @Override
     public int chatCount(int no) {
         return homeMapper.chatCount(no);
-    }
-    @Override
+
     public List<JobVacancyLookUp> recommenedJobVacancyList(String elName) {
         return homeMapper.recommenedJobVacancyList(elName);
+
     }
 }

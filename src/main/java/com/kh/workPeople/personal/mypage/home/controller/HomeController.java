@@ -35,14 +35,14 @@ public class HomeController {
 		int interestedCompanyCount = homeService.interestedCompanyCount(user.getNo());
 		int chatCount = homeService.chatCount(user.getNo());
 
-   		model.addAttribute("applyCount",applyCount);
+    model.addAttribute("applyCount",applyCount);
 		model.addAttribute("resumeBrowseCount",resumeBrowseCount);
 		model.addAttribute("scrapCount",scrapCount);
 		model.addAttribute("interestedCompanyCount",interestedCompanyCount);
 		model.addAttribute("chatCount",chatCount);
 
-
 		Resume resume = homeService.selectResumeStatusY(user.getNo());
+  
 		String elName = null;
 
 		if(resume != null) {
