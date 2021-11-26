@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class HomeServiceImpl implements HomeService {
 
-    private final HomeMapper homeMapper;
+    private HomeMapper homeMapper;
 
     @Autowired
     public HomeServiceImpl(HomeMapper homeMapper){
@@ -25,31 +25,7 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public int applyCount(int no) {
-        return homeMapper.applyCount(no);
-    }
-
-    @Override
-    public int resumeBrowseCount(int no) {
-        return homeMapper.resumeBrowseCount(no);
-    }
-
-    @Override
-    public int scrapCount(int no) {
-        return homeMapper.scrapCount(no);
-    }
-
-    @Override
-    public int interestedCompanyCount(int no) {
-        return homeMapper.interestedCompanyCount(no);
-    }
-
-    @Override
-    public int chatCount(int no) {
-        return homeMapper.chatCount(no);
-
     public List<JobVacancyLookUp> recommenedJobVacancyList(String elName) {
         return homeMapper.recommenedJobVacancyList(elName);
-
     }
 }

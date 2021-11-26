@@ -11,17 +11,6 @@ public interface HomeMapper {
 
     Resume selectResumeStatusY(int no);
 
-    int applyCount(int no);
-
-    int resumeBrowseCount(int no);
-
-    int scrapCount(int no);
-
-    int interestedCompanyCount(int no);
-
-    int chatCount(int no);
-
     List<JobVacancyLookUp> recommenedJobVacancyList(String elName);
-
 
 }

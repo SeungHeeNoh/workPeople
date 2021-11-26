@@ -29,20 +29,8 @@ public class HomeController {
 	@GetMapping("home")
 	public String mypageHome(Model model, @AuthenticationPrincipal MemberImpl user) {
 
-		int applyCount = homeService.applyCount(user.getNo());
-		int resumeBrowseCount = homeService.resumeBrowseCount(user.getNo());
-		int scrapCount = homeService.scrapCount(user.getNo());
-		int interestedCompanyCount = homeService.interestedCompanyCount(user.getNo());
-		int chatCount = homeService.chatCount(user.getNo());
-
-    model.addAttribute("applyCount",applyCount);
-		model.addAttribute("resumeBrowseCount",resumeBrowseCount);
-		model.addAttribute("scrapCount",scrapCount);
-		model.addAttribute("interestedCompanyCount",interestedCompanyCount);
-		model.addAttribute("chatCount",chatCount);
-
 		Resume resume = homeService.selectResumeStatusY(user.getNo());
-  
+
 		String elName = null;
 
 		if(resume != null) {
@@ -61,7 +49,6 @@ public class HomeController {
 		return "personal/mypage/home";
 	}
 	
-
 
 
 
