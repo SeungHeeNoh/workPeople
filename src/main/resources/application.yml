@@ -1,14 +1,0 @@
-# server port config
-server:  port: 8800
-  
-# oracle driver config
-spring:
-  datasource:
-    driver-class-name: oracle.jdbc.OracleDriver 
-    url: jdbc:oracle:thin:@localhost:1521:xe
-    username: WORKPEOPLE
-    password: WORKPEOPLE
-
-#mybatis config
-mybatis:
-  mapper-locations: mappers/**/*.xml

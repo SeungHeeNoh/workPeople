@@ -1,0 +1,21 @@
+# server port config
+server:
+  port: 8800
+  
+# oracle driver config
+spring:
+  datasource:
+    driver-class-name: {DRIVER-CLASS-NAME}
+    url: jdbc:oracle:thin: {URL}
+    username: {USERNAME}
+    password: {PASSWORD}
+
+#mybatis config
+mybatis:
+  mapper-locations: mappers/**/*.xml
+
+#mail config
+mail:
+  gmail:
+    username: {USERNAME}
+    password: {PASSWORD}
