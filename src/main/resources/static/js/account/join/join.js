@@ -171,7 +171,7 @@
 								}
 							}
 
-							xhr2.open("GET", "/account/join/checkRegisterNumber/" + registerNumber);
+							xhr2.open("GET", "/account/join/check-register-number/" + registerNumber);
 							xhr2.setRequestHeader("Content-type", "application/json;");
 							xhr2.responseType = "json";
 							xhr2.send();
@@ -212,7 +212,7 @@
 			}
 		}
 
-		xhr.open("GET", "/account/join/checkId/" + id);
+		xhr.open("GET", "/account/join/check-id/" + id);
 		xhr.responseType = "json";
 		xhr.send();
 	}
@@ -305,7 +305,7 @@
 			}
 		}
 
-		xhr.open("GET", "/account/join/sendMail/" + email);
+		xhr.open("GET", "/account/join/send-mail/" + email);
 		xhr.responseType = "json";
 		xhr.send();
 	}
