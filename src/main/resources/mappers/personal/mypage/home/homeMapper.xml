@@ -110,8 +110,9 @@
         LEFT JOIN APPLY_COMPANY USING (JV_NO)
         LEFT OUTER JOIN RESUME_BROWSE RB USING (CI_NO)
         LEFT OUTER JOIN RESUME R ON (R.R_NO = RB.R_NO)
+        WHERE JV_PERIOD_END - SYSDATE > 0
         <if test="elName != null">
-            WHERE S_NAME = #{elName}
+            AND S_NAME = #{elName}
         </if>
         ORDER BY 1
     </select>
