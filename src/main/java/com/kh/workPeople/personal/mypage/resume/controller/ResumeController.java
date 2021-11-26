@@ -56,15 +56,25 @@ public class ResumeController {
 			model.addAttribute("applyCompanyCount",applyCompanyCount);
 		}
 
-
 //		System.out.println(resumeList);
 //		System.out.println(rep);
 		model.addAttribute("resumeList",resumeList);
 		model.addAttribute("repExist",rep);
 		model.addAttribute("repTitle",repTitle);
 
-
 		return "personal/mypage/resumeManagement";
+	}
+
+	@GetMapping("resumeLookUp")
+	public void resumeLookUp(){}
+
+	@GetMapping("resumeEnroll")
+	public String resumeEnroll(Model model, @AuthenticationPrincipal MemberImpl user){
+
+
+
+
+		return "personal/mypage/resumeEnroll";
 	}
 
 
@@ -72,9 +82,5 @@ public class ResumeController {
 
 
 
-	@GetMapping("resumeLookUp")
-	public void resumeLookUp(){}
 
-	@GetMapping("resumeEnroll")
-	public void resumeEnroll(){}
 }
