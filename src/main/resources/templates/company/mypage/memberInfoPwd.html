@@ -8,6 +8,7 @@
     <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:include="common/header.html"></div>
     <div id="wrap">
         <div id="container">
             <!-- 사이드바 -->
@@ -27,11 +28,11 @@
                     </div>
             
                     <div class="pwChkWrap">
-                        <form id="frmMemberAuth" method="post" action="">
+                        <form id="frmMemberAuth" method="post" th:action="@{/company/mypage/pwdCheck}">
                                 <div class="pwChk">
                                     <dl class="idBx">
                                         <dt>아이디</dt>
-                                        <dd>workpeople</dd>
+                                        <dd th:text="${member.id}"></dd>
                                     </dl>
                                     <div class="pwBx">
                                         <div class="elWrap devElWrap">
@@ -40,10 +41,10 @@
                                                 <input type="password" id="devAuthPassword" class="inpDefault devAnimPh" name="password" required>
                                             </div>
                                         </div>
-                                        <button type="button" class="infoBtnBg infoBgChk green" id="devAuthMember"><span>확인</span></button>
+                                        <button type="submit" class="infoBtnBg infoBgChk green" id="devAuthMember"><span>확인</span></button>
                                     </div>
                                 </div>
-                                <p class="ntcTx">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 입력해 주세요.</p>
+                              <p class="ntcTx">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 입력해 주세요.</p>
                         </form>
                     </div>
                 </div>
@@ -52,6 +53,7 @@
 
 
         </div>      
-    </div>  
+    </div> 
+<div th:include="common/footer.html"></div>     
 </body>
 </html>

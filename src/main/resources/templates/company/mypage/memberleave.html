@@ -8,6 +8,7 @@
     <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:include="common/header.html"></div>
     <div id="wrap">
         <div id="container">
             <form id="for" name="for" action="/help/leave" method="post">
@@ -53,7 +54,7 @@
             </form>
         </div>    
     </div>
-
+<div th:include="common/footer.html"></div>
     <script>
         $(document).ready(function(){
             $(".btnBlue").on("click", function(e){
@@ -67,7 +68,7 @@
                 } else {
                     if(confirm("회원 탈퇴를 하시겠습니까?")){
                         document.forms.for.submit();
-                        alert("회원 탈퇴가 완료되었습니다.");
+                        alert("회원 탈퇴가 완료되었습니다.\n그동안 이용해 주셔서 감사합니다.");
                         return true;
                     }
                 }

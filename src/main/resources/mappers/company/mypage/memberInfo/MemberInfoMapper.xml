@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.workPeople.company.mypage.memberInfo.dao.MemberInfoMapper">
+	
+	<update id="updateInfo" parameterType="com.kh.workPeople.common.vo.Member">
+		UPDATE MEMBER
+		   SET M_PHONE = #{phone}	
+		     , M_EMAIL = #{email}	
+	     WHERE M_NO = #{no}	
+	</update>
+	<update id="updatePwd" parameterType="com.kh.workPeople.common.vo.Member">
+		UPDATE MEMBER
+		   SET M_PWD = #{pwd}	
+	     WHERE M_NO = #{no}	
+	</update>
+	
+	
+</mapper>
