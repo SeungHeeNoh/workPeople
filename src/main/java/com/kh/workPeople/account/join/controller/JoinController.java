@@ -87,4 +87,11 @@ public class JoinController {
 
 		return map;
 	}
+	
+	@GetMapping(value="/sendMail/{email}")
+	@ResponseBody
+	public Map<String, String> sendMail(@PathVariable String email) {
+		return joinService.sendMail(email);
+	}
+
 }

@@ -1,6 +1,7 @@
 package com.kh.workPeople.account.join.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.CompanyType;
@@ -20,4 +21,7 @@ public interface JoinService {
 	int join(Member member);
 	
 	int join(Member member, CompanyInformation companyInformation);
+
+	Map<String, String> sendMail(String mail);
+
 }

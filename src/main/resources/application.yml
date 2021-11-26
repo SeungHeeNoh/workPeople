@@ -11,9 +11,4 @@ spring:
 
 #mybatis config
 mybatis:
-  mapper-locations: mappers/**/*.xml
-#loggin level(root level - 전역 설정)
-logging:
-  level:    root: info
-#loggin level (package level - 지역 설정)
-    '[com.kh.rest.book]': trace 
+  mapper-locations: mappers/**/*.xml

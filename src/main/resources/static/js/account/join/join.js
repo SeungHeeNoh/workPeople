@@ -8,6 +8,8 @@
 		form = content.querySelector("form"),
 		inputList = form.querySelectorAll(".join_row");
 
+	let code = "";
+
 	let joinRows = {};
 
 	inputList.forEach(function(joinRow) {
@@ -221,16 +223,29 @@
 				let inputId = button.closest(joinRow).querySelector("input").id;
 
 				if(button.classList.contains("send_email_button")) {
-					hideNotice(joinRows[inputId]["joinRow"]);
-
-					if(inputValidate.emailCheck(joinRows[inputId]["input"].value).length > 0) {
-						joinRows[inputId]["notice"].classList.add("show");
+					let text = inputValidate["emailCheck"](joinRows[inputId]["input"].value);
+					if(text.length > 0) {
+						deleteValidState(inputId, text);
 					} else {
-						joinRows[inputId]["notice"].classList.remove("show");
-						// 이메일 발송
+						if(confirm("인증 메일을 전송하시겠습니까?")) {
+							updateValidState(inputId);
+							joinRows[inputId]["input"].setAttribute("disabled", true);
+							sendMail(inputId, joinRows[inputId]["input"].value);
+						} else {
+							deleteValidState(inputId, "인증이 완료되지 않았습니다.");
+							deleteValidState("email_check", "인증이 완료되지 않았습니다.");
+							joinRows[inputId]["input"].removeAttribute("disabled");
+						}
 					}
 				} else if(button.classList.contains("email_check_button")) {
-					
+					if(code == joinRows[inputId]["input"].value) {
+						updateValidState(inputId);
+						joinRows[inputId]["input"].setAttribute("disabled", true);
+						joinRows[inputId]["joinRow"].querySelector("button").setAttribute("disabled", true);
+						alert("인증되었습니다.");
+					} else {
+						deleteValidState(inputId, "인증번호가 일치하지 않습니다.");
+					}
 				} else if(button.classList.contains("address_search_button")) {
 					new daum.Postcode({
 						oncomplete: function(data) {
@@ -256,6 +271,40 @@
 				}
 			}
 		}
+	}
+
+	function sendMail(inputId, email) {
+		let isRun = false;
+
+		if(isRun) return;
+		isRun = true;
+
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4) {
+				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+					if(xhr.response.message) {
+						if(xhr.response.message == "메일을 보내는 데에 실패했습니다.") {
+							deleteValidState(inputId, xhr.response.message);
+							joinRows[inputId]["input"].removeAttribute("disabed");
+						} else {
+							updateValidState(inputId);
+							alert(xhr.response.message);
+							code = xhr.response.certString;
+							joinRows["email_check"]["input"].removeAttribute("disabled");
+							joinRows["email_check"]["input"].value = "";
+							joinRows["email_check"]["joinRow"].querySelector("button").removeAttribute("disabled");
+						}
+					}
+				} else {
+					console.log("ajax 통신 실패");
+				}
+			}
+		}
+
+		xhr.open("GET", "/account/join/sendMail/" + email);
+		xhr.responseType = "json";
+		xhr.send();
 	}
 
 	function updateValidState(id) {
