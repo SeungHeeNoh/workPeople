@@ -33,9 +33,7 @@ public class HomeController {
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
 		String afterDate = simpleDateFormat.format(beforeDate);
-//		System.out.println("beforeDate : "+ beforeDate);
-//		System.out.println("afterDate = "+afterDate);
-//		System.out.println(resume);
+		
 		model.addAttribute("resumeEnrollDate",afterDate);
 		model.addAttribute("resume",resume);
 
