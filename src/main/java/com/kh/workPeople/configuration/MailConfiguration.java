@@ -2,23 +2,31 @@ package com.kh.workPeople.configuration;
 
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-
 @Configuration
+@PropertySource("classpath:application.yml")
 public class MailConfiguration {
+	
+	@Value("${mail.gmail.username}")
+	private String username;
+	
+	@Value("${mail.gmail.password}")
+	private String password; 
 
 	@Bean
-	public static JavaMailSender mailSender() {
+	public JavaMailSender mailSender() {
 
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost("smtp.gmail.com");
-		mailSender.setUsername("workPeople1210@gmail.com");
-		mailSender.setPassword("workPeople1210!!");
-		
+		mailSender.setUsername(username);
+		mailSender.setPassword(password);
+		mailSender.setPort(587);
 		
 		Properties props = new Properties();
 		props.put("mail.transport.protocol", "smtp");
