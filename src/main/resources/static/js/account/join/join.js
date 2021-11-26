@@ -6,9 +6,11 @@
 
 	let content = document.querySelector(".content"),
 		form = content.querySelector("form"),
-		inputList = form.querySelectorAll(".join_row");
+		inputList = form.querySelectorAll(".join_row")
+		timerSpan = form.querySelector("div.timer.join_row").querySelector(".timer");
 
-	let code = "";
+	let code = "",
+		timer;
 
 	let joinRows = {};
 
@@ -231,6 +233,7 @@
 							updateValidState(inputId);
 							joinRows[inputId]["input"].setAttribute("disabled", true);
 							sendMail(inputId, joinRows[inputId]["input"].value);
+							hideNotice(joinRows["email_check"]["joinRow"]);
 						} else {
 							deleteValidState(inputId, "인증이 완료되지 않았습니다.");
 							deleteValidState("email_check", "인증이 완료되지 않았습니다.");
@@ -240,8 +243,7 @@
 				} else if(button.classList.contains("email_check_button")) {
 					if(code == joinRows[inputId]["input"].value) {
 						updateValidState(inputId);
-						joinRows[inputId]["input"].setAttribute("disabled", true);
-						joinRows[inputId]["joinRow"].querySelector("button").setAttribute("disabled", true);
+						clearCertStringTimer(true);
 						alert("인증되었습니다.");
 					} else {
 						deleteValidState(inputId, "인증번호가 일치하지 않습니다.");
@@ -294,6 +296,7 @@
 							joinRows["email_check"]["input"].removeAttribute("disabled");
 							joinRows["email_check"]["input"].value = "";
 							joinRows["email_check"]["joinRow"].querySelector("button").removeAttribute("disabled");
+							startCertStringTimer(180);
 						}
 					}
 				} else {
@@ -305,6 +308,40 @@
 		xhr.open("GET", "/account/join/sendMail/" + email);
 		xhr.responseType = "json";
 		xhr.send();
+	}
+
+	function startCertStringTimer(count) {
+		let minutes, seconds;
+
+		timerSpan.classList.add("show");
+
+		clearInterval(timer);
+		timer = setInterval(function() {
+			minutes = parseInt(count/60, 10);
+			seconds = parseInt(count% 60, 10);
+
+			minutes = "0" + minutes;
+			seconds = seconds < 10 ? "0" + seconds : seconds;
+			timerSpan.innerHTML = minutes + ":" + seconds;
+
+			if(--count < 0) {
+				clearCertStringTimer(false);
+			}
+
+		}, 1000);
+	}
+
+	function clearCertStringTimer(status) {
+		clearInterval(timer);
+		timerSpan.classList.remove("show");
+		timerSpan.innerHTML = "03:00";
+		joinRows["email_check"]["input"].setAttribute("disabled", true);
+		joinRows["email_check"]["joinRow"].querySelector("button").setAttribute("disabled", true);
+
+		if(!status) {
+			deleteValidState("email_check", "인증 시간이 초과하였습니다.");
+		}
+		
 	}
 
 	function updateValidState(id) {
