@@ -66,7 +66,7 @@ public class JoinController {
 		return "redirect:/main";
 	}
 	
-	@GetMapping(value="/checkId/{id}")
+	@GetMapping(value="/check-id/{id}")
 	@ResponseBody
 	public Map<String, String> checkId(@PathVariable String id) {
 		Map<String, String> map = new HashMap<>();
@@ -77,7 +77,7 @@ public class JoinController {
 		return map;
 	}
 	
-	@GetMapping(value="/checkRegisterNumber/{registerNumber}", produces = "application/json; charset=UTF-8")
+	@GetMapping(value="/check-register-number/{registerNumber}", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public Map<String, String> checkRegisterNumber(@PathVariable String registerNumber) throws Exception {
 		Map<String, String> map = new HashMap<>();
@@ -87,4 +87,11 @@ public class JoinController {
 
 		return map;
 	}
+	
+	@GetMapping(value="/send-mail/{email}")
+	@ResponseBody
+	public Map<String, String> sendMail(@PathVariable String email) {
+		return joinService.sendMail(email);
+	}
+
 }
