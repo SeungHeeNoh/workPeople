@@ -1,6 +1,5 @@
 package com.kh.workPeople.personal.mypage.home.controller;
 
-import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.common.vo.Resume;
 import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/personal/mypage")
@@ -31,23 +29,18 @@ public class HomeController {
 
 		Resume resume = homeService.selectResumeStatusY(user.getNo());
 
-		String elName = null;
+		Date beforeDate = resume.getEnrollDate();
 
-		if(resume != null) {
-			Date beforeDate = resume.getEnrollDate();
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
-			String afterDate = simpleDateFormat.format(beforeDate);
-			elName = resume.getS_name();
-			model.addAttribute("resumeEnrollDate", afterDate);
-			model.addAttribute("resume", resume);
-		}
-
-		List<JobVacancyLookUp> jobVacancyLookUpList = homeService.recommenedJobVacancyList(elName);
-
-		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
+		String afterDate = simpleDateFormat.format(beforeDate);
+//		System.out.println("beforeDate : "+ beforeDate);
+//		System.out.println("afterDate = "+afterDate);
+//		System.out.println(resume);
+		model.addAttribute("resumeEnrollDate",afterDate);
+		model.addAttribute("resume",resume);
 
 		return "personal/mypage/home";
-	}
+	} 
 	
 
 
