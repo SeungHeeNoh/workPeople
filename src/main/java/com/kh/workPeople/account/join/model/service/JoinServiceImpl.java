@@ -8,6 +8,8 @@ import java.util.Random;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +24,7 @@ import com.kh.workPeople.common.vo.MemberRole;
 import com.kh.workPeople.common.vo.Sector;
 
 @Service()
+@PropertySource("classpath:application.yml")
 public class JoinServiceImpl implements JoinService {
 	
 	private final int CERT_LENGTH = 6; 
@@ -32,6 +35,8 @@ public class JoinServiceImpl implements JoinService {
 	private PasswordEncoder passwordEncoder;
 	private JoinMapper joinMapper;
 	private JavaMailSender mailSender;
+	@Value("${mail.gmail.username}")
+	private String username;
 
 	@Autowired
 	public JoinServiceImpl(JoinMapper joinMapper, PasswordEncoder passwordEncoder, JavaMailSender mailSender) {
@@ -93,7 +98,7 @@ public class JoinServiceImpl implements JoinService {
 		Map<String, String> map = new HashMap<>();
 		String certString = createCertString();
 		String to = email;
-		String from = "workPeople1210@gamil.com";
+		String from = username;
 		String subject = "work people 회원가입 인증 이메일입니다.";
 		String content = new StringBuffer().append("<h1>[이메일 인증]</h1>")
 										   .append("홈페이지를 방문해주셔서 감사합니다.<br><br>")
