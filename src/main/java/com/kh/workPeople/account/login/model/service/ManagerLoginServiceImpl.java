@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.kh.workPeople.account.login.model.dao.LoginMapper;
 import com.kh.workPeople.common.vo.Authority;
+import com.kh.workPeople.common.vo.Manager;
 import com.kh.workPeople.common.vo.ManagerImpl;
-import com.kh.workPeople.manager.model.vo.Manager;
-import com.kh.workPeople.manager.model.vo.ManagerRole;
+import com.kh.workPeople.common.vo.ManagerRole;
 
 @Service
 public class ManagerLoginServiceImpl implements ManagerLoginService {

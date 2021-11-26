@@ -65,7 +65,9 @@
     }
         </style>
 </head>
+<div th:include="common/header.html"></div>
 <div class="container">
+
  <div class="wrapper">
     <div id="sideNav">
         <div class="nav">
@@ -135,15 +137,17 @@
 	                                     <td th:if="${manager.managerRole}==3">총관리자</td>
 	                                     <td th:if="${manager.managerRole}==4">관리자</td>
 	                                     <td>
-	                                     	<input type="hidden" name="" value="">
+	                                     	<input type="hidden" name="managerRole" value="4">
 	                                         <a href="javascript:;" class="tag">변경</a>
 	                                     </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        
                         <div class="btn_box">
-                            <a href="javascript:;" class="add">관리자 추가</a>
+                            <a href="javascript:popShow('popup01');" class="add">관리자 추가</a>
+                            <input type="hidden" name="imNo" value="${manager.imNo}">
                         </div>
 
                       <div th:replace="common/paging.html"></div>
@@ -152,6 +156,7 @@
             </div>
         </div>
     </div>
+       <div th:include="common/footer.html"></div>
 </div>
 
 <div id="popup01">
@@ -160,31 +165,32 @@
         <form name="managerClassFrm">
            <div class="new_admin">
                <div class="title">관리자 직급 변경</div>
-               <input type="hidden" name="" value=""/>
-               <input type="hidden" name="" id=""/>
+               <input type="hidden" name="page" value=""/>
+               <input type="hidden" name="imNo" id="imNo"/>
                <div class="new_item">
-                   <label for="">계정</label>
-                   <input type="text" name="" id="" disabled>
+                   <label for="imId">계정</label>
+                   <input type="text" name="imId" id="imId" disabled>
                </div>
                <div class="new_item">
-                   <label for="">이름</label>
-                   <input type="text" name="" id="" disabled>
+                   <label for="imName">이름</label>
+                   <input type="text" name="imName" id="imName" disabled>
                </div>
                 <div class="new_item">
-                    <label for="">직급</label>
-                    <select name="" id="">
-                        <option value="">관리자</option>
-                        <option value="">총관리자</option>
+                    <label for="${manager.managerRole}">직급</label>
+                    <select name="mClass" id="mClass">
+                        <option value="${manager.managerRole}==4}">관리자</option>
+                        <option value="${manager.managerRole}==3}">총관리자</option>
                     </select>
                 </div>
            </div>
        </form>
        <div class="new_btn_box">
-           <a href="javascript:;" class="ok">등록하기</a>
-           <a href="javascript:popHide('');" class="cancle">취소하기</a>
+           <a href="javascript:mcFrm;" class="ok">등록하기</a>
+           <a href="javascript:popHide('popup01');" class="cancle">취소하기</a>
        </div>
     </div>
 </div>
+
 
 <div id="popup02">
     <div class="dim"></div>
@@ -193,20 +199,20 @@
             <div class="new_admin">
                 <div class="title">신규 관리자 추가</div>
                 <div class="new_item">
-                    <label for="">계정</label>
+                    <label for="imId">계정</label>
                     <input type="text" name="imId" id="imId">
                     <a href="javascript:;" class="idCheck">중복확인</a>
                 </div>
                 <div class="new_item">
-                    <label for="">비밀번호</label>
+                    <label for="imPwd">비밀번호</label>
                     <input type="password" name="imPwd" id="imPwd">
                 </div>
                 <div class="new_item">
-                    <label for="">비밀번호 확인</label>
+                    <label for="imPwd2">비밀번호 확인</label>
                     <input type="password" name="imPwd2" id="imPwd2">
                 </div>
                 <div class="new_item">
-                    <label for="">이름</label>
+                    <label for="imName">이름</label>
                     <input type="text" name="imName" id="imName">
                 </div>
             </div>
@@ -216,34 +222,34 @@
                 <a href="javascript:;" class="ok">등록하기</a>
                 <a href="javascript:popHide('');" class="cancle">취소하기</a>
             </div>
-           
     </div>
 </div>
+
 
 <script>
 
 let regCheck = false;
 // 아이디 중복체크
 function idCheck(){
-	let mId = $('#mId');
+	let imId = $('#imId');
 	//console.log(mId.val());
 	
-	if(mId.val().length >= 1){
+	if(imId.val().length >= 1){
 		$.ajax({
 			url : "${contextPath}/admin/idCheck",
 			type : "post",
-			data : {mId : mId.val()},
+			data : {imId : imId.val()},
 			success : function(item){
 				if(item != 0){
 					// 계정 생성불가능
-					alert(mId.val() + "는 이미 존재하는 계정입니다.");
-					mId.attr('readonly', false);
-					mId.select();
+					alert(imId.val() + "는 이미 존재하는 계정입니다.");
+					imId.attr('readonly', false);
+					imId.select();
 					regCheck = false;
 				}else{
 					// 계정생성 가능
-					alert(mId.val() + "의 계정이 사용가능합니다.");
-					mId.attr('readonly', true);
+					alert(imId.val() + "의 계정이 사용가능합니다.");
+					imId.attr('readonly', true);
 					regCheck = true;
 					
 				}
@@ -251,7 +257,7 @@ function idCheck(){
 		})
 	}else{
 		alert("계정을 입력해주세요!");
-		mId.select();
+		imId.select();
 	}
 	
 	
@@ -259,10 +265,9 @@ function idCheck(){
 
 // 계정생성
 function mCreate(){
-	let mId = $('#mId');
-	let mPwd1 = $("#mPwd1");
-	let mPwd2 = $("#mPwd2");
-	let mPhone = $("#mPhone");
+	let imId = $('#imId');
+	let imPwd1 = $("#imPwd1");
+	let imPwd2 = $("#imPwd2");
 	if(!regCheck){
 		// 중복확인을 하지않아 값이 false일시 계정생성 불가능
 		alert("계정 중복확인 해주세요!");
@@ -271,23 +276,18 @@ function mCreate(){
 	}
 	
 	//비밀번호, 비밀번호 확인 값이 같은지 확인
-	if((mPwd1.val() !== mPwd2.val()) && mPwd1.val() != 0 && mPwd2.val() != 0){
+	if((imPwd1.val() !== imPwd2.val()) && imPwd1.val() != 0 && imPwd2.val() != 0){
 		alert("비밀번호 값을 확인해주세요!");
 		mPwd2.select();
 		return;
 	}
 	
-	// 휴대폰 번호 입력하였는지 확인
-	if(mPhone.val() < 0){
-		alert("휴대폰 번호를 입력해주세요!");
-		mPhone.select();
-		return; 
-	}
 	
 	document.forms.newManagerFrm.method = "post";
-	document.forms.newManagerFrm.action = "${contextPath}/admin/manager/create";
+	document.forms.newManagerFrm.action = "@{/manager/managerCreate}";
 	document.forms.newManagerFrm.submit();
 	
+
 	
 }
 

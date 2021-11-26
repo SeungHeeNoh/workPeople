@@ -10,6 +10,22 @@
     <result property="title" column="BI_TITLE"/>
     <result property="s_name" column="S_NAME"/>
 </resultMap>
+  
+ <resultMap id="jobVacancy" type="com.kh.workPeople.common.vo.JobVacancyLookUp">
+      <id property="jvNo" column="JV_NO"/>
+      <result property="jvTitle" column="JV_TITLE"/>
+      <result property="jvAddress" column="JV_ADDRESS"/>
+      <result property="jvPeriodEnd" column="JV_PERIOD_END"/>
+      <result property="mName" column="M_NAME"/>
+      <result property="elName" column="EL_NAME"/>
+      <result property="sName" column="S_NAME"/>
+      <result property="acDate" column="AC_DATE"/>
+      <result property="rbDate" column="RB_DATE"/>
+      <result property="acDateFormat" column="AC_DATE_FORMAT"/>
+      <result property="rbDateFormat" column="RB_DATE_FORMAT"/>
+      <result property="jvPeriodEndFormat" column="JV_PERIOD_END_FORMAT"/>
+  </resultMap>
+
 
     <select id="selectResumeStatusY" resultMap="simpleResume">
         SELECT
@@ -68,16 +84,51 @@
         WHERE M_NO = #{no}
 
     </select>
+   
+<select id="selectResumeStatusY" resultMap="simpleResume">
+    SELECT
+        R_NO,
+        R_ENROLL_DATE,
+        R_STATUS_YN,
+        BI_TITLE,
+        S_NAME
+    FROM RESUME
+    JOIN BASIC_INFO BI USING(R_NO)
+    JOIN SECTOR S ON (BI.SECTOR_NO = S.S_NO)
+    WHERE M_NO = #{ no }
+      AND R_STATUS_YN='Y'
+</select>
 
+    <select id="recommenedJobVacancyList" resultMap="jobVacancy">
+        SELECT
+            DISTINCT
+            JV_NO
+           , JV_TITLE
+           , JV_ADDRESS
+           , JV_PERIOD_END
+           , M_NAME
+           , EL_NAME
+           , S_NAME
+           , AC_DATE
+           , RB_DATE
+           , TO_CHAR(TO_DATE(JV_PERIOD_END,'YYYY.MM.dd')) JV_PERIOD_END_FORMAT
+           , TO_CHAR(TO_DATE(AC_DATE,'YYYY.MM.dd')) AC_DATE_FORMAT
+           , TO_CHAR(TO_DATE(RB_DATE,'YYYY.MM.dd')) RB_DATE_FORMAT
 
-
-
-
-
-
-
-
-
-
+        FROM JOB_VACANCY JV
+         JOIN COMPANY_INFO USING(CI_NO)
+         JOIN MEMBER M USING(M_NO)
+         JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
+         JOIN EXPERIENCE_LEVEL EL ON(JVEL.EL_NO=EL.EL_NO)
+         JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
+         JOIN SECTOR S ON(RI.S_NO=S.S_NO)
+         LEFT JOIN APPLY_COMPANY USING (JV_NO)
+         LEFT OUTER JOIN RESUME_BROWSE RB USING (CI_NO)
+         LEFT OUTER JOIN RESUME R ON (R.R_NO = RB.R_NO)
+        <if test="elName != null">
+            WHERE S_NAME = #{elName}
+        </if>
+        ORDER BY 1
+    </select>
 
 </mapper>

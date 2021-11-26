@@ -6,8 +6,10 @@
     <link rel="stylesheet" th:href="@{/css/common/common.css}">
     <link rel="stylesheet" th:href="@{/css/company/mypage/memberInfoUpdate.css}">
     <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script th:src="@{/js/company/mypage/memberInfoUpdate.js}"></script>
 </head>
 <body>
+<div th:include="common/header.html"></div>
     <div id="wrap">
         <div id="container">
             <!-- 사이드바 -->
@@ -23,8 +25,8 @@
             <div id="content"> 
                 <div class="infoContent memberContent">
                     <div class="memberMngWrap">
-                        <form id="update_form" method="post" action="">
-                            <input type="hidden" value="" id="" name="id">
+                        <form id="update_form" method="post" th:action="@{/company/mypage/memberInfoUpdate}">
+                        	<input type="hidden" name="no" th:value="${member.no}">
                                 <div class="artMemberMng">
                                     <h3 class="info_hd_3">회원 정보 관리 <span class="point"><em>*</em> 필수정보</span></h3>
                                     <div class="infoTbBx">
@@ -32,7 +34,7 @@
                                             <div class="tbCell">
                                                 <dl class="tbIpt">
                                                     <dt>아이디 <span class="point">*<span class="blind">필수정보</span></span></dt>
-                                                    <dd>rkskek012</dd>
+                                                    <dd th:text="${member.id}"></dd>
                                                 </dl>
                                             </div>
                                         </div>
@@ -41,7 +43,7 @@
                                             <div class="elWrap">
                                                 <div class="schInpType">
                                                     <label class="ph" for="lb_pw">비밀번호 <span class="point">*</span></label>
-                                                    <input type="password" id="lb_pw" class="inpDefault" name="" value="******" disabled="" required>
+                                                    <input type="password" id="lb_pw" class="inpDefault" name="" th:value="${member.pwd}" disabled="" required>
                                                 </div>
                                             </div>
                                             <button type="button" class="infoBtnBd infoBtnPw" id="devBtnChangePwd"><span>비밀번호 변경</span></button>
@@ -50,10 +52,9 @@
                                         <div class="tbRow tbPw devPwdChangeArea" style="display: none;">
                                             <div class="tbBx">
                                                 <div class="elWrap devElWrap ok">
-                                                    <!--[개발] input 선택시 on 추가, 입력 완료시 .ok 추가, 에러인 경우 .error 추가 -->
                                                     <div class="schInpType">
                                                         <label class="ph" for="devNewPwd_1">새로운 비밀번호 <span class="point">*<span class="blind">필수정보</span></span></label>
-                                                        <input type="password" id="devNewPwd_1" class="inpDefault devPwdField devAnimPh pw" name="Password" minlength="8" maxlength="16" style="padding-left: 150px;">
+                                                        <input type="password" id="devNewPwd_1" class="inpDefault devPwdField devAnimPh pw" name="pwd" minlength="8" maxlength="16" style="padding-left: 150px;">
                                                     </div>
                                                 </div>
                                                 <span class="notice check_notice" style="display: none;">비밀번호는 8~16자리 영문 대소문자, 숫자, 특수문자로 이루어져야 합니다.</span>
@@ -80,7 +81,7 @@
                                                     <div class="elWrap devElWrap ok">
                                                         <div class="schInpType">
                                                             <label class="ph" for="phone">가입자 전화번호 <span class="point">*</span></label>
-                                                            <input type="tel" id="phone" class="inpDefault devAnimPh" name="phone" value="" maxlength="11" pattern="[0-9]+" required>
+                                                            <input type="tel" id="phone" class="inpDefault devAnimPh" name="phone" th:value="${member.phone}" maxlength="15" style="padding-left: 150px;" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -90,66 +91,26 @@
                                                     <div class="elWrap devElWrap ok">
                                                         <div class="schInpType">
                                                             <label class="ph" for="email">가입자 이메일 <span class="point">*</span></label>
-                                                            <input type="email" id="email" class="inpDefault devAnimPh" name="email" value="tjwjd731@naver.com" maxlength="50" required>
+                                                            <input type="email" id="email" class="inpDefault devAnimPh" name="email" th:value="${member.email}" maxlength="50" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-            
+            						</div>
             
                                 <div class="artBtmFunc">
-                                    <button type="submit" id="devBtnSubmit" class="infoBtnBg infoBtnSave green"><span>저장하기</span></button>
+                                    <button type="button" id="devBtnSubmit" class="infoBtnBg infoBtnSave green"><span>저장하기</span></button>
                                 </div>
-                                <a th:href="@{/company/mypage/leave}" class="infoBtnBd infoBtnLeave"><span>회원탈퇴</span></a>
+                                <a th:href="@{/company/mypage/memberleave}" class="infoBtnBd infoBtnLeave"><span>회원탈퇴</span></a>
+                           </div>     
                         </form>
                     </div>
                 <!-- content 영역 -->
-                </div>    
+             </div>    
         </div>      
     </div>  
-
-    <script>
-    $(function() {
-            $("#devBtnChangePwd").click(function(){
-            if($(".devPwdChangeArea").css('display') == 'none') {
-                $(".devPwdChangeArea").css('display','table');
-            } else  {
-                $(".devPwdChangeArea").css('display','none');
-            }
-        });
-    });    
-
-
-    $('.pw').focusout(function(){
-        var pwd1 = $("#devNewPwd_1").val();
-        var pwd2 = $("#devNewPwd_2").val();
-
-        if(!/(?=.*[a-zA-Z](?=.*[0-9])(?=.*[^a-zA-Z0-9])).{8,16}/.test(pwd1)){
-            $(".check_notice").css('display','inline-block');
-        } else {
-            $(".check_notice").css('display','none');
-        }
-
-        if(pwd1 !='' && pwd2 ==''){
-            null;
-        } else if(pwd1 !="" || pwd2 !=""){
-            if(pwd1 == pwd2){
-                $(".check_success").css('display','inline-block');
-                $(".check_danger").css('display','none');
-                console.log(pwd1);
-                console.log(pwd2);
-            } else {
-                $(".check_danger").css('display','inline-block');
-                $(".check_success").css('display','none');
-                console.log(pwd1);
-                console.log(pwd2);
-            }
-
-        } 
-
-    });
-
-    </script>
+ </div>  
+<div th:include="common/footer.html"></div> 
 </body>
 </html>
