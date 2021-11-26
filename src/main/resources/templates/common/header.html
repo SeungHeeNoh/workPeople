@@ -93,11 +93,11 @@
             <div id="menu2">
                 <div class="mleft">
                     <div class="mlogo2">
-                        <a href="/main"><img th:src="@{images/common/header/mlogo2.png}"></a>
+                        <a  th:href="@{/main}"><img th:src="@{/images/common/header/mlogo2.png}"></a>
                     </div>
                     <div class="corph">
                         <div>
-                        <a href="#"><img th:src="@{images/common/header/home.png}">
+                        <a href="#"><img th:src="@{/images/common/header/home.png}">
                         <p sec:authentication="principal.name"></p>
                         </a>
                         </div>
@@ -107,8 +107,8 @@
                 <ul class="gnb2">
                     <li><a href="#">공고등록</a></li>
                     <li><a href="#">공고·지원자관리</a></li>
-                    <li><a href="#">인재맞춤추천</a></li>
-                    <li><a href="#">기업정보</a></li>
+                    <li><a th:href="@{/company/mypage/personInfoList}">인재맞춤추천</a></li>
+                    <li><a th:href="@{/company/mypage/companyInfoInsert}">기업정보</a></li>
                 </ul>
 
                 <div class="mright">
@@ -119,8 +119,8 @@
                 </div>
                 <div class="mright2">
                     <ul class="gnb4">
-                        <li><a href="#"><img th:src="@{images/common/header/cash.png}">유료 서비스</a></li>
-                        <li><a href="#"><img th:src="@{images/common/header/mail.png}">메일</a></li>
+                        <li><a th:href="@{/company/mypage/promotionView}"><img th:src="@{/images/common/header/cash.png}">유료 서비스</a></li>
+                        <li><a href="#"><img th:src="@{/images/common/header/mail.png}">메일</a></li>
                     </ul>
                 </div>
                
