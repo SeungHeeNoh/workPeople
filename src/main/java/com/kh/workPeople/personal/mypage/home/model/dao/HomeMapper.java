@@ -23,5 +23,9 @@ public interface HomeMapper {
 
     List<JobVacancyLookUp> recommenedJobVacancyList(String elName);
 
+    int resumeDelete(int rNo);
+
+    int applyCompanyYN(int no, int jvNo);
+
 
 }

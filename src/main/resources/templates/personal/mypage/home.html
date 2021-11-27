@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
     <link rel="stylesheet" href="/css/personal/myPage/home.css">
 
+
     <title>마이페이지 홈</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -85,8 +86,8 @@
                             <div class="home_content_2_4" th:text="*{s_name}"></div>
                             <div class="home_content_2_5">등록일 :</div>
                             <div class="home_content_2_6" th:text="${resumeEnrollDate}"></div>
-                            <button class="green">수정하기</button>
-                            <button class="orange">삭제하기</button>
+                            <button class="green" th:onclick="|location.href='@{/personal/mypage/home/resumeEdit/{rNo}(rNo=${resume.no})}'|">수정하기</button>
+                            <button class="orange orange1" th:value="*{no}">삭제하기</button>
                         </div>
                         <hr class="hr">
                     </div>
@@ -118,10 +119,20 @@
                                 <div class="content_title_text4_detail_3" th:text="${job.jvAddress}"></div>
                             </div>
                         </div>
-                        <div class="content_title_text4_detail_wrap2">
-                            <button class="content_title_text4_btn">즉시지원</button>
-                            <div class="content_title_text4_2">~<span th:text="${job.jvPeriodEndFormat}"></span></div>
-                        </div>
+                        <th:block th:if="${job.applyYN == false}">
+                            <div class="content_title_text4_detail_wrap2">
+                                <button class="content_title_text4_btn" th:value="${job.jvNo}">즉시지원</button>
+                                <div class="content_title_text4_2" th:value="${job.jvNo}">~<span th:text="${job.jvPeriodEndFormat}"></span></div>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${job.applyYN == true}">
+                            <div class="content_title_text4_detail_wrap2" style="right: 60px">
+                                <div style="color: blue; padding-left:17px;" >지원 완료</div>
+                                <div style="color: blue; padding-left:0" class="content_title_text4_2" th:value="${job.jvNo}">
+                                    ~<span style="color: blue" th:text="${job.jvPeriodEndFormat}"></span></div>
+                            </div>
+                        </th:block>
+
                     </div>
                     <hr class="hr">
                 </div>
@@ -133,6 +144,7 @@
         </div>
     </section>
 </div>
+<script th:src="@{/js/personal/mypage/home.js}"></script>
 </body>
 
 </html>

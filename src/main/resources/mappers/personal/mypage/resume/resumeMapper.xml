@@ -9,6 +9,7 @@
         <result property="statusYN" column="R_STATUS_YN"/>
         <result property="title" column="BI_TITLE"/>
         <result property="s_name" column="S_NAME"/>
+        <result property="deleteYN" column="R_DELETE_YN"/>
     </resultMap>
 
     <select id="resumeList" resultMap="simpleResume">
@@ -22,6 +23,7 @@
                  JOIN BASIC_INFO BI USING(R_NO)
                  JOIN SECTOR S ON (BI.SECTOR_NO = S.S_NO)
         WHERE M_NO = #{ no }
+        AND R_DELETE_YN = 'N'
     </select>
 
     <select id="resumeBrowseCount" resultType="_int">
