@@ -8,4 +8,12 @@
 		 WHERE M_NAME = #{name}
 		   AND M_EMAIL = #{email}
 	</select>
+	<select id="findCompanyId" parameterType="hashmap" resultType="string">
+		SELECT
+		       M_ID
+		  FROM MEMBER M
+		  JOIN COMPANY_INFO CI USING(M_NO)
+		 WHERE CI_COMPANY_REGISTER_NUMBER = #{registerNumber}
+		   AND M_EMAIL = #{email}
+	</select>
 </mapper>

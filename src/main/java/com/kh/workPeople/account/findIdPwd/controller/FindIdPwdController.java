@@ -57,13 +57,19 @@ public class FindIdPwdController {
 		return "account/find-id-pwd/find-pwd";
 	}
 	
-	@PostMapping(value="/personal/member/id", produces="application/json; charset=UTF-8")
+	@PostMapping(value="/member/id", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public Map<String, String> findId(@RequestBody Map<String, String> input) {
 		Map<String, String> map = new HashMap<>();
 		String message = "";
-		String id = findIdPwdService.findPersonalId(input);	
+		String id = "";
 		
+		if(input.get("memberType").equals("personal")) {
+			id = findIdPwdService.findPersonalId(input);
+		} else {
+			id = findIdPwdService.findCompanyId(input); 
+		}
+
 		if(id != null) {
 			int result = findIdPwdService.sendMail(input.get("email"), id);
 
@@ -79,4 +85,5 @@ public class FindIdPwdController {
 		map.put("message", message);
 		return map;
 	}
+	
 }

@@ -63,4 +63,9 @@ public class FindIdPwdServiceImpl implements FindIdPwdService {
 		return result;
 	}
 
+	@Override
+	public String findCompanyId(Map<String, String> input) {
+		return findIdPwdMapper.findCompanyId(input);
+	}
+
 }

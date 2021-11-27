@@ -8,4 +8,6 @@ public interface FindIdPwdService {
 
 	int sendMail(String email, String id);
 
+	String findCompanyId(Map<String, String> input);
+
 }

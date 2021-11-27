@@ -9,4 +9,6 @@ public interface FindIdPwdMapper {
 
 	String findPersonalId(Map<String, String> input);
 
+	String findCompanyId(Map<String, String> input);
+
 }

@@ -17,9 +17,13 @@
 				<input type="hidden" name="memberType" th:value=${memberType}>
 				<table>
 					<tbody>
-						<tr>
-							<th scope="row"><label for="name"><span th:if="${member_type}=='company'" th:text="기업"></span> 이름</label></th>
+						<tr th:if="${memberType == 'personal'}">
+							<th scope="row"><label for="name">이름</label></th>
 							<td><span><input type="text" name="name" id="name"></span></td>
+						</tr>
+						<tr th:unless="${memberType == 'personal'}">
+							<th scope="row"><label for="register_number">사업자 등록번호</label></th>
+							<td><span><input type="text" name="registerNumber" id="register_number"></span></td>
 						</tr>
 						<tr>
 							<th scope="row"><label for="email">이메일</label></th>

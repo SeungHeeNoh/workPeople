@@ -8,8 +8,7 @@
 		form = content.querySelector("form"),
 		infoTable = form.querySelector("table"),
 		rows = infoTable.querySelectorAll("tr"),
-		confirmButton = form.querySelector("button.green"),
-		memberType = form.querySelector("input[name='memberType']");
+		confirmButton = form.querySelector("button.green");
 
 	let isFindId = content.querySelector("h2").textContent.indexOf("비밀번호") < 0;
 
@@ -117,11 +116,7 @@
 			}
 		}
 
-		if(memberType.value == "personal") {
-			url = "/account/find-id-pwd/personal/member/id"
-		}
-
-		xhr.open("POST", url);
+		xhr.open("POST", "/account/find-id-pwd/member/id");
 		xhr.setRequestHeader("Content-type", "application/json;")
 		xhr.setRequestHeader(header, token);
 		xhr.responseType = "json";
@@ -132,7 +127,6 @@
 		let data = {};
 
 		for(let [key, value] of formData) {
-			if(key == "memberType") continue;
 			data[key] = value;
 		}
 
