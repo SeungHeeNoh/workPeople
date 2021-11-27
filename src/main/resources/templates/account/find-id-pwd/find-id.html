@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http:/www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>workPeople</title>
-<link rel="stylesheet" th:href="@{/css/common/common.css}">
-<link rel="stylesheet" th:href="@{/css/account/find-id-pwd/find-id-pwd.css}">
+	<meta charset="UTF-8">
+	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<title>workPeople</title>
+	<link rel="stylesheet" th:href="@{/css/common/common.css}">
+	<link rel="stylesheet" th:href="@{/css/account/find-id-pwd/find-id-pwd.css}">
 </head>
 <body>
 	<div id="container">
@@ -12,7 +14,7 @@
 			<h2>아이디 찾기</h2>
 			<h3>회원정보에 등록된 정보로 아이디를 찾을 수 있습니다.</h3>
 			<form action="" method="post">
-				<input type="hidden" name="member_type" th:value=${member_type}>
+				<input type="hidden" name="memberType" th:value=${memberType}>
 				<table>
 					<tbody>
 						<tr>
