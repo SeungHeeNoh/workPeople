@@ -41,8 +41,8 @@ public class FindIdPwdServiceImpl implements FindIdPwdService {
 		String from = username;
 		String subject = "[Work People] 아이디 찾기 이메일입니다.";
 		String content = new StringBuffer().append("<h1>[아이디 찾기]</h1>")
-										   .append("안녕하세요. Work People 입니다.")
-										   .append("고객님의 아이디는 다음과 같습니다.<br>").toString();
+										   .append("안녕하세요. Work People 입니다.<br>")
+										   .append("고객님의 아이디는 " + id + " 입니다.<br>").toString();
 		int result = 0;
 		
 		try {
