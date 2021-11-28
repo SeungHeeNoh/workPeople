@@ -63,13 +63,37 @@ public class FindIdPwdController {
 	public Map<String, String> findId(@RequestBody Map<String, String> input) {
 		Map<String, String> map = new HashMap<>();
 		String message = "";
-		Member member = findIdPwdService.findMember(input);
+		
+		Member member = findIdPwdService.findMemberForId(input);
 
 		if(member != null) {
 			int result = findIdPwdService.sendMail(input.get("email"), member.getId());
 
 			if(result > 0) {
 				message = "아이디가 메일로 발송되었습니다.";
+			} else {
+				message = "메일을 보내는 데에 실패했습니다.";
+			}
+		} else {
+			message = "입력된 정보를 가진 계정이 존재하지 않습니다.";
+		}
+
+		map.put("message", message);
+		return map;
+	}
+	
+	@PostMapping(value="/member/pwd", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, String> findPwd(@RequestBody Map<String, String> input) {
+		Map<String, String> map = new HashMap<>();
+		String message = "";
+		Member member = findIdPwdService.findMemberForPwd(input);
+
+		if(member != null) {
+			int result = findIdPwdService.sendTempPwdMail(input.get("email"), member.getId());
+
+			if(result > 0) {
+				message = "임시 비밀번호가 메일로 발송되었습니다.";
 			} else {
 				message = "메일을 보내는 데에 실패했습니다.";
 			}

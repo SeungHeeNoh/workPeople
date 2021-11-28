@@ -9,7 +9,9 @@ import com.kh.workPeople.common.vo.Member;
 @Mapper
 public interface FindIdPwdMapper {
 
-	Member findMember(Map<String, String> input);
+	Member findMemberForId(Map<String, String> input);
+
+	Member findMemberForPwd(Map<String, String> input);
 
 
 }

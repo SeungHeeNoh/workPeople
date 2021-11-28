@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.workPeople.account.findIdPwd.model.dao.FindIdPwdMapper">
-	<select id="findMember" parameterType="hashmap" resultMap="Common.memberResultMap">
+	<sql id="selectMember">
 		SELECT 
 	 	       M_NO
 		     , M_ID
@@ -20,7 +20,10 @@
 		     , M_LOCK_COUNT
 		     , M_STATUS
 		     , M_TEMP_PWD_YN
-		 FROM MEMBER
+		  FROM MEMBER
+	</sql>
+	<select id="findMemberForId" parameterType="hashmap" resultMap="Common.memberResultMap">
+	    <include refid="selectMember"/>
 		 <if test="memberType=='company'">
 		 LEFT JOIN COMPANY_INFO USING(M_NO)
 		 </if>
@@ -30,6 +33,23 @@
 		  AND M_NAME = #{name}
 		</when>
 		<otherwise>
+		  AND CI_COMPANY_REGISTER_NUMBER = #{registerNumber}
+		</otherwise>
+		</choose>
+	</select>
+	<select id="findMemberForPwd" parameterType="hashmap" resultMap="Common.memberResultMap">
+		<include refid="selectMember"/>
+		 <if test="memberType=='company'">
+		 LEFT JOIN COMPANY_INFO USING(M_NO)
+		 </if>
+		WHERE M_EMAIL = #{email}
+		<choose>
+		<when test="memberType=='personal'">
+		  AND M_ID = #{id}
+		  AND M_NAME = #{name}
+		</when>
+		<otherwise>
+		  AND M_ID = #{id}
 		  AND CI_COMPANY_REGISTER_NUMBER = #{registerNumber}
 		</otherwise>
 		</choose>

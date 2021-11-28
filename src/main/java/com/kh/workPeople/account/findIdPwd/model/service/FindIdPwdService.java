@@ -6,9 +6,12 @@ import com.kh.workPeople.common.vo.Member;
 
 public interface FindIdPwdService {
 
-	Member findMember(Map<String, String> input);
+	Member findMemberForId(Map<String, String> input);
+	
+	Member findMemberForPwd(Map<String, String> input);
 	
 	int sendMail(String email, String id);
 
+	int sendTempPwdMail(String email, String id);
 
 }

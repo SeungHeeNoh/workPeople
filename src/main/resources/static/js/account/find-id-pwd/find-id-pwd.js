@@ -122,6 +122,32 @@
 		xhr.send(JSON.stringify(serialize(new FormData(form))));
 	}
 
+	function findPwd() {
+		let isRun = false;
+
+		if(isRun) return;
+		isRun = true;
+
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4) {
+				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+					if(xhr.response.message) {
+						alert(xhr.response.message);
+					}
+				} else {
+					console.log("ajax 통신 실패");
+				}
+			}
+		}
+
+		xhr.open("POST", "/account/find-id-pwd/member/pwd");
+		xhr.setRequestHeader("Content-type", "application/json;")
+		xhr.setRequestHeader(header, token);
+		xhr.responseType = "json";
+		xhr.send(JSON.stringify(serialize(new FormData(form))));
+	}
+
 	function serialize(formData) {
 		let data = {};
 
