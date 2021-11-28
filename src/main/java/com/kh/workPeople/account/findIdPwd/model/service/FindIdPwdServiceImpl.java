@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kh.workPeople.account.findIdPwd.model.dao.FindIdPwdMapper;
@@ -32,11 +33,13 @@ public class FindIdPwdServiceImpl implements FindIdPwdService {
 	private String username;
 	private FindIdPwdMapper findIdPwdMapper;
 	private JavaMailSender mailSender;
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public FindIdPwdServiceImpl(FindIdPwdMapper findIdPwdMapper, JavaMailSender mailSender) {
+	public FindIdPwdServiceImpl(FindIdPwdMapper findIdPwdMapper, JavaMailSender mailSender, PasswordEncoder passwordEncoder) {
 		this.findIdPwdMapper = findIdPwdMapper;
 		this.mailSender = mailSender;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
@@ -50,13 +53,13 @@ public class FindIdPwdServiceImpl implements FindIdPwdService {
 	}
 
 	@Override
-	public int sendMail(String email, String id) {
-		String to = email;
+	public int sendMail(Member member) {
+		String to = member.getEmail();
 		String from = username;
 		String subject = "[Work People] 아이디 찾기 이메일입니다.";
 		String content = new StringBuffer().append("<h1>[아이디 찾기]</h1>")
 										   .append("안녕하세요. Work People 입니다.<br>")
-										   .append("고객님의 아이디는 " + id + " 입니다.<br>").toString();
+										   .append("고객님의 아이디는 " + member.getId() + " 입니다.<br>").toString();
 		int result = 0;
 		
 		try {
@@ -78,9 +81,9 @@ public class FindIdPwdServiceImpl implements FindIdPwdService {
 	}
 
 	@Override
-	public int sendTempPwdMail(String email, String id) {
+	public int sendTempPwdMail(Member member) {
 		String tempPassword = createTempPassword();
-		String to = email;
+		String to = member.getEmail();
 		String from = username;
 		String subject = "[Work People] 비밀번호 찾기 이메일입니다.";
 		String content = new StringBuffer().append("<h1>[임시 비밀번호 발급]</h1>")
@@ -88,19 +91,23 @@ public class FindIdPwdServiceImpl implements FindIdPwdService {
 										   .append("고객님의 임시 비밀번호는 " + tempPassword + " 입니다.<br>").toString();
 		int result = 0;
 		
-		try {
-			MimeMessage mail = mailSender.createMimeMessage();
-			MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true, "UTF-8");
+		member.setPwd(passwordEncoder.encode(tempPassword));
+		
+		if(findIdPwdMapper.updateTempPassword(member) == 1) {
+			try {
+				MimeMessage mail = mailSender.createMimeMessage();
+				MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true, "UTF-8");
 
-			mailHelper.setFrom(from);
-			mailHelper.setTo(to);
-			mailHelper.setSubject(subject);
-			mailHelper.setText(content, true);
+				mailHelper.setFrom(from);
+				mailHelper.setTo(to);
+				mailHelper.setSubject(subject);
+				mailHelper.setText(content, true);
 
-			mailSender.send(mail);
-			result = 1;
-		} catch (Exception e) {
-			result = 0;
+				mailSender.send(mail);
+				result = 1;
+			} catch (Exception e) {
+				result = 0;
+			}	
 		}
 
 		return result;

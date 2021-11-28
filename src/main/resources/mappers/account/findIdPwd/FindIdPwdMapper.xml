@@ -54,4 +54,12 @@
 		</otherwise>
 		</choose>
 	</select>
+	<update id="updateTempPassword" parameterType="com.kh.workPeople.common.vo.Member">
+		UPDATE MEMBER
+		   SET M_PWD = #{pwd}
+		     , M_MODIFY_DATE = SYSDATE
+		     , M_TEMP_PWD_YN = 'Y'
+		     , M_LOGIN_FAIL_COUNT = 0
+		 WHERE M_ID = #{id}
+	</update>
 </mapper>

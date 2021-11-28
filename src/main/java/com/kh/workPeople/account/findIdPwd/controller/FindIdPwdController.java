@@ -67,7 +67,7 @@ public class FindIdPwdController {
 		Member member = findIdPwdService.findMemberForId(input);
 
 		if(member != null) {
-			int result = findIdPwdService.sendMail(input.get("email"), member.getId());
+			int result = findIdPwdService.sendMail(member);
 
 			if(result > 0) {
 				message = "아이디가 메일로 발송되었습니다.";
@@ -90,7 +90,7 @@ public class FindIdPwdController {
 		Member member = findIdPwdService.findMemberForPwd(input);
 
 		if(member != null) {
-			int result = findIdPwdService.sendTempPwdMail(input.get("email"), member.getId());
+			int result = findIdPwdService.sendTempPwdMail(member);
 
 			if(result > 0) {
 				message = "임시 비밀번호가 메일로 발송되었습니다.";

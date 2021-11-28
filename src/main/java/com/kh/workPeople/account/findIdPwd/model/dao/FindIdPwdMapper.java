@@ -13,5 +13,6 @@ public interface FindIdPwdMapper {
 
 	Member findMemberForPwd(Map<String, String> input);
 
+	int updateTempPassword(Member member);
 
 }

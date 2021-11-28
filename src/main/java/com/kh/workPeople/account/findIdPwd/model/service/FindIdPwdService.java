@@ -10,8 +10,8 @@ public interface FindIdPwdService {
 	
 	Member findMemberForPwd(Map<String, String> input);
 	
-	int sendMail(String email, String id);
+	int sendMail(Member member);
 
-	int sendTempPwdMail(String email, String id);
+	int sendTempPwdMail(Member member);
 
 }
