@@ -4,11 +4,12 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.kh.workPeople.common.vo.Member;
+
 @Mapper
 public interface FindIdPwdMapper {
 
-	String findPersonalId(Map<String, String> input);
+	Member findMember(Map<String, String> input);
 
-	String findCompanyId(Map<String, String> input);
 
 }

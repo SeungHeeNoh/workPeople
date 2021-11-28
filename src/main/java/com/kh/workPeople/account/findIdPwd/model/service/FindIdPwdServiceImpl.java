@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.kh.workPeople.account.findIdPwd.model.dao.FindIdPwdMapper;
+import com.kh.workPeople.common.vo.Member;
 
 @Service
 @PropertySource("classpath:application.yml")
@@ -30,8 +31,8 @@ public class FindIdPwdServiceImpl implements FindIdPwdService {
 	}
 
 	@Override
-	public String findPersonalId(Map<String, String> input) {
-		return findIdPwdMapper.findPersonalId(input);
+	public Member findMember(Map<String, String> input) {
+		return findIdPwdMapper.findMember(input);
 	}
 
 	@Override
@@ -63,9 +64,5 @@ public class FindIdPwdServiceImpl implements FindIdPwdService {
 		return result;
 	}
 
-	@Override
-	public String findCompanyId(Map<String, String> input) {
-		return findIdPwdMapper.findCompanyId(input);
-	}
-
+	
 }

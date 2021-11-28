@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.workPeople.account.findIdPwd.model.service.FindIdPwdService;
+import com.kh.workPeople.common.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -62,16 +63,10 @@ public class FindIdPwdController {
 	public Map<String, String> findId(@RequestBody Map<String, String> input) {
 		Map<String, String> map = new HashMap<>();
 		String message = "";
-		String id = "";
-		
-		if(input.get("memberType").equals("personal")) {
-			id = findIdPwdService.findPersonalId(input);
-		} else {
-			id = findIdPwdService.findCompanyId(input); 
-		}
+		Member member = findIdPwdService.findMember(input);
 
-		if(id != null) {
-			int result = findIdPwdService.sendMail(input.get("email"), id);
+		if(member != null) {
+			int result = findIdPwdService.sendMail(input.get("email"), member.getId());
 
 			if(result > 0) {
 				message = "아이디가 메일로 발송되었습니다.";

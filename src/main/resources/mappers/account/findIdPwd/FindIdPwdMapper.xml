@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.workPeople.account.findIdPwd.model.dao.FindIdPwdMapper">
-	<select id="findPersonalId" parameterType="hashmap" resultType="string">
-		SELECT
-		       M_ID
-		  FROM MEMBER
-		 WHERE M_NAME = #{name}
-		   AND M_EMAIL = #{email}
-	</select>
-	<select id="findCompanyId" parameterType="hashmap" resultType="string">
-		SELECT
-		       M_ID
-		  FROM MEMBER M
-		  JOIN COMPANY_INFO CI USING(M_NO)
-		 WHERE CI_COMPANY_REGISTER_NUMBER = #{registerNumber}
-		   AND M_EMAIL = #{email}
+	<select id="findMember" parameterType="hashmap" resultMap="Common.memberResultMap">
+		SELECT 
+	 	       M_NO
+		     , M_ID
+		     , M_PWD
+		     , M_NAME
+		     , M_PHONE
+		     , M_EMAIL
+		     , M_POSTCODE
+		     , M_ROADADDRESS
+		     , M_DETAILADDRESS
+		     , M_ENROLL_DATE
+		     , M_MODIFY_DATE
+		     , M_LOGIN_FAIL_COUNT
+		     , M_IS_LOCK
+		     , M_LATEST_TRY_LOGIN_DATE
+		     , M_LOCK_COUNT
+		     , M_STATUS
+		     , M_TEMP_PWD_YN
+		 FROM MEMBER
+		 <if test="memberType=='company'">
+		 LEFT JOIN COMPANY_INFO USING(M_NO)
+		 </if>
+		WHERE M_EMAIL = #{email}
+		<choose>
+		<when test="memberType=='personal'">
+		  AND M_NAME = #{name}
+		</when>
+		<otherwise>
+		  AND CI_COMPANY_REGISTER_NUMBER = #{registerNumber}
+		</otherwise>
+		</choose>
 	</select>
 </mapper>
