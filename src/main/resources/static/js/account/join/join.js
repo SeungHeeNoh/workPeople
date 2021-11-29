@@ -6,7 +6,7 @@
 
 	let content = document.querySelector(".content"),
 		form = content.querySelector("form"),
-		inputList = form.querySelectorAll(".join_row")
+		inputList = form.querySelectorAll(joinRow)
 		timerSpan = form.querySelector("div.timer.join_row").querySelector(".timer");
 
 	let code = "",
@@ -225,54 +225,35 @@
 				let inputId = button.closest(joinRow).querySelector("input").id;
 
 				if(button.classList.contains("send_email_button")) {
-					let text = inputValidate["emailCheck"](joinRows[inputId]["input"].value);
-					if(text.length > 0) {
-						deleteValidState(inputId, text);
-					} else {
-						if(confirm("인증 메일을 전송하시겠습니까?")) {
-							updateValidState(inputId);
-							button.setAttribute("disabled", true);
-							joinRows[inputId]["input"].setAttribute("disabled", true);
-							sendMail(inputId, joinRows[inputId]["input"].value, button);
-							hideNotice(joinRows["email_check"]["joinRow"]);
-						} else {
-							deleteValidState(inputId, "인증이 완료되지 않았습니다.");
-							deleteValidState("email_check", "인증이 완료되지 않았습니다.");
-							joinRows[inputId]["input"].removeAttribute("disabled");
-							clearCertStringTimer();
-						}
-					}
+					sendMailButtonHandler(inputId, button);
 				} else if(button.classList.contains("email_check_button")) {
-					if(code == joinRows[inputId]["input"].value) {
-						updateValidState(inputId);
-						clearCertStringTimer();
-						alert("인증되었습니다.");
-					} else {
-						deleteValidState(inputId, "인증번호가 일치하지 않습니다.");
-					}
+					emailCheckButtonHandler(inputId);
 				} else if(button.classList.contains("address_search_button")) {
-					new daum.Postcode({
-						oncomplete: function(data) {
-							joinRows["postcode"]["input"].value = data.zonecode;
-							joinRows["road_address"]["input"].value = data.roadAddress;
-							updateValidState("postcode");
-							updateValidState("road_address");
-						}
-					}).open();
+					addressSearchButtonHandler();
 				}
 			} else if(button.classList.contains("confirm_button")){
-				let flag = true;
+				confirmButtonHandler();
+			}
+		}
+	}
 
-				for(let joinRow in joinRows) {
-					if(!joinRows[joinRow]["joinRow"].classList.contains("valid_state")) {
-						deleteValidState(joinRow, "필수 정보입니다.")
-						flag = false;
-					}
-				}
+	function sendMailButtonHandler(inputId, button) {
+		let text = inputValidate["emailCheck"](joinRows[inputId]["input"].value);
 
-				if(flag) {
-					form.submit();
-				}
+		if(text.length > 0) {
+			deleteValidState(inputId, text);
+		} else {
+			if(confirm("인증 메일을 전송하시겠습니까?")) {
+				updateValidState(inputId);
+				setDisabled(button);
+				setDisabled(joinRows[inputId]["input"]);
+				sendMail(inputId, joinRows[inputId]["input"].value, button);
+				hideNotice(joinRows["email_check"]["joinRow"]);
+			} else {
+				deleteValidState(inputId, "인증이 완료되지 않았습니다.");
+				deleteValidState("email_check", "인증이 완료되지 않았습니다.");
+				removeDisabled(joinRows[inputId]["input"]);
+				clearCertStringTimer();
 			}
 		}
 	}
@@ -285,7 +266,6 @@
 
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
-
 			if(xhr.readyState == 4) {
 				button.removeAttribute("disabled");
 
@@ -340,13 +320,56 @@
 		clearInterval(timer);
 		timerSpan.classList.remove("show");
 		timerSpan.innerHTML = "03:00";
-		joinRows["email_check"]["input"].setAttribute("disabled", true);
-		joinRows["email_check"]["joinRow"].querySelector("button").setAttribute("disabled", true);
+		setDisabled(joinRows["email_check"]["input"]);
+		setDisabled(joinRows["email_check"]["joinRow"].querySelector("button"));
 
 		if(message) {
 			deleteValidState("email_check", message);
 		}
-		
+	}
+
+	function emailCheckButtonHandler(inputId) {
+		if(code == joinRows[inputId]["input"].value) {
+			updateValidState(inputId);
+			clearCertStringTimer();
+			alert("인증되었습니다.");
+		} else {
+			deleteValidState(inputId, "인증번호가 일치하지 않습니다.");
+		}
+	}
+
+	function addressSearchButtonHandler() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				joinRows["postcode"]["input"].value = data.zonecode;
+				joinRows["road_address"]["input"].value = data.roadAddress;
+				updateValidState("postcode");
+				updateValidState("road_address");
+			}
+		}).open();
+	}
+
+	function confirmButtonHandler() {
+		let flag = true;
+
+		for(let joinRow in joinRows) {
+			if(!joinRows[joinRow]["joinRow"].classList.contains("valid_state")) {
+				deleteValidState(joinRow, "필수 정보입니다.")
+				flag = false;
+			}
+		}
+
+		if(flag) {
+			form.submit();
+		}
+	}
+
+	function setDisabled(tag) {
+		tag.setAttribute("disabled", true);
+	}
+
+	function removeDisabled(tag) {
+		tag.removeAttribute("disabled");
 	}
 
 	function updateValidState(id) {
