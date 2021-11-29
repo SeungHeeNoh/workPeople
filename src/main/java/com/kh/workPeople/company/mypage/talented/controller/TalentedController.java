@@ -15,12 +15,12 @@ import com.kh.workPeople.company.mypage.talented.service.TalentedService;
 
 @Controller
 @RequestMapping("/company/mypage")
-public class TalentedComtroller {
+public class TalentedController {
 	
 	private TalentedService talentedService;
 	
 	@Autowired
-	public TalentedComtroller(TalentedService talentedService) {
+	public TalentedController(TalentedService talentedService) {
 		this.talentedService = talentedService;
 	}
 
