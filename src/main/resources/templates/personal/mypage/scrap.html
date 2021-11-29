@@ -14,10 +14,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
-    <script th:src="@{/js/personal/mypage/scrap.js}"></script>
+
     <script th:inline="javascript">
         /*<![CDATA[*/
-        let statusYResume = [[${resume}]];
+        let statusYResume = [[${resume}]],
+            statusYResumeRNo = [[${resumeNo}]];
         /*]]>*/
     </script>
 </head>
@@ -67,17 +68,19 @@
                     </th:block>
                 </div>
                 <hr class="hr">
-                <input type="hidden" th:value="${resume.no}" class="statusYResumeExist">
             </div>
 
 
             <button class="green green1">스크랩취소</button>
        
         </div>
+            <div th:replace="common/paging.html"></div>
         </section>
     </div>
 
 
+
+    <script th:src="@{/js/personal/mypage/scrap.js}"></script>
 </body>
 
 </html>

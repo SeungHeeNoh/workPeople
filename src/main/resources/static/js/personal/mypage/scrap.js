@@ -1,6 +1,5 @@
 let applyCompanyBtn = document.querySelectorAll(".content_title_text4_btn"),
-    applyCompany = new Array(applyCompanyBtn.length),
-    statusYResumeExist = document.querySelector(".statusYResumeExist").value;
+    applyCompany = new Array(applyCompanyBtn.length);
 
 for(let i=0; i<applyCompanyBtn.length; i++){
 
@@ -17,7 +16,7 @@ for(let i=0; i<applyCompanyBtn.length; i++){
             let applyYN = confirm("현재 대표이력서로 해당 공고에 즉시지원 하시겠습니까?");
 
             if (applyYN) {
-                location.href = "/personal/mypage/home/applyResume/" + statusYResumeExist + "," + applyCompany[i];
+                location.href = "/personal/mypage/scrap/applyResume/" + statusYResumeRNo + "," + applyCompany[i];
             }
         }
 

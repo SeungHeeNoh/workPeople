@@ -2,6 +2,7 @@ package com.kh.workPeople.personal.mypage.resume.controller;
 
 import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.common.vo.Resume;
+import com.kh.workPeople.common.vo.ResumeDetails;
 import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
 import com.kh.workPeople.personal.mypage.resume.model.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,10 +89,22 @@ public class ResumeController {
 	@GetMapping("resumeManagement/resumeLookUp/{rNo}")
 	public String resumeLookUp(@PathVariable int rNo, Model model){
 
-		// 이력서 상세페이지 정보 조회, model.add 예정
+		ResumeDetails resumeDetails = resumeService.resumeDetailsLookUp(rNo);
+		ResumeDetails resumeDetailsFormat = resumeService.resumeDetailsLookUpFormat(rNo);
 
+		resumeDetails.setBiBirthDateYearFormat(resumeDetailsFormat.getBiBirthDateYearFormat());
+		resumeDetails.setBiAge(resumeDetailsFormat.getBiAge());
+		resumeDetails.setBiAgeInFull(resumeDetailsFormat.getBiAgeInFull());
+		resumeDetails.seteHighAdmissionFormat(resumeDetailsFormat.geteHighAdmissionFormat());
+		resumeDetails.seteHighGraduationFormat(resumeDetailsFormat.geteHighGraduationFormat());
+		resumeDetails.seteColleageAdmissionFormat(resumeDetailsFormat.geteColleageAdmissionFormat());
+		resumeDetails.seteColleageGraduateFormat(resumeDetailsFormat.geteColleageGraduateFormat());
+		resumeDetails.seteMasterAdmissionFormat(resumeDetailsFormat.geteMasterAdmissionFormat());
+		resumeDetails.seteMasterGraduateFormat(resumeDetailsFormat.geteMasterGraduateFormat());
+		resumeDetails.seteDoctorAdmissionFormat(resumeDetailsFormat.geteDoctorAdmissionFormat());
+		resumeDetails.seteDoctorGraduateFormat(resumeDetailsFormat.geteDoctorGraduateFormat());
 
-
+		model.addAttribute("resumeDetails",resumeDetails);
 
 		return "personal/mypage/resumeLookUp";
 	}
