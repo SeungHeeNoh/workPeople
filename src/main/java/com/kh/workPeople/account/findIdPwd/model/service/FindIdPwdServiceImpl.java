@@ -1,20 +1,17 @@
 package com.kh.workPeople.account.findIdPwd.model.service;
 
-import java.util.HashMap;
 import java.util.Map;
-
-import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kh.workPeople.account.findIdPwd.model.dao.FindIdPwdMapper;
 import com.kh.workPeople.common.vo.Member;
+import com.kh.workPeople.mail.model.service.MailService;
+import com.kh.workPeople.mail.model.vo.Mail;
 
 @Service
 @PropertySource("classpath:application.yml")
@@ -28,17 +25,16 @@ public class FindIdPwdServiceImpl implements FindIdPwdService {
             								 'w', 'x', 'y', 'z', '!', '@', '#', '$', '%', '^', '&', '*',
             								 '(', ')', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
 
-
-	@Value("${mail.gmail.username}")
-	private String username;
+    @Value("${mail.gmail.username}")
+    private String username;
 	private FindIdPwdMapper findIdPwdMapper;
-	private JavaMailSender mailSender;
+	private MailService mailService;
 	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public FindIdPwdServiceImpl(FindIdPwdMapper findIdPwdMapper, JavaMailSender mailSender, PasswordEncoder passwordEncoder) {
+	public FindIdPwdServiceImpl(FindIdPwdMapper findIdPwdMapper, MailService mailService, PasswordEncoder passwordEncoder) {
 		this.findIdPwdMapper = findIdPwdMapper;
-		this.mailSender = mailSender;
+		this.mailService = mailService;
 		this.passwordEncoder = passwordEncoder;
 	}
 
@@ -54,60 +50,34 @@ public class FindIdPwdServiceImpl implements FindIdPwdService {
 
 	@Override
 	public int sendMail(Member member) {
-		String to = member.getEmail();
-		String from = username;
-		String subject = "[Work People] 아이디 찾기 이메일입니다.";
 		String content = new StringBuffer().append("<h1>[아이디 찾기]</h1>")
 										   .append("안녕하세요. Work People 입니다.<br>")
 										   .append("고객님의 아이디는 " + member.getId() + " 입니다.<br>").toString();
-		int result = 0;
+		Mail mail = new Mail();
+		mail.setFrom(username);
+		mail.setTo(member.getEmail());
+		mail.setSubject("[Work People] 아이디 찾기 이메일입니다.");
+		mail.setContent(content);
 		
-		try {
-			MimeMessage mail = mailSender.createMimeMessage();
-			MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true, "UTF-8");
-
-			mailHelper.setFrom(from);
-			mailHelper.setTo(to);
-			mailHelper.setSubject(subject);
-			mailHelper.setText(content, true);
-
-			mailSender.send(mail);
-			result = 1;
-		} catch (Exception e) {
-			result = 0;
-		}
-
-		return result;
+		return mailService.sendMail(mail);
 	}
 
 	@Override
 	public int sendTempPwdMail(Member member) {
+		int result = 0;
 		String tempPassword = createTempPassword();
-		String to = member.getEmail();
-		String from = username;
-		String subject = "[Work People] 비밀번호 찾기 이메일입니다.";
+		member.setPwd(passwordEncoder.encode(tempPassword));
 		String content = new StringBuffer().append("<h1>[임시 비밀번호 발급]</h1>")
 										   .append("안녕하세요. Work People 입니다.<br>")
 										   .append("고객님의 임시 비밀번호는 " + tempPassword + " 입니다.<br>").toString();
-		int result = 0;
-		
-		member.setPwd(passwordEncoder.encode(tempPassword));
+		Mail mail = new Mail();
+		mail.setTo(member.getEmail());
+		mail.setFrom(username);
+		mail.setSubject("[Work People] 비밀번호 찾기 이메일입니다.");
+		mail.setContent(content);
 		
 		if(findIdPwdMapper.updateTempPassword(member) == 1) {
-			try {
-				MimeMessage mail = mailSender.createMimeMessage();
-				MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true, "UTF-8");
-
-				mailHelper.setFrom(from);
-				mailHelper.setTo(to);
-				mailHelper.setSubject(subject);
-				mailHelper.setText(content, true);
-
-				mailSender.send(mail);
-				result = 1;
-			} catch (Exception e) {
-				result = 0;
-			}	
+			result = mailService.sendMail(mail);
 		}
 
 		return result;
