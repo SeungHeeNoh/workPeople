@@ -143,6 +143,63 @@
         WHERE R_NO=#{rNo}
     </delete>
 
+    <delete id="basicInfoDeleteFromDB" parameterType="_int">
+        DELETE
+        FROM BASIC_INFO
+        WHERE R_NO=#{rNo}
+    </delete>
+
+    <delete id="educationDeleteFromDB" parameterType="_int">
+        DELETE
+        FROM EDUCATION
+        WHERE R_NO=#{rNo}
+    </delete>
+
+    <delete id="careerDeleteFromDB" parameterType="_int">
+        DELETE
+        FROM CAREER
+        WHERE R_NO=#{rNo}
+    </delete>
+
+    <delete id="activityDeleteFromDB" parameterType="_int">
+        DELETE
+        FROM ACTIVITY
+        WHERE R_NO=#{rNo}
+    </delete>
+
+    <delete id="licenseDeleteFromDB" parameterType="_int">
+        DELETE
+        FROM LICENSE
+        WHERE R_NO=#{rNo}
+    </delete>
+
+    <delete id="languageDeleteFromDB" parameterType="_int">
+        DELETE
+        FROM LANGUAGE
+        WHERE R_NO=#{rNo}
+    </delete>
+
+    <delete id="awardsDeleteFromDB" parameterType="_int">
+        DELETE
+        FROM AWARDS
+        WHERE R_NO=#{rNo}
+    </delete>
+
+    <delete id="selfIntroductionDeleteFromDB" parameterType="_int">
+        DELETE
+        FROM SELF_INTRODUCTION
+        WHERE R_NO=#{rNo}
+    </delete>
+
+    <delete id="resumeBrowseDeleteFromDB" parameterType="_int">
+        DELETE
+        FROM RESUME_BROWSE
+        WHERE R_NO=#{rNo}
+    </delete>
+
+
+
+
     <update id="resumeDelete" parameterType="com.kh.workPeople.common.vo.Resume">
         UPDATE RESUME
             SET R_DELETE_YN = 'Y'

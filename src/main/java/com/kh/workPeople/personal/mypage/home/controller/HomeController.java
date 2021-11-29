@@ -3,6 +3,7 @@ package com.kh.workPeople.personal.mypage.home.controller;
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.common.vo.Resume;
+import com.kh.workPeople.personal.mypage.applyCompany.model.service.ApplyCompanyService;
 import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,12 @@ import java.util.List;
 public class HomeController {
 
 	private final HomeService homeService;
+	private final ApplyCompanyService applyCompanyService;
 
 	@Autowired
-	public HomeController(HomeService homeService) {
+	public HomeController(HomeService homeService, ApplyCompanyService applyCompanyService) {
 		this.homeService = homeService;
+		this.applyCompanyService = applyCompanyService;
 	}
 
 	@GetMapping("home")
@@ -90,6 +93,15 @@ public class HomeController {
 		if(resumeIsApplyCompanyYN > 0){
 			int resumeDelete = homeService.resumeDelete(rNo);
 		} else{
+			int basicInfoDeleteFromDB = homeService.basicInfoDeleteFromDB(rNo);
+			int educationDeleteFromDB = homeService.educationDeleteFromDB(rNo);
+			int careerDeleteFromDB = homeService.careerDeleteFromDB(rNo);
+			int activityDeleteFromDB = homeService.activityDeleteFromDB(rNo);
+			int licenseDeleteFromDB = homeService.licenseDeleteFromDB(rNo);
+			int languageDeleteFromDB = homeService.languageDeleteFromDB(rNo);
+			int awardsDeleteFromDB = homeService.awardsDeleteFromDB(rNo);
+			int selfIntroductionDeleteFromDB = homeService.selfIntroductionDeleteFromDB(rNo);
+			int resumeBrowseDeleteFromDB = homeService.resumeBrowseDeleteFromDB(rNo);
 			int resumeDeleteFromDB = homeService.resumeDeleteFromDB(rNo);
 		}
 
@@ -99,10 +111,11 @@ public class HomeController {
 	@GetMapping("home/applyResume/{rNo},{applyBtnNo}")
 	public String applyResume(@PathVariable int rNo, @PathVariable int applyBtnNo, Model model, @AuthenticationPrincipal MemberImpl user){
 
-//		int applyCompany = homeService.applyCompany(rNo,applyBtnNo);
+		int applyCompany = applyCompanyService.applyCompany(rNo,applyBtnNo);
 
 		return "redirect:/personal/mypage/home";
 	}
+
 
 
 

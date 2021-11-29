@@ -46,4 +46,9 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService{
     public List<JobVacancyLookUp> jobVacancyLookUpList(int no) {
         return applyCompanyMapper.jobVacancyLookUpList(no);
     }
+
+    @Override
+    public int applyCompany(int rNo, int applyBtnNo) {
+        return applyCompanyMapper.applyCompany(rNo,applyBtnNo);
+    }
 }

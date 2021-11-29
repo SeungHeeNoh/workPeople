@@ -144,6 +144,10 @@
     font-size: 22px;
 }
 
+.content5_2:hover{
+    cursor: pointer;
+}
+
 .content6_container{
     display: flex;
     margin-bottom: 15px;

@@ -86,7 +86,7 @@
                         <p class="content_title_text2">나의 이력서</p>
                         <div class="home_contents_wrap_2">
                             <div class="home_content_2_1">대표 이력서</div>
-                            <div class="home_content_2_2" th:text="*{title}"></div>
+                            <div class="home_content_2_2" th:text="*{title}" th:onclick="|location.href='@{/personal/mypage/resumeManagement/resumeLookUp/{rNo}(rNo=${resume.no})}'|"></div>
                             <br>
                         </div>
                         <div class="home_contents_wrap_2 home_interval_1">

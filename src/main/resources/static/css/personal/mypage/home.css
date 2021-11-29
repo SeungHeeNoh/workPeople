@@ -101,6 +101,9 @@
     margin-left: 13px;
     font-weight: 600;
 }
+.home_content_2_2:hover{
+    cursor: pointer;
+}
 
 .home_content_2_3{
     margin-left: 10px;

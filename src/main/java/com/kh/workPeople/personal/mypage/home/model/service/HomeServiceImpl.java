@@ -71,7 +71,62 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int resumeDeleteFromDB(int rNo) {
         return homeMapper.resumeDeleteFromDB(rNo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int basicInfoDeleteFromDB(int rNo) {
+        return homeMapper.basicInfoDeleteFromDB(rNo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int educationDeleteFromDB(int rNo) {
+        return homeMapper.educationDeleteFromDB(rNo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int careerDeleteFromDB(int rNo) {
+        return homeMapper.careerDeleteFromDB(rNo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int activityDeleteFromDB(int rNo) {
+        return homeMapper.activityDeleteFromDB(rNo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int licenseDeleteFromDB(int rNo) {
+        return homeMapper.licenseDeleteFromDB(rNo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int languageDeleteFromDB(int rNo) {
+        return homeMapper.languageDeleteFromDB(rNo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int awardsDeleteFromDB(int rNo) {
+        return homeMapper.awardsDeleteFromDB(rNo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int selfIntroductionDeleteFromDB(int rNo) {
+        return homeMapper.selfIntroductionDeleteFromDB(rNo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int resumeBrowseDeleteFromDB(int rNo) {
+        return homeMapper.resumeBrowseDeleteFromDB(rNo);
     }
 }

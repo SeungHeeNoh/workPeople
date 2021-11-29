@@ -64,8 +64,6 @@
                             <div class="content4_3">입사 지원 내역
                                 <div class="content4_4" th:text="${applyCompanyCount}"></div>
                             </div>
-                            <button class="green green2">수정하기</button>
-                            <button class="orange orange1">삭제하기</button>
                         </div>
                     </div>
                 </div>
@@ -80,7 +78,8 @@
                         <th:block th:if="${#strings.equals(resume.statusYN,'Y')}">
                             <div class="content5_1">대표이력서</div>
                         </th:block>
-                        <div class="content5_2" th:text="${resume.title}"></div>
+                        <div class="content5_2" th:text="${resume.title}"
+                             th:onclick="|location.href='@{/personal/mypage/resumeManagement/resumeLookUp/{rNo}(rNo=${resume.no})}'|"></div>
                     </div>
                     <div class="content6_container">
                         <div class="content6_1">희망 업종 :</div>
@@ -89,8 +88,7 @@
                         <div class="content6_4" th:text="${resume.enrollDateFormat}"></div>
                         <button class="green green3"
                                 th:onclick="|location.href='@{/personal/mypage/home/resumeEdit/{rNo}(rNo=${resume.no})}'|">수정하기</button>
-                        <button class="orange orange2"
-                                th:onclick="|location.href='@{/personal/mypage/home/resumeDelete/{rNo}(rNo=${resume.no})}'|">삭제하기</button>
+                        <button class="orange orange2" th:value="${resume.no}">삭제하기</button>
                     </div>
                 </div>
                 <hr class="hr">
@@ -99,6 +97,8 @@
         </div>
     </section>
 </div>
+
+<script th:src="@{/js/personal/mypage/resumeManagement.js}"></script>
 </body>
 
 </html>

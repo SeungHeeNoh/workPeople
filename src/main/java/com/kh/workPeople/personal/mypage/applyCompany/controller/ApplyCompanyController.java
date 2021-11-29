@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.text.SimpleDateFormat;
@@ -56,4 +57,15 @@ public class ApplyCompanyController {
 
 		return "personal/mypage/applyCompany";
 	}
+
+	@PostMapping("applyCompany/applyCancel")
+	public String applyCancel(){
+
+
+
+		return "redirect:/personal/mypage/applyCompany";
+	}
+
+
+
 }

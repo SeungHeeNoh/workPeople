@@ -32,4 +32,22 @@ public interface HomeMapper {
     int resumeDeleteFromDB(int rNo);
 
 
+    int basicInfoDeleteFromDB(int rNo);
+
+    int educationDeleteFromDB(int rNo);
+
+    int careerDeleteFromDB(int rNo);
+
+    int activityDeleteFromDB(int rNo);
+
+    int licenseDeleteFromDB(int rNo);
+
+    int languageDeleteFromDB(int rNo);
+
+    int awardsDeleteFromDB(int rNo);
+
+    int selfIntroductionDeleteFromDB(int rNo);
+
+    int resumeBrowseDeleteFromDB(int rNo);
+
 }
