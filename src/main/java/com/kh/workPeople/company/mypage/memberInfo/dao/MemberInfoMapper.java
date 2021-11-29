@@ -12,5 +12,7 @@ public interface MemberInfoMapper {
 
 	int updatePwd(Member member);
 
+	Member selectAll(Member member);
+
 
 }
