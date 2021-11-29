@@ -252,22 +252,29 @@ table {
   color: #999;
 }
 
+
 .mtcSchListTb table tbody td {
   vertical-align: top;
   padding: 10px 5px;
   text-align: center;
   font-size: 14px;
-  color: #666;
+  color: #575757;
   border-bottom: 1px solid #edeef0;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.mtcSchListTb tbody td span {
-  color: rgb(255, 0, 0);
+
+.mtcSchListTb table tbody td span {
+	color: #575757;
+}
+
+.mtcSchListTb tbody td .point {
+  color: rgb(242 47 47);
 }
 
 .onmouseover {
   background: rgba(179, 220, 223, 0.21);
   cursor: pointer;
 }
+

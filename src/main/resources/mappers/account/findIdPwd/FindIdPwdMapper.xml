@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.workPeople.account.findIdPwd.model.dao.FindIdPwdMapper">
+	<sql id="selectMember">
+		SELECT 
+	 	       M_NO
+		     , M_ID
+		     , M_PWD
+		     , M_NAME
+		     , M_PHONE
+		     , M_EMAIL
+		     , M_POSTCODE
+		     , M_ROADADDRESS
+		     , M_DETAILADDRESS
+		     , M_ENROLL_DATE
+		     , M_MODIFY_DATE
+		     , M_LOGIN_FAIL_COUNT
+		     , M_IS_LOCK
+		     , M_LATEST_TRY_LOGIN_DATE
+		     , M_LOCK_COUNT
+		     , M_STATUS
+		     , M_TEMP_PWD_YN
+		  FROM MEMBER
+	</sql>
+	<sql id="personalCondition">
+	 	   AND MT_NO = 1
+		   AND M_NAME = #{name}
+	</sql>
+	<sql id="companyCondition">
+		   AND MT_NO = 2
+		   AND CI_COMPANY_REGISTER_NUMBER = #{registerNumber}
+	</sql>
+	<select id="findMemberForId" parameterType="hashmap" resultMap="Common.memberResultMap">
+	    <include refid="selectMember"/>
+		 <if test="memberType=='company'">
+		 LEFT JOIN COMPANY_INFO USING(M_NO)
+		 </if>
+		WHERE M_EMAIL = #{email}
+		<choose>
+		<when test="memberType=='personal'">
+		 <include refid="personalCondition"/>
+		</when>
+		<otherwise>
+		 <include refid="companyCondition"/>
+		</otherwise>
+		</choose>
+	</select>
+	<select id="findMemberForPwd" parameterType="hashmap" resultMap="Common.memberResultMap">
+		<include refid="selectMember"/>
+		 <if test="memberType=='company'">
+		 LEFT JOIN COMPANY_INFO USING(M_NO)
+		 </if>
+		WHERE M_EMAIL = #{email}
+		  AND M_ID = #{id}
+		<choose>
+		<when test="memberType=='personal'">
+		  <include refid="personalCondition"/>
+		</when>
+		<otherwise>
+		  <include refid="companyCondition"/>
+		</otherwise>
+		</choose>
+	</select>
+	<update id="updateTempPassword" parameterType="com.kh.workPeople.common.vo.Member">
+		UPDATE MEMBER
+		   SET M_PWD = #{pwd}
+		     , M_MODIFY_DATE = SYSDATE
+		     , M_TEMP_PWD_YN = 'Y'
+		     , M_LOGIN_FAIL_COUNT = 0
+		 WHERE M_ID = #{id}
+	</update>
+</mapper>

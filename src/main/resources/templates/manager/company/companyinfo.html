@@ -83,112 +83,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr th:each="companyinfo : ${companyList}">
                                         <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td>기아(주)</td>
-                                        <td>605-32-08942</td>
-                                        <td>kia22@naver.com</td>
-                                        <td>2021-10-23</td>
-                                        <td>활성화</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">공고 조회</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td>기아(주)</td>
-                                        <td>605-32-08942</td>
-                                        <td>kia22@naver.com</td>
-                                        <td>2021-10-23</td>
-                                        <td>활성화</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">공고 조회</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td>기아(주)</td>
-                                        <td>605-32-08942</td>
-                                        <td>kia22@naver.com</td>
-                                        <td>2021-10-23</td>
-                                        <td>활성화</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">공고 조회</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td>기아(주)</td>
-                                        <td>605-32-08942</td>
-                                        <td>kia22@naver.com</td>
-                                        <td>2021-10-23</td>
-                                        <td>활성화</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">공고 조회</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td>기아(주)</td>
-                                        <td>605-32-08942</td>
-                                        <td>kia22@naver.com</td>
-                                        <td>2021-10-23</td>
-                                        <td>활성화</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">공고 조회</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td>기아(주)</td>
-                                        <td>605-32-08942</td>
-                                        <td>kia22@naver.com</td>
-                                        <td>2021-10-23</td>
-                                        <td>활성화</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">공고 조회</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td>기아(주)</td>
-                                        <td>605-32-08942</td>
-                                        <td>kia22@naver.com</td>
-                                        <td>2021-10-23</td>
-                                        <td>활성화</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">공고 조회</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td>기아(주)</td>
-                                        <td>605-32-08942</td>
-                                        <td>kia22@naver.com</td>
-                                        <td>2021-10-23</td>
-                                        <td>활성화</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">공고 조회</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td>기아(주)</td>
-                                        <td>605-32-08942</td>
-                                        <td>kia22@naver.com</td>
-                                        <td>2021-10-23</td>
-                                        <td>활성화</td>
-                                        <td>
-                                            <a href="javascript:;" class="tag">공고 조회</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td>기아(주)</td>
-                                        <td>605-32-08942</td>
-                                        <td>kia22@naver.com</td>
-                                        <td>2021-10-23</td>
-                                        <td>활성화</td>
+                                        <td th:text="${companyinfo.name}">기아(주)</td>
+                                        <td th:text="${companyinfo.registerNumber}"></td>
+                                        <td th:text="${companyinfo.email}"></td>
+                                        <td th:text="${companyinfo.enrollDate}"></td>
+                                        <td th:text="${companyinfo.status}">활성화</td>
                                         <td>
                                             <a href="javascript:;" class="tag">공고 조회</a>
                                         </td>
@@ -197,15 +98,7 @@
                             </table>
                         </div>
 
-                        <div class="paging_wrap">
-                            <a href="javascript:;" class="btn_prev"></a>
-                            <a href="javascript:;" class="btn_num on">1</a>
-                            <a href="javascript:;" class="btn_num">2</a>
-                            <a href="javascript:;" class="btn_num">3</a>
-                            <a href="javascript:;" class="btn_num">4</a>
-                            <a href="javascript:;" class="btn_num">5</a>
-                            <a href="javascript:;" class="btn_next"></a>
-                        </div>
+                       <div th:replace="common/paging.html"></div>
                     </div>
                 </div>
             </div>

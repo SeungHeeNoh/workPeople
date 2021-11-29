@@ -47,6 +47,7 @@
 		<association property="companyType" resultMap="companyTypeRoleResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.Attachment" id="attachmentResultMap">
+		<id property="no" column="A_NO"/>
 		<result property="changeName" column="A_CHANGE_NAME"/>
 		<result property="filePath" column="A_FILE_PATH"/>
 		<result property="status" column="A_STATUS"/>

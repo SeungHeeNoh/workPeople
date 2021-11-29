@@ -29,9 +29,9 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
 .search_box .search_top .items .input{display: block; float:left; height: 29px; line-height: 29px; background:#fff; box-sizing: border-box; border:1px solid #000;
     margin-left: 8px;  padding: 0 10px; width: 100px;}
 .search_box .search_top .items .select{float:left;}
-.search_box .search_top .items .select select{display: block; height: 29px; line-height: 29px; box-sizing: border-box; font-size: 12px;padding: 0 25px 0 8px; border:1px solid #000; min-width:100px; background:#fff url(../images/ico_select.png) no-repeat right 8px center; }
+.search_box .search_top .items .select select{display: block; height: 29px; line-height: 29px; box-sizing: border-box; font-size: 12px;padding: 0 25px 0 8px; border:1px solid #000; min-width:100px;  }
 .search_box .search_top .items .calendar{float:left;}
-.search_box .search_top .items .calendar .cal{display: block; float:left; width:100%; max-width:110px; height: 29px; line-height: 29px; padding: 0 8px 0 25px; background:#fff url(../images/ico_cal.png) no-repeat left 8px center; box-sizing: border-box; border:1px solid #000; cursor:pointer; }
+.search_box .search_top .items .calendar .cal{display: block; float:left; width:100%; max-width:110px; height: 29px; line-height: 29px; padding: 0 8px 0 25px; box-sizing: border-box; border:1px solid #000; cursor:pointer; }
 .search_box .search_top .items .calendar .cal[disabled]{background-color: rgba(230, 230, 230, 0.3); border: 1px solid rgba(0, 0, 0,0.2); color: rgba(100, 100, 100, 0.9);
     cursor: default;}
 .search_box .search_top .items .calendar span{display: block; float:left; line-height: 29px; font-size: 14px; font-weight: bold; padding: 0 10px;}
@@ -45,7 +45,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
 .search_box .search_bot .items:last-child{margin-right: 0;}
 .search_box .search_bot .items label{display: block; float:left; font-size: 13px; font-weight: bold; line-height: 29px; margin-right: 9px;}
 .search_box .search_bot .items .select{float:left;}
-.search_box .search_bot .items .select select{display: block;height: 29px;line-height: 29px;box-sizing: border-box;font-size: 12px;padding: 0 25px 0 8px;border:1px solid #000;min-width:100px;background:#fff url(../images/ico_select.png) no-repeat right 8px center;}
+.search_box .search_bot .items .select select{display: block;height: 29px;line-height: 29px;box-sizing: border-box;font-size: 12px;padding: 0 25px 0 8px;border:1px solid #000;min-width:100px;}
 .search_box .search_bot .items .input{display: block; float:left; height: 29px; line-height: 29px; background:#fff; width:50%; box-sizing: border-box; border:1px solid #000;
 margin-left: 8px; width:40%; padding: 0 10px;}
 .search_box .search_bot .items .btn{display: block; float:left; height: 29px; text-align: center; box-sizing: border-box; min-width:55px; border-radius:3px; color:#fff; font-weight: bold; background:#B1D581; font-size: 13px; margin-left: 8px; border: 0px}
@@ -79,15 +79,6 @@ th.s{height: 40px; padding: 3px 10px; font-size: 14px; line-height: 18px; text-a
 .table_wrap .table .checkbox input[type="checkbox"] + label{display: block; width: 16px; height: 16px; background:url(../images/checkbox.png) no-repeat 0 0; margin:0 auto;}
 .table_wrap .table .checkbox input[type="checkbox"]:checked + label{background-image:url(../images/checkbox_on.png);}
 
-/* 임시 페이징 */
-.paging_wrap{display: flex; align-items: center; justify-content: center; padding-top: 50px;}
-.paging_wrap.type02{margin-top: 20px;}
-.paging_wrap a{display: block; width: 29px; height: 36px; box-sizing: border-box; font-weight: bold;}
-.paging_wrap a.btn_prev{background:url(../images/ico_prev.png) no-repeat 50% 50%; margin-right: 10px;}
-.paging_wrap a.btn_next{background:url(../images/ico_next.png) no-repeat 50% 50%; margin-left: 10px;}
-.paging_wrap a.btn_num{border-radius:5px; border:1px solid #D2D6DC; color:#AEA9A9; text-align: center; line-height: 36px; margin: 0 5px; transition: all .3s;}
-.paging_wrap a.btn_num:hover{border-color:#4094F7; color:#4094F7;}
-.paging_wrap a.btn_num.on{border-color:#4094F7; color:#4094F7;}
 
 /* 사이드바 */
 .nav{
