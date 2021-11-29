@@ -22,6 +22,6 @@ public interface JoinService {
 	
 	int join(Member member, CompanyInformation companyInformation);
 
-	Map<String, String> sendMail(String mail);
+	String sendCertifyMail(String mail);
 
 }

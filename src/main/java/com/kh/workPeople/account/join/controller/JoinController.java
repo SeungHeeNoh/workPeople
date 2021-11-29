@@ -91,7 +91,20 @@ public class JoinController {
 	@GetMapping(value="/send-mail/{email}")
 	@ResponseBody
 	public Map<String, String> sendMail(@PathVariable String email) {
-		return joinService.sendMail(email);
+		Map<String, String> map = new HashMap<>();
+		String certString = joinService.sendCertifyMail(email);
+		String message = "";
+
+		if(certString.length() > 0) {
+			message = "인증 번호가 발송되었습니다.";
+		} else {
+			message = "메일을 보내는 데에 실패했습니다.";	
+		}
+		
+		map.put("certString", certString);
+		map.put("message", message);
+
+		return map;
 	}
 
 }
