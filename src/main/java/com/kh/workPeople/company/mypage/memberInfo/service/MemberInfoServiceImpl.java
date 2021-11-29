@@ -32,5 +32,10 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 		return memberInfoMapper.updatePwd(member);
 	}
 
+	@Override
+	public Member selectAll(Member member) {
+		return memberInfoMapper.selectAll(member);
+	}
+
 
 }

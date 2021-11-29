@@ -1,8 +1,5 @@
 package com.kh.workPeople.company.mypage.memberInfo.controller;
 
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -91,6 +88,9 @@ public class MemberInfoController {
 			result2 = memberInfoService.updatePwd(member);
 		}
 		
+		Member mem =  memberInfoService.selectAll(member);
+		
+		user.setDetails(mem);
 		
 		if (result1 > 0) {
 			System.out.println("회원 정보가 변경되었습니다.");

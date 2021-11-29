@@ -13,22 +13,25 @@ public class PromotionOrder {
 	 */
 	
 	private int pno;
-	private int pcode;
 	private Date pstartDate;
 	private Date pendDate;
 	private int jvno;
 	private int mno;
+	private PromotionCode pCode;
+	private Payment payment;
 	
 	public PromotionOrder() {}
-	
-	public PromotionOrder(int pno, int pcode, Date pstartDate, Date pendDate, int jvno, int mno) {
+
+	public PromotionOrder(int pno, Date pstartDate, Date pendDate, int jvno, int mno, PromotionCode pCode,
+			Payment payment) {
 		super();
 		this.pno = pno;
-		this.pcode = pcode;
 		this.pstartDate = pstartDate;
 		this.pendDate = pendDate;
 		this.jvno = jvno;
 		this.mno = mno;
+		this.pCode = pCode;
+		this.payment = payment;
 	}
 
 	public int getPno() {
@@ -37,14 +40,6 @@ public class PromotionOrder {
 
 	public void setPno(int pno) {
 		this.pno = pno;
-	}
-
-	public int getPcode() {
-		return pcode;
-	}
-
-	public void setPcode(int pcode) {
-		this.pcode = pcode;
 	}
 
 	public Date getPstartDate() {
@@ -79,11 +74,29 @@ public class PromotionOrder {
 		this.mno = mno;
 	}
 
+	public PromotionCode getpCode() {
+		return pCode;
+	}
+
+	public void setpCode(PromotionCode pCode) {
+		this.pCode = pCode;
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
 	@Override
 	public String toString() {
-		return "PromotionOrder [pno=" + pno + ", pcode=" + pcode + ", pstartDate=" + pstartDate + ", pendDate="
-				+ pendDate + ", jvno=" + jvno + ", mno=" + mno + "]";
+		return "PromotionOrder [pno=" + pno + ", pstartDate=" + pstartDate + ", pendDate=" + pendDate + ", jvno=" + jvno
+				+ ", mno=" + mno + ", pCode=" + pCode + ", payment=" + payment + "]";
 	}
+
+	
 	
 	
 	

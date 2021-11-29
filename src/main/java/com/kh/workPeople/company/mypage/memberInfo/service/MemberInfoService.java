@@ -8,5 +8,7 @@ public interface MemberInfoService {
 
 	int updatePwd(Member member);
 
+	Member selectAll(Member member);
+
 
 }

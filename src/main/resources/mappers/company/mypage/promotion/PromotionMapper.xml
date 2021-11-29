@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.workPeople.company.mypage.promotion.dao.PromotionMapper">
+	<resultMap type="com.kh.workPeople.common.vo.PromotionOrder" id="orderResultMap">
+		<id property="pno" column="P_NO"/>
+		<result property="pstartDate" column="P_START_DATE"/>
+		<result property="pendDate" column="P_END_DATE"/>
+		<result property="jvno" column="JV_NO"/>
+		<result property="mno" column="M_NO"/>
+		<association property="pCode" resultMap="pCode]ResultMap"/>
+		<association property="payment" resultMap="paymentResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.PromotionCode" id="pCode]ResultMap">
+		<id property="pcode" column="P_CODE"/>
+		<result property="pname" column="P_NAME"/>
+		<result property="pprice" column="P_PRICE"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Payment" id="paymentResultMap">
+		<id property="payno" column="PAY_NO"/>
+		<result property="pno" column="P_NO"/>
+		<result property="payDate" column="PAY_DATE"/>
+		<result property="payPrice" column="PAY_PRICE"/>
+		<result property="payMethod" column="PAY_METHOD"/>
+		<result property="payDetail" column="PAY_DETAIL"/>
+	</resultMap>
+	
+	<select id="getListCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM PROMOTION_ORDER
+	</select>
+	
+	<select id="selectList" resultMap="orderResultMap" parameterType="Map">
+		SELECT
+		      *
+		FROM(SELECT ROWNUM RNUM
+				  , NLIST.*
+		    FROM(SELECT
+                    *
+		        FROM PROMOTION_CODE C
+                LEFT JOIN PROMOTION_ORDER O ON(C.P_CODE = O.P_CODE)
+                LEFT JOIN PAYMENT P ON(O.P_NO = P.P_NO)
+                WHERE O.M_NO = #{userNo}
+                ORDER BY O.P_NO DESC) NLIST)
+            WHERE RNUM BETWEEN (#{pi.page}-1)*(#{pi.boardLimit})+1 AND ((#{pi.page}-1)*(#{pi.boardLimit})+1)+(#{pi.boardLimit}-1)
+
+	</select>
+
+	<select id="getUsingCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM PROMOTION_ORDER
+		 WHERE TO_CHAR(P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
+           AND M_NO = #{userNo}
+	</select>
+
+	<select id="getCompleteCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM PROMOTION_ORDER
+		 WHERE TO_CHAR(SYSDATE, 'YYMMDD') > TO_CHAR(P_END_DATE, 'YYMMDD')
+           AND M_NO = #{userNo}
+	</select>
+
+
+</mapper>

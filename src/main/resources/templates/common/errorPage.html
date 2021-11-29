@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>에러페이지</title>
     <link rel="stylesheet" th:href="@{/css/common/common.css}">
-    <link rel="stylesheet" th:href="@{/css/company/mypage/errorPage.css}">
+    <link rel="stylesheet" th:href="@{/css/common/errorPage.css}">
 </head>
 <body>
+<div th:include="common/header.html"></div>
     <div id="wrap">
         <div id="container">
             <div class="Info_area">
@@ -15,11 +16,12 @@
                     <div class="error_img">
                         <img th:src="@{/images/companyMyPage/error.png}" alt="에러이미지">
                     </div>
-                    <a class="SizeM orange" th:href="@{#}">홈으로 가기</a>
-                    <a class="SizeM green" th:href="@{javascript:history.go(-1)}">이전페이지로 가기</a>
+                    <a class="SizeM orange" th:href="@{/main}">홈으로 가기</a>
+                    <a class="SizeM green" onclick="history.back(); return false;">이전페이지로 가기</a>
                 </div>
             </div>
         </div>
-    </div>            
+    </div>  
+<div th:include="common/footer.html"></div>              
 </body>
 </html>
