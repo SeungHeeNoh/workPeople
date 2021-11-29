@@ -8,7 +8,6 @@ public class Manager {
 	private String imPwd;
 	private String imName;
 	private List<ManagerRole> managerRoleList;
-	private int managerRole;
 	
 	public Manager() {}
 
@@ -20,15 +19,7 @@ public class Manager {
 		this.imName = imName;
 		this.managerRoleList = managerRoleList;
 	}
-
 	
-	public int getManagerRole() {
-		return managerRole;
-	}
-
-	public void setManagerRole(int managerRole) {
-		this.managerRole = managerRole;
-	}
 
 	public int getImNo() {
 		return imNo;

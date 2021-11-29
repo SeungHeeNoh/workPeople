@@ -4,66 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>관리자 정보</title>
 	<link rel="stylesheet" th:href="@{/css/common/common.css}">
 	<link rel="stylesheet" th:href="@{/css/manager/manager/managerinfo.css}">
     <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <style>
-        .paging {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-    margin-top: 50px;
-    }
-    .paging a {
-    display: block;
-    width: 29px;
-    height: 36px;
-    box-sizing: border-box;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 5px;
-    border: 1px solid #a7a6a6;
-    color: #7e7e7e;
-    text-align: center;
-    line-height: 36px;
-    margin: 0 5px;
-    transition: all 0.3s;
-    }
-    .paging a.btn_prev {
-   
-    margin-right: 10px;
-    }
-    .paging a.btn_next {
-   
-    margin-left: 10px;
-    }
-    .paging a.btn_num {
-    border-radius: 5px;
-    border: 1px solid #a7a6a6;
-    color: #7e7e7e;
-    text-align: center;
-    line-height: 36px;
-    margin: 0 5px;
-    transition: all 0.3s;
-    }
-    .paging a:hover {
-    border: 1px solid #A7D676;
-    color: #A7D676;
-    }
-    .paging a.current_page {
-    border: 2px solid #A7D676;
-    color: #A7D676;
-    }
-    .paging > li:nth-child(1) > a,
-    .paging > li:nth-child(2) > a,
-    .paging > li:nth-last-child(2) > a,
-    .paging > li:nth-last-child(1) > a {
-        border: none;
-    }
-        </style>
+
 </head>
 <div th:include="common/header.html"></div>
 <div class="container">
@@ -75,16 +24,16 @@
                 <li id="" class="nav_tit">관리자 페이지</li>
 
                 <li id="snb_2"class="snb_main"><img id="snbImg2" th:src="@{/images/common/usersetting.png}">회원관리</li>
-                <li id="snb_2_1" class="snb_sub"><a href="@{user/user/userinfo}">회원정보</a></li>
-                <li id="snb_2_2" class="snb_sub"><a href="@{user/user/customerservice}">고객센터</a></li>
-                <li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
+                <li id="snb_2_1" class="snb_sub"><a th:href="@{/manager/user/userinfo}">회원정보</a></li>
+                <li id="snb_2_2" class="snb_sub"><a href="@{/manager/user/customerservice}">고객센터</a></li>
+                <li id="snb_2_3" class="snb_sub"><a href="${}">면접후기</a></li>
             
                 <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
-                <li id="snb_3_1" class="snb_sub"><a href="@{manager/company/companyinfo}">기업공고</a></li>
-                <li id="snb_3_2" class="snb_sub"><a href="@{manager/company/reportlit}">신고공고</a></li>
-                <li id="snb_3_3" class="snb_sub"><a href="@{manager/company/customerservice}">고객센터</a></li>
+                <li id="snb_3_1" class="snb_sub"><a th:href="@{/manager/company/companyinfo}">기업공고</a></li>
+                <li id="snb_3_2" class="snb_sub"><a href="@{/manager/company/reportlit}">신고공고</a></li>
+                <li id="snb_3_3" class="snb_sub"><a href="@{/manager/company/customerservice}">고객센터</a></li>
             
-                <li id="snb_4" class="snb_main"><a href="@{manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
+                <li id="snb_4" class="snb_main"><a th:href="@{/manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
             </ul>
         </div>
     </div>
@@ -126,7 +75,9 @@
                                         <th>계정</th>
                                         <th>이름</th>
                                         <th>계급</th>
+                                         <th:block sec:authorize="hasRole('MASTER')">
                                         <th>수정</th>
+                                        </th:block>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -134,22 +85,23 @@
 	                                    <td th:text="${manager.imNo}"></td>
 	                                     <td th:text="${manager.imId}"></td>
 	                                     <td th:text="${manager.imName}"></td>
-	                                     <td th:if="${manager.managerRole}==3">총관리자</td>
-	                                     <td th:if="${manager.managerRole}==4">관리자</td>
+	                                     <td th:if="${manager.managerRoleList.get(0).authority.code}==3">총관리자</td>
+	                                     <td th:if="${manager.managerRoleList.get(0).authority.code}==4">관리자</td>
+	                                     <th:block sec:authorize="hasRole('MASTER')">
 	                                     <td>
-	                                     	<input type="hidden" name="managerRole" value="4">
-	                                         <a href="javascript:;" class="tag">변경</a>
+	                                         <a class="tag">변경</a>
+	                                         <input type="hidden" name="imNo" th:value="${manager.imNo}"/>
 	                                     </td>
+	                                     </th:block>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        
+                        <th:block sec:authorize="hasRole('MASTER')">
                         <div class="btn_box">
-                            <a href="javascript:popShow('popup01');" class="add">관리자 추가</a>
-                            <input type="hidden" name="imNo" value="${manager.imNo}">
+                            <a href="javascript:popShow('popup02');" class="add">관리자 추가</a>
                         </div>
-
+						</th:block>
                       <div th:replace="common/paging.html"></div>
                     </div>
                 </div>
@@ -158,15 +110,15 @@
     </div>
        <div th:include="common/footer.html"></div>
 </div>
-
+<!-- 관리자 직급 변경 -->
 <div id="popup01">
     <div class="dim"></div>
     <div class="item">
-        <form name="managerClassFrm">
+        <form name="managerClassFrm" th:action="@{manager/manager/classChange}" method="post">
            <div class="new_admin">
                <div class="title">관리자 직급 변경</div>
-               <input type="hidden" name="page" value=""/>
                <input type="hidden" name="imNo" id="imNo"/>
+               <input type="hidden" name="code" id="code"/>
                <div class="new_item">
                    <label for="imId">계정</label>
                    <input type="text" name="imId" id="imId" disabled>
@@ -176,51 +128,135 @@
                    <input type="text" name="imName" id="imName" disabled>
                </div>
                 <div class="new_item">
-                    <label for="${manager.managerRole}">직급</label>
+                    <label for="mClass">직급</label>
                     <select name="mClass" id="mClass">
-                        <option value="${manager.managerRole}==4}">관리자</option>
-                        <option value="${manager.managerRole}==3}">총관리자</option>
+                        <option value="4">관리자</option>
+                        <option value="3">총관리자</option>
                     </select>
                 </div>
            </div>
        </form>
        <div class="new_btn_box">
-           <a href="javascript:mcFrm;" class="ok">등록하기</a>
-           <a href="javascript:popHide('popup01');" class="cancle">취소하기</a>
+  <a href="javascript:mcFrm();" class="ok">등록하기</a> 
+        <!--  <a href="javascript:changeGrade();" class="ok">등록하기</a> -->
+           <a href="javascript:popHide();" class="cancle">취소하기</a>
        </div>
     </div>
 </div>
+<script>
+	function popHide(){
+		$("#popup01").hide(); //cancle버튼 이거나 뒷배경 클릭시 팝업 삭제
+        $("#popup02").hide(); 
+        $(".backon").hide();
+	}
+
+	$(function(){
+		// 계급변경시 회원정보 조회
+		$('.tag').click(function(){ 
+			let imNo = $(this).next().val();
+			$.ajax({
+				url : "classChange",
+				type : "get",
+				datatype : "json",
+				data : {imNo : imNo},
+				success : function(manager){
+					console.log(manager);
+					$('#popup01 #imNo').val(manager.imNo);
+					$('#popup01 #imName').val(manager.imName);
+					$('#popup01 #imId').val(manager.imId);
+					$('#popup01 #code').val(manager.managerRoleList[0].authority.code);
+					if(manager.managerRoleList[0].authority.code=='3'){
+						$('#popup01 #mClass option').eq(1).attr('selected', true);
+					}else if(manager.managerRoleList[0].authority.code=='4'){
+						$('#popup01 #mClass option').eq(0).attr('selected', true);
+					}
+				},
+				
+				error : function(e) {
+					console.log(e);
+				}
+				
+			});
+			
+		})
+	})
+	
+	 // 계급 변경
+	function mcFrm(){
+		let frm = document.forms.managerClassFrm;
+		console.log(frm);
+		frm.action="/manager/manager/classChangeManager"
+		console.log(frm.action);
+		frm.method = "post"; 
+		frm.submit();
+
+	}  
+	
+	function changeGrade(){
+		var imNo =  $('#imNo').val();
+		var code =  $('#code').val();
+		var imId =  $('#imId').val();
+		var imName =  $('#imName').val();
+		var mClass = $('#mClass').selected().val();
+		var param = {};
+		
+		param.imNo = imNo;
+		param.imId = imId;
+		param.code = code;
+		param.mClass = mClass;
+
+		param = JSON.stringify(param);
+		$.ajax({
+			url : "classChange",
+			data : param,
+			type : 'post',
+			dataType:"json",
+			success: function(data){
+			    $("#popup01").hide();
+                $(".backon").hide();
+			},
+			error : function(e){
+				alert(e);
+			}
+			
+		});	
+	}
+	
+
+	
+
+</script>
 
 
 <div id="popup02">
     <div class="dim"></div>
     <div class="item">
-        <form name="newManagerFrm" method="post">
+        <form name="newManagerFrm" th:action="@{/manager/manager/createManager}" method="post">
             <div class="new_admin">
                 <div class="title">신규 관리자 추가</div>
                 <div class="new_item">
-                    <label for="imId">계정</label>
-                    <input type="text" name="imId" id="imId">
-                    <a href="javascript:;" class="idCheck">중복확인</a>
+                    <label for="imId2">계정</label>
+                    <input type="text" name="imId2" id="imId2">
+                    <a href="javascript:idCheck();" class="idCheck">중복확인</a>
                 </div>
                 <div class="new_item">
-                    <label for="imPwd">비밀번호</label>
-                    <input type="password" name="imPwd" id="imPwd">
-                </div>
-                <div class="new_item">
-                    <label for="imPwd2">비밀번호 확인</label>
+                    <label for="imPwd2">비밀번호</label>
                     <input type="password" name="imPwd2" id="imPwd2">
                 </div>
                 <div class="new_item">
-                    <label for="imName">이름</label>
-                    <input type="text" name="imName" id="imName">
+                    <label for="imPwd3">비밀번호 확인</label>
+                    <input type="password" name="imPwd3" id="imPwd3">
+                </div>
+                <div class="new_item">
+                    <label for="imName2">이름</label>
+                    <input type="text" name="imName2" id="imName2">
                 </div>
             </div>
-            <div class="close">close</div>
+            <!-- <div class="close">close</div> -->
              </form>
             <div class="new_btn_box">
-                <a href="javascript:;" class="ok">등록하기</a>
-                <a href="javascript:popHide('');" class="cancle">취소하기</a>
+                <a href="javascript:mCreate();" class="ok">등록하기</a>
+                <a href="javascript:popHide();" class="cancle">취소하기</a>
             </div>
     </div>
 </div>
@@ -230,17 +266,19 @@
 
 let regCheck = false;
 // 아이디 중복체크
+
+
 function idCheck(){
-	let imId = $('#imId');
-	//console.log(mId.val());
-	
+	let imId = $('#imId2');
+	console.log('id입력창에 입력된 값:'+imId.val());
 	if(imId.val().length >= 1){
 		$.ajax({
-			url : "${contextPath}/admin/idCheck",
-			type : "post",
-			data : {imId : imId.val()},
-			success : function(item){
-				if(item != 0){
+			url : "idOverLapCheck",
+			type : "get",
+			datatype : "json",
+			data : {imId2 : imId.val()},
+			success : function(result){
+				if(result == "overLap"){
 					// 계정 생성불가능
 					alert(imId.val() + "는 이미 존재하는 계정입니다.");
 					imId.attr('readonly', false);
@@ -265,26 +303,27 @@ function idCheck(){
 
 // 계정생성
 function mCreate(){
-	let imId = $('#imId');
-	let imPwd1 = $("#imPwd1");
+	let imId2 = $('#imId2');
 	let imPwd2 = $("#imPwd2");
+	let imPwd3 = $("#imPwd3");
+	let imName2 = $("#imName2");
 	if(!regCheck){
 		// 중복확인을 하지않아 값이 false일시 계정생성 불가능
 		alert("계정 중복확인 해주세요!");
-		mId.select();
+		imId2.select();
 		return;
 	}
 	
 	//비밀번호, 비밀번호 확인 값이 같은지 확인
-	if((imPwd1.val() !== imPwd2.val()) && imPwd1.val() != 0 && imPwd2.val() != 0){
+	if((imPwd2.val() !== imPwd3.val()) && imPwd2.val() != 0 && imPwd3.val() != 0){
 		alert("비밀번호 값을 확인해주세요!");
 		mPwd2.select();
-		return;
+		return true;
 	}
 	
 	
 	document.forms.newManagerFrm.method = "post";
-	document.forms.newManagerFrm.action = "@{/manager/managerCreate}";
+	document.forms.newManagerFrm.action = "createManager";
 	document.forms.newManagerFrm.submit();
 	
 
@@ -311,7 +350,7 @@ function mCreate(){
 
         $("body").on("click", function (event) {
             if (event.target.className == 'close' || event.target.className == 'backon') {
-                $("#popup01").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+                $("#popup01").hide(); //cancle버튼 이거나 뒷배경 클릭시 팝업 삭제
                 $(".backon").hide();
             }
         });
@@ -326,16 +365,12 @@ function mCreate(){
 
         $("body").on("click", function (event) {
             if (event.target.className == 'close' || event.target.className == 'backon') {
-                $("#popup02").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+                $("#popup02").hide(); //cancle버튼 이거나 뒷배경 클릭시 팝업 삭제
                 $(".backon").hide();
             }
         });
 
     });
-
-
-
-
 </script>
 
 

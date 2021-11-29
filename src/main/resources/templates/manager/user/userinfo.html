@@ -19,9 +19,9 @@
 					<ul>
 		                <li id="" class="nav_tit">관리자 페이지</li>
 		
-		                <li id="snb_2"class="snb_main"><img id="snbImg2" th:src="@{images/common/usersetting.png}">회원관리</li>
-		                <li id="snb_2_1" class="snb_sub"><a href="@{user/user/userinfo}">회원정보</a></li>
-		                <li id="snb_2_2" class="snb_sub"><a href="@{user/user/customerservice}">고객센터</a></li>
+		                <li id="snb_2"class="snb_main"><img id="snbImg2" th:src="@{/images/common/usersetting.png}">회원관리</li>
+		                <li id="snb_2_1" class="snb_sub"><a href="@{manager/user/userinfo}">회원정보</a></li>
+                		<li id="snb_2_2" class="snb_sub"><a href="@{manager/user/customerservice}">고객센터</a></li>
 		                <li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
 		            
 		                <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
@@ -50,7 +50,6 @@
 											<option value="">이메일</option>
 											<option value="">주소</option>
 											<option value="">연락처</option>
-											<option value="">가입일</option>
 										</select>
 									</div>
 									<input type="text" class="input">
@@ -83,103 +82,21 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>idid1101</td>
-											<td>신짱구</td>
-											<td>sinoske05@naver.com</td>
-											<td>서울 송파구</td>
-											<td>010-0000-0000</td>
-											<td>2021-10-28</td>
-										</tr>
-										<tr>
-											<td>idid1101</td>
-											<td>신짱구</td>
-											<td>sinoske05@naver.com</td>
-											<td>서울 송파구</td>
-											<td>010-0000-0000</td>
-											<td>2021-10-28</td>
-										</tr>
-										<tr>
-											<td>idid1101</td>
-											<td>신짱구</td>
-											<td>sinoske05@naver.com</td>
-											<td>서울 송파구</td>
-											<td>010-0000-0000</td>
-											<td>2021-10-28</td>
-										</tr>
-										<tr>
-											<td>idid1101</td>
-											<td>신짱구</td>
-											<td>sinoske05@naver.com</td>
-											<td>서울 송파구</td>
-											<td>010-0000-0000</td>
-											<td>2021-10-28</td>
-										</tr>
-										<tr>
-											<td>idid1101</td>
-											<td>신짱구</td>
-											<td>sinoske05@naver.com</td>
-											<td>서울 송파구</td>
-											<td>010-0000-0000</td>
-											<td>2021-10-28</td>
-										</tr>
-										<tr>
-											<td>idid1101</td>
-											<td>신짱구</td>
-											<td>sinoske05@naver.com</td>
-											<td>서울 송파구</td>
-											<td>010-0000-0000</td>
-											<td>2021-10-28</td>
-										</tr>
-										<tr>
-											<td>idid1101</td>
-											<td>신짱구</td>
-											<td>sinoske05@naver.com</td>
-											<td>서울 송파구</td>
-											<td>010-0000-0000</td>
-											<td>2021-10-28</td>
-										</tr>
-										<tr>
-											<td>idid1101</td>
-											<td>신짱구</td>
-											<td>sinoske05@naver.com</td>
-											<td>서울 송파구</td>
-											<td>010-0000-0000</td>
-											<td>2021-10-28</td>
-										</tr>
-										<tr>
-											<td>idid1101</td>
-											<td>신짱구</td>
-											<td>sinoske05@naver.com</td>
-											<td>서울 송파구</td>
-											<td>010-0000-0000</td>
-											<td>2021-10-28</td>
-										</tr>
-										<tr>
-											<td>idid1101</td>
-											<td>신짱구</td>
-											<td>sinoske05@naver.com</td>
-											<td>서울 송파구</td>
-											<td>010-0000-0000</td>
-											<td>2021-10-28</td>
+										<tr th:each="member: ${userList}">
+											<td th:text="${member.id}"></td>
+											<td th:text="${member.name}"></td>
+											<td th:text="${member.email}"></td>
+											<td th:text="${member.detailAddress}"></td>
+											<td th:text="${member.phone}"></td>
+											<td th:text="${member.enrollDate}"></td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
-
-							<div class="paging_wrap">
-								<a href="javascript:;" class="btn_prev"></a> <a
-									href="javascript:;" class="btn_num on">1</a> <a
-									href="javascript:;" class="btn_num">2</a> <a
-									href="javascript:;" class="btn_num">3</a> <a
-									href="javascript:;" class="btn_num">4</a> <a
-									href="javascript:;" class="btn_num">5</a> <a
-									href="javascript:;" class="btn_next"></a>
-							</div>
 						</div>
+						<div th:replace="common/paging.html"></div>
 					</div>
 				</div>
-				</secion>
 			</div>
 		</div>
 	</div>

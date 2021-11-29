@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.workPeople.manager.model.dao.ManagerMapper">
+<mapper namespace="com.kh.workPeople.manager.manager.model.dao.ManagerMapper">
 	<resultMap type="com.kh.workPeople.common.vo.Manager" id="ManagerResultMap">
 		<id property="imNo" column="IM_NO"/>
 		<result property="imId" column="IM_ID"/>
 		<result property="imPwd" column="IM_PWD"/>
 		<result property="imName" column="IM_NAME"/>
-		<result property="managerRole" column="A_CODE"/>
 		<collection property="managerRoleList" resultMap="managerRoleResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.ManagerRole" id="managerRoleResultMap">
@@ -42,5 +41,65 @@
 		 FROM INFO_MANAGER
 	</select>
 	
-	  
+	<select id="classManager" resultMap="ManagerResultMap">
+			SELECT
+		       IM_NO
+		     , IM_ID
+		     , IM_NAME
+		     , A_CODE
+		 FROM INFO_MANAGER
+        JOIN MANAGER_ROLE USING(IM_NO)
+        JOIN AUTHORITY USING(A_CODE)
+	    WHERE IM_NO=#{imNo}
+	</select>
+	
+	<delete id="classDeleteManager">
+	DELETE
+    FROM MANAGER_ROLE
+    WHERE IM_NO=#{imNo}
+    AND A_CODE=3
+	</delete>
+
+	<insert id="classInsertManager">
+	      Insert into MANAGER_ROLE (IM_NO,A_CODE) values (#{imNo},3)
+	</insert>
+	
+	<insert id="createManager" parameterType="com.kh.workPeople.common.vo.Manager">
+		INSERT INTO INFO_MANAGER
+		(
+		 	IM_NO
+		     , IM_ID
+		     , IM_PWD
+		     , IM_NAME
+		)
+		VALUES
+		(
+			SEQ_INFO_MANAGER_NO.NEXTVAL
+			,#{imId}
+			,#{imPwd}
+			,#{imName}
+		)
+	</insert>
+	
+	<select id ="getManagerByImId" resultMap = "ManagerResultMap" parameterType="java.lang.String">
+		SELECT * FROM INFO_MANAGER WHERE IM_ID = #{id}
+	</select>
+	
+		<insert id="insertManagerRole" parameterType="com.kh.workPeople.common.vo.ManagerRole">
+		INSERT INTO MANAGER_ROLE
+		(
+		 	IM_NO
+		     , A_CODE
+		)
+		VALUES
+		(
+			#{imNo}
+			,4
+		)
+	</insert>
+	<select id = "idOverlapCheck" 
+	resultType="_int" 
+	parameterType="java.lang.String">
+		SELECT COUNT(*) FROM INFO_MANAGER  WHERE  IM_ID =#{id}
+	</select>
 </mapper>
