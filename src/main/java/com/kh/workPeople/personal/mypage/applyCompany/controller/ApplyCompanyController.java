@@ -7,12 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -58,12 +54,13 @@ public class ApplyCompanyController {
 		return "personal/mypage/applyCompany";
 	}
 
-	@PostMapping("applyCompany/applyCancel")
-	public String applyCancel(){
+	@GetMapping("applyCompany/applyCancel")
+	@ResponseBody
+	public String applyCancel(@RequestParam(value="ids") List<String> ids){
+		System.out.println("ids:::::::::::::" + ids);
 
-
-
-		return "redirect:/personal/mypage/applyCompany";
+	return null;
+//		return "redirect:/personal/mypage/applyCompany";
 	}
 
 

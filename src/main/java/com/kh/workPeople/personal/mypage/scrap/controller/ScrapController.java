@@ -2,6 +2,8 @@ package com.kh.workPeople.personal.mypage.scrap.controller;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.MemberImpl;
+import com.kh.workPeople.common.vo.Resume;
+import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
 import com.kh.workPeople.personal.mypage.scrap.model.service.ScrapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,10 +21,12 @@ import java.util.List;
 public class ScrapController {
 
 	private final ScrapService scrapService;
+	private final HomeService homeService;
 
 	@Autowired
-	public ScrapController(ScrapService scrapService) {
+	public ScrapController(ScrapService scrapService, HomeService homeService) {
 		this.scrapService = scrapService;
+		this.homeService=homeService;
 	}
 
 	@GetMapping("scrap")
@@ -30,20 +34,20 @@ public class ScrapController {
 
 		List<JobVacancyLookUp> jobVacancyLookUpList = scrapService.jobVacancyLookUpList(user.getNo());
 
-//		for(JobVacancyLookUp jv : jobVacancyLookUpList){
-//			Date beforeDate1 = jv.getAcDate();
-//			Date beforeDate2 = jv.getRbDate();
-//			Date beforeDate3 = jv.getJvPeriodEnd();
-//			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
-//			String afterDate1 = simpleDateFormat.format(beforeDate1);
-//			String afterDate2 = simpleDateFormat.format(beforeDate2);
-//			String afterDate3 = simpleDateFormat.format(beforeDate3);
-//			jv.setAcDateFormat(afterDate1);
-//			jv.setRbDateFormat(afterDate2);
-//			jv.setJvPeriodEndFormat(afterDate3);
-//		}
+		for(JobVacancyLookUp job : jobVacancyLookUpList){
+			int applyCompanyYN = homeService.applyCompanyYN(user.getNo(),job.getJvNo());
+
+			if(applyCompanyYN > 0){
+				job.setApplyYN(true);
+			} else{
+				job.setApplyYN(false);
+			}
+		}
 
 		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
+
+		Resume resume = homeService.selectResumeStatusY(user.getNo());
+		model.addAttribute("resume",resume);
 
 		return "personal/mypage/scrap";
 	}

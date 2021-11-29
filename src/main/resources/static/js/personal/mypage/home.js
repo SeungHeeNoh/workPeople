@@ -23,6 +23,7 @@
             applyBtnNo = new Array(applyBtn.length),
             deleteBtn = document.querySelector(".orange1"),
             rNo = deleteBtn.value;
+
         for(let i=0; i<applyBtn.length; i++) {
             applyBtnNo[i] = applyBtn[i].value;
 

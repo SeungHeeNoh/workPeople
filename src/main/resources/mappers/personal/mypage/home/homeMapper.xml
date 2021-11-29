@@ -75,7 +75,7 @@
         SELECT
             COUNT(*)
         FROM RESUME
-                 JOIN APPLY_COMPANY USING (R_NO)
+        JOIN APPLY_COMPANY USING (R_NO)
         WHERE M_NO=#{no}
           AND JV_NO=#{jvNo}
 
@@ -89,8 +89,8 @@
             BI_TITLE,
             S_NAME
         FROM RESUME
-                 JOIN BASIC_INFO BI USING(R_NO)
-                 JOIN SECTOR S ON (BI.SECTOR_NO = S.S_NO)
+        JOIN BASIC_INFO BI USING(R_NO)
+        JOIN SECTOR S ON (BI.SECTOR_NO = S.S_NO)
         WHERE M_NO = #{ no }
           AND R_STATUS_YN='Y'
           AND R_DELETE_YN = 'N'
