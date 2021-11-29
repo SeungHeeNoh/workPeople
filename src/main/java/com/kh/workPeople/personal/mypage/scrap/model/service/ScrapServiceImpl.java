@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class ScrapServiceImpl implements ScrapService{
 
-    private ScrapMapper scrapMapper;
+    private final ScrapMapper scrapMapper;
 
     @Autowired
     public ScrapServiceImpl(ScrapMapper scrapMapper){

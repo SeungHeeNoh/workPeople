@@ -77,13 +77,21 @@ public class HomeController {
 	public String resumeEdit(@PathVariable int rNo, Model model, @AuthenticationPrincipal MemberImpl user){
 
 
+
+
 		return "personal/mypage/resumeEdit";
 	}
 
 	@GetMapping("home/resumeDelete/{rNo}")
 	public String resumeDelete(@PathVariable int rNo, Model model, @AuthenticationPrincipal MemberImpl user){
 
-		int resumeDelete = homeService.resumeDelete(rNo);
+		int resumeIsApplyCompanyYN = homeService.resumeIsApplyCompanyYN(rNo);
+
+		if(resumeIsApplyCompanyYN > 0){
+			int resumeDelete = homeService.resumeDelete(rNo);
+		} else{
+			int resumeDeleteFromDB = homeService.resumeDeleteFromDB(rNo);
+		}
 
 		return "redirect:/personal/mypage/home";
 	}
@@ -91,8 +99,7 @@ public class HomeController {
 	@GetMapping("home/applyResume/{rNo},{applyBtnNo}")
 	public String applyResume(@PathVariable int rNo, @PathVariable int applyBtnNo, Model model, @AuthenticationPrincipal MemberImpl user){
 
-
-		System.out.println("rNo : "+rNo + "applyBtnNo:"+applyBtnNo);
+//		int applyCompany = homeService.applyCompany(rNo,applyBtnNo);
 
 		return "redirect:/personal/mypage/home";
 	}

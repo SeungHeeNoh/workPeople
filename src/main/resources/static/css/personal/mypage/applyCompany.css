@@ -58,17 +58,22 @@
 .content_title_text4_detail_wrap{
     width: 370px;
     position: absolute;
-    left: 230px;
+    left: 210px;
 }
 
 .content_title_text4_detail_wrap2{
     position: absolute;
-    left: 653px;
+    left: 666px;
+}
+
+.content_title_text4_2 > div {
+    padding-left: 5px;
+    color:#979797;
 }
 
 .content_title_text4_detail{
     display: flex;
-
+    position: relative;
 }
 
 .content_title_text4_detail_1,
@@ -76,13 +81,27 @@
 .content_title_text4_detail_3
 {
     color: #979797;
-    margin-right: 35px;
+    position: absolute;
 }
+
+.content_title_text4_detail_1{
+    width: 65px;
+}
+.content_title_text4_detail_2{
+    left: 70px;
+    width: 100px;
+}
+.content_title_text4_detail_3{
+    width: 290px;
+    left: 170px;
+}
+
 
 .content_title_text4_2{
     color:#979797;
     margin-left: 8px;
     text-align: center;
+    display: flex;
 }
 
 

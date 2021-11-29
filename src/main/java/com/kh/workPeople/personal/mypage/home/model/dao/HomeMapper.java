@@ -27,5 +27,9 @@ public interface HomeMapper {
 
     int applyCompanyYN(int no, int jvNo);
 
+    int resumeIsApplyCompanyYN(int rNo);
+
+    int resumeDeleteFromDB(int rNo);
+
 
 }

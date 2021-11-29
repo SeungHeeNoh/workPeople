@@ -15,6 +15,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        let statusYResume = [[${resume}]];
+
+
+        /*]]>*/
+    </script>
 </head>
 <body>
 <div class="wrapper">
@@ -132,7 +140,6 @@
                                     ~<span style="color: blue" th:text="${job.jvPeriodEndFormat}"></span></div>
                             </div>
                         </th:block>
-
                     </div>
                     <hr class="hr">
                 </div>
@@ -145,6 +152,7 @@
     </section>
 </div>
 <script th:src="@{/js/personal/mypage/home.js}"></script>
+
 </body>
 
 </html>

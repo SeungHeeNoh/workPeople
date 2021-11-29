@@ -129,11 +129,19 @@
         ORDER BY 1
     </select>
 
-<!--    <delete id="resumeDelete" parameterType="_int">-->
-<!--        DELETE-->
-<!--            FROM RESUME-->
-<!--        WHERE R_NO=#{rNo}-->
-<!--    </delete>-->
+    <select id="resumeIsApplyCompanyYN" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLY_COMPANY
+        WHERE R_NO= #{rNo}
+    </select>
+
+
+    <delete id="resumeDeleteFromDB" parameterType="_int">
+        DELETE
+            FROM RESUME
+        WHERE R_NO=#{rNo}
+    </delete>
 
     <update id="resumeDelete" parameterType="com.kh.workPeople.common.vo.Resume">
         UPDATE RESUME

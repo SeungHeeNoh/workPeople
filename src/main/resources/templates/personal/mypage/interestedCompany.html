@@ -27,7 +27,6 @@
                 <div class="home_content_3">
                     <div class="home_content_3_1">회사명</div>
                     <div class="home_content_3_2">채용공고</div>
-                    <div class="home_content_3_3">SNS 수신여부</div>
                 </div>
 
                 <div th:each="job : ${jobList}">
@@ -35,7 +34,6 @@
                         <input type="checkbox" class="checkBtn1">
                         <div class="content_title_text4_1" th:text="${job.name}"></div>
                         <div class="content_title_text4_2">채용중 <div th:text="${job.count}"></div>개</div>
-                        <button class="content_title_text4_3">수신</button>
                     </div>
                     <hr class="hr">
                 </div>

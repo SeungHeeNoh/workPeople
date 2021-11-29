@@ -1,22 +1,23 @@
-(function() {
+    (function() {
 
-    if(document.querySelector(".orange1").value != null){
-        let deleteBtn =document.querySelector(".orange1"),
-            rNo = deleteBtn.value
+        if(document.querySelector(".orange1") != null) {
+            let deleteBtn = document.querySelector(".orange1"),
+                rNo = deleteBtn.value;
 
-        deleteBtn.addEventListener('click',deleteResume);
-
-        function deleteResume(){
-
-            let deleteYN = confirm("이력서를 삭제하시겠습니까?");
-
-            if(deleteYN){
-                location.href = "/personal/mypage/home/resumeDelete/"+rNo;
-            }
+            deleteBtn.addEventListener('click', deleteResume);
         }
-    }
 
-    if(document.querySelector(".content_title_text4_btn").value != null) {
+            function deleteResume() {
+
+                let deleteYN = confirm("이력서를 삭제하시겠습니까?");
+
+                if (deleteYN) {
+                    location.href = "/personal/mypage/home/resumeDelete/" + rNo;
+                }
+            }
+
+
+
         let applyBtn = document.querySelector(".content_title_text4_btn"),
             applyBtnNo = applyBtn.value;
 
@@ -24,7 +25,10 @@
 
         function applyResume() {
 
-            if (applyBtnNo == null) {
+            console.log(applyBtnNo);
+            console.log(applyBtn);
+
+            if (statusYResume === null) {
                 alert("대표 이력서를 등록해주세요.");
                 location.href = "/personal/mypage/resumeManagement";
             } else {
@@ -37,17 +41,14 @@
 
 
         }
-    }
-
-
-
-
-
-
-
-
-
-
-
 
 })();
+
+
+
+
+
+
+
+
+

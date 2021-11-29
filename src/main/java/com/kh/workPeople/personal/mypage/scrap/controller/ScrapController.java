@@ -30,18 +30,18 @@ public class ScrapController {
 
 		List<JobVacancyLookUp> jobVacancyLookUpList = scrapService.jobVacancyLookUpList(user.getNo());
 
-		for(JobVacancyLookUp jv : jobVacancyLookUpList){
-			Date beforeDate1 = jv.getAcDate();
-			Date beforeDate2 = jv.getRbDate();
-			Date beforeDate3 = jv.getJvPeriodEnd();
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
-			String afterDate1 = simpleDateFormat.format(beforeDate1);
-			String afterDate2 = simpleDateFormat.format(beforeDate2);
-			String afterDate3 = simpleDateFormat.format(beforeDate3);
-			jv.setAcDateFormat(afterDate1);
-			jv.setRbDateFormat(afterDate2);
-			jv.setJvPeriodEndFormat(afterDate3);
-		}
+//		for(JobVacancyLookUp jv : jobVacancyLookUpList){
+//			Date beforeDate1 = jv.getAcDate();
+//			Date beforeDate2 = jv.getRbDate();
+//			Date beforeDate3 = jv.getJvPeriodEnd();
+//			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
+//			String afterDate1 = simpleDateFormat.format(beforeDate1);
+//			String afterDate2 = simpleDateFormat.format(beforeDate2);
+//			String afterDate3 = simpleDateFormat.format(beforeDate3);
+//			jv.setAcDateFormat(afterDate1);
+//			jv.setRbDateFormat(afterDate2);
+//			jv.setJvPeriodEndFormat(afterDate3);
+//		}
 
 		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
 

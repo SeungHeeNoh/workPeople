@@ -64,4 +64,14 @@ public class HomeServiceImpl implements HomeService {
     public int applyCompanyYN(int no, int jvNo) {
         return homeMapper.applyCompanyYN(no,jvNo);
     }
+
+    @Override
+    public int resumeIsApplyCompanyYN(int rNo) {
+        return homeMapper.resumeIsApplyCompanyYN(rNo);
+    }
+
+    @Override
+    public int resumeDeleteFromDB(int rNo) {
+        return homeMapper.resumeDeleteFromDB(rNo);
+    }
 }
