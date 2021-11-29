@@ -66,32 +66,45 @@ public class JoinController {
 		return "redirect:/main";
 	}
 	
-	@GetMapping(value="/check-id/{id}")
+	@GetMapping(value="/member/{id}")
 	@ResponseBody
 	public Map<String, String> checkId(@PathVariable String id) {
 		Map<String, String> map = new HashMap<>();
-		String msg = joinService.checkId(id) > 0 ? "이미 사용중인 아이디입니다." : "";
+		String message = joinService.checkId(id) > 0 ? "이미 사용중인 아이디입니다." : "";
 
-		map.put("msg", msg);
+		map.put("message", message);
 		
 		return map;
 	}
 	
-	@GetMapping(value="/check-register-number/{registerNumber}", produces = "application/json; charset=UTF-8")
+	@GetMapping(value="/company/{registerNumber}", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public Map<String, String> checkRegisterNumber(@PathVariable String registerNumber) throws Exception {
 		Map<String, String> map = new HashMap<>();
-		String msg = joinService.checkRegisterNumber(registerNumber) > 0 ? "이미 가입한 기업회원입니다."  : "";
+		String message = joinService.checkRegisterNumber(registerNumber) > 0 ? "이미 가입한 기업회원입니다."  : "";
 
-		map.put("msg", msg);
+		map.put("message", message);
 
 		return map;
 	}
 	
-	@GetMapping(value="/send-mail/{email}")
+	@GetMapping(value="/mail/{email}")
 	@ResponseBody
 	public Map<String, String> sendMail(@PathVariable String email) {
-		return joinService.sendMail(email);
+		Map<String, String> map = new HashMap<>();
+		String certString = joinService.sendCertifyMail(email);
+		String message = "";
+
+		if(certString.length() > 0) {
+			message = "인증 번호가 발송되었습니다.";
+		} else {
+			message = "메일을 보내는 데에 실패했습니다.";	
+		}
+		
+		map.put("certString", certString);
+		map.put("message", message);
+
+		return map;
 	}
 
 }

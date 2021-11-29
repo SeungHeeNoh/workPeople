@@ -1,17 +1,10 @@
 package com.kh.workPeople.account.join.model.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +15,10 @@ import com.kh.workPeople.common.vo.CompanyType;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.MemberRole;
 import com.kh.workPeople.common.vo.Sector;
+import com.kh.workPeople.mail.model.service.MailService;
+import com.kh.workPeople.mail.model.vo.Mail;
 
-@Service()
+@Service
 @PropertySource("classpath:application.yml")
 public class JoinServiceImpl implements JoinService {
 	
@@ -32,17 +27,17 @@ public class JoinServiceImpl implements JoinService {
 		 								    'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 
 		 								    'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 	
-	private PasswordEncoder passwordEncoder;
-	private JoinMapper joinMapper;
-	private JavaMailSender mailSender;
 	@Value("${mail.gmail.username}")
 	private String username;
+	private PasswordEncoder passwordEncoder;
+	private JoinMapper joinMapper;
+	private MailService mailService;
 
 	@Autowired
-	public JoinServiceImpl(JoinMapper joinMapper, PasswordEncoder passwordEncoder, JavaMailSender mailSender) {
+	public JoinServiceImpl(JoinMapper joinMapper, MailService mailService, PasswordEncoder passwordEncoder) {
 		this.joinMapper = joinMapper;
+		this.mailService = mailService;
 		this.passwordEncoder = passwordEncoder;
-		this.mailSender = mailSender;
 	}
 
 	@Override
@@ -94,37 +89,24 @@ public class JoinServiceImpl implements JoinService {
 	}
 
 	@Override
-	public Map<String, String> sendMail(String email) {
-		Map<String, String> map = new HashMap<>();
+	public String sendCertifyMail(String email) {
 		String certString = createCertString();
-		String to = email;
-		String from = username;
-		String subject = "work people 회원가입 인증 이메일입니다.";
 		String content = new StringBuffer().append("<h1>[이메일 인증]</h1>")
 										   .append("홈페이지를 방문해주셔서 감사합니다.<br><br>")
 										   .append("인증번호는" + certString +  "입니다.<br>")
 										   .append("해당 인증번호를 인증번호 확인란에 기입하여 주세요.").toString();
-		
-		String message = "인증번호가 발송되었습니다.";
 
-		try {
-			MimeMessage mail = mailSender.createMimeMessage();
-			MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true, "UTF-8");
-			
-			mailHelper.setFrom(from);
-			mailHelper.setTo(to);
-			mailHelper.setSubject(subject);
-			mailHelper.setText(content, true);
-			
-			mailSender.send(mail);
-		} catch (Exception e) {
-			message = "메일을 보내는 데에 실패했습니다.";
+		Mail mail = new Mail();
+		mail.setFrom(username);
+		mail.setTo(email);
+		mail.setSubject("[Work People] 회원가입 인증 이메일입니다.");
+		mail.setContent(content);
+		
+		if(mailService.sendMail(mail) == 0) {
+			certString = "";
 		}
 
-		map.put("certString", certString);
-		map.put("message", message);
-		
-		return map;
+		return certString;
 	}
 	
 	private String createCertString() {

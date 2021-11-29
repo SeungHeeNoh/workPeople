@@ -6,7 +6,7 @@
 
 	let content = document.querySelector(".content"),
 		form = content.querySelector("form"),
-		inputList = form.querySelectorAll(".join_row")
+		inputList = form.querySelectorAll(joinRow)
 		timerSpan = form.querySelector("div.timer.join_row").querySelector(".timer");
 
 	let code = "",
@@ -158,9 +158,9 @@
 							xhr2.onreadystatechange = function() {
 								if(xhr2.readyState == 4) {
 									if((xhr2.status >= 200 && xhr2.status < 300) || xhr2.status == 304) {
-										if(xhr2.response.msg) {
-											if(xhr2.response.msg.length > 0) {
-												deleteValidState(inputId, xhr2.response.msg);
+										if(xhr2.response.message) {
+											if(xhr2.response.message.length > 0) {
+												deleteValidState(inputId, xhr2.response.message);
 											} else {
 												updateValidState(inputId);
 											}
@@ -171,7 +171,7 @@
 								}
 							}
 
-							xhr2.open("GET", "/account/join/check-register-number/" + registerNumber);
+							xhr2.open("GET", "/account/join/company/" + registerNumber);
 							xhr2.setRequestHeader("Content-type", "application/json;");
 							xhr2.responseType = "json";
 							xhr2.send();
@@ -199,9 +199,9 @@
 		xhr.onreadystatechange = function() {
 			if(xhr.readyState == 4) {
 				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-					if(xhr.response.msg) {
-						if(xhr.response.msg.length > 0) {
-							deleteValidState(inputId, xhr.response.msg);
+					if(xhr.response.message) {
+						if(xhr.response.message.length > 0) {
+							deleteValidState(inputId, xhr.response.message);
 						} else {
 							updateValidState(inputId);
 						}
@@ -212,7 +212,7 @@
 			}
 		}
 
-		xhr.open("GET", "/account/join/check-id/" + id);
+		xhr.open("GET", "/account/join/member/" + id);
 		xhr.responseType = "json";
 		xhr.send();
 	}
@@ -225,57 +225,40 @@
 				let inputId = button.closest(joinRow).querySelector("input").id;
 
 				if(button.classList.contains("send_email_button")) {
-					let text = inputValidate["emailCheck"](joinRows[inputId]["input"].value);
-					if(text.length > 0) {
-						deleteValidState(inputId, text);
-					} else {
-						if(confirm("인증 메일을 전송하시겠습니까?")) {
-							updateValidState(inputId);
-							joinRows[inputId]["input"].setAttribute("disabled", true);
-							sendMail(inputId, joinRows[inputId]["input"].value);
-							hideNotice(joinRows["email_check"]["joinRow"]);
-						} else {
-							deleteValidState(inputId, "인증이 완료되지 않았습니다.");
-							deleteValidState("email_check", "인증이 완료되지 않았습니다.");
-							joinRows[inputId]["input"].removeAttribute("disabled");
-						}
-					}
+					sendMailButtonHandler(inputId, button);
 				} else if(button.classList.contains("email_check_button")) {
-					if(code == joinRows[inputId]["input"].value) {
-						updateValidState(inputId);
-						clearCertStringTimer(true);
-						alert("인증되었습니다.");
-					} else {
-						deleteValidState(inputId, "인증번호가 일치하지 않습니다.");
-					}
+					emailCheckButtonHandler(inputId);
 				} else if(button.classList.contains("address_search_button")) {
-					new daum.Postcode({
-						oncomplete: function(data) {
-							joinRows["postcode"]["input"].value = data.zonecode;
-							joinRows["road_address"]["input"].value = data.roadAddress;
-							updateValidState("postcode");
-							updateValidState("road_address");
-						}
-					}).open();
+					addressSearchButtonHandler();
 				}
 			} else if(button.classList.contains("confirm_button")){
-				let flag = true;
-
-				for(let joinRow in joinRows) {
-					if(!joinRows[joinRow]["joinRow"].classList.contains("valid_state")) {
-						deleteValidState(joinRow, "필수 정보입니다.")
-						flag = false;
-					}
-				}
-
-				if(flag) {
-					form.submit();
-				}
+				confirmButtonHandler();
 			}
 		}
 	}
 
-	function sendMail(inputId, email) {
+	function sendMailButtonHandler(inputId, button) {
+		let text = inputValidate["emailCheck"](joinRows[inputId]["input"].value);
+
+		if(text.length > 0) {
+			deleteValidState(inputId, text);
+		} else {
+			if(confirm("인증 메일을 전송하시겠습니까?")) {
+				updateValidState(inputId);
+				setDisabled(button);
+				setDisabled(joinRows[inputId]["input"]);
+				sendMail(inputId, joinRows[inputId]["input"].value, button);
+				hideNotice(joinRows["email_check"]["joinRow"]);
+			} else {
+				deleteValidState(inputId, "인증이 완료되지 않았습니다.");
+				deleteValidState("email_check", "인증이 완료되지 않았습니다.");
+				removeDisabled(joinRows[inputId]["input"]);
+				clearCertStringTimer();
+			}
+		}
+	}
+
+	function sendMail(inputId, email, button) {
 		let isRun = false;
 
 		if(isRun) return;
@@ -284,6 +267,8 @@
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if(xhr.readyState == 4) {
+				button.removeAttribute("disabled");
+
 				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
 					if(xhr.response.message) {
 						if(xhr.response.message == "메일을 보내는 데에 실패했습니다.") {
@@ -305,7 +290,7 @@
 			}
 		}
 
-		xhr.open("GET", "/account/join/send-mail/" + email);
+		xhr.open("GET", "/account/join/mail/" + email);
 		xhr.responseType = "json";
 		xhr.send();
 	}
@@ -325,23 +310,66 @@
 			timerSpan.innerHTML = minutes + ":" + seconds;
 
 			if(--count < 0) {
-				clearCertStringTimer(false);
+				clearCertStringTimer("인증 시간이 초과하였습니다.");
 			}
 
 		}, 1000);
 	}
 
-	function clearCertStringTimer(status) {
+	function clearCertStringTimer(message) {
 		clearInterval(timer);
 		timerSpan.classList.remove("show");
 		timerSpan.innerHTML = "03:00";
-		joinRows["email_check"]["input"].setAttribute("disabled", true);
-		joinRows["email_check"]["joinRow"].querySelector("button").setAttribute("disabled", true);
+		setDisabled(joinRows["email_check"]["input"]);
+		setDisabled(joinRows["email_check"]["joinRow"].querySelector("button"));
 
-		if(!status) {
-			deleteValidState("email_check", "인증 시간이 초과하였습니다.");
+		if(message) {
+			deleteValidState("email_check", message);
 		}
-		
+	}
+
+	function emailCheckButtonHandler(inputId) {
+		if(code == joinRows[inputId]["input"].value) {
+			updateValidState(inputId);
+			clearCertStringTimer();
+			alert("인증되었습니다.");
+		} else {
+			deleteValidState(inputId, "인증번호가 일치하지 않습니다.");
+		}
+	}
+
+	function addressSearchButtonHandler() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				joinRows["postcode"]["input"].value = data.zonecode;
+				joinRows["road_address"]["input"].value = data.roadAddress;
+				updateValidState("postcode");
+				updateValidState("road_address");
+			}
+		}).open();
+	}
+
+	function confirmButtonHandler() {
+		let flag = true;
+
+		for(let joinRow in joinRows) {
+			if(!joinRows[joinRow]["joinRow"].classList.contains("valid_state")) {
+				deleteValidState(joinRow, "필수 정보입니다.")
+				flag = false;
+			}
+		}
+
+		if(flag) {
+			form.submit();
+		}
+	}
+
+	function setDisabled(tag) {
+		tag.setAttribute("disabled", true);
+	}
+
+	function removeDisabled(tag) {
+		tag.removeAttribute("disabled");
 	}
 
 	function updateValidState(id) {
