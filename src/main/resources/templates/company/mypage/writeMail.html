@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>메일 쓰기</title>
+
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}">
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js}"></script>
+<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+
+
+<link rel="stylesheet" th:href="@{/css/common/common.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/companyCommon.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/writeMail.css}">
+
+</head>
+<body>
+<div class="wrap">
+        <div class="container">
+            <!-- nav -->
+            <div class="sideNav">
+                <div class="nav">
+                    <ul>
+                        <li class="sendEmail"><a href="#">메일쓰기</a></li>
+                        <li class="mailBox"><a href="#">메일함</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="inner">
+                    <form action="" method="post">
+                        <div class="e_rec">
+                            <label>받는 사람</label>
+                            <input type="text" maxlength="40">
+                        </div>
+                        <div class="e_title">
+                            <label>제목</label>
+                            <input type="text" maxlength="50">
+                        </div>
+                        <div class="attachments">
+                            <label>파일첨부</label>
+                            <input id="file" type="file" multiple>
+                            
+                        </div>
+                        <div class="text">
+                            <input type="text" maxlength="1000">
+                        </div>
+                        <button type="submit" class="sendBtn">보내기</button>
+                        <button type="reset" class="closeBtn">취소하기</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

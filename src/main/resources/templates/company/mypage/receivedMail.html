@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>받은 메일함</title>
+
+<link rel="stylesheet" th:href="@{/css/common/common.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/companyCommon.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/receivedMail.css}">
+
+</head>
+<body>
+<div class="wrap">
+        <div class="container">
+            <!-- nav -->
+            <div class="sideNav">
+                <div class="nav">
+                    <ul>
+                       	<li class="sendEmail"><a th:href="@{/company/mypage/writeMail}">메일쓰기</a></li>
+                        <li class="mailBox"><a th:href="@{/compnay/mypage/emailBox}">메일함</a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="inner">
+                    <div class="mail_header">
+                        <div class="mail_title">
+                            <p>메일 제목입니다.</p>
+                        </div>
+                        <div class="mail_info">
+                            <p>보낸 사람</p>
+                            <div class="mail_id">
+                                <p>보낸사람 이메일 kim1234@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="mail_file">
+                            <p>첨부파일</p>
+                            <div class="file_info">
+                                <p>첨부파일명.zip</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mail_text">
+                        <p>
+                            메일의내용입니다.메일의내용입니다.메일의내용입니다.메일의내용입니다.
+                            메일의내용입니다.메일의내용입니다.메일의내용입니다.메일의내용입니다.
+                            메일의내용입니다.메일의내용입니다.메일의내용입니다.메일의내용입니다.
+                            메일의내용입니다.메일의내용입니다.메일의내용입니다.메일의내용입니다.
+                            메일의내용입니다.메일의내용입니다.메일의내용입니다.메일의내용입니다.
+                            메일의내용입니다.메일의내용입니다.메일의내용입니다.메일의내용입니다.
+                            메일의내용입니다.메일의내용입니다.메일의내용입니다.메일의내용입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

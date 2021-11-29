@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>마이페이지 홈</title>
+
+<link rel="stylesheet" th:href="@{/css/common/common.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/companyCommon.css}">
+<link rel="stylesheet" th:href="@{/css/company/maypage/companyMain.css}">
+
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js}"></script>
+</head>
+<body>
+<div th:include="common/header.html"></div>
+	 <!-- page content -->
+    <div class="wrap">
+        <div class="container">
+            <div class="content_top1">
+                <div class="jv_status">공고현황</div>
+                <div class="ing">
+                    <p>진행중 공고</p>
+                    <p>0 건</p>
+                </div>
+                <dic class="end">
+                    <p>마감된 공고</p>
+                    <p>0 건</p>
+                </dic>
+                <div class="jv_insert">
+                    <button onclick="location.href='/mypage/insertJv'">공고 등록하기</button>
+                </div>
+            </div>
+            <div class="content_top2">
+                <img th:src="@{/images/companyMyPage/ServiceCenter.PNG}">
+                <br>
+                <button onclick="location.href=''">채팅하기</button>
+            </div>
+            <div class="content_bottom">
+                <table class="jv_list">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="40%">
+                        <col width="20%">
+                        <col width="10%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <td>게시글 번호</td>
+                            <td>공고 제목</td>
+                            <td>지역</td>
+                            <td>공고 상태</td>
+                            <td>마감일</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>공고제목,공고제목,공고제목,공고제목</td>
+                            <td>서울 강서구</td>
+                            <td>
+                                <p class="status_ing">공고중</p>
+                            </td>
+                            <td>2021-11-30</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>공고제목,공고제목,공고제목,공고제목</td>
+                            <td>서울 강서구</td>
+                            <td>
+                                <p class="status_ing">공고중</p>
+                            </td>
+                            <td>2021-11-30</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>공고제목,공고제목,공고제목,공고제목</td>
+                            <td>서울 강서구</td>
+                            <td>
+                                <p class="status_ing">공고중</p>
+                            </td>
+                            <td>2021-11-30</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>공고제목,공고제목,공고제목,공고제목</td>
+                            <td>서울 강서구</td>
+                            <td>
+                                <p class="status_ing">공고중</p>
+                            </td>
+                            <td>2021-11-30</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>공고제목,공고제목,공고제목,공고제목</td>
+                            <td>서울 강서구</td>
+                            <td>
+                                <p class="status_ing">공고중</p>
+                            </td>
+                            <td>2021-11-30</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>공고제목,공고제목,공고제목,공고제목</td>
+                            <td>서울 강서구</td>
+                            <td>
+                                <p class="status_ing">공고중</p>
+                            </td>
+                            <td>2021-11-30</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>공고제목,공고제목,공고제목,공고제목</td>
+                            <td>서울 강서구</td>
+                            <td>
+                                <p class="status_ing">공고중</p>
+                            </td>
+                            <td>2021-11-30</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>공고제목,공고제목,공고제목,공고제목</td>
+                            <td>서울 강서구</td>
+                            <td>
+                                <p class="status_ing">공고중</p>
+                            </td>
+                            <td>2021-11-30</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>공고제목,공고제목,공고제목,공고제목</td>
+                            <td>서울 강서구</td>
+                            <td>
+                                <p class="status_ing">공고중</p>
+                            </td>
+                            <td>2021-11-30</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>공고제목,공고제목,공고제목,공고제목</td>
+                            <td>서울 강서구</td>
+                            <td>
+                                <p class="status_ing">공고중</p>
+                            </td>
+                            <td>2021-11-30</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- popup content -->
+    <div class="popup_wrap">
+        <div class="popup_container" id="container">
+            <div class="head">
+                <p>잠깐, 이런 상품은 어떤가요?</p>
+            </div>
+            <div class="img">
+                <img th:src="@{/images/companyMyPage/PopUp_info.PNG}">
+            </div>
+            <div class="order">
+                <div class="order_rank">
+                    <p class="order_name">플래티넘 상품</p>
+                    <a class="order_text"><span style="background-color: #fffcbd;">노출 효과 1위 상품</span><br>
+                    메인 최 상단 노출로 가장 효과 좋은 위치!</a><br>
+                    <a class="order_price">-> 1000원</a>
+                </div>
+                <div class="order_rank">
+                    <p class="order_name">베이직 상품</p>
+                    <a class="order_text"><span style="background-color: #fffcbd;">가장 기본적인 상품</span><br>
+                    가격 부담이 적으며 메인에 노출!</a><br>
+                    <a class="order_price">-> 500원</a>
+                </div>
+                <div class="order_rank">
+                    <p class="order_name">랭크업 상품</p>
+                    <a class="order_text"><span style="background-color: #fffcbd;">공고리스트에서 자동 업</span><br>
+                    채용공고가 더 자주 노출돼요!</a><br>
+                    <a class="order_price">-> 1000원</a>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer_inner">
+                    <a href="javascript:;" class="btnTodayHide"><u>오늘 하루 보지 않기</u></a>
+                    <a href="javascript:;" class="btnClose">닫기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:include="common/up.html"></div>    
+	<div th:include="common/footer.html"></div>
+    <script th:src="@{/js/company/mypage/Popup.js"></script>
+	
+
+</body>
+</html>

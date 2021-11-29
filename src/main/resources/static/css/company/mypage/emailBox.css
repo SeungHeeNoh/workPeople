@@ -1,0 +1,12 @@
+@charset "UTF-8";
+.wrap .container .sideNav .nav > ul .mailBox > a{color: #85cabb;}
+
+.wrap .container .content .tab_cont .table{padding-top: 25px; margin-left: 15px;}
+.wrap .container .content .tab_cont .table .mail_table{box-sizing: border-box; width: 840px; text-align: center;}
+.wrap .container .content .tab_cont .table .mail_table > thead{height: 50px; background: #f8f8f8; border: 1px solid #323232;}
+.wrap .container .content .tab_cont .table .mail_table > tbody > tr{cursor: pointer;}
+.wrap .container .content .tab_cont .table .mail_table > tbody > tr > td{line-height: 3; border-bottom: 1px solid #c4c4c4;}
+.wrap .container .content .tab_cont .table > button{margin-top: 20px; margin-left: 700px; margin-bottom: 25px;}
+.wrap .container .content .tab_cont .table > button{width: 125px; height: 38px; background: #b1d581; border-radius: 10px; color: #ffffff; text-align: center;}
+
+

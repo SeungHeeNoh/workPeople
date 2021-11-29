@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>지원자 관리</title>
+
+<link rel="stylesheet" th:href="@{/css/common/common.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/companyCommon.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/personalManage.css}">
+
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js}"></script>
+<script th:src="@{/js/company/monthpicker/jquery.ui.monthpicker.js}"></script>
+
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css}"/>
+<link rel="stylesheet" th:href="@{/css/company/mypage/calendar/calendar.css}">
+
+</head>
+<body>
+ <div class="wrap">
+        <div class="container">
+            <!-- nav -->
+            <div class="sideNav">
+                <div class="nav">
+                    <ul>
+                        <li class="jvManage"><a href="@{company/mypage/jvManage}">공고 관리</a></li>
+                        <li class="personalManage"><a href="@{company/mypage/personalManage}">지원자 관리</a></li>
+                        <li class="interview"><a href="@{company/mypage/interview}">면접</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- page content -->
+            <div class="content">
+                <div class="searchBox">
+                    <div class="input_date">
+                        From : <input type="text" class="monthpicker">
+                        To : <input type="text" class="monthpicker">
+                    </div>
+                    <div class="input_title">
+                        <p>검색조건</p>
+                        <input type="text">
+                        <button type="submit">검색</button>
+                    </div>
+                </div>
+                <div class="table">
+                    <table class="jvList">
+                        <colgroup>
+                            <col width="10%">
+                            <col width="40%">
+                            <col width="20%">
+                            <col width="10%">
+                            <col width="20%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <td>게시글 번호</td>
+                                <td>공고 제목</td>
+                                <td>지원자(명)</td>
+                                <td>공고 상태</td>
+                                <td>마감일</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr onclick="location.href='jvManage.html'">
+                                <td>1</td>
+                                <td>공고제목,공고제목,공고제목,공고제목</td>
+                                <td>3</td>
+                                <td>
+                                    <p class="status_ing">공고중</p>
+                                </td>
+                                <td>2021-11-30</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>공고제목,공고제목,공고제목,공고제목</td>
+                                <td>3</td>
+                                <td>
+                                    <p class="status_ing">공고중</p>
+                                </td>
+                                <td>2021-11-30</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>공고제목,공고제목,공고제목,공고제목</td>
+                                <td>3</td>
+                                <td>
+                                    <p class="status_ing">공고중</p>
+                                </td>
+                                <td>2021-11-30</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>공고제목,공고제목,공고제목,공고제목</td>
+                                <td>3</td>
+                                <td>
+                                    <p class="status_ing">공고중</p>
+                                </td>
+                                <td>2021-11-30</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>공고제목,공고제목,공고제목,공고제목</td>
+                                <td>3</td>
+                                <td>
+                                    <p class="status_ing">공고중</p>
+                                </td>
+                                <td>2021-11-30</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>공고제목,공고제목,공고제목,공고제목</td>
+                                <td>3</td>
+                                <td>
+                                    <p class="status_ing">공고중</p>
+                                </td>
+                                <td>2021-11-30</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>공고제목,공고제목,공고제목,공고제목</td>
+                                <td>3</td>
+                                <td>
+                                    <p class="status_ing">공고중</p>
+                                </td>
+                                <td>2021-11-30</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>공고제목,공고제목,공고제목,공고제목</td>
+                                <td>3</td>
+                                <td>
+                                    <p class="status_ing">공고중</p>
+                                </td>
+                                <td>2021-11-30</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>공고제목,공고제목,공고제목,공고제목</td>
+                                <td>3</td>
+                                <td>
+                                    <p class="status_ing">공고중</p>
+                                </td>
+                                <td>2021-11-30</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>공고제목,공고제목,공고제목,공고제목</td>
+                                <td>3</td>
+                                <td>
+                                    <p class="status_ing">공고중</p>
+                                </td>
+                                <td>2021-11-30</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    
+
+    <script>
+        $(".monthpicker").monthpicker({
+            monthNames:['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            monthNamesShort:['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            showOn:"both",
+            buttonImage:"../../../static/images/calendar.PNG",
+            buttonImageOnly:true,
+            changeYear:false,
+            yearRange:'c-2:c+2',
+            dateFormat:'yy-mm'
+        });
+    </script>
+
+</body>
+</html>

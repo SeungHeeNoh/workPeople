@@ -1,0 +1,14 @@
+@charset "UTF-8";
+.popup_wrap{display: none;}
+.popup_wrap::before{display: block; content: ""; position: fixed; left: 0; top: 0; width: 100%; height: 100%;}
+.popup_wrap .popup_container{position: fixed; left: 50%; top: 50%; transform: translate(50%, -50%); padding: 30px;}
+.popup_wrap .popup_container .head{height: 80px; background: #95c9cb;}
+.popup_wrap .popup_container .head > p{padding-top: 22px; text-align: center; font-style: normal; font-weight: bold; font-size: 18px; line-height: 23px; color: #323232;}
+.popup_wrap .popup_container .img > img{width: 400px; height: 165px;}
+.popup_wrap .popup_container .order{background: #FFFBF1; box-sizing: border-box; height: 475px;}
+.popup_wrap .popup_container .order .order_rank{padding-top: 40px; margin-left: 50px; margin-right: 55px;}
+.popup_wrap .popup_container .order .order_rank .order_name{margin-bottom: 11px; font-style: normal; font-weight: bold; font-size: 18px; line-height: 23px; color: #323232;}
+.popup_wrap .popup_container .order .order_rank .order_price{margin-left: 165px; font-style: normal; font-weight: bold; font-size: 23px; line-height: 29px;}
+.popup_wrap .popup_container .footer{height: 80px; background: #95c9cb;}
+.popup_wrap .popup_container .footer .footer_inner{padding-top: 31px; text-align: center; font-style: normal; font-weight: bold; font-size: 18px; line-height: 23px; color: #323232;}
+.popup_wrap .popup_container .footer .footer_inner .btnTodayHide{margin-right: 140px;}
