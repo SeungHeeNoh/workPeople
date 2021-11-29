@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>메일함</title>
+
+<link rel="stylesheet" th:href="@{/css/common/common.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/companyCommon.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/emailBox.css}">
+
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js}"></script>
+
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css}"/>
+</head>
+<body>
+	<div class="wrap">
+        <div class="container">
+            <!-- nav -->
+            <div class="sideNav">
+                <div class="nav">
+                    <ul>
+                        <li class="sendEmail"><a th:href="@{/company/mypage/writeMail}">메일쓰기</a></li>
+                        <li class="mailBox"><a th:href="@{/compnay/mypage/emailBox}">메일함</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content">
+                <ul class="tab_title">
+                    <li class="on">수신 메일함</li>
+                    <li>발신 메일함</li>
+                </ul>
+                <div class="blank"></div>
+                <div class="tab_cont">
+                    <div class="on">
+                        <div class="table">
+                            <table class="mail_table">
+                                <colgroup>
+                                    <col width="10%">
+                                    <col width="20%">
+                                    <col width="50%">
+                                    <col width="20%">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신인</td>
+                                        <td>제목</td>
+                                        <td>수신일</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>발신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-20</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button>삭제하기</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table">
+                            <table class="mail_table">
+                                <colgroup>
+                                    <col width="10%">
+                                    <col width="20%">
+                                    <col width="50%">
+                                    <col width="20%">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신인</td>
+                                        <td>제목</td>
+                                        <td>발신일</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>수신자 ID</td>
+                                        <td>메일 제목.메일 제목.메일 제목.</td>
+                                        <td>2021-11-22</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button>삭제하기</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/company/mypage/tab.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+@charset "UTF-8";
+.wrap .container .sideNav .nav > ul .sendEmail > a{color: #85cabb;}
+
+.wrap .container .content .inner{width: 840px; margin-left: 15px; padding-top: 20px;}
+.wrap .container .content .inner .e_rec > label{font-weight: bold; margin-right: 25px;}
+.wrap .container .content .inner .e_rec > input{width: 730px;}
+.wrap .container .content .inner .e_title{margin-top: 20px;}
+.wrap .container .content .inner .e_title > label{font-weight: bold; margin-left: 20px; margin-right: 38px;}
+.wrap .container .content .inner .e_title > input{width: 730px;}
+.wrap .container .content .inner .attachments{margin-top: 20px;}
+.wrap .container .content .inner .attachments > label{font-weight: bold; margin-right: 25px; margin-left: 10px;}
+.wrap .container .content .inner .text{margin-top: 30px;}
+.wrap .container .content .inner .text > input{width: 840px; height: 400px;}
+.wrap .container .content .inner .sendBtn{margin-top: 30px; margin-bottom: 20px; margin-left: 600px; width: 100px; background: #B1D581; border-radius: 10px;}
+.wrap .container .content .inner .closeBtn{margin-left: 30px; width: 100px; background: #F3C995; border-radius: 10px;}
+
+
+
+

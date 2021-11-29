@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/* nav */
+.wrapper .sideNav{width: 210px; height: 169px; float: left; box-sizing: border-box; border: 1px solid rgb(225, 229, 235);}
+.wrapper .sideNav{border-image: initial; background: rgb(255, 255, 255); border-radius: 10px; text-align: center;}
+.wrapper .sideNav .nav{display: inline-block; width: 168px; padding-top: 25px; padding-bottom: 10px;}
+.wrapper .sideNav .nav > ul .personalManage > a{color: #85cbcc;}
+.wrapper .sideNav .nav > ul{text-align: center;}
+.wrapper .sideNav .nav > ul > li{padding-bottom: 20px;}
+.wrapper .sideNav .nav > ul > li > a{color: #323232; vertical-align: middle; font-size: 16px; line-height: 1.4;}
+.wrapper .sideNav .nav > ul > li > a:hover{color: #85cbcc;}

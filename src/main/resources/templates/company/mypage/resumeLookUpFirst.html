@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>이력서 조회 - 1</title>
+
+<link rel="stylesheet" th:href="@{/css/common/common.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/companyCommon.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/resumeLookUp.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/resumeNav.css}">
+
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+ <div class="wrapper">
+
+        <!-- nav -->
+        <div class="sideNav">
+            <div class="nav">
+                <ul>
+                     <li class="jvManage"><a href="@{company/mypage/jvManage}">공고 관리</a></li>
+                     <li class="personalManage"><a href="@{company/mypage/personalManage}">지원자 관리</a></li>
+                     <li class="interview"><a href="@{company/mypage/interview}">면접</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <section>
+            <div id="content_wrap">
+                <p class="header_text">등록한 이력서 제목</p>
+                <hr class="hr">
+                
+                <div class="content1_wrap">
+                    <div class="personal_img">
+                        
+                    </div>
+                    <div class="content1_container">
+                        <div class="content1_container2">
+                            <div class="content1_title">임꺽정</div>
+                            <div class="content1_1">1994년(28세/만27세)</div>
+                            <div class="border"></div>
+                            <div class="content1_2">남자</div>
+                        </div>
+                        <div class="content1_container2">
+                            <div class="content1_title">이메일</div>
+                            <div class="content1_1">khUser@daum.net</div>
+                            <div class="border"></div>
+                            <div class="content1_title content1_2">전화번호</div>
+                            <div class="content1_3">010-1234-5678</div>
+                        </div>
+                        <div class="content1_container2">
+                            <div class="content1_title content_long">주소</div>
+                            <div class="content1_1">(12345) 경기도 성남시 분당구 분당동 123동 456호</div>
+                        </div>
+                        <div class="content1_container2">
+                            <div class="content1_title">희망업종</div>
+                            <div class="content1_1">it/웹/통신</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content2_wrap">
+                    <div class="content2_title_container">
+                        <p class="content2_title">학력</p>
+                        <div class="content2_1">최종학력</div>
+                        <div class="border2">|</div>
+                        <div class="content2_2">대학교 2,3년 졸업</div>
+                    </div>
+                
+                    <div class="home_content_3">
+                        <div class="home_content_3_1">재학기간</div>
+                        <div class="home_content_3_2">구분</div>
+                        <div class="home_content_3_3">학교명</div>
+                        <div class="home_content_3_4">전공</div>
+                        <div class="home_content_3_5">학점</div>
+                    </div>
+                
+                    <div class="content_title_text4">
+                        <div class="content_title_text4_1">2013.03~2017.02</div>
+                        <div class="content_title_text4_2">졸업</div>
+                        <div class="content_title_text4_3">kh대학교</div>
+                        <div class="content_title_text4_4">컴퓨터공학</div>
+                        <div class="content_title_text4_5">3.96/4.5</div>
+                    </div>
+                    <hr class="hr">
+                </div>
+
+                <div class="content2_wrap">
+                    <div class="content2_title_container">
+                        <p class="content2_title">경력</p>
+                        <div class="content2_1">신입/경력</div>
+                    </div>
+                
+                    <div class="home_content_3">
+                        <div class="home_content_3_1">근무기간</div>
+                        <div class="home_content_3_2 content3_title_1">회사명</div>
+                        <div class="home_content_3_3 content3_title_2">근무부서</div>
+                        <div class="home_content_3_5 content3_title_3">학점</div>
+                    </div>
+                
+                    <div class="content3_wrap">
+                        <div class="content3_1">2013.03~2017.02</div>
+                    
+                        <div class="content3">
+                            <div class="content3_2_container">
+                                <div class="content3_2_1">삼성</div>
+                                <div class="content3_2_2">개발팀</div>
+                                <div class="content3_2_3">사원</div>
+                            </div>
+                    
+                            <div class="content3_3_container">
+                                <div class="content3_3_1_container">
+                                    <div class="content3_3_1">담당업무</div>
+                                    <div class="content3_3_2">웹개발</div>
+                                </div>
+                                <div class="content3_3_2_container">
+                                    <div class="content3_4_1">퇴사사유</div>
+                                    <div class="content3_4_2">개인사유</div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                    <hr class="hr">
+                </div>
+
+
+                <div class="content4_wrap">
+                    <div class="content2_title_container">
+                        <p class="content2_title">인턴 / 대외활동</p>
+                    </div>
+                
+                    <div class="home_content_3">
+                        <div class="home_content_3_1">활동기간</div>
+                        <div class="home_content_3_2 content3_2">활동구분</div>
+                        <div class="home_content_3_3 content3_3">기관/장소</div>
+                        <div class="home_content_3_4 content3_4">활동내역</div>
+                    </div>
+                
+                    <div class="content_title_text4">
+                        <div class="content_title_text4_1">2013.03~2017.02</div>
+                        <div class="content_title_text4_2 content4_2">동아리</div>
+                        <div class="content_title_text4_3 content4_3">기관/장소명</div>
+                        <div class="content_title_text4_4 content4_4">활동내역</div>
+                        
+                    </div>
+                    <hr class="hr">
+                </div>
+
+                <div class="content2_wrap">
+                    <div class="content2_title_container">
+                        <p class="content2_title">자격증 / 어학 / 수상내역</p>
+                    </div>
+                
+                    <div class="home_content_3">
+                        <div class="home_content_3_1">취득일/수상일</div>
+                        <div class="home_content_3_2">구분</div>
+                        <div class="home_content_3_3">자격/어학/수상명</div>
+                        <div class="home_content_3_4">발행처/기관/언어</div>
+                        <div class="home_content_3_5">합격/점수</div>
+                    </div>
+                
+                    <div class="content_title_text4">
+                        <div class="content_title_text4_1 content5_1">2013.03</div>
+                        <div class="content_title_text4_2 content5_2">자격증/면허증</div>
+                        <div class="content_title_text4_3 content5_3">정보처리산업기사</div>
+                        <div class="content_title_text4_4 content5_4">한국산업인력공단</div>
+                        <div class="content_title_text4_5 content5_5">최종합격</div>
+                    </div>
+                    <hr class="hr">
+                </div>
+
+                <div class="content2_wrap">
+                    <div class="content2_title_container">
+                        <p class="content2_title">자기소개서</p>
+                    </div>
+                    <div class="content5_container">
+                        [ 작성한 자기소개서 항목 제목 ] <br>
+                        작성한 자기소개서 항목 내용
+                    </div>
+                </div>
+                <div class="result_btn">
+                    <button class="pass">1차 합격</button>
+                    <button class="fail">불합격</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

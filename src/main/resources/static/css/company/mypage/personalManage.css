@@ -1,0 +1,28 @@
+@charset "UTF-8";
+.wrap .container .sideNav .nav > ul .personalManage > a{color: #85cabb;}
+
+.wrap .container .content .searchBox{margin-left: 15px; padding-top: 40px; width: 840px;}
+.wrap .container .content .searchBox .input_date{padding-left: 150px;}
+.wrap .container .content .searchBox .input_date > input{margin-right: 23px; width: 137px; height: 29px;}
+
+.wrap .container .content .searchBox .input_title{padding-top: 15px; padding-left: 150px; clear: both;}
+.wrap .container .content .searchBox .input_title > p{float: left; font-size: 16px; margin-right: 23px;margin-top: 5px;}
+.wrap .container .content .searchBox .input_title > input{margin-right: 35px; width: 333px; height: 29px;}
+.wrap .container .content .searchBox .input_title > button{width: 60px; height: 29px; background: #B1D581; border-radius: 10px;}
+.wrap .container .content .searchBox .input_title > button{color: #ffffff; text-align: center;}
+
+.wrap .container .content .table{padding-top: 35px;}
+.wrap .container .content .table .jvList{margin-left: 15px; box-sizing: border-box; width: 840px; text-align: center;}
+.wrap .container .content .table .jvList > thead{height: 50px; background: #f8f8f8; border: 1px solid #323232;}
+.wrap .container .content .table .jvList > tbody > tr{cursor: pointer;}
+.wrap .container .content .table .jvList > tbody > tr > td{line-height: 3; border-bottom: 1px solid #c4c4c4;}
+
+
+
+
+
+
+
+
+
+

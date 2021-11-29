@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.wrap .container .sideNav .nav > ul .personalManage > a{color: #85cabb;}
+.wrap .container .content .selectTitle{margin-left: 15px; padding-top: 35px; width: 840px;}
+.wrap .container .content .selectTitle > p{margin-left: 150px; margin-right: 15px; font-size: 16px; float: left;}
+.wrap .container .content .selectTitle > select{width: 500px;}
+
+.wrap .container .content .table{padding-top: 30px;}
+.wrap .container .content .table .personalList{margin-left: 15px; box-sizing: border-box; width: 840px; text-align: center;}
+.wrap .container .content .table .personalList > thead{height: 50px; background: #f8f8f8; border: 1px solid #323232;}
+.wrap .container .content .table .personalList > tbody > tr{cursor: pointer;}
+.wrap .container .content .table .personalList > tbody > tr > td{line-height: 3; border-bottom: 1px solid #c4c4c4;}
+
+
+
+
+
+
+
