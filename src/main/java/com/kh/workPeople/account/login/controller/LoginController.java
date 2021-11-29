@@ -17,9 +17,5 @@ public class LoginController {
 	public String mangerLogin() {
 		return "account/login/login-manager";
 	}
-	
-	@GetMapping("/member/change-password")
-	public String changePassword() {
-		return "account/join/change-password";
-	}
+
 }
