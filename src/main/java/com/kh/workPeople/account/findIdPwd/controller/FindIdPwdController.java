@@ -104,5 +104,4 @@ public class FindIdPwdController {
 		map.put("message", message);
 		return map;
 	}
-	
 }
