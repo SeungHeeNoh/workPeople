@@ -158,9 +158,9 @@
 							xhr2.onreadystatechange = function() {
 								if(xhr2.readyState == 4) {
 									if((xhr2.status >= 200 && xhr2.status < 300) || xhr2.status == 304) {
-										if(xhr2.response.msg) {
-											if(xhr2.response.msg.length > 0) {
-												deleteValidState(inputId, xhr2.response.msg);
+										if(xhr2.response.message) {
+											if(xhr2.response.message.length > 0) {
+												deleteValidState(inputId, xhr2.response.message);
 											} else {
 												updateValidState(inputId);
 											}
@@ -171,7 +171,7 @@
 								}
 							}
 
-							xhr2.open("GET", "/account/join/check-register-number/" + registerNumber);
+							xhr2.open("GET", "/account/join/company/" + registerNumber);
 							xhr2.setRequestHeader("Content-type", "application/json;");
 							xhr2.responseType = "json";
 							xhr2.send();
@@ -199,9 +199,9 @@
 		xhr.onreadystatechange = function() {
 			if(xhr.readyState == 4) {
 				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-					if(xhr.response.msg) {
-						if(xhr.response.msg.length > 0) {
-							deleteValidState(inputId, xhr.response.msg);
+					if(xhr.response.message) {
+						if(xhr.response.message.length > 0) {
+							deleteValidState(inputId, xhr.response.message);
 						} else {
 							updateValidState(inputId);
 						}
@@ -212,7 +212,7 @@
 			}
 		}
 
-		xhr.open("GET", "/account/join/check-id/" + id);
+		xhr.open("GET", "/account/join/member/" + id);
 		xhr.responseType = "json";
 		xhr.send();
 	}
@@ -231,19 +231,21 @@
 					} else {
 						if(confirm("인증 메일을 전송하시겠습니까?")) {
 							updateValidState(inputId);
+							button.setAttribute("disabled", true);
 							joinRows[inputId]["input"].setAttribute("disabled", true);
-							sendMail(inputId, joinRows[inputId]["input"].value);
+							sendMail(inputId, joinRows[inputId]["input"].value, button);
 							hideNotice(joinRows["email_check"]["joinRow"]);
 						} else {
 							deleteValidState(inputId, "인증이 완료되지 않았습니다.");
 							deleteValidState("email_check", "인증이 완료되지 않았습니다.");
 							joinRows[inputId]["input"].removeAttribute("disabled");
+							clearCertStringTimer();
 						}
 					}
 				} else if(button.classList.contains("email_check_button")) {
 					if(code == joinRows[inputId]["input"].value) {
 						updateValidState(inputId);
-						clearCertStringTimer(true);
+						clearCertStringTimer();
 						alert("인증되었습니다.");
 					} else {
 						deleteValidState(inputId, "인증번호가 일치하지 않습니다.");
@@ -275,7 +277,7 @@
 		}
 	}
 
-	function sendMail(inputId, email) {
+	function sendMail(inputId, email, button) {
 		let isRun = false;
 
 		if(isRun) return;
@@ -283,7 +285,10 @@
 
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
+
 			if(xhr.readyState == 4) {
+				button.removeAttribute("disabled");
+
 				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
 					if(xhr.response.message) {
 						if(xhr.response.message == "메일을 보내는 데에 실패했습니다.") {
@@ -305,7 +310,7 @@
 			}
 		}
 
-		xhr.open("GET", "/account/join/send-mail/" + email);
+		xhr.open("GET", "/account/join/mail/" + email);
 		xhr.responseType = "json";
 		xhr.send();
 	}
@@ -325,21 +330,21 @@
 			timerSpan.innerHTML = minutes + ":" + seconds;
 
 			if(--count < 0) {
-				clearCertStringTimer(false);
+				clearCertStringTimer("인증 시간이 초과하였습니다.");
 			}
 
 		}, 1000);
 	}
 
-	function clearCertStringTimer(status) {
+	function clearCertStringTimer(message) {
 		clearInterval(timer);
 		timerSpan.classList.remove("show");
 		timerSpan.innerHTML = "03:00";
 		joinRows["email_check"]["input"].setAttribute("disabled", true);
 		joinRows["email_check"]["joinRow"].querySelector("button").setAttribute("disabled", true);
 
-		if(!status) {
-			deleteValidState("email_check", "인증 시간이 초과하였습니다.");
+		if(message) {
+			deleteValidState("email_check", message);
 		}
 		
 	}
