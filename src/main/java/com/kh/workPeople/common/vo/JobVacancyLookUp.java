@@ -16,7 +16,9 @@ public class JobVacancyLookUp {
     private String acDateFormat;    // 지원일 문자열형태
     private String rbDateFormat;    // 열람일 문자열형태
     private String jvPeriodEndFormat;   // 마감일 문자열형태
-    
+
+    private boolean applyYN;         // 해당 공고에 지원 여부
+
     public JobVacancyLookUp() {
     }
 
@@ -30,6 +32,14 @@ public class JobVacancyLookUp {
         this.acDate = acDate;
         this.rbDate = rbDate;
         this.jvPeriodEnd = jvPeriodEnd;
+    }
+
+    public boolean isApplyYN() {
+        return applyYN;
+    }
+
+    public void setApplyYN(boolean applyYN) {
+        this.applyYN = applyYN;
     }
 
     public Date getJvPeriodEnd() {

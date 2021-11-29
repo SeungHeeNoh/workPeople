@@ -87,8 +87,10 @@
                         <div class="content6_2" th:text="${resume.s_name}"></div>
                         <div class="content6_3">등록일 :</div>
                         <div class="content6_4" th:text="${resume.enrollDateFormat}"></div>
-                        <button class="green green3">수정하기</button>
-                        <button class="orange orange2">삭제하기</button>
+                        <button class="green green3"
+                                th:onclick="|location.href='@{/personal/mypage/home/resumeEdit/{rNo}(rNo=${resume.no})}'|">수정하기</button>
+                        <button class="orange orange2"
+                                th:onclick="|location.href='@{/personal/mypage/home/resumeDelete/{rNo}(rNo=${resume.no})}'|">삭제하기</button>
                     </div>
                 </div>
                 <hr class="hr">

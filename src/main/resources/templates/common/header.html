@@ -53,7 +53,7 @@
                         <span sec:authentication="principal.name"></span>님<span>▼</span>
                     </div>
                     <ul class="submenu1">
-                        <li><a href="#">마이페이지</a></li>
+                        <li><a th:href="@{/personal/mypage/home}">마이페이지</a></li>
                         <li><a href="/account/manager/logout">로그아웃</a></li>
                     </ul>
                 </li>

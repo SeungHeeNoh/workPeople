@@ -5,6 +5,7 @@ import com.kh.workPeople.common.vo.Resume;
 import com.kh.workPeople.personal.mypage.home.model.dao.HomeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -51,5 +52,26 @@ public class HomeServiceImpl implements HomeService {
     @Override
     public List<JobVacancyLookUp> recommenedJobVacancyList(String elName) {
         return homeMapper.recommenedJobVacancyList(elName);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int resumeDelete(int rNo) {
+        return homeMapper.resumeDelete(rNo);
+    }
+
+    @Override
+    public int applyCompanyYN(int no, int jvNo) {
+        return homeMapper.applyCompanyYN(no,jvNo);
+    }
+
+    @Override
+    public int resumeIsApplyCompanyYN(int rNo) {
+        return homeMapper.resumeIsApplyCompanyYN(rNo);
+    }
+
+    @Override
+    public int resumeDeleteFromDB(int rNo) {
+        return homeMapper.resumeDeleteFromDB(rNo);
     }
 }

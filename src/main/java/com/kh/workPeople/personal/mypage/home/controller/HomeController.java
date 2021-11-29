@@ -4,11 +4,13 @@ import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.common.vo.Resume;
 import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.text.SimpleDateFormat;
@@ -56,9 +58,50 @@ public class HomeController {
 
 		List<JobVacancyLookUp> jobVacancyLookUpList = homeService.recommenedJobVacancyList(elName);
 
+		for(JobVacancyLookUp job : jobVacancyLookUpList){
+			int applyCompanyYN = homeService.applyCompanyYN(user.getNo(),job.getJvNo());
+
+			if(applyCompanyYN > 0){
+				job.setApplyYN(true);
+			} else{
+				job.setApplyYN(false);
+			}
+		}
+
 		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
 
 		return "personal/mypage/home";
+	}
+
+	@GetMapping("home/resumeEdit/{rNo}")
+	public String resumeEdit(@PathVariable int rNo, Model model, @AuthenticationPrincipal MemberImpl user){
+
+
+
+
+		return "personal/mypage/resumeEdit";
+	}
+
+	@GetMapping("home/resumeDelete/{rNo}")
+	public String resumeDelete(@PathVariable int rNo, Model model, @AuthenticationPrincipal MemberImpl user){
+
+		int resumeIsApplyCompanyYN = homeService.resumeIsApplyCompanyYN(rNo);
+
+		if(resumeIsApplyCompanyYN > 0){
+			int resumeDelete = homeService.resumeDelete(rNo);
+		} else{
+			int resumeDeleteFromDB = homeService.resumeDeleteFromDB(rNo);
+		}
+
+		return "redirect:/personal/mypage/home";
+	}
+
+	@GetMapping("home/applyResume/{rNo},{applyBtnNo}")
+	public String applyResume(@PathVariable int rNo, @PathVariable int applyBtnNo, Model model, @AuthenticationPrincipal MemberImpl user){
+
+//		int applyCompany = homeService.applyCompany(rNo,applyBtnNo);
+
+		return "redirect:/personal/mypage/home";
 	}
 
 

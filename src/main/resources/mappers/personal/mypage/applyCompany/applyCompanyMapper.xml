@@ -23,16 +23,13 @@
             JV_NO
                    , JV_TITLE
                    , JV_ADDRESS
-                   , JV_PERIOD_END
                    , M_NAME
                    , EL_NAME
                    , S_NAME
                    , AC_DATE
                    , RB_DATE
-                   , TO_CHAR(TO_DATE(JV_PERIOD_END,'YYYY.MM.dd')) JV_PERIOD_END_FORMAT
                    , TO_CHAR(TO_DATE(AC_DATE,'YYYY.MM.dd')) AC_DATE_FORMAT
                    , TO_CHAR(TO_DATE(RB_DATE,'YYYY.MM.dd')) RB_DATE_FORMAT
-
         FROM JOB_VACANCY JV
                  JOIN COMPANY_INFO USING(CI_NO)
                  JOIN MEMBER M USING(M_NO)
@@ -43,14 +40,15 @@
                  LEFT JOIN APPLY_COMPANY USING (JV_NO)
                  LEFT OUTER JOIN RESUME_BROWSE RB USING (CI_NO)
                  LEFT OUTER JOIN RESUME R ON (R.R_NO = RB.R_NO)
-        ORDER BY 1
+        WHERE R.M_NO = #{ no }
+ORDER BY 1 DESC
     </select>
 
     <select id="applyCount" resultType="_int">
         SELECT
             COUNT(*)
         FROM APPLY_COMPANY
-                 JOIN RESUME USING(R_NO)
+        JOIN RESUME USING(R_NO)
         WHERE M_NO=#{no}
           AND AC_TYPE = 'apply'
     </select>
@@ -90,5 +88,7 @@
         WHERE M_NO=#{no}
           AND AC_TYPE = 'failure'
     </select>
+
+
 
 </mapper>

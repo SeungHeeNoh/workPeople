@@ -69,7 +69,13 @@
                     </div>
                     <div class="content_title_text4_detail_wrap2">
                         <div class="content_title_text4_2">지원일 : <div th:text="${job.acDateFormat}"></div></div>
-                        <div class="content_title_text4_2">열람일 : <div th:text="${job.rbDateFormat}"></div></div>
+
+                        <th:block th:if="${job.rbDate != null}">
+                            <div class="content_title_text4_2">열람일 : <div th:text="${job.rbDateFormat}"></div></div>
+                        </th:block>
+                        <th:block th:if="${job.rbDate == null}">
+                            <div class="content_title_text4_2" style="padding-left: 30px">미열람</div>
+                        </th:block>
                     </div>
                 </div>
                 <hr class="hr">

@@ -30,7 +30,7 @@ public class InterestedCompanyController {
 
         model.addAttribute("jobList",jobVacancyLookUpSimpleList);
 
-        return "personal/mypage/InterestedCompany";
+        return "personal/mypage/interestedCompany";
     }
 
 }

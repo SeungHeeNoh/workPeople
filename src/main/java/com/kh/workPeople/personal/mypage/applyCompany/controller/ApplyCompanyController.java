@@ -42,15 +42,15 @@ public class ApplyCompanyController {
 
 		List<JobVacancyLookUp> jobVacancyLookUpList = applyCompanyService.jobVacancyLookUpList(user.getNo());
 
-		for(JobVacancyLookUp jv : jobVacancyLookUpList){
-			Date beforeDate1 = jv.getAcDate();
-			Date beforeDate2 = jv.getRbDate();
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
-			String afterDate1 = simpleDateFormat.format(beforeDate1);
-			String afterDate2 = simpleDateFormat.format(beforeDate2);
-			jv.setAcDateFormat(afterDate1);
-			jv.setRbDateFormat(afterDate2);
-		}
+//		for(JobVacancyLookUp jv : jobVacancyLookUpList){
+//			Date beforeDate1 = jv.getAcDate();
+//			Date beforeDate2 = jv.getRbDate();
+//			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
+//			String afterDate1 = simpleDateFormat.format(beforeDate1);
+//			String afterDate2 = simpleDateFormat.format(beforeDate2);
+//			jv.setAcDateFormat(afterDate1);
+//			jv.setRbDateFormat(afterDate2);
+//		}
 
 		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
 

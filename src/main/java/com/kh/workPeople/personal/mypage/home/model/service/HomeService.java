@@ -21,4 +21,11 @@ public interface HomeService {
 
     List<JobVacancyLookUp> recommenedJobVacancyList(String elName);
 
+    int resumeDelete(int rNo);
+
+    int applyCompanyYN(int no, int jvNo);
+
+    int resumeIsApplyCompanyYN(int rNo);
+
+    int resumeDeleteFromDB(int rNo);
 }

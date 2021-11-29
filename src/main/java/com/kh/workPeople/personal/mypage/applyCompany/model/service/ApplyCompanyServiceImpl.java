@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class ApplyCompanyServiceImpl implements ApplyCompanyService{
 
-    private ApplyCompanyMapper applyCompanyMapper;
+    private final ApplyCompanyMapper applyCompanyMapper;
 
     @Autowired
     public ApplyCompanyServiceImpl(ApplyCompanyMapper applyCompanyMapper){

@@ -9,6 +9,7 @@
         <result property="statusYN" column="R_STATUS_YN"/>
         <result property="title" column="BI_TITLE"/>
         <result property="s_name" column="S_NAME"/>
+        <result property="deleteYN" column="R_DELETE_YN"/>
     </resultMap>
 
     <resultMap id="jobVacancy" type="com.kh.workPeople.common.vo.JobVacancyLookUp">
@@ -70,6 +71,16 @@
 
     </select>
 
+    <select id="applyCompanyYN" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM RESUME
+                 JOIN APPLY_COMPANY USING (R_NO)
+        WHERE M_NO=#{no}
+          AND JV_NO=#{jvNo}
+
+    </select>
+
     <select id="selectResumeStatusY" resultMap="simpleResume">
         SELECT
             R_NO,
@@ -82,6 +93,7 @@
                  JOIN SECTOR S ON (BI.SECTOR_NO = S.S_NO)
         WHERE M_NO = #{ no }
           AND R_STATUS_YN='Y'
+          AND R_DELETE_YN = 'N'
     </select>
 
     <select id="recommenedJobVacancyList" resultMap="jobVacancy">
@@ -110,10 +122,31 @@
         LEFT JOIN APPLY_COMPANY USING (JV_NO)
         LEFT OUTER JOIN RESUME_BROWSE RB USING (CI_NO)
         LEFT OUTER JOIN RESUME R ON (R.R_NO = RB.R_NO)
+        WHERE JV_PERIOD_END - SYSDATE > 0
         <if test="elName != null">
-            WHERE S_NAME = #{elName}
+            AND S_NAME = #{elName}
         </if>
         ORDER BY 1
     </select>
+
+    <select id="resumeIsApplyCompanyYN" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLY_COMPANY
+        WHERE R_NO= #{rNo}
+    </select>
+
+
+    <delete id="resumeDeleteFromDB" parameterType="_int">
+        DELETE
+            FROM RESUME
+        WHERE R_NO=#{rNo}
+    </delete>
+
+    <update id="resumeDelete" parameterType="com.kh.workPeople.common.vo.Resume">
+        UPDATE RESUME
+            SET R_DELETE_YN = 'Y'
+        WHERE R_NO = #{rNo}
+    </update>
 
 </mapper>

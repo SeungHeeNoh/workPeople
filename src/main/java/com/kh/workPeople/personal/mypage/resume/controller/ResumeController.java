@@ -51,13 +51,10 @@ public class ResumeController {
 		if(repResumeNo != 0){
 			int resumeBrowseCount = resumeService.resumeBrowseCount(repResumeNo);
 			int applyCompanyCount = resumeService.applyCompanyCount(repResumeNo);
-//			System.out.println(resumeBrowseCount);
 			model.addAttribute("resumeBrowseCount",resumeBrowseCount);
 			model.addAttribute("applyCompanyCount",applyCompanyCount);
 		}
 
-//		System.out.println(resumeList);
-//		System.out.println(rep);
 		model.addAttribute("resumeList",resumeList);
 		model.addAttribute("repExist",rep);
 		model.addAttribute("repTitle",repTitle);
@@ -71,12 +68,18 @@ public class ResumeController {
 	@GetMapping("resumeEnroll")
 	public String resumeEnroll(Model model, @AuthenticationPrincipal MemberImpl user){
 
-
-
-
 		return "personal/mypage/resumeEnroll";
 	}
 
+	@GetMapping("resumeManagement/resumeEdit")
+	public String resumeManagementResumeEdit(Model model){
+
+
+
+
+
+		return "personal/mypage/resumeEdit";
+	}
 
 
 

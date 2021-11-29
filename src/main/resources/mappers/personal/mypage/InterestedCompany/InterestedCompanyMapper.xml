@@ -3,7 +3,7 @@
 
 <mapper namespace="com.kh.workPeople.personal.mypage.interestedCompany.model.dao.InterestedCompanyMapper">
 
-    <resultMap id="jobVacancySimple" type="com.kh.workPeople.personal.mypage.interestedCompany.model.dao.InterestedCompanyMapper">
+    <resultMap id="jobVacancySimple" type="com.kh.workPeople.common.vo.JobVacancyLookUpSimple">
         <id property="No" column="CI_NO"/>
         <result property="name" column="M_NAME"/>
         <result property="count" column="JOBCOUNT"/>
