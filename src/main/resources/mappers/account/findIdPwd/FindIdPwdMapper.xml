@@ -22,6 +22,14 @@
 		     , M_TEMP_PWD_YN
 		  FROM MEMBER
 	</sql>
+	<sql id="personalCondition">
+	 	   AND MT_NO = 1
+		   AND M_NAME = #{name}
+	</sql>
+	<sql id="companyCondition">
+		   AND MT_NO = 2
+		   AND CI_COMPANY_REGISTER_NUMBER = #{registerNumber}
+	</sql>
 	<select id="findMemberForId" parameterType="hashmap" resultMap="Common.memberResultMap">
 	    <include refid="selectMember"/>
 		 <if test="memberType=='company'">
@@ -30,10 +38,10 @@
 		WHERE M_EMAIL = #{email}
 		<choose>
 		<when test="memberType=='personal'">
-		  AND M_NAME = #{name}
+		 <include refid="personalCondition"/>
 		</when>
 		<otherwise>
-		  AND CI_COMPANY_REGISTER_NUMBER = #{registerNumber}
+		 <include refid="companyCondition"/>
 		</otherwise>
 		</choose>
 	</select>
@@ -43,14 +51,13 @@
 		 LEFT JOIN COMPANY_INFO USING(M_NO)
 		 </if>
 		WHERE M_EMAIL = #{email}
+		  AND M_ID = #{id}
 		<choose>
 		<when test="memberType=='personal'">
-		  AND M_ID = #{id}
-		  AND M_NAME = #{name}
+		  <include refid="personalCondition"/>
 		</when>
 		<otherwise>
-		  AND M_ID = #{id}
-		  AND CI_COMPANY_REGISTER_NUMBER = #{registerNumber}
+		  <include refid="companyCondition"/>
 		</otherwise>
 		</choose>
 	</select>
