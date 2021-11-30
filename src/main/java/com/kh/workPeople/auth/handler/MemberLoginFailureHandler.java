@@ -6,21 +6,25 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.stereotype.Component;
 
 import com.kh.workPeople.account.login.model.service.MemberLoginService;
 import com.kh.workPeople.common.vo.Member;
 
+@Component
 public class MemberLoginFailureHandler implements AuthenticationFailureHandler {
 	
 	private final int MAX_FAILURE_COUNT = 5;
 	private MemberLoginService memberLoginService;
 	private String defaultUrl ="/account/member/login";
 	
+	@Autowired
 	public MemberLoginFailureHandler(MemberLoginService memberLoginService) {
 		this.memberLoginService = memberLoginService;
 	}

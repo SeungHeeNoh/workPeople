@@ -13,7 +13,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ManagerLoginSuccessHandler implements AuthenticationSuccessHandler {
 	
 	private String defaultUrl = "/main";
