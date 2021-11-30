@@ -16,6 +16,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:include="common/header.html"></div>
     <div class="wrapper">
         
     <div th:include="personal/mypage/mainSnb.html"></div>
@@ -28,7 +29,7 @@
                     <div class="home_content_3_1">회사명</div>
                     <div class="home_content_3_2">주소</div>
                     <div class="home_content_3_3">업종</div>
-                    <div class="home_content_3_3">열람일</div>
+                    <div class="home_content_3_4">열람일</div>
                 </div>
 
                 <div th:each="companyList : ${companyList}">
@@ -57,6 +58,7 @@
         </div>
         </section>
     </div>
+<div th:include="common/footer.html"></div>
 </body>
 
 </html>

@@ -5,26 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="/css/common/common.css">
     <link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
     <link rel="stylesheet" href="/css/personal/myPage/applyCompany.css">
-    
+
     <title>입사지원 현황</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script th:src="@{/js/personal/mypage/applyCompany.js}"></script>
 </head>
 <body>
-    <div class="wrapper">
-        
+<div class="wrapper">
     <div th:include="personal/mypage/mainSnb.html"></div>
-    
-        <section>
-            <div id="content_wrap">
-                
+    <section>
+        <div id="content_wrap">
+
             <p class="content_title_text3">입사지원 현황</p>
-            <hr>
+            <hr/>
 
             <div class="content1_wrap">
                 <div class="content1_container content1_border">
@@ -55,40 +54,46 @@
                 <div class="home_content_3_3">지원일/열람일</div>
             </div>
 
-            <div th:each="job : ${jobVacancyLookUpList}">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1" th:text="${job.mName}"></div>
-                    <div class="content_title_text4_detail_wrap">
-                        <div th:text="${job.jvTitle}"></div>
-                        <div class="content_title_text4_detail">
-                            <div class="content_title_text4_detail_1" th:text="${job.elName}"></div>
-                            <div class="content_title_text4_detail_2" th:text="${job.sName}"></div>
-                            <div class="content_title_text4_detail_3" th:text="${job.jvAddress}"></div>
+            <form th:action="@{/personal/mypage/applyCompany/applyCancel}" method="post">
+                <div th:each="job : ${jobVacancyLookUpList}">
+                    <div class="content_title_text4">
+                        <input type="checkbox" class="checkBtn1" th:value="${job.jvNo}"
+                               th:onclick="test([[${job.jvNo}]]);"/>
+                        <div class="content_title_text4_1" th:text="${job.mName}"></div>
+                        <div class="content_title_text4_detail_wrap">
+                            <div th:text="${job.jvTitle}"></div>
+                            <div class="content_title_text4_detail">
+                                <div class="content_title_text4_detail_1" th:text="${job.elName}"></div>
+                                <div class="content_title_text4_detail_2" th:text="${job.sName}"></div>
+                                <div class="content_title_text4_detail_3" th:text="${job.jvAddress}"></div>
+                            </div>
+                        </div>
+                        <div class="content_title_text4_detail_wrap2">
+                            <div class="content_title_text4_2">지원일 :
+                                <div th:text="${job.acDateFormat}"></div>
+                            </div>
+
+                            <th:block th:if="${job.rbDate != null}">
+                                <div class="content_title_text4_2">열람일 :
+                                    <div th:text="${job.rbDateFormat}"></div>
+                                </div>
+                            </th:block>
+                            <th:block th:if="${job.rbDate == null}">
+                                <div class="content_title_text4_2" style="padding-left: 30px">미열람</div>
+                            </th:block>
                         </div>
                     </div>
-                    <div class="content_title_text4_detail_wrap2">
-                        <div class="content_title_text4_2">지원일 : <div th:text="${job.acDateFormat}"></div></div>
-
-                        <th:block th:if="${job.rbDate != null}">
-                            <div class="content_title_text4_2">열람일 : <div th:text="${job.rbDateFormat}"></div></div>
-                        </th:block>
-                        <th:block th:if="${job.rbDate == null}">
-                            <div class="content_title_text4_2" style="padding-left: 30px">미열람</div>
-                        </th:block>
-                    </div>
+                    <hr class="hr">
                 </div>
-                <hr class="hr">
-            </div>
+            </form>
 
 
-            
             <button class="orange orange1">지원취소</button>
             <button class="green green1">삭제</button>
-       
+
         </div>
-        </section>
-    </div>
+    </section>
+</div>
 </body>
 
 </html>

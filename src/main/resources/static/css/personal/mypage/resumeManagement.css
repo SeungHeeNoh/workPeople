@@ -83,6 +83,12 @@
     line-height: 30px;
 }
 
+.content4_1:hover,
+.content4_3:hover
+{
+    cursor: pointer;
+}
+
 .content4_2,
 .content4_4{
     position: absolute;
@@ -142,6 +148,10 @@
 
 .content5_2{
     font-size: 22px;
+}
+
+.content5_2:hover{
+    cursor: pointer;
 }
 
 .content6_container{

@@ -31,9 +31,9 @@
 }
 
 .content_title_text4_detail_wrap{
-    width: 370px;
+    width: 475px;
     position: absolute;
-    left: 250px;
+    left: 210px;
 }
 
 .content_title_text4_detail_wrap2{
@@ -57,7 +57,12 @@
 .content_title_text4_2{
     color:#979797;
     margin-left: 8px;
+    display: flex;
 }
+.content_title_text4_2 > div {
+    color:#979797;
+}
+
 
 #content_title_text4_2_case2,
 #content_title_text4_3_case2{

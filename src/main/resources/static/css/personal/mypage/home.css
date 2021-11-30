@@ -7,6 +7,7 @@
 
 #home_content_header_wrap{
     display: flex;
+    padding-left: 6px;
 }
 .content_header_text{
     font-size: 20px;
@@ -19,7 +20,7 @@
     height: 40px;
     border-radius: 20px;
     background-color: #e6e6e6;
-    margin-right: 10px;
+    margin-right: 25px;
     margin-top: 14px;
     margin-left: -5px;
 }
@@ -100,6 +101,9 @@
     margin-top: 4px;
     margin-left: 13px;
     font-weight: 600;
+}
+.home_content_2_2:hover{
+    cursor: pointer;
 }
 
 .home_content_2_3{

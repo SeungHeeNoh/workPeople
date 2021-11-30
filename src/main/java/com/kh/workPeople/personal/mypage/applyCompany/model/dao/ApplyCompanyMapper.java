@@ -20,4 +20,6 @@ public interface ApplyCompanyMapper {
 
     List<JobVacancyLookUp> jobVacancyLookUpList(int no);
 
+    int applyCompany(int rNo, int applyBtnNo);
+
 }

@@ -1,6 +1,7 @@
 package com.kh.workPeople.personal.mypage.resume.model.service;
 
 import com.kh.workPeople.common.vo.Resume;
+import com.kh.workPeople.common.vo.ResumeDetails;
 import com.kh.workPeople.personal.mypage.resume.model.dao.ResumeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,15 @@ public class ResumeServiceImpl implements ResumeService {
     @Override
     public int applyCompanyCount(int repResumeNo) {
         return resumeMapper.applyCompanyCount(repResumeNo);
+    }
+
+    @Override
+    public ResumeDetails resumeDetailsLookUp(int rNo) {
+        return resumeMapper.resumeDetailsLookUp(rNo);
+    }
+
+    @Override
+    public ResumeDetails resumeDetailsLookUpFormat(int rNo) {
+        return resumeMapper.resumeDetailsLookUpFormat(rNo);
     }
 }

@@ -12,6 +12,66 @@
         <result property="deleteYN" column="R_DELETE_YN"/>
     </resultMap>
 
+    <resultMap id="resumeDetails" type="com.kh.workPeople.common.vo.ResumeDetails">
+        <id property="rNo" column="R_NO"/>
+        <result property="biTitle" column="BI_TITLE"/>
+        <result property="biName" column="BI_NAME"/>
+        <result property="biGender" column="BI_GENDER"/>
+        <result property="biBirthDate" column="BI_BIRTH_DATE"/>
+        <result property="biBirthDateYearFormat" column="BI_BIRTH_DATE_FORMAT"/>
+        <result property="biAge" column="BI_AGE"/>
+        <result property="biAgeInFull" column="BI_AGE_INFULL"/>
+        <result property="biEmail" column="BI_EMAIL"/>
+        <result property="biPhone" column="BI_PHONE"/>
+        <result property="biAddress" column="BI_ADDRESS"/>
+        <result property="biAddressDetail" column="BI_ADDRESS_DETAIL"/>
+        <result property="sName" column="S_NAME"/>
+        <result property="aNo" column="A_NO"/>
+        <result property="aOriginName" column="A_ORIGIN_NAME"/>
+        <result property="aChangeName" column="A_CHANGE_NAME"/>
+        <result property="aFilePath" column="A_FILE_PATH"/>
+        <result property="aStatus" column="A_STATUS"/>
+        <result property="aCreate" column="A_CREATE"/>
+        <result property="aUpdate" column="A_UPDATE"/>
+        <result property="eType" column="E_TYPE"/>
+        <result property="eHighName" column="E_HIGH_NAME"/>
+        <result property="eHighMajor" column="E_HIGH_MAJOR"/>
+        <result property="eHighAdmission" column="E_HIGH_ADMISSION"/>
+        <result property="eHighGraduation" column="E_HIGH_GRADUATION"/>
+        <result property="eHighAdmissionFormat" column="E_HIGH_ADMISSION_FORMAT"/>
+        <result property="eHighGraduationFormat" column="E_HIGH_GRADUATION_FORMAT"/>
+        <result property="eColleageType" column="E_COLLEAGE_TYPE"/>
+        <result property="eColleageName" column="E_COLLEAGE_NAME"/>
+        <result property="eColleageAdmission" column="E_COLLEAGE_ADMISSION"/>
+        <result property="eColleageAdmissionFormat" column="E_COLLEAGE_ADMISSION_FORMAT"/>
+        <result property="eColleageAdmissionType" column="E_COLLEAGE_ADMISSION_TYPE"/>
+        <result property="eColleageGraduate" column="E_COLLEAGE_GRADUATE"/>
+        <result property="eColleageGraduateFormat" column="E_COLLEAGE_GRADUATE_FORMAT"/>
+        <result property="eColleageGraduateType" column="E_COLLEAGE_GRADUATE_TYPE"/>
+        <result property="eColleageMajor" column="E_COLLEAGE_MAJOR"/>
+        <result property="eColleageCredit" column="E_COLLEAGE_CREDIT"/>
+        <result property="eColleageStandardCredit" column="E_COLLEAGE_STANDARD_CREDIT"/>
+        <result property="eMasterName" column="E_MASTER_NAME"/>
+        <result property="eMasterAdmission" column="E_MASTER_ADMISSION"/>
+        <result property="eMasterAdmissionFormat" column="E_MASTER_ADMISSION_FORMAT"/>
+        <result property="eMasterAdmissionType" column="E_MASTER_ADMISSION_TYPE"/>
+        <result property="eMasterGraduate" column="E_MASTER_GRADUATE"/>
+        <result property="eMasterGraduateFormat" column="E_MASTER_GRADUATE_FORMAT"/>
+        <result property="eMasterGraduateType" column="E_MASTER_GRADUATE_TYPE"/>
+        <result property="eMasterMajor" column="E_MASTER_MAJOR"/>
+        <result property="eMasterCredit" column="E_MASTER_CREDIT"/>
+        <result property="eDoctorName" column="E_DOCTOR_NAME"/>
+        <result property="eDoctorAdmission" column="E_DOCTOR_ADMISSION"/>
+        <result property="eDoctorAdmissionFormat" column="E_DOCTOR_ADMISSION_FORMAT"/>
+        <result property="eDoctorAdmissionType" column="E_DOCTOR_ADMISSION_TYPE"/>
+        <result property="eDoctorGraduate" column="E_DOCTOR_GRADUATE"/>
+        <result property="eDoctorGraduateFormat" column="E_DOCTOR_GRADUATE_FORMAT"/>
+        <result property="eDoctorGraduateType" column="E_DOCTOR_GRADUATE_TYPE"/>
+        <result property="eDoctorMajor" column="E_DOCTOR_MAJOR"/>
+        <result property="eDoctorCredit" column="E_DOCTOR_CREDIT"/>
+        <result property="eDoctorStandardCredit" column="E_DOCTOR_STANDARD_CREDIT"/>
+    </resultMap>
+
     <select id="resumeList" resultMap="simpleResume">
         SELECT
             R_NO,
@@ -21,7 +81,7 @@
             S_NAME
         FROM RESUME
                  JOIN BASIC_INFO BI USING(R_NO)
-                 JOIN SECTOR S ON (BI.SECTOR_NO = S.S_NO)
+                 JOIN SECTOR S ON (BI.S_NO = S.S_NO)
         WHERE M_NO = #{ no }
         AND R_DELETE_YN = 'N'
     </select>
@@ -40,6 +100,35 @@
         FROM APPLY_COMPANY
         WHERE R_NO=#{repResumeNo}
     </select>
+
+    <select id="resumeDetailsLookUp" resultMap="resumeDetails">
+        SELECT
+            *
+        FROM BASIC_INFO
+        JOIN EDUCATION USING(R_NO)
+        JOIN SECTOR USING(S_NO)
+        WHERE R_NO = #{rNo}
+    </select>
+
+    <select id="resumeDetailsLookUpFormat" resultMap="resumeDetails">
+        SELECT
+            TO_CHAR(BI_BIRTH_DATE,'YYYY') BI_BIRTH_DATE_FORMAT,
+            TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE),BI_BIRTH_DATE ) / 12) BI_AGE,
+            MONTHS_BETWEEN(TRUNC(SYSDATE,'YEAR'),
+                           TRUNC(BI_BIRTH_DATE,'YEAR')) /12 +1 BI_AGE_INFULL,
+            TO_CHAR(E_HIGH_ADMISSION,'YYYY.MM') E_HIGH_ADMISSION_FORMAT,
+            TO_CHAR(E_HIGH_GRADUATION,'YYYY.MM') E_HIGH_GRADUATION_FORMAT,
+            TO_CHAR(E_COLLEAGE_ADMISSION,'YYYY.MM') E_COLLEAGE_ADMISSION_FORMAT,
+            TO_CHAR(E_COLLEAGE_GRADUATE,'YYYY.MM') E_COLLEAGE_GRADUATE_FORMAT,
+            TO_CHAR(E_MASTER_ADMISSION,'YYYY.MM') E_MASTER_ADMISSION_FORMAT,
+            TO_CHAR(E_MASTER_GRADUATE,'YYYY.MM') E_MASTER_GRADUATE_FORMAT,
+            TO_CHAR(E_DOCTOR_ADMISSION,'YYYY.MM') E_DOCTOR_ADMISSION_FORMAT,
+            TO_CHAR(E_DOCTOR_GRADUATE,'YYYY.MM') E_DOCTOR_GRADUATE_FORMAT
+        FROM BASIC_INFO
+                 JOIN EDUCATION USING(R_NO)
+        WHERE R_NO=#{rNo}
+    </select>
+
 
 
 </mapper>

@@ -14,15 +14,16 @@
 
      <!-- 쿼리 수정 예정 -->
         SELECT
+            DISTINCT
             M_NO,
             M_NAME,
             M_ROADADDRESS,
             S_NAME,
             RB_DATE
         FROM MEMBER
-                 JOIN COMPANY_INFO USING(M_NO)
-                 JOIN SECTOR USING(S_NO)
-                 JOIN RESUME_BROWSE USING(CI_NO)
+        JOIN COMPANY_INFO USING(M_NO)
+        JOIN SECTOR USING(S_NO)
+        JOIN RESUME_BROWSE USING(CI_NO)
 
     </select>
 

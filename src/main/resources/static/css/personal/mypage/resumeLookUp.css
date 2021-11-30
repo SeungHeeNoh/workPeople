@@ -299,3 +299,8 @@ left: 193px;
     padding-top: 8%;
     box-sizing: border-box;
 }
+
+.content-age{
+    position: absolute;
+    left: 159px;
+}

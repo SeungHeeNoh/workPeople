@@ -17,4 +17,6 @@ public interface ApplyCompanyService {
     int failureCount(int no);
 
     List<JobVacancyLookUp> jobVacancyLookUpList(int no);
+
+    int applyCompany(int rNo, int applyBtnNo);
 }

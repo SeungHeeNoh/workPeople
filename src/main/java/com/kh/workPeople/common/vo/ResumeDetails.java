@@ -13,14 +13,22 @@ public class ResumeDetails {
     private String biBirthDateYearFormat;       // 생년월일 년도만 문자열 포멧팅(ex : 1994)
 
     private int biAge;                  // 나이(한국식나이) int로 포멧팅 (ex : 28)
-    private int biAgeInFull;            // 나이(만나이ㅏ) int로 포멧팅(ex : 27)
+    private int biAgeInFull;            // 나이(만나이) int로 포멧팅(ex : 27)
     
     private String biEmail;             // 이메일
     private String biPhone;             // 전화번호(000-0000-000)
     private String biAddress;           // 주소
     private String biAddressDetail;     // 상세주소
-    private int sNo;                    // 업종 번호
+    private String sName;                    // 업종 이름
     private int aNo;                    // 첨부파일번호
+
+    private String aOriginName;         // 첨부파일 기존 이름
+    private String aChangeName;         // 첨부파일 변경 이름
+    private String aFilePath;           // 첨부파일 파일 경로
+    private String aStatus;             // 첨부파일 삭제 여부
+    private Date aCreate;               // 첨부파일 생성일
+    private Date aUpdate;               // 첨부파일 수정일
+
     private String eType;               // 학력구분(고졸미만,검정고시, 고졸, 대졸이상)
     private String eHighName;           // 고등학교이름
     private String eHighMajor;          // 고등학교 전공계열
@@ -33,21 +41,24 @@ public class ResumeDetails {
     private String eColleageType;       // 대학교 학력 구분(전문학사,학사)
     private String eColleageName;       // 대학교 이름
     private Date eColleageAdmission;    // 대학교 입학년월
-    
+
     private String eColleageAdmissionFormat;  // 대학교 입학년월 문자열 포멧팅 (ex : 2000.02)
     
     private String eColleageAdmissionType;  // 대학교 입학 구분(입학,편입)
     private Date eColleageGraduate;     // 대학 졸업년월
-    
+
     private String eColleageGraduateFormat;     // 대학교 졸업년월 문자열 포멧팅 (ex : 2000.02)
     
     private String eColleageGraduateType;   // 대학 졸업구분(졸업,재학중,휴학중,자퇴,졸업예정,재학중)
     private String eColleageMajor;      // 대학 전공
     private String eColleageCredit;     // 대학 학점
     private String eColleageStandardCredit;     // 대학 기준 학점
+
+
+
     private String eMasterName;         // 대학원(석사) 이름
     private Date eMasterAdmission;          // 대학원(석사) 입학년월
-    
+
     private String eMasterAdmissionFormat;  // 대학원(석사) 입학년월 문자열 포멧팅
     
     private String eMasterAdmissionType;    // 대학원(석사) 입학 구분
@@ -59,6 +70,10 @@ public class ResumeDetails {
     private String eMasterMajor;            // 대학원(석사)전공
     private String eMasterCredit;           // 대학원(석사)학점
     private String eMasterStandardCredit;      // 대학원(석사) 기준학점
+
+
+
+
     private String eDoctorName;             // 대학원(박사) 이름
     private Date eDoctorAdmission;          // 대학원(박사) 입학년월
     
@@ -77,52 +92,7 @@ public class ResumeDetails {
     public ResumeDetails() {
     }
 
-    public ResumeDetails(int rNo, String biTitle, String biName, String biGender, Date biBirthDate, int biAge, String biEmail, String biPhone, String biAddress, String biAddressDetail, int sNo, int aNo, String eType, String eHighName, String eHighMajor, Date eHighAdmission, Date eHighGraduation, String eColleageType, String eColleageName, Date eColleageAdmission, String eColleageAdmissionType, Date eColleageGraduate, String eColleageGraduateType, String eColleageMajor, String eColleageCredit, String eColleageStandardCredit, String eMasterName, Date eMasterAdmission, String eMasterAdmissionType, Date eMasterGraduate, String eMasterGraduateType, String eMasterMajor, String eMasterCredit, String eMasterStandardCredit, String eDoctorName, Date eDoctorAdmission, String eDoctorAdmissionType, Date eDoctorGraduate, String eDoctorGraduateType, String eDoctorMajor, String eDoctorCredit, String eDoctorStandardCredit) {
-        this.rNo = rNo;
-        this.biTitle = biTitle;
-        this.biName = biName;
-        this.biGender = biGender;
-        this.biBirthDate = biBirthDate;
-        this.biAge = biAge;
-        this.biEmail = biEmail;
-        this.biPhone = biPhone;
-        this.biAddress = biAddress;
-        this.biAddressDetail = biAddressDetail;
-        this.sNo = sNo;
-        this.aNo = aNo;
-        this.eType = eType;
-        this.eHighName = eHighName;
-        this.eHighMajor = eHighMajor;
-        this.eHighAdmission = eHighAdmission;
-        this.eHighGraduation = eHighGraduation;
-        this.eColleageType = eColleageType;
-        this.eColleageName = eColleageName;
-        this.eColleageAdmission = eColleageAdmission;
-        this.eColleageAdmissionType = eColleageAdmissionType;
-        this.eColleageGraduate = eColleageGraduate;
-        this.eColleageGraduateType = eColleageGraduateType;
-        this.eColleageMajor = eColleageMajor;
-        this.eColleageCredit = eColleageCredit;
-        this.eColleageStandardCredit = eColleageStandardCredit;
-        this.eMasterName = eMasterName;
-        this.eMasterAdmission = eMasterAdmission;
-        this.eMasterAdmissionType = eMasterAdmissionType;
-        this.eMasterGraduate = eMasterGraduate;
-        this.eMasterGraduateType = eMasterGraduateType;
-        this.eMasterMajor = eMasterMajor;
-        this.eMasterCredit = eMasterCredit;
-        this.eMasterStandardCredit = eMasterStandardCredit;
-        this.eDoctorName = eDoctorName;
-        this.eDoctorAdmission = eDoctorAdmission;
-        this.eDoctorAdmissionType = eDoctorAdmissionType;
-        this.eDoctorGraduate = eDoctorGraduate;
-        this.eDoctorGraduateType = eDoctorGraduateType;
-        this.eDoctorMajor = eDoctorMajor;
-        this.eDoctorCredit = eDoctorCredit;
-        this.eDoctorStandardCredit = eDoctorStandardCredit;
-    }
-
-    public ResumeDetails(int rNo, String biTitle, String biName, String biGender, Date biBirthDate, String biBirthDateYearFormat, int biAge, int biAgeInFull, String biEmail, String biPhone, String biAddress, String biAddressDetail, int sNo, int aNo, String eType, String eHighName, String eHighMajor, Date eHighAdmission, Date eHighGraduation, String eHighAdmissionFormat, String eHighGraduationFormat, String eColleageType, String eColleageName, Date eColleageAdmission, String eColleageAdmissionFormat, String eColleageAdmissionType, Date eColleageGraduate, String eColleageGraduateFormat, String eColleageGraduateType, String eColleageMajor, String eColleageCredit, String eColleageStandardCredit, String eMasterName, Date eMasterAdmission, String eMasterAdmissionFormat, String eMasterAdmissionType, Date eMasterGraduate, String eMasterGraduateFormat, String eMasterGraduateType, String eMasterMajor, String eMasterCredit, String eMasterStandardCredit, String eDoctorName, Date eDoctorAdmission, String eDoctorAdmissionFormat, String eDoctorAdmissionType, Date eDoctorGraduate, String eDoctorGraduateFormat, String eDoctorGraduateType, String eDoctorMajor, String eDoctorCredit, String eDoctorStandardCredit) {
+    public ResumeDetails(int rNo, String biTitle, String biName, String biGender, Date biBirthDate, String biBirthDateYearFormat, int biAge, int biAgeInFull, String biEmail, String biPhone, String biAddress, String biAddressDetail, String sName, int aNo, String aOriginName, String aChangeName, String aFilePath, String aStatus, Date aCreate, Date aUpdate, String eType, String eHighName, String eHighMajor, Date eHighAdmission, Date eHighGraduation, String eHighAdmissionFormat, String eHighGraduationFormat, String eColleageType, String eColleageName, Date eColleageAdmission, String eColleageAdmissionFormat, String eColleageAdmissionType, Date eColleageGraduate, String eColleageGraduateFormat, String eColleageGraduateType, String eColleageMajor, String eColleageCredit, String eColleageStandardCredit, String eMasterName, Date eMasterAdmission, String eMasterAdmissionFormat, String eMasterAdmissionType, Date eMasterGraduate, String eMasterGraduateFormat, String eMasterGraduateType, String eMasterMajor, String eMasterCredit, String eMasterStandardCredit, String eDoctorName, Date eDoctorAdmission, String eDoctorAdmissionFormat, String eDoctorAdmissionType, Date eDoctorGraduate, String eDoctorGraduateFormat, String eDoctorGraduateType, String eDoctorMajor, String eDoctorCredit, String eDoctorStandardCredit) {
         this.rNo = rNo;
         this.biTitle = biTitle;
         this.biName = biName;
@@ -135,8 +105,14 @@ public class ResumeDetails {
         this.biPhone = biPhone;
         this.biAddress = biAddress;
         this.biAddressDetail = biAddressDetail;
-        this.sNo = sNo;
+        this.sName = sName;
         this.aNo = aNo;
+        this.aOriginName = aOriginName;
+        this.aChangeName = aChangeName;
+        this.aFilePath = aFilePath;
+        this.aStatus = aStatus;
+        this.aCreate = aCreate;
+        this.aUpdate = aUpdate;
         this.eType = eType;
         this.eHighName = eHighName;
         this.eHighMajor = eHighMajor;
@@ -175,6 +151,62 @@ public class ResumeDetails {
         this.eDoctorMajor = eDoctorMajor;
         this.eDoctorCredit = eDoctorCredit;
         this.eDoctorStandardCredit = eDoctorStandardCredit;
+    }
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
+    }
+
+    public String getaOriginName() {
+        return aOriginName;
+    }
+
+    public void setaOriginName(String aOriginName) {
+        this.aOriginName = aOriginName;
+    }
+
+    public String getaChangeName() {
+        return aChangeName;
+    }
+
+    public void setaChangeName(String aChangeName) {
+        this.aChangeName = aChangeName;
+    }
+
+    public String getaFilePath() {
+        return aFilePath;
+    }
+
+    public void setaFilePath(String aFilePath) {
+        this.aFilePath = aFilePath;
+    }
+
+    public String getaStatus() {
+        return aStatus;
+    }
+
+    public void setaStatus(String aStatus) {
+        this.aStatus = aStatus;
+    }
+
+    public Date getaCreate() {
+        return aCreate;
+    }
+
+    public void setaCreate(Date aCreate) {
+        this.aCreate = aCreate;
+    }
+
+    public Date getaUpdate() {
+        return aUpdate;
+    }
+
+    public void setaUpdate(Date aUpdate) {
+        this.aUpdate = aUpdate;
     }
 
     public String getBiBirthDateYearFormat() {
@@ -337,13 +369,7 @@ public class ResumeDetails {
         this.biAddressDetail = biAddressDetail;
     }
 
-    public int getsNo() {
-        return sNo;
-    }
-
-    public void setsNo(int sNo) {
-        this.sNo = sNo;
-    }
+    
 
     public int getaNo() {
         return aNo;
@@ -601,39 +627,55 @@ public class ResumeDetails {
                 ", biName='" + biName + '\'' +
                 ", biGender='" + biGender + '\'' +
                 ", biBirthDate=" + biBirthDate +
+                ", biBirthDateYearFormat='" + biBirthDateYearFormat + '\'' +
                 ", biAge=" + biAge +
+                ", biAgeInFull=" + biAgeInFull +
                 ", biEmail='" + biEmail + '\'' +
                 ", biPhone='" + biPhone + '\'' +
                 ", biAddress='" + biAddress + '\'' +
                 ", biAddressDetail='" + biAddressDetail + '\'' +
-                ", sNo=" + sNo +
+                ", sName=" + sName +
                 ", aNo=" + aNo +
+                ", aOriginName='" + aOriginName + '\'' +
+                ", aChangeName='" + aChangeName + '\'' +
+                ", aFilePath='" + aFilePath + '\'' +
+                ", aStatus='" + aStatus + '\'' +
+                ", aCreate=" + aCreate +
+                ", aUpdate=" + aUpdate +
                 ", eType='" + eType + '\'' +
                 ", eHighName='" + eHighName + '\'' +
                 ", eHighMajor='" + eHighMajor + '\'' +
                 ", eHighAdmission=" + eHighAdmission +
                 ", eHighGraduation=" + eHighGraduation +
+                ", eHighAdmissionFormat='" + eHighAdmissionFormat + '\'' +
+                ", eHighGraduationFormat='" + eHighGraduationFormat + '\'' +
                 ", eColleageType='" + eColleageType + '\'' +
                 ", eColleageName='" + eColleageName + '\'' +
                 ", eColleageAdmission=" + eColleageAdmission +
+                ", eColleageAdmissionFormat='" + eColleageAdmissionFormat + '\'' +
                 ", eColleageAdmissionType='" + eColleageAdmissionType + '\'' +
                 ", eColleageGraduate=" + eColleageGraduate +
+                ", eColleageGraduateFormat='" + eColleageGraduateFormat + '\'' +
                 ", eColleageGraduateType='" + eColleageGraduateType + '\'' +
                 ", eColleageMajor='" + eColleageMajor + '\'' +
                 ", eColleageCredit='" + eColleageCredit + '\'' +
                 ", eColleageStandardCredit='" + eColleageStandardCredit + '\'' +
                 ", eMasterName='" + eMasterName + '\'' +
                 ", eMasterAdmission=" + eMasterAdmission +
+                ", eMasterAdmissionFormat='" + eMasterAdmissionFormat + '\'' +
                 ", eMasterAdmissionType='" + eMasterAdmissionType + '\'' +
                 ", eMasterGraduate=" + eMasterGraduate +
+                ", eMasterGraduateFormat='" + eMasterGraduateFormat + '\'' +
                 ", eMasterGraduateType='" + eMasterGraduateType + '\'' +
                 ", eMasterMajor='" + eMasterMajor + '\'' +
                 ", eMasterCredit='" + eMasterCredit + '\'' +
                 ", eMasterStandardCredit='" + eMasterStandardCredit + '\'' +
                 ", eDoctorName='" + eDoctorName + '\'' +
                 ", eDoctorAdmission=" + eDoctorAdmission +
+                ", eDoctorAdmissionFormat='" + eDoctorAdmissionFormat + '\'' +
                 ", eDoctorAdmissionType='" + eDoctorAdmissionType + '\'' +
                 ", eDoctorGraduate=" + eDoctorGraduate +
+                ", eDoctorGraduateFormat='" + eDoctorGraduateFormat + '\'' +
                 ", eDoctorGraduateType='" + eDoctorGraduateType + '\'' +
                 ", eDoctorMajor='" + eDoctorMajor + '\'' +
                 ", eDoctorCredit='" + eDoctorCredit + '\'' +
