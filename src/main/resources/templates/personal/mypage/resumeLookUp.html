@@ -17,6 +17,7 @@
 </head>
 
 <body>
+<div th:include="common/header.html"></div>
     <div class="wrapper">
         
     <div th:include="personal/mypage/mainSnb.html"></div>
@@ -33,8 +34,10 @@
                     <div class="content1_container">
                         <div class="content1_container2">
                             <div class="content1_title" th:text="*{biName}">임꺽정</div>
-                            <div class="content1_1" th:text="*{biBirthDateYearFormat}">
-                                <span>년(</span><span th:text="*{biAge}"></span><span>세/만 </span><span th:text="*{biAgeInFull}"></span><span>세)</span></div>
+                            <span class="content1_1" th:text="*{biBirthDateYearFormat}"></span>
+                            <span class="content-age">
+                                <span>년(</span><span th:text="*{biAge}"></span><span>세/만
+                            </span><span th:text="*{biAgeInFull}"></span><span>세)</span></span>
                             <div class="border"></div>
                             <div class="content1_2"  th:text="*{biGender}">남자</div>
                         </div>
@@ -47,7 +50,8 @@
                         </div>
                         <div class="content1_container2">
                             <div class="content1_title content_long">주소</div>
-                            <div class="content1_1" th:text="*{biAddress}">(12345) 경기도 성남시 분당구 분당동 123동 456호</div>
+                            <div class="content1_1" th:text="*{biAddress}">(12345) 경기도 성남시 분당구 분당동 123동 456호 </div>
+
                         </div>
                         <div class="content1_container2">
                             <div class="content1_title">희망업종</div>
@@ -88,29 +92,34 @@
                         <div class="content_title_text4_2" th:text="*{eColleageGraduateType}">졸업</div>
                         <div class="content_title_text4_3" th:text="*{eColleageName}">kh대학교</div>
                         <div class="content_title_text4_4" th:text="*{eColleageMajor}">컴퓨터공학</div>
-                        <div class="content_title_text4_5" th:text="*{eColleageCredit}"><span>/</span><span th:text="*{eColleageStandardCredit}"></span></div>
+                        <div class="content_title_text4_5" th:text="*{eColleageCredit}"><span>/</span>
+                            <span th:text="*{eColleageStandardCredit}"></span></div>
                     </div>
                     <hr class="hr">
 
                     <div class="content_title_text4">
-                        <div class="content_title_text4_1" th:text="*{eHighAdmission}">
-                            <span>~</span><span th:text="*{eHighGraduation}"></span></div>
-                        <div class="content_title_text4_2">졸업</div>
-                        <div class="content_title_text4_3" th:text="*{eHighName}">kh대학교</div>
-                        <div class="content_title_text4_4" th:text="*{eHighMajor}">컴퓨터공학</div>
-                        <div class="content_title_text4_5"></div>
+                        <div class="content_title_text4_1" th:text="*{eMasterAdmissionFormat}">
+                            <span>~</span><span th:text="*{eMasterGraduateFormat}"></span></div>
+                        <div class="content_title_text4_2" th:text="*{eMasterGraduateType}">졸업</div>
+                        <div class="content_title_text4_3" th:text="*{eMasterName}">kh대학교</div>
+                        <div class="content_title_text4_4" th:text="*{eMasterMajor}">컴퓨터공학</div>
+                        <div class="content_title_text4_5" th:text="*{eMasterCredit}"><span>/</span>
+                            <span th:text="*{eMasterStandardCredit}"></span></div>
                     </div>
                     <hr class="hr">
 
                     <div class="content_title_text4">
-                        <div class="content_title_text4_1" th:text="*{eHighAdmission}">
-                            <span>~</span><span th:text="*{eHighGraduation}"></span></div>
-                        <div class="content_title_text4_2">졸업</div>
-                        <div class="content_title_text4_3" th:text="*{eHighName}">kh대학교</div>
-                        <div class="content_title_text4_4" th:text="*{eHighMajor}">컴퓨터공학</div>
-                        <div class="content_title_text4_5"></div>
+                        <div class="content_title_text4_1" th:text="*{eDoctorAdmissionFormat}">
+                            <span>~</span><span th:text="*{eDoctorGraduateFormat}"></span></div>
+                        <div class="content_title_text4_2" th:text="*{eDoctorGraduateType}">졸업</div>
+                        <div class="content_title_text4_3" th:text="*{eDoctorName}">kh대학교</div>
+                        <div class="content_title_text4_4" th:text="*{eDoctorMajor}">컴퓨터공학</div>
+                        <div class="content_title_text4_5" th:text="*{eDoctorCredit}"><span>/</span>
+                            <span th:text="*{eDoctorStandardCredit}"></span></div>
                     </div>
                     <hr class="hr">
+
+
 
 
 
@@ -222,6 +231,7 @@
             </div>
         </section>
     </div>
+<div th:include="common/footer.html"></div>
 </body>
 
 </html>

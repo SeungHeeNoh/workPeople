@@ -25,7 +25,7 @@
         <result property="biPhone" column="BI_PHONE"/>
         <result property="biAddress" column="BI_ADDRESS"/>
         <result property="biAddressDetail" column="BI_ADDRESS_DETAIL"/>
-        <result property="sNo" column="S_NO"/>
+        <result property="sName" column="S_NAME"/>
         <result property="aNo" column="A_NO"/>
         <result property="aOriginName" column="A_ORIGIN_NAME"/>
         <result property="aChangeName" column="A_CHANGE_NAME"/>
@@ -81,7 +81,7 @@
             S_NAME
         FROM RESUME
                  JOIN BASIC_INFO BI USING(R_NO)
-                 JOIN SECTOR S ON (BI.SECTOR_NO = S.S_NO)
+                 JOIN SECTOR S ON (BI.S_NO = S.S_NO)
         WHERE M_NO = #{ no }
         AND R_DELETE_YN = 'N'
     </select>

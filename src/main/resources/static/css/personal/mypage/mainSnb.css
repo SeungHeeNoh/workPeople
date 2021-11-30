@@ -14,7 +14,8 @@ hr {
     display: flex;
     width: 1100px;
     margin-left: calc((100% - 1100px)/2);
-    margin-top: 210px;
+    margin-top: 50px;
+    min-height: 746px;
 }
 
 aside,
@@ -27,7 +28,7 @@ aside {
     order: 1;
     border: 1px solid #c4c4c4;
     border-radius: 10px;
-    height: 709px;
+    height: 744px;
     position: fixed;
 }
 
@@ -59,7 +60,7 @@ section {
     border: 1px solid #c4c4c4;
     border-radius: 10px;
     margin-left: 232px;
-    margin-bottom: 213px;
+    margin-bottom: 50px;
 }
 
 #content_wrap {

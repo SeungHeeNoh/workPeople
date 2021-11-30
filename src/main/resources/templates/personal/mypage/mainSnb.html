@@ -8,12 +8,13 @@
 
         <li id="snb_2" class="snb_main">
             <img id="snbImg2" src="/images/personal/myPage/icon/snb2.svg">회원정보 관리</li>
-        <a th:href="@{/personal/myPage/}"><li id="snb_2_1" class="snb_sub">회원정보 수정</li></a>
-        <a th:href="@{/personal/myPage/}"><li id="snb_2_2" class="snb_sub">회원 탈퇴</li></a>
+        <a th:href="@{/personal/mypage/modifyMember}"><li id="snb_2_1" class="snb_sub">회원정보 수정</li></a>
+        <a th:href="@{/personal/mypage/outOfMember}"><li id="snb_2_2" class="snb_sub">회원 탈퇴</li></a>
 
         <li id="snb_3" class="snb_main"><img id="snbImg3" img src="/images/personal/myPage/icon/snb3.svg">이력서</li>
         <a class="snbResumeEnroll" th:href="@{/personal/mypage/resumeEnroll}"><li id="snb_3_1" class="snb_sub">이력서 등록</li></a>
         <a th:href="@{/personal/mypage/resumeManagement}"><li id="snb_3_2" class="snb_sub">이력서 관리</li></a>
+        <a th:href="@{/personal/mypage/resumeBrowseCompany}"><li id="snb_3_3" class="snb_sub">이력서 열람기업</li></a>
 
         <li id="snb_4" class="snb_main"><img id="snbImg4" img src="/images/personal/myPage/icon/snb4.svg">입사지원 관리</li>
         <a th:href="@{/personal/mypage/applyCompany}"><li id="snb_4_1" class="snb_sub">입사지원 현황</li></a>

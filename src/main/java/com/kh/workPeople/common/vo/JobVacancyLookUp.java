@@ -17,12 +17,15 @@ public class JobVacancyLookUp {
     private String rbDateFormat;    // 열람일 문자열형태
     private String jvPeriodEndFormat;   // 마감일 문자열형태
 
+//    private String jvPeriodEndOver;        // 현재시간기준마감일 지났는지 여부 (over, notOver)
+
     private boolean applyYN;         // 해당 공고에 지원 여부
 
     public JobVacancyLookUp() {
     }
 
-    public JobVacancyLookUp(int jvNo, String mName, String jvTitle, String elName, String sName, String jvAddress, Date acDate, Date rbDate, Date jvPeriodEnd) {
+
+    public JobVacancyLookUp(int jvNo, String mName, String jvTitle, String elName, String sName, String jvAddress, Date acDate, Date rbDate, Date jvPeriodEnd, String acDateFormat, String rbDateFormat, String jvPeriodEndFormat, boolean applyYN) {
         this.jvNo = jvNo;
         this.mName = mName;
         this.jvTitle = jvTitle;
@@ -32,7 +35,19 @@ public class JobVacancyLookUp {
         this.acDate = acDate;
         this.rbDate = rbDate;
         this.jvPeriodEnd = jvPeriodEnd;
+        this.acDateFormat = acDateFormat;
+        this.rbDateFormat = rbDateFormat;
+        this.jvPeriodEndFormat = jvPeriodEndFormat;
+        this.applyYN = applyYN;
     }
+
+//    public String getJvPeriodEndOver() {
+//        return jvPeriodEndOver;
+//    }
+//
+//    public void setJvPeriodEndOver(String jvPeriodEndOver) {
+//        this.jvPeriodEndOver = jvPeriodEndOver;
+//    }
 
     public boolean isApplyYN() {
         return applyYN;

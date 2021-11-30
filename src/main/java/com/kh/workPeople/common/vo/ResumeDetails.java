@@ -70,6 +70,10 @@ public class ResumeDetails {
     private String eMasterMajor;            // 대학원(석사)전공
     private String eMasterCredit;           // 대학원(석사)학점
     private String eMasterStandardCredit;      // 대학원(석사) 기준학점
+
+
+
+
     private String eDoctorName;             // 대학원(박사) 이름
     private Date eDoctorAdmission;          // 대학원(박사) 입학년월
     
@@ -147,6 +151,14 @@ public class ResumeDetails {
         this.eDoctorMajor = eDoctorMajor;
         this.eDoctorCredit = eDoctorCredit;
         this.eDoctorStandardCredit = eDoctorStandardCredit;
+    }
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
     }
 
     public String getaOriginName() {

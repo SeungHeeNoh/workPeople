@@ -1,10 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="/css/common/common.css">
+    <link rel="stylesheet" href="/css/personal/mypage/resumeEnroll.css">
+
+    <title>이력서 등록</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div th:include="common/header.html"></div>
+<div class="wrapper">
+
+    <section>
+        <div id="content_wrap">
+            <p class="header_text">이력서 수정</p>
+            <div class="content-wrap2">
+                <form action="#">
+                    <div class="content_title">이력서 제목</div>
+                    <div class="content-resume-title">나를 가장 잘 소개할 수 있는 이력서 제목을 입력하세요.(최대 30자)</div>
+
+                    <div class="content_title">기본정보</div>
+                    <hr class="hr">
+                    <div class="content-basicInfo-wrap">
+                        <div class="content-basicInfo-wrap1">
+                            <div class="content-detail-container">
+                                <div class="content-detail-name1">이름</div>
+                                <div class="content-detail-needs">*</div>
+                                <input type="text" class="content-detail-input" placeholder="    이름 입력">
+                            </div>
+                            <div class="content-detail-container">
+                                <div class="content-detail-name1">성별</div>
+                                <div class="content-detail-needs">*</div>
+                                <input type="text" class="content-detail-input" placeholder="    성별">
+                            </div>
+                            <div class="content-detail-container">
+                                <div class="content-detail-name1">생년월일</div>
+                                <div class="content-detail-needs">*</div>
+                                <input type="text" class="content-detail-input" placeholder="    YYYYMMDD">
+                            </div>
+                            <div class="content-detail-container">
+                                <div class="content-detail-name1">이메일</div>
+                                <div class="content-detail-needs">*</div>
+                                <input type="text" class="content-detail-input"  placeholder="    이메일을 입력하세요.">
+                            </div>
+                            <div class="content-detail-container">
+                                <div class="content-detail-name1">휴대폰</div>
+                                <div class="content-detail-needs">*</div>
+                                <input type="text" class="content-detail-input" placeholder="    휴대폰 번호 입력(-포함 11자)">
+                            </div>
+                            <div class="content-detail-container">
+                                <div class="content-detail-name1">주소</div>
+                                <div class="content-detail-needs">*</div>
+                                <input type="text" class="content-detail-input" placeholder="    주소 입력">
+                            </div>
+                            <div class="content-detail-container">
+                                <div class="content-detail-name1">상세주소</div>
+                                <div class="content-detail-needs">*</div>
+                                <input type="text" class="content-detail-input" placeholder="    상세주소 입력">
+                            </div>
+                            <div class="content-detail-container">
+                                <div class="content-detail-name1">희망 업종</div>
+                                <div class="content-detail-needs">*</div>
+                                <input type="text" class="content-detail-input"  placeholder="    업종 선택">
+                            </div>
+
+
+
+                        </div>
+                        <div class="content-basicInfo-wrap2">
+                            <div class="content-basicInfo-img-container"></div>
+
+                            <div class="content-basicInfo-img-container2">
+                                <img src="../images/subSnbIcon.svg" class="content-basicInfo-img">
+                                <div>사진업로드</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <aside>
+        <div class="aside-wrap">
+            <div class="aside-title">이력서 항목</div>
+            <hr>
+            <div class="asdie-content-wrap">
+                <div class="content content1">기본정보</div>
+                <div class="content content2">학력사항</div>
+                <div class="content content3">경력사항</div>
+
+                <div class="content4-container">
+                    <div class="content content4">인턴/대외활동</div>
+                    <img src="/images/personal/myPage/icon/subSnbIcon.svg" class="contentImg img1">
+                </div>
+                <div class="content5-container">
+                    <div class="content content5">자격증</div>
+                    <img src="/images/personal/myPage/icon/subSnbIcon.svg" class="contentImg img2">
+                </div>
+                <div class="content6-container">
+                    <div class="content content6">수상내역</div>
+                    <img src="/images/personal/myPage/icon/subSnbIcon.svg" class="contentImg img3">
+                </div>
+                <div class="content7-container">
+                    <div class="content content7">어학</div>
+                    <img src="/images/personal/myPage/icon/subSnbIcon.svg" class="contentImg img4">
+                </div>
+                <div class="content8-container">
+                    <div class="content content8">자기소개서</div>
+                    <img src="/images/personal/myPage/icon/subSnbIcon.svg" class="contentImg img5">
+                </div>
+            </div>
+        </div>
+    </aside>
+
+</div>
+<div th:include="common/footer.html"></div>
 </body>
+
 </html>

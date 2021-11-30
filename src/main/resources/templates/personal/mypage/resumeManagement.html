@@ -16,6 +16,7 @@
 </head>
 
 <body>
+<div th:include="common/header.html"></div>
 <div class="wrapper">
 
     <div th:include="personal/mypage/mainSnb.html"></div>
@@ -58,10 +59,10 @@
                             <div class="content3_4">2021.10.23</div>
                         </div>
                         <div class="content4_container">
-                            <div class="content4_1">이력서 열람 기업
+                            <div class="content4_1" th:onclick="|location.href='@{/personal/mypage/resumeBrowseCompany}'|">이력서 열람 기업
                                 <div class="content4_2" th:text="${resumeBrowseCount}"></div>
                             </div>
-                            <div class="content4_3">입사 지원 내역
+                            <div class="content4_3" th:onclick="|location.href='@{/personal/mypage/applyCompany}'|">입사 지원 내역
                                 <div class="content4_4" th:text="${applyCompanyCount}"></div>
                             </div>
                         </div>
@@ -99,6 +100,7 @@
 </div>
 
 <script th:src="@{/js/personal/mypage/resumeManagement.js}"></script>
+<div th:include="common/footer.html"></div>
 </body>
 
 </html>

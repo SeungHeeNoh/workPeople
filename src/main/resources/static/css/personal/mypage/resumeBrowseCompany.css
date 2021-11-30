@@ -13,10 +13,27 @@
     margin-top: 15px;
     border-top: 1px solid black;
     font-size: 16px;
+    position: relative;
+}
+
+.home_content_3_1{
+    position: absolute;
+    left: 63px;
+}
+.home_content_3_2{
+    position: absolute;
+    left: 344px;
 }
 
 .home_content_3_3{
     margin-right: 25px;
+    position: absolute;
+    right: 199px;
+}
+
+.home_content_3_4{
+    position: absolute;
+    right: 73px;
 }
 
 .content_title_text4{
@@ -43,11 +60,14 @@
 }
 
 .content_title_text4_2{
-    left: 220px;
+    left: 231px;
+    width: 310px;
 }
 
 .content_title_text4_3{
-    left: 470px;
+    width: 94px;
+    left: 555px;
+    text-align: center;
 }
 
 .content_title_text4_4{
