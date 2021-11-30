@@ -4,17 +4,17 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Insert title here</title>
-	<link rel="stylesheet" th:href="@{/css/common/common.css}">
+	<title th:text="${member.name}"></title>
 	<link rel="stylesheet" th:href="@{/css/company-information/company-information.css}">
 </head>
 <body>
+    <div th:replace="common/header.html"></div>
 	<div id="container">
 		<div class="content">
 			<div class="info_header">
 				<div>
-					<img th:src="@{/images/}" alt="더캐리 로고 이미지">
-					<h2>더캐리</h2>
+					<img th:src="@{/images/}" th:alt="${member.name} + ' 로고'">
+					<h2 th:text=${member.name}></h2>
 				</div>
 			</div>
 			<div class="floating-navi">
@@ -33,22 +33,41 @@
 						<ul>
 							<li>
 								<span>설립일</span>
-								<span>-</span>
+								<span th:if="${companyInformation.foundingDate != null}" th:text="${#dates.format(companyInformation.foundingDate, 'yyyy년 M월 d일 설립')}"></span>
+								<span th:unless="${companyInformation.foundingDate != null}">-</span>
 							</li>
 							<li>
 								<span>기업형태</span>
-								<span>중소기업</span>
+								<span th:text="${companyInformation.companyType.name}"></span>
 							</li>
 							<li>
 								<span>사원수</span>
-								<span>-</span>
+								<span th:if="${companyInformation.employeeNumber != 0}" th:text="${companyInformation.employeeNumber} + '명'"></span>
+								<span th:unless="${companyInformation.employeeNumber != 0}">-</span>
+								
 							</li>
 						</ul>
 					</div>
+					<div class="company_detail">
+						<th:block th:if="${not #strings.isEmpty(companyInformation.companyHistory)}">
+						<div>
+							<h4>연혁 및 실적</h4>
+							<p th:utext="${#strings.replace(companyInformation.companyHistory, newLineChar, '&lt;br /&gt;')}"></p>
+						</div>
+						</th:block>
+						<th:block th:if="${not #strings.isEmpty(companyInformation.companyVision)}">
+						<div>
+							<h4>기업 개요 및 비전</h4>
+							<p th:utext="${#strings.replace(companyInformation.companyVision, newLineChar, '&lt;br /&gt;')}"></p>
+						</div>
+						</th:block>
+					</div>
 					<div class="company_addional_info">
 						<ul>
-							<li><span class="title">업종</span>판매·유통</li>
-							<li><span class="title">기업주소</span>서울 용산구 이태원로 241, 2층</li>
+							<li><span class="title">업종</span>[[${companyInformation.sector.name}]]</li>
+							<li><span class="title">홈페이지</span>[[${companyInformation.homepage}]]</li>
+							<li><span class="title">기업주소</span>[[${member.roadAddress} + ' ' +  ${member.detailAddress}]]</li>
+							<li><span class="title">사업내용</span>[[${companyInformation.homepage}]]</li>
 						</ul>
 					</div>
 				</div>
@@ -66,9 +85,11 @@
 								</tr>
 							</thead>
 							<tbody>
+							 	<th:block th:if="${#strings.isEmpty(companyInformation.companyVision)}">
 								<tr>
 									<td colspan="4">진행중인 공고가 존재하지 않습니다.</td>
 								</tr>
+								</th:block>
 							</tbody>
 						</table>
 					</div>
@@ -98,5 +119,6 @@
 		</div>
 	</div>
 	<script th:src="@{/js/company-information/company-information.js}"></script>
+    <div th:replace="common/footer.html"></div>
 </body>
 </html>

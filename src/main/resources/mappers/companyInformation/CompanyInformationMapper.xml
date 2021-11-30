@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.workPeople.companyInformation.model.dao.CompanyInformationMapper">
+<resultMap type="com.kh.workPeople.common.vo.CompanyInformation" id="companyResultMap">
+		<id property="no" column="CI_NO"/>
+		<result property="registerNumber" column="CI_COMPANY_REGISTER_NUMBER"/>
+		<result property="ceoName" column="CI_CEONAME"/>
+		<result property="foundingDate" column="CI_FOUNDING_DATE"/>
+		<result property="employeeNumber" column="CI_EMPLOYEE_NUMBER"/>
+		<result property="businessDetail" column="CI_BUSINESS_DETAIL"/>
+		<result property="companyHistory" column="CI_COMPANY_HISTORY"/>
+		<result property="companyVision" column="CI_COMPANY_VISION"/>
+		<result property="homepage" column="CI_HOMEPAGE"/>
+		<association property="attachment" resultMap="attachmentResultMap"/>
+		<association property="sector" resultMap="sectorResultMap"/>
+		<association property="companyType" resultMap="companyTypeRoleResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Attachment" id="attachmentResultMap">
+		<id property="no" column="A_NO"/>
+		<result property="changeName" column="A_CHANGE_NAME"/>
+		<result property="filePath" column="A_FILE_PATH"/>
+		<result property="status" column="A_STATUS"/>
+		<result property="create" column="A_CREATE"/>
+		<result property="update" column="A_UPDATE"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Sector" id="sectorResultMap">
+		<id property="no" column="S_NO"/>
+		<result property="name" column="S_NAME"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.CompanyType" id="companyTypeRoleResultMap">
+		<id property="no" column="CT_NO"/>
+		<result property="name" column="CT_NAME"/>
+	</resultMap>
+	<select id="getMember" parameterType="_int" resultMap="Common.memberResultMap">
+		SELECT 
+		       M_NAME
+		     , M_POSTCODE
+		     , M_ROADADDRESS
+		     , M_DETAILADDRESS
+		  FROM MEMBER
+		 WHERE M_NO = (SELECT M_NO FROM COMPANY_INFO WHERE CI_NO = #{no})
+	</select>
+	<select id="getCompanyInformation" parameterType="_int" resultMap="companyResultMap">
+		SELECT 
+		       CI_NO
+		     , CI_CEONAME
+		     , CI_FOUNDING_DATE
+		     , CI_EMPLOYEE_NUMBER
+		     , CI_BUSINESS_DETAIL
+		     , CI_COMPANY_HISTORY
+		     , CI_COMPANY_VISION
+		     , CI_HOMEPAGE
+		     , A_NO
+		     , A_ORIGIN_NAME
+		     , A_CHANGE_NAME
+		     , A_FILE_PATH
+		     , A_STATUS
+		     , A_CREATE
+		     , A_UPDATE
+		     , S_NO
+		     , S_NAME
+		     , CT_NO
+		     , CT_NAME
+		  FROM COMPANY_INFO
+		  LEFT JOIN SECTOR USING(S_NO)
+		  LEFT JOIN COMPANY_TYPE USING(CT_NO)
+		  LEFT JOIN ATTACHMENT USING(A_NO)
+		 WHERE CI_NO = #{no}
+	</select>
+</mapper>
