@@ -44,9 +44,11 @@ public class MemberSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 			.requestMatchers()
 				.antMatchers("/account/member/**")
+				.antMatchers("/personal/**")
+				.antMatchers("/company/**")
 			.and()
 				.authorizeRequests()
-				.antMatchers("/persoanl/**").hasRole("PERSONAL")
+				.antMatchers("/personal/**").hasRole("PERSONAL")
 				.antMatchers("/company/**").hasRole("COMPANY")
 			.and()
 				.formLogin()
