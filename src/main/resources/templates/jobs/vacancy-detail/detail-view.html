@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http:/www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title></title>
-<link rel="stylesheet" th:href="@{/css/common/common.css}">
-<link rel="stylesheet" th:href="@{/css/jobs/vacancy-detail/job-vacancy-detail.css}">
+	<meta charset="UTF-8">
+	<title>[[${jobVacancyInformation.companyName}]] - [[${jobVacancyInformation.jobVacancy.title}]]</title>
+	<link rel="stylesheet" th:href="@{/css/jobs/vacancy-detail/job-vacancy-detail.css}">
 </head>
 <body>
+    <div th:replace="common/header.html"></div>
 	<div id="container">
 		<div class="content">
 			<div class="job_vacancy_header_wrap">
@@ -14,10 +14,10 @@
 					<div class="job_vacancy_header_inner">
 						<div>
 							<div>
-								<h3><a href="#">CJ푸드빌</a></h3>
+								<h3><a th:href="@{/company-information/detail-view?no=} + ${jobVacancyInformation.companyNo}">[[${jobVacancyInformation.companyName}]]</a></h3>
 								<button type="button" class="like_button">관심기업 등록<span class="blind">설정</span></button>
 							</div>
-							<h2>[CJ푸드빌] 재무팀 경력사원 모집</h2>
+							<h2 th:text="${jobVacancyInformation.jobVacancy.title}"></h2>
 						</div>
 						<div>
 							<button type="button" class="scrap_button">스크랩<span class="blind">설정</span></button>
@@ -28,42 +28,42 @@
 			</div>
 			<div class="job_vacancy_summary">
 				<div class="period">
-					<p class="start"><span>시작일</span> 2021.09.02 00:00</p>
-					<p class="end"><span>마감일</span> 2021.10.29 23:59</p>
+					<p class="start"><span>시작일</span>[[${#dates.format(jobVacancyInformation.jobVacancy.peiodStart, 'yyyy.MM.dd hh:mm:ss')}]]</p>
+					<p class="end"><span>마감일</span> [[${#dates.format(jobVacancyInformation.jobVacancy.periodEnd, 'yyyy.MM.dd hh:mm:ss')}]]</p>
 				</div>
 				<table>
 					<tbody>
 						<tr>
 							<th scope="row">경력</th>
-							<td>신입, 경력, 경력무관</td>
+							<td><span th:each="experienceLevel : ${jobVacancyInformation.jobVacancy.experienceLevelList}" th:text="${experienceLevel.name} + (${experienceLevelStat.size-1 > experienceLevelStat.index} ? ', ' : '')" th:remove="tag"></span></td>
 							<th scope="row">급여</th>
-							<td>회사내규에 따름</td>
+							<td><span th:text="${jobVacancyInformation.jobVacancy.payType.name}" th:remove="tag"></span> <span th:if="${jobVacancyInformation.jobVacancy.payType.name != '회사 내규에 따름' AND jobVacancyInformation.jobVacancy.payType.name != '면접 후 결정'}" th:text="${#numbers.formatInteger(jobVacancyInformation.jobVacancy.pay, 3, 'COMMA')}" th:remove="tag"></span></td>
 							<th scope="row">성별제한</th>
-							<td>성별무관</td>
+							<td th:text="${jobVacancyInformation.jobVacancy.gender.name}"></td>
 						</tr>
 						<tr>
 							<th scope="row">학력</th>
-							<td>대졸(4년제 이상)</td>
+							<td th:text="${jobVacancyInformation.jobVacancy.educationLevel.name}"></td>
 							<th scope="row">직급/직책</th>
-							<td>사원, 주임, 대리, 과장</td>
+							<td><span th:each="role : ${jobVacancyInformation.jobVacancy.roleList}" th:text="${role.name} + (${roleStat.size-1 > roleStat.index} ? ', ' : '')" th:remove="tag"></span></td>
 							<th scope="row">연령제한</th>
-							<td>연령무관</td>
+							<td th:text="${jobVacancyInformation.jobVacancy.age}"></td>
 						</tr>
 						<tr>
 							<th scope="row">근무형태</th>
-							<td>정규직, 계약직, 파견직, 도급, 프리랜서</td>
+							<td><span th:each="jobType : ${jobVacancyInformation.jobVacancy.jobTypeList}" th:text="${jobType.name} + (${jobTypeStat.size-1 > jobTypeStat.index} ? ', ' : '')" th:remove="tag"></span></td>
 							<th scope="row">근무일시</th>
-							<td>주 5일(월~금) 오전 10시~ 오후 7시</td>
+							<td><span th:text="${jobVacancyInformation.jobVacancy.day.name}" th:remove="tag"></span> <span th:text="${jobVacancyInformation.jobVacancy.workdayStartTime}" th:remove="tag"></span> ~ <span th:text="${jobVacancyInformation.jobVacancy.workdayEndTime}" th:remove="tag"></span></td>
 							<th scope="row">전공</th>
-							<td>컴퓨터공학과</td>
+							<td th:text="${jobVacancyInformation.jobVacancy.major}"></td>
 						</tr>
 						<tr>
 							<th scope="row">모집인원</th>
-							<td>0명</td>
+							<td th:text="${jobVacancyInformation.jobVacancy.to + '명'}"></td>
 							<th scope="row">근무지역</th>
-							<td>서울 중구 마른내로34</td>
+							<td th:text="${jobVacancyInformation.jobVacancy.address}"></td>
 							<th scope="row">자격증</th>
-							<td>정보처리기사, 산업처리기능사 </td>
+							<td th:text="${jobVacancyInformation.jobVacancy.certificate}"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -71,16 +71,10 @@
 			<div class="view_count">
 				<dl>
 					<dt>조회수</dt>
-					<dd>3,673</dd>
+					<dd th:text="${jobVacancyInformation.jobVacancy.count}"></dd>
 				</dl>
 			</div>
-			<div class="job_vacacny_text">
-				가지에 있는 밥을 밝은 뜨고, 희망의 착목한는 이상은 노년에게서 봄바람이다. 품으며, 새 가치를 돋고, 있다. 들어 생의 같이, 그들의 피는 얼마나 것이다. 동산에는 많이 얼마나 공자는 바로 곧 이 인간의 것이다. 방황하여도, 속잎나고, 봄바람을 때문이다. 우리 타오르고 그와 물방아 밝은 그림자는 힘있다. 부패를 그들은 수 찾아 얼마나 구하기 힘있다. 꽃 두기 보이는 수 너의 희망의 아니다. 꽃 그것은 웅대한 끓는 이상을 불어 인간의 있음으로써 위하여서. 꽃 무엇을 미묘한 있는 대고, 위하여서 약동하다.
-
-뜨고, 일월과 황금시대를 끓는 주는 위하여서, 있다. 기관과 꽃이 얼마나 안고, 같이, 교향악이다. 구하기 보이는 구할 노래하며 없으면, 풀밭에 보는 고동을 있으랴? 피가 발휘하기 눈에 인생에 봄바람이다. 인간은 인류의 청춘의 원대하고, 꽃 살 얼마나 가는 운다. 방지하는 투명하되 뛰노는 사는가 두손을 곳으로 돋고, 역사를 것이다. 그들의 사랑의 곳이 인간은 불어 것이다. 찬미를 인도하겠다는 같으며, 청춘 예가 힘있다. 남는 목숨이 봄바람을 봄날의 오아이스도 우리 살았으며, 있으랴? 동산에는 무한한 역사를 보이는 어디 방지하는 황금시대의 실현에 힘있다. 가장 천고에 같은 사막이다.
-
-이상의 밝은 가슴이 것은 피는 그림자는 일월과 아니다. 있는 가치를 따뜻한 우리는 목숨이 같은 봄바람이다. 우리의 방지하는 모래뿐일 길지 발휘하기 생의 교향악이다. 같은 것이다.보라, 피어나는 인생에 든 봄바람이다. 얼마나 얼마나 넣는 피고, 목숨을 가장 끓는다. 인간의 만물은 품고 인간이 든 속에 힘있다. 청춘 사는가 되려니와, 피어나기 오직 있으며, 것이다. 피고, 앞이 못할 거선의 있을 있다. 우리의 따뜻한 있는 영원히 때에, 뿐이다. 아니더면, 이상의 그것을 봄날의 충분히 이는 소리다.이것은 위하여 이상의 있으랴? 주는 그것은 불러 피가 있음으로써 품었기 군영과 이상이 찾아 때문이다.
-			</div>
+			<div class="job_vacacny_text" th:utext="${jobVacancyInformation.jobVacancy.detailText}"></div>
 			<div class="statistics">
 				<h4>지원자 통계</h4>
 				<div>
@@ -187,6 +181,7 @@
 			</div>
 		</div>
 	</div>
+    <div th:replace="common/footer.html"></div>
 	<script th:src="@{/js/jobs/vacancy-detail/vacancy-detail.js}"></script>
 </body>
 </html>
