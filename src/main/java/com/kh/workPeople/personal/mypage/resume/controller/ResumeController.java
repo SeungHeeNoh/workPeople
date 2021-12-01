@@ -87,6 +87,7 @@ public class ResumeController {
 	@GetMapping("resumeManagement/resumeLookUp/{rNo}")
 	public String resumeLookUp(@PathVariable int rNo, Model model){
 
+//	이력서 상세페이지 조회 - 여기부터 복사 시작
 
 		// 이력서 상세페이지 조회 - (기본정보,학력)
 		ResumeDetails resumeDetails = resumeService.resumeDetailsLookUp(rNo);
@@ -140,6 +141,8 @@ public class ResumeController {
 		// 자소서 항목 목록 조회
 		List<SelfIntroduction> resumeSelfIntroductionList = resumeService.resumeSelfIntroductionList(rNo);
 		model.addAttribute("resumeSelfIntroductionList",resumeSelfIntroductionList);
+
+//	이력서 상세페이지 조회 - 여기까지 복사
 
 		return "personal/mypage/resumeLookUp";
 	}

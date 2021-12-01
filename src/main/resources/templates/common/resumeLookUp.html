@@ -1,0 +1,280 @@
+<link rel="stylesheet" href="/css/common/common.css">
+<link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
+<link rel="stylesheet" href="/css/personal/myPage/resumeLookUp.css">
+    <div class="wrapper">
+        <section>
+            <div id="content_wrap" th:object="${resumeDetails}">
+                <p class="header_text" th:text="*{biTitle}">등록한 이력서 제목</p>
+                <hr class="hr">
+                
+                <div class="content1_wrap">
+                    <div class="personal_img">
+                        <img id="personal_img" th:src="*{aFilePath} + *{aChangeName}">
+                    </div>
+                    <div class="content1_container">
+                        <div class="content1_container2">
+                            <div class="content1_title" th:text="*{biName}">임꺽정</div>
+                            <span class="content1_1" th:text="*{biBirthDateYearFormat}"></span>
+                            <span class="content-age">
+                                <span>년(</span><span th:text="*{biAge}"></span><span>세/만
+                            </span><span th:text="*{biAgeInFull}"></span><span>세)</span></span>
+                            <div class="border"></div>
+                            <div class="content1_2"  th:text="*{biGender}">남자</div>
+                        </div>
+                        <div class="content1_container2">
+                            <div class="content1_title">이메일</div>
+                            <div class="content1_1" th:text="*{biEmail}">khUser@daum.net</div>
+                            <div class="border"></div>
+                            <div class="content1_title content1_2">전화번호</div>
+                            <div class="content1_3"  th:text="*{biPhone}">010-1234-5678</div>
+                        </div>
+                        <div class="content1_container2">
+                            <div class="content1_title content_long">주소</div>
+                            <div class="content1_1" th:text="*{biAddress}">(12345) 경기도 성남시 분당구 분당동 123동 456호 </div>
+
+                        </div>
+                        <div class="content1_container2">
+                            <div class="content1_title">희망업종</div>
+                            <div class="content1_1" th:text="*{sName}">it/웹/통신</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content2_wrap">
+                    <div class="content2_title_container">
+                        <p class="content2_title">학력</p>
+                        <div class="content2_1">최종학력</div>
+                        <div class="border2">|</div>
+                        <div class="content2_2" th:text="*{eType}">대학교 2,3년 졸업</div>
+                    </div>
+                
+                    <div class="home_content_3">
+                        <div class="home_content_3_1">재학기간</div>
+                        <div class="home_content_3_2">구분</div>
+                        <div class="home_content_3_3">학교명</div>
+                        <div class="home_content_3_4">전공</div>
+                        <div class="home_content_3_5">학점</div>
+                    </div>
+
+                    <th:block th:if="${#strings.equals(resumeEtype,'고등학교 졸업 미만')}">
+                    </th:block>
+
+                    <th:block th:if="${#strings.equals(resumeEtype,'검정고시')}">
+                    </th:block>
+
+                    <th:block th:if="${#strings.equals(resumeEtype,'고등학교 졸업')} or ${#strings.equals(resumeEtype,'대학교 졸업 이상')} ">
+                        <div class="content_title_text4">
+                            <span class="content_title_text4_1" th:text="*{eHighAdmissionFormat}"></span>
+                                <span class="content_title_text4_1_1">~</span><span class="content_title_text4_1_2"
+                                th:text="*{eHighGraduationFormat}"></span>
+                            <div class="content_title_text4_2">졸업</div>
+                            <div class="content_title_text4_3" th:text="*{eHighName}">kh대학교</div>
+                            <div class="content_title_text4_4 education_css1" th:text="*{eHighMajor}">컴퓨터공학</div>
+                            <div class="content_title_text4_5" id="content_title_text4_5">-</div>
+                        </div>
+                        <hr class="hr">
+
+                        <th:block th:if="${resumeColleageType != null}">
+                            <div class="content_title_text4">
+                                <span class="content_title_text4_1" th:text="*{eColleageAdmissionFormat}"></span>
+                                    <span class="content_title_text4_1_1">~</span><span class="content_title_text4_1_2"
+                                                                                        th:text="*{eColleageGraduateFormat}"></span>
+                                <div class="content_title_text4_2" th:text="*{eColleageGraduateType}">졸업</div>
+                                <div class="content_title_text4_3" th:text="*{eColleageName}">kh대학교</div>
+                                <div class="content_title_text4_4 education_css1" th:text="*{eColleageMajor}">컴퓨터공학</div>
+                                <span class="content_title_text4_5" th:text="*{eColleageCredit}"></span>
+                                <span class="content_title_text4_5_1">/</span>
+                                    <span class="content_title_text4_5_2" th:text="*{eColleageStandardCredit}"></span>
+                            </div>
+                            <hr class="hr">
+                        </th:block>
+                        <th:block th:if="${resumeMasterName != null}">
+                            <div class="content_title_text4">
+                                <span class="content_title_text4_1" th:text="*{eMasterAdmissionFormat}"></span>
+                                    <span class="content_title_text4_1_1">~</span><span class="content_title_text4_1_2"
+                                                                                        th:text="*{eMasterGraduateFormat}"></span>
+                                <div class="content_title_text4_2" th:text="*{eMasterGraduateType}">졸업</div>
+                                <div class="content_title_text4_3" th:text="*{eMasterName}">kh대학교</div>
+                                <div class="content_title_text4_4 education_css1" th:text="*{eMasterMajor}">컴퓨터공학</div>
+                                <span class="content_title_text4_5" th:text="*{eMasterCredit}"></span>
+                                <span class="content_title_text4_5_1">/</span>
+                                    <span class="content_title_text4_5_2" th:text="*{eMasterStandardCredit}"></span>
+                            </div>
+                            <hr class="hr">
+                        </th:block>
+                        <th:block th:if="${resumeDoctorName != null}">
+                            <div class="content_title_text4">
+                                <span class="content_title_text4_1" th:text="*{eDoctorAdmissionFormat}"></span>
+                                    <span class="content_title_text4_1_1">~</span><span class="content_title_text4_1_2"
+                                                                                        th:text="*{eDoctorGraduateFormat}"></span>
+                                <div class="content_title_text4_2" th:text="*{eDoctorGraduateType}">졸업</div>
+                                <div class="content_title_text4_3" th:text="*{eDoctorName}">kh대학교</div>
+                                <div class="content_title_text4_4 education_css1" th:text="*{eDoctorMajor}">컴퓨터공학</div>
+                                <span class="content_title_text4_5" th:text="*{eDoctorCredit}"></span>
+                                <span class="content_title_text4_5_1">/</span>
+                                <span class="content_title_text4_5_2" th:text="*{eDoctorStandardCredit}"></span>
+                            </div>
+                            <hr class="hr">
+                        </th:block>
+                    </th:block>
+
+
+                </div>
+
+                <div class="content2_wrap">
+                    <div class="content2_title_container">
+                        <p class="content2_title">경력</p>
+                        <div class="content2_1">신입/경력</div>
+                    </div>
+
+                    <div class="home_content_3">
+                        <div class="home_content_3_1">근무기간</div>
+                        <div class="home_content_3_2 content3_title_1">회사명</div>
+                        <div class="home_content_3_3 content3_title_2">근무부서</div>
+                        <div class="home_content_3_5 content3_title_3">직급/직책</div>
+                    </div>
+
+
+<!--                    경력 반복 출력 -->
+
+                    <div th:each="careers : ${resumeCareerList}">
+                        <div class="content3_wrap">
+                            <div class="content3_1">
+                                <span th:text="${careers.cEmploymentDateFormat}">2013.03~2017.02</span>
+                                <span>~</span><span th:text="${careers.cUnemploymentDateFormat}"></span>
+                            </div>
+                            <div class="content3">
+                                <div class="content3_2_container">
+                                    <div class="content3_2_1" th:text="${careers.cName}">삼성</div>
+                                    <div class="content3_2_2" th:text="${careers.cDepartment}">개발팀</div>
+                                    <div class="content3_2_3" th:text="${careers.cPosition}">사원</div>
+                                </div>
+                                <div class="content3_3_container">
+                                    <div class="content3_3_1_container">
+                                        <div class="content_container_flex_container">
+                                            <div class="content3_3_1">담당업무</div>
+                                        </div>
+                                        <div class="content3_3_2" th:text="${careers.cTask}">웹개발</div>
+                                    </div>
+                                    <div class="content3_3_2_container">
+                                        <div class="content_container_flex_container">
+                                            <div class="content3_4_1">퇴사사유</div>
+                                        </div>
+                                        <div class="content3_4_2" th:text="${careers.cReSignation}">개인사유</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hr">
+                    </div>
+
+
+                </div>
+
+
+                <div class="content4_wrap">
+                    <div class="content2_title_container">
+                        <p class="content2_title">인턴 / 대외활동</p>
+                    </div>
+                
+                    <div class="home_content_3">
+                        <div class="home_content_3_1" id="content4_css1">활동기간</div>
+                        <div class="home_content_3_2 content3_2">활동구분</div>
+                        <div class="home_content_3_3 content3_3">기관/장소</div>
+                        <div class="home_content_3_4 content3_4">활동내역</div>
+                    </div>
+
+
+                        <div class="activitiesCss1" th:each="activities : ${resumeActivityList}">
+<!--                            <div class="content_title_text4_1" id="content4_css2">-->
+<!--                                <span th:text="${activities.aStartDateFormat}"></span>-->
+<!--                                <span>~</span>-->
+<!--                                <span th:text="${activities.aEndDateFormat}"></span>-->
+<!--                            </div>-->
+<!--                            <div class="content_title_text4_2 content4_2"-->
+<!--                            th:text="${activities.aActivity}">동아리</div>-->
+<!--                            <div class="content_title_text4_3 content4_3"-->
+<!--                            th:text="${activities.aDepartment}">기관/장소명</div>-->
+<!--                            <div class="content_title_text4_4 content4_4"-->
+<!--                            th:text="${activities.a_content}">활동내역</div>-->
+
+                            <ul>
+                                <li class="firstLi">
+                                    <span th:text="${activities.aStartDateFormat}"></span>
+                                    <span>~</span>
+                                    <span th:text="${activities.aEndDateFormat}"></span>
+                                </li>
+                                <li th:text="${activities.aActivity}"></li>
+                                <li th:text="${activities.aDepartment}"></li>
+                                <li th:text="${activities.a_content}"></li>
+                            </ul>
+                        </div>
+                </div>
+
+                <div class="content2_wrap">
+                    <div class="content2_title_container">
+                        <p class="content2_title">자격증 / 어학 / 수상내역</p>
+                    </div>
+                
+                    <div class="home_content_3">
+                        <div class="home_content_3_1">취득일/수상일</div>
+                        <div class="home_content_3_2">구분</div>
+                        <div class="home_content_3_3">자격/어학/수상명</div>
+                        <div class="home_content_3_4">발행처/기관/언어</div>
+                        <div class="home_content_3_5">합격/점수</div>
+                    </div>
+
+                    <div th:each="licenses : ${resumeLicenseList}">
+                        <div class="content_title_text4">
+                            <div class="content_title_text4_1 content5_1" th:text="${licenses.lAcquisitionDateFormat}">2013.03</div>
+                            <div class="content_title_text4_2 content5_2">자격증/면허증</div>
+                            <div class="content_title_text4_3 content5_3" th:text="${licenses.lName}">정보처리산업기사</div>
+                            <div class="content_title_text4_4 content5_4" th:text="${licenses.lDepartment}">한국산업인력공단</div>
+                            <div class="content_title_text4_5 content5_5" th:text="${licenses.lPassYN}">최종합격</div>
+                        </div>
+                        <hr class="hr">
+                    </div>
+                    <div th:each="languages : ${resumeLanguageList}">
+                        <div class="content_title_text4">
+                            <div class="content_title_text4_1 content5_1" th:text="${languages.lAcquisitionFormat}">2013.03</div>
+                            <div class="content_title_text4_2 content5_2">어학</div>
+                            <div class="content_title_text4_3 content5_3" th:text="${languages.lName}">정보처리산업기사</div>
+                            <div class="content_title_text4_4 content5_4" th:text="${languages.lDepartment}">한국산업인력공단</div>
+                            <div class="content_title_text4_5 content5_5" th:text="${languages.lScore}">최종합격</div>
+                        </div>
+                        <hr class="hr">
+                    </div>
+                    <div th:each="awards : ${resumeAwardsList}">
+                        <div class="content_title_text4">
+                            <div class="content_title_text4_1 content5_1" th:text="${awards.aAcquisitionFormat}">2013.03</div>
+                            <div class="content_title_text4_2 content5_2">수상 내역</div>
+                            <div class="content_title_text4_3 content5_3" th:text="${awards.aName}">정보처리산업기사</div>
+                            <div class="content_title_text4_4 content5_4" th:text="${awards.aDepartment}">한국산업인력공단</div>
+                            <div class="content_title_text4_5 content5_5"><pre>    -    </pre></div>
+                        </div>
+                        <hr class="hr">
+                    </div>
+                </div>
+
+                <div class="content2_wrap selfIntroductionCss"  >
+                    <div class="content2_title_container">
+                        <p class="content2_title">자기소개서</p>
+                    </div>
+                    <div class="content5_container" th:each="selfIntroduction : ${resumeSelfIntroductionList}">
+                        <div>
+                            <span>[</span>
+                            <span th:text="${selfIntroduction.siTitle}">[ 작성한 자기소개서 항목 제목 ]</span>
+                            <span>]</span>
+                        </div>
+                        <div class="selfIntroduction_css1" th:text="${selfIntroduction.siContent}">작성한 자기소개서 항목 내용</div>
+                    </div>
+                </div>
+                <button type="button" class="orange resumeOrange" onclick="resumeOrange()">뒤로가기</button>
+            </div>
+        </section>
+    </div>
+<script>
+    function resumeOrange(){
+        history.go(-1);
+    }
+</script>
