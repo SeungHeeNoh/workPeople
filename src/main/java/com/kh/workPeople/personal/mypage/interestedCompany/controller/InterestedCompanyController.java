@@ -28,6 +28,11 @@ public class InterestedCompanyController {
 
         List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList = interestedCompanyService.jobVacancyLookUpSimpleList(user.getNo());
 
+        for(JobVacancyLookUpSimple job : jobVacancyLookUpSimpleList){
+            int jobVacancyCount = interestedCompanyService.jobVacancyCount(job.getNo());
+            job.setCount(jobVacancyCount);
+        }
+
         model.addAttribute("jobList",jobVacancyLookUpSimpleList);
 
         return "personal/mypage/interestedCompany";

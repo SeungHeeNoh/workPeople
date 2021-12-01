@@ -10,4 +10,6 @@ public interface InterestedCompanyMapper {
 
     List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList(int no);
 
+    int jobVacancyCount(int no);
+
 }

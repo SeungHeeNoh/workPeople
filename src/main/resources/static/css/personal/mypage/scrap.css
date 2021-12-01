@@ -28,6 +28,7 @@
     box-sizing: border-box;
     font-size: 14px;
     position: relative;
+    border-bottom: 1px solid #c4c4c4;
 }
 
 .content_title_text4_detail_wrap{
