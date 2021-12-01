@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Common">
+	<resultMap type="com.kh.workPeople.common.vo.Member" id="memberResultMap">
+		<id property="no" column="M_NO"/>
+		<result property="id" column="M_ID"/>
+		<result property="pwd" column="M_PWD"/>
+		<result property="name" column="M_NAME"/>
+		<result property="phone" column="M_PHONE"/>
+		<result property="email" column="M_EMAIL"/>
+		<result property="postCode" column="M_POSTCODE"/>
+		<result property="roadAddress" column="M_ROADADDRESS"/>
+		<result property="detailAddress" column="M_DETAILADDRESS"/>
+		<result property="enrollDate" column="M_ENROLL_DATE"/>
+		<result property="modifyDate" column="M_MODIFY_DATE"/>
+		<result property="loginFailCount" column="M_LOGIN_FAIL_COUNT"/>
+		<result property="isLock" column="M_IS_LOCK"/>
+		<result property="lastestTryLoginDate" column="M_LATEST_TRY_LOGIN_DATE"/>
+		<result property="lockCount" column="M_LOCK_COUNT"/>
+		<result property="status" column="M_STATUS"/>
+		<result property="tempPwdYn" column="M_TEMP_PWD_YN"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Member" id="loginMemberResultMap" extends="memberResultMap">
+		<collection property="memberRoleList" resultMap="memberRoleResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.MemberRole" id="memberRoleResultMap">
+		<id property="userNo" column="REF_MEMBER_NO"/>
+		<id property="authorityCode" column="REF_AUTHORITY_CODE"/>
+		<association property="authority" resultMap="authorityResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Authority" id="authorityResultMap">
+		<id property="code" column="A_CODE"/>
+		<id property="name" column="A_NAME"/>
+		<id property="desc" column="A_DESC"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Manager" id="managerResultMap">
+		<id property="imNo" column="IM_NO"/>
+		<result property="imId" column="IM_ID"/>
+		<result property="imPwd" column="IM_PWD"/>
+		<result property="imName" column="IM_NAME"/>
+		<collection property="managerRoleList" resultMap="managerRoleResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.ManagerRole" id="managerRoleResultMap">
+		<id property="imNo" column="REF_MANAGER_NO"/>
+		<id property="aCode" column="REF_AUTHORITY_CODE"/>
+		<association property="authority" resultMap="authorityResultMap"/>
+	</resultMap>
+</mapper>
