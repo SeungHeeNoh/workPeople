@@ -14,6 +14,11 @@
     margin-left: 15px;
 }
 
+#personal_img{
+    width: 120px;
+    height: 180px;
+}
+
 .content1_container{
     padding: 0 45px;
     line-height: 45px;
@@ -82,12 +87,16 @@
     display: flex;
     justify-content: space-between;
     padding: 10px 15px;
-    height: 40px;
+    min-height: 40px;
     box-sizing: border-box;
     font-size: 14px;
     position: relative;
     border-bottom: 1px solid #c4c4c4;
 }
+
+
+
+
 
 .hr{
     margin-top: 0px;
@@ -111,13 +120,13 @@
 
 .content_title_text4_3{
     left: 43%;
-    width: 150px;
+    width: 170px;
     text-align: center;
 }
 
 .content_title_text4_4{
-    left: 65.8%;
-    width: 120px;
+    left: 57%;
+    width: 360px;
     text-align: center;
 }
 .content_title_text4_5{
@@ -195,15 +204,15 @@
 }
 
 .content3_2_1{
-    left: 11%;
+    left: 9.5%;
     position: absolute;
 }
 .content3_2_2{
-    left: 44%;
+    left: 42.5%;
     position: absolute;
 }
 .content3_2_3{
-    left: 80%;
+    left: 81.5%;
     position: absolute;
 }
 
@@ -237,6 +246,7 @@
     box-sizing: border-box;
     border-radius: 20px;
     width: 82px;
+    text-align: center;
 }
 
 .content3_3_2,
@@ -248,11 +258,11 @@
 }
 
 .content4_2{
-    left: 25.5%;
+    left: 24.5%;
 }
 
 .content4_3{
-    left: 43%;
+    left: 37%;
 }
 
 .content4_4{
@@ -270,17 +280,22 @@
 }
 
 .content5_2{
-left: 193px;
+    left: 187px;
+    width: 100px;
 }
 
 .content5_3{
-    left: 339px;
+    left: 292px;
+    width: 200px;
 }
 .content5_4{
-    left: 536px;
+    left: 490px;
+    width: 200px;
 }
 .content5_5{
-    left: 739px;
+    left: 712px;
+    width: 100px;
+    text-align: center;
 }
 
 .content5_container{
@@ -303,8 +318,9 @@ left: 193px;
     min-height: 120px;
     text-align: center;
     border-right: 1px solid #C4C4C4;
-    padding-top: 8%;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
 }
 
 .content-age{
@@ -334,4 +350,44 @@ left: 193px;
 
 #content_title_text4_5{
     left: 92.5%;
+}
+
+.content_container_flex_container{
+    display: flex;
+    align-items: center;
+}
+
+#content4_css1{
+    padding-left: 20px;
+}
+
+#content4_css2{
+    left: 38px;
+}
+
+.education_css1{
+    left: 51.5%;
+}
+
+.content5_container > div > span {
+    font-size: 16px;
+}
+
+.selfIntroduction_css1{
+    padding-top: 15px;
+    padding-bottom: 40px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.activitiesCss1{
+    display: flex;
+    flex-direction: column;
+}
+.activitiesCss1 > ul{
+    display: flex;
+    flex-direction: row;
+}
+.firstLi{
+    display: flex;
 }
