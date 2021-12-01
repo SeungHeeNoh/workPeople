@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -51,6 +52,8 @@ public class MemberLoginFailureHandler implements AuthenticationFailureHandler {
 			}
 		} else if(exception instanceof LockedException) {
 			message = "6회 이상 시도로 계정이 잠겼습니다. 10분 후 재접속해주세요.";
+		} else if(exception instanceof DisabledException) {
+			message = "탈퇴한 회원입니다.";
 		}
 		
 		request.setAttribute("id", id);

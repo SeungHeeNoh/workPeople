@@ -123,5 +123,11 @@ public class MemberImpl extends User {
 	public List<MemberRole> getMemberRoleList() {
 		return memberRoleList;
 	}
+
+	@Override
+	public boolean isEnabled() {
+		return this.status.equals("Y") ? true : false;
+	}
+	
 	
 }
