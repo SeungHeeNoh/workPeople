@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -17,13 +18,12 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.stereotype.Component;
 
 import com.kh.workPeople.account.login.model.service.MemberLoginService;
 import com.kh.workPeople.common.vo.MemberImpl;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
+@Component
 public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
 	
 	private MemberLoginService memberLoginService;
@@ -31,6 +31,7 @@ public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
 	private RequestCache requestCache = new HttpSessionRequestCache();
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+	@Autowired
 	public MemberLoginSuccessHandler(MemberLoginService memberLoginService) {
 		this.memberLoginService = memberLoginService;
 	}

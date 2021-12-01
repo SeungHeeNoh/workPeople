@@ -10,9 +10,9 @@ import org.springframework.security.authentication.AuthenticationServiceExceptio
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.stereotype.Component;
 
-import com.kh.workPeople.common.vo.Member;
-
+@Component
 public class ManagerLoginFailureHandler implements AuthenticationFailureHandler {
 	
 	private String defaultUrl ="/account/manager/login";

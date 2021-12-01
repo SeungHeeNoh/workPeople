@@ -14,6 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.kh.workPeople.account.login.model.service.MemberLoginService;
 import com.kh.workPeople.auth.handler.MemberLoginFailureHandler;
 import com.kh.workPeople.auth.handler.MemberLoginSuccessHandler;
+import com.kh.workPeople.auth.handler.WebAccessDeniedHandler;
 
 @EnableWebSecurity
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -21,11 +22,18 @@ public class MemberSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	private MemberLoginService memberLoginService;
 	private PasswordEncoder passwordEncoder;
+	private MemberLoginSuccessHandler memberLoginSuccessHandler;
+	private MemberLoginFailureHandler memberLoginFailureHandler;
+	private WebAccessDeniedHandler webAccessDeniedHandler;
 
 	@Autowired
-	public MemberSecurityConfiguration(MemberLoginService memberLoginService, PasswordEncoder passwordEncoder) {
+	public MemberSecurityConfiguration(MemberLoginService memberLoginService, PasswordEncoder passwordEncoder,
+									   MemberLoginSuccessHandler memberLoginSuccessHandler, MemberLoginFailureHandler memberLoginFailureHandler, WebAccessDeniedHandler webAccessDeniedHandler) {
 		this.memberLoginService = memberLoginService;
 		this.passwordEncoder = passwordEncoder;
+		this.memberLoginSuccessHandler = memberLoginSuccessHandler;
+		this.memberLoginFailureHandler = memberLoginFailureHandler;
+		this.webAccessDeniedHandler = webAccessDeniedHandler;
 	}
 	
 	public static final String[] SECURITY_EXCLUDE_PATTERN = {
@@ -44,9 +52,11 @@ public class MemberSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 			.requestMatchers()
 				.antMatchers("/account/member/**")
+				.antMatchers("/personal/**")
+				.antMatchers("/company/**")
 			.and()
 				.authorizeRequests()
-				.antMatchers("/persoanl/**").hasRole("PERSONAL")
+				.antMatchers("/personal/**").hasRole("PERSONAL")
 				.antMatchers("/company/**").hasRole("COMPANY")
 			.and()
 				.formLogin()
@@ -54,8 +64,8 @@ public class MemberSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.usernameParameter("id")
 				.passwordParameter("password")
 				.successForwardUrl("/main")
-				.successHandler(new MemberLoginSuccessHandler(memberLoginService))
-				.failureHandler(new MemberLoginFailureHandler(memberLoginService))
+				.successHandler(memberLoginSuccessHandler)
+				.failureHandler(memberLoginFailureHandler)
 			.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/account/member/logout"))
@@ -66,7 +76,10 @@ public class MemberSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.rememberMe()
 				.rememberMeParameter("remember-me")
 				.tokenValiditySeconds(60*60*24*15)
-				.userDetailsService(memberLoginService);
+				.userDetailsService(memberLoginService)
+			.and()
+				.exceptionHandling()
+				.accessDeniedHandler(webAccessDeniedHandler);
 	}
 
 	@Override

@@ -12,17 +12,25 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.kh.workPeople.account.login.model.service.ManagerLoginService;
 import com.kh.workPeople.auth.handler.ManagerLoginFailureHandler;
 import com.kh.workPeople.auth.handler.ManagerLoginSuccessHandler;
+import com.kh.workPeople.auth.handler.WebAccessDeniedHandler;
 
 @EnableWebSecurity
 public class ManagerSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	private ManagerLoginService managerLoginService;
 	private PasswordEncoder passwordEncoder;
+	private ManagerLoginSuccessHandler managerLoginSuccessHandler;
+	private ManagerLoginFailureHandler managerLoginFailureHandler;
+	private WebAccessDeniedHandler webAccessDeniedHandler;
 
 	@Autowired
-	public ManagerSecurityConfiguration(ManagerLoginService managerLoginService, PasswordEncoder passwordEncoder) {
+	public ManagerSecurityConfiguration(ManagerLoginService managerLoginService, PasswordEncoder passwordEncoder,
+										ManagerLoginSuccessHandler managerLoginSuccessHandler, ManagerLoginFailureHandler managerLoginFailureHandler, WebAccessDeniedHandler webAccessDeniedHandler) {
 		this.managerLoginService = managerLoginService;
 		this.passwordEncoder = passwordEncoder;
+		this.managerLoginSuccessHandler = managerLoginSuccessHandler;
+		this.managerLoginFailureHandler = managerLoginFailureHandler;
+		this.webAccessDeniedHandler = webAccessDeniedHandler;
 	}
 	
 	public static final String[] SECURITY_EXCLUDE_PATTERN = {
@@ -47,14 +55,17 @@ public class ManagerSecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.usernameParameter("id")
 				.passwordParameter("password")
 				.successForwardUrl("/")
-				.successHandler(new ManagerLoginSuccessHandler())
-				.failureHandler(new ManagerLoginFailureHandler())
+				.successHandler(managerLoginSuccessHandler)
+				.failureHandler(managerLoginFailureHandler)
 			.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/account/manager/logout"))
 				.deleteCookies("JESSIONID")
 				.invalidateHttpSession(true)
-				.logoutSuccessUrl("/main");
+				.logoutSuccessUrl("/main")
+			.and()
+				.exceptionHandling()
+				.accessDeniedHandler(webAccessDeniedHandler);
 	}
 
 	@Override

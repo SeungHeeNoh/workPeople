@@ -5,17 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>workPeople</title>
-	<link rel="stylesheet" th:href="@{/css/common/common.css}">
 	<link rel="stylesheet" th:href="@{/css/account/login/login-manager.css}">
-	<script>
-	   const successMessage = '[[${ message }]]';
-	   
-	   if(successMessage) {
-	      alert(successMessage);
-	   }
-</script>
 </head>
 <body>
+	<div th:replace="common/header.html"></div>
 	<div id="container">
 		<div class="login_area">
 			<h2>관리자 로그인</h2>
@@ -39,6 +32,7 @@
 			</form>
 		</div>
 	</div>
+	<div th:replace="common/footer.html"></div>
 	<script th:src="@{/js/common/cookie.js}"></script>
 	<script th:src="@{/js/account/login/login-manager.js}"></script>
 </body>
