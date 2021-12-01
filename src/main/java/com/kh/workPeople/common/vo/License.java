@@ -8,7 +8,7 @@ public class License {
     private int rNo;                            // 이력서 번호
     private String lName;                       // 자격증명
     private String lDepartment;                 // 발행처,기관
-    private boolean lPassYN;                    // 합격여부
+    private String lPassYN;                    // 합격여부
     private Date lAcquisitionDate;              // 취득일
 
     private String lAcquisitionDateFormat;      // 취득일 포멧팅(YYYY.MM)
@@ -16,16 +16,7 @@ public class License {
     public License() {
     }
 
-    public License(int lNo, int rNo, String lName, String lDepartment, boolean lPassYN, Date lAcquisitionDate) {
-        this.lNo = lNo;
-        this.rNo = rNo;
-        this.lName = lName;
-        this.lDepartment = lDepartment;
-        this.lPassYN = lPassYN;
-        this.lAcquisitionDate = lAcquisitionDate;
-    }
-
-    public License(int lNo, int rNo, String lName, String lDepartment, boolean lPassYN, Date lAcquisitionDate, String lAcquisitionDateFormat) {
+    public License(int lNo, int rNo, String lName, String lDepartment, String lPassYN, Date lAcquisitionDate, String lAcquisitionDateFormat) {
         this.lNo = lNo;
         this.rNo = rNo;
         this.lName = lName;
@@ -67,11 +58,11 @@ public class License {
         this.lDepartment = lDepartment;
     }
 
-    public boolean islPassYN() {
+    public String getlPassYN() {
         return lPassYN;
     }
 
-    public void setlPassYN(boolean lPassYN) {
+    public void setlPassYN(String lPassYN) {
         this.lPassYN = lPassYN;
     }
 
@@ -100,6 +91,7 @@ public class License {
                 ", lDepartment='" + lDepartment + '\'' +
                 ", lPassYN=" + lPassYN +
                 ", lAcquisitionDate=" + lAcquisitionDate +
+                ", lAcquisitionDateFormat='" + lAcquisitionDateFormat + '\'' +
                 '}';
     }
 }

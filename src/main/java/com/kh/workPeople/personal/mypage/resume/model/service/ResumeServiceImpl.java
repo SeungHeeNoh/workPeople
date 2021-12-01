@@ -1,7 +1,6 @@
 package com.kh.workPeople.personal.mypage.resume.model.service;
 
-import com.kh.workPeople.common.vo.Resume;
-import com.kh.workPeople.common.vo.ResumeDetails;
+import com.kh.workPeople.common.vo.*;
 import com.kh.workPeople.personal.mypage.resume.model.dao.ResumeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,7 @@ import java.util.List;
 @Service
 public class ResumeServiceImpl implements ResumeService {
 
-    private ResumeMapper resumeMapper;
+    private final ResumeMapper resumeMapper;
 
     @Autowired
     public ResumeServiceImpl(ResumeMapper resumeMapper){
@@ -43,5 +42,34 @@ public class ResumeServiceImpl implements ResumeService {
     @Override
     public ResumeDetails resumeDetailsLookUpFormat(int rNo) {
         return resumeMapper.resumeDetailsLookUpFormat(rNo);
+    }
+
+    @Override
+    public List<Career> resumeCareerList(int rNo) {
+        return resumeMapper.resumeCareerList(rNo);
+    }
+    @Override
+    public List<Activity> resumeActivityList(int rNo) {
+        return resumeMapper.resumeActivityList(rNo);
+    }
+
+    @Override
+    public List<License> resumeLicenseList(int rNo) {
+        return resumeMapper.resumeLicenseList(rNo);
+    }
+
+    @Override
+    public List<Language> resumeLanguageList(int rNo) {
+        return resumeMapper.resumeLanguageList(rNo);
+    }
+
+    @Override
+    public List<Awards> resumeAwardsList(int rNo) {
+        return resumeMapper.resumeAwardsList(rNo);
+    }
+
+    @Override
+    public List<SelfIntroduction> resumeSelfIntroductionList(int rNo) {
+        return resumeMapper.resumeSelfIntroductionList(rNo);
     }
 }

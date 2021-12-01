@@ -6,10 +6,9 @@ public class Language {
 
     private int lNo;                        // 어학 번호
     private int rNo;                        // 이력서 번호
-    private String lName;                   // 언어 종류
-    private String lType;                   // 시험 종류
-    private int lScore;                     // 점수
-    private String lRating;                 // 급수
+    private String lName;                   // 언어/시험명
+    private String lDepartment;             // 발행처
+    private String lScore;                     // 급수/점수
     private Date lAcquisition;              // 취득일
 
     private String lAcquisitionFormat;      // 취득일 문자열 포멧팅(YYYY.MM)
@@ -17,23 +16,12 @@ public class Language {
     public Language() {
     }
 
-    public Language(int lNo, int rNo, String lName, String lType, int lScore, String lRating, Date lAcquisition) {
+    public Language(int lNo, int rNo, String lName, String lDepartment, String lScore, Date lAcquisition, String lAcquisitionFormat) {
         this.lNo = lNo;
         this.rNo = rNo;
         this.lName = lName;
-        this.lType = lType;
+        this.lDepartment = lDepartment;
         this.lScore = lScore;
-        this.lRating = lRating;
-        this.lAcquisition = lAcquisition;
-    }
-
-    public Language(int lNo, int rNo, String lName, String lType, int lScore, String lRating, Date lAcquisition, String lAcquisitionFormat) {
-        this.lNo = lNo;
-        this.rNo = rNo;
-        this.lName = lName;
-        this.lType = lType;
-        this.lScore = lScore;
-        this.lRating = lRating;
         this.lAcquisition = lAcquisition;
         this.lAcquisitionFormat = lAcquisitionFormat;
     }
@@ -62,28 +50,20 @@ public class Language {
         this.lName = lName;
     }
 
-    public String getlType() {
-        return lType;
+    public String getlDepartment() {
+        return lDepartment;
     }
 
-    public void setlType(String lType) {
-        this.lType = lType;
+    public void setlDepartment(String lDepartment) {
+        this.lDepartment = lDepartment;
     }
 
-    public int getlScore() {
+    public String getlScore() {
         return lScore;
     }
 
-    public void setlScore(int lScore) {
+    public void setlScore(String lScore) {
         this.lScore = lScore;
-    }
-
-    public String getlRating() {
-        return lRating;
-    }
-
-    public void setlRating(String lRating) {
-        this.lRating = lRating;
     }
 
     public Date getlAcquisition() {
@@ -108,10 +88,10 @@ public class Language {
                 "lNo=" + lNo +
                 ", rNo=" + rNo +
                 ", lName='" + lName + '\'' +
-                ", lType='" + lType + '\'' +
+                ", lDepartment='" + lDepartment + '\'' +
                 ", lScore=" + lScore +
-                ", lRating='" + lRating + '\'' +
                 ", lAcquisition=" + lAcquisition +
+                ", lAcquisitionFormat='" + lAcquisitionFormat + '\'' +
                 '}';
     }
 }

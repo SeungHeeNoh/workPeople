@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-a { text-decoration:none } 
 hr {
     display: block;
     margin-top: 0.5em;
@@ -61,6 +60,7 @@ section {
     border-radius: 10px;
     margin-left: 232px;
     margin-bottom: 50px;
+    margin-top: -50px;
 }
 
 #content_wrap {

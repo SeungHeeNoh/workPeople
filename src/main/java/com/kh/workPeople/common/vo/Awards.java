@@ -15,20 +15,60 @@ public class Awards {
     public Awards() {
     }
 
-    public Awards(int aNo, int rNo, String aName, String aDepartment, Date aAcquisition) {
-        this.aNo = aNo;
-        this.rNo = rNo;
-        this.aName = aName;
-        this.aDepartment = aDepartment;
-        this.aAcquisition = aAcquisition;
-    }
-
     public Awards(int aNo, int rNo, String aName, String aDepartment, Date aAcquisition, String aAcquisitionFormat) {
         this.aNo = aNo;
         this.rNo = rNo;
         this.aName = aName;
         this.aDepartment = aDepartment;
         this.aAcquisition = aAcquisition;
+        this.aAcquisitionFormat = aAcquisitionFormat;
+    }
+
+    public int getaNo() {
+        return aNo;
+    }
+
+    public void setaNo(int aNo) {
+        this.aNo = aNo;
+    }
+
+    public int getrNo() {
+        return rNo;
+    }
+
+    public void setrNo(int rNo) {
+        this.rNo = rNo;
+    }
+
+    public String getaName() {
+        return aName;
+    }
+
+    public void setaName(String aName) {
+        this.aName = aName;
+    }
+
+    public String getaDepartment() {
+        return aDepartment;
+    }
+
+    public void setaDepartment(String aDepartment) {
+        this.aDepartment = aDepartment;
+    }
+
+    public Date getaAcquisition() {
+        return aAcquisition;
+    }
+
+    public void setaAcquisition(Date aAcquisition) {
+        this.aAcquisition = aAcquisition;
+    }
+
+    public String getaAcquisitionFormat() {
+        return aAcquisitionFormat;
+    }
+
+    public void setaAcquisitionFormat(String aAcquisitionFormat) {
         this.aAcquisitionFormat = aAcquisitionFormat;
     }
 
@@ -40,6 +80,7 @@ public class Awards {
                 ", aName='" + aName + '\'' +
                 ", aDepartment='" + aDepartment + '\'' +
                 ", aAcquisition=" + aAcquisition +
+                ", aAcquisitionFormat='" + aAcquisitionFormat + '\'' +
                 '}';
     }
 }

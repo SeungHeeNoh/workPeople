@@ -3,6 +3,7 @@
 
 <mapper namespace="com.kh.workPeople.personal.mypage.resume.model.dao.ResumeMapper">
 
+<!--    이력서 목록 노출시 필요한 정보-->
     <resultMap id="simpleResume" type="com.kh.workPeople.common.vo.Resume">
         <id property="no" column="R_NO"/>
         <result property="enrollDate" column="R_ENROLL_DATE"/>
@@ -12,6 +13,8 @@
         <result property="deleteYN" column="R_DELETE_YN"/>
     </resultMap>
 
+
+<!--   이력서 정보 조회(기본정보,학력)-->
     <resultMap id="resumeDetails" type="com.kh.workPeople.common.vo.ResumeDetails">
         <id property="rNo" column="R_NO"/>
         <result property="biTitle" column="BI_TITLE"/>
@@ -60,6 +63,7 @@
         <result property="eMasterGraduateType" column="E_MASTER_GRADUATE_TYPE"/>
         <result property="eMasterMajor" column="E_MASTER_MAJOR"/>
         <result property="eMasterCredit" column="E_MASTER_CREDIT"/>
+        <result property="eMasterStandardCredit" column="E_MASTER_STANDARD_CREDIT"/>
         <result property="eDoctorName" column="E_DOCTOR_NAME"/>
         <result property="eDoctorAdmission" column="E_DOCTOR_ADMISSION"/>
         <result property="eDoctorAdmissionFormat" column="E_DOCTOR_ADMISSION_FORMAT"/>
@@ -71,6 +75,71 @@
         <result property="eDoctorCredit" column="E_DOCTOR_CREDIT"/>
         <result property="eDoctorStandardCredit" column="E_DOCTOR_STANDARD_CREDIT"/>
     </resultMap>
+<!-- 이력서 경력 정보 조회-->
+    <resultMap id="resumeCareer" type="com.kh.workPeople.common.vo.Career">
+        <id property="cNo" column="C_NO"/>
+        <id property="rNo" column="R_NO"/>
+        <result property="cYn" column="C_YN"/>
+        <result property="cName" column="C_NAME"/>
+        <result property="cEmploymentDate" column="C_EMPLOYMENT_DATE"/>
+        <result property="cUnemploymentDate" column="C_UNEMPLOYMENT_DATE"/>
+        <result property="cEmploymentDateFormat" column="C_EMPLOYMENT_DATE_FORMAT"/>
+        <result property="cUnemploymentDateFormat" column="C_UNEMPLOYMENT_DATE_FORMAT"/>
+        <result property="cPosition" column="C_POSITION"/>
+        <result property="cDepartment" column="C_DEPARTMENT"/>
+        <result property="cTask" column="C_TASK"/>
+        <result property="cReSignation" column="C_RESIGNATION"/>
+    </resultMap>
+
+    <resultMap id="resumeActivity" type="com.kh.workPeople.common.vo.Activity">
+        <id property="aNo" column="A_NO"/>
+        <id property="rNo" column="R_NO"/>
+        <result property="aActivity" column="A_ACTIVITY"/>
+        <result property="aDepartment" column="A_DEPARTMENT"/>
+        <result property="a_content" column="A_CONTENT"/>
+        <result property="aStartDate" column="A_START_DATE"/>
+        <result property="aEndDate" column="A_END_DATE"/>
+        <result property="aStartDateFormat" column="A_START_DATE_FORMAT"/>
+        <result property="aEndDateFormat" column="A_END_DATE_FORMAT"/>
+    </resultMap>
+
+    <resultMap id="resumeLicense" type="com.kh.workPeople.common.vo.License">
+        <id property="lNo" column="L_NO"/>
+        <id property="rNo" column="R_NO"/>
+        <result property="lName" column="L_NAME"/>
+        <result property="lDepartment" column="L_DEPARTMENT"/>
+        <result property="lPassYN" column="L_PASS_YN"/>
+        <result property="lAcquisitionDate" column="L_ACQUISITION_DATE"/>
+        <result property="lAcquisitionDateFormat" column="L_ACQUISITION_DATE_FORMAT"/>
+    </resultMap>
+
+    <resultMap id="resumeLanguage" type="com.kh.workPeople.common.vo.Language">
+        <id property="lNo" column="L_NO"/>
+        <id property="rNo" column="R_NO"/>
+        <result property="lName" column="L_NAME"/>
+        <result property="lDepartment" column="L_DEPARTMENT"/>
+        <result property="lScore" column="L_SCORE"/>
+        <result property="lAcquisition" column="L_ACQUISITION"/>
+        <result property="lAcquisitionFormat" column="L_ACQUISITION_FORMAT"/>
+    </resultMap>
+
+    <resultMap id="resumeAwards" type="com.kh.workPeople.common.vo.Awards">
+        <id property="aNo" column="A_NO"/>
+        <id property="rNo" column="R_NO"/>
+        <result property="aName" column="A_NAME"/>
+        <result property="aDepartment" column="A_DEPARTMENT"/>
+        <result property="aAcquisition" column="A_ACQUISITION"/>
+        <result property="aAcquisitionFormat" column="A_ACQUISITION_FORMAT"/>
+    </resultMap>
+
+    <resultMap id="resumeSelfIntroduction" type="com.kh.workPeople.common.vo.SelfIntroduction">
+        <id property="siNo" column="SI_NO"/>
+        <id property="rNo" column="R_NO"/>
+        <result property="siTitle" column="SI_TITLE"/>
+        <result property="siContent" column="SI_CONTENT"/>
+    </resultMap>
+
+
 
     <select id="resumeList" resultMap="simpleResume">
         SELECT
@@ -107,6 +176,7 @@
         FROM BASIC_INFO
         JOIN EDUCATION USING(R_NO)
         JOIN SECTOR USING(S_NO)
+        JOIN ATTACHMENT USING(A_NO)
         WHERE R_NO = #{rNo}
     </select>
 
@@ -129,6 +199,84 @@
         WHERE R_NO=#{rNo}
     </select>
 
+    <select id="resumeCareerList" resultMap="resumeCareer">
+        SELECT
+            C_NO,
+            R_NO,
+            C_YN,
+            C_NAME,
+            C_EMPLOYMENT_DATE,
+            C_UNEMPLOYMENT_DATE,
+            TO_CHAR(C_EMPLOYMENT_DATE,'YYYY.MM') C_EMPLOYMENT_DATE_FORMAT,
+            TO_CHAR(C_UNEMPLOYMENT_DATE,'YYYY.MM') C_UNEMPLOYMENT_DATE_FORMAT,
+            C_POSITION,
+            C_DEPARTMENT,
+            C_TASK,
+            C_RESIGNATION
+        FROM CAREER
+        WHERE R_NO = #{rNo}
+        ORDER BY 1
+    </select>
 
+    <select id="resumeActivityList" resultMap="resumeActivity">
+        SELECT
+            A_NO,
+            R_NO,
+            A_ACTIVITY,
+            A_DEPARTMENT,
+            A_CONTENT,
+            A_START_DATE,
+            A_END_DATE,
+            TO_CHAR(A_START_DATE,'YYYY.MM') A_START_DATE_FORMAT,
+            TO_CHAR(A_END_DATE,'YYYY.MM') A_END_DATE_FORMAT
+        FROM ACTIVITY
+        WHERE R_NO = #{rNo}
+    </select>
+
+    <select id="resumeLicenseList" resultMap="resumeLicense">
+        SELECT
+            L_NO,
+            R_NO,
+            L_NAME,
+            L_DEPARTMENT,
+            L_PASS_YN,
+            L_ACQUISITION_DATE,
+            TO_CHAR(L_ACQUISITION_DATE,'YYYY.MM') L_ACQUISITION_DATE_FORMAT
+        FROM LICENSE
+        WHERE R_NO=#{rNo}
+    </select>
+    
+    <select id="resumeLanguageList" resultMap="resumeLanguage">
+        SELECT
+            L_NO,
+            R_NO,
+            L_NAME,
+            L_DEPARTMENT,
+            L_SCORE,
+            L_ACQUISITION,
+            TO_CHAR(L_ACQUISITION,'YYYY.MM') L_ACQUISITION_FORMAT
+        FROM LANGUAGE
+        WHERE R_NO=#{rNo}
+    </select>
+    
+    <select id="resumeAwardsList" resultMap="resumeAwards">
+        SELECT
+            A_NO,
+            R_NO,
+            A_NAME,
+            A_DEPARTMENT,
+            A_ACQUISITION,
+            TO_CHAR(A_ACQUISITION,'YYYY.MM') A_ACQUISITION_FORMAT
+        FROM AWARDS
+        WHERE R_NO=#{rNo}
+    </select>
+
+    <select id="resumeSelfIntroductionList" resultMap="resumeSelfIntroduction">
+        SELECT
+            *
+        FROM SELF_INTRODUCTION
+        WHERE R_NO=#{rNo}
+
+    </select>
 
 </mapper>
