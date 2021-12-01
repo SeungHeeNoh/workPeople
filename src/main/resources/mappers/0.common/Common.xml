@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.workPeople.account.login.model.dao.LoginMapper">
-	<resultMap type="com.kh.workPeople.common.vo.Member" id="loginMemberResultMap">
+<mapper namespace="Common">
+	<resultMap type="com.kh.workPeople.common.vo.Member" id="memberResultMap">
 		<id property="no" column="M_NO"/>
 		<result property="id" column="M_ID"/>
 		<result property="pwd" column="M_PWD"/>
@@ -19,6 +19,8 @@
 		<result property="lockCount" column="M_LOCK_COUNT"/>
 		<result property="status" column="M_STATUS"/>
 		<result property="tempPwdYn" column="M_TEMP_PWD_YN"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Member" id="loginMemberResultMap" extends="memberResultMap">
 		<collection property="memberRoleList" resultMap="memberRoleResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.MemberRole" id="memberRoleResultMap">
@@ -43,69 +45,4 @@
 		<id property="aCode" column="REF_AUTHORITY_CODE"/>
 		<association property="authority" resultMap="authorityResultMap"/>
 	</resultMap>
-	<select id="findMemberById" resultMap="loginMemberResultMap">
-		SELECT 
-		      M.M_NO
-		    , M.M_ID
-		    , M.M_PWD
-		    , M.M_NAME
-		    , M.M_PHONE
-		    , M.M_EMAIL
-		    , M.M_POSTCODE
-		    , M.M_ROADADDRESS
-		    , M.M_DETAILADDRESS
-		    , M.M_ENROLL_DATE
-		    , M.M_MODIFY_DATE
-		    , M.M_LOGIN_FAIL_COUNT
-		    , M.M_IS_LOCK
-		    , M.M_LATEST_TRY_LOGIN_DATE
-		    , M.M_LOCK_COUNT
-		    , M.M_STATUS
-		    , M.M_TEMP_PWD_YN
-		    , MR.M_NO REF_MEMBER_NO
-		    , MR.A_CODE REF_AUTHORITY_CODE
-		    , A.A_CODE
-		    , A.A_NAME
-		    , A.A_DESC
-		 FROM MEMBER M
-		 LEFT JOIN MEMBER_ROLE MR ON(M.M_NO = MR.M_NO)
-		 LEFT JOIN AUTHORITY A ON(MR.A_CODE = A.A_CODE)
-		WHERE M.M_ID = #{userId}
-	</select>
-	<select id="findManagerById" resultMap="managerResultMap">
-		SELECT 
-		      IM.IM_NO
-		    , IM.IM_ID
-		    , IM.IM_PWD
-		    , IM.IM_NAME
-		    , MR.IM_NO REF_MANAGER_NO
-		    , MR.A_CODE REF_AUTHORITY_CODE
-		    , A.A_CODE
-		    , A.A_NAME
-		    , A.A_DESC
-		 FROM INFO_MANAGER IM
-		 LEFT JOIN MANAGER_ROLE MR ON(IM.IM_NO = MR.IM_NO)
-		 LEFT JOIN AUTHORITY A ON(MR.A_CODE = A.A_CODE)
-		WHERE IM.IM_ID = #{id}
-	</select>
-	<update id="updateLoginInformation" parameterType="com.kh.workPeople.common.vo.MemberImpl">
-		UPDATE MEMBER
-		   SET M_LOGIN_FAIL_COUNT = 0
-		   <if test='isLock.equals("Y")'>
-		     , M_IS_LOCK = 'N'
-		   </if>
-		     , M_LATEST_TRY_LOGIN_DATE = SYSDATE
-		 WHERE M_ID = #{id}
-	</update>
-	<update id="updateFailureCount" parameterType="string">
-		UPDATE MEMBER
-		   SET M_LOGIN_FAIL_COUNT = M_LOGIN_FAIL_COUNT + 1
-		 WHERE M_ID = #{id}
-	</update>
-	<update id="updateAccountLock" parameterType="string">
-		UPDATE MEMBER
-		   SET M_IS_LOCK = 'Y'
-		     , M_LATEST_TRY_LOGIN_DATE = SYSDATE
-		 WHERE M_ID = #{id}
-	</update>
 </mapper>
