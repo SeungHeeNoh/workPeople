@@ -60,6 +60,7 @@
         <result property="eMasterGraduateType" column="E_MASTER_GRADUATE_TYPE"/>
         <result property="eMasterMajor" column="E_MASTER_MAJOR"/>
         <result property="eMasterCredit" column="E_MASTER_CREDIT"/>
+        <result property="eMasterStandardCredit" column="E_MASTER_STANDARD_CREDIT"/>
         <result property="eDoctorName" column="E_DOCTOR_NAME"/>
         <result property="eDoctorAdmission" column="E_DOCTOR_ADMISSION"/>
         <result property="eDoctorAdmissionFormat" column="E_DOCTOR_ADMISSION_FORMAT"/>

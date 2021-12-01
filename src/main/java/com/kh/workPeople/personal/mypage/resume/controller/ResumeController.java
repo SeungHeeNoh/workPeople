@@ -106,6 +106,24 @@ public class ResumeController {
 
 		model.addAttribute("resumeDetails",resumeDetails);
 
+		String resumeEtype = resumeDetails.geteType();
+		String resumeColleageType = resumeDetails.geteColleageType();
+		String resumeMasterName = resumeDetails.geteMasterName();
+		String resumeDoctorName = resumeDetails.geteDoctorName();
+
+		model.addAttribute("resumeEtype",resumeEtype);
+		model.addAttribute("resumeColleageType",resumeColleageType);
+		model.addAttribute("resumeMasterName",resumeMasterName);
+		model.addAttribute("resumeDoctorName",resumeDoctorName);
+
+
+
+
+
+
+
+
+
 		return "personal/mypage/resumeLookUp";
 	}
 
