@@ -14,6 +14,9 @@ import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.FlashMap;
+import org.springframework.web.servlet.FlashMapManager;
+import org.springframework.web.servlet.support.SessionFlashMapManager;
 
 import com.kh.workPeople.account.login.model.service.MemberLoginService;
 import com.kh.workPeople.common.vo.Member;
@@ -56,11 +59,15 @@ public class MemberLoginFailureHandler implements AuthenticationFailureHandler {
 			message = "탈퇴한 회원입니다.";
 		}
 		
-		request.setAttribute("id", id);
-		request.setAttribute("loginRedirect", loginRedirect);
-		request.setAttribute("message", message);
+		FlashMap flashMap = new FlashMap();
+		flashMap.put("message", message);
+		flashMap.put("id", id);
+		flashMap.put("loginRedirect", loginRedirect);
 		
-		request.getRequestDispatcher(defaultUrl).forward(request, response);
+		FlashMapManager flashMapManager = new SessionFlashMapManager();
+		flashMapManager.saveOutputFlashMap(flashMap, request, response);
+		
+		response.sendRedirect(defaultUrl);
 	}
 
 }

@@ -11,6 +11,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.FlashMap;
+import org.springframework.web.servlet.FlashMapManager;
+import org.springframework.web.servlet.support.SessionFlashMapManager;
 
 @Component
 public class ManagerLoginFailureHandler implements AuthenticationFailureHandler {
@@ -19,6 +22,7 @@ public class ManagerLoginFailureHandler implements AuthenticationFailureHandler 
 	
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+		String id = request.getParameter("id");
 		String loginRedirect = request.getParameter("loginRedirect");
 		String message = "";
 
@@ -27,10 +31,15 @@ public class ManagerLoginFailureHandler implements AuthenticationFailureHandler 
 		} else if(exception instanceof BadCredentialsException) {
 			message = "아이디 혹은 비밀번호가 맞지 않습니다.";
 		}
-
-		request.setAttribute("loginRedirect", loginRedirect);
-		request.setAttribute("message", message);
-
-		request.getRequestDispatcher(defaultUrl).forward(request, response);
+		
+		FlashMap flashMap = new FlashMap();
+		flashMap.put("message", message);
+		flashMap.put("id", id);
+		flashMap.put("loginRedirect", loginRedirect);
+		
+		FlashMapManager flashMapManager = new SessionFlashMapManager();
+		flashMapManager.saveOutputFlashMap(flashMap, request, response);
+		
+		response.sendRedirect(defaultUrl);
 	}
 }
