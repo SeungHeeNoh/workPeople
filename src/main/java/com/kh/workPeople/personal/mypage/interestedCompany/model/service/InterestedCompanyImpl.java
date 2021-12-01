@@ -21,4 +21,9 @@ public class InterestedCompanyImpl implements InterestedCompanyService{
     public List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList(int no) {
         return interestedCompanyMapper.jobVacancyLookUpSimpleList(no);
     }
+
+    @Override
+    public int jobVacancyCount(int no) {
+        return interestedCompanyMapper.jobVacancyCount(no);
+    }
 }

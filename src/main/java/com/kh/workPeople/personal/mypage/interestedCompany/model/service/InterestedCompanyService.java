@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface InterestedCompanyService {
     List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList(int no);
+
+    int jobVacancyCount(int no);
 }

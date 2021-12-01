@@ -6,7 +6,7 @@
 .home_content_3{
     display: flex;
     justify-content: space-between;
-    padding: 15px 50px;
+    padding: 15px 80px;
     background-color: #f8f8f8;
     height: 50px;
     box-sizing: border-box;
@@ -30,6 +30,7 @@
     box-sizing: border-box;
     font-size: 14px;
     position: relative;
+    border-bottom: 1px solid #c4c4c4;
 }
 
 .hr{
@@ -45,7 +46,7 @@
 }
 
 .content_title_text4_2{
-    left: 500px;
+    right: 75px;
 }
 
 .content_title_text4_3{
@@ -67,6 +68,16 @@
 }
 
 .checkBtn1{
-    left: 20px;
-    top: 13px;
+    left: 40px;
+    top: 14px;
+}
+
+.content_title_text4_2 > span:nth-child(2){
+    margin-left: 5px;
+    margin-right: -3px;
+}
+
+.content_title_text4_1{
+    left: 60px;
+    width: 300px;
 }

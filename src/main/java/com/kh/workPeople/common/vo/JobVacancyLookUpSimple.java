@@ -6,6 +6,7 @@ public class JobVacancyLookUpSimple {
     private int no;             // 기업번호
     private String name;        // 기업이름
     private int count;          // 채용중인 공고 갯수
+
     private String type;        // 지원 상태
     private Date aiDate;        // 면접일
     private Date aiTime;        // 면접 시간

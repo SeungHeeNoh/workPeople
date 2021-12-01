@@ -41,7 +41,17 @@
     text-align: left;
     line-height: 42px;
     padding-left: 20px;
+    display: flex;
 }
+
+.content2_1 > span{
+    width: 92%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+}
+
 
 .green1{
     width: 150px;
@@ -52,7 +62,10 @@
 }
 
 .content2_img{
-    padding-left: 255px;
+    width: 25px;
+    height: 100%;
+    align-items: center;
+    display: flex;
 }
 
 .content3_container{
@@ -128,6 +141,7 @@
 
 .content5_wrap{
     margin : 15px 5px 15px 55px;
+    border-bottom: 1px solid #c4c4c4;
 }
 
 .content5_container{

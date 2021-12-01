@@ -32,14 +32,6 @@ public class LatestPublicationController {
 
         List<JobVacancyLookUp> jobVacancyLookUpList = latestPublicationService.jobVacancyLookUpList(user.getNo());
 
-        for(JobVacancyLookUp job : jobVacancyLookUpList){
-            Date beforeDate = job.getJvPeriodEnd();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
-            String afterDate = simpleDateFormat.format(beforeDate);
-            job.setJvPeriodEndFormat(afterDate);
-
-        }
-
         model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
 
         return "personal/mypage/latestPublication";
