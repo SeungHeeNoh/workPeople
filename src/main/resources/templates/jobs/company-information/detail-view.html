@@ -5,6 +5,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 	<title th:text="${companyDetailInformation.companyName}"></title>
 	<link rel="stylesheet" th:href="@{/css/jobs/company-information/company-information.css}">
 </head>
@@ -17,7 +19,13 @@
 					<img th:src="@{/images/}" th:alt="${companyDetailInformation.companyName} + ' 로고'">
 					<h2 th:text="${companyDetailInformation.companyName}"></h2>
 					<th:block th:if="${#authorization.expression('isAnonymous()') or #authorization.expression('hasRole(''PERSONAL'')')}">
-						<button type="button" th:classappend="${#authorization.expression('isAnonymous()')} ? login_button"  th:attr="data-company-no=${companyDetailInformation.companyInformation.no}">관심기업 등록<span class="count" th:text="${companyDetailInformation.interestedCount}"></span></button>
+						<button type="button" class="like_button" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_button' : '') + (#strings.equals(companyDetailInformation.interestedCompany, 'Y') ? 'active':'')}" th:attr="data-company-no=${companyDetailInformation.companyInformation.no}">관심기업 등록
+							<span class="blind">
+								<span th:if="${#strings.equals(companyDetailInformation.interestedCompany, 'Y')}" th:remove="tag">해제</span>
+								<span th:unless="${#strings.equals(companyDetailInformation.interestedCompany, 'Y')}" th:remove="tag">설정</span>
+							</span>
+							<span class="count" th:text="${companyDetailInformation.interestedCount}"></span>
+						</button>
 					</th:block>
 				</div>
 			</div>

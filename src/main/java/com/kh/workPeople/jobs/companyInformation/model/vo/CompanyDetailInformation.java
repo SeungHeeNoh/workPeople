@@ -7,18 +7,18 @@ public class CompanyDetailInformation {
 	private String companyName;
 	private String address;
 	private int interestedCount;
+	private String interestedCompany;
 	private CompanyInformation companyInformation;
-	private boolean liked;
 	
 	public CompanyDetailInformation() {}
 
-	public CompanyDetailInformation(String companyName, String address, int interestedCount,
-			CompanyInformation companyInformation, boolean liked) {
+	public CompanyDetailInformation(String companyName, String address, int interestedCount, String interestedCompany,
+			CompanyInformation companyInformation) {
 		this.companyName = companyName;
 		this.address = address;
 		this.interestedCount = interestedCount;
+		this.interestedCompany = interestedCompany;
 		this.companyInformation = companyInformation;
-		this.liked = liked;
 	}
 
 	public String getCompanyName() {
@@ -45,6 +45,14 @@ public class CompanyDetailInformation {
 		this.interestedCount = interestedCount;
 	}
 
+	public String getInterestedCompany() {
+		return interestedCompany;
+	}
+
+	public void setInterestedCompany(String interestedCompany) {
+		this.interestedCompany = interestedCompany;
+	}
+
 	public CompanyInformation getCompanyInformation() {
 		return companyInformation;
 	}
@@ -53,18 +61,11 @@ public class CompanyDetailInformation {
 		this.companyInformation = companyInformation;
 	}
 
-	public boolean isLiked() {
-		return liked;
-	}
-
-	public void setLiked(boolean liked) {
-		this.liked = liked;
-	}
-
 	@Override
 	public String toString() {
 		return "CompanyDetailInformation [companyName=" + companyName + ", address=" + address + ", interestedCount="
-				+ interestedCount + ", companyInformation=" + companyInformation + ", liked=" + liked + "]";
+				+ interestedCount + ", interestedCompany=" + interestedCompany + ", companyInformation="
+				+ companyInformation + "]";
 	}
 	
 }
