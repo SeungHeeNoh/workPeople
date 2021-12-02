@@ -32,4 +32,9 @@ public class InterestedCompanyImpl implements InterestedCompanyService{
 	public int insertInterestedCompany(Map<String, Integer> queryMap) {
 		return interestedCompanyMapper.insertInterestedCompany(queryMap);
 	}
+
+	@Override
+	public int deleteInterestedCompany(Map<String, Integer> queryMap) {
+		return  interestedCompanyMapper.deleteInterestedCompany(queryMap);
+	}
 }

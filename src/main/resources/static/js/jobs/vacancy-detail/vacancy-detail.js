@@ -79,7 +79,19 @@
 			xhr.setRequestHeader(tokenHeader, token);
 			xhr.send();
 		} else {
-			activeLikeButton(button);
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+						activeLikeButton(button);
+					} else {
+						console.log("ajax 통신 실패");
+					}
+				}
+			}
+
+			xhr.open("POST", "/personal/mypage/interestedCompany/company/" + button.getAttribute("data-company-no"));
+			xhr.setRequestHeader(tokenHeader, token);
+			xhr.send();
 		}
 		button.removeAttribute("disabled");
 	}

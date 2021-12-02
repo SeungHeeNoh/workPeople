@@ -11,4 +11,6 @@ public interface InterestedCompanyService {
     int jobVacancyCount(int no);
 
 	int insertInterestedCompany(Map<String, Integer> queryMap);
+
+	int deleteInterestedCompany(Map<String, Integer> queryMap);
 }

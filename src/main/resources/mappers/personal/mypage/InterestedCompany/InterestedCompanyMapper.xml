@@ -35,6 +35,11 @@
 		  , #{companyNo}
 		)
 	</insert>
-
+	<delete id="deleteInterestedCompany" parameterType="hashMap">
+		DELETE
+		  FROM INTERESTED_COMPANY
+		 WHERE M_NO = ${userNo}
+		   AND CI_NO = ${companyNo}
+	</delete>
 
 </mapper>

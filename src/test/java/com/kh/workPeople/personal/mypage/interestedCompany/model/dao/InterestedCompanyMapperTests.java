@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,25 @@ public class InterestedCompanyMapperTests {
 	
 	@Test
 	@Transactional
+	@Disabled
 	public void testInsertInterestedCompany() {
 		Map<String, Integer> queryMap = new HashMap<>();
 		queryMap.put("userNo", 1);
 		queryMap.put("companyNo", 1);
 		
 		int result = interestedCompanyMapper.insertInterestedCompany(queryMap);
+		
+		assertEquals(result, 1);
+	}
+
+	@Test
+	@Transactional
+	public void testDeleteInterestedCompany() {
+		Map<String, Integer> queryMap = new HashMap<>();
+		queryMap.put("userNo", 1);
+		queryMap.put("companyNo", 1);
+		
+		int result = interestedCompanyMapper.deleteInterestedCompany(queryMap);
 		
 		assertEquals(result, 1);
 	}

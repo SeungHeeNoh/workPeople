@@ -15,4 +15,6 @@ public interface InterestedCompanyMapper {
 
 	int insertInterestedCompany(Map<String, Integer> queryMap);
 
+	int deleteInterestedCompany(Map<String, Integer> queryMap);
+
 }
