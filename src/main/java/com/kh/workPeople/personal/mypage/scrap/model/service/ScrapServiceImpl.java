@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ScrapServiceImpl implements ScrapService{
@@ -21,4 +22,15 @@ public class ScrapServiceImpl implements ScrapService{
     public List<JobVacancyLookUp> jobVacancyLookUpList(int no) {
         return scrapMapper.jobVacancyLookUpList(no);
     }
+
+	@Override
+	public int insertScrap(Map<String, Integer> queryMap) {
+		return scrapMapper.insertScrap(queryMap);
+	}
+
+	@Override
+	public int deleteScrap(Map<String, Integer> queryMap) {
+		return scrapMapper.deleteScrap(queryMap);
+	}
+    
 }

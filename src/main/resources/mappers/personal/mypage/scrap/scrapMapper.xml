@@ -52,8 +52,21 @@
         ORDER BY 1
 
     </select>
-
-
-
-
+	<insert id="insertScrap" parameterType="hashmap">
+		INSERT INTO SCRAP
+		(
+		    M_NO
+		  , JV_NO
+		)
+		VALUES
+		(
+		    #{userNo}
+		  , #{jobVacancyNo}
+		)
+	</insert>
+	<delete id="deleteScrap" parameterType="hashmap">
+		DELETE SCRAP
+		 WHERE M_NO = #{userNo}
+		   AND JV_NO = #{jobVacancyNo}
+	</delete>
 </mapper>
