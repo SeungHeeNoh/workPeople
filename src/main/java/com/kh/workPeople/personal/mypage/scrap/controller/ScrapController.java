@@ -1,24 +1,26 @@
 package com.kh.workPeople.personal.mypage.scrap.controller;
 
-import com.kh.workPeople.common.vo.JobVacancyLookUp;
-import com.kh.workPeople.common.vo.MemberImpl;
-import com.kh.workPeople.common.vo.Resume;
-import com.kh.workPeople.personal.mypage.applyCompany.model.service.ApplyCompanyService;
-import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
-import com.kh.workPeople.personal.mypage.scrap.model.service.ScrapService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import com.kh.workPeople.common.vo.JobVacancyLookUp;
+import com.kh.workPeople.common.vo.MemberImpl;
+import com.kh.workPeople.common.vo.Resume;
+import com.kh.workPeople.personal.mypage.applyCompany.model.service.ApplyCompanyService;
+import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
+import com.kh.workPeople.personal.mypage.scrap.model.service.ScrapService;
 
 @Controller
 @RequestMapping("/personal/mypage")
@@ -71,6 +73,23 @@ public class ScrapController {
 		return "redirect:/personal/mypage/scrap";
 	}
 
-
+	@PostMapping("/scrap/job-vacancy/{jobVacancyNo}")
+	@ResponseBody
+	public Map<String, Object> insertScrap(@PathVariable int jobVacancyNo, @AuthenticationPrincipal MemberImpl user) {
+		Map<String, Object> resultMap = new HashMap<>();
+		Map<String, Integer> queryMap = new HashMap<>();
+		String message = "";
+		
+		queryMap.put("userNo", user.getNo());
+		queryMap.put("jobVacancyNo", jobVacancyNo);
+		
+		int result = scrapService.insertScrap(queryMap);
+		
+		if(result > 0) {
+			message = "success";
+		}
+		
+		return resultMap;
+	}
 
 }

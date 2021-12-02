@@ -108,11 +108,36 @@
 
 	function scrapButtonToggleEventHanlder(button) {
 		button.setAttribute("disabled", true);
+		let xhr = new XMLHttpRequest();
 
 		if(button.classList.contains("active")) {
-			deactiveScrapButton(button);
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+						deactiveScrapButton(button);
+					} else {
+						console.log("ajax 통신 실패");
+					}
+				}
+			}
+
+			xhr.open("DELETE", "/personal/mypage/scrap/job-vacancy/" + button.getAttribute("data-job-vacancy-no"));
+			xhr.setRequestHeader(tokenHeader, token);
+			xhr.send();
 		} else {
-			activeScrapButton(button);
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+						activeScrapButton(button);
+					} else {
+						console.log("ajax 통신 실패");
+					}
+				}
+			}
+
+			xhr.open("POST", "/personal/mypage/scrap/job-vacancy/" + button.getAttribute("data-job-vacancy-no"));
+			xhr.setRequestHeader(tokenHeader, token);
+			xhr.send();
 		}
 		button.removeAttribute("disabled");
 	}

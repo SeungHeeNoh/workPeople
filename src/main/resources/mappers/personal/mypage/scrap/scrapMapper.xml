@@ -52,7 +52,18 @@
         ORDER BY 1
 
     </select>
-
+	<insert id="insertScrap" parameterType="hashmap">
+		INSERT INTO SCRAP
+		(
+		    M_NO
+		  , JV_NO
+		)
+		VALUES
+		(
+		    #{userNo}
+		  , #{jobVacancyNo}
+		)
+	</insert>
 
 
 

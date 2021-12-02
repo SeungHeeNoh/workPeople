@@ -32,7 +32,7 @@
 						</div>
 						<div>
 							<th:block th:if="${#authorization.expression('isAnonymous()') or #authorization.expression('hasRole(''PERSONAL'')')}">
-								<button type="button" class="scrap_button" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_button' : '') + (#strings.equals(jobVacancyInformation.interestedCompany, 'Y') ? 'active':'')}" th:attr="data-company-no=${jobVacancyInformation.companyNo}">스크랩
+								<button type="button" class="scrap_button" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_button' : '') + (#strings.equals(jobVacancyInformation.scrapJobVacancy, 'Y') ? 'active':'')}" th:attr="data-job-vacancy-no=${jobVacancyInformation.jobVacancy.no}">스크랩
 									<span class="blind">
 										<span th:if="${#strings.equals(jobVacancyInformation.interestedCompany, 'Y')}" th:remove="tag">해제</span>
 										<span th:unless="${#strings.equals(jobVacancyInformation.interestedCompany, 'Y')}" th:remove="tag">설정</span>
