@@ -23,6 +23,8 @@ public class Member {
 	private String status;
 	private String tempPwdYn;
 	private List<MemberRole> memberRoleList;
+	private String enrollDateformat;
+	
 	
 	public Member() {}
 
@@ -202,6 +204,16 @@ public class Member {
 
 	public void setMemberRoleList(List<MemberRole> memberRoleList) {
 		this.memberRoleList = memberRoleList;
+	}
+	
+	
+
+	public String getEnrollDateformat() {
+		return enrollDateformat;
+	}
+
+	public void setEnrollDateformat(String enrollDateformat) {
+		this.enrollDateformat = enrollDateformat;
 	}
 
 	@Override

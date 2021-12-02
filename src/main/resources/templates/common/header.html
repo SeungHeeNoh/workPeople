@@ -10,7 +10,7 @@
 	<link rel="stylesheet" th:href="@{/css/common/header.css}">
 </head>
 <script>
-	const successMessage = '[[${ message  }]]';
+	const successMessage = '[[${ message }]]';
 	
 	if(successMessage) {
 		alert(successMessage);
@@ -21,16 +21,15 @@
 <!-- 로그인 전 -->
 <!-- <span sec:authentication="principal"></span> -->
 	<th:block sec:authorize="isAnonymous()">
-	
     <header id="hwrap">
         <div>
             <div class="mlogo">
                 <a href="/main"><img th:src="@{/images/common/hlogo.png}"></a>
             </div>
             <ul class="gnb">
-                <li><a href="jobs/job/big-job-list">지역별</a></li>
-                <li><a href="jobs/local/local-job-list">직종별</a></li>
-                <li><a href="jobs/map/map-job-list">내 주변 공고별</a></li>
+                <li><a href="/jobs/local/local-job-list">지역별</a></li>
+                <li><a href="/jobs/job/big-job-list">직종별</a></li>
+                <li><a href="/jobs/map/map-job-list">내 주변 공고별</a></li>
                 <li><a href="#">면접 후기</a></li>
                 <li>
                     <div class="loginArea">
@@ -43,16 +42,16 @@
     </header>
     </th:block>
     <!-- 유저 -->
-     <th:block sec:authorize="hasRole('PERSONAL') ">
+     <th:block sec:authorize="hasRole('PERSONAL') || hasRole('COMPANY')">
     <header id="hwrap">
         <div id="menu">
             <div class="mlogo">
-                <a href=""><img th:src="@{/images/common/hlogo.png}"></a>
+                <a href="/main"><img th:src="@{/images/common/hlogo.png}"></a>
             </div>
             <ul class="gnb">
-                 <li><a href="jobs/job/big-job-list">지역별</a></li>
-                <li><a href="jobs/local/local-job-list">직종별</a></li>
-                <li><a href="jobs/map/map-job-list">내 주변 공고별</a></li>
+                <li><a href="/jobs/local/local-job-list">지역별</a></li>
+                <li><a href="/jobs/job/big-job-list">직종별</a></li>
+                <li><a href="/jobs/map/map-job-list">내 주변 공고별</a></li>
                 <li><a href="#">면접 후기</a></li>
 
                 <li>
@@ -60,7 +59,8 @@
                         <span sec:authentication="principal.name"></span>님<span>▼</span>
                     </div>
                     <ul class="submenu1">
-                        <li><a th:href="@{/personal/mypage/home}">마이페이지</a></li>
+                        <li><a th:href="@{/personal/mypage/home}" sec:authorize="hasRole('PERSONAL')">마이페이지</a></li>
+                        <li><a th:href="@{/company/mypage/companymain}" sec:authorize="hasRole('COMPANY')">마이페이지</a></li>
                         <li><a href="/account/manager/logout">로그아웃</a></li>
                     </ul>
                 </li>
@@ -76,8 +76,8 @@
                 <a href="/main"><img th:src="@{/images/common/hlogo.png}"></a>
             </div>
             <ul class="gnb">
-                 <li><a href="jobs/job/big-job-list">지역별</a></li>
-                <li><a href="jobs/local/local-job-list">직종별</a></li>
+                <li><a href="jobs/local/local-job-list">지역별</a></li>
+                <li><a href="jobs/job/big-job-list">직종별</a></li>
                 <li><a href="jobs/map/map-job-list">내 주변 공고별</a></li>
                 <li><a href="#">면접 후기</a></li>
 
@@ -94,6 +94,7 @@
         </div>
     </header>
 	</th:block>
+<<<<<<< Updated upstream
         <!-- 기업 -->
         <th:block sec:authorize="hasRole('COMPANY')"> 
         <header id="hwrap">
@@ -134,6 +135,9 @@
             </div>
         </header>
         </th:block>
+=======
+  
+>>>>>>> Stashed changes
 </body>
 
 </html>

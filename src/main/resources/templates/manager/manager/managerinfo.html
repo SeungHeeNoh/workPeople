@@ -191,37 +191,6 @@
 		frm.submit();
 
 	}  
-	
-	function changeGrade(){
-		var imNo =  $('#imNo').val();
-		var code =  $('#code').val();
-		var imId =  $('#imId').val();
-		var imName =  $('#imName').val();
-		var mClass = $('#mClass').selected().val();
-		var param = {};
-		
-		param.imNo = imNo;
-		param.imId = imId;
-		param.code = code;
-		param.mClass = mClass;
-
-		param = JSON.stringify(param);
-		$.ajax({
-			url : "classChange",
-			data : param,
-			type : 'post',
-			dataType:"json",
-			success: function(data){
-			    $("#popup01").hide();
-                $(".backon").hide();
-			},
-			error : function(e){
-				alert(e);
-			}
-			
-		});	
-	}
-	
 
 	
 

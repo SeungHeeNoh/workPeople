@@ -19,6 +19,7 @@
 		<result property="lockCount" column="M_LOCK_COUNT"/>
 		<result property="status" column="M_STATUS"/>
 		<result property="tempPwdYn" column="M_TEMP_PWD_YN"/>
+		<result property="enrollDateformat" column="M_ENROLL_DATE_FORMAT"/>
 		<collection property="memberRoleList" resultMap="memberRoleResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.MemberRole" id="memberRoleResultMap">
@@ -41,9 +42,8 @@
 		<result property="companyHistory" column="CI_COMPANY_HISTORY"/>
 		<result property="companyVision" column="CI_COMPANY_VISION"/>
 		<result property="homepage" column="CI_HOMEPAGE"/>
+		<association property="member" resultMap="memberResultMap"/>
 		<association property="attachment" resultMap="attachmentResultMap"/>
-		<association property="sector" resultMap="sectorResultMap"/>
-		<association property="companyType" resultMap="companyTypeRoleResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.Attachment" id="attachmentResultMap">
 		<result property="changeName" column="A_CHANGE_NAME"/>
@@ -52,7 +52,7 @@
 		<result property="create" column="A_CREATE"/>
 		<result property="update" column="A_UPDATE"/>
 	</resultMap>
-	<select id="selectList" resultMap="memberResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
+	<select id="selectList" resultMap="companyResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
 		SELECT * FROM 
 			(SELECT  *  FROM(
 					SELECT
@@ -63,6 +63,7 @@
 				     , M_EMAIL
 				     , M_ENROLL_DATE
                      , M_STATUS
+                     , TO_CHAR(M_ENROLL_DATE,'YYYY-MM-dd') M_ENROLL_DATE_FORMAT
 				  FROM MEMBER
                   JOIN COMPANY_INFO USING (M_NO)
 			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) WHERE A_CODE=2 ORDER BY a.M_NO)
@@ -78,6 +79,20 @@
 		 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) where A_CODE=2
 	</select> 
  
+ <select id="vacancyNo" resultMap="companyResultMap">
+		 SELECT  *  FROM(
+					SELECT
+		           	   M_NO
+				     , M_NAME
+                     , CI_COMPANY_REGISTER_NUMBER
+				     , M_EMAIL
+				     , M_ENROLL_DATE
+                     , M_STATUS
+                     , TO_CHAR(M_ENROLL_DATE,'YYYY-MM-dd') M_ENROLL_DATE_FORMAT
+				  FROM MEMBER
+                  JOIN COMPANY_INFO USING (M_NO)
+			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) WHERE A_CODE=2 and b.m_no=${no} ORDER BY a.M_NO
+	</select>
 	
 
 

@@ -13,23 +13,30 @@ public class JobVacancyLookUpSimple {
 
     private String aiDateFormat;    // 면접일 문자열
     private String aiTimeFormat;    // 면접 시간 문자열
+    
+    private Sector sector;
 
     public JobVacancyLookUpSimple() {
 
     }
 
-    public JobVacancyLookUpSimple(int no, String name, int count, String type, Date aiDate, Date aiTime, String aiDateFormat, String aiTimeFormat) {
-        this.no = no;
-        this.name = name;
-        this.count = count;
-        this.type = type;
-        this.aiDate = aiDate;
-        this.aiTime = aiTime;
-        this.aiDateFormat = aiDateFormat;
-        this.aiTimeFormat = aiTimeFormat;
-    }
+    public JobVacancyLookUpSimple(int no, String name, int count, String type, Date aiDate, Date aiTime,
+			String aiDateFormat, String aiTimeFormat, Sector sector) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.count = count;
+		this.type = type;
+		this.aiDate = aiDate;
+		this.aiTime = aiTime;
+		this.aiDateFormat = aiDateFormat;
+		this.aiTimeFormat = aiTimeFormat;
+		this.sector = sector;
+	}
 
-    public int getNo() {
+
+
+	public int getNo() {
         return no;
     }
 
@@ -92,18 +99,23 @@ public class JobVacancyLookUpSimple {
     public void setAiTimeFormat(String aiTimeFormat) {
         this.aiTimeFormat = aiTimeFormat;
     }
+    
+    
 
-    @Override
-    public String toString() {
-        return "JobVacancyLookUpSimple{" +
-                "no=" + no +
-                ", name='" + name + '\'' +
-                ", count=" + count +
-                ", type='" + type + '\'' +
-                ", aiDate=" + aiDate +
-                ", aiTime=" + aiTime +
-                ", aiDateFormat='" + aiDateFormat + '\'' +
-                ", aiTimeFormat='" + aiTimeFormat + '\'' +
-                '}';
-    }
+    public Sector getSector() {
+		return sector;
+	}
+
+	public void setSector(Sector sector) {
+		this.sector = sector;
+	}
+
+	@Override
+	public String toString() {
+		return "JobVacancyLookUpSimple [no=" + no + ", name=" + name + ", count=" + count + ", type=" + type
+				+ ", aiDate=" + aiDate + ", aiTime=" + aiTime + ", aiDateFormat=" + aiDateFormat + ", aiTimeFormat="
+				+ aiTimeFormat + ", sector=" + sector + "]";
+	}
+
+	
 }

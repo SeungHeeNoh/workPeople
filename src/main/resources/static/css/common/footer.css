@@ -16,7 +16,11 @@
 .fcontainer{
     height : 130px;
 }
-.fcontent{ width: 1100px; height: 130px; margin:0 auto;}
+.fcontent{     
+	width: 1100px;
+    height: 160px;
+    padding-top: 8px;
+    }
 
 .footer::after { 
     display: block;
