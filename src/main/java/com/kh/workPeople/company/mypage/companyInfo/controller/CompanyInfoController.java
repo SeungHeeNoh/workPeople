@@ -12,6 +12,7 @@ import java.util.UUID;
 import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,7 @@ import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.company.mypage.companyInfo.serivce.CompanyInfoService;
+import com.kh.workPeople.configuration.FileConfiguration;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -83,7 +85,7 @@ public class CompanyInfoController {
 		
 		String dir = System.getProperty("user.dir");
 		
-		String filePath = dir + "\\src\\main\\resources\\static\\images\\uploadFiles";
+		String filePath = dir + "\\src\\main\\resources\\uploadFiles";
 		String filePathDb = "\\images\\uploadFiles\\";
 		
 		System.out.println("filePath : "  + filePath);
