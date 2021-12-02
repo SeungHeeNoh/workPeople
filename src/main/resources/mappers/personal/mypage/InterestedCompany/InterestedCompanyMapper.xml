@@ -24,7 +24,27 @@
         FROM JOB_VACANCY
         WHERE CI_NO=#{no}
     </select>
-
-
-
+	<insert id="insertInterestedCompany" parameterType="hashMap">
+		INSERT INTO INTERESTED_COMPANY
+		(
+		    M_NO
+		  , CI_NO
+		)
+		VALUES(
+		    #{userNo}
+		  , #{companyNo}
+		)
+	</insert>
+	<delete id="deleteInterestedCompany" parameterType="hashMap">
+		DELETE
+		  FROM INTERESTED_COMPANY
+		 WHERE M_NO = ${userNo}
+		   AND CI_NO = ${companyNo}
+	</delete>
+	<select id="getInterestedCompanyCount" resultType="int">
+		SELECT
+		       COUNT(*)
+		  FROM INTERESTED_COMPANY
+		 WHERE CI_NO = ${companyNo}
+	</select>
 </mapper>

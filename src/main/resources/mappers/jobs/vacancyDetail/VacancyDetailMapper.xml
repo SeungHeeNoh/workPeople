@@ -3,7 +3,8 @@
 <mapper namespace="com.kh.workPeople.jobs.vacancyDetail.model.dao.VacancyDetailMapper">
 	<resultMap type="com.kh.workPeople.jobs.vacancyDetail.model.vo.JobVacancyInformation" id="jobVacancyInformationResultMap">
 		<id property="companyNo" column="CI_NO"/>
-		<result property="companyName" column="M_NAME"/>
+		<result property="companyName" column="COMPANY_NAME"/>
+		<result property="interestedCompany" column="INTERESTED"/>
 		<association property="jobVacancy" resultMap="jobVacancyResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.JobVacancy" id="jobVacancyResultMap">
@@ -66,48 +67,58 @@
 		<id property="no" column="S_NO"/>
 		<result property="name" column="S_NAME"/>
 	</resultMap>
-	<select id="selectJobVacancyInformation" resultMap="jobVacancyInformationResultMap">
+	<select id="selectJobVacancyInformation" parameterType="hashmap" resultMap="jobVacancyInformationResultMap">
 		SELECT
-		           JV_NO
-		         , CI_NO
-		         , JV_TITLE
-		         , JV_REGISTER
-		         , JV_UPDATE
-		         , JV_DISPLAY
-		         , JV_COUNT
-		         , JV_TO
-		         , JV_PERIOD_START
-		         , JV_PERIOD_END
-		         , JV_WORKDAY_START_TIME
-		         , JV_WORKDAY_END_TIME
-		         , JV_ADDRESS
-		         , G_NO
-		         , G_NAME
-		         , EDUCATION_LEVEL_NO
-		         , EDUCATION_LEVEL_NAME
-		         , JV_MAJOR
-		         , D_NO
-		         , D_NAME
-		         , JV_STATUS_YN
-		         , JV_DETAIL_TEXT
-		         , JV_CERTIFICATE
-		         , JV_AGE
-		         , JV_PAY
-		         , PT_NO
-		         , PT_NAME
-		         , R_NO
-		         , R_NAME
-		         , JT_NO
-		         , JT_NAME
-		         , JOB_VACACY_INFORMATION.S_NO
-		         , JOB_VACACY_INFORMATION.S_NAME
-		         , EXPERIENCE_LEVEL_NO
-		         , EXPERIENCE_LEVEL_NAME
-		         , M_NAME
-		  FROM MEMBER
-		  JOIN COMPANY_INFO USING(M_NO)
-		  JOIN JOB_VACACY_INFORMATION USING(CI_NO)
-		 WHERE JV_NO = #{no}
-		   AND JV_STATUS_YN = 'Y'
+		       JI.JV_NO
+		     , COMPANY_INFORMATION.CI_NO CI_NO
+		     , JI.JV_TITLE
+		     , JI.JV_REGISTER
+		     , JI.JV_UPDATE
+		     , JI.JV_DISPLAY
+		     , JI.JV_COUNT
+		     , JI.JV_TO
+		     , JI.JV_PERIOD_START
+		     , JI.JV_PERIOD_END
+		     , JI.JV_WORKDAY_START_TIME
+		     , JI.JV_WORKDAY_END_TIME
+		     , JI.JV_ADDRESS
+		     , JI.G_NO
+		     , JI.G_NAME
+		     , JI.EDUCATION_LEVEL_NO
+		     , JI.EDUCATION_LEVEL_NAME
+		     , JI.JV_MAJOR
+		     , JI.D_NO
+		     , JI.D_NAME
+		     , JI.JV_STATUS_YN
+		     , JI.JV_DETAIL_TEXT
+		     , JI.JV_CERTIFICATE
+		     , JI.JV_AGE
+		     , JI.JV_PAY
+		     , JI.PT_NO
+		     , JI.PT_NAME
+		     , JI.R_NO
+		     , JI.R_NAME
+		     , JI.JT_NO
+		     , JI.JT_NAME
+		     , JI.S_NO
+		     , JI.S_NAME
+		     , JI.EXPERIENCE_LEVEL_NO
+		     , JI.EXPERIENCE_LEVEL_NAME
+		     , COMPANY_INFORMATION.COMPANY_NAME
+	     <if test="userNo != null">
+		     , CASE
+		        WHEN INTERESTED_INFORMATION.CI_NO IS NULL THEN 'N'
+		        ELSE 'Y'
+		       END AS INTERESTED
+		 </if>
+		FROM COMPANY_INFORMATION
+		JOIN JOB_VACACY_INFORMATION JI ON(COMPANY_INFORMATION.CI_NO = JI.CI_NO)
+		<if test="userNo != null">
+		LEFT OUTER JOIN (SELECT CI_NO
+		                   FROM INTERESTED_COMPANY
+		                  WHERE M_NO = #{userNo}) INTERESTED_INFORMATION ON(JI.CI_NO = INTERESTED_INFORMATION.CI_NO)
+		</if>
+	   WHERE JV_NO = #{no}
+	     AND JV_STATUS_YN = 'Y'
 	</select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.kh.workPeople.jobs.companyInformation.model.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
@@ -7,6 +9,6 @@ import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformati
 @Mapper
 public interface CompanyInformationMapper {
 
-	CompanyDetailInformation getCompanyDetailInformation(int no);
+	CompanyDetailInformation getCompanyDetailInformation(Map<String, Object> queryMap);
 
 }

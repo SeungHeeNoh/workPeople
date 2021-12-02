@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 
 public class MemberImpl extends User {
 	private int no;
+	private MemberType memberType;
 	private String id;
 	private String pwd;
 	private String name;
@@ -33,6 +34,7 @@ public class MemberImpl extends User {
 	
 	public void setDetails(Member member) {
 		this.no = member.getNo();
+		this.memberType = member.getMemberType();
 		this.id = member.getId();
 		this.pwd = member.getPwd();
 		this.name = member.getName();
@@ -54,6 +56,10 @@ public class MemberImpl extends User {
 
 	public int getNo() {
 		return no;
+	}
+
+	public MemberType getMemberType() {
+		return memberType;
 	}
 
 	public String getId() {

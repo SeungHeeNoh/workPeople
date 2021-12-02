@@ -4,6 +4,8 @@
 	<resultMap type="com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation" id="companyDetailInformationResultMap">
 		<result property="companyName" column="COMPANY_NAME"/>
 		<result property="address" column="ADDRESS"/>
+		<result property="interestedCount" column="INTERESTED_COUNT"/>
+		<result property="interestedCompany" column="INTERESTED"/>
 		<association property="companyInformation" resultMap="companyResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.CompanyInformation" id="companyResultMap">
@@ -36,11 +38,11 @@
 		<id property="no" column="CT_NO"/>
 		<result property="name" column="CT_NAME"/>
 	</resultMap>
-	<select id="getCompanyDetailInformation" parameterType="_int" resultMap="companyDetailInformationResultMap">
+	<select id="getCompanyDetailInformation" parameterType="hashmap" resultMap="companyDetailInformationResultMap">
 		SELECT 
-		       M_NAME COMPANY_NAME
-		     , M_ROADADDRESS || M_DETAILADDRESS ADDRESS
-		     , CI_NO
+		       COMPANY_NAME
+		     , ADDRESS
+		     , COMPANY_INFORMATION.CI_NO
 		     , CI_CEONAME
 		     , CI_FOUNDING_DATE
 		     , CI_EMPLOYEE_NUMBER
@@ -59,11 +61,19 @@
 		     , S_NAME
 		     , CT_NO
 		     , CT_NAME
-		  FROM COMPANY_INFO
-		  LEFT JOIN SECTOR USING(S_NO)
-		  LEFT JOIN COMPANY_TYPE USING(CT_NO)
-		  LEFT JOIN ATTACHMENT USING(A_NO)
-		  LEFT JOIN MEMBER USING(M_NO)
-		 WHERE CI_NO = #{no}
+		     , INTERESTED_COUNT
+		   <if test="userNo != null">
+		     , CASE
+		        WHEN INTERESTED_COMPANY.CI_NO IS NULL THEN 'N'
+		        ELSE 'Y'
+		       END INTERESTED
+		   </if>
+		  FROM COMPANY_INFORMATION
+		  <if test="userNo != null">
+		  LEFT OUTER JOIN (SELECT CI_NO
+	      		             FROM INTERESTED_COMPANY
+	                        WHERE M_NO = 1) INTERESTED_COMPANY ON(COMPANY_INFORMATION.CI_NO = INTERESTED_COMPANY.CI_NO)
+	      </if>
+		 WHERE COMPANY_INFORMATION.CI_NO = #{companyInformationNo}
 	</select>
 </mapper>

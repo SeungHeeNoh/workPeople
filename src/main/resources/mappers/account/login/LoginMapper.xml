@@ -4,6 +4,8 @@
 	<select id="findMemberById" resultMap="Common.loginMemberResultMap">
 		SELECT 
 		      M.M_NO
+		    , MT.MT_NO MT_NO
+		    , MT.MT_NAME MT_NAME
 		    , M.M_ID
 		    , M.M_PWD
 		    , M.M_NAME
@@ -26,6 +28,7 @@
 		    , A.A_NAME
 		    , A.A_DESC
 		 FROM MEMBER M
+		 LEFT JOIN MEMBER_TYPE MT ON(M.MT_NO = MT.MT_NO)
 		 LEFT JOIN MEMBER_ROLE MR ON(M.M_NO = MR.M_NO)
 		 LEFT JOIN AUTHORITY A ON(MR.A_CODE = A.A_CODE)
 		WHERE M.M_ID = #{userId}
