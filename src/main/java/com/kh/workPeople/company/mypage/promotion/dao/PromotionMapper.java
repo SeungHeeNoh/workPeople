@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.PromotionOrder;
 
 
@@ -21,6 +22,18 @@ public interface PromotionMapper {
 
 
 	int getCompleteCount(int userNo);
+
+
+	int selectcino(int userNo);
+
+
+	List<JobVacancyLookUp> selectAllJob(int cino);
+
+
+	int insertOdert(Map<String, Object> map);
+
+
+	int insertPayment(Map<String, Object> map);
 
 	
 

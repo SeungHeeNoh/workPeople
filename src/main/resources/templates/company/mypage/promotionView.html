@@ -6,10 +6,9 @@
     <link rel="stylesheet" th:href="@{/css/common/common.css}">
     <link rel="stylesheet" th:href="@{/css/company/mypage/promotionView.css}">
     <link rel="stylesheet" th:href="@{/css/company/mypage/modal.css}">
-    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script th:src="@{/js/company/mypage/promotionView.js}"></script>
-    <!-- 결제 api -->
-    <script th:src="@{https://cdn.iamport.kr/js/iamport.payment-1.1.8.js}" type="text/javascript"></script>
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
 <div th:include="common/header.html"></div>
@@ -29,6 +28,10 @@
                 <div class="comInfo_area">
                     <img th:src="@{/images/companyMyPage/Group 840.png}">
                 </div>
+                
+                <input type="hidden" name="userName" th:value="${user.name}"> 
+                <input type="hidden" name="userNo" th:value="${user.no}"> 
+                <input type="hidden" name="userEmail" th:value="${user.email}"> 
 
                     <div class="comInfo_area">
                         <!--tab_wrap-->
@@ -51,7 +54,7 @@
                                         <h2 class="item_name"><span class="option_txt">(메인페이지 노출 - 기간 설정)</span></h2> 
                                         <div class="area_payment">
                                             <dl class="price_info">
-                                                <dd class="total_price">총 <ins><b class="typo_num" id="total1">1,000</b>원</ins></dd> 
+                                                <dd class="total_price">총 <ins><b class="typo_num" id="total1">2,000</b>원</ins></dd> 
                                             </dl> 
                                             <button type="button" class="btnSizeL colorWhite btn_detail btn1">상세</button> 
                                             <div class="wrap_btn_payment">
@@ -74,7 +77,7 @@
                                                                                 </div> 
                                                                                 <div class="original_price">
                                                                                     <span class="price">
-                                                                                        <em class="typo_num">210,000원</em>
+                                                                                        <em class="typo_num" id="modal_total1"></em>원
                                                                                     </span>
                                                                                 </div>
                                                                                 
@@ -102,37 +105,19 @@
                                                                     </thead>
                                                                    
                                                                         <tbody>
-                                                                        <tr>
+                                                                        <tr class="mtcSch_tr" th:if="${#lists.size(jobList) > 0}" th:each="job : ${ jobList }">
+                                                                            <td><input type="radio" name="radio" th:value="${job.jvNo}"></td>
+                                                                            <td th:text="${job.jvTitle}">각 부분별 신입/경력 채용</td>
+                                                                            <td th:text="${#dates.format(job.jvPeriodEnd, 'yyyy-MM-dd') }"></td>
+                                                                        </tr>
+                                                                       
+                                                                       
+                                                                        <tr th:unless="${#lists.size(jobList) > 0 }">
                                                                             <td class="none_list" style="font-size: 18px;font-weight: 500;color: #3a3a3a;padding: 50px 154px;line-height: 30px;">
                                                                                 등록된 공고가 없습니다.
                                                                                 <P style="font-size: 16px;">공고를 새로 작성하시겠습니까?  <a href="" style="text-decoration: underline;color: #a6d178;padding-left: 10px;">작성하러 가기</a></P>
                                                                             </td>
                                                                         </tr>  
-                                                                         <!-- <tr class="mtcSch_tr">
-                                                                            <td><input type="radio"name="radio" value=""></td>
-                                                                            <td>각 부분별 신입/경력 채용</td>
-                                                                            <td>2021-10-24</td>
-                                                                        </tr>
-                                                                        <tr class="mtcSch_tr">
-                                                                            <td><input type="radio"name="radio" value=""></td>
-                                                                            <td>각 부분별 신입/경력 채용</td>
-                                                                            <td>2021-10-24</td>
-                                                                        </tr>
-                                                                        <tr class="mtcSch_tr">
-                                                                            <td><input type="radio"name="radio" value=""></td>
-                                                                            <td>각 부분별 신입/경력 채용</td>
-                                                                            <td>2021-10-24</td>
-                                                                        </tr>
-                                                                        <tr class="mtcSch_tr">
-                                                                            <td><input type="radio"name="radio" value=""></td>
-                                                                            <td>각 부분별 신입/경력 채용</td>
-                                                                            <td>2021-10-24</td>
-                                                                        </tr> -->
-                                                                       
-                                                                       
-                                                                         
-                                                                    
-                                                                         
                                                                         </tbody>
                                                                
                                                                 </table>
@@ -145,9 +130,9 @@
                                                         <strong class="title">최종결제금액</strong> 
                                                             <dl class="payment_detail">
                                                                 <dt>상품 합계</dt> 
-                                                                <dd><span class="typo_num">300,000</span>원</dd> 
+                                                                <dd><span class="typo_num" id="modal_total2"></span>원</dd> 
                                                             </dl> 
-                                                        <button type="button" class="btnSizeXL colorRed btn_payment total_btn"><em class="typo_num">210,000</em>원 결제하기</button>
+                                                        <button type="button" class="btnSizeXL colorRed btn_payment total_btn" id="total_btn1"><em class="typo_num" id="modal_total3"></em>원 결제하기</button>
                                                     </div> 
                                                     <button type="button" class="btnClose"><span class="blind">닫기</span></button>
                                                 </div>
@@ -171,7 +156,7 @@
                                                 </div> 
                                                             
                                                     <div class="inpSel">
-                                                        <select id="top_term_popular1" onchange="setTimeout(function(){try{dataLayer.push({'event': 'optionchange','productposition':'1'}); } catch (e) {}},500)">
+                                                        <select id="top_term_popular1">
                                                             <option disabled selected>이용기간 선택하세요</option>
                                                             <option th:value="${5}">5일 (혜택없음)</option>
                                                             <option th:value="${7}">7일 (혜택없음)</option>
@@ -198,7 +183,7 @@
                                         <div class="tab_panel has_minimap">
                                             <div class="panel_top">
                                                 <div class="minimap loc_sub_area">
-                                                    <a  th:href="@{/zf_user/jobs/list/domestic}" target="_blank" title="새 창에서 열기" class="marker marker_top">
+                                                    <a  th:href="@{/main/#banner_list}" target="_blank" title="새 창에서 열기" class="marker marker_top">
                                                         <img th:src="@{/images/companyMyPage/pagebar3.png}" alt="페이지 바로가기" class="img">
                                                     </a>
                                                 </div>
@@ -228,7 +213,7 @@
                                     <h2 class="item_name"><span class="option_txt">(메인페이지 노출 - 기간 설정)</span></h2> 
                                     <div class="area_payment">
                                         <dl class="price_info">
-                                            <dd class="total_price">총 <ins><b class="typo_num">364,000</b>원</ins></dd> 
+                                            <dd class="total_price">총 <ins><b class="typo_num" id="total2">1,000</b>원</ins></dd> 
                                         </dl> 
                                         <button type="button" class="btnSizeL colorWhite btn_detail btn2">상세</button> 
                                         <div class="wrap_btn_payment">
@@ -251,7 +236,7 @@
                                                                             </div> 
                                                                             <div class="original_price">
                                                                                 <span class="price">
-                                                                                    <em class="typo_num">210,000원</em>
+                                                                                    <em class="typo_num" id="modal_total4"></em>원
                                                                                 </span>
                                                                             </div>
                                                                             
@@ -279,37 +264,20 @@
                                                                 </thead>
                                                                
                                                                     <tbody>
+                                                                        <tr class="mtcSch_tr" th:if="${#lists.size(jobList) > 0}" th:each="job : ${ jobList }">
+                                                                            <td><input type="radio" name="radio" th:value="${job.jvNo}"></td>
+                                                                            <td th:text="${job.jvTitle}">각 부분별 신입/경력 채용</td>
+                                                                            <td th:text="${#dates.format(job.jvPeriodEnd, 'yyyy-MM-dd') }"></td>
+                                                                        </tr>
                                                                        
-                                                                    <!-- <tr>
-                                                                        <td class="none_list" style="font-size: 18px;font-weight: 500;color: #3a3a3a;padding: 50px 154px;line-height: 30px;">
-                                                                            등록된 공고가 없습니다.
-                                                                            <P style="font-size: 16px;">공고를 새로 작성하시겠습니까?  <a th:href="@{}" style="text-decoration: underline;color: #a6d178;padding-left: 10px;">작성하러 가기</a></P>
-                                                                        </td>
-                                                                    </tr>   -->
-                                                                    <tr class="mtcSch_tr">
-                                                                        <td><input type="radio"name="radio" value=""></td>
-                                                                        <td>각 부분별 신입/경력 채용</td>
-                                                                        <td>2021-10-24</td>
-                                                                    </tr>
-                                                                    <tr class="mtcSch_tr">
-                                                                        <td><input type="radio"name="radio" value=""></td>
-                                                                        <td>각 부분별 신입/경력 채용</td>
-                                                                        <td>2021-10-24</td>
-                                                                    </tr>
-                                                                    <tr class="mtcSch_tr">
-                                                                        <td><input type="radio"name="radio" value=""></td>
-                                                                        <td>각 부분별 신입/경력 채용</td>
-                                                                        <td>2021-10-24</td>
-                                                                    </tr>
-                                                                    <tr class="mtcSch_tr">
-                                                                        <td><input type="radio"name="radio" value=""></td>
-                                                                        <td>각 부분별 신입/경력 채용</td>
-                                                                        <td>2021-10-24</td>
-                                                                    </tr>
-                                                                    
-                                                                
-                                                                     
-                                                                    </tbody>
+                                                                       
+                                                                        <tr th:unless="${#lists.size(jobList) > 0 }">
+                                                                            <td class="none_list" style="font-size: 18px;font-weight: 500;color: #3a3a3a;padding: 50px 154px;line-height: 30px;">
+                                                                                등록된 공고가 없습니다.
+                                                                                <P style="font-size: 16px;">공고를 새로 작성하시겠습니까?  <a href="" style="text-decoration: underline;color: #a6d178;padding-left: 10px;">작성하러 가기</a></P>
+                                                                            </td>
+                                                                        </tr>  
+                                                                        </tbody>
                                                            
                                                             </table>
                                                         </div>
@@ -321,9 +289,9 @@
                                                     <strong class="title">최종결제금액</strong> 
                                                         <dl class="payment_detail">
                                                             <dt>상품 합계</dt> 
-                                                            <dd><span class="typo_num">300,000</span>원</dd> 
+                                                            <dd><span class="typo_num" id="modal_total5"></span>원</dd> 
                                                         </dl> 
-                                                    <button type="button" class="btnSizeXL colorRed btn_payment total_btn"><em class="typo_num">210,000</em>원 결제하기</button>
+                                                    <button type="button" class="btnSizeXL colorRed btn_payment total_btn" id="total_btn2"><em class="typo_num" id="modal_total6"></em>원 결제하기</button>
                                                 </div> 
                                                 <button type="button" class="btnClose btnC2"><span class="blind">닫기</span></button>
                                             </div>
@@ -342,19 +310,19 @@
                                         <dt>기간 설정</dt> 
                                         <dd class="period_start">
                                             <div class="date_area">
-                                                <input type="date" class="date_start2">
+                                                <input type="date" class="date_start2" id="startDate2">
                                             </div>
                                             <div class="datepicker-trigger">                                        
                                                 <span class="unit_period">부터</span>
                                             </div> 
                                                         
                                                 <div class="inpSel">
-                                                    <select id="top_term_popular2" onchange="setTimeout(function(){try{dataLayer.push({'event': 'optionchange','productposition':'1'}); } catch (e) {}},500)">
+                                                    <select id="top_term_popular2">
                                                         <option disabled selected>이용기간 선택하세요</option>
-                                                        <option value="2">2일</option>
-                                                        <option value="3">3일</option>
-                                                        <option value="4">4일</option>
-                                                        <option value="5">5일</option>
+                                                        <option th:value="${2}">2일</option>
+                                                        <option th:value="${3}">3일</option>
+                                                        <option th:value="${4}">4일</option>
+                                                        <option th:value="${5}">5일</option>
                                                     </select>
                                                     <span class="icoArrow"><img th:src="@{/images/companyMyPage/chevron-down.png}" ></span>
                                                 </div>
@@ -400,6 +368,7 @@
 
 
                     <!--tab_content2-->
+                    <!-- 랭크업 상품 영역 -->
                     <div class="tab_content tab_content2">
                         <div class="wrap_item popular wrap3">
                             <div class="item_default">
@@ -409,7 +378,7 @@
                                     <h2 class="item_name"><span class="option_txt">(지역별+직종별 노출 - 기간 설정)</span></h2> 
                                     <div class="area_payment">
                                         <dl class="price_info">
-                                            <dd class="total_price">총 <ins><b class="typo_num">364,000</b>원</ins></dd> 
+                                            <dd class="total_price">총 <ins><b class="typo_num" id="total3">500</b>원</ins></dd> 
                                         </dl> 
                                         <button type="button" class="btnSizeL colorWhite btn_detail btn3">상세</button> 
                                         <div class="wrap_btn_payment">
@@ -432,7 +401,7 @@
                                                                             </div> 
                                                                             <div class="original_price">
                                                                                 <span class="price">
-                                                                                    <em class="typo_num">210,000원</em>
+                                                                                    <em class="typo_num" id="modal_total7"></em>원
                                                                                 </span>
                                                                             </div>
                                                                             
@@ -459,38 +428,21 @@
                                                                     </tr>
                                                                 </thead>
                                                                
-                                                                    <tbody>
+                                                                     <tbody>
+                                                                        <tr class="mtcSch_tr" th:if="${#lists.size(jobList) > 0}" th:each="job : ${ jobList }">
+                                                                            <td><input type="radio" name="radio" th:value="${job.jvNo}"></td>
+                                                                            <td th:text="${job.jvTitle}">각 부분별 신입/경력 채용</td>
+                                                                            <td th:text="${#dates.format(job.jvPeriodEnd, 'yyyy-MM-dd') }"></td>
+                                                                        </tr>
                                                                        
-                                                                    <tr>
-                                                                        <td class="none_list" style="font-size: 18px;font-weight: 500;color: #3a3a3a;padding: 50px 154px;line-height: 30px;">
-                                                                            등록된 공고가 없습니다.
-                                                                            <P style="font-size: 16px;">공고를 새로 작성하시겠습니까?  <a href="" style="text-decoration: underline;color: #a6d178;padding-left: 10px;">작성하러 가기</a></P>
-                                                                        </td>
-                                                                    </tr>  
-                                                                    <!-- <tr class="mtcSch_tr">
-                                                                        <td><input type="radio"name="radio" value=""></td>
-                                                                        <td>각 부분별 신입/경력 채용</td>
-                                                                        <td>2021-10-24</td>
-                                                                    </tr>
-                                                                    <tr class="mtcSch_tr">
-                                                                        <td><input type="radio"name="radio" value=""></td>
-                                                                        <td>각 부분별 신입/경력 채용</td>
-                                                                        <td>2021-10-24</td>
-                                                                    </tr>
-                                                                    <tr class="mtcSch_tr">
-                                                                        <td><input type="radio"name="radio" value=""></td>
-                                                                        <td>각 부분별 신입/경력 채용</td>
-                                                                        <td>2021-10-24</td>
-                                                                    </tr>
-                                                                    <tr class="mtcSch_tr">
-                                                                        <td><input type="radio"name="radio" value=""></td>
-                                                                        <td>각 부분별 신입/경력 채용</td>
-                                                                        <td>2021-10-24</td>
-                                                                    </tr>
-                                                                    
-                                                                 -->
-                                                                     
-                                                                    </tbody>
+                                                                       
+                                                                        <tr th:unless="${#lists.size(jobList) > 0 }">
+                                                                            <td class="none_list" style="font-size: 18px;font-weight: 500;color: #3a3a3a;padding: 50px 154px;line-height: 30px;">
+                                                                                등록된 공고가 없습니다.
+                                                                                <P style="font-size: 16px;">공고를 새로 작성하시겠습니까?  <a href="" style="text-decoration: underline;color: #a6d178;padding-left: 10px;">작성하러 가기</a></P>
+                                                                            </td>
+                                                                        </tr>  
+                                                                        </tbody>
                                                            
                                                             </table>
                                                         </div>
@@ -502,9 +454,9 @@
                                                     <strong class="title">최종결제금액</strong> 
                                                         <dl class="payment_detail">
                                                             <dt>상품 합계</dt> 
-                                                            <dd><span class="typo_num">300,000</span>원</dd> 
+                                                            <dd><span class="typo_num" id="modal_total8"></span>원</dd> 
                                                         </dl> 
-                                                    <button type="button" class="btnSizeXL colorRed btn_payment"><em class="typo_num">210,000</em>원 결제하기</button>
+                                                    <button type="button" class="btnSizeXL colorRed btn_payment" id="total_btn3"><em class="typo_num" id="modal_total9"></em>원 결제하기</button>
                                                 </div> 
                                                 <button type="button" class="btnClose btnC3"><span class="blind">닫기</span></button>
                                             </div>
@@ -523,19 +475,19 @@
                                         <dt>기간 설정</dt> 
                                         <dd class="period_start">
                                             <div class="date_area">
-                                                <input type="date" class="date_start3">
+                                                <input type="date" class="date_start3" id="startDate3">
                                             </div>
                                             <div class="datepicker-trigger">                                        
                                                 <span class="unit_period">부터</span>
                                             </div> 
                                                           
                                                 <div class="inpSel">
-                                                    <select id="top_term_popular3" onchange="setTimeout(function(){try{dataLayer.push({'event': 'optionchange','productposition':'1'}); } catch (e) {}},500)">
+                                                    <select id="top_term_popular3">
                                                         <option disabled selected>이용기간 선택하세요</option>
-                                                        <option value="2">2일</option>
-                                                        <option value="3">3일</option>
-                                                        <option value="4">4일</option>
-                                                        <option value="5">5일</option>
+                                                        <option th:value="${2}">2일</option>
+                                                        <option th:value="${3}">3일</option>
+                                                        <option th:value="${4}">4일</option>
+                                                        <option th:value="${5}">5일</option>
                                                     </select>
                                                     <span class="icoArrow"><img th:src="@{/images/companyMyPage/chevron-down.png}" ></span>
                                                  </div>
@@ -584,6 +536,9 @@
     </div> 
 <div th:include="common/up.html"></div>    
 <div th:include="common/footer.html"></div>
+<script th:src="@{/js/company/mypage/promotionView.js}"></script>
+<!-- 결제 api -->
+<script th:src="@{https://cdn.iamport.kr/js/iamport.payment-1.1.8.js}" type="text/javascript"></script>
 
 </body>
 </html>

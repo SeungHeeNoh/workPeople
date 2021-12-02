@@ -23,10 +23,16 @@
 		<result property="payMethod" column="PAY_METHOD"/>
 		<result property="payDetail" column="PAY_DETAIL"/>
 	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.JobVacancyLookUp" id="JobVacancyResultMap">
+		<id property="jvNo" column="JV_NO"/>
+		<result property="jvTitle" column="JV_TITLE"/>
+		<result property="jvPeriodEnd" column="JV_PERIOD_END"/>
+	</resultMap>
 	
 	<select id="getListCount" resultType="int">
 		SELECT COUNT(*)
 		  FROM PROMOTION_ORDER
+		  WHERE M_NO = #{userNo}
 	</select>
 	
 	<select id="selectList" resultMap="orderResultMap" parameterType="Map">
@@ -58,6 +64,67 @@
 		 WHERE TO_CHAR(SYSDATE, 'YYMMDD') > TO_CHAR(P_END_DATE, 'YYMMDD')
            AND M_NO = #{userNo}
 	</select>
+	
+	<select id="selectcino" resultType="int">
+		SELECT CI_NO
+		  FROM COMPANY_INFO
+          WHERE M_NO = #{userNo}
+	</select>
+	
+	<select id="selectAllJob" resultMap="JobVacancyResultMap" >
+		 SELECT 
+                 JV_NO
+                , JV_TITLE
+                , JV_PERIOD_END
+		  FROM JOB_VACANCY
+          WHERE CI_NO = #{cino}
+            AND JV_PERIOD_END >= SYSDATE
+	</select>
+	
+	<insert id="insertOdert" parameterType="Map">
+		INSERT INTO PROMOTION_ORDER
+		(
+		   P_NO
+		 , P_CODE
+		 , P_START_DATE
+		 , P_END_DATE
+		 , JV_NO
+		 , M_NO
+		)
+		VALUES
+		(
+		   SEQ_PROMOTION_ORDER_NO.NEXTVAL
+		 , #{orderNo}
+		 , #{newStartDate}
+		 , #{endDate}
+		 , #{jvNo}
+		 , #{userNo}
+		)
+	</insert> 
+	
+	<insert id="insertPayment" parameterType="Map">
+		INSERT INTO PAYMENT
+		(
+		    PAY_NO
+		  , P_NO
+		  , PAY_DATE
+		  , PAY_PRICE
+		  , PAY_METHOD
+		  , PAY_DETAIL
+		)
+		VALUES
+		(
+		   SEQ_PAYMENT_NO.NEXTVAL
+		 , SEQ_PROMOTION_ORDER_NO.CURRVAL
+		 , SYSDATE
+		 , #{amount}
+		 , '카드결제'
+		 , #{imp}
+		)
+	</insert> 
+	
+	
+	
 
 
 </mapper>

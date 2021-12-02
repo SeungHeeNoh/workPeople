@@ -5,7 +5,6 @@
     <title>유료서비스 이용내역</title>
     <link rel="stylesheet" th:href="@{/css/common/common.css}">
     <link rel="stylesheet" th:href="@{/css/company/mypage/paidList.css}">
-    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
 <div th:include="common/header.html"></div>
@@ -106,7 +105,9 @@
                                     </tr>  
                                     </tbody>
                                 </table>
-                                <div th:replace="common/paging.html"></div>
+                                <div th:if="${#lists.size(orderList) > 0}">
+                                	<div th:replace="common/paging.html"></div>
+                                </div>
                             	</div>
                             </div>
                             <!-- 리스트 영역 // -->
