@@ -15,38 +15,39 @@
         <result property="acDateFormat" column="AC_DATE_FORMAT"/>
         <result property="rbDateFormat" column="RB_DATE_FORMAT"/>
         <result property="jvPeriodEndFormat" column="JV_PERIOD_END_FORMAT"/>
-<!--        <result property="jvPeriodEndOver" column="JV_PERIOD_END_OVER"/>-->
+        <result property="jvPeriodEndOver" column="JV_PERIOD_END_OVER"/>
     </resultMap>
 
     <select id="jobVacancyLookUpList" resultMap="jobVacancy">
+
         SELECT
             DISTINCT
             JV_NO
-                   , JV_TITLE
-                   , JV_ADDRESS
-                   , JV_PERIOD_END
-                   , M_NAME
-                   , EL_NAME
-                   , S_NAME
-                   , AC_DATE
-                   , RB_DATE
-                   , TO_CHAR(TO_DATE(JV_PERIOD_END,'YYYY.MM.dd')) JV_PERIOD_END_FORMAT
-                   , TO_CHAR(TO_DATE(AC_DATE,'YYYY.MM.dd')) AC_DATE_FORMAT
-                   , TO_CHAR(TO_DATE(RB_DATE,'YYYY.MM.dd')) RB_DATE_FORMAT
-<!--                    , CASE WHEN JV_PERIOD_END-SYSDATE > 0 THEN 'over'-->
-<!--                    WHEN JV_PERIOD_END-SYSDATE <= 0 THEN 'notOver'-->
-<!--                    END AS "JV_PERIOD_END_OVER"-->
+           , JV_TITLE
+           , JV_ADDRESS
+           , JV_PERIOD_END
+           , M_NAME
+           , EL_NAME
+           , S_NAME
+           , AC_DATE
+           , RB_DATE
+           , TO_CHAR(TO_DATE(JV_PERIOD_END,'YYYY.MM.dd')) JV_PERIOD_END_FORMAT
+           , TO_CHAR(TO_DATE(AC_DATE,'YYYY.MM.dd')) AC_DATE_FORMAT
+           , TO_CHAR(TO_DATE(RB_DATE,'YYYY.MM.dd')) RB_DATE_FORMAT
+            , CASE WHEN JV_PERIOD_END-SYSDATE <![CDATA[>]]> 0 THEN 1
+            WHEN JV_PERIOD_END-SYSDATE <![CDATA[<=]]> 0 THEN 2
+            END AS "JV_PERIOD_END_OVER"
         FROM JOB_VACANCY JV
-                 JOIN COMPANY_INFO USING(CI_NO)
-                 JOIN MEMBER M USING(M_NO)
-                 JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
-                 JOIN EXPERIENCE_LEVEL EL ON(JVEL.EL_NO=EL.EL_NO)
-                 JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
-                 JOIN SECTOR S ON(RI.S_NO=S.S_NO)
-                 LEFT JOIN APPLY_COMPANY USING (JV_NO)
-                 LEFT OUTER JOIN RESUME_BROWSE RB USING (CI_NO)
-                 LEFT OUTER JOIN RESUME R ON (R.R_NO = RB.R_NO)
-                 JOIN SCRAP USING(JV_NO)
+         JOIN COMPANY_INFO USING(CI_NO)
+         JOIN MEMBER M USING(M_NO)
+         JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
+         JOIN EXPERIENCE_LEVEL EL ON(JVEL.EL_NO=EL.EL_NO)
+         JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
+         JOIN SECTOR S ON(RI.S_NO=S.S_NO)
+         LEFT JOIN APPLY_COMPANY USING (JV_NO)
+         LEFT OUTER JOIN RESUME_BROWSE RB USING (CI_NO)
+         LEFT OUTER JOIN RESUME R ON (R.R_NO = RB.R_NO)
+         JOIN SCRAP USING(JV_NO)
         WHERE SCRAP.M_NO = #{no}
         ORDER BY 1
 

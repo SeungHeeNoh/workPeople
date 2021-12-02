@@ -11,9 +11,13 @@
     <link rel="stylesheet" href="/css/personal/myPage/latestPublication.css">
     
     <title>최근 본 채용공고</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        let statusYResume = [[${resume}]],
+            statusYResumeRNo = [[${resumeNo}]];
+        /*]]>*/
+    </script>
 </head>
 <body>
 <div th:include="common/header.html"></div>
@@ -31,7 +35,8 @@
                 <div class="home_content_3_3">마감일</div>
             </div>
 
-            <div th:each="job : ${jobVacancyLookUpList}">
+
+            <div th:each="job : ${jobVacancyLookUpList}" class="content_title_text4_container">
                 <div class="content_title_text4">
                     <input type="checkbox" class="checkBtn1">
                     <div class="content_title_text4_1" th:text="${job.mName}"></div>
@@ -43,10 +48,45 @@
                             <div class="content_title_text4_detail_3" th:text="${job.jvAddress}"></div>
                         </div>
                     </div>
-                    <div class="content_title_text4_detail_wrap2">
-                        <button class="content_title_text4_btn">즉시지원</button>
-                        <div class="content_title_text4_2">~<div th:text="${job.jvPeriodEndFormat}"></div></div>
-                    </div>
+
+
+<!--                    <div class="content_title_text4_detail_wrap2">-->
+<!--                        <button class="content_title_text4_btn" th:value="${job.jvNo}">즉시지원</button>-->
+<!--                        <div class="content_title_text4_2">-->
+<!--                            <span>~</span>-->
+<!--                            <span th:text="${job.jvPeriodEndFormat}"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <th:block th:if="${job.applyYN == true}">
+                        <div class="content_title_text4_detail_wrap2">
+                            <div style="color: blue; padding-left:17px;">지원 완료</div>
+                            <div class="content_title_text4_2" style="color: blue; margin-left:0">
+                                <span style="color: blue">~</span>
+                                <span style="color: blue" th:text="${job.jvPeriodEndFormat}"></span>
+                            </div>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${job.applyYN == false}">
+                        <th:block th:if="${job.jvPeriodEndOver == 1}">
+                            <div class="content_title_text4_detail_wrap2" style="right: 43px">
+                                <button class="content_title_text4_btn" th:value="${job.jvNo}">즉시지원</button>
+                                <div class="content_title_text4_2" style="margin-left: 4px">
+                                    <span style="color: #c4c4c4">~</span>
+                                    <span th:text="${job.jvPeriodEndFormat}"></span>
+                                </div>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${job.jvPeriodEndOver == 2}">
+                            <div class="content_title_text4_detail_wrap2">
+                                <div style="color: red; padding-left:17px;">마감된 공고</div>
+                                <div class="content_title_text4_2" style="color: red; margin-left:0">
+                                    <span style="color: red">~</span>
+                                    <span style="color: red" th:text="${job.jvPeriodEndFormat}"></span>
+                                </div>
+                            </div>
+                        </th:block>
+                    </th:block>
+
                 </div>
                 <hr class="hr">
             </div>
@@ -57,7 +97,9 @@
         </div>
         </section>
     </div>
+<script th:src="@{/js/personal/mypage/latestPublication.js}"></script>
 <div th:include="common/footer.html"></div>
+
 </body>
 
 </html>

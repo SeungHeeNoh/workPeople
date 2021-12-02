@@ -16,6 +16,7 @@
         <result property="acDateFormat" column="AC_DATE_FORMAT"/>
         <result property="rbDateFormat" column="RB_DATE_FORMAT"/>
         <result property="jvPeriodEndFormat" column="JV_PERIOD_END_FORMAT"/>
+        <result property="jvPeriodEndOver" column="JV_PERIOD_END_OVER"/>
     </resultMap>
 
     <select id="jobVacancyLookUpList" resultMap="jobVacancy">
@@ -33,6 +34,9 @@
            , TO_CHAR(AC_DATE,'YYYY.MM.dd') AC_DATE_FORMAT
            , TO_CHAR(RB_DATE,'YYYY.MM.dd') RB_DATE_FORMAT
            , TO_CHAR(JV_PERIOD_END,'YYYY.MM.dd') JV_PERIOD_END_FORMAT
+           , CASE WHEN JV_PERIOD_END-SYSDATE <![CDATA[>]]> 0 THEN 1
+                  WHEN JV_PERIOD_END-SYSDATE <![CDATA[<=]]> 0 THEN 2
+            END AS "JV_PERIOD_END_OVER"
         FROM JOB_VACANCY JV
          JOIN COMPANY_INFO USING(CI_NO)
          JOIN MEMBER M USING(M_NO)

@@ -50,7 +50,6 @@ public class ScrapController {
 			} else{
 				job.setApplyYN(false);
 			}
-
 		}
 
 		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
