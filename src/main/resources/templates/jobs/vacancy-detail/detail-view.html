@@ -31,8 +31,15 @@
 							<h2 th:text="${jobVacancyInformation.jobVacancy.title}"></h2>
 						</div>
 						<div>
-							<button type="button" class="scrap_button">스크랩<span class="blind">설정</span></button>
-							<button type="button" class="apply_button"><span>D-1</span>입사지원</button>
+							<th:block th:if="${#authorization.expression('isAnonymous()') or #authorization.expression('hasRole(''PERSONAL'')')}">
+								<button type="button" class="scrap_button" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_button' : '') + (#strings.equals(jobVacancyInformation.interestedCompany, 'Y') ? 'active':'')}" th:attr="data-company-no=${jobVacancyInformation.companyNo}">스크랩
+									<span class="blind">
+										<span th:if="${#strings.equals(jobVacancyInformation.interestedCompany, 'Y')}" th:remove="tag">해제</span>
+										<span th:unless="${#strings.equals(jobVacancyInformation.interestedCompany, 'Y')}" th:remove="tag">설정</span>
+									</span>
+								</button>
+								<button type="button" class="apply_button"><span>D-1</span>입사지원</button>
+							</th:block>
 						</div>
 					</div>
 				</div>
