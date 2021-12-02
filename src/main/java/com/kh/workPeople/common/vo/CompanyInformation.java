@@ -19,13 +19,14 @@ public class CompanyInformation {
 	private Attachment attachment;
 	private Sector sector;
 	private CompanyType companyType;
-	private Member member;
 	
 	public CompanyInformation() {}
 
+	
+
 	public CompanyInformation(int no, String registerNumber, String ceoName, Date foundingDate, int employeeNumber,
 			String businessDetail, String companyHistory, String companyVision, String homepage, Attachment attachment,
-			Sector sector, CompanyType companyType, Member member) {
+			Sector sector, CompanyType companyType) {
 		super();
 		this.no = no;
 		this.registerNumber = registerNumber;
@@ -39,9 +40,7 @@ public class CompanyInformation {
 		this.attachment = attachment;
 		this.sector = sector;
 		this.companyType = companyType;
-		this.member = member;
 	}
-
 
 
 
@@ -50,11 +49,9 @@ public class CompanyInformation {
 	}
 
 
-
 	public void setNo(int no) {
 		this.no = no;
 	}
-
 
 
 	public String getRegisterNumber() {
@@ -62,11 +59,9 @@ public class CompanyInformation {
 	}
 
 
-
 	public void setRegisterNumber(String registerNumber) {
 		this.registerNumber = registerNumber;
 	}
-
 
 
 	public String getCeoName() {
@@ -74,11 +69,9 @@ public class CompanyInformation {
 	}
 
 
-
 	public void setCeoName(String ceoName) {
 		this.ceoName = ceoName;
 	}
-
 
 
 	public Date getFoundingDate() {
@@ -86,11 +79,9 @@ public class CompanyInformation {
 	}
 
 
-
 	public void setFoundingDate(Date foundingDate) {
 		this.foundingDate = foundingDate;
 	}
-
 
 
 	public int getEmployeeNumber() {
@@ -98,11 +89,9 @@ public class CompanyInformation {
 	}
 
 
-
 	public void setEmployeeNumber(int employeeNumber) {
 		this.employeeNumber = employeeNumber;
 	}
-
 
 
 	public String getBusinessDetail() {
@@ -116,7 +105,6 @@ public class CompanyInformation {
 	}
 
 
-
 	public String getCompanyHistory() {
 		return companyHistory;
 	}
@@ -128,11 +116,9 @@ public class CompanyInformation {
 	}
 
 
-
 	public String getCompanyVision() {
 		return companyVision;
 	}
-
 
 
 	public void setCompanyVision(String companyVision) {
@@ -140,11 +126,9 @@ public class CompanyInformation {
 	}
 
 
-
 	public String getHomepage() {
 		return homepage;
 	}
-
 
 
 	public void setHomepage(String homepage) {
@@ -152,11 +136,9 @@ public class CompanyInformation {
 	}
 
 
-
 	public Attachment getAttachment() {
 		return attachment;
 	}
-
 
 
 	public void setAttachment(Attachment attachment) {
@@ -164,11 +146,9 @@ public class CompanyInformation {
 	}
 
 
-
 	public Sector getSector() {
 		return sector;
 	}
-
 
 
 	public void setSector(Sector sector) {
@@ -176,28 +156,15 @@ public class CompanyInformation {
 	}
 
 
-
 	public CompanyType getCompanyType() {
 		return companyType;
 	}
 
 
-
 	public void setCompanyType(CompanyType companyType) {
 		this.companyType = companyType;
 	}
-	
-	
 
-
-
-	public Member getMember() {
-		return member;
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
-	}
 
 	@Override
 	public String toString() {
@@ -205,11 +172,9 @@ public class CompanyInformation {
 				+ ", foundingDate=" + foundingDate + ", employeeNumber=" + employeeNumber + ", businessDetail="
 				+ businessDetail + ", companyHistory=" + companyHistory + ", companyVision=" + companyVision
 				+ ", homepage=" + homepage + ", attachment=" + attachment + ", sector=" + sector + ", companyType="
-				+ companyType + ", member=" + member + "]";
+				+ companyType + "]";
 	}
-
 	
-
 
 
 

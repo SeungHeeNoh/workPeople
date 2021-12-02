@@ -19,7 +19,6 @@
 		<result property="lockCount" column="M_LOCK_COUNT"/>
 		<result property="status" column="M_STATUS"/>
 		<result property="tempPwdYn" column="M_TEMP_PWD_YN"/>
-		<result property="enrollDateformat" column="M_ENROLL_DATE_FORMAT"/>
 		<collection property="memberRoleList" resultMap="memberRoleResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.MemberRole" id="memberRoleResultMap">
@@ -63,7 +62,6 @@
 				     , M_EMAIL
 				     , M_ENROLL_DATE
                      , M_STATUS
-                     , TO_CHAR(M_ENROLL_DATE,'YYYY-MM-dd') M_ENROLL_DATE_FORMAT
 				  FROM MEMBER
                   JOIN COMPANY_INFO USING (M_NO)
 			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) WHERE A_CODE=2 ORDER BY a.M_NO)
@@ -88,7 +86,6 @@
 				     , M_EMAIL
 				     , M_ENROLL_DATE
                      , M_STATUS
-                     , TO_CHAR(M_ENROLL_DATE,'YYYY-MM-dd') M_ENROLL_DATE_FORMAT
 				  FROM MEMBER
                   JOIN COMPANY_INFO USING (M_NO)
 			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) WHERE A_CODE=2 and b.m_no=${no} ORDER BY a.M_NO

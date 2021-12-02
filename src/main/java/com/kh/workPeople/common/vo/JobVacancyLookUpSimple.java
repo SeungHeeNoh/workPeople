@@ -14,14 +14,15 @@ public class JobVacancyLookUpSimple {
     private String aiDateFormat;    // 면접일 문자열
     private String aiTimeFormat;    // 면접 시간 문자열
     
-    private Sector sector;
-
     public JobVacancyLookUpSimple() {
 
     }
 
-    public JobVacancyLookUpSimple(int no, String name, int count, String type, Date aiDate, Date aiTime,
-			String aiDateFormat, String aiTimeFormat, Sector sector) {
+   
+
+
+	public JobVacancyLookUpSimple(int no, String name, int count, String type, Date aiDate, Date aiTime,
+			String aiDateFormat, String aiTimeFormat) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -31,8 +32,8 @@ public class JobVacancyLookUpSimple {
 		this.aiTime = aiTime;
 		this.aiDateFormat = aiDateFormat;
 		this.aiTimeFormat = aiTimeFormat;
-		this.sector = sector;
 	}
+
 
 
 
@@ -99,23 +100,14 @@ public class JobVacancyLookUpSimple {
     public void setAiTimeFormat(String aiTimeFormat) {
         this.aiTimeFormat = aiTimeFormat;
     }
-    
-    
-
-    public Sector getSector() {
-		return sector;
-	}
-
-	public void setSector(Sector sector) {
-		this.sector = sector;
-	}
 
 	@Override
 	public String toString() {
 		return "JobVacancyLookUpSimple [no=" + no + ", name=" + name + ", count=" + count + ", type=" + type
 				+ ", aiDate=" + aiDate + ", aiTime=" + aiTime + ", aiDateFormat=" + aiDateFormat + ", aiTimeFormat="
-				+ aiTimeFormat + ", sector=" + sector + "]";
+				+ aiTimeFormat + "]";
 	}
+    
 
 	
 }
