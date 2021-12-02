@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.workPeople.companyInformation.model.service.CompanyInformationService;
+import com.kh.workPeople.companyInformation.model.vo.CompanyDetailInformation;
 
 @Controller
 @RequestMapping("/company-information")
@@ -22,12 +23,11 @@ public class CompanyInformationController {
 
 	@GetMapping("/detail-view")
 	public ModelAndView detailView(@RequestParam(defaultValue="0") int no, Model model) {
-		Map<String, Object> map = companyInformationService.getCompanyInformation(no);
+		CompanyDetailInformation companyDetailInformation = companyInformationService.getCompanyDetailInformation(no);
 		ModelAndView mv = new ModelAndView();
 		
-		if(map.get("member") != null && map.get("companyInformation") != null) {
-			mv.addObject("member", map.get("member"));
-			mv.addObject("companyInformation", map.get("companyInformation"));
+		if(companyDetailInformation != null) {
+			mv.addObject("companyDetailInformation",companyDetailInformation);
 			mv.addObject("newLineChar", "\n");
 			mv.setViewName("company-information/detail-view");
 		} else {

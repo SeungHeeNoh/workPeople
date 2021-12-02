@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.kh.workPeople.common.vo.CompanyInformation;
+import com.kh.workPeople.companyInformation.model.vo.CompanyDetailInformation;
 import com.kh.workPeople.configuration.WorkPeopleApplication;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +27,7 @@ public class CompanyInformationMapperTests {
 	
 	@Test
 	public void testGetCompanyInformationSuccess() {
-		CompanyInformation companyInformation = companyInformationMapper.getCompanyInformation(2);
+		CompanyDetailInformation companyInformation = companyInformationMapper.getCompanyDetailInformation(1);
 		
 		assertNotNull(companyInformation);
 		log.info(companyInformation.toString());
@@ -34,7 +35,7 @@ public class CompanyInformationMapperTests {
 	
 	@Test
 	public void testGetCompanyInformationFail() {
-		CompanyInformation companyInformation = companyInformationMapper.getCompanyInformation(20);
+		CompanyDetailInformation companyInformation = companyInformationMapper.getCompanyDetailInformation(20);
 		
 		assertNull(companyInformation);
 //		log.info(companyInformation.toString());

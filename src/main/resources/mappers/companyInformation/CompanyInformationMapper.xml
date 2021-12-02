@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.workPeople.companyInformation.model.dao.CompanyInformationMapper">
-<resultMap type="com.kh.workPeople.common.vo.CompanyInformation" id="companyResultMap">
+	<resultMap type="com.kh.workPeople.companyInformation.model.vo.CompanyDetailInformation" id="companyDetailInformationResultMap">
+		<result property="companyName" column="COMPANY_NAME"/>
+		<result property="address" column="ADDRESS"/>
+		<association property="companyInformation" resultMap="companyResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.CompanyInformation" id="companyResultMap">
 		<id property="no" column="CI_NO"/>
 		<result property="registerNumber" column="CI_COMPANY_REGISTER_NUMBER"/>
 		<result property="ceoName" column="CI_CEONAME"/>
@@ -31,18 +36,11 @@
 		<id property="no" column="CT_NO"/>
 		<result property="name" column="CT_NAME"/>
 	</resultMap>
-	<select id="getMember" parameterType="_int" resultMap="Common.memberResultMap">
+	<select id="getCompanyDetailInformation" parameterType="_int" resultMap="companyDetailInformationResultMap">
 		SELECT 
-		       M_NAME
-		     , M_POSTCODE
-		     , M_ROADADDRESS
-		     , M_DETAILADDRESS
-		  FROM MEMBER
-		 WHERE M_NO = (SELECT M_NO FROM COMPANY_INFO WHERE CI_NO = #{no})
-	</select>
-	<select id="getCompanyInformation" parameterType="_int" resultMap="companyResultMap">
-		SELECT 
-		       CI_NO
+		       M_NAME COMPANY_NAME
+		     , M_ROADADDRESS || M_DETAILADDRESS ADDRESS
+		     , CI_NO
 		     , CI_CEONAME
 		     , CI_FOUNDING_DATE
 		     , CI_EMPLOYEE_NUMBER
@@ -65,6 +63,7 @@
 		  LEFT JOIN SECTOR USING(S_NO)
 		  LEFT JOIN COMPANY_TYPE USING(CT_NO)
 		  LEFT JOIN ATTACHMENT USING(A_NO)
+		  LEFT JOIN MEMBER USING(M_NO)
 		 WHERE CI_NO = #{no}
 	</select>
 </mapper>

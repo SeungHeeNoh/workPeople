@@ -1,9 +1,9 @@
 package com.kh.workPeople.companyInformation.model.service;
 
-import java.util.Map;
+import com.kh.workPeople.companyInformation.model.vo.CompanyDetailInformation;
 
 public interface CompanyInformationService {
 
-	Map<String, Object> getCompanyInformation(int no);
+	CompanyDetailInformation getCompanyDetailInformation(int no);
 
 }

@@ -1,12 +1,10 @@
 package com.kh.workPeople.companyInformation.model.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.workPeople.companyInformation.model.dao.CompanyInformationMapper;
+import com.kh.workPeople.companyInformation.model.vo.CompanyDetailInformation;
 
 @Service
 public class CompanyInformationServiceImpl implements CompanyInformationService {
@@ -19,13 +17,10 @@ public class CompanyInformationServiceImpl implements CompanyInformationService 
 	}
 
 	@Override
-	public Map<String, Object> getCompanyInformation(int no) {
-		Map<String, Object> map = new HashMap<>();
+	public CompanyDetailInformation getCompanyDetailInformation(int no) {
+		CompanyDetailInformation companyDetailInformation = companyInformationMapper.getCompanyDetailInformation(no);
 		
-		map.put("member", companyInformationMapper.getMember(no));
-		map.put("companyInformation", companyInformationMapper.getCompanyInformation(no));
-		
-		return map;
+		return companyDetailInformation;
 	}
 
 }
