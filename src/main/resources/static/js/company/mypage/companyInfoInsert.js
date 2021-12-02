@@ -158,8 +158,8 @@ $(document).ready(function() {
 function dis(){
   if($('#dis').css('display') == 'none'){
   $('#dis').show();
-      }else{
-      $('#dis').hide();
+  }else{
+  $('#dis').hide();
   }
 }  
 // 로고 팝업창 숨기기
@@ -167,59 +167,97 @@ function dis(){
 // 로고 팝업창 
 
 $(function() {
-  
+
 
   /* 파일선택 완료시 */
   $('#devSelectLogo').on('change', function () {
-      var $me = $(this);
-      var selectedFileName = $me.val();
-      alert(selectedFileName);
-      selectedFileName = CorpInfo.Util.Path.getFileName(selectedFileName);
-      
-      var logoFileName = $('#devSelectLogoName');
-
-      var fileExt = CorpInfo.Util.Path.getExtension(selectedFileName).toLowerCase();
-      if (fileExt !== 'jpeg' && fileExt !== 'jpg' && fileExt !== 'png') {
-          $('#devSelectLogo').val('');
-          logoFileName.html('');
-          alert('파일 형식이 올바르지 않습니다.');
-          return false;
-      }
-      else {
-          logoFileName.html(selectedFileName);
-      }
+  
+  	var $fileLogo = $('#devSelectLogo');
+	var selectedFileName = $fileLogo.val();
+  	var FileName = selectedFileName.substr(12);
+  	
+  	$('#devSelectLogoName').text(FileName);
+  
   })
 
   /* 로고 삭제시 */
-  $('#devDeleteLogo').on('click', function () {
-      if (parent && parent.corpView && parent.corpView.onDeleteLogo) {
-          parent.corpView.onDeleteLogo('C');
-      }
+  $('#devLogoDel').on('click', function () {
+  
+  	if(confirm("로고를 삭제하시겠습니까?")){
+     	$.ajax({
+		    url: "/company/mypage/deleteFile",
+		    type: "POST",
+		    data: new FormData($("#devInfoForm")[0]),
+		    enctype: 'multipart/form-data',
+		    processData: false,
+		    contentType: false,
+		    cache: false,
+		    success: function (date) {
+		    	if(date > 0){
+		    	   alert("로고가 삭제됐습니다.");
+		    	  	 $('.logoBefore').css("display","block");
+   					 $('.logoAfter').css("display","none");
+		    	} else {
+		    	 alert("로고 삭제에 실패했습니다.");
+		    	}
+		     
+		    },
+		    error: function () {
+		      alert("통신 실패!! 상담원에게 문의주세요!");
+		    }
+		  });
+     	
+	      }
+   
+   	 
+   	 
   })
 
   /* 로고 업로드 레이어 닫기 */
-  $('#devCloseLayer').on('click', function () {
-      if (parent && parent.corpView && parent.corpView.closeLogoLy) {
-          parent.corpView.closeLogoLy();
-      }
+  $('#devLogoModify').on('click', function () {
+     $('#dis').show();
   })
 
   /* 로고 업로드 */
   $('#devSubmit').on('click', function () {
+    
       if (isValidForm()) {
-          var ua = navigator.userAgent.toLowerCase();
-          if (ua.indexOf('msie') > -1 || ua.indexOf('trident') > -1 || ua.indexOf('edge') > -1) {     
-              document.charset = "euc-kr";
+       if(confirm("로고를 등록하시겠습니까?")){
+	     	$.ajax({
+			    url: "/company/mypage/uploadFile",
+			    type: "POST",
+			    data: new FormData($("#devInfoForm")[0]),
+			    enctype: 'multipart/form-data',
+			    processData: false,
+			    contentType: false,
+			    cache: false,
+			    success: function (date) {
+			    	if(date > 0){
+			    	   alert("로고가 등록됐습니다.");
+			    	   $('.logoBefore').css("display","none");
+				   	   $('.logoAfter').css("display","block");
+				       $('#dis').hide();
+				     	preview();
+			    	} else {
+			    	 alert("로고 등록에 실패했습니다.");
+			    	}
+			     
+			    },
+			    error: function () {
+			      alert("통신 실패!! 상담원에게 문의주세요!");
+			    }
+			  });
+	     	
+	     	
 	      }
-          $('#frmLogo').submit();
-         
-	      }
+	     } 
 	  })
 	
 	
 	var isValidForm = function () {
 	var $fileLogo = $('#devSelectLogo');
 	var selectedFileName = $fileLogo.val();
+	
 	
 	  if (!selectedFileName) {
 	      alert('로고를 선택해 주십시오.');
@@ -229,6 +267,26 @@ $(function() {
 	  return true;
      
     }
+    
+    /* input type file 요소들 */
+	let fileElements = document.querySelector("#devSelectLogo");
+	/* div image_area 요소들 */
+	let imageArea = document.querySelector(".logo");
+	
+	
+	function preview(){
+		if(fileElements.files && fileElements.files[0]){
+			let reader = new FileReader();
+			reader.readAsDataURL(fileElements.files[0]);
+			reader.onload = function(){
+				imageArea.innerHTML = '<img id="logoimg" src="' + reader.result + '">';
+				let image = document.querySelector("#logoimg");
+				image.width = "188";
+				image.height = "79";
+			}
+		}
+		
+	}
     
     
     

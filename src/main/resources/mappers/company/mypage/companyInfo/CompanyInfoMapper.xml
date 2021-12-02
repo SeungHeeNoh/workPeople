@@ -145,6 +145,67 @@
 	     WHERE CI_NO = #{no}	
 	</update>
  
+	<insert id="insertAttachment" parameterType="com.kh.workPeople.common.vo.Attachment">
+		INSERT INTO ATTACHMENT
+		(
+		   A_NO
+		 , A_ORIGIN_NAME
+		 , A_CHANGE_NAME
+		 , A_FILE_PATH
+		 , A_STATUS
+		 , A_CREATE
+		 , A_UPDATE
+		)
+		VALUES
+		(
+		   SEQ_ATTACHMENT_NO.NEXTVAL
+		 , #{originName}
+		 , #{changeName}
+		 , #{filePath}
+		 , DEFAULT
+		 , DEFAULT
+		 , DEFAULT
+		)
+	</insert> 
+	
+	<update id="updatecompanyAtt" parameterType="com.kh.workPeople.common.vo.CompanyInformation">
+		UPDATE COMPANY_INFO
+		   SET A_NO = SEQ_ATTACHMENT_NO.CURRVAL
+	     WHERE CI_NO = #{companyNO}	
+	</update>
+	
+	<select id="selectcompanyAno" resultMap="companyResultMap">
+		 SELECT A_NO
+		  FROM COMPANY_INFO
+          WHERE CI_NO = #{companyNO}	
+	</select>
+	
+	<select id="selectAnoCount" resultType="int">
+		 SELECT COUNT(A_NO)
+		  FROM COMPANY_INFO
+          WHERE CI_NO = #{companyNO}	
+	</select>
+	
+	<update id="updateAttachment" parameterType="Map">
+		UPDATE ATTACHMENT
+		   SET A_ORIGIN_NAME = #{att.originName}	
+		     , A_CHANGE_NAME = #{att.changeName}	
+		     , A_FILE_PATH = #{att.filePath}	
+		     , A_UPDATE = SYSDATE
+	     WHERE A_NO = #{ano}	
+	</update>
+	
+	<update id="deletecompanyAtt" parameterType="com.kh.workPeople.common.vo.CompanyInformation">
+		UPDATE COMPANY_INFO
+		   SET A_NO = DEFAULT
+	     WHERE CI_NO = #{companyNO}	
+	</update>
+	
+	<delete id="deleteFile" parameterType="com.kh.workPeople.common.vo.Attachment">
+		DELETE FROM ATTACHMENT
+		 WHERE A_NO = #{ano}	
+	</delete>
+	
 	
 
 

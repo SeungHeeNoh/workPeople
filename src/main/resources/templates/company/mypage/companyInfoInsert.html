@@ -6,18 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/common/common.css}">
     <link rel="stylesheet" th:href="@{/css/company/mypage/companyInfoInsert.css}">
     <link rel="stylesheet" th:href="@{/css/company/mypage/logoPopup.css}">
-    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script th:src="@{/js/company/mypage/companyInfoInsert.js}"></script>
-    <!-- Postcodify 로딩 (주소 검색) -->
-	<script th:src="@{//d1p7wdleee1q2z.cloudfront.net/post/search.min.js}"></script>
-	<script type="text/javascript">
-		const successMessage = '[[${ message }]]';
-		
-		if(successMessage){
-			alert(successMessage);
-		}
-	
-	</script>
+ 
 </head>
 <body>
 <div th:include="common/header.html"></div>
@@ -50,17 +39,29 @@
                             </ul>
                         </div>
                         <div class="txt_box updown">직접 등록해보세요!!</div>
-                        <div class="logo_area"> 
+                        <div class="logo_area" > 
+                        
+                  
+                            
                             <!-- 로고 업로드 전 -->
-                            <button type="button" class="logo_btn" onclick="dis()">
-                                <span>로고업로드</span>
-                            </button>
+                            <div class="logoBefore"  th:style="${companyInfo.attachment == null ? 'display:block' : 'display:none'}">
+	                            <button type="button" class="logo_btn" onclick="dis()">
+	                                <span>로고업로드</span>
+	                            </button>
+                            </div>
                             <!-- 로고 업로드 후 -->
-                            <!-- <p class="logo"><img th:src="@{https://img.jobkorea.co.kr/trans/c/200x80/r/k/JK_Co_rkskek012.png?v=20211116115938}" alt="잡코리아"></p>
-                            <p class="btn">
-                                <button type="button" class="infoBtn infoBtnDel" id="devLogoDel"><span class="blind">삭제</span></button>
-                                <button type="button" class="infoBtn infoBtnMod" id="devLogoModify"><span class="blind">수정</span></button>
-                            </p> -->
+                            <div class="logoAfter"  th:style="${companyInfo.attachment != null ? 'display:block' : 'display:none'}">
+	                            <p th:if="${companyInfo.attachment == null}"  class="logo"></p>
+	                            <p th:unless="${companyInfo.attachment == null}" class="logo" >
+	                            	<img id="logoimg" th:src="@{/images/uploadFiles/{changeName}(changeName=${companyInfo.attachment.changeName})}">
+	                            </p>
+	                            <p class="btn">
+	                                <button type="button" class="infoBtn infoBtnDel" id="devLogoDel"><span class="blind">삭제</span></button>
+	                                <button type="button" class="infoBtn infoBtnMod" id="devLogoModify"><span class="blind">수정</span></button>
+	                            </p> 
+                            </div>
+                            
+                            
                         </div> 
                         <!-- 로고 팝업창 -->
                         <div class="logoUploadWrap" id="dis">
@@ -81,7 +82,7 @@
                                                     <label for="devSelectLogo" id="devSelectLogoName">로고선택</label>
                                                 </span>
                                                 <button type="button" class="btnUpload" id="devSubmit"><span>등록하기</span></button>
-                                                <input type="file" id="devSelectLogo" name="up_file" accept=".jpg, .jpeg, .png" style="display:none" >
+                                                <input type="file" id="devSelectLogo"  name="singleFile" accept=".jpg, .jpeg, .png" style="display:none" >
                                             </fieldset>
                                         </div>
                                         <!-- 파일첨부한 경우 //-->
@@ -192,7 +193,6 @@
                             </div>
                         </div>
                     </div> 
-                    
                     <div class="comInfo_area">
                         <div class="comInfo_wrap">
                             <h3 class="info_hd_2"><label for="lb_History">연혁 및 실적</label></h3>
@@ -230,7 +230,9 @@
 	<!-- 주소 "검색" 팝업 레이어 -->
 	<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
    
-	
+	<script th:src="@{/js/company/mypage/companyInfoInsert.js}"></script>
+    <!-- Postcodify 로딩 (주소 검색) -->
+	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
   
 </body>
 
