@@ -33,6 +33,12 @@ public class CompanyServiceImpl implements CompanyService{
 		  
 		  return returnMap; 
 	  }
+
+
+	@Override
+	public CompanyInformation vacancyNo(int no) {
+		return companyMapper.vacancyNo(no);
+	}
 	 
 
 	

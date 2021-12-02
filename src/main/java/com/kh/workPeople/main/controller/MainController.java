@@ -17,4 +17,7 @@ public class MainController {
 	public String redirectMain() {
 		return "redirect:/";
 	}
+	
+	
+	
 }

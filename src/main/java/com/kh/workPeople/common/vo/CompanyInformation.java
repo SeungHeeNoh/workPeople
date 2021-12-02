@@ -19,14 +19,13 @@ public class CompanyInformation {
 	private Attachment attachment;
 	private Sector sector;
 	private CompanyType companyType;
+	private Member member;
 	
 	public CompanyInformation() {}
 
-	
-
 	public CompanyInformation(int no, String registerNumber, String ceoName, Date foundingDate, int employeeNumber,
 			String businessDetail, String companyHistory, String companyVision, String homepage, Attachment attachment,
-			Sector sector, CompanyType companyType) {
+			Sector sector, CompanyType companyType, Member member) {
 		super();
 		this.no = no;
 		this.registerNumber = registerNumber;
@@ -40,7 +39,9 @@ public class CompanyInformation {
 		this.attachment = attachment;
 		this.sector = sector;
 		this.companyType = companyType;
+		this.member = member;
 	}
+
 
 
 
@@ -185,8 +186,18 @@ public class CompanyInformation {
 	public void setCompanyType(CompanyType companyType) {
 		this.companyType = companyType;
 	}
+	
+	
 
 
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
 
 	@Override
 	public String toString() {
@@ -194,8 +205,10 @@ public class CompanyInformation {
 				+ ", foundingDate=" + foundingDate + ", employeeNumber=" + employeeNumber + ", businessDetail="
 				+ businessDetail + ", companyHistory=" + companyHistory + ", companyVision=" + companyVision
 				+ ", homepage=" + homepage + ", attachment=" + attachment + ", sector=" + sector + ", companyType="
-				+ companyType + "]";
+				+ companyType + ", member=" + member + "]";
 	}
+
+	
 
 
 

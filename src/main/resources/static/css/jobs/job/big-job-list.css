@@ -78,7 +78,9 @@ label{
     vertical-align: middle;
 }
 
-
+.search{
+	background-color: #A7D676 ;
+}
 
 
 .radiWrap > span {
@@ -197,8 +199,6 @@ label{
 
 .local_list_body{
     background-color: white;
-   
-    height:750px;
     display: block;
 }
 
@@ -207,7 +207,7 @@ label{
 }
 .corp > span {
     max-width: 90%;
-    font-size: 30px;
+    font-size: 25px;
     margin-left: 38px;
     color: #A7D676;
 }

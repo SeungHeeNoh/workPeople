@@ -85,19 +85,19 @@
                                 <tbody>
                                     <tr th:each="companyinfo : ${companyList}">
                                         <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
-                                        <td th:text="${companyinfo.name}">기아(주)</td>
+                                        <td th:text="${companyinfo.member.name}"></td>
                                         <td th:text="${companyinfo.registerNumber}"></td>
-                                        <td th:text="${companyinfo.email}"></td>
-                                        <td th:text="${companyinfo.enrollDate}"></td>
-                                        <td th:text="${companyinfo.status}">활성화</td>
+                                        <td th:text="${companyinfo.member.email}"></td>
+                                        <td th:text="${companyinfo.member.enrollDateformat}"></td>
+                                        <td th:text="${companyinfo.member.status}"></td>
                                         <td>
-                                            <a href="javascript:;" class="tag">공고 조회</a>
+                                            <a class="tag">공고 조회</a>
+                                            <input type="hidden" name="no" th:value="${companyinfo.member.no}"/>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-
                        <div th:replace="common/paging.html"></div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
 <div id="popup01">
     <div class="dim"></div>
     <div class="item">
-        <h3 class="corp">기아(주)</h3>
+        <h3 class="corp"></h3>
         <p class="txt">공고 조회 총 <span class="nub">n</span>개</p>
         <div class="ptable_wrap">
             <table class="table">
@@ -142,54 +142,22 @@
                         <tbody>
                         <tr class="item_list">
                             <td class="pnum">1</td>
-                            <td class="ptit">각 부문별 신입/경력 채용</td>
+                            <td class="ptit"></td>
                             <td>서울 서초구</td>
                             <td>공고중</td>
                             <td>2021-10-28</td>
                         </tr>
-                        <tr class="item_list">
-                            <td class="pnum">2</td>
-                            <td class="ptit">각 부문별 신입/경력 채용</td>
-                            <td>서울 서초구</td>
-                            <td>공고마감</td>
-                            <td>2010-10-03</td>
-                        </tr>
-                        <tr class="item_list">
-                            <td class="pnum">3</td>
-                            <td class="ptit">각 부문별 신입/경력 채용</td>
-                            <td>서울 서초구</td>
-                            <td>공고마감</td>
-                            <td>2010-10-03</td>
-                        </tr>
-                        <tr class="item_list">
-                            <td class="pnum">4</td>
-                            <td class="ptit">각 부문별 신입/경력 채용</td>
-                            <td>서울 서초구</td>
-                            <td>공고마감</td>
-                            <td>2010-10-03</td>
-                        </tr>
-                        <tr class="item_list">
-                            <td class="pnum">5</td>
-                            <td class="ptit">각 부문별 신입/경력 채용</td>
-                            <td>서울 서초구</td>
-                            <td>공고마감</td>
-                            <td>2010-10-03</td>
-                        </tr>
                     </tbody>
                 </table>
-                
             </div>
             <div class="btn_box">
                 <a href="javascript:;" class="ok">닫기</a>
             </div>
         </div>
-           
-            </div>
-            
-        </div>
-    </div>
-    
+  </div>
 </div>
+
+
 
 <script>
     $(document).ready(function ($) {
@@ -206,6 +174,30 @@
         });
 
     });
+    
+    
+    
+	$(function(){
+		// 공고 조회시 기업번호 조회
+		$('.tag').click(function(){ 
+			let no = $(this).next().val();
+			$.ajax({
+				url : "jvSelect",
+				type : "get",
+				datatype : "json",
+				data : {no : no},
+				success : function(member){
+					console.log(member);
+				},
+				error : function(e) {
+					console.log(e);
+				}
+				
+			});
+			
+		})
+	})
+	
 </script>
 </body>
 

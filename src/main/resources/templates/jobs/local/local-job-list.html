@@ -10,15 +10,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
-
+<div th:include="common/header.html"></div>
 <body>
     <div class="container border_test">
         <div class="content border_test">
             <div class="local_wrap border_test_r">
                 <h1>지역별</h1>
-
-
-                <div class="local_box circleType">
+<!-- 		  <form id="form1" th:action="" method="get"> -->  
+              <div class="local_box circleType">
                     <div class="local_content">
                         <ul id="target">
                             <li class="gu">
@@ -201,10 +200,10 @@
                                     </button>
                                 </dd>
                             </dl>
-
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
 
 
@@ -297,7 +296,7 @@
             </div>
         </div>
     </div>
-    <script>
+   <script>
         function clickItem(obj, access) {
             if ($(obj).prop('checked')) {
                 // 추가
