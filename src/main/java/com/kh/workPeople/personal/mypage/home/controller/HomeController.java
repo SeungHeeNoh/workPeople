@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -109,11 +110,18 @@ public class HomeController {
 	}
 
 	@GetMapping("home/applyResume/{rNo},{applyBtnNo}")
-	public String applyResume(@PathVariable int rNo, @PathVariable int applyBtnNo, Model model, @AuthenticationPrincipal MemberImpl user){
+	public String applyResume(@PathVariable int rNo, @PathVariable int applyBtnNo, RedirectAttributes rttr){
 
 		int applyCompany = applyCompanyService.applyCompany(rNo,applyBtnNo);
 
-		return "redirect:/personal/mypage/home";
+		if(applyCompany>0){
+			return "redirect:/personal/mypage/home";
+		} else{
+			rttr.addFlashAttribute("errorMessage","입사지원에 실패하셨습니다.");
+			return "redirect:/common/errorPage";
+		}
+
+
 	}
 
 

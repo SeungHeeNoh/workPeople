@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="/css/personal/myPage/scrap.css">
     
     <title>스크랩 공고</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
 
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -51,33 +48,43 @@
                         </div>
                     </div>
 
-<!--                    <th:block th:if="${job.jvPeriodEndOver == 'notOver'}">-->
-                        <th:block th:if="${job.applyYN == false}">
-                            <div class="content_title_text4_detail_wrap2">
-                                <button class="content_title_text4_btn" th:value="${job.jvNo}">즉시지원</button>
-                                <div class="content_title_text4_2">~
-                                    <div th:text="${job.jvPeriodEndFormat}"></div>
-                                </div>
-                            </div>
-                        </th:block>
-                        <th:block th:if="${job.applyYN == true}">
-                            <div class="content_title_text4_detail_wrap2">
-                                <div style="color: blue; padding-left:17px;">지원 완료</div>
-                                <div class="content_title_text4_2" style="color: blue; padding-left:0">~
-                                    <div style="color: blue" th:text="${job.jvPeriodEndFormat}"></div>
-                                </div>
-                            </div>
-                        </th:block>
-<!--                    </th:block>-->
-<!--                    <th:block th:if="${job.jvPeriodEndOver == 'over'}">-->
-<!--                        <div class="content_title_text4_detail_wrap2">-->
-<!--                            <div style="color: blue; padding-left:17px;">지원 완료</div>-->
-<!--                            <div class="content_title_text4_2" style="color: blue; padding-left:0">~-->
-<!--                                <div style="color: blue" th:text="${job.jvPeriodEndFormat}"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
 
-<!--                    </th:block>-->
+
+
+
+
+                            <th:block th:if="${job.applyYN == true}">
+                                <div class="content_title_text4_detail_wrap2">
+                                    <div style="color: blue; padding-left:17px;">지원 완료</div>
+                                    <div class="content_title_text4_2" style="color: blue; padding-left:0">~
+                                        <div style="color: blue" th:text="${job.jvPeriodEndFormat}"></div>
+                                    </div>
+                                </div>
+                            </th:block>
+                            <th:block th:if="${job.applyYN == false}">
+                                <th:block th:if="${job.jvPeriodEndOver == 1}">
+                                    <div class="content_title_text4_detail_wrap2">
+                                        <button class="content_title_text4_btn" th:value="${job.jvNo}">즉시지원</button>
+                                        <div class="content_title_text4_2">~
+                                            <div th:text="${job.jvPeriodEndFormat}"></div>
+                                        </div>
+                                    </div>
+                                </th:block>
+                                <th:block th:if="${job.jvPeriodEndOver == 2}">
+                                    <div class="content_title_text4_detail_wrap2">
+                                        <div style="color: red; padding-left:17px;">마감된 공고</div>
+                                        <div class="content_title_text4_2" style="color: red; padding-left:0">~
+                                            <div style="color: red" th:text="${job.jvPeriodEndFormat}"></div>
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </th:block>
+
+
+
+
+
+
 
                 </div>
                 <hr class="hr">
@@ -93,7 +100,7 @@
 
 
 
-    <script th:src="@{/js/personal/mypage/scrap.js}"></script>
+<script th:src="@{/js/personal/mypage/scrap.js}"></script>
 <div th:include="common/footer.html"></div>
 </body>
 

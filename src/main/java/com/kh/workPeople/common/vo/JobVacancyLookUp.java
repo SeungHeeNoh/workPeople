@@ -17,7 +17,7 @@ public class JobVacancyLookUp {
     private String rbDateFormat;    // 열람일 문자열형태
     private String jvPeriodEndFormat;   // 마감일 문자열형태
 
-//    private String jvPeriodEndOver;        // 현재시간기준마감일 지났는지 여부 (over, notOver)
+    private int jvPeriodEndOver;        // 현재시간기준마감일 지났는지 여부 (마감기한지남 = 1, 안지남 = 2)
 
     private boolean applyYN;         // 해당 공고에 지원 여부
 
@@ -41,13 +41,30 @@ public class JobVacancyLookUp {
         this.applyYN = applyYN;
     }
 
-//    public String getJvPeriodEndOver() {
-//        return jvPeriodEndOver;
-//    }
-//
-//    public void setJvPeriodEndOver(String jvPeriodEndOver) {
-//        this.jvPeriodEndOver = jvPeriodEndOver;
-//    }
+    public JobVacancyLookUp(int jvNo, String mName, String jvTitle, String elName, String sName, String jvAddress, Date acDate, Date rbDate, Date jvPeriodEnd, String acDateFormat, String rbDateFormat, String jvPeriodEndFormat, int jvPeriodEndOver, boolean applyYN) {
+        this.jvNo = jvNo;
+        this.mName = mName;
+        this.jvTitle = jvTitle;
+        this.elName = elName;
+        this.sName = sName;
+        this.jvAddress = jvAddress;
+        this.acDate = acDate;
+        this.rbDate = rbDate;
+        this.jvPeriodEnd = jvPeriodEnd;
+        this.acDateFormat = acDateFormat;
+        this.rbDateFormat = rbDateFormat;
+        this.jvPeriodEndFormat = jvPeriodEndFormat;
+        this.jvPeriodEndOver = jvPeriodEndOver;
+        this.applyYN = applyYN;
+    }
+
+    public int getJvPeriodEndOver() {
+        return jvPeriodEndOver;
+    }
+
+    public void setJvPeriodEndOver(int jvPeriodEndOver) {
+        this.jvPeriodEndOver = jvPeriodEndOver;
+    }
 
     public boolean isApplyYN() {
         return applyYN;
