@@ -17,10 +17,15 @@ public class VacancyDetailServiceImpl implements VacancyDetailService {
 	public VacancyDetailServiceImpl(VacancyDetailMapper vacancyDetailMapper) {
 		this.vacancyDetailMapper = vacancyDetailMapper;
 	}
+	
+	@Override
+	public void increaseCount(int no) {
+		vacancyDetailMapper.increaseCount(no);
+	}
 
 	@Override
 	public JobVacancyInformation selectJobVacancyInformation(Map<String, Object> queryMap) {
 		return vacancyDetailMapper.selectJobVacancyInformation(queryMap);
 	}
-	
+
 }

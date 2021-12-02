@@ -68,6 +68,11 @@
 		<id property="no" column="S_NO"/>
 		<result property="name" column="S_NAME"/>
 	</resultMap>
+	<update id="increaseCount" parameterType="_int">
+		UPDATE JOB_VACANCY
+		   SET JV_COUNT = JV_COUNT + 1
+		 WHERE JV_NO = #{no}
+	</update>
 	<select id="selectJobVacancyInformation" parameterType="hashmap" resultMap="jobVacancyInformationResultMap">
 		SELECT
 		       JI.JV_NO

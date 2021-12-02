@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,11 +28,28 @@ public class VacancyDetailController {
 	private VacancyDetailService vacancyDetailService;
 	
 	@GetMapping("/detail-view")
-	public ModelAndView vacancyDetail(HttpServletRequest request, @RequestParam(defaultValue = "0") int no, @AuthenticationPrincipal UserDetails user) {
-		Cookie[] cookies = request.getCookies();
+	public ModelAndView vacancyDetail(HttpServletRequest request, HttpServletResponse response, @RequestParam(defaultValue = "0") int no, @AuthenticationPrincipal UserDetails user) {
+		String vCount = "";
 		ModelAndView mv = new ModelAndView();
+		Cookie[] cookies = request.getCookies();
 		JobVacancyInformation jobVacancyInformation;
 		Map<String, Object> queryMap = new HashMap<>();
+		
+		if(cookies != null && cookies.length > 0) {
+			for(Cookie c : cookies) {
+				if(c.getName().equals("vCount")) {
+					vCount = c.getValue();
+				}
+			}
+		}
+		
+		if(vCount.indexOf("|" + no + "|") < 0) {
+			Cookie newCookie = new Cookie("vCount", vCount + "|" + no + "|");
+			response.addCookie(newCookie);
+			
+			vacancyDetailService.increaseCount(no);
+		}
+		
 		queryMap.put("no", no);
 
 		if(user != null && user instanceof MemberImpl && ((MemberImpl)user).getMemberType().getNo() == 1) {	
