@@ -50,10 +50,6 @@ public class ScrapController {
 			} else{
 				job.setApplyYN(false);
 			}
-
-			System.out.println(job.getJvPeriodEndOver());
-
-
 		}
 
 		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);

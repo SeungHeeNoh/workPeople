@@ -6,6 +6,8 @@ import com.kh.workPeople.common.vo.Resume;
 import com.kh.workPeople.personal.mypage.applyCompany.model.service.ApplyCompanyService;
 import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
 import com.kh.workPeople.personal.mypage.latestPublication.model.service.LatestPublicationService;
+import lombok.extern.log4j.Log4j;
+import org.apache.commons.logging.Log;
 import org.apache.ibatis.javassist.Loader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,8 +43,15 @@ public class LatestPublicationController {
 
         List<JobVacancyLookUp> jobVacancyLookUpList = latestPublicationService.jobVacancyLookUpList(user.getNo());
 
+        for(JobVacancyLookUp job : jobVacancyLookUpList){
+            int applyCompanyYN = homeService.applyCompanyYN(user.getNo(),job.getJvNo());
 
-
+            if(applyCompanyYN > 0){
+                job.setApplyYN(true);
+            } else{
+                job.setApplyYN(false);
+            }
+        }
 
         model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
 
