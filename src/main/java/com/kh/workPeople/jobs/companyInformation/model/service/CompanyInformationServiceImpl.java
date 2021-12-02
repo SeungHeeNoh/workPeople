@@ -1,10 +1,10 @@
-package com.kh.workPeople.companyInformation.model.service;
+package com.kh.workPeople.jobs.companyInformation.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.workPeople.companyInformation.model.dao.CompanyInformationMapper;
-import com.kh.workPeople.companyInformation.model.vo.CompanyDetailInformation;
+import com.kh.workPeople.jobs.companyInformation.model.dao.CompanyInformationMapper;
+import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
 
 @Service
 public class CompanyInformationServiceImpl implements CompanyInformationService {

@@ -11,8 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.kh.workPeople.common.vo.CompanyInformation;
-import com.kh.workPeople.companyInformation.model.vo.CompanyDetailInformation;
 import com.kh.workPeople.configuration.WorkPeopleApplication;
+import com.kh.workPeople.jobs.companyInformation.model.dao.CompanyInformationMapper;
+import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
 
 import lombok.extern.slf4j.Slf4j;
 

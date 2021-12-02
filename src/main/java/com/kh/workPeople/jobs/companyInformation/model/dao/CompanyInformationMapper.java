@@ -1,8 +1,8 @@
-package com.kh.workPeople.companyInformation.model.dao;
+package com.kh.workPeople.jobs.companyInformation.model.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.kh.workPeople.companyInformation.model.vo.CompanyDetailInformation;
+import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
 
 @Mapper
 public interface CompanyInformationMapper {

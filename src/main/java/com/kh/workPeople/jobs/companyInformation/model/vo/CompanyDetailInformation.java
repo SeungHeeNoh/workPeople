@@ -1,4 +1,4 @@
-package com.kh.workPeople.companyInformation.model.vo;
+package com.kh.workPeople.jobs.companyInformation.model.vo;
 
 import com.kh.workPeople.common.vo.CompanyInformation;
 

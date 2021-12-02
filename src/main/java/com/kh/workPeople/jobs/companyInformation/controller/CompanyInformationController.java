@@ -1,4 +1,4 @@
-package com.kh.workPeople.companyInformation.controller;
+package com.kh.workPeople.jobs.companyInformation.controller;
 
 import java.util.Map;
 
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.kh.workPeople.companyInformation.model.service.CompanyInformationService;
-import com.kh.workPeople.companyInformation.model.vo.CompanyDetailInformation;
+import com.kh.workPeople.jobs.companyInformation.model.service.CompanyInformationService;
+import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
 
 @Controller
-@RequestMapping("/company-information")
+@RequestMapping("/jobs/company-information")
 public class CompanyInformationController {
 	
 	@Autowired
@@ -29,7 +29,7 @@ public class CompanyInformationController {
 		if(companyDetailInformation != null) {
 			mv.addObject("companyDetailInformation",companyDetailInformation);
 			mv.addObject("newLineChar", "\n");
-			mv.setViewName("company-information/detail-view");
+			mv.setViewName("/jobs/company-information/detail-view");
 		} else {
 			mv.addObject("errorMessage", "기업 정보 상세 조회에 실패했습니다.");
 			mv.setViewName("/common/errorPage");

@@ -5,7 +5,7 @@
 }
 
 .content > .info_header {
-	background: url(/images/company-information/bg_top_blue.jpg) center bottom/cover no-repeat;
+	background: url(/images/jobs/company-information/bg_top_blue.jpg) center bottom/cover no-repeat;
 	height : 186px;
 	padding-top: 50px;
 	box-sizing: border-box;
@@ -52,12 +52,12 @@
 	border: 1px solid #DBDBDB;
 	text-align: left;
 	line-height: 40px;
-	background: url(/images/company-information/deactive_heart.png) no-repeat 19px center;
+	background: url(/images/jobs/company-information/deactive_heart.png) no-repeat 19px center;
 	background-size: 20px 16.79px;
 }
 
 .content > .info_header > div > button.active {
-	background-image: url(/images/company-information/active_heart.png);
+	background-image: url(/images/jobs/company-information/active_heart.png);
 }
 
 .content > .info_header > div > button > span {
@@ -232,17 +232,17 @@
 }
 
 .content > .information > .company_info > .summary li:first-of-type {
-	background: url(/images/company-information/founding_date.png) 80px 30px no-repeat;
+	background: url(/images/jobs/company-information/founding_date.png) 80px 30px no-repeat;
 	background-size: 57px 59px;
 }
 
 .content > .information > .company_info > .summary li:nth-of-type(2) {
-	background: url(/images/company-information/company_type.png) 80px 30px no-repeat;
+	background: url(/images/jobs/company-information/company_type.png) 80px 30px no-repeat;
 	background-size: 57px 59px;
 }
 
 .content > .information > .company_info > .summary li:nth-of-type(3) {
-	background: url(/images/company-information/employee_count.png) 80px 30px no-repeat;
+	background: url(/images/jobs/company-information/employee_count.png) 80px 30px no-repeat;
 	background-size: 57px 59px;
 }
 
