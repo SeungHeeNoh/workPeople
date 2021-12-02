@@ -31,9 +31,10 @@ public class talentedController {
 		
 		Map<String, Object> map = talentedService.findList(page, userNo);
 		
-		
-		
-		
+		model.addAttribute("personList", map.get("personList"));
+		model.addAttribute("pi", map.get("pi"));
+		model.addAttribute("cino", map.get("cino"));
+		model.addAttribute("listCount", map.get("listCount"));
 		
 		return "company/mypage/personInfoList";
 	}
@@ -41,6 +42,18 @@ public class talentedController {
 	@GetMapping("/scrapPersonInfoList")
 	public String scrapList() {
 		return "company/mypage/scrapPersonInfoList";
+	}
+	
+	@GetMapping("/personDetailView")
+	public String detailView(@RequestParam("rno") int rno, @RequestParam("cino") int cino) {
+		
+		int check = talentedService.selectResumeCount(rno, cino);
+		
+		if (check == 0) {
+			int result = talentedService.insertResume(rno, cino);
+		}
+		
+		return "company/mypage/personDetailView";
 	}
 
 }

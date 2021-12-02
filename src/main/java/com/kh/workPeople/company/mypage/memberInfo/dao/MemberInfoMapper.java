@@ -14,5 +14,7 @@ public interface MemberInfoMapper {
 
 	Member selectAll(Member member);
 
+	int leave(int no);
+
 
 }

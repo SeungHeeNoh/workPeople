@@ -5,14 +5,12 @@
     <title>회원탈퇴</title>
     <link rel="stylesheet" th:href="@{/css/common/common.css}">
     <link rel="stylesheet" th:href="@{/css/company/mypage/memberleave.css}">
-    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
 <div th:include="common/header.html"></div>
     <div id="wrap">
         <div id="container">
-            <form id="for" name="for" action="/help/leave" method="post">
-                <input name="" type="hidden" value="">
+            <form id="for" name="for" th:action="@{/company/mypage/memberleave}" method="post">
                 <div class="loungeContent helpSecCont">
                     <h1>Work People 회원탈퇴</h1>
                     <div class="helpNoticeBox">
@@ -29,7 +27,7 @@
                         <div class="pwChk">
                             <dl class="idBx">
                                 <dt>아이디</dt>
-                                <dd>workpeople</dd>
+                                <dd th:text="${member.id}"></dd>
                             </dl>
                             <div class="pwBx">
                                 <div class="elWrap devElWrap">
@@ -58,22 +56,56 @@
 <div th:include="common/footer.html"></div>
     <script>
         $(document).ready(function(){
-            $(".btnBlue").on("click", function(e){
-                e.preventDefault();
-                var chk = $('#chkLeaveAgree').is(':checked');
-                
-                if(!chk){
-                    alert("탈퇴 유의사항을 확인하고 동의해주세요.");
-                    $('#chkLeaveAgree').focus();
-                    return false;
-                } else {
-                    if(confirm("회원 탈퇴를 하시겠습니까?")){
-                        document.forms.for.submit();
-                        alert("회원 탈퇴가 완료되었습니다.\n그동안 이용해 주셔서 감사합니다.");
-                        return true;
-                    }
-                }
-            })
+        	
+        	 $("#devAuthMember").on("click", function(e){
+        		var memberPass = $('#devAuthPassword').val();
+        		if(!memberPass){
+        			 alert("비밀번호 값을 입력해주세요");
+                     $('#devAuthPassword').focus();
+        		} else {
+        			
+        			var param = {"memberPass":memberPass}
+        			
+        			$.ajax({
+        			    url: "/company/mypage/leaveCheckPwd",
+        			    type: "POST",
+        			    data: new FormData($("#for")[0]),
+        			    processData: false,
+        			    contentType: false,
+        			    cache: false,
+        			    success: function (date) {
+        			    	if(date > 0){
+        			    	   alert("비밀번호가 일치합니다.");
+        			    	   
+        			    	   $(".btnBlue").on("click", function(e){
+          		            	   
+          		            	  e.preventDefault();
+      			                var chk = $('#chkLeaveAgree').is(':checked');
+      			                
+      			                if(!chk){
+      			                    alert("탈퇴 유의사항을 확인하고 동의해주세요.");
+      			                    return false;
+      			                } else {
+      			                    if(confirm("회원 탈퇴를 하시겠습니까?")){
+      			                        document.forms.for.submit();
+      			                        alert("회원 탈퇴가 완료되었습니다.\n그동안 이용해 주셔서 감사합니다.");
+      			                        return true;
+      			                    }
+          		               }
+        			        })
+        			    	  	
+        			    	} else {
+	        			    	 alert("비밀번호가 일치하지 않습니다.");
+	        			    	 return false;
+        			    	}
+        			     
+        			    },
+        			    error: function () {
+        			      alert("통신 실패!! 상담원에게 문의주세요!");
+        			    }
+        			  });
+        		}
+        	 });
 
         });
 

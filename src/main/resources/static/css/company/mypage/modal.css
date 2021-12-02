@@ -342,12 +342,12 @@ table {
 }
 
 input[type="radio"]:checked {
-  background-image: url(/src/main/resources/static/images/companyMyPage/radio_button.png);
+  background-image: url(/images/companyMyPage/radio_button.png);
 }
 input[type="radio"] {
   width: 18px;
   height: 18px;
-  background: url(/src/main/resources/static/images/companyMyPage/radio_button_none.png)
+  background: url(/images/companyMyPage/radio_button_none.png)
     no-repeat 0 0;
   /* margin: 0 auto; */
   background-size: 18px;

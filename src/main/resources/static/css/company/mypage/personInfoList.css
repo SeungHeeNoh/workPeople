@@ -212,20 +212,23 @@
   position: absolute;
   top: 32px;
 }
-.person-info .button__favorite:before {
-  content: "";
-  position: relative;
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  background-image: url(/images/companyMyPage/nonescrap.png);
-  background-size: 22px;
-  background-repeat: no-repeat;
-  /* background-position: -216px 0; */
+
+.button__favorite img {
+	display: inline-block;
+	 position: relative;
+	width: 20px;
+  height: 20px;
+  top: 14px;
+  
+}
+
+.person-resume--title a {
+	padding-left: 10px;
 }
 .person-resume {
   text-align: left;
   padding: 30px 0px;
+  padding-top: 45px;
 }
 .person-resume--title {
   padding-top: 1px;
@@ -241,9 +244,14 @@
   position: relative;
   top: -1px;
 }
+
 .person-resume__career--senior {
   color: #ff6464;
   border: 1px solid #ff6464;
+}
+.person-resumeno {
+  color: #8C8C8C;
+  border: 1px solid #8C8C8C;
 }
 .person-resume__career--junior,
 .person-resume__career--senior {
@@ -373,5 +381,13 @@
 }
 .onmouseover {
   background: rgba(179, 220, 223, 0.21);
-  cursor: pointer;
+  
 }
+
+.listNone {
+	padding: 100px;
+}
+.title {
+    font-weight: bold;
+}
+

@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kh.workPeople.common.vo.Member;
+import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.company.mypage.memberInfo.dao.MemberInfoMapper;
 
 @Service
@@ -35,6 +36,11 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 	@Override
 	public Member selectAll(Member member) {
 		return memberInfoMapper.selectAll(member);
+	}
+
+	@Override
+	public int leave(MemberImpl user) {
+		return memberInfoMapper.leave(user.getNo());
 	}
 
 
