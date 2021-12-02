@@ -33,12 +33,17 @@
 }
 
 .content > .job_vacancy_header_wrap > .job_vacancy_header > .job_vacancy_header_inner > div:first-of-type > div {
-	display: flex;
-	justify-content: space-between;
-	width : 179px;
+	width : 500px;
+}
+
+.content > .job_vacancy_header_wrap > .job_vacancy_header > .job_vacancy_header_inner > div:first-of-type > div::after {
+	content: "";
+	display: block;
+	clear: both;
 }
 
 .content > .job_vacancy_header_wrap > .job_vacancy_header > .job_vacancy_header_inner > div:first-of-type > div > h3 {
+	float: left;
 	font-size: 18px;
 }
 
@@ -57,6 +62,8 @@
 	color : #888888;
 	background: url(/images/jobs/vacancy-detail/deactive_heart.png) 6px 5px no-repeat;
 	background-size: 15px 13px;
+	float: left;
+	margin-left: 8px;
 }
 
 .content > .job_vacancy_header_wrap > .job_vacancy_header > .job_vacancy_header_inner > div:first-of-type > div > .like_button.active {
@@ -64,7 +71,7 @@
 }
 
 .content > .job_vacancy_header_wrap > .job_vacancy_header > .job_vacancy_header_inner > div:first-of-type > h2 {
-	font-size: 18px;
+	font-size: 26px;
 }
 
 .content > .job_vacancy_header_wrap > .job_vacancy_header > .job_vacancy_header_inner > div:last-of-type > .scrap_button {
