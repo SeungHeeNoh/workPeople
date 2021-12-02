@@ -4,6 +4,7 @@
 	<resultMap type="com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation" id="companyDetailInformationResultMap">
 		<result property="companyName" column="COMPANY_NAME"/>
 		<result property="address" column="ADDRESS"/>
+		<result property="interestedCount" column="INTERESTED_COUNT"/>
 		<association property="companyInformation" resultMap="companyResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.CompanyInformation" id="companyResultMap">
@@ -59,11 +60,17 @@
 		     , S_NAME
 		     , CT_NO
 		     , CT_NAME
-		  FROM COMPANY_INFO
-		  LEFT JOIN SECTOR USING(S_NO)
+    		 , NVL(INTERESTED_COMPANY_COUNT, 0) INTERESTED_COUNT
+  		  FROM COMPANY_INFO
+  		  LEFT JOIN SECTOR USING(S_NO)
 		  LEFT JOIN COMPANY_TYPE USING(CT_NO)
-		  LEFT JOIN ATTACHMENT USING(A_NO)
+		  LEFT OUTER JOIN ATTACHMENT USING(A_NO)
 		  LEFT JOIN MEMBER USING(M_NO)
+		  LEFT OUTER JOIN (SELECT
+        	                      CI_NO
+                        	    , COUNT(*) INTERESTED_COMPANY_COUNT
+                     	    FROM INTERESTED_COMPANY
+                    	   GROUP BY CI_NO) INTERESTED_COUNT USING(CI_NO)
 		 WHERE CI_NO = #{no}
 	</select>
 </mapper>
