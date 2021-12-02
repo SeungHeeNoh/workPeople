@@ -41,5 +41,10 @@
 		 WHERE M_NO = ${userNo}
 		   AND CI_NO = ${companyNo}
 	</delete>
-
+	<select id="getInterestedCompanyCount" resultType="int">
+		SELECT
+		       COUNT(*)
+		  FROM INTERESTED_COMPANY
+		 WHERE CI_NO = ${companyNo}
+	</select>
 </mapper>

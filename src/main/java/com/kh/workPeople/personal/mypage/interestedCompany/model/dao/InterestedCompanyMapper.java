@@ -17,4 +17,6 @@ public interface InterestedCompanyMapper {
 
 	int deleteInterestedCompany(Map<String, Integer> queryMap);
 
+	int getInterestedCompanyCount(int companyNo);
+
 }

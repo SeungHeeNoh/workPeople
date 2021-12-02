@@ -51,5 +51,12 @@ public class InterestedCompanyMapperTests {
 		
 		assertEquals(result, 1);
 	}
+	
+	@Test
+	public void testGetInterestedCompanyCount() {
+		int result = interestedCompanyMapper.getInterestedCompanyCount(1);
+		
+		assertEquals(result, 2);
+	}
 
 }

@@ -4,6 +4,7 @@
 
 	let content = document.body.querySelector(".content"),
 		infoHeader = content.querySelector(".info_header"),
+		interestedCompanyCount = infoHeader.querySelector(".like_button").querySelector(".count"),
 		floatingNaviWrapper = content.querySelector(".floating-navi"),
 		floatingNavi = floatingNaviWrapper.querySelector(".floating-navi-inner"),
 		naviTabs = floatingNavi.querySelectorAll("li"),
@@ -123,6 +124,9 @@
 				if(xhr.readyState == 4) {
 					if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
 						deactiveLikeButton(button);
+						if(xhr.response.interestedCompanyCount != null) {
+							interestedCompanyCount.innerHTML = xhr.response.interestedCompanyCount;
+						}
 					} else {
 						console.log("ajax 통신 실패");
 					}
@@ -131,12 +135,16 @@
 
 			xhr.open("DELETE", "/personal/mypage/interestedCompany/company/" + button.getAttribute("data-company-no"));
 			xhr.setRequestHeader(tokenHeader, token);
+			xhr.responseType = "json";
 			xhr.send();
 		} else {
 			xhr.onreadystatechange = function() {
 				if(xhr.readyState == 4) {
 					if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
 						activeLikeButton(button);
+						if(xhr.response.interestedCompanyCount != null) {
+							interestedCompanyCount.innerHTML = xhr.response.interestedCompanyCount;
+						}
 					} else {
 						console.log("ajax 통신 실패");
 					}
@@ -145,6 +153,7 @@
 
 			xhr.open("POST", "/personal/mypage/interestedCompany/company/" + button.getAttribute("data-company-no"));
 			xhr.setRequestHeader(tokenHeader, token);
+			xhr.responseType = "json";
 			xhr.send();
 		}
 		button.removeAttribute("disabled");

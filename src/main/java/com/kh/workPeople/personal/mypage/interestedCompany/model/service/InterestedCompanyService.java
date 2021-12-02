@@ -13,4 +13,7 @@ public interface InterestedCompanyService {
 	int insertInterestedCompany(Map<String, Integer> queryMap);
 
 	int deleteInterestedCompany(Map<String, Integer> queryMap);
+
+	int getInterestedCompanyCount(int companyNo);
+
 }

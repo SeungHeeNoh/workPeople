@@ -37,4 +37,9 @@ public class InterestedCompanyImpl implements InterestedCompanyService{
 	public int deleteInterestedCompany(Map<String, Integer> queryMap) {
 		return  interestedCompanyMapper.deleteInterestedCompany(queryMap);
 	}
+
+	@Override
+	public int getInterestedCompanyCount(int companyNo) {
+		return interestedCompanyMapper.getInterestedCompanyCount(companyNo);
+	}
 }

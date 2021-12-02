@@ -47,8 +47,8 @@ public class InterestedCompanyController {
     
     @PostMapping("/interestedCompany/company/{companyNo}")
     @ResponseBody
-    public Map<String, String> insertInterestedCompany(@PathVariable Integer companyNo, @AuthenticationPrincipal MemberImpl user) {
-    	Map<String, String> resultMap = new HashMap<>();
+    public Map<String, Object> insertInterestedCompany(@PathVariable int companyNo, @AuthenticationPrincipal MemberImpl user) {
+    	Map<String, Object> resultMap = new HashMap<>();
     	Map<String, Integer> queryMap = new HashMap<>();
     	String message = "";
     	
@@ -59,6 +59,7 @@ public class InterestedCompanyController {
     	
     	if(result > 0) {
     		message = "success";
+    		resultMap.put("interestedCompanyCount", interestedCompanyService.getInterestedCompanyCount(companyNo));
     	}
     	
     	resultMap.put("message", message);
@@ -68,8 +69,8 @@ public class InterestedCompanyController {
     
     @DeleteMapping("/interestedCompany/company/{companyNo}")
     @ResponseBody
-    public Map<String, String> deleteInterestedCompany(@PathVariable Integer companyNo, @AuthenticationPrincipal MemberImpl user) {
-    	Map<String, String> resultMap = new HashMap<>();
+    public Map<String, Object> deleteInterestedCompany(@PathVariable int companyNo, @AuthenticationPrincipal MemberImpl user) {
+    	Map<String, Object> resultMap = new HashMap<>();
     	Map<String, Integer> queryMap = new HashMap<>();
     	String message = "";
     	
@@ -80,6 +81,7 @@ public class InterestedCompanyController {
     	
     	if(result > 0) {
     		message = "success";
+    		resultMap.put("interestedCompanyCount", interestedCompanyService.getInterestedCompanyCount(companyNo));
     	}
     	
     	resultMap.put("message", message);
