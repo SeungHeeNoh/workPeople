@@ -9,17 +9,95 @@
 		<id property="no" column="S_NO"/>
 		<result property="name" column="S_NAME"/>
 	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.PersonInfoResume" id="personResultMap">
+		<id property="rno" column="R_NO"/>
+		<result property="enrollDate" column="R_ENROLL_DATE"/>
+		<result property="mno" column="M_NO"/>
+		<result property="sname" column="S_NAME"/>
+		<result property="title" column="BI_TITLE"/>
+		<result property="name" column="BI_NAME"/>
+		<result property="gender" column="BI_GENDER"/>
+		<result property="dirthDate" column="BI_BIRTH_DATE"/>
+		<result property="age" column="BI_AGE"/>
+		<result property="email" column="BI_EMAIL"/>
+		<result property="address" column="BI_ADDRESS"/>
+		<result property="addressDetail" column="BI_ADDRESS_DETAIL"/>	
+		<result property="cnt" column="cnt"/>		
+	</resultMap>
 	
 	<select id="userSnoNumber" resultMap="companyResultMap">
 		 SELECT
-              S_NO
+                S_NO
+              , CI_NO
           FROM COMPANY_INFO 
-         WHERE M_NO = #{userId}
+         WHERE M_NO = #{userNo}
+	</select>
+	
+	<select id="getListCount" resultType="int">
+		SELECT COUNT(*)
+          FROM BASIC_INFO B
+          LEFT JOIN RESUME R ON(B.R_NO = R.R_NO)
+         WHERE S_NO = #{userSno}
+          AND R_STATUS_YN = 'Y'
+          AND R_DELETE_YN = 'N'
 	</select>
 
+	<select id="selectList" resultMap="personResultMap" parameterType="Map">
+		  SELECT
+		      *
+		FROM(SELECT ROWNUM RNUM
+				  , NLIST.*
+		    FROM( SELECT
+                        B.R_NO
+                      , R.R_ENROLL_DATE
+                      , R.M_NO
+                      , S.S_NAME
+                      , B.BI_TITLE
+                      , B.BI_NAME
+                      , B.BI_GENDER
+                      , B.BI_BIRTH_DATE
+                      , B.BI_AGE
+                      , B.BI_EMAIL
+                      , B.BI_ADDRESS
+                      , B.BI_ADDRESS_DETAIL
+                      , (SELECT
+                              count(*)
+                          FROM RESUME_BROWSE
+                          WHERE CI_NO = #{cino}
+                           AND R_NO = B.R_NO) as cnt
+                  FROM BASIC_INFO B
+                  LEFT JOIN RESUME R ON(B.R_NO = R.R_NO)
+                  LEFT JOIN SECTOR S ON(B.S_NO = S.S_NO)
+                 WHERE B.S_NO = #{userSno}
+                   AND R_STATUS_YN = 'Y'
+                   AND R_DELETE_YN = 'N'
+                ORDER BY B.R_NO DESC) NLIST)
+            WHERE RNUM BETWEEN (#{pi.page}-1)*(#{pi.boardLimit})+1 AND ((#{pi.page}-1)*(#{pi.boardLimit})+1)+(#{pi.boardLimit}-1)
+	</select>
+
+	<insert id="insertResume" parameterType="com.kh.workPeople.common.vo.ResumeBrowseCompany">
+		INSERT INTO RESUME_BROWSE
+		(
+		   CI_NO
+		 , R_NO
+	     , RB_BROWSE
+	     , RB_DATE
+		)
+		VALUES
+		(
+		   #{cino}
+		 , #{rno}
+		 , 'recommened'
+		 , SYSDATE
+		)
+	</insert>
 	
-
-
+	<select id="selectResumeCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM RESUME_BROWSE
+		 WHERE CI_NO = #{cino}
+ 		   AND R_NO = #{rno}
+	</select>
 
 
 </mapper>
