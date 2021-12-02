@@ -16,7 +16,7 @@
         <div class="content border_test">
             <div class="local_wrap border_test_r">
                 <h1>지역별</h1>
-<!-- 		  <form id="form1" th:action="" method="get"> -->  
+		  <form id="form1" th:action="@{/jobs/local/localSearch}" method="get">
               <div class="local_box circleType">
                     <div class="local_content">
                         <ul id="target">
@@ -24,24 +24,28 @@
                                 <input id="itm1" type="checkbox" checked="checked" data-search-filter="강남구"
                                     data-filter-item-nm="강남구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
                                     data-omni="강남구">
+                                    <input type="checkbox" name="local1" th:value="강남구" style="display:none;">
                                 <label for="itm1">강남구</label>
                             </li>
                             <li class="gu">
                                 <input id="itm2" type="checkbox" checked="checked" data-search-filter="강동구"
                                     data-filter-item-nm="강동구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
                                     data-omni="강동구">
+                                      <input type="checkbox" name="local2" style="display:none;">
                                 <label for="itm2">강동구</label>
                             </li>
                             <li class="gu">
                                 <input id="itm3" type="checkbox" checked="checked" data-search-filter="강북구"
                                     data-filter-item-nm="강북구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
                                     data-omni="강북구">
+                                      <input type="checkbox" name="local3" style="display:none;">
                                 <label for="itm3">강북구</label>
                             </li>
                             <li class="gu">
                                 <input id="itm4" type="checkbox" checked="checked" data-search-filter="강서구"
                                     data-filter-item-nm="강서구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
                                     data-omni="강서구">
+                                    <input type="checkbox" name="local4" style="display:none;">
                                 <label for="itm4">강서구</label>
                             </li>
 
@@ -49,30 +53,35 @@
                                 <input id="itm5" type="checkbox" checked="checked" data-search-filter="관악구"
                                     data-filter-item-nm="관악구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
                                     data-omni="관악구">
+                                    <input type="checkbox" name="local5" style="display:none;">
                                 <label for="itm5">관악구</label>
                             </li>
                             <li class="gu">
                                 <input id="itm6" type="checkbox" checked="checked" data-search-filter="광진구"
                                     data-filter-item-nm="광진구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
                                     data-omni="광진구">
+                                    <input type="checkbox" name="local6" style="display:none;">
                                 <label for="itm6">광진구</label>
                             </li>
                             <li class="gu">
                                 <input id="itm7" type="checkbox" checked="checked" data-search-filter="구로구"
                                     data-filter-item-nm="구로구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
                                     data-omni="구로구">
+                                    <input type="checkbox" name="local7" style="display:none;">
                                 <label for="itm7">구로구</label>
                             </li>
                             <li class="gu">
                                 <input id="itm8" type="checkbox" checked="checked" data-search-filter="금천구"
                                     data-filter-item-nm="금천구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
                                     data-omni="금천구">
+                                    <input type="checkbox" name="local8" style="display:none;">
                                 <label for="itm8">금천구</label>
                             </li>
                             <li class="gu">
                                 <input id="itm9" type="checkbox" checked="checked" data-search-filter="노원구"
                                     data-filter-item-nm="노원구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
                                     data-omni="노원구">
+                                    <input type="checkbox" name="local9" style="display:none;">
                                 <label for="itm9">노원구</label>
                             </li>
 
@@ -80,6 +89,7 @@
                                 <input id="itm10" type="checkbox" checked="checked" data-search-filter="도봉구"
                                     data-filter-item-nm="도봉구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
                                     data-omni="도봉구">
+                                    <input type="checkbox" name="local10" style="display:none;">
                                 <label for="itm10">도봉구</label>
                             </li>
                             <li class="gu">
@@ -194,7 +204,7 @@
                                     </div>
                                 </dd>
                                 <dd class="btnSet">
-                                    <button type="button" class="btn_sch" id="btn-sch">
+                                    <button type="submit" class="btn_sch" id="btn-sch">
                                         <span>선택된 조건 <br>
                                             검색하기</span>
                                     </button>
@@ -296,9 +306,11 @@
             </div>
         </div>
     </div>
+        <div th:include="common/footer.html"></div>
    <script>
         function clickItem(obj, access) {
             if ($(obj).prop('checked')) {
+            	console.log(obj);
                 // 추가
                 var span = '<span class="txt" data-search-filter="' + $(obj).data('search-filter') + '">' + $(obj).data('filter-item-nm') + '<button type="button" onClick="removeItem(\'' + $(obj).data('search-filter') + '\')">삭제</button></span>';
                 $('.opt-area').append(span);
@@ -307,9 +319,14 @@
                 div += '<span class="txt" data-search-filter="' + $(obj).data('search-filter') + '">' + $(obj).data('filter-item-nm') + '<button type="button" class="btn-delete" onClick="removeItem(\'' + $(obj).data('search-filter') + '\')">삭제</button></span>';
                 div += '</div>';
                 $('.filter-footer > .list-option').append(div);
+                
+                console.log($(obj));
+                console.log($(obj).next());
+                $(obj).next().prop("checked", true);
 
             } else {
                 removeItem($(obj).data('search-filter'), access);
+                $(obj).next().prop("checked", false);
             }
         }
 

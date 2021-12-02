@@ -9,7 +9,7 @@
 <link rel="stylesheet" th:href="@{/css/manager/user/userinfo.css}">
 
 </head>
-
+<div th:include="common/header.html"></div>
 <body>
 	<div class="container">
 		<!-- 사이드바 -->
@@ -20,16 +20,16 @@
 		                <li id="" class="nav_tit">관리자 페이지</li>
 		
 		                <li id="snb_2"class="snb_main"><img id="snbImg2" th:src="@{/images/common/usersetting.png}">회원관리</li>
-		                <li id="snb_2_1" class="snb_sub"><a href="@{manager/user/userinfo}">회원정보</a></li>
-                		<li id="snb_2_2" class="snb_sub"><a href="@{manager/user/customerservice}">고객센터</a></li>
+		                <li id="snb_2_1" class="snb_sub"><a th:href="@{/manager/user/userinfo}">회원정보</a></li>
+                		<li id="snb_2_2" class="snb_sub"><a th:href="@{/manager/user/customerservice}">고객센터</a></li>
 		                <li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
 		            
 		                <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
-		                <li id="snb_3_1" class="snb_sub"><a href="@{manager/company/companyinfo}">기업공고</a></li>
-		                <li id="snb_3_2" class="snb_sub"><a href="@{manager/company/reportlit}">신고공고</a></li>
-		                <li id="snb_3_3" class="snb_sub"><a href="@{manager/company/customerservice}">고객센터</a></li>
+		                <li id="snb_3_1" class="snb_sub"><a th:href="@{/manager/company/companyinfo}">기업공고</a></li>
+		                <li id="snb_3_2" class="snb_sub"><a th:href="@{/manager/company/reportlit}">신고공고</a></li>
+		                <li id="snb_3_3" class="snb_sub"><a th:href="@{/manager/company/customerservice}">고객센터</a></li>
 		            
-		                <li id="snb_4" class="snb_main"><a href="@{manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
+		                <li id="snb_4" class="snb_main"><a th:href="@{/manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
 					</ul>
 				</div>
 			</div>
@@ -66,8 +66,8 @@
 										<col width="auto">
 										<col width="auto">
 										<col width="auto">
-										<col width="auto">
-										<col width="auto">
+										<col width="30%">
+										<col width="15%">
 										<col width="auto">
 									</colgroup>
 
@@ -86,9 +86,9 @@
 											<td th:text="${member.id}"></td>
 											<td th:text="${member.name}"></td>
 											<td th:text="${member.email}"></td>
-											<td th:text="${member.detailAddress}"></td>
+											<td th:text="${member.roadAddress}"></td>
 											<td th:text="${member.phone}"></td>
-											<td th:text="${member.enrollDate}"></td>
+											<td th:text="${#dates.format(member.enrollDate, 'yyyy-MM-dd')}"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -101,5 +101,6 @@
 		</div>
 	</div>
 </body>
+<div th:include="common/footer.html"></div>
 
 </html>
