@@ -13,4 +13,6 @@ public interface ScrapMapper {
 
 	int insertScrap(Map<String, Integer> queryMap);
 
+	int deleteScrap(Map<String, Integer> queryMap);
+
 }

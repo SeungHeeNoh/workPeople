@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -92,4 +93,22 @@ public class ScrapController {
 		return resultMap;
 	}
 
+	@DeleteMapping("/scrap/job-vacancy/{jobVacancyNo}")
+	@ResponseBody
+	public Map<String, Object> deleteScrap(@PathVariable int jobVacancyNo, @AuthenticationPrincipal MemberImpl user) {
+		Map<String, Object> resultMap = new HashMap<>();
+		Map<String, Integer> queryMap = new HashMap<>();
+		String message = "";
+		
+		queryMap.put("userNo", user.getNo());
+		queryMap.put("jobVacancyNo", jobVacancyNo);
+		
+		int result = scrapService.deleteScrap(queryMap);
+		
+		if(result > 0) {
+			message = "success";
+		}
+		
+		return resultMap;
+	}
 }

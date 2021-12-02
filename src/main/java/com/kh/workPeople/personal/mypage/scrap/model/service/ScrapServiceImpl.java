@@ -27,5 +27,10 @@ public class ScrapServiceImpl implements ScrapService{
 	public int insertScrap(Map<String, Integer> queryMap) {
 		return scrapMapper.insertScrap(queryMap);
 	}
+
+	@Override
+	public int deleteScrap(Map<String, Integer> queryMap) {
+		return scrapMapper.deleteScrap(queryMap);
+	}
     
 }

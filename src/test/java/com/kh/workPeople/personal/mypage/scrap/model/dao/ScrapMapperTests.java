@@ -29,12 +29,25 @@ public class ScrapMapperTests {
 	
 	@Test
 	@Transactional
+	@Disabled
 	public void testInsertScrap() {
 		Map<String, Integer> queryMap = new HashMap<>();
 		queryMap.put("userNo", 1);
 		queryMap.put("jobVacancyNo", 1);
 		
 		int result = scrapMapper.insertScrap(queryMap);
+		
+		assertEquals(result, 1);
+	}
+	
+	@Test
+	@Transactional
+	public void testDeleteScrap() {
+		Map<String, Integer> queryMap = new HashMap<>();
+		queryMap.put("userNo", 1);
+		queryMap.put("jobVacancyNo", 1);
+		
+		int result = scrapMapper.deleteScrap(queryMap);
 		
 		assertEquals(result, 1);
 	}

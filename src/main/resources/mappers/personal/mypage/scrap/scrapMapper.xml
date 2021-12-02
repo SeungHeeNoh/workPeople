@@ -64,7 +64,9 @@
 		  , #{jobVacancyNo}
 		)
 	</insert>
-
-
-
+	<delete id="deleteScrap" parameterType="hashmap">
+		DELETE SCRAP
+		 WHERE M_NO = #{userNo}
+		   AND JV_NO = #{jobVacancyNo}
+	</delete>
 </mapper>

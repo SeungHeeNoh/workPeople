@@ -9,4 +9,6 @@ public interface ScrapService {
     List<JobVacancyLookUp> jobVacancyLookUpList(int no);
 
 	int insertScrap(Map<String, Integer> queryMap);
+
+	int deleteScrap(Map<String, Integer> queryMap);
 }
