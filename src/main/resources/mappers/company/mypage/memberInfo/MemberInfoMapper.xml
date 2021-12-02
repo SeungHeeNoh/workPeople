@@ -74,5 +74,11 @@
 		WHERE M.M_NO = #{no}
 	</select>
 	
+	<update id="leave" parameterType="com.kh.workPeople.common.vo.Member">
+		UPDATE MEMBER
+		   SET M_STATUS = 'N'
+	     WHERE M_NO = #{no}	
+	</update>
+	
 	
 </mapper>

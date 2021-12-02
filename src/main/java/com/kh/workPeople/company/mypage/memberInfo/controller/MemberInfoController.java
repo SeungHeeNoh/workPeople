@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.workPeople.common.vo.Member;
@@ -55,8 +56,19 @@ public class MemberInfoController {
 	}
 	
 	@GetMapping("/memberleave")
-	public String memberLeave() {
+	public String memberLeave(Model model, @AuthenticationPrincipal MemberImpl user) {
+		
+		model.addAttribute("member", user);
+		
 		return "company/mypage/memberleave";
+	}
+	
+	@PostMapping("/memberleave")
+	public String leave(@AuthenticationPrincipal MemberImpl user) {
+		
+		int result = memberInfoService.leave(user);
+		
+		return "redirect:/account/manager/logout";
 	}
 	
 	@PostMapping("/pwdCheck")
@@ -105,5 +117,14 @@ public class MemberInfoController {
 		
 		return result;
 	}
+	
+	@PostMapping("/leaveCheckPwd")
+	@ResponseBody
+	public int deleteFile(@RequestParam("password") String password, @AuthenticationPrincipal MemberImpl user) {
+		
+	
+		return passwordEncoder.matches(password, user.getPwd()) ? 1 : 0;
+	}
+	
 	
 }
