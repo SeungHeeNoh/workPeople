@@ -1,4 +1,7 @@
 (function() {
+	let token = document.querySelector("meta[name='_csrf']").getAttribute("content"),
+		tokenHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
 	let body = document.body,
 		content = body.querySelector(".content"),
 		dimmed = body.querySelector(".dimmed"),
@@ -59,9 +62,22 @@
 
 	function companyLikeButtonToggleEventHandler(button) {
 		button.setAttribute("disabled", true);
+		let xhr = new XMLHttpRequest();
 
 		if(button.classList.contains("active")) {
-			deactiveLikeButton(button);
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+						deactiveLikeButton(button);
+					} else {
+						console.log("ajax 통신 실패");
+					}
+				}
+			}
+
+			xhr.open("DELETE", "/personal/mypage/interestedCompany/company/" + button.getAttribute("data-company-no"));
+			xhr.setRequestHeader(tokenHeader, token);
+			xhr.send();
 		} else {
 			activeLikeButton(button);
 		}

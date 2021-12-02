@@ -2,6 +2,8 @@
 <html xmlns:th="http:/www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
+	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 	<title>[[${jobVacancyInformation.companyName}]] - [[${jobVacancyInformation.jobVacancy.title}]]</title>
 	<link rel="stylesheet" th:href="@{/css/jobs/vacancy-detail/job-vacancy-detail.css}">
 </head>
@@ -16,7 +18,7 @@
 							<div>
 								<h3><a th:href="@{/company-information/detail-view?no=} + ${jobVacancyInformation.companyNo}">[[${jobVacancyInformation.companyName}]]</a></h3>
 							<th:block th:if="${#authorization.expression('isAnonymous()') or #authorization.expression('hasRole(''PERSONAL'')')}">
-								<button type="button" class="like_button" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_button' : '') + (#strings.equals(jobVacancyInformation.interestedCompany, 'Y') ? 'active':'')}">관심기업 등록
+								<button type="button" class="like_button" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_button' : '') + (#strings.equals(jobVacancyInformation.interestedCompany, 'Y') ? 'active':'')}" th:attr="data-company-no=${jobVacancyInformation.companyNo}">관심기업 등록
 									<span class="blind">
 										<span th:if="${#strings.equals(jobVacancyInformation.interestedCompany, 'Y')}" th:remove="tag">해제</span>
 										<span th:unless="${#strings.equals(jobVacancyInformation.interestedCompany, 'Y')}" th:remove="tag">설정</span>

@@ -24,7 +24,17 @@
         FROM JOB_VACANCY
         WHERE CI_NO=#{no}
     </select>
-
+	<insert id="insertInterestedCompany" parameterType="hashMap">
+		INSERT INTO INTERESTED_COMPANY
+		(
+		    M_NO
+		  , CI_NO
+		)
+		VALUES(
+		    #{userNo}
+		  , #{companyNo}
+		)
+	</insert>
 
 
 </mapper>
