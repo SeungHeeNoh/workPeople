@@ -18,12 +18,14 @@ public class JobVacancyLookUp {
     private String jvPeriodEndFormat;   // 마감일 문자열형태
 
     private int jvPeriodEndOver;        // 현재시간기준마감일 지났는지 여부 (마감기한지남 = 1, 안지남 = 2)
+//    private String jvPeriodEndOver;        // 현재시간기준마감일 지났는지 여부 (over, notOver)
+    private Sector sector;
+    private Member member;
 
     private boolean applyYN;         // 해당 공고에 지원 여부
 
     public JobVacancyLookUp() {
     }
-
 
     public JobVacancyLookUp(int jvNo, String mName, String jvTitle, String elName, String sName, String jvAddress, Date acDate, Date rbDate, Date jvPeriodEnd, String acDateFormat, String rbDateFormat, String jvPeriodEndFormat, boolean applyYN) {
         this.jvNo = jvNo;
@@ -40,23 +42,29 @@ public class JobVacancyLookUp {
         this.jvPeriodEndFormat = jvPeriodEndFormat;
         this.applyYN = applyYN;
     }
+    
 
-    public JobVacancyLookUp(int jvNo, String mName, String jvTitle, String elName, String sName, String jvAddress, Date acDate, Date rbDate, Date jvPeriodEnd, String acDateFormat, String rbDateFormat, String jvPeriodEndFormat, int jvPeriodEndOver, boolean applyYN) {
-        this.jvNo = jvNo;
-        this.mName = mName;
-        this.jvTitle = jvTitle;
-        this.elName = elName;
-        this.sName = sName;
-        this.jvAddress = jvAddress;
-        this.acDate = acDate;
-        this.rbDate = rbDate;
-        this.jvPeriodEnd = jvPeriodEnd;
-        this.acDateFormat = acDateFormat;
-        this.rbDateFormat = rbDateFormat;
-        this.jvPeriodEndFormat = jvPeriodEndFormat;
-        this.jvPeriodEndOver = jvPeriodEndOver;
-        this.applyYN = applyYN;
-    }
+    public JobVacancyLookUp(int jvNo, String mName, String jvTitle, String elName, String sName, String jvAddress,
+			Date acDate, Date rbDate, Date jvPeriodEnd, String acDateFormat, String rbDateFormat,
+			String jvPeriodEndFormat, Sector sector, Member member, boolean applyYN) {
+		super();
+		this.jvNo = jvNo;
+		this.mName = mName;
+		this.jvTitle = jvTitle;
+		this.elName = elName;
+		this.sName = sName;
+		this.jvAddress = jvAddress;
+		this.acDate = acDate;
+		this.rbDate = rbDate;
+		this.jvPeriodEnd = jvPeriodEnd;
+		this.acDateFormat = acDateFormat;
+		this.rbDateFormat = rbDateFormat;
+		this.jvPeriodEndFormat = jvPeriodEndFormat;
+		this.sector = sector;
+		this.member = member;
+		this.applyYN = applyYN;
+	}
+
 
     public int getJvPeriodEndOver() {
         return jvPeriodEndOver;
@@ -169,20 +177,39 @@ public class JobVacancyLookUp {
     public void setRbDateFormat(String rbDateFormat) {
         this.rbDateFormat = rbDateFormat;
     }
+    
+    
 
-    @Override
-    public String toString() {
-        return "JobVacancyLookUp{" +
-                "jvNo=" + jvNo +
-                ", mName='" + mName + '\'' +
-                ", jvTitle='" + jvTitle + '\'' +
-                ", elName='" + elName + '\'' +
-                ", sName='" + sName + '\'' +
-                ", roadAddress='" + jvAddress + '\'' +
-                ", acDate=" + acDate +
-                ", rbDate=" + rbDate +
-                ", acDateFormat='" + acDateFormat + '\'' +
-                ", rbDateFormat='" + rbDateFormat + '\'' +
-                '}';
-    }
+    public Sector getSector() {
+		return sector;
+	}
+
+
+	public void setSector(Sector sector) {
+		this.sector = sector;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+
+	@Override
+	public String toString() {
+		return "JobVacancyLookUp [jvNo=" + jvNo + ", mName=" + mName + ", jvTitle=" + jvTitle + ", elName=" + elName
+				+ ", sName=" + sName + ", jvAddress=" + jvAddress + ", acDate=" + acDate + ", rbDate=" + rbDate
+				+ ", jvPeriodEnd=" + jvPeriodEnd + ", acDateFormat=" + acDateFormat + ", rbDateFormat=" + rbDateFormat
+				+ ", jvPeriodEndFormat=" + jvPeriodEndFormat + ", sector=" + sector + ", member=" + member
+				+ ", applyYN=" + applyYN + "]";
+	}
+
+
+
+
+	
 }
