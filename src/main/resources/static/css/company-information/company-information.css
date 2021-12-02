@@ -40,6 +40,30 @@
 	line-height: 79px;
 }
 
+.content > .info_header > div > button {
+	float:right;
+	width : 185px;
+	height : 40px;
+	margin-top: 19px;
+	margin-right: 53px;
+	padding-left : 49px;
+	box-sizing: border-box;
+	border-radius: 20px;
+	border: 1px solid #DBDBDB;
+	text-align: left;
+	line-height: 40px;
+	background: url(/images/company-information/deactive_heart.png) no-repeat 19px center;
+	background-size: 20px 16.79px;
+}
+
+.content > .info_header > div > button.active {
+	background-image: url(/images/company-information/active_heart.png);
+}
+
+.content > .info_header > div > button > span {
+	margin-left: 5px;
+}
+
 .content > .floating-navi {
 	height: 60px;
 	background-color: #FFF;
