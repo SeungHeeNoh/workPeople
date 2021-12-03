@@ -72,9 +72,10 @@
 
 .content_title_text2{
     font-size: 22px;
-    margin-top: 20px;
+    padding-top: 20px;
     font-weight: 600;
     margin-bottom: 10px;
+    border-top: 1px solid #c4c4c4;
 }
 
 .home_contents_wrap_2{
@@ -131,7 +132,8 @@
 }
 
 .home_interval_1{
-    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #c4c4c4;
 }
 
 .content_title_text3{
@@ -163,6 +165,7 @@
     box-sizing: border-box;
     font-size: 14px;
     position: relative;
+    border-bottom: 1px solid #c4c4c4;
 }
 .content_title_text4_detail_wrap{
     width: 450px;

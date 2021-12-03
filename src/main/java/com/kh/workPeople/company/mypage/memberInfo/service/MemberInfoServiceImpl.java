@@ -44,4 +44,11 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 	}
 
 
+	// 개인회원 정보 수정
+	@Override
+	public int updatePersonalInfo(Member member) {
+		return memberInfoMapper.updatePersonalInfo(member);
+	}
+
+
 }

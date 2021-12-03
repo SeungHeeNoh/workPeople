@@ -15,7 +15,8 @@
     <script th:inline="javascript">
         /*<![CDATA[*/
         let statusYResume = [[${resume}]],
-            statusYResumeRNo = [[${resumeNo}]];
+            statusYResumeRNo = [[${resumeNo}]],
+            jobVacancyLookUpList = [[${jobVacancyLookUpList}]];
         /*]]>*/
     </script>
 </head>
@@ -84,7 +85,9 @@
             <button class="green green1">스크랩취소</button>
        
         </div>
-<!--            <div th:replace="common/paging.html"></div>-->
+            <div th:if="${#lists.size(jobVacancyLookUpList)>0}">
+                <div th:replace="common/paging.html"></div>
+            </div>
         </section>
     </div>
 

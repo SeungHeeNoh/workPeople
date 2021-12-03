@@ -5,10 +5,10 @@
     <title>회원정보관리</title>
     <link rel="stylesheet" th:href="@{/css/common/common.css}">
     <link rel="stylesheet" th:href="@{/css/company/mypage/memberInfoPwd.css}">
-    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
 <div th:include="common/header.html"></div>
+<div th:include="personal/mypage/mainSnb.html"></div>
 <div id="wrap">
     <div id="container">
 
@@ -19,11 +19,11 @@
                 </div>
 
                 <div class="pwChkWrap">
-                    <form id="frmMemberAuth" method="post">
+                    <form id="frmMemberAuth" method="post" th:action="@{/personal/mypage/pwdCheck}">
                         <div class="pwChk">
                             <dl class="idBx">
                                 <dt>아이디</dt>
-                                <dd></dd>
+                                <dd th:text="${member.id}"></dd>
                             </dl>
                             <div class="pwBx">
                                 <div class="elWrap devElWrap">

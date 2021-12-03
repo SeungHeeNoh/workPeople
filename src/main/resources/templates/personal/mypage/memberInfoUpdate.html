@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원정보수정</title>
+	<link rel="stylesheet" th:href="@{/css/common/common.css}">
+	<link rel="stylesheet" th:href="@{/css/account/join/join.css}">
+
+
+
+</head>
+<body>
+<div th:include="common/header.html"></div>
+	<div id="container">
+		<div class="content">
+			<h2>회원정보수정</h2>
+			<div>
+				<form th:action="@{/personal/mypage/memberInfoUpdate}" method="post">
+					<input type="hidden" name="no" th:value="${member.no}">
+					<div class="join_row">
+						<p><label for="user_id"><strong>*</strong> 아이디</label></p>
+						<span><input type="text" id="user_id" name="id" th:value="${member.id}" readonly></span>
+						<p class="notice">필수 정보입니다.</p>
+					</div>
+					<div class="join_row">
+						<p><label for="user_pwd"><strong>*</strong> 비밀번호</label></p>
+						<span><input type="password" id="user_pwd" name="pwd" maxlength="16"></span>
+						<p class="notice">필수 정보입니다.</p>
+					</div>
+					<div class="join_row">
+						<p><label for="user_check_pwd"><strong>*</strong> 비밀번호 확인</label></p>
+						<span><input type="password" id="user_check_pwd" maxlength="16"></span>
+						<p class="notice">필수 정보입니다.</p>
+					</div>
+					<div class="join_row">
+						<p><label for="user_name"><strong>*</strong> 이름</label></p>
+						<span><input type="text" id="user_name" name="name" maxlength="15" th:value="${member.name}"></span>
+						<p class="notice">필수 정보입니다.</p>
+					</div>
+					<div class="join_row">
+						<p><label for="phone"><strong>*</strong> 휴대전화</label></p>
+						<span><input type="text" id="phone" name="phone" maxlength="15" th:value="${member.phone}"></span>
+						<p class="notice">필수 정보입니다.</p>
+					</div>
+					<div class="join_row">
+						<p><label for="email"><strong>*</strong> 이메일</label></p>
+						<div class="check_input">
+							<span><input type="email" id="email" name="email" th:value="${member.email}"></span>
+							<button type="button" class="send_email_button check_button">인증번호 받기</button>
+						</div>
+						<p class="notice">필수 정보입니다.</p>
+					</div>
+					<div class="timer join_row">
+						<div class="check_input">
+							<span><input type="text" id="email_check" disabled><span class="timer">03:00</span></span>
+							<button type="button" class="email_check_button check_button" disabled>인증번호 확인</button>
+						</div>
+						<p class="notice">필수 정보입니다.</p>
+					</div>
+					<div class="join_row">
+						<p><label for="postcode"><strong>*</strong> 우편번호</label></p>
+						<div class="check_input">
+							<span><input type="text" id="postcode" name="postCode" th:value="${member.postCode}" readonly></span>
+							<button type="button" class="address_search_button check_button">검색</button>
+						</div>
+						<p class="notice">필수 정보입니다.</p>
+					</div>
+					<div class="join_row">
+						<p><label for="road_address"><strong>*</strong> 도로명주소</label></p>
+						<span><input type="text" id="road_address" name="roadAddress" th:value="${member.roadAddress}" readonly></span>
+						<p class="notice">필수 정보입니다.</p>
+					</div>
+					<div class="join_row">
+						<p><label for="detail_address"><strong>*</strong> 상세주소</label></p>
+						<span><input type="text" id="detail_address" name="detailAddress" th:value="${member.detailAddress}"></span>
+						<p class="notice">필수 정보입니다.</p>
+					</div>
+					<button type="submit" class="green confirm_button">수정하기</button>
+				</form>
+			</div>
+		</div>
+	</div>
+<div th:include="common/footer.html"></div>
+	<script th:src="@{/js/common/joinValidate.js}"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script th:src="@{/js/personal/mypage/modifyMember.js}"></script>
+
+
+</body>
+</html>

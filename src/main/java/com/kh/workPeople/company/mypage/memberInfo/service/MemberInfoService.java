@@ -14,4 +14,6 @@ public interface MemberInfoService {
 	int leave(MemberImpl user);
 
 
+	// 개인회원 정보 수정
+    int updatePersonalInfo(Member member);
 }

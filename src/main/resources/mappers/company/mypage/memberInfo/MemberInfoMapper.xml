@@ -38,6 +38,19 @@
 		     , M_EMAIL = #{email}	
 	     WHERE M_NO = #{no}	
 	</update>
+
+<!--개인회원 정보 수정-->
+	<update id="updatePersonalInfo" parameterType="com.kh.workPeople.common.vo.Member">
+		UPDATE MEMBER
+		SET M_NAME = #{name}
+		  , M_PHONE = #{phone}
+		  , M_EMAIL = #{email}
+		  , M_POSTCODE = #{postCode}
+		  , M_ROADADDRESS = #{roadAddress}
+		  , M_DETAILADDRESS = #{detailAddress}
+		WHERE M_NO = #{no}
+	</update>
+
 	<update id="updatePwd" parameterType="com.kh.workPeople.common.vo.Member">
 		UPDATE MEMBER
 		   SET M_PWD = #{pwd}	
