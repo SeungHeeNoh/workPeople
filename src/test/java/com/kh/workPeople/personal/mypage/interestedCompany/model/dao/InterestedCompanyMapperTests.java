@@ -29,7 +29,6 @@ public class InterestedCompanyMapperTests {
 	
 	@Test
 	@Transactional
-	@Disabled
 	public void testInsertInterestedCompany() {
 		Map<String, Integer> queryMap = new HashMap<>();
 		queryMap.put("userNo", 1);
@@ -42,6 +41,7 @@ public class InterestedCompanyMapperTests {
 
 	@Test
 	@Transactional
+	@Disabled
 	public void testDeleteInterestedCompany() {
 		Map<String, Integer> queryMap = new HashMap<>();
 		queryMap.put("userNo", 1);
@@ -52,6 +52,7 @@ public class InterestedCompanyMapperTests {
 		assertEquals(result, 1);
 	}
 	
+	@Disabled
 	@Test
 	public void testGetInterestedCompanyCount() {
 		int result = interestedCompanyMapper.getInterestedCompanyCount(1);

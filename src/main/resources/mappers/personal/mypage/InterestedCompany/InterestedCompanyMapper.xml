@@ -29,10 +29,12 @@
 		(
 		    M_NO
 		  , CI_NO
+		  , IC_DATE
 		)
 		VALUES(
 		    #{userNo}
 		  , #{companyNo}
+		  , SYSDATE
 		)
 	</insert>
 	<delete id="deleteInterestedCompany" parameterType="hashMap">

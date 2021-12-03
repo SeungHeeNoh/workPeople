@@ -57,11 +57,13 @@
 		(
 		    M_NO
 		  , JV_NO
+		  , S_DATE
 		)
 		VALUES
 		(
 		    #{userNo}
 		  , #{jobVacancyNo}
+		  , SYSDATE
 		)
 	</insert>
 	<delete id="deleteScrap" parameterType="hashmap">
