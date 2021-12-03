@@ -9,4 +9,6 @@ import com.kh.workPeople.jobs.vacancyDetail.model.vo.JobVacancyInformation;
 @Mapper
 public interface VacancyDetailMapper {
 	JobVacancyInformation selectJobVacancyInformation(Map<String, Object> queryMap);
+
+	void increaseCount(int no);
 }

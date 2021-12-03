@@ -112,10 +112,12 @@
 					</div>
 				</div>
 			</div>
+		<th:block th:if="${#authorization.expression('isAnonymous()') or #authorization.expression('hasRole(''PERSONAL'')')}">
 			<div class="report">
 				<p>※ 채용정보가 사살괴 다를 경우 “직업안정법” 제 45조의 3 및 “불법직업소개 등 신고포상금제 운영 규정” 제2조에 따라 거짓 구인정보 신고를 통해 <span>거짓구인광고 및 불법직업소개행위 신고</span>를 할 수 있습니다.</p>
-				<button type="button" class="report_button orange done">거짓 구인정보 신고</button>
+				<button type="button" class="report_button orange" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_button' : '') + (#strings.equals(jobVacancyInformation.reportedJobVacancy, 'Y') ? 'done':'')}" th:attr="data-job-vacancy-no=${jobVacancyInformation.jobVacancy.no}">거짓 구인정보 신고</button>
 			</div>
+		</th:block>
 		</div>
 		<div class="dimmed">
 			<div id ="modal" class="resume_register_modal">
