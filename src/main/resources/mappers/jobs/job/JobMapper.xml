@@ -45,6 +45,8 @@
         <result property="acDateFormat" column="AC_DATE_FORMAT"/>
         <result property="rbDateFormat" column="RB_DATE_FORMAT"/>
         <result property="jvPeriodEndFormat" column="JV_PERIOD_END_FORMAT"/>
+        <result property="baseDate" column="BASEDATE"/>
+        <result property="check" column="BASEDATECHECK"/>
 		<association property="sector" resultMap="sectorResultMap"/>
 		<association property="member" resultMap="memberResultMap"/>
     </resultMap>
@@ -137,16 +139,33 @@
      ORDER BY JV_UPDATE ASC
 	</select>
 	<select id ="getJobVacancyLookUpListBasic" resultMap="jobVacancyResultMap">
-		SELECT
-        JV_NO
-       ,JV_TITLE
-       ,M_NAME
-       ,S_NAME
-     FROM COMPANY_INFO 
-     JOIN  SECTOR USING(S_NO) 
-     JOIN MEMBER USING(M_NO)
-     JOIN JOB_VACANCY USING(CI_NO)
-      ORDER BY JV_UPDATE ASC
+	<![CDATA[
+			  SELECT
+	         JV_NO
+	       , JV_TITLE
+	       , M_NAME
+	       , S_NAME
+	       , JV_PERIOD_START
+	       , JV_PERIOD_END
+	       , case when P_CODE = 3 
+	               and TO_CHAR(P_START_DATE, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD') 
+	               and TO_CHAR(P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') 
+	               then to_date(to_char(SYSDATE, 'YYYY-MM-DD HH24:')|| '00:00', 'YYYY-MM-DD HH24:MI:SS')
+	          else JV_PERIOD_START end as BASEDATE
+	       , case when P_CODE = 3 
+	               and TO_CHAR(P_START_DATE, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD') 
+	               and TO_CHAR(P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') 
+	               then 1
+	          else 0 end as BASEDATECHECK   
+	     FROM COMPANY_INFO 
+	     JOIN SECTOR USING(S_NO) 
+	     JOIN MEMBER USING(M_NO)
+	     JOIN JOB_VACANCY USING(CI_NO)
+	     LEFT JOIN PROMOTION_ORDER USING(JV_NO)
+	    WHERE TO_CHAR(JV_PERIOD_START, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD')
+	      AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
+	    ORDER BY BASEDATE DESC
+      ]]>
 	</select>
 
 </mapper>

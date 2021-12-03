@@ -55,12 +55,17 @@
                         </div>
                     </div>
                 </div>
-                </form>
+                </form> 
             </div>
             <div   class="local_list_body border_test">
                 <div th:each="jobVacancy : ${jvList}" class="list_item border_test_r">
                     <div class="corp">
+                     <div th:if="${jobVacancy.check == 1}">
+                        <span th:text="${jobVacancy.mName}"></span><p class="up">UP</p>
+                      </div> 
+                      <div th:unless="${jobVacancy.check == 1}">
                         <span th:text="${jobVacancy.mName}"></span>
+                      </div> 
                     </div>
                     <div class="tit">
                         <span th:text="${jobVacancy.jvTitle}"></span>
