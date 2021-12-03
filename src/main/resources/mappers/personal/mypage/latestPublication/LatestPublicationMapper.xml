@@ -51,5 +51,31 @@
         WHERE B.M_NO=#{no}
         ORDER BY 1
     </select>
-
+    <select id="getBrowseCount" parameterType="hashmap" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM BROWSE
+		 WHERE M_NO = #{userNo}
+		   AND JV_NO = #{no}
+    </select>
+    <delete id="deleteBrowse" parameterType="hashmap">
+		DELETE
+		  FROM BROWSE
+		 WHERE M_NO = ${userNo}
+		   AND JV_NO = #{no}
+    </delete>
+	<insert id="insertBrowse" parameterType="hashmap">
+		INSERT INTO BROWSE
+		(
+		    M_NO
+		  , JV_NO
+		  , B_DATE
+		)
+		VALUES
+		(
+		    #{userNo}
+		  , #{no}
+		  , SYSDATE
+		)
+	</insert>
 </mapper>

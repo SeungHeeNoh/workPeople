@@ -12,13 +12,17 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.jobs.vacancyDetail.model.service.VacancyDetailService;
 import com.kh.workPeople.jobs.vacancyDetail.model.vo.JobVacancyInformation;
+import com.kh.workPeople.personal.mypage.latestPublication.model.service.LatestPublicationService;
 
 @Controller
 @RequestMapping("/jobs/vacancy-detail")
@@ -26,6 +30,8 @@ public class VacancyDetailController {
 	
 	@Autowired
 	private VacancyDetailService vacancyDetailService;
+	@Autowired
+	private LatestPublicationService latestPublicationService;
 	
 	@GetMapping("/detail-view")
 	public ModelAndView vacancyDetail(HttpServletRequest request, HttpServletResponse response, @RequestParam(defaultValue = "0") int no, @AuthenticationPrincipal UserDetails user) {
@@ -52,13 +58,17 @@ public class VacancyDetailController {
 		
 		queryMap.put("no", no);
 
-		if(user != null && user instanceof MemberImpl && ((MemberImpl)user).getMemberType().getNo() == 1) {	
+		if(isPersonalUser(user)) {
 			queryMap.put("userNo", ((MemberImpl)user).getNo());
 		}
 
 		jobVacancyInformation = vacancyDetailService.selectJobVacancyInformation(queryMap);
 		
 		if(jobVacancyInformation != null) {
+			if(isPersonalUser(user)) {
+				latestPublicationService.updateBrowse(queryMap);
+			}
+
 			mv.addObject("jobVacancyInformation", jobVacancyInformation);
 			mv.setViewName("/jobs/vacancy-detail/detail-view");
 		} else {
@@ -67,6 +77,10 @@ public class VacancyDetailController {
 		}
 		
 		return mv;
+	}
+
+	protected boolean isPersonalUser(UserDetails user) {
+		return (user != null && user instanceof MemberImpl && ((MemberImpl)user).getMemberType().getNo() == 1);
 	}
 
 }
