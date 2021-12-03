@@ -17,6 +17,7 @@
 			<div class="info_header">
 				<div>
 					<img th:if="${companyDetailInformation.companyInformation.attachment == null}" th:src="@{/images/jobs/company-information/no-logo.png}" alt="기본 로고">
+					<img th:unless="${companyDetailInformation.companyInformation.attachment == null}" th:src="@{${companyDetailInformation.companyInformation.attachment.filePath} + ${companyDetailInformation.companyInformation.attachment.changeName}}" th:alt="${companyDetailInformation.companyName} + ' 로고'">
 					<h2 th:text="${companyDetailInformation.companyName}"></h2>
 					<th:block th:if="${#authorization.expression('isAnonymous()') or #authorization.expression('hasRole(''PERSONAL'')')}">
 						<button type="button" class="like_button" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_button' : '') + (#strings.equals(companyDetailInformation.interestedCompany, 'Y') ? 'active':'')}" th:attr="data-company-no=${companyDetailInformation.companyInformation.no}">관심기업 등록

@@ -24,11 +24,11 @@
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.Attachment" id="attachmentResultMap">
 		<id property="no" column="A_NO"/>
+		<result property="originName" column="A_ORIGIN_NAME"/>
 		<result property="changeName" column="A_CHANGE_NAME"/>
 		<result property="filePath" column="A_FILE_PATH"/>
 		<result property="status" column="A_STATUS"/>
 		<result property="create" column="A_CREATE"/>
-		<result property="update" column="A_UPDATE"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.Sector" id="sectorResultMap">
 		<id property="no" column="S_NO"/>
@@ -56,7 +56,6 @@
 		     , A_FILE_PATH
 		     , A_STATUS
 		     , A_CREATE
-		     , A_UPDATE
 		     , S_NO
 		     , S_NAME
 		     , CT_NO

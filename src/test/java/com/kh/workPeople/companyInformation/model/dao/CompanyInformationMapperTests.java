@@ -32,7 +32,7 @@ public class CompanyInformationMapperTests {
 	@Test
 	public void testGetCompanyInformationSuccess() {
 		Map<String, Object> queryMap = new HashMap<>();
-		queryMap.put("companyInformationNo", 1);
+		queryMap.put("companyInformationNo", 2);
 		CompanyDetailInformation companyInformation = companyInformationMapper.getCompanyDetailInformation(queryMap);
 		
 		assertNotNull(companyInformation);
