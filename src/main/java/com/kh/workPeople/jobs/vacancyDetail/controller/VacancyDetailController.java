@@ -21,7 +21,7 @@ import com.kh.workPeople.jobs.vacancyDetail.model.service.VacancyDetailService;
 import com.kh.workPeople.jobs.vacancyDetail.model.vo.JobVacancyInformation;
 
 @Controller
-@RequestMapping("/jobs/vacancyDetail")
+@RequestMapping("/jobs/vacancy-detail")
 public class VacancyDetailController {	
 	
 	@Autowired

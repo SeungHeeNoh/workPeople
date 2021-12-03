@@ -6,6 +6,7 @@
 		<result property="companyName" column="COMPANY_NAME"/>
 		<result property="interestedCompany" column="INTERESTED"/>
 		<result property="scrapJobVacancy" column="SCRAPED"/>
+		<result property="reportedJobVacancy" column="REPORTED"/>
 		<association property="jobVacancy" resultMap="jobVacancyResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.JobVacancy" id="jobVacancyResultMap">
@@ -120,6 +121,10 @@
 		        WHEN SCRAP_INFORMATION.JV_NO IS NULL THEN 'N'
 		        ELSE 'Y'
 		       END SCRAPED
+		     , CASE
+		        WHEN REPORT_INFORMATION.JV_NO IS NULL THEN 'N'
+		        ELSE 'Y'
+		       END REPORTED
 		 </if>
 		FROM COMPANY_INFORMATION
 		JOIN JOB_VACACY_INFORMATION JI ON(COMPANY_INFORMATION.CI_NO = JI.CI_NO)
@@ -130,6 +135,9 @@
 		LEFT OUTER JOIN (SELECT JV_NO
 		                   FROM SCRAP
 		                  WHERE M_NO = #{userNo}) SCRAP_INFORMATION ON(JI.JV_NO = SCRAP_INFORMATION.JV_NO)
+		LEFT OUTER JOIN (SELECT JV_NO
+		                   FROM REPORT_VACANCY
+		                  WHERE M_NO = #{userNo}) REPORT_INFORMATION ON(JI.JV_NO = REPORT_INFORMATION.JV_NO)
 		</if>
 	   WHERE JI.JV_NO = #{no}
 	     AND JV_STATUS_YN = 'Y'
