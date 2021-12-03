@@ -29,7 +29,7 @@
 
                 <div th:each="job : ${jobList}">
                     <div class="content_title_text4">
-                        <input type="checkbox" class="checkBtn1">
+                        <input type="checkbox" class="checkBtn1" th:attr="data-company-no=${job.no}">
                         <div class="content_title_text4_1" th:text="${job.name}"></div>
                         <div class="content_title_text4_2">
                             <span>채용중</span>
@@ -39,9 +39,9 @@
                     </div>
                     <hr class="hr">
                 </div>
-
-                <button class="green green1">삭제</button>
-
+				<form class="delete_form" th:action="@{/personal/mypage/interestedCompany/list/delete}" method="POST">
+               	 	<button class="green green1" disabled>삭제</button>
+				</form>
             
 
             
@@ -55,6 +55,7 @@
         </section>
     </div>
 <div th:include="common/footer.html"></div>
+<script th:src="@{/js/personal/mypage/interestedCompany.js}"></script>
 </body>
 
 </html>

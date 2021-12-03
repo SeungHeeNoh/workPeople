@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUpSimple;
 import com.kh.workPeople.common.vo.MemberImpl;
@@ -43,6 +47,25 @@ public class InterestedCompanyController {
         model.addAttribute("jobList",jobVacancyLookUpSimpleList);
 
         return "personal/mypage/interestedCompany";
+    }
+    
+    @PostMapping("/interestedCompany/list/delete")
+    public String deleteInterestedComapnyList(@RequestParam("companyNo") List<Integer> companyNoList, @AuthenticationPrincipal MemberImpl user, RedirectAttributes rttr, HttpServletRequest request) {
+    	int result = 0;
+    	Map<String, Object> queryMap = new HashMap<>();
+    	
+    	queryMap.put("userNo", user.getNo());
+    	queryMap.put("companyNoList", companyNoList);
+    	
+    	result = interestedCompanyService.deleteInterestedCompanyList(queryMap);
+    	
+    	if(result > 0) {
+    		rttr.addFlashAttribute("message", "선택하신 관심 기업 목록 삭제에 성공했습니다.");
+    		return "redirect:/personal/mypage/interestedCompany";	
+    	} else {
+    		request.setAttribute("errorMessage", "선택하신 관심 기업 목록 삭제에 실패했습니다.");
+    		return "/common/errorPage/";
+    	}
     }
     
     @PostMapping("/interestedCompany/company/{companyNo}")
