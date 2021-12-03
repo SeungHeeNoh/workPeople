@@ -72,6 +72,7 @@
 					} else {
 						console.log("ajax 통신 실패");
 					}
+					button.removeAttribute("disabled");
 				}
 			}
 
@@ -86,6 +87,7 @@
 					} else {
 						console.log("ajax 통신 실패");
 					}
+					button.removeAttribute("disabled");
 				}
 			}
 
@@ -93,7 +95,6 @@
 			xhr.setRequestHeader(tokenHeader, token);
 			xhr.send();
 		}
-		button.removeAttribute("disabled");
 	}
 
 	function activeLikeButton(button) {
@@ -118,6 +119,7 @@
 					} else {
 						console.log("ajax 통신 실패");
 					}
+					button.removeAttribute("disabled");
 				}
 			}
 
@@ -132,6 +134,7 @@
 					} else {
 						console.log("ajax 통신 실패");
 					}
+					button.removeAttribute("disabled");
 				}
 			}
 
@@ -139,7 +142,6 @@
 			xhr.setRequestHeader(tokenHeader, token);
 			xhr.send();
 		}
-		button.removeAttribute("disabled");
 	}
 
 	function activeScrapButton(button) {
@@ -177,8 +179,28 @@
 			alert("이미 신고된 공고입니다.");
 		} else {
 			button.setAttribute("disabled", true);
-			alert("신고가 완료되었습니다.");
-			button.removeAttribute("disabled");
+
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+						if(xhr.response.message == "success") {
+							alert("신고가 완료되었습니다.");
+						} else {
+							alert("에러로 인해 실패했습니다.")
+						}
+						button.classList.add("done");
+					} else {
+						console.log("ajax 통신 실패");
+					}
+					button.removeAttribute("disabled");
+				}
+			}
+
+			xhr.open("POST", "/personal/mypage/report/job-vacancy/" + button.getAttribute("data-job-vacancy-no"));
+			xhr.setRequestHeader(tokenHeader, token);
+			xhr.responseType = "json";
+			xhr.send();
 		}
 	}
 
