@@ -205,12 +205,25 @@ label{
 .list_item{
     height: 130px;
 }
-.corp > span {
+.corp > div > span {
     max-width: 90%;
     font-size: 25px;
     margin-left: 38px;
     color: #A7D676;
 }
+
+.up {
+	color: #ffb188;
+    font-weight: bold;
+    font-size: 11px;
+    border: 3px solid #ffb188;
+    padding: 0px 5px;
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    margin-left: 10px;
+}
+
 .tit > span {
     font-size: 20px;
     margin: 0px 0px 30px 38px;
