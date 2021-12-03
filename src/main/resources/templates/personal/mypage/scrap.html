@@ -37,7 +37,7 @@
 
                 <div th:each="job : ${jobVacancyLookUpList}">
                     <div class="content_title_text4">
-                        <input type="checkbox" class="checkBtn1">
+                        <input type="checkbox" class="checkBtn1" th:attr="data-job-vacancy-no=${job.jvNo}">
                         <div class="content_title_text4_1" th:text="${job.mName}"></div>
                         <div class="content_title_text4_detail_wrap">
                             <div th:text="${job.jvTitle}"></div>
@@ -80,18 +80,17 @@
                     <hr class="hr">
                 </div>
 
-
-            <button class="green green1">스크랩취소</button>
+			<form class="delete_form" th:action="@{/personal/mypage/scrap/list/delete}" method="post">
+				<button class="green green1" disabled>스크랩취소</button>
+			</form>
        
         </div>
 <!--            <div th:replace="common/paging.html"></div>-->
         </section>
     </div>
 
-
-
-<script th:src="@{/js/personal/mypage/scrap.js}"></script>
 <div th:include="common/footer.html"></div>
+<script th:src="@{/js/personal/mypage/scrap.js}"></script>
 </body>
 
 </html>

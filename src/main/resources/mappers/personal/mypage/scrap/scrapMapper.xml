@@ -52,6 +52,15 @@
         ORDER BY 1
 
     </select>
+    <delete id="deleteScrapList" parameterType="hashmap">
+		DELETE
+		      SCRAP
+		  WHERE M_NO = #{userNo}
+		    AND JV_NO IN 
+		  <foreach collection="jvNoList" item="jvNo" open="(" separator=", " close=")">
+		  	#{jvNo}
+		  </foreach>
+    </delete>
 	<insert id="insertScrap" parameterType="hashmap">
 		INSERT INTO SCRAP
 		(

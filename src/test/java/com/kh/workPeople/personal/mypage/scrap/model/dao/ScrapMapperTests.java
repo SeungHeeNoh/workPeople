@@ -2,7 +2,9 @@ package com.kh.workPeople.personal.mypage.scrap.model.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Disabled;
@@ -42,6 +44,7 @@ public class ScrapMapperTests {
 	
 	@Test
 	@Transactional
+	@Disabled
 	public void testDeleteScrap() {
 		Map<String, Integer> queryMap = new HashMap<>();
 		queryMap.put("userNo", 1);
@@ -50,6 +53,23 @@ public class ScrapMapperTests {
 		int result = scrapMapper.deleteScrap(queryMap);
 		
 		assertEquals(result, 1);
+	}
+	
+	@Test
+	@Transactional
+	public void testDeleteScrapList() {
+		List<Integer> jvNoList = new ArrayList<>();
+		jvNoList.add(1);
+		jvNoList.add(2);
+		jvNoList.add(3);
+		
+		Map<String, Object> queryMap = new HashMap<>();
+		queryMap.put("userNo", 4);
+		queryMap.put("jvNoList", jvNoList);
+		
+		int result = scrapMapper.deleteScrapList(queryMap);
+		
+		assertEquals(result, 3);
 	}
 
 }

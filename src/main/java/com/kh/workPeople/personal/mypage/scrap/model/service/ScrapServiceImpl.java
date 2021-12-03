@@ -22,6 +22,11 @@ public class ScrapServiceImpl implements ScrapService{
     public List<JobVacancyLookUp> jobVacancyLookUpList(int no) {
         return scrapMapper.jobVacancyLookUpList(no);
     }
+    
+    @Override
+	public int deleteScrapList(Map<String, Object> queryMap) {
+		return scrapMapper.deleteScrapList(queryMap);
+	}
 
 	@Override
 	public int insertScrap(Map<String, Integer> queryMap) {
