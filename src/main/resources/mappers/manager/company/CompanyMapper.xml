@@ -31,7 +31,7 @@
 		<id property="name" column="A_NAME"/>
 		<id property="desc" column="A_DESC"/>
 	</resultMap>
-	<resultMap type="com.kh.workPeople.common.vo.CompanyInformation" id="companyResultMap">
+	<resultMap type="com.kh.workPeople.common.vo.ManagerCompanyInfo" id="managercompanyResultMap">
 		<id property="no" column="CI_NO"/>
 		<result property="registerNumber" column="CI_COMPANY_REGISTER_NUMBER"/>
 		<result property="ceoName" column="CI_CEONAME"/>
@@ -51,7 +51,15 @@
 		<result property="create" column="A_CREATE"/>
 		<result property="update" column="A_UPDATE"/>
 	</resultMap>
-	<select id="selectList" resultMap="companyResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
+	
+	<resultMap type="com.kh.workPeople.common.vo.JobVacancy" id="jobVacancyResultMap">
+        <result property="title" column="JV_TITLE"/>
+        <result property="address" column="JV_ADDRESS"/>
+        <result property="periodEnd" column="JV_PERIOD_END"/>
+        <result property="peiodStart" column="JV_PERIOD_START"/>
+    </resultMap>
+    
+	<select id="selectList" resultMap="managercompanyResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
 		SELECT * FROM 
 			(SELECT  *  FROM(
 					SELECT
@@ -77,7 +85,7 @@
 		 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) where A_CODE=2
 	</select> 
  
- <select id="vacancyNo" resultMap="companyResultMap">
+ <select id="vacancyNo" resultMap="managercompanyResultMap">
 		 SELECT  *  FROM(
 					SELECT
 		           	   M_NO
@@ -89,6 +97,18 @@
 				  FROM MEMBER
                   JOIN COMPANY_INFO USING (M_NO)
 			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) WHERE A_CODE=2 and b.m_no=${no} ORDER BY a.M_NO
+	</select>
+	
+	<select id="getListJobVacanscyByCompanyNum" resultMap="jobVacancyResultMap" parameterType="_int">
+		SELECT 
+	        jv_title
+	       ,jv_address
+	       ,JV_PERIOD_END
+	       ,JV_PERIOD_START
+	     FROM COMPANY_INFO 
+	     JOIN MEMBER USING(M_NO)
+	     JOIN JOB_VACANCY USING(CI_NO)
+	     WHERE  M_NO=#{no}
 	</select>
 	
 

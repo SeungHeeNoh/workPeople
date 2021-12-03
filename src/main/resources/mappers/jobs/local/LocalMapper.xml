@@ -80,73 +80,39 @@
 		<result property="name" column="CT_NAME"/>
 	</resultMap>
 	
-	<!-- <select id ="getlocalList" resultMap="jobVacancyResultMap">
-		SELECT * FROM JOB_VACANCY WHERE JV_ADDRESS LIKE '%서울%구%'
-	</select> -->
-	
-	
-	<select id ="jobSearch" resultMap="companyResultMap">
-		SELECT
-        JV_NO
-       ,JV_TITLE
-       ,M_NAME
-       ,S_NAME
-     FROM COMPANY_INFO 
-     JOIN  SECTOR USING(S_NO) 
-     JOIN MEMBER USING(M_NO)
-     JOIN JOB_VACANCY USING(CI_NO)
-     WHERE S_NO IN 
-     <foreach collection="sc" item="no" index="index" open="("   separator=", " close=")">
- 	     	#{no[index]}
- 	     </foreach>
-     ORDER BY JV_UPDATE ASC;
-	</select>
-	
-	<select id ="jobSearchList" resultMap="companyResultMap" parameterType="hashmap">
-		SELECT
-        JV_NO
-       ,JV_TITLE
-       ,M_NAME
-       ,S_NAME
-     FROM COMPANY_INFO 
-     JOIN  SECTOR USING(S_NO) 
-     JOIN MEMBER USING(M_NO)
-     JOIN JOB_VACANCY USING(CI_NO)
-     WHERE S_NO IN 
-     
-     	<foreach collection="no" item="sec"  open="("   separator=", " close=")">
- 	     #{sec}
- 	     </foreach>
-     ORDER BY JV_UPDATE ASC
-	</select>
-	
 	<select id ="getJobVacancyLookUpList" resultMap="jobVacancyResultMap" parameterType="hashmap">
-		SELECT
+     SELECT
         JV_NO
        ,JV_TITLE
        ,M_NAME
        ,S_NAME
+       ,JV_ADDRESS
+       ,JV_PERIOD_END
      FROM COMPANY_INFO 
-     JOIN  SECTOR USING(S_NO) 
+     JOIN  SECTOR USING(S_NO)
      JOIN MEMBER USING(M_NO)
      JOIN JOB_VACANCY USING(CI_NO)
-     WHERE S_NO IN
-      	<foreach collection="no" item="sec"  open="("   separator=", " close=")"> 
- 	     #{sec}
- 	     </foreach> 
+     WHERE  
+     <foreach collection="local" item="lc"  separator=" OR ">
+ 	    JV_ADDRESS LIKE '%' || #{lc} || '%'
+ 	     </foreach>
      ORDER BY JV_UPDATE ASC
 	</select>
-	<select id ="getJobVacancyLookUpListBasic" resultMap="jobVacancyResultMap">
+	
+	<select id="getJobVacancyLookUpListBasic" resultMap="jobVacancyResultMap">
 		SELECT
-        JV_NO
+          JV_NO
        ,JV_TITLE
        ,M_NAME
        ,S_NAME
+       ,JV_ADDRESS
+       ,JV_PERIOD_END
      FROM COMPANY_INFO 
      JOIN  SECTOR USING(S_NO) 
      JOIN MEMBER USING(M_NO)
      JOIN JOB_VACANCY USING(CI_NO)
       ORDER BY JV_UPDATE ASC
 	</select>
+
 
 </mapper>

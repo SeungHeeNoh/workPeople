@@ -6,6 +6,8 @@ import com.kh.workPeople.common.vo.JobVacancyLookUp;
 
 public interface LocalListService {
 
-	List<JobVacancyLookUp> getlocalList();
+
+	List<JobVacancyLookUp> getLocalVacancyLookUpList(String[] local);
+	List<JobVacancyLookUp> getLocalVacancyLookUpListBasic();
 	
 }

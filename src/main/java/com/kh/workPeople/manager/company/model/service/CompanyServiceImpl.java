@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.workPeople.common.vo.CompanyInformation;
+import com.kh.workPeople.common.vo.JobVacancy;
+import com.kh.workPeople.common.vo.ManagerCompanyInfo;
 import com.kh.workPeople.common.vo.PageInfo;
 import com.kh.workPeople.manager.company.model.dao.CompanyMapper;
 
@@ -27,7 +29,7 @@ public class CompanyServiceImpl implements CompanyService{
 	  
 		  PageInfo pi = new PageInfo(page, listCount, 5, 10);
 		  
-		  List<CompanyInformation> companyList = companyMapper.selectList(pi);
+		  List<ManagerCompanyInfo> companyList = companyMapper.selectList(pi);
 		  
 		  returnMap.put("pi", pi); returnMap.put("companyList", companyList);
 		  
@@ -36,10 +38,17 @@ public class CompanyServiceImpl implements CompanyService{
 
 
 	@Override
-	public CompanyInformation vacancyNo(int no) {
+	public ManagerCompanyInfo vacancyNo(int no) {
 		return companyMapper.vacancyNo(no);
 	}
+
+
+	@Override
+	public List<JobVacancy> getJobVacancyListByCompanyNum(int no) {
+		return companyMapper.getListJobVacanscyByCompanyNum(no);
+	}
 	 
+	
 
 	
 }

@@ -3,6 +3,8 @@ package com.kh.workPeople.common.vo;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 public class JobVacancy {
@@ -14,7 +16,9 @@ public class JobVacancy {
 	private Date display;
 	private int count;
 	private int to;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date peiodStart;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date periodEnd;
 	private String workdayStartTime;
 	private String workdayEndTime;

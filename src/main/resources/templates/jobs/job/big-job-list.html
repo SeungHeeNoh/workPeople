@@ -26,7 +26,6 @@
                             <li class="gu" th:each="sector, i: ${sectorList}">
                                     <label class="searchSector" th:value="${sector.no}" th:text="${sector.name}"></label>
                                     <input type="checkbox" name="no" th:value="${sector.no}" style="display:none;">
-                                    
                             </li>
                         </ul>
                         </div>
@@ -55,57 +54,34 @@
                         </div>
                     </div>
                 </div>
-                </form> 
+                </form>
             </div>
-            <div   class="local_list_body border_test">
+            <div class="local_list_body border_test">
                 <div th:each="jobVacancy : ${jvList}" class="list_item border_test_r">
                     <div class="corp">
-                     <div th:if="${jobVacancy.check == 1}">
+                    	<div th:if="${jobVacancy.check == 1}">
                         <span th:text="${jobVacancy.mName}"></span><p class="up">UP</p>
-                      </div> 
-                      <div th:unless="${jobVacancy.check == 1}">
-                        <span th:text="${jobVacancy.mName}"></span>
-                      </div> 
+                    </div>
+                    <div th:unless="${jobVacancy.check==1}">
+                    <span th:text="${jobVacancy.mName}"></span>
+                    </div>
                     </div>
                     <div class="tit">
                         <span th:text="${jobVacancy.jvTitle}"></span>
                     </div>
                     <div class="sname">
                         <span th:text="${jobVacancy.sName}"></span>
-                    </div>
+                     </div>
+                    
                         <button class="applybtn border_test">지원하기</button>
                 </div>
             </div>
         </div> 
     </div>
+    	<div th:include="common/up.html"></div> 
         <div th:include="common/footer.html"></div>
+   </body>
     <script>
-    
-        function clickItem(obj, access) {
-            if ($(obj).prop('checked')) {
-                // 추가
-                var span = '<span class="txt" data-search-filter="' + $(obj).data('search-filter') + '">' + $(obj).data('filter-item-nm') + '<button type="button" onClick="removeItem(\'' + $(obj).data('search-filter') + '\')">삭제</button></span>';
-                $('.opt-area').append(span);
-
-                var div = '<div class="item">';
-                
-               /*  div += '<input type="hidden" >'; */
-                div += '<span class="txt" data-search-filter="' + $(obj).data('search-filter') + '">' + $(obj).data('filter-item-nm') + '<button type="button" class="btn-delete" onClick="removeItem(\'' + $(obj).data('search-filter') + '\')">삭제</button></span>';
-                div += '</div>';
-                $('.filter-footer > .list-option').append(div);
-                
-                console.log($(obj));
-                console.log($(obj).next());
-                $(obj).next().prop("checked", true);
-
-            } else {
-                removeItem($(obj).data('search-filter'), access);
-                $(obj).next().prop("checked", false);
-            }
-        }
-        
-   
-
            
         $(".searchSector").click(function(e){ //searchSector를 클릭시 해당 클릭된 아이템 e로가져옴 
         	
@@ -140,13 +116,6 @@
                  } 
             }); 
         });
-        
-        function addSearchItem(){
-        	  var div = '<div class="item">';
-               div += '<span class="txt" data-search-filter="' + $(obj).data('search-filter') + '">' + $(obj).data('filter-item-nm') + '<button type="button" class="btn-delete" onClick="removeItem(\'' + $(obj).data('search-filter') + '\')">삭제</button></span>';
-               div += '</div>';
-               $('.filter-footer > .list-option').append(div);
-        }
 
         function removeAllItem() {
             // 필터 영역 uncheck
@@ -164,38 +133,10 @@
                 	$(item).removeClass("search");
 	            } 
             }); 
-           
-
         }
 
-        function removeItem(searchFilter, access) {
-            // 필터 영역 uncheck    		    		    	
-            $('.list-filter').find('input:checkbox').each(function (idx, item) {
-                if (searchFilter === $(item).data('search-filter')) {
-                    $(item).prop('checked', false);
-                }
-            });
-
-            // pc 필터 사이드바 제거
-            $('.opt-area > span').each(function (idx, item) {
-                if (searchFilter === $(item).data('search-filter')) {
-                    if (access) {
-
-                    } else {
-                        if ($(this).next().find("button").length > 0) {
-                            $(this).next().find("button").focus();
-                        } else {
-                            $(this).parent().parent().next().find("button").focus();
-                        }
-                    }
-                    $(item).remove();
-                }
-
-
-            });
-        }
     </script>
 
-</body>
+
 
 </html>
