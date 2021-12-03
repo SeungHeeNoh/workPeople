@@ -24,6 +24,15 @@
         FROM JOB_VACANCY
         WHERE CI_NO=#{no}
     </select>
+    <delete id="deleteInterestedCompanyList">
+    	DELETE
+    	  FROM INTERESTED_COMPANY
+    	 WHERE M_NO = ${userNo}
+    	  AND CI_NO IN
+   		<foreach collection="companyNoList" item="companyNo" open="(" separator=", " close=")">
+   			#{companyNo}
+   		</foreach>
+    </delete>
 	<insert id="insertInterestedCompany" parameterType="hashMap">
 		INSERT INTO INTERESTED_COMPANY
 		(

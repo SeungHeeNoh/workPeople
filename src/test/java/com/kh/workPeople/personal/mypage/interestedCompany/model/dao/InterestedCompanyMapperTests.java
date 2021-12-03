@@ -1,8 +1,11 @@
 package com.kh.workPeople.personal.mypage.interestedCompany.model.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Disabled;
@@ -42,6 +45,7 @@ public class InterestedCompanyMapperTests {
 
 	@Test
 	@Transactional
+	@Disabled
 	public void testDeleteInterestedCompany() {
 		Map<String, Integer> queryMap = new HashMap<>();
 		queryMap.put("userNo", 1);
@@ -53,10 +57,28 @@ public class InterestedCompanyMapperTests {
 	}
 	
 	@Test
+	@Disabled
 	public void testGetInterestedCompanyCount() {
 		int result = interestedCompanyMapper.getInterestedCompanyCount(1);
 		
 		assertEquals(result, 2);
 	}
+	
+    @Test
+    @Transactional
+    public void testDeleteScrapList() {
+        List<Integer> companyNoList = new ArrayList<>();
+        companyNoList.add(1);
+        companyNoList.add(2);
+        companyNoList.add(3);
+        
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("userNo", 4);
+        queryMap.put("companyNoList", companyNoList);
+        
+        int result = interestedCompanyMapper.deleteInterestedCompanyList(queryMap);
+        
+        assertNotEquals(result, 0);
+    }
 
 }
