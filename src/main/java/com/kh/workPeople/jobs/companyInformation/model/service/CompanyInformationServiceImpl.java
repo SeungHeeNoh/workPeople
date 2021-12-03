@@ -1,5 +1,7 @@
 package com.kh.workPeople.jobs.companyInformation.model.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,8 @@ public class CompanyInformationServiceImpl implements CompanyInformationService 
 	}
 
 	@Override
-	public CompanyDetailInformation getCompanyDetailInformation(int no) {
-		CompanyDetailInformation companyDetailInformation = companyInformationMapper.getCompanyDetailInformation(no);
-		
-		return companyDetailInformation;
+	public CompanyDetailInformation getCompanyDetailInformation(Map<String, Object> queryMap) {
+		return companyInformationMapper.getCompanyDetailInformation(queryMap);
 	}
 
 }

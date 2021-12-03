@@ -78,6 +78,9 @@ label{
     vertical-align: middle;
 }
 
+.search{
+	background-color: #A7D676 ;
+}
 
 
 
@@ -197,8 +200,6 @@ label{
 
 .local_list_body{
     background-color: white;
-   
-    height:750px;
     display: block;
 }
 
@@ -206,11 +207,23 @@ label{
     height: 130px;
 }
 .corp{}
-.corp > span {
+.corp > div > span {
     max-width: 90%;
-    font-size: 30px;
+    font-size: 25px;
     margin-left: 38px;
     color: #A7D676;
+}
+
+.up {
+	color: #ffb188;
+    font-weight: bold;
+    font-size: 11px;
+    border: 2px solid #ffb188;
+    padding: 0px 5px;
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    margin-left: 10px;
 }
 .tit{}
 .tit > span {

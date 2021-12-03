@@ -12,15 +12,15 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
-<body style="height:3000px">
-    <a id="MOVE_TOP_BTN" href="#"><img id="topBtn" th:src="@{images/common/up.png}" width="90" height="80" href="#"></a>
+<body>
+    <a id="MOVE_TOP_BTN" href="#"><img id="topBtn" th:src="@{/images/common/up.png}" width="90" height="80" href="#"></a>
 
 
     
     <script>
         $(function() {
             $(window).scroll(function() {
-                if ($(this).scrollTop() > 500) {
+                if ($(this).scrollTop() > 10) {
                     $('#MOVE_TOP_BTN').fadeIn();
                 } else {
                     $('#MOVE_TOP_BTN').fadeOut();

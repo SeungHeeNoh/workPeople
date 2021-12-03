@@ -6,13 +6,20 @@ public class JobVacancyInformation{
 
 	private String companyName;
 	private int companyNo;
+	private String interestedCompany;
+	private String scrapJobVacancy;
+	private String reportedJobVacancy;
 	private JobVacancy jobVacancy;
 
 	public JobVacancyInformation() {}
 
-	public JobVacancyInformation(String companyName, int companyNo, JobVacancy jobVacancy) {
+	public JobVacancyInformation(String companyName, int companyNo, String interestedCompany, String scrapJobVacancy,
+			String reportedJobVacancy, JobVacancy jobVacancy) {
 		this.companyName = companyName;
 		this.companyNo = companyNo;
+		this.interestedCompany = interestedCompany;
+		this.scrapJobVacancy = scrapJobVacancy;
+		this.reportedJobVacancy = reportedJobVacancy;
 		this.jobVacancy = jobVacancy;
 	}
 
@@ -32,6 +39,30 @@ public class JobVacancyInformation{
 		this.companyNo = companyNo;
 	}
 
+	public String getInterestedCompany() {
+		return interestedCompany;
+	}
+
+	public void setInterestedCompany(String interestedCompany) {
+		this.interestedCompany = interestedCompany;
+	}
+
+	public String getScrapJobVacancy() {
+		return scrapJobVacancy;
+	}
+
+	public void setScrapJobVacancy(String scrapJobVacancy) {
+		this.scrapJobVacancy = scrapJobVacancy;
+	}
+
+	public String getReportedJobVacancy() {
+		return reportedJobVacancy;
+	}
+
+	public void setReportedJobVacancy(String reportedJobVacancy) {
+		this.reportedJobVacancy = reportedJobVacancy;
+	}
+
 	public JobVacancy getJobVacancy() {
 		return jobVacancy;
 	}
@@ -42,9 +73,10 @@ public class JobVacancyInformation{
 
 	@Override
 	public String toString() {
-		return "JobVacancyInformation [companyName=" + companyName + ", companyNo=" + companyNo + ", jobVacancy="
-				+ jobVacancy + "]";
+		return "JobVacancyInformation [companyName=" + companyName + ", companyNo=" + companyNo + ", interestedCompany="
+				+ interestedCompany + ", scrapJobVacancy=" + scrapJobVacancy + ", reportedJobVacancy="
+				+ reportedJobVacancy + ", jobVacancy=" + jobVacancy + "]";
 	}
-	
+
 	
 }

@@ -11,6 +11,12 @@ import java.util.Map;
 public interface ScrapMapper {
 
     List<JobVacancyLookUp> jobVacancyLookUpList(int no);
+    
+    int deleteScrapList(Map<String, Object> queryMap);
+
+	int insertScrap(Map<String, Integer> queryMap);
+
+	int deleteScrap(Map<String, Integer> queryMap);
 
     List<JobVacancyLookUp> jobVacancyLookUpListPagingQuery(PageInfo pi);
 }

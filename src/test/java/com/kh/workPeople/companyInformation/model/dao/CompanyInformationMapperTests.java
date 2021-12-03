@@ -3,6 +3,9 @@ package com.kh.workPeople.companyInformation.model.dao;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +31,9 @@ public class CompanyInformationMapperTests {
 	
 	@Test
 	public void testGetCompanyInformationSuccess() {
-		CompanyDetailInformation companyInformation = companyInformationMapper.getCompanyDetailInformation(1);
+		Map<String, Object> queryMap = new HashMap<>();
+		queryMap.put("companyInformationNo", 1);
+		CompanyDetailInformation companyInformation = companyInformationMapper.getCompanyDetailInformation(queryMap);
 		
 		assertNotNull(companyInformation);
 		log.info(companyInformation.toString());
@@ -36,9 +41,22 @@ public class CompanyInformationMapperTests {
 	
 	@Test
 	public void testGetCompanyInformationFail() {
-		CompanyDetailInformation companyInformation = companyInformationMapper.getCompanyDetailInformation(20);
+		Map<String, Object> queryMap = new HashMap<>();
+		queryMap.put("companyInformationNo", 20);
+		CompanyDetailInformation companyInformation = companyInformationMapper.getCompanyDetailInformation(queryMap);
 		
 		assertNull(companyInformation);
 //		log.info(companyInformation.toString());
+	}
+	
+	@Test
+	public void testGetCompanyInformationAndUser() {
+		Map<String, Object> queryMap = new HashMap<>();
+		queryMap.put("companyInformationNo", 1);
+		queryMap.put("userNo", 1);
+		CompanyDetailInformation companyInformation = companyInformationMapper.getCompanyDetailInformation(queryMap);
+		
+		assertNotNull(companyInformation);
+		log.info(companyInformation.toString());
 	}
 }

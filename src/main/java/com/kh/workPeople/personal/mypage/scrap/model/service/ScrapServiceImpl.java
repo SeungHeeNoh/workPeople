@@ -25,6 +25,7 @@ public class ScrapServiceImpl implements ScrapService{
         return scrapMapper.jobVacancyLookUpList(no);
     }
 
+
     @Override
     public Map<String, Object> jobVacancyLookUpListPaging(int no, int page) {
 
@@ -41,4 +42,22 @@ public class ScrapServiceImpl implements ScrapService{
 
         return returnMap;
     }
+
+    
+    @Override
+	public int deleteScrapList(Map<String, Object> queryMap) {
+		return scrapMapper.deleteScrapList(queryMap);
+	}
+
+	@Override
+	public int insertScrap(Map<String, Integer> queryMap) {
+		return scrapMapper.insertScrap(queryMap);
+	}
+
+	@Override
+	public int deleteScrap(Map<String, Integer> queryMap) {
+		return scrapMapper.deleteScrap(queryMap);
+	}
+    
+
 }

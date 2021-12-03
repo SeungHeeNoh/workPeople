@@ -1,7 +1,11 @@
 package com.kh.workPeople.jobs.vacancyDetail.model.service;
 
+import java.util.Map;
+
 import com.kh.workPeople.jobs.vacancyDetail.model.vo.JobVacancyInformation;
 
 public interface VacancyDetailService {
-	JobVacancyInformation selectJobVacancyInformation(int no);
+	JobVacancyInformation selectJobVacancyInformation(Map<String, Object> queryMap);
+
+	void increaseCount(int no);
 }

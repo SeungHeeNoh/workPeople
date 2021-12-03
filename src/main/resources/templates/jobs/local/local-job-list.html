@@ -16,165 +16,106 @@
         <div class="content border_test">
             <div class="local_wrap border_test_r">
                 <h1>지역별</h1>
-<!-- 		  <form id="form1" th:action="" method="get"> -->  
+		  <form id="form1" th:action="@{/jobs/local/localSearch}" method="get">
               <div class="local_box circleType">
                     <div class="local_content">
                         <ul id="target">
-                            <li class="gu">
-                                <input id="itm1" type="checkbox" checked="checked" data-search-filter="강남구"
-                                    data-filter-item-nm="강남구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="강남구">
-                                <label for="itm1">강남구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm2" type="checkbox" checked="checked" data-search-filter="강동구"
-                                    data-filter-item-nm="강동구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="강동구">
-                                <label for="itm2">강동구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm3" type="checkbox" checked="checked" data-search-filter="강북구"
-                                    data-filter-item-nm="강북구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="강북구">
-                                <label for="itm3">강북구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm4" type="checkbox" checked="checked" data-search-filter="강서구"
-                                    data-filter-item-nm="강서구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="강서구">
-                                <label for="itm4">강서구</label>
-                            </li>
-
-                            <li class="gu">
-                                <input id="itm5" type="checkbox" checked="checked" data-search-filter="관악구"
-                                    data-filter-item-nm="관악구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="관악구">
-                                <label for="itm5">관악구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm6" type="checkbox" checked="checked" data-search-filter="광진구"
-                                    data-filter-item-nm="광진구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="광진구">
-                                <label for="itm6">광진구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm7" type="checkbox" checked="checked" data-search-filter="구로구"
-                                    data-filter-item-nm="구로구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="구로구">
-                                <label for="itm7">구로구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm8" type="checkbox" checked="checked" data-search-filter="금천구"
-                                    data-filter-item-nm="금천구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="금천구">
-                                <label for="itm8">금천구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm9" type="checkbox" checked="checked" data-search-filter="노원구"
-                                    data-filter-item-nm="노원구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="노원구">
-                                <label for="itm9">노원구</label>
-                            </li>
-
-                            <li class="gu">
-                                <input id="itm10" type="checkbox" checked="checked" data-search-filter="도봉구"
-                                    data-filter-item-nm="도봉구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="도봉구">
-                                <label for="itm10">도봉구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm11" type="checkbox" checked="checked" data-search-filter="동대문구"
-                                    data-filter-item-nm="동대문구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="동대문구">
-                                <label for="itm11">동대문구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm12" type="checkbox" checked="checked" data-search-filter="동작구"
-                                    data-filter-item-nm="동작구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="동작구">
-                                <label for="itm12">동작구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm13" type="checkbox" checked="checked" data-search-filter="마포구"
-                                    data-filter-item-nm="마포구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="마포구">
-                                <label for="itm13">마포구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm14" type="checkbox" checked="checked" data-search-filter="서대문구"
-                                    data-filter-item-nm="서대문구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="서대문구">
-                                <label for="itm14">서대문구</label>
-                            </li>
-
-                            <li class="gu">
-                                <input id="itm15" type="checkbox" checked="checked" data-search-filter="서초구"
-                                    data-filter-item-nm="서초구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="서초구">
-                                <label for="itm15">서초구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm16" type="checkbox" checked="checked" data-search-filter="성동구"
-                                    data-filter-item-nm="성동구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="성동구">
-                                <label for="itm16">성동구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm17" type="checkbox" checked="checked" data-search-filter="성북구"
-                                    data-filter-item-nm="성북구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="성북구">
-                                <label for="itm17">성북구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm18" type="checkbox" checked="checked" data-search-filter="송파구"
-                                    data-filter-item-nm="송파구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="송파구">
-                                <label for="itm18">송파구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm19" type="checkbox" checked="checked" data-search-filter="양천구"
-                                    data-filter-item-nm="양천구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="양천구">
-                                <label for="itm19">양천구</label>
-                            </li>
-
-                            <li class="gu">
-                                <input id="itm20" type="checkbox" checked="checked" data-search-filter="영등포구"
-                                    data-filter-item-nm="영등포구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="영등포구">
-                                <label for="itm20">영등포구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm21" type="checkbox" checked="checked" data-search-filter="용산구"
-                                    data-filter-item-nm="용산구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="용산구">
-                                <label for="itm21">용산구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm22" type="checkbox" checked="checked" data-search-filter="은평구"
-                                    data-filter-item-nm="은평구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="은평구">
-                                <label for="itm22">은평구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm23" type="checkbox" checked="checked" data-search-filter="종로구"
-                                    data-filter-item-nm="종로구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="종로구">
-                                <label for="itm23">종로구</label>
-                            </li>
-                            <li class="gu">
-                                <input id="itm24" type="checkbox" checked="checked" data-search-filter="중구"
-                                    data-filter-item-nm="중구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="중구">
-                                <label for="itm24">중구</label>
-                            </li>
-
-                            <li class="gu">
-                                <input id="itm25" type="checkbox" checked="checked" data-search-filter="중랑구"
-                                    data-filter-item-nm="중랑구" data-multi-sel-yn="Y" onClick="clickItem(this, true);"
-                                    data-omni="중랑구">
-                                <label for="itm25">중랑구</label>
-                            </li>
+                             <li class="gu">
+							   <label for="" class="searchSector">강남구</label>
+							    <input type="checkbox" name="local" value="강남구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">강동구</label>
+							    <input type="checkbox" name="local" value="강동구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">강북구</label>
+							    <input type="checkbox" name="local" value="강북구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">강서구</label>
+							    <input type="checkbox" name="local" value="강서구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">관악구</label>
+							    <input type="checkbox" name="local" value="관악구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">광진구</label>
+							    <input type="checkbox" name="local" value="광진구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">구로구</label>
+							    <input type="checkbox" name="local" value="구로구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">금천구</label>
+							    <input type="checkbox" name="local" value="금천구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">노원구</label>
+							    <input type="checkbox" name="local" value="노원구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">도봉구</label>
+							    <input type="checkbox" name="local" value="도봉구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">동대문구</label>
+							    <input type="checkbox" name="local" value="동대문구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">동작구</label>
+							    <input type="checkbox" name="local" value="동작구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">마포구</label>
+							    <input type="checkbox" name="local" value="마포구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">서대문구</label>
+							    <input type="checkbox" name="local" value="서대문구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">서초구</label>
+							    <input type="checkbox" name="local" value="서초구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">성동구</label>
+							    <input type="checkbox" name="local" value="성동구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">송파구</label>
+							    <input type="checkbox" name="local" value="송파구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">양천구</label>
+							    <input type="checkbox" name="local" value="양천구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">영등포구</label>
+							    <input type="checkbox" name="local" value="영등포구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">용산구</label>
+							    <input type="checkbox" name="local" value="용산구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">은평구</label>
+							    <input type="checkbox" name="local" value="은평구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">종로구</label>
+							    <input type="checkbox" name="local" value="종로구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">중구</label>
+							    <input type="checkbox" name="local" value="중구" style="display:none;">
+							    </li>
+							  <li class="gu">
+							   <label for="" class="searchSector">중랑구</label>
+							    <input type="checkbox" name="local" value="중랑구" style="display:none;">
+							    </li>
                         </ul>
                     </div>
                     <div class="result_box">
@@ -194,7 +135,7 @@
                                     </div>
                                 </dd>
                                 <dd class="btnSet">
-                                    <button type="button" class="btn_sch" id="btn-sch">
+                                    <button type="submit" class="btn_sch" id="btn-sch">
                                         <span>선택된 조건 <br>
                                             검색하기</span>
                                     </button>
@@ -207,98 +148,36 @@
             </div>
 
 
-
             <div class="local_list_body border_test">
-                <div id="" class="list_item border_test_r">
-                    <div id="" class="corp">
-                        <span>LG</span>
+                <div th:each="localVacancy : ${lcList}" class="list_item border_test_r">
+                    <div class="corp">
+                        <div th:if="${localVacancy.check == 1}">
+                        	<span th:text="${localVacancy.mName}"></span><p class="up">UP</p>
+                   	    </div>
+	                    <div th:unless="${localVacancy.check==1}">
+	                    	<span th:text="${localVacancy.mName}"></span>
+	                    </div>
+                    </div>
+                    <div class="tit">
+                        <span th:text="${localVacancy.jvTitle}"></span>
                     </div>
 
-                    <div id="" class="tit">
-                        <span>LG 백엔드 개발자 채용공고</span>
+                    <div class="sname">
+                        <span th:text="${localVacancy.sName}"></span>
                     </div>
 
-                    <div id="" class="sname">
-                        <span>IT개발·데이터</span>
-                    </div>
-
-                    <button id="" class="applybtn border_test">지원하기</button>
-
-                </div>
-                <div id="" class="list_item border_test_r">
-                    <div id="" class="corp">
-                        <span>LG</span>
-                    </div>
-
-                    <div id="" class="tit">
-                        <span>LG 백엔드 개발자 채용공고</span>
-                    </div>
-
-                    <div id="" class="sname">
-                        <span>IT개발·데이터</span>
-                    </div>
-
-
-                    <button id="" class="applybtn border_test">지원하기</button>
-
-                </div>
-                <div id="" class="list_item border_test_r">
-                    <div id="" class="corp">
-                        <span>LG</span>
-                    </div>
-
-                    <div id="" class="tit">
-                        <span>LG 백엔드 개발자 채용공고</span>
-                    </div>
-
-                    <div id="" class="sname">
-                        <span>IT개발·데이터</span>
-                    </div>
-
-
-                    <button id="" class="applybtn border_test">지원하기</button>
-
-                </div>
-                <div id="" class="list_item border_test_r">
-                    <div id="" class="corp">
-                        <span>LG</span>
-                    </div>
-
-                    <div id="" class="tit">
-                        <span>LG 백엔드 개발자 채용공고</span>
-                    </div>
-
-                    <div id="" class="sname">
-                        <span>IT개발·데이터</span>
-                    </div>
-
-
-                    <button id="" class="applybtn border_test">지원하기</button>
-
-                </div>
-                <div id="" class="list_item border_test_r">
-                    <div id="" class="corp">
-                        <span>LG</span>
-                    </div>
-
-                    <div id="" class="tit">
-                        <span>LG 백엔드 개발자 채용공고</span>
-                    </div>
-
-                    <div id="" class="sname">
-                        <span>IT개발·데이터</span>
-                    </div>
-
-
-                    <button id="" class="applybtn border_test">지원하기</button>
-
-                </div>
+                    <button class="applybtn border_test">지원하기</button>
+                	</div>
+            	</div>
             </div>
         </div>
-    </div>
+  <div th:include="common/up.html"></div>       
+  <div th:include="common/footer.html"></div>
+    </body>
    <script>
         function clickItem(obj, access) {
             if ($(obj).prop('checked')) {
+            	console.log(obj);
                 // 추가
                 var span = '<span class="txt" data-search-filter="' + $(obj).data('search-filter') + '">' + $(obj).data('filter-item-nm') + '<button type="button" onClick="removeItem(\'' + $(obj).data('search-filter') + '\')">삭제</button></span>';
                 $('.opt-area').append(span);
@@ -307,12 +186,50 @@
                 div += '<span class="txt" data-search-filter="' + $(obj).data('search-filter') + '">' + $(obj).data('filter-item-nm') + '<button type="button" class="btn-delete" onClick="removeItem(\'' + $(obj).data('search-filter') + '\')">삭제</button></span>';
                 div += '</div>';
                 $('.filter-footer > .list-option').append(div);
+                
+                console.log($(obj));
+                console.log($(obj).next());
+                $(obj).next().prop("checked", true);
 
             } else {
                 removeItem($(obj).data('search-filter'), access);
+                $(obj).next().prop("checked", false);
             }
         }
-
+			$(".searchSector").click(function(e){ //searchSector를 클릭시 해당 클릭된 아이템 e로가져옴 
+        	
+            var max = 0;
+        	var arrOn = new Array();  // 배열생성
+        	var obj = $(e.target); // obj = <li>...</li> or <span>...</span>
+        	if(obj.hasClass("search")){
+        		obj.removeClass("search");
+        		console.log(obj);
+        		console.log(obj.next());
+        		 obj.next().prop("checked", false);
+        	}else{
+        		$.each($('.searchSector'),function(index,item){
+                    if($(item).hasClass("search") === true){
+                    	max+=1;
+                   }	
+        		});
+        		if(max<3){
+	        		obj.addClass("search");
+	        		console.log(obj);
+	        		console.log(obj.next());
+	        		  obj.next().prop("checked", true);
+        		}
+        	}
+            $('.opt-area').empty();
+            var reset ='<div class="item_reset" onclick="removeAllItem()"><span class="ico"><img th:src="@{/images/jobs/local/reset.png}"></span>초기화</div>';
+            $('.opt-area').append(reset);
+           	$.each($('.searchSector'),function(index,item){
+                if($(item).hasClass("search") === true){
+                  	var span = '<span class="txt">' + $(item).text() + '<button type="button" onClick="removeItem(\''  + index + '\')">삭제</button></span>';
+                    $('.opt-area').append(span);
+                 } 
+            }); 
+        });
+        
         function removeAllItem() {
             // 필터 영역 uncheck
             $('.list-filter').find('input:checkbox').each(function (idx, item) {
@@ -329,36 +246,7 @@
                 $(item).parent().remove();
             });
 
-            itemInit();
-        }
-
-        function removeItem(searchFilter, access) {
-
-            // 필터 영역 uncheck    		    		    	
-            $('.list-filter').find('input:checkbox').each(function (idx, item) {
-                if (searchFilter === $(item).data('search-filter')) {
-                    $(item).prop('checked', false);
-                }
-            });
-
-            // pc 필터 사이드바 제거
-            $('.opt-area > span').each(function (idx, item) {
-                if (searchFilter === $(item).data('search-filter')) {
-                    if (access) {
-
-                    } else {
-                        if ($(this).next().find("button").length > 0) {
-                            $(this).next().find("button").focus();
-                        } else {
-                            $(this).parent().parent().next().find("button").focus();
-                        }
-                    }
-                    $(item).remove();
-                }
-
-
-            });
         }
     </script>
-
+	
 </html>

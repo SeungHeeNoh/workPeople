@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class InterestedCompanyImpl implements InterestedCompanyService{
@@ -21,9 +22,29 @@ public class InterestedCompanyImpl implements InterestedCompanyService{
     public List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList(int no) {
         return interestedCompanyMapper.jobVacancyLookUpSimpleList(no);
     }
+    
+    @Override
+	public int deleteInterestedCompanyList(Map<String, Object> queryMap) {
+		return interestedCompanyMapper.deleteInterestedCompanyList(queryMap);
+	}
 
     @Override
     public int jobVacancyCount(int no) {
         return interestedCompanyMapper.jobVacancyCount(no);
     }
+
+	@Override
+	public int insertInterestedCompany(Map<String, Integer> queryMap) {
+		return interestedCompanyMapper.insertInterestedCompany(queryMap);
+	}
+
+	@Override
+	public int deleteInterestedCompany(Map<String, Integer> queryMap) {
+		return  interestedCompanyMapper.deleteInterestedCompany(queryMap);
+	}
+
+	@Override
+	public int getInterestedCompanyCount(int companyNo) {
+		return interestedCompanyMapper.getInterestedCompanyCount(companyNo);
+	}
 }

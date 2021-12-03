@@ -30,6 +30,7 @@
 				     , M_NAME
 				     , M_EMAIL
 				     , M_ROADADDRESS
+				     , M_PHONE
 				     , M_ENROLL_DATE
 				  FROM MEMBER
 			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) WHERE A_CODE=1 ORDER BY a.M_NO)

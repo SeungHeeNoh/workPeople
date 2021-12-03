@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.kh.workPeople.common.vo.CompanyInformation;
+import com.kh.workPeople.common.vo.JobVacancy;
+import com.kh.workPeople.common.vo.ManagerCompanyInfo;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.PageInfo;
 
@@ -17,11 +19,11 @@ public interface CompanyMapper {
 	
 	int getListCount();
 	  
-	List<CompanyInformation> selectList(PageInfo pi);
+	List<ManagerCompanyInfo> selectList(PageInfo pi);
 
-	CompanyInformation vacancyNo(int no);
+	ManagerCompanyInfo vacancyNo(int no);
 	 
-	
+	List<JobVacancy> getListJobVacanscyByCompanyNum(int no);
 
 	
 }

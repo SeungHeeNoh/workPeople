@@ -1,5 +1,7 @@
 package com.kh.workPeople.jobs.vacancyDetail.model.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,15 @@ public class VacancyDetailServiceImpl implements VacancyDetailService {
 	public VacancyDetailServiceImpl(VacancyDetailMapper vacancyDetailMapper) {
 		this.vacancyDetailMapper = vacancyDetailMapper;
 	}
+	
+	@Override
+	public void increaseCount(int no) {
+		vacancyDetailMapper.increaseCount(no);
+	}
 
 	@Override
-	public JobVacancyInformation selectJobVacancyInformation(int no) {
-		return vacancyDetailMapper.selectJobVacancyInformation(no);
+	public JobVacancyInformation selectJobVacancyInformation(Map<String, Object> queryMap) {
+		return vacancyDetailMapper.selectJobVacancyInformation(queryMap);
 	}
-	
+
 }

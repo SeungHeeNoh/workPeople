@@ -1,5 +1,10 @@
 (function() {
+	let token = document.querySelector("meta[name='_csrf']").getAttribute("content"),
+		tokenHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
 	let content = document.body.querySelector(".content"),
+		infoHeader = content.querySelector(".info_header"),
+		interestedCompanyCount = infoHeader.querySelector(".like_button").querySelector(".count"),
 		floatingNaviWrapper = content.querySelector(".floating-navi"),
 		floatingNavi = floatingNaviWrapper.querySelector(".floating-navi-inner"),
 		naviTabs = floatingNavi.querySelectorAll("li"),
@@ -26,6 +31,7 @@
 		floatingNaviInit();
 		window.addEventListener("scroll", scrollEventHandler);
 		window.addEventListener("resize", debounce(resizeEventHandler));
+		infoHeader.addEventListener("click", infoHeaderClickEventHandler);
 		floatingNavi.addEventListener("click", naviClickEventHanlder);
 	}
 
@@ -95,10 +101,78 @@
 		setInfoPosition();
 	}
 
+	function infoHeaderClickEventHandler(e) {
+		if(e.target.tagName == "BUTTON") {
+			let button = e.target;
+
+			if(button.classList.contains("login_button")) {
+				openModal();
+			} else {
+				if(button.classList.contains("like_button")) {
+					companyLikeButtonToggleEventHandler(button);
+				}
+			} 
+		}
+	}
+
+	function companyLikeButtonToggleEventHandler(button) {
+		button.setAttribute("disabled", true);
+		let xhr = new XMLHttpRequest();
+
+		if(button.classList.contains("active")) {
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+						deactiveLikeButton(button);
+						if(xhr.response.interestedCompanyCount != null) {
+							interestedCompanyCount.innerHTML = xhr.response.interestedCompanyCount;
+						}
+					} else {
+						console.log("ajax 통신 실패");
+					}
+				}
+			}
+
+			xhr.open("DELETE", "/personal/mypage/interestedCompany/company/" + button.getAttribute("data-company-no"));
+			xhr.setRequestHeader(tokenHeader, token);
+			xhr.responseType = "json";
+			xhr.send();
+		} else {
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+						activeLikeButton(button);
+						if(xhr.response.interestedCompanyCount != null) {
+							interestedCompanyCount.innerHTML = xhr.response.interestedCompanyCount;
+						}
+					} else {
+						console.log("ajax 통신 실패");
+					}
+				}
+			}
+
+			xhr.open("POST", "/personal/mypage/interestedCompany/company/" + button.getAttribute("data-company-no"));
+			xhr.setRequestHeader(tokenHeader, token);
+			xhr.responseType = "json";
+			xhr.send();
+		}
+		button.removeAttribute("disabled");
+	}
+
+	function activeLikeButton(button) {
+		button.classList.add("active");
+		button.querySelector("span").innerHTML = "해제";
+	}
+
+	function deactiveLikeButton(button) {
+		button.classList.remove("active");
+		button.querySelector("span").innerHTML = "설정";
+	}
+
 	function naviClickEventHanlder(e) {
 		if(e.target.tagName == "LI") {
 			window.scrollTo({top : position.info[e.target.getAttribute("data-target")] - floatingNavi.clientHeight, behavior:'smooth'});
-		}
+		} 
 	}
 
 	window.addEventListener("DOMContentLoaded", init);

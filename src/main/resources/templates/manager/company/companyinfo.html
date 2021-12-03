@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
+<div th:include="common/header.html"></div>
 <div class="container">
     <div class="wrapper">
         <div id="sideNav">
@@ -19,17 +20,17 @@
                 <li id="" class="nav_tit">관리자 페이지</li>
 
                 <li id="snb_2"class="snb_main"><img id="snbImg2" th:src="@{/images/common/usersetting.png}">회원관리</li>
-                <li id="snb_2_1" class="snb_sub"><a href="@{/user/user/userinfo}">회원정보</a></li>
-                <li id="snb_2_2" class="snb_sub"><a href="@{/user/user/customerservice}">고객센터</a></li>
+                <li id="snb_2_1" class="snb_sub"><a th:href="@{/manager/user/userinfo}">회원정보</a></li>
+                <li id="snb_2_2" class="snb_sub"><a th:href="@{/manager/user/customerservice}">고객센터</a></li>
                 <li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
             
                 <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
-                <li id="snb_3_1" class="snb_sub"><a href="@{/manager/company/companyinfo}">기업공고</a></li>
-                <li id="snb_3_2" class="snb_sub"><a href="@{/manager/company/reportlit}">신고공고</a></li>
-                <li id="snb_3_3" class="snb_sub"><a href="@{/manager/company/customerservice}">고객센터</a></li>
+                <li id="snb_3_1" class="snb_sub"><a th:href="@{/manager/company/companyinfo}">기업공고</a></li>
+                <li id="snb_3_2" class="snb_sub"><a th:href="@{/manager/company/reportlit}">신고공고</a></li>
+                <li id="snb_3_3" class="snb_sub"><a th:href="@{/manager/company/customerservice}">고객센터</a></li>
             
-                <li id="snb_4" class="snb_main"><a href="@{/manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
-                </ul>
+                <li id="snb_4" class="snb_main"><a th:href="@{/manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
+            </ul>
             </div>
         </div>
 
@@ -44,7 +45,6 @@
                                 <label for="">검색조건</label>
                                 <div class="select">
                                     <select name="" id="reser_fac">
-                                        <option value="">기업로고</option>
                                         <option value="">기업명</option>
                                         <option value="">사업자 등록번호</option>
                                         <option value="">이메일</option>
@@ -64,7 +64,7 @@
                             <table class="table">
                                 <colgroup>
                                     <col width="auto">
-                                    <col width="auto">
+                                    <col width="17%">
                                     <col width="auto">
                                     <col width="auto">
                                     <col width="auto">
@@ -73,7 +73,7 @@
 
                                 <thead>
                                     <tr>
-                                        <th>기업로고</th>
+                                    	<th></th>
                                         <th>기업명</th>
                                         <th>사업자 등록번호</th>
                                         <th>이메일</th>
@@ -84,12 +84,13 @@
                                 </thead>
                                 <tbody>
                                     <tr th:each="companyinfo : ${companyList}">
-                                        <td><img src="../../../static/images/main/ci1.png" alt="기업로고"></td>
+                                        <td><img src="" alt=""></td>
                                         <td th:text="${companyinfo.member.name}"></td>
                                         <td th:text="${companyinfo.registerNumber}"></td>
                                         <td th:text="${companyinfo.member.email}"></td>
                                         <td th:text="${#dates.format(companyinfo.member.enrollDate, 'yyyy-MM-dd')}"></td>
-                                        <td th:text="${companyinfo.member.status}"></td>
+                                        <td th:text="${companyinfo.member.status == 'Y' ? '활성화' : '비활성화'}"></td>
+
                                         <td>
                                             <a class="tag">공고 조회</a>
                                             <input type="hidden" name="no" th:value="${companyinfo.member.no}"/>
@@ -106,19 +107,23 @@
         </div>
     </div>
 </div>
+	 <div th:include="common/up.html"></div> 
+     <div th:include="common/footer.html"></div>
+     
+     
 <div id="popup01">
     <div class="dim"></div>
     <div class="item">
-        <h3 class="corp"></h3>
-        <p class="txt">공고 조회 총 <span class="nub">n</span>개</p>
+        <h3 id="ciName" class="corp"></h3>
+        <p class="txt">공고 조회 총 <span id="jvCount" class="nub"></span>개</p>
         <div class="ptable_wrap">
             <table class="table">
                     <colgroup>
-                        <col width="10%">
-                        <col width="30%">
-                        <col width="20%">
-                        <col width="20%">
-                        <col width="20%">
+                        <col width="5%">
+                        <col width="41%">
+                        <col width="auto">
+                        <col width="auto">
+                        <col width="auto">
                     </colgroup>
                 <thead>
                     <tr>
@@ -133,19 +138,19 @@
                 <div class="pmain_table">
                     <table class="table">
                         <colgroup>
-                            <col width="10%">
-                            <col width="30%">
-                            <col width="20%">
-                            <col width="20%">
-                            <col width="20%">
+                            <col width="5%">
+                            <col width="41%">
+                            <col width="auto">
+                            <col width="auto">
+                            <col width="auto">
                         </colgroup>
-                        <tbody>
+                        <tbody id="jvTBody">
                         <tr class="item_list">
-                            <td class="pnum">1</td>
+                            <td class="pnum"></td>
                             <td class="ptit"></td>
-                            <td>서울 서초구</td>
-                            <td>공고중</td>
-                            <td>2021-10-28</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -155,6 +160,7 @@
             </div>
         </div>
   </div>
+ 
 </div>
 
 
@@ -176,7 +182,6 @@
     });
     
     
-    
 	$(function(){
 		// 공고 조회시 기업번호 조회
 		$('.tag').click(function(){ 
@@ -186,8 +191,17 @@
 				type : "get",
 				datatype : "json",
 				data : {no : no},
-				success : function(member){
-					console.log(member);
+				success : function(info){
+					console.log(info);
+					$("#ciName").text(info.member.name);
+					$("#jvCount").text(info.count);
+				   var results = info.list;
+				   var rows = ""; //문자열생성
+				         $.each(results, function(index, item) { //리스트로반복
+				         	rows = rows + getJvRow(index,item);
+						 });	  
+			         $('#jvTBody').empty(); //비우기
+			         $('#jvTBody').append(rows); //추가
 				},
 				error : function(e) {
 					console.log(e);
@@ -195,8 +209,30 @@
 				
 			});
 			
-		})
-	})
+		});
+	});
+	
+	function getJvRow(index,jv){
+		var jvRow = "\n";
+		jvRow = jvRow +'<tr class="item_list">';
+		jvRow = jvRow +'<td class="pnum">'+(index+1)+'</td>';
+		jvRow = jvRow +'<td class="ptit">'+jv.title+'</td>';
+		jvRow = jvRow +'<td>'+jv.address+'</td>';
+		jvRow = jvRow +'<td>공고중</td>';
+		jvRow = jvRow +'<td>'+jv.periodEnd+'</td>';
+		jvRow = jvRow +'</tr>';
+		return jvRow;
+	}
+	
+/* 	function toStringByFormatting(source, delimiter = '-') {
+		const year = source.getFullYear(); 
+		const month = leftPad(source.getMonth() + 1); 
+		const day = leftPad(source.getDate()); 
+		return [year, month, day].join(delimiter); 
+		} 
+	
+	 toStringByFormatting(new Date(2021, 0, 1));
+ */
 	
 </script>
 </body>
