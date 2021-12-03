@@ -4,6 +4,7 @@ import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.Resume;
 
 import java.util.List;
+import java.util.Map;
 
 public interface HomeService {
 
@@ -47,4 +48,6 @@ public interface HomeService {
     int selfIntroductionDeleteFromDB(int rNo);
 
     int resumeBrowseDeleteFromDB(int rNo);
+
+    Map<String, Object> recommenedJobVacancyListPaging(String elName, int page);
 }

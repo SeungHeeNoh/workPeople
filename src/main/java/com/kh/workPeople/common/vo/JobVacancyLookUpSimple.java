@@ -11,6 +11,9 @@ public class JobVacancyLookUpSimple {
     private Date aiDate;        // 면접일
     private Date aiTime;        // 면접 시간
 
+    private String aiStatusYN;  // 면접 종료 여부(Y,N)
+    private int aiStatusYNFormat;   // 면접 종료 여부 숫자 변환(0,1)
+
     private String aiDateFormat;    // 면접일 문자열
     private String aiTimeFormat;    // 면접 시간 문자열
     
@@ -34,10 +37,36 @@ public class JobVacancyLookUpSimple {
 		this.aiTimeFormat = aiTimeFormat;
 	}
 
+    public JobVacancyLookUpSimple(int no, String name, int count, String type, Date aiDate, Date aiTime, String aiStatusYN, int aiStatusYNFormat, String aiDateFormat, String aiTimeFormat) {
+        this.no = no;
+        this.name = name;
+        this.count = count;
+        this.type = type;
+        this.aiDate = aiDate;
+        this.aiTime = aiTime;
+        this.aiStatusYN = aiStatusYN;
+        this.aiStatusYNFormat = aiStatusYNFormat;
+        this.aiDateFormat = aiDateFormat;
+        this.aiTimeFormat = aiTimeFormat;
+    }
 
+    public String getAiStatusYN() {
+        return aiStatusYN;
+    }
 
+    public void setAiStatusYN(String aiStatusYN) {
+        this.aiStatusYN = aiStatusYN;
+    }
 
-	public int getNo() {
+    public int getAiStatusYNFormat() {
+        return aiStatusYNFormat;
+    }
+
+    public void setAiStatusYNFormat(int aiStatusYNFormat) {
+        this.aiStatusYNFormat = aiStatusYNFormat;
+    }
+
+    public int getNo() {
         return no;
     }
 

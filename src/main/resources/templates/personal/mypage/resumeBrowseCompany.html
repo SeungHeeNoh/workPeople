@@ -5,59 +5,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="/css/common/common.css">
     <link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
     <link rel="stylesheet" href="/css/personal/myPage/resumeBrowseCompany.css">
-    
+
     <title>이력서 열람 기업</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <div th:include="common/header.html"></div>
-    <div class="wrapper">
-        
+<div class="wrapper">
+
     <div th:include="personal/mypage/mainSnb.html"></div>
 
-        <section>
-            <div id="content_wrap">
-                <p class="header_text">이력서 열람기업</p>
+    <section>
+        <div id="content_wrap">
+            <p class="header_text">이력서 열람기업</p>
 
-                <div class="home_content_3">
-                    <div class="home_content_3_1">회사명</div>
-                    <div class="home_content_3_2">주소</div>
-                    <div class="home_content_3_3">업종</div>
-                    <div class="home_content_3_4">열람일</div>
+            <div class="home_content_3">
+                <div class="home_content_3_1">회사명</div>
+                <div class="home_content_3_2">주소</div>
+                <div class="home_content_3_3">업종</div>
+                <div class="home_content_3_4">열람일</div>
+            </div>
+
+            <div th:each="companyList : ${companyList}">
+                <div class="content_title_text4">
+                    <input type="checkbox" class="resumeChk">
+                    <div class="content_title_text4_1" th:text="${companyList.m_name}"></div>
+                    <div class="content_title_text4_2" th:text="${companyList.m_roadAddress}"></div>
+                    <div class="content_title_text4_3" th:text="${companyList.s_name}"></div>
+                    <div class="content_title_text4_4" th:text="${companyList.rb_date_format}"></div>
+                    <div></div>
                 </div>
+                <hr class="hr">
+            </div>
 
-                <div th:each="companyList : ${companyList}">
-                    <div class="content_title_text4">
-                        <input type="checkbox" class="resumeChk">
-                        <div class="content_title_text4_1" th:text="${companyList.m_name}"></div>
-                        <div class="content_title_text4_2" th:text="${companyList.m_roadAddress}"></div>
-                        <div class="content_title_text4_3" th:text="${companyList.s_name}"></div>
-                        <div class="content_title_text4_4" th:text="${companyList.rb_date_format}"></div>
-                        <div></div>
-                    </div>
-                    <hr class="hr">
-                </div>
+            <button class="green green1">삭제</button>
 
-                <button class="green green1">삭제</button>
+            <th:block th:if="${#lists.size(companyList)>0}">
+                <div th:replace="common/paging.html"></div>
+            </th:block>
 
-            
-
-            
-
-            
-
-
-
-       
         </div>
-        </section>
-    </div>
+    </section>
+</div>
 <div th:include="common/footer.html"></div>
 </body>
 

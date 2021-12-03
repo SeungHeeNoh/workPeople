@@ -48,9 +48,12 @@ public class ScrapController {
 	@GetMapping("scrap")
 	public String scrap(Model model, @AuthenticationPrincipal MemberImpl user, @RequestParam(defaultValue = "1") int page) {
 
-//		Map<String, Object>
+		Map<String, Object> scrapMap = scrapService.jobVacancyLookUpListPaging(user.getNo(),page);
 
-		List<JobVacancyLookUp> jobVacancyLookUpList = scrapService.jobVacancyLookUpList(user.getNo());
+		List<JobVacancyLookUp> jobVacancyLookUpList = (List<JobVacancyLookUp>)scrapMap.get("jobVacancyLookUpList");
+
+
+//		List<JobVacancyLookUp> jobVacancyLookUpList = scrapService.jobVacancyLookUpList(user.getNo());
 
 		for(JobVacancyLookUp job : jobVacancyLookUpList){
 			int applyCompanyYN = homeService.applyCompanyYN(user.getNo(),job.getJvNo());
@@ -61,16 +64,18 @@ public class ScrapController {
 				job.setApplyYN(false);
 			}
 		}
-
+//
 		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
-
+		model.addAttribute("pi",scrapMap.get("pi"));
+//
 		Resume resume = homeService.selectResumeStatusY(user.getNo());
 		if(resume != null){
 			model.addAttribute("resume",resume);
 			model.addAttribute("resumeNo",resume.getNo());
 		}
-
+//
 		return "personal/mypage/scrap";
+//		return null;
 	}
 
 	@GetMapping("scrap/applyResume/{rNo},{applyBtnNo}")

@@ -17,4 +17,7 @@ public interface MemberInfoMapper {
 	int leave(int no);
 
 
+	// 개인회원 정보 수정
+	int updatePersonalInfo(Member member);
+
 }

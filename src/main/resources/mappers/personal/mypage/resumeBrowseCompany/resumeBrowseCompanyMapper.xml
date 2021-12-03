@@ -12,7 +12,7 @@
     </resultMap>
     <select id="selectResumeBrowseCompanyList" resultMap="resumeBrowseCompanyResultMap">
 
-     <!-- 쿼리 수정 예정 -->
+
         SELECT
             DISTINCT
             M_NO,

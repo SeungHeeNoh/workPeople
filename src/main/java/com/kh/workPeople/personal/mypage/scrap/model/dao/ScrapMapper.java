@@ -1,6 +1,7 @@
 package com.kh.workPeople.personal.mypage.scrap.model.dao;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
+import com.kh.workPeople.common.vo.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface ScrapMapper {
 
 	int deleteScrap(Map<String, Integer> queryMap);
 
+    List<JobVacancyLookUp> jobVacancyLookUpListPagingQuery(PageInfo pi);
 }

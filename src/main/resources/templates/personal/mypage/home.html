@@ -10,17 +10,12 @@
     <link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
     <link rel="stylesheet" href="/css/personal/myPage/home.css">
 
-
     <title>마이페이지 홈</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"></script>
-
-
 
     <script th:inline="javascript">
         /*<![CDATA[*/
-        let statusYResume = [[${resume}]];
+        let statusYResume = [[${resume}]],
+            jobVacancyLookUpList = [[${jobVacancyLookUpList}]];
         /*]]>*/
     </script>
 </head>
@@ -135,8 +130,8 @@
                             </div>
                         </th:block>
                         <th:block th:if="${job.applyYN == true}">
-                            <div class="content_title_text4_detail_wrap2" style="right: 60px">
-                                <div style="color: blue; padding-left:17px;" >지원 완료</div>
+                            <div class="content_title_text4_detail_wrap2" style="right: 56px">
+                                <div style="color: blue; padding-left:24px;" >지원 완료</div>
                                 <div style="color: blue; padding-left:0" class="content_title_text4_2" th:value="${job.jvNo}">
                                     ~<span style="color: blue" th:text="${job.jvPeriodEndFormat}"></span></div>
                             </div>
@@ -144,12 +139,15 @@
                     </div>
                     <hr class="hr">
                 </div>
-
-
-
-
             </div>
+
+            <th:block th:if="${#lists.size(jobVacancyLookUpList)>0}">
+                <div th:replace="common/paging.html"></div>
+            </th:block>
+
         </div>
+
+
     </section>
 </div>
 

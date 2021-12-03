@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class InterviewServiceImpl implements InterviewService{
 
-    private InterviewMapper interviewMapper;
+    private final InterviewMapper interviewMapper;
 
     @Autowired
     public InterviewServiceImpl(InterviewMapper interviewMapper) {

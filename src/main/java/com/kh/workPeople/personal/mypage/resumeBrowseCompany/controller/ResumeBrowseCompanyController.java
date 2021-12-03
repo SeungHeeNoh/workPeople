@@ -9,10 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("personal/mypage")
@@ -26,9 +28,12 @@ public class ResumeBrowseCompanyController {
     }
 
     @GetMapping("resumeBrowseCompany")
-    public String resumeBrowseCompany(Model model, @AuthenticationPrincipal MemberImpl user){
+    public String resumeBrowseCompany(Model model, @AuthenticationPrincipal MemberImpl user, @RequestParam(defaultValue = "1") int page){
 
-        List<ResumeBrowseCompany> resumeBrowseCompanyList = resumeBrowseCompanyService.selectResumeBrowseCompanyList(user.getNo());
+        Map<String, Object> companyMap = resumeBrowseCompanyService.selectResumeBrowseCompanyListPaging(user.getNo(),page);
+
+        List<ResumeBrowseCompany> resumeBrowseCompanyList = (List<ResumeBrowseCompany>)companyMap.get("selectResumeBrowseCompanyList");
+//        List<ResumeBrowseCompany> resumeBrowseCompanyList = resumeBrowseCompanyService.selectResumeBrowseCompanyList(user.getNo());
 
         for(ResumeBrowseCompany rbc : resumeBrowseCompanyList){
             Date beforeDate = rbc.getRb_date();
@@ -40,6 +45,7 @@ public class ResumeBrowseCompanyController {
 //        System.out.println(resumeBrowseCompanyList);
 
         model.addAttribute("companyList",resumeBrowseCompanyList);
+        model.addAttribute("pi",companyMap.get("pi"));
 
         return "personal/myPage/resumeBrowseCompany";
     }

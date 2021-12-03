@@ -15,7 +15,8 @@
     <script th:inline="javascript">
         /*<![CDATA[*/
         let statusYResume = [[${resume}]],
-            statusYResumeRNo = [[${resumeNo}]];
+            statusYResumeRNo = [[${resumeNo}]],
+            jobVacancyLookUpList = [[${jobVacancyLookUpList}]];
         /*]]>*/
     </script>
 </head>
@@ -80,12 +81,17 @@
                     <hr class="hr">
                 </div>
 
+
 			<form class="delete_form" th:action="@{/personal/mypage/scrap/list/delete}" method="post">
 				<button class="green green1" disabled>스크랩취소</button>
 			</form>
-       
+          
+        <th:block th:if="${#lists.size(jobVacancyLookUpList)>0}">
+                    <div th:replace="common/paging.html"></div>
+        </th:block>
+
         </div>
-<!--            <div th:replace="common/paging.html"></div>-->
+
         </section>
     </div>
 

@@ -11,6 +11,7 @@
         <result property="aiTime" column="AI_TIME"/>
         <result property="aiDateFormat" column="AI_DATEFORMAT"/>
         <result property="aiTimeFormat" column="AI_TIMEFORMAT"/>
+        <result property="aiStatusYN" column="AI_STATUS_YN"/>
 
     </resultMap>
 

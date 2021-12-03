@@ -1,13 +1,16 @@
 package com.kh.workPeople.personal.mypage.home.model.service;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
+import com.kh.workPeople.common.vo.PageInfo;
 import com.kh.workPeople.common.vo.Resume;
 import com.kh.workPeople.personal.mypage.home.model.dao.HomeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class HomeServiceImpl implements HomeService {
@@ -129,4 +132,36 @@ public class HomeServiceImpl implements HomeService {
     public int resumeBrowseDeleteFromDB(int rNo) {
         return homeMapper.resumeBrowseDeleteFromDB(rNo);
     }
+
+    @Override
+    public Map<String, Object> recommenedJobVacancyListPaging(String elName, int page) {
+
+        Map<String, Object> returnMap = new HashMap<>();
+
+        int listCount = homeMapper.recommenedJobVacancyList(elName).size();
+
+        PageInfo pi = new PageInfo(page,listCount,10,10,elName);
+
+        List<JobVacancyLookUp> jobVacancyLookUpList = homeMapper.jobVacancyLookUpListPagingQuery(pi);
+
+        returnMap.put("pi",pi);
+        returnMap.put("jobVacancyLookUpList",jobVacancyLookUpList);
+
+        return returnMap;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
