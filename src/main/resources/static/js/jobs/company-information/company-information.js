@@ -4,7 +4,7 @@
 
 	let content = document.body.querySelector(".content"),
 		infoHeader = content.querySelector(".info_header"),
-		interestedCompanyCount = infoHeader.querySelector(".like_button").querySelector(".count"),
+		interestedCompanyCount = infoHeader.querySelector(".like_button .count"),
 		floatingNaviWrapper = content.querySelector(".floating-navi"),
 		floatingNavi = floatingNaviWrapper.querySelector(".floating-navi-inner"),
 		naviTabs = floatingNavi.querySelectorAll("li"),
