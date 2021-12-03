@@ -109,3 +109,12 @@
     margin-left: 683px;
     font-size: 20px;
 }
+
+.green1:disabled {
+	opacity : 0.3;
+}
+
+.green1:hover:disabled {
+	cursor:default;
+	background-color: #A7D676;
+}

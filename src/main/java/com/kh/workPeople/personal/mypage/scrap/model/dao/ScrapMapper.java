@@ -10,6 +10,8 @@ import java.util.Map;
 public interface ScrapMapper {
 
     List<JobVacancyLookUp> jobVacancyLookUpList(int no);
+    
+    int deleteScrapList(Map<String, Object> queryMap);
 
 	int insertScrap(Map<String, Integer> queryMap);
 
