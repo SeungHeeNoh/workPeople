@@ -134,8 +134,8 @@
 				<th:block sec:authorize="hasRole('PERSONAL')">
 					<div class="resume_register_area">
 						<div class="resume_register_header">
-							<h3>CJ푸드빌 입사지원</h3>
-							<h2>[CJ푸드빌] 재무팀 경력사원 모집</h2>
+							<h3 th:text="${jobVacancyInformation.companyName}"></h3>
+							<h2 th:text="${jobVacancyInformation.jobVacancy.title}"></h2>
 						</div>
 						<div class="resume_register_content">
 							<form action="#" method="post">
