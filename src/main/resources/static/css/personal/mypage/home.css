@@ -181,17 +181,17 @@
 .content_title_text4_detail_2,
 .content_title_text4_detail_3{
     color: #979797;
-    margin-right: 35px;
 }
 
 .content_title_text4_detail_1{
-    width: 80px;
+    width: 65px;
 }
 .content_title_text4_detail_2{
-    width: 90px;
+    width: 100px;
+    margin-left: 15px;
 }
 .content_title_text4_detail_3{
-    width: 250px;
+    width: 285px;
 }
 .content_title_text4_btn{
     background-color: #f9e2ae;

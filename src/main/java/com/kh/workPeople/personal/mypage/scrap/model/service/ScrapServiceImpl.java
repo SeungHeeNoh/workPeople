@@ -34,17 +34,11 @@ public class ScrapServiceImpl implements ScrapService{
 
         PageInfo pi = new PageInfo(page,listCount,10,10,no);
 
-
         List<JobVacancyLookUp> jobVacancyLookUpList = scrapMapper.jobVacancyLookUpListPagingQuery(pi);
 
         returnMap.put("pi",pi);
         returnMap.put("jobVacancyLookUpList",jobVacancyLookUpList);
 
         return returnMap;
-    }
-
-    @Override
-    public List<JobVacancyLookUp> jobVacancyLookUpListPagingQuery(PageInfo pi) {
-        return scrapMapper.jobVacancyLookUpListPagingQuery(pi);
     }
 }

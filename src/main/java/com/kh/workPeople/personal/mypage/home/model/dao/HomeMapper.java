@@ -1,6 +1,7 @@
 package com.kh.workPeople.personal.mypage.home.model.dao;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
+import com.kh.workPeople.common.vo.PageInfo;
 import com.kh.workPeople.common.vo.Resume;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -50,4 +51,5 @@ public interface HomeMapper {
 
     int resumeBrowseDeleteFromDB(int rNo);
 
+    List<JobVacancyLookUp> jobVacancyLookUpListPagingQuery(PageInfo pi);
 }

@@ -13,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/personal/mypage")
@@ -33,7 +35,7 @@ public class HomeController {
 	}
 
 	@GetMapping("home")
-	public String mypageHome(Model model, @AuthenticationPrincipal MemberImpl user) {
+	public String mypageHome(Model model, @AuthenticationPrincipal MemberImpl user, @RequestParam(defaultValue = "1") int page) {
 
 		int applyCount = homeService.applyCount(user.getNo());
 		int resumeBrowseCount = homeService.resumeBrowseCount(user.getNo());
@@ -60,7 +62,12 @@ public class HomeController {
 			model.addAttribute("resume", resume);
 		}
 
-		List<JobVacancyLookUp> jobVacancyLookUpList = homeService.recommenedJobVacancyList(elName);
+
+		Map<String, Object> recommendMap = homeService.recommenedJobVacancyListPaging(elName,page);
+
+		List<JobVacancyLookUp> jobVacancyLookUpList = (List<JobVacancyLookUp>)recommendMap.get("jobVacancyLookUpList");
+
+//		List<JobVacancyLookUp> jobVacancyLookUpList = homeService.recommenedJobVacancyList(elName);
 
 		for(JobVacancyLookUp job : jobVacancyLookUpList){
 			int applyCompanyYN = homeService.applyCompanyYN(user.getNo(),job.getJvNo());
@@ -73,6 +80,7 @@ public class HomeController {
 		}
 
 		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
+		model.addAttribute("pi",recommendMap.get("pi"));
 
 		return "personal/mypage/home";
 	}

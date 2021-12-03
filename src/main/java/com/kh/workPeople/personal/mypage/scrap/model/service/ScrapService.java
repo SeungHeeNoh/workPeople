@@ -10,6 +10,4 @@ public interface ScrapService {
     List<JobVacancyLookUp> jobVacancyLookUpList(int no);
 
     Map<String, Object> jobVacancyLookUpListPaging(int no, int page);
-
-    List<JobVacancyLookUp> jobVacancyLookUpListPagingQuery(PageInfo pi);
 }

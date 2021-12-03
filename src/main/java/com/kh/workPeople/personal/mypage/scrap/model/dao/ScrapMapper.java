@@ -13,6 +13,4 @@ public interface ScrapMapper {
     List<JobVacancyLookUp> jobVacancyLookUpList(int no);
 
     List<JobVacancyLookUp> jobVacancyLookUpListPagingQuery(PageInfo pi);
-
-    Map<String, Object> jobVacancyLookUpListPaging(int no, int page);
 }

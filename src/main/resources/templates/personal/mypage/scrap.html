@@ -83,11 +83,11 @@
 
 
             <button class="green green1">스크랩취소</button>
-       
+                <th:block th:if="${#lists.size(jobVacancyLookUpList)>0}">
+                    <div th:replace="common/paging.html"></div>
+                </th:block>
         </div>
-            <div th:if="${#lists.size(jobVacancyLookUpList)>0}">
-                <div th:replace="common/paging.html"></div>
-            </div>
+
         </section>
     </div>
 
