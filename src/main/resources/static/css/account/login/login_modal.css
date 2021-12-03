@@ -1,0 +1,37 @@
+@import url(common-login.css);
+
+#modal.login_mdoal {
+	width : 590px;
+	height : 307px;
+	top : calc(50% - 153.5px);
+	left : calc(50% - 295px);
+}
+#modal > .modal_inner > .login_area {
+	display: none;
+}
+
+#modal.login_mdoal > .modal_inner > .login_area {
+	display: block;
+}
+
+#modal.login_mdoal > .modal_inner > .login_area {
+	padding: 38px 80px 44px;
+}
+
+#modal.login_mdoal > .modal_inner > .login_area > form {
+	margin-top : 0;
+}
+
+#modal.login_mdoal > .modal_inner > .login_area > p {
+	position: absolute;
+	top : -65px;
+	left : 0;
+	width : 590px;
+	font-size: 29px;
+	color:#FFF;
+	text-align: center;
+}
+
+#modal.login_mdoal  > .close_button {
+	top : -128px;
+}
