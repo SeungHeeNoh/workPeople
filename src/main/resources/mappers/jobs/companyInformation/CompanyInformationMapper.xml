@@ -71,7 +71,7 @@
 		  <if test="userNo != null">
 		  LEFT OUTER JOIN (SELECT CI_NO
 	      		             FROM INTERESTED_COMPANY
-	                        WHERE M_NO = 1) INTERESTED_COMPANY ON(COMPANY_INFORMATION.CI_NO = INTERESTED_COMPANY.CI_NO)
+	                        WHERE M_NO = #{userNo}) INTERESTED_COMPANY ON(COMPANY_INFORMATION.CI_NO = INTERESTED_COMPANY.CI_NO)
 	      </if>
 		 WHERE COMPANY_INFORMATION.CI_NO = #{companyInformationNo}
 	</select>
