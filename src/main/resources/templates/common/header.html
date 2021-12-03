@@ -76,9 +76,9 @@
                 <a href="/main"><img th:src="@{/images/common/hlogo.png}"></a>
             </div>
             <ul class="gnb">
-                <li><a href="jobs/local/local-job-list">지역별</a></li>
-                <li><a href="jobs/job/big-job-list">직종별</a></li>
-                <li><a href="jobs/map/map-job-list">내 주변 공고별</a></li>
+                <li><a href="/jobs/local/local-job-list">지역별</a></li>
+                <li><a href="/jobs/job/big-job-list">직종별</a></li>
+                <li><a href="/jobs/map/map-job-list">내 주변 공고별</a></li>
                 <li><a href="#">면접 후기</a></li>
 
                 <li>
@@ -86,7 +86,7 @@
                         <span sec:authentication="principal.Username"></span>님<span>▼</span>
                     </div>
                     <ul class="submenu1">
-                        <li><a href="manager/manager/managerinfo">마이페이지</a></li>
+                        <li><a href="/manager/manager/managerinfo">마이페이지</a></li>
                         <li><a href="/account/manager/logout">로그아웃</a></li>
                     </ul>
                 </li>

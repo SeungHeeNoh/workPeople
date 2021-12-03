@@ -1,5 +1,6 @@
 package com.kh.workPeople.jobs.local.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,20 @@ public class LocalListServiceImpl implements LocalListService{
 		this.mapper = mapper;
 	}
 
+
 	@Override
-	public List<JobVacancyLookUp> getlocalList() {
-		return mapper.getlocalList();
+	public List<JobVacancyLookUp> getLocalVacancyLookUpList(String[] local) {
+		HashMap<String,String[]> map = new HashMap<>(); 
+		map.put("local", local);
+		
+		return mapper.getJobVacancyLookUpList(map);
 	}
+
+	@Override
+	public List<JobVacancyLookUp> getLocalVacancyLookUpListBasic() {
+		return mapper.getJobVacancyLookUpListBasic();
+	}
+
 
 	
 

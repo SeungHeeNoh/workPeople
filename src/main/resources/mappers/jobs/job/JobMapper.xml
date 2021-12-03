@@ -86,7 +86,6 @@
 		SELECT * FROM SECTOR
 	</select>
 	
-	
 	<select id ="jobSearch" resultMap="companyResultMap">
 		SELECT
         JV_NO
@@ -138,6 +137,7 @@
  	     </foreach> 
      ORDER BY JV_UPDATE ASC
 	</select>
+	
 	<select id ="getJobVacancyLookUpListBasic" resultMap="jobVacancyResultMap">
 	<![CDATA[
 			  SELECT
