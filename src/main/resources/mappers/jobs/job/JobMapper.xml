@@ -151,7 +151,7 @@
 	               and TO_CHAR(P_START_DATE, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD') 
 	               and TO_CHAR(P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') 
 	               then to_date(to_char(SYSDATE, 'YYYY-MM-DD HH24:')|| '00:00', 'YYYY-MM-DD HH24:MI:SS')
-	          else JV_PERIOD_START end as BASEDATE
+	          else JV_REGISTER end as BASEDATE
 	       , case when P_CODE = 3 
 	               and TO_CHAR(P_START_DATE, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD') 
 	               and TO_CHAR(P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') 

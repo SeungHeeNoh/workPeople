@@ -151,7 +151,12 @@
             <div class="local_list_body border_test">
                 <div th:each="localVacancy : ${lcList}" class="list_item border_test_r">
                     <div class="corp">
-                        <span th:text="${localVacancy.mName}"></span>
+                        <div th:if="${localVacancy.check == 1}">
+                        	<span th:text="${localVacancy.mName}"></span><p class="up">UP</p>
+                   	    </div>
+	                    <div th:unless="${localVacancy.check==1}">
+	                    	<span th:text="${localVacancy.mName}"></span>
+	                    </div>
                     </div>
                     <div class="tit">
                         <span th:text="${localVacancy.jvTitle}"></span>
