@@ -390,6 +390,9 @@ body.modal_open {
 	height: 30px;
 	font-size: 24px;
 	margin-top: 8px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space:nowrap;
 }
 
 #modal > .modal_inner > .resume_register_area > .resume_register_content > form > div {
