@@ -8,6 +8,19 @@
 		<result property="interestedCompany" column="INTERESTED"/>
 		<association property="companyInformation" resultMap="Common.companyResultMap"/>
 	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.JobVacancy" id="jobVacancyResultMap">
+		<result property="no" column="JV_NO"/>
+		<result property="title" column="JV_TITLE"/>
+		<result property="periodEnd" column="JV_PERIOD_END"/>
+		<association property="educationLevel" resultMap="jobVacancyEducationResultMap"/>
+		<collection property="experienceLevelList" resultMap="jobVacancyExperienceResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.EducationLevel" id="jobVacancyEducationResultMap">
+			<result property="name" column="EDUCATION_LEVEL_NAME"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.ExperienceLevel" id="jobVacancyExperienceResultMap">
+			<result property="name" column="EXPERIENCE_LEVEL_NAME"/>
+	</resultMap>
 	<select id="getCompanyDetailInformation" parameterType="hashmap" resultMap="companyDetailInformationResultMap">
 		SELECT 
 		       COMPANY_NAME
@@ -44,5 +57,30 @@
 	                        WHERE M_NO = #{userNo}) INTERESTED_COMPANY ON(COMPANY_INFORMATION.CI_NO = INTERESTED_COMPANY.CI_NO)
 	      </if>
 		 WHERE COMPANY_INFORMATION.CI_NO = #{companyInformationNo}
+		   AND COMPANY_STATUS = 'Y'
+	</select>
+	<select id="getJobVacancyList" parameterType="hashmap" resultMap="jobVacancyResultMap">
+		SELECT
+		       JV_NO
+		     , JV_TITLE
+		     , JV_PERIOD_END
+		     , EDUCATION_LEVEL_NAME
+		     , EXPERIENCE_LEVEL_NAME
+		  FROM JOB_VACACY_INFORMATION
+		 WHERE CI_NO = ${companyInformationNo}
+	<choose>
+	 <when test="findBy != null">
+		 <![CDATA[
+		   AND JV_PERIOD_END < SYSDATE
+		 ]]>
+	</when>
+	<otherwise>
+		 <![CDATA[
+		   AND JV_PERIOD_END >= SYSDATE
+		 ]]>
+	</otherwise>
+	</choose>
+		   AND JV_STATUS_YN = 'Y'
+		 ORDER BY JV_PERIOD_END ASC, JV_TITLE ASC
 	</select>
 </mapper>
