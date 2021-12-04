@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.workPeople.common.vo.JobVacancy;
+import com.kh.workPeople.common.vo.PageInfo;
 import com.kh.workPeople.jobs.companyInformation.model.dao.CompanyInformationMapper;
 import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
 
@@ -25,8 +26,12 @@ public class CompanyInformationServiceImpl implements CompanyInformationService 
 		CompanyDetailInformation companyDetailInformation = companyInformationMapper.getCompanyDetailInformation(queryMap);
 		
 		if(companyDetailInformation != null) {
+			queryMap.put("sign", ">=");
+			queryMap.put("pi", new PageInfo(1, companyInformationMapper.getJobVacancyListCount(queryMap), 5, 6));
 			companyDetailInformation.setProgressingJobVacancyList(companyInformationMapper.getJobVacancyList(queryMap));
-			queryMap.put("findBy", "expired");
+
+			queryMap.put("sign", "<");
+			queryMap.put("pi", new PageInfo(1, companyInformationMapper.getJobVacancyListCount(queryMap), 5, 6));
 			companyDetailInformation.setExpiredJobVacancyList(companyInformationMapper.getJobVacancyList(queryMap));
 		}
 		

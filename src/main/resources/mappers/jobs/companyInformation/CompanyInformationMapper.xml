@@ -59,6 +59,14 @@
 		 WHERE COMPANY_INFORMATION.CI_NO = #{companyInformationNo}
 		   AND COMPANY_STATUS = 'Y'
 	</select>
+	<select id="getJobVacancyListCount" parameterType="hashmap" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM JOB_VACANCY
+		 WHERE JV_STATUS_YN = 'Y'
+		   AND JV_PERIOD_END ${sign} SYSDATE
+		   AND CI_NO = #{companyInformationNo}
+	</select>
 	<select id="getJobVacancyList" parameterType="hashmap" resultMap="jobVacancyResultMap">
 		SELECT
 		       JV_NO
@@ -67,20 +75,15 @@
 		     , EDUCATION_LEVEL_NAME
 		     , EXPERIENCE_LEVEL_NAME
 		  FROM JOB_VACACY_INFORMATION
-		 WHERE CI_NO = ${companyInformationNo}
-	<choose>
-	 <when test="findBy != null">
-		 <![CDATA[
-		   AND JV_PERIOD_END < SYSDATE
-		 ]]>
-	</when>
-	<otherwise>
-		 <![CDATA[
-		   AND JV_PERIOD_END >= SYSDATE
-		 ]]>
-	</otherwise>
-	</choose>
-		   AND JV_STATUS_YN = 'Y'
-		 ORDER BY JV_PERIOD_END ASC, JV_TITLE ASC
+		 WHERE JV_NO IN (SELECT JV_NO
+		                   FROM (SELECT ROWNUM RNUM, JV_NO
+		                           FROM (SELECT
+		                                        JV_NO
+		                                   FROM JOB_VACANCY
+		                                  WHERE JV_STATUS_YN = 'Y'
+									        AND JV_PERIOD_END ${sign} SYSDATE
+		                                    AND CI_NO = #{companyInformationNo}
+		                                  ORDER BY JV_PERIOD_END ASC))
+		                     WHERE RNUM BETWEEN (#{pi.page}-1)*(#{pi.boardLimit})+1 AND ((#{pi.page}-1)*(#{pi.boardLimit})+1)+(#{pi.boardLimit}-1))
 	</select>
 </mapper>

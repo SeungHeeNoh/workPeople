@@ -12,6 +12,8 @@ import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformati
 public interface CompanyInformationMapper {
 
 	CompanyDetailInformation getCompanyDetailInformation(Map<String, Object> queryMap);
+	
+	int getJobVacancyListCount(Map<String, Object> queryMap);
 
 	List<JobVacancy> getJobVacancyList(Map<String, Object> queryMap);
 }
