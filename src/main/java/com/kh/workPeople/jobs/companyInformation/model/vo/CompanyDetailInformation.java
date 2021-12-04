@@ -1,9 +1,6 @@
 package com.kh.workPeople.jobs.companyInformation.model.vo;
 
-import java.util.List;
-
 import com.kh.workPeople.common.vo.CompanyInformation;
-import com.kh.workPeople.common.vo.JobVacancy;
 
 public class CompanyDetailInformation {
 
@@ -12,19 +9,21 @@ public class CompanyDetailInformation {
 	private int interestedCount;
 	private String interestedCompany;
 	private CompanyInformation companyInformation;
-	private List<JobVacancy> progressingJobVacancyList;
-	private List<JobVacancy> expiredJobVacancyList;
+	private ProgressingJobVacancyData progressingJobVacancyData;
+	private ExpiredJobVacancyData expiredJobVacancyData;
 	
 	public CompanyDetailInformation() {}
 
-	public CompanyDetailInformation(String companyName, String address, int interestedCount, String interestedCompany, CompanyInformation companyInformation, List<JobVacancy> progressingJobVacancyList, List<JobVacancy> expiredJobVacancyList) {
+	public CompanyDetailInformation(String companyName, String address, int interestedCount, String interestedCompany,
+			CompanyInformation companyInformation, ProgressingJobVacancyData progressingJobVacancyData,
+			ExpiredJobVacancyData expiredJobVacancyData) {
 		this.companyName = companyName;
 		this.address = address;
 		this.interestedCount = interestedCount;
 		this.interestedCompany = interestedCompany;
 		this.companyInformation = companyInformation;
-		this.progressingJobVacancyList = progressingJobVacancyList;
-		this.expiredJobVacancyList = expiredJobVacancyList;
+		this.progressingJobVacancyData = progressingJobVacancyData;
+		this.expiredJobVacancyData = expiredJobVacancyData;
 	}
 
 	public String getCompanyName() {
@@ -67,27 +66,28 @@ public class CompanyDetailInformation {
 		this.companyInformation = companyInformation;
 	}
 
-	public List<JobVacancy> getProgressingJobVacancyList() {
-		return progressingJobVacancyList;
+	public ProgressingJobVacancyData getProgressingJobVacancyData() {
+		return progressingJobVacancyData;
 	}
 
-	public void setProgressingJobVacancyList(List<JobVacancy> progressingJobVacancyList) {
-		this.progressingJobVacancyList = progressingJobVacancyList;
+	public void setProgressingJobVacancyData(ProgressingJobVacancyData progressingJobVacancyData) {
+		this.progressingJobVacancyData = progressingJobVacancyData;
 	}
 
-	public List<JobVacancy> getExpiredJobVacancyList() {
-		return expiredJobVacancyList;
+	public ExpiredJobVacancyData getExpiredJobVacancyData() {
+		return expiredJobVacancyData;
 	}
 
-	public void setExpiredJobVacancyList(List<JobVacancy> expiredJobVacancyList) {
-		this.expiredJobVacancyList = expiredJobVacancyList;
+	public void setExpiredJobVacancyData(ExpiredJobVacancyData expiredJobVacancyData) {
+		this.expiredJobVacancyData = expiredJobVacancyData;
 	}
 
 	@Override
 	public String toString() {
 		return "CompanyDetailInformation [companyName=" + companyName + ", address=" + address + ", interestedCount="
 				+ interestedCount + ", interestedCompany=" + interestedCompany + ", companyInformation="
-				+ companyInformation + ", progressingJobVacancyList=" + progressingJobVacancyList
-				+ ", expiredJobVacancyList=" + expiredJobVacancyList + "]";
+				+ companyInformation + ", progressingJobVacancyData=" + progressingJobVacancyData
+				+ ", expiredJobVacancyData=" + expiredJobVacancyData + "]";
 	}
+
 }

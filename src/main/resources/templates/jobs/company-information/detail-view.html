@@ -87,7 +87,7 @@
 					<h3>인재채용</h3>
 					<div>
 						<input type="hidden" id="page" value="1">
-						<table th:classappend="${#lists.size(companyDetailInformation.progressingJobVacancyList) == 0 ? 'empty_result' : ''}">
+						<table th:classappend="${#lists.size(companyDetailInformation.progressingJobVacancyData.progressingJobVacancyList) == 0 ? 'empty_result' : ''}">
 							<thead>
 								<tr>
 									<th scope="col">공고명</th>
@@ -97,13 +97,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<th:block th:if="${#lists.size(companyDetailInformation.progressingJobVacancyList) == 0}">
+								<th:block th:if="${#lists.size(companyDetailInformation.progressingJobVacancyData.progressingJobVacancyList) == 0}">
 								<tr>
 									<td colspan="4">진행중인 공고가 존재하지 않습니다.</td>
 								</tr>
 								</th:block>
-								<th:block th:unless="${#lists.size(companyDetailInformation.progressingJobVacancyList) == 0}">
-									<tr th:each="jobVacancy : ${companyDetailInformation.progressingJobVacancyList}" >
+								<th:block th:unless="${#lists.size(companyDetailInformation.progressingJobVacancyData.progressingJobVacancyList) == 0}">
+									<tr th:each="jobVacancy : ${companyDetailInformation.progressingJobVacancyData.progressingJobVacancyList}" >
 										<td><a th:href="@{/jobs/vacancy-detail/detail-view?no=} + ${jobVacancy.no}" th:text="${jobVacancy.title}"></a></td>
 										<td>
 											<span th:each="experienceLevel : ${jobVacancy.experienceLevelList}" th:text="${experienceLevel.name} + (${experienceLevelStat.size-1 > experienceLevelStat.index} ? ', ' : '')" th:remove="tag"></span>
@@ -114,13 +114,28 @@
 								</th:block>
 							</tbody>
 						</table>
+						<ul class="paging">
+							<li class="max_prev"><button type="button" data-page="1">&lt;&lt;</button></li>
+							<li class="prev"><button type="button" data-page="1">&lt;</button></li>
+							<li class="page_number">
+								<ul>
+									<li><button class="current_page" data-page="1">1</button></li>
+									<li><button data-page="2">2</button></li>
+									<li><button data-page="3">3</button></li>
+									<li><button data-page="4">4</button></li>
+									<li><button data-page="5">5</button></li>
+								</ul>
+							</li>
+							<li class="next"><button type="button" data-page="2">&gt;</button></li>
+							<li class="max_next"><button type="button" data-page="15">&gt;&gt;</button></li>	
+						</ul>
 					</div>
 				</div>
 				<div class="recruit_closed">
 					<h3>지난채용</h3>
 					<div>
 						<input type="hidden" id="page" value="1">
-						<table th:classappend="${#lists.size(companyDetailInformation.expiredJobVacancyList) == 0 ? 'empty_result' : ''}">
+						<table th:classappend="${#lists.size(companyDetailInformation.expiredJobVacancyData.expiredJobVacancyList) == 0 ? 'empty_result' : ''}">
 							<thead>
 								<tr>
 									<th scope="col">공고명</th>
@@ -130,13 +145,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<th:block th:if="${#lists.size(companyDetailInformation.expiredJobVacancyList) == 0}">
+								<th:block th:if="${#lists.size(companyDetailInformation.expiredJobVacancyData.expiredJobVacancyList) == 0}">
 								<tr>
 									<td colspan="4">지난 채용 공고가 존재하지 않습니다.</td>
 								</tr>
 								</th:block>
-								<th:block th:unless="${#lists.size(companyDetailInformation.expiredJobVacancyList) == 0}">
-									<tr th:each="jobVacancy : ${companyDetailInformation.expiredJobVacancyList}" >
+								<th:block th:unless="${#lists.size(companyDetailInformation.expiredJobVacancyData.expiredJobVacancyList) == 0}">
+									<tr th:each="jobVacancy : ${companyDetailInformation.expiredJobVacancyData.expiredJobVacancyList}" >
 										<td><a th:href="@{/jobs/vacancy-detail/detail-view?no=} + ${jobVacancy.no}" th:text="${jobVacancy.title}"></a></td>
 										<td>
 											<span th:each="experienceLevel : ${jobVacancy.experienceLevelList}" th:text="${experienceLevel.name} + (${experienceLevelStat.size-1 > experienceLevelStat.index} ? ', ' : '')" th:remove="tag"></span>
@@ -147,6 +162,21 @@
 								</th:block>
 							</tbody>
 						</table>
+						<ul class="paging">
+							<li class="max_prev"><button type="button" data-page="1">&lt;&lt;</button></li>
+							<li class="prev"><button type="button" data-page="1">&lt;</button></li>
+							<li class="page_number">
+								<ul>
+									<li><button class="current_page" data-page="1">1</button></li>
+									<li><button data-page="2">2</button></li>
+									<li><button data-page="3">3</button></li>
+									<li><button data-page="4">4</button></li>
+									<li><button data-page="5">5</button></li>
+								</ul>
+							</li>
+							<li class="next"><button type="button" data-page="2">&gt;</button></li>
+							<li class="max_next"><button type="button" data-page="15">&gt;&gt;</button></li>	
+						</ul>
 					</div>
 				</div>
 			</div>
