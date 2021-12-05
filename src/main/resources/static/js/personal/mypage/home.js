@@ -108,9 +108,37 @@
 
 
 
+        let applyCompanyEventPageMove = document.querySelectorAll(".applyCompanyEvent"),
+            resumeBrowseEventPageMove = document.querySelectorAll(".resumeBrowseEvent"),
+            scrapEventPageMove = document.querySelectorAll(".scrapEvent"),
+            interestedCompanyEventPageMove = document.querySelectorAll(".interestedCompanyEvent");
 
 
+        for(let i=0; i<applyCompanyEventPageMove.length; i++) {
+            applyCompanyEventPageMove[i].addEventListener('click', pageMove1);
+        }
+        for(let i=0; i<resumeBrowseEventPageMove.length; i++) {
+            resumeBrowseEventPageMove[i].addEventListener('click', pageMove2);
+        }
+        for(let i=0; i<scrapEventPageMove.length; i++) {
+            scrapEventPageMove[i].addEventListener('click', pageMove3);
+        }
+        for(let i=0; i<interestedCompanyEventPageMove.length; i++) {
+            interestedCompanyEventPageMove[i].addEventListener('click', pageMove4);
+        }
 
+        function pageMove1() {
+            location.href = "/personal/mypage/applyCompany";
+        }
+        function pageMove2() {
+            location.href = "/personal/mypage/resumeBrowseCompany";
+        }
+        function pageMove3() {
+            location.href = "/personal/mypage/scrap";
+        }
+        function pageMove4() {
+            location.href = "/personal/mypage/interestedCompany";
+        }
 
 
 

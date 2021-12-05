@@ -32,6 +32,7 @@ section{
     font-size: 24px;
     opacity: 0.5;
     padding-top: 3px;
+    width: 330px;
 }
 
 .green1{
@@ -39,4 +40,8 @@ section{
     height: 38px;
     font-size: 24px;
     margin-left: 15px;
+}
+
+.content2_container_padding{
+    padding: 10px;
 }

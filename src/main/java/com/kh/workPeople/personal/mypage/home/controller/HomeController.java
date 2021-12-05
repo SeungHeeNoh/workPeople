@@ -1,11 +1,9 @@
 package com.kh.workPeople.personal.mypage.home.controller;
 
-import com.kh.workPeople.common.vo.JobVacancyLookUp;
-import com.kh.workPeople.common.vo.MemberImpl;
-import com.kh.workPeople.common.vo.Resume;
-import com.kh.workPeople.common.vo.ResumeBrowseCompany;
+import com.kh.workPeople.common.vo.*;
 import com.kh.workPeople.personal.mypage.applyCompany.model.service.ApplyCompanyService;
 import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
+import com.kh.workPeople.personal.mypage.interestedCompany.model.service.InterestedCompanyService;
 import com.kh.workPeople.personal.mypage.resumeBrowseCompany.model.service.ResumeBrowseCompanyService;
 import com.kh.workPeople.personal.mypage.scrap.model.service.ScrapService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
@@ -33,13 +31,15 @@ public class HomeController {
 	private final ApplyCompanyService applyCompanyService;
 	private final ResumeBrowseCompanyService resumeBrowseCompanyService;
 	private final ScrapService scrapService;
+	private final InterestedCompanyService interestedCompanyService;
 
 	@Autowired
-	public HomeController(ScrapService scrapService,HomeService homeService, ApplyCompanyService applyCompanyService,ResumeBrowseCompanyService resumeBrowseCompanyService) {
+	public HomeController(InterestedCompanyService interestedCompanyService,ScrapService scrapService,HomeService homeService, ApplyCompanyService applyCompanyService,ResumeBrowseCompanyService resumeBrowseCompanyService) {
 		this.homeService = homeService;
 		this.applyCompanyService = applyCompanyService;
 		this.resumeBrowseCompanyService = resumeBrowseCompanyService;
 		this.scrapService = scrapService;
+		this.interestedCompanyService = interestedCompanyService;
 	}
 
 	@GetMapping("home")
@@ -132,6 +132,33 @@ public class HomeController {
 		model.addAttribute("scrapList3",scrapList3);
 
 
+		List<JobVacancyLookUpSimple> interestedCompanyList = interestedCompanyService.jobVacancyLookUpSimpleList(user.getNo());
+
+		for(JobVacancyLookUpSimple job : interestedCompanyList){
+			int jobVacancyCount = interestedCompanyService.jobVacancyCount(job.getNo());
+			job.setCount(jobVacancyCount);
+		}
+
+		List<JobVacancyLookUpSimple> interestedCompanyList1 = new ArrayList<>(3);
+		List<JobVacancyLookUpSimple> interestedCompanyList2 = new ArrayList<>(3);
+		List<JobVacancyLookUpSimple> interestedCompanyList3 = new ArrayList<>(3);
+
+		int icResult = 0;
+		for(JobVacancyLookUpSimple ic : interestedCompanyList){
+			if(icResult<3){
+				interestedCompanyList1.add(ic);
+				icResult++;
+			} else if(icResult<6){
+				interestedCompanyList2.add(ic);
+				icResult++;
+			} else if(icResult<9){
+				interestedCompanyList3.add(ic);
+				icResult++;
+			}
+		}
+		model.addAttribute("interestedCompanyList1",interestedCompanyList1);
+		model.addAttribute("interestedCompanyList2",interestedCompanyList2);
+		model.addAttribute("interestedCompanyList3",interestedCompanyList3);
 
 
 
