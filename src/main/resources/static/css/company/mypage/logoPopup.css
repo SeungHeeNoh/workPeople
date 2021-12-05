@@ -106,7 +106,7 @@ element.style {
   background-position: -30px 0;
   content: "";
   display: inline-block;
-  background: url(/src/main/resources/static/images/companyMyPage/search.png)
+  background: url(/images/companyMyPage/search.png)
     no-repeat;
   line-height: normal;
   vertical-align: middle;
@@ -137,6 +137,6 @@ element.style {
   width: 30px;
   height: 30px;
   background-position: -265px -45px;
-  background: url(/src/main/resources/static/images/companyMyPage/close.png)
+  background: url(/images/companyMyPage/close.png)
     no-repeat;
 }
