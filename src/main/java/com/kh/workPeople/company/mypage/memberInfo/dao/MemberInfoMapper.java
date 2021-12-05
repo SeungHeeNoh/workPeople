@@ -16,6 +16,10 @@ public interface MemberInfoMapper {
 
 	int leave(int no);
 
+	int selectCompanyNo(int no);
+
+	int leaveJobVacancy(int cino);
+
 
 	// 개인회원 정보 수정
 	int updatePersonalInfo(Member member);
