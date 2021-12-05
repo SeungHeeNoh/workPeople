@@ -38,6 +38,7 @@ public class TalentedServiceImpl implements TalentedService{
 		noMap.put("pi", pi);
 		noMap.put("userSno", userSno);
 		noMap.put("cino", cino);
+		noMap.put("userNo", userNo);
 		
 		List<PersonInfoResume> personList = talentedMapper.selectList(noMap);
 		
@@ -57,6 +58,45 @@ public class TalentedServiceImpl implements TalentedService{
 	@Override
 	public int selectResumeCount(int rno, int cino) {
 		return talentedMapper.selectResumeCount(rno, cino);
+	}
+
+	@Override
+	public int insertscrap(int mno, int rno) {
+		return talentedMapper.insertscrap(mno, rno);
+	}
+
+	@Override
+	public int deletescrap(int mno, int rno) {
+		return talentedMapper.deletescrap(mno, rno);
+	}
+
+	@Override
+	public Map<String, Object> findScrapList(int page, int userNo) {
+		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> noMap = new HashMap<>();
+		
+		CompanyInformation comInfo = talentedMapper.userSnoNumber(userNo);
+		int userSno = comInfo.getSector().getNo();
+		int cino = comInfo.getNo();
+		
+		int listCount = talentedMapper.getListCount(userSno);
+		
+		int scrapListCount = talentedMapper.scrapListCount(userNo);
+		
+		PageInfo pi = new PageInfo(page, listCount, 5, 10);
+		
+		noMap.put("pi", pi);
+		noMap.put("userSno", userSno);
+		noMap.put("cino", cino);
+		noMap.put("userNo", userNo);
+		
+		List<PersonInfoResume> personList = talentedMapper.selectScrapList(noMap);
+		
+		returnMap.put("pi", pi);
+		returnMap.put("cino", cino);
+		returnMap.put("personList", personList);
+		returnMap.put("scrapListCount", scrapListCount);
+		return returnMap;
 	}
 	
 

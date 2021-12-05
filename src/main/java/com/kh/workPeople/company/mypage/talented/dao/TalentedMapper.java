@@ -22,6 +22,14 @@ public interface TalentedMapper {
 
 	int insertResume(@Param("rno") int rno, @Param("cino") int cino);
 
+	int insertscrap(@Param("mno") int mno, @Param("rno") int rno);
+
+	int deletescrap(@Param("mno") int mno, @Param("rno") int rno);
+
+	List<PersonInfoResume> selectScrapList(Map<String, Object> noMap);
+
+	int scrapListCount(int userNo);
+
 	
 
 	
