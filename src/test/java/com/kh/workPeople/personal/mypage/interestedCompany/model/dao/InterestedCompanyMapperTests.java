@@ -54,8 +54,7 @@ public class InterestedCompanyMapperTests {
 		
 		assertEquals(result, 1);
 	}
-	
-	@Disabled
+
 	@Test
 	@Disabled
 	public void testGetInterestedCompanyCount() {
