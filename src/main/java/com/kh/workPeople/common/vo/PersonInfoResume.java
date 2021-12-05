@@ -31,13 +31,16 @@ public class PersonInfoResume {
 	private String address;
 	private String addressDetail;
 	private int cnt;
+	private int scrapcnt;
 	
 	
 	public PersonInfoResume() {}
 
 
+	
+
 	public PersonInfoResume(int rno, Date enrollDate, int mno, String sname, String title, String name, String gender,
-			Date dirthDate, int age, String email, String address, String addressDetail, int cnt) {
+			Date dirthDate, int age, String email, String address, String addressDetail, int cnt, int scrapcnt) {
 		super();
 		this.rno = rno;
 		this.enrollDate = enrollDate;
@@ -52,7 +55,10 @@ public class PersonInfoResume {
 		this.address = address;
 		this.addressDetail = addressDetail;
 		this.cnt = cnt;
+		this.scrapcnt = scrapcnt;
 	}
+
+
 
 
 	public int getRno() {
@@ -60,9 +66,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setRno(int rno) {
 		this.rno = rno;
 	}
+
+
 
 
 	public Date getEnrollDate() {
@@ -70,9 +80,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+
+
 
 
 	public int getMno() {
@@ -80,9 +94,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setMno(int mno) {
 		this.mno = mno;
 	}
+
+
 
 
 	public String getSname() {
@@ -90,9 +108,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setSname(String sname) {
 		this.sname = sname;
 	}
+
+
 
 
 	public String getTitle() {
@@ -100,9 +122,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+
 
 
 	public String getName() {
@@ -110,9 +136,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
 
 
 	public String getGender() {
@@ -120,9 +150,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+
 
 
 	public Date getDirthDate() {
@@ -130,9 +164,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setDirthDate(Date dirthDate) {
 		this.dirthDate = dirthDate;
 	}
+
+
 
 
 	public int getAge() {
@@ -140,9 +178,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setAge(int age) {
 		this.age = age;
 	}
+
+
 
 
 	public String getEmail() {
@@ -150,9 +192,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
 
 
 	public String getAddress() {
@@ -160,9 +206,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+
 
 
 	public String getAddressDetail() {
@@ -170,9 +220,13 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setAddressDetail(String addressDetail) {
 		this.addressDetail = addressDetail;
 	}
+
+
 
 
 	public int getCnt() {
@@ -180,9 +234,27 @@ public class PersonInfoResume {
 	}
 
 
+
+
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+
+
+
+
+	public int getScrapcnt() {
+		return scrapcnt;
+	}
+
+
+
+
+	public void setScrapcnt(int scrapcnt) {
+		this.scrapcnt = scrapcnt;
+	}
+
+
 
 
 	@Override
@@ -190,8 +262,9 @@ public class PersonInfoResume {
 		return "PersonInfoResume [rno=" + rno + ", enrollDate=" + enrollDate + ", mno=" + mno + ", sname=" + sname
 				+ ", title=" + title + ", name=" + name + ", gender=" + gender + ", dirthDate=" + dirthDate + ", age="
 				+ age + ", email=" + email + ", address=" + address + ", addressDetail=" + addressDetail + ", cnt="
-				+ cnt + "]";
+				+ cnt + ", scrapcnt=" + scrapcnt + "]";
 	}
+
 
 
 	

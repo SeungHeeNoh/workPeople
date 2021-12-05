@@ -94,4 +94,18 @@
 	</update>
 	
 	
+	<select id="selectCompanyNo" resultType="int">
+		SELECT CI_NO
+          FROM MEMBER 
+          JOIN COMPANY_INFO USING(M_NO)
+         WHERE M_NO = #{no}
+	</select>
+	
+	<update id="leaveJobVacancy" parameterType="com.kh.workPeople.common.vo.JobVacancy">
+		UPDATE JOB_VACANCY
+		   SET JV_STATUS_YN = 'N'
+	     WHERE CI_NO = #{cino}	
+	</update>
+	
+	
 </mapper>

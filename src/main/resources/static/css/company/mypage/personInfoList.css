@@ -210,7 +210,7 @@
 }
 .person-info .button__favorite {
   position: absolute;
-  top: 32px;
+  top: 45px;
 }
 
 .button__favorite img {
@@ -218,7 +218,6 @@
 	 position: relative;
 	width: 20px;
   height: 20px;
-  top: 14px;
   
 }
 

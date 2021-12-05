@@ -86,7 +86,7 @@ public class CompanyInfoController {
 		String dir = System.getProperty("user.dir");
 		
 		String filePath = dir + "\\src\\main\\resources\\uploadFiles";
-		String filePathDb = "\\images\\uploadFiles\\";
+		String filePathDb = "/images/uploadFiles/";
 		
 		System.out.println("filePath : "  + filePath);
 		

@@ -40,7 +40,14 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 
 	@Override
 	public int leave(MemberImpl user) {
-		return memberInfoMapper.leave(user.getNo());
+		
+		int result1 = memberInfoMapper.leave(user.getNo());
+		
+		int cino = memberInfoMapper.selectCompanyNo(user.getNo());
+		
+		int result2 = memberInfoMapper.leaveJobVacancy(cino);
+		
+		return (result1 > 0 && result2 > 0) ? 1 : 0;
 	}
 
 

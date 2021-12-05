@@ -5,9 +5,12 @@
     <title>인재추천</title>
     <link rel="stylesheet" th:href="@{/css/common/common.css}">
     <link rel="stylesheet" th:href="@{/css/company/mypage/personInfoList.css}">
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
-<div th:include="common/header.html"></div>
+<div th:include="common/cpheader.html"></div>
     <div id="wrap">
         <div id="container">
             <!-- 사이드바 -->
@@ -24,13 +27,14 @@
                 <div class="comInfo_area">
                      <!-- 인재검색 리스트 -->
                     <section class="search-list">
-                        <h2 class="blind">전체 인재정보 리스트</h2>
+                        <h2 class="blind">전체 인재정보 리스트</h2> 
                         <div id="dvOtherCondition" class="tplJobListFunc">
                             <div class="tplJobListTop clear">
                                 <span class="tplJobMan">인재 맞춤 추천</span>
                                 <span class="tplJobManTot">전체 <span th:text="${ listCount }"></span>명</span>
                                 <p>기업에게 알맞는 인재를 추천드려요. 메일을 통해 직접 연락해보세요!!</p>
                             </div>
+                          </div>  
                         <!-- 인재검색 리스트 - 결과 -->
                         <div class="table-list">
                             <table class="table-list--person">
@@ -51,12 +55,21 @@
                                 <tbody>
                                     <tr class="person-info_tr" th:if="${#lists.size(personList) > 0}" th:each="person : ${ personList }" >
                                         <th class="person-info" scope="row">
-                                            <div class="person-info__wrap clearfix">
-                                            	<form action="">
-                                                <button type="button" class="button__favorite devButtonScrap" >
-                                                	<img th:src="@{/images/companyMyPage/nonescrap.png}">
-                                                </button>
-                                                </form>
+                                            <div class="person-info__wrap clearfix"> 
+                                            
+                                            	<div th:if="${person.scrapcnt > 0}" >
+                                            		<button type="button" class="button__favorite devButtonScrap like-default">
+                                            		<input type="hidden" class="rno" th:name="rno" th:value="${person.rno}"> 
+	                                                	<img class="btnimg" th:src="@{/images/companyMyPage/scrap.png}">
+	                                                </button>
+                                            	</div>
+                                            	<div th:unless="${person.scrapcnt > 0}" >
+                                            		<button type="button" class="button__favorite devButtonScrap">
+                                            		<input type="hidden" class="rno" th:name="rno" th:value="${person.rno}"> 
+	                                                	<img class="btnimg" th:src="@{/images/companyMyPage/nonescrap.png}">
+	                                                </button>
+                                            	</div>
+                                               
                                                 <dl>
                                                     <dt class="person-info--name"><span th:text="${#strings.substring(person.name,0,1)}"></span>OO</dt>
                                                     <dd class="person-info--personal clearfix">
@@ -96,31 +109,25 @@
                                         </td>
                                         <td class="person-mail">
                                             <div class="mailbox">
-                                                <a th:href="@{/Corp/Person/Find/Resume/View?rNo=9948605}" class="personlink" target="_blank">
+                                                <a th:href="@{/company/mypage/writeMail}" class="personlink" target="_blank">
                                                     메일쓰기
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-                                 <tr th:unless="${#lists.size(personList) > 0 }">
+                                    <tr th:unless="${#lists.size(personList) > 0 }">
                                         <td class="listNone" colspan="4">
                                             알맞은 인재가 없습니다.
                                         </td>
                                     </tr>      
-                                
-                                
                                 </tbody>
                             </table>
                              <div th:if="${#lists.size(personList) > 0}">
                                 	<div th:replace="common/paging.html"></div>
                              </div>
                         </div>
-
-                       
-
                     </section>
                     <!-- 인재정보 리스트 //-->
-
                 </div> 
             </div>
         </div>
@@ -128,64 +135,7 @@
     
 <div th:include="common/up.html"></div>    
 <div th:include="common/footer.html"></div>    
-    
-    <script>
-		// 게시글 목록에 mouseover/mouseout 시 onmouseover 클래스 추가/제거 처리
-		const mtcSchListTb = document.querySelector('.table-list');
-		
-		mtcSchListTb.addEventListener('mouseover', function(){
-			
-			if(event.target.classList.contains('person-info_tr'))
-				event.target.classList.add('onmouseover');
-			else if(event.target.parentNode.classList.contains('person-info_tr'))
-				event.target.parentNode.classList.add('onmouseover');
-		});
-		
-		mtcSchListTb.addEventListener('mouseout', function(){
-			
-			if(event.target.classList.contains('person-info_tr'))
-				event.target.classList.remove('onmouseover');
-			else if(event.target.parentNode.classList.contains('person-info_tr'))
-				event.target.parentNode.classList.remove('onmouseover');
-			
-		});
-		
-		/* 스크랩 인재  */
-		const heartSvg = document.querySelector('.button__favorite');
-		const heartPath = document.querySelector('.button__favorite img');
-
-		heartSvg.addEventListener('click', () => changeClass(heartSvg, heartPath));
-		function changeClass(heartSvg, heartPath){
-			if(heartSvg.classList.contains("like-default")){
-				if(confirm("해당 이력서를 스크랩 인재에서 삭제하시겠습니까?")){
-					heartSvg.classList.remove("like-default");
-					heartSvg.classList.add("like-fill");
-					heartPath.setAttribute('src','/images/companyMyPage/nonescrap.png');
-					heart();
-				}
-				
-			}
-			else{
-				if(confirm("해당 이력서를 스크랩 하시겠습니까?")){
-				 	heartSvg.classList.remove("like-fill");
-				 	heartSvg.classList.add("like-default");
-				 	heartPath.setAttribute('src','/images/companyMyPage/scrap.png');
-				 	noneheart();
-				}
-			 }
-		}
-		
-		
-		if (Userlike > 0) {
-			heartSvg.classList.remove("like-default");
-			heartSvg.classList.add("like-fill");
-			heartPath.setAttribute('src','/oneLife/resources/user/images/like2.png');
-		} else {
-			heartSvg.classList.remove("like-fill");
-		 	heartSvg.classList.add("like-default");
-		 	heartPath.setAttribute('src','/oneLife/resources/user/images/like.png');
-		}
-		
-   </script>
+<script th:src="@{/js/company/mypage/personInfo.js}"></script>    
+   
 </body>
 </html>

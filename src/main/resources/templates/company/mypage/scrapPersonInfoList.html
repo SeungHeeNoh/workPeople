@@ -2,19 +2,23 @@
 <html xmlns:th="http:/www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>인재추천</title>
+    <title>스크랩인재</title>
     <link rel="stylesheet" th:href="@{/css/common/common.css}">
-    <link rel="stylesheet"th:href="@{/css/company/mypage/scrapPersonInfoList.css}">
+    <link rel="stylesheet" th:href="@{/css/company/mypage/scrapPersonInfoList.css}">
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
+<div th:include="common/cpheader.html"></div>
     <div id="wrap">
         <div id="container">
             <!-- 사이드바 -->
             <div id="sideNav">
                 <div class="nav">
                     <ul>
-                        <li class="personRecommend"><a href="#">인재 추천</a></li>
-                        <li class="personScrap"><a href="#">스크랩 인재</a></li>
+                        <li class="personRecommend"><a th:href="@{/company/mypage/personInfoList}">인재 추천</a></li>
+                        <li class="personScrap"><a th:href="@{/company/mypage/scrapPersonInfoList}">스크랩 인재</a></li>
                     </ul>
                 </div>
             </div>
@@ -23,14 +27,15 @@
                 <div class="comInfo_area">
                      <!-- 인재검색 리스트 -->
                     <section class="search-list">
-                        <h2 class="blind">전체 인재정보 리스트</h2>
+                        <h2 class="blind">전체 인재정보 리스트</h2> 
                         <div id="dvOtherCondition" class="tplJobListFunc">
                             <div class="tplJobListTop clear">
                                 <span class="tplJobMan">스크랩 인재</span>
-                                <span class="tplJobManTot">전체 <span>10</span>명</span>
+                                <span class="tplJobManTot">전체 <span th:text="${ listCount }"></span>명</span>
                                 <p>관심있는 인재들을 모아 놨어요. 메일을 통해 직접 연락해보세요!!</p>
                             </div>
-                        <!-- 인재검색 리스트 - 결과 -->
+                          </div>  
+                        <!-- 스크랩 리스트 - 결과 -->
                         <div class="table-list">
                             <table class="table-list--person">
                                 <colgroup>
@@ -48,17 +53,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="person-info_tr">
+                                    <tr class="person-info_tr" th:if="${#lists.size(personList) > 0}" th:each="person : ${ personList }" >
                                         <th class="person-info" scope="row">
-                                            <div class="person-info__wrap clearfix">
-                                                <button type="button" class="button__favorite devButtonScrap" data-scrapno="9948605" data-mid="pay4242002">
-                                                </button>
+                                            <div class="person-info__wrap clearfix"> 
+                                            	
+                                            	<div th:if="${person.scrapcnt > 0}" >
+                                            		<button type="button" class="button__favorite devButtonScrap like-default">
+                                            		<input type="hidden" class="rno" th:name="rno" th:value="${person.rno}"> 
+	                                                	<img class="btnimg" th:src="@{/images/companyMyPage/scrap.png}">
+	                                                </button>
+                                            	</div>
+                                            	<div th:unless="${person.scrapcnt > 0}" >
+                                            		<button type="button" class="button__favorite devButtonScrap">
+                                            		<input type="hidden" class="rno" th:name="rno" th:value="${person.rno}"> 
+	                                                	<img class="btnimg" th:src="@{/images/companyMyPage/nonescrap.png}">
+	                                                </button>
+                                            	</div>
+                                               
                                                 <dl>
-                                                    <dt class="person-info--name">박OO</dt>
+                                                    <dt class="person-info--name"><span th:text="${#strings.substring(person.name,0,1)}"></span>OO</dt>
                                                     <dd class="person-info--personal clearfix">
-                                                        <span class="person-info--sex">여</span>
-                                                        <span class="person-info--birth">1994년</span>
-                                                        <span class="person-info--age">28세</span>
+                                                        <span class="person-info--sex" th:text="${ person.gender }">여</span>
+                                                        <span class="person-info--birth"><span th:text="${#dates.format(person.dirthDate, 'yyyy') }"></span>년</span>
+                                                        <span class="person-info--age"><span th:text="${ person.age }"></span>세</span>
                                                     </dd>
                                                 </dl>
                                     
@@ -66,77 +83,59 @@
                                         </th>
                                         <td class="person-resume">
                                             <div class="person-resume--title clearfix">
-                                                    <span class="person-resume__career--senior">열람</span>
-                                                <a href="/Corp/Person/Find/Resume/View?rNo=9948605" class="person-resume--link" target="_blank">
-                                                    입사 지원서
-                                                </a>
+                                                    <span th:if="${person.cnt > 0}"  class="person-resume__career--senior">열람</span>
+                                                    <span th:unless="${person.cnt > 0}" class="person-resume__career--senior person-resumeno">미열람</span>
+                                                    <a th:href="@{/company/mypage/personDetailView(rno=${person.rno},cino=${cino})}">
+                                                    	<span class="title" th:text="${ person.title }"></span>
+                                                    </a>
                                             </div>
 
                                             <div class="person-resume--company clearfix">
                                                 <span class="company--name">희망업종</span>
                                                 <div class="company--career">
-                                                    <span class="company--status">It.웹.통신</span>
+                                                    <span class="company--status" th:text="${ person.sname }">It.웹.통신</span>
                                                 </div>
                                             </div>
                                             
-                                            <div class="person-resume--education clearfix">
-                                                <span class="education--school">대학교(4년) 휴학</span>
-                                                <span class="education--major">울산대학교 디자인학과</span>
-                                            </div>
+                                     
                                             <div class="person-resume--subinfo clearfix">
                                                 <div class="person-resume--area clearfix">
-                                                    <span class="area">거주지 - 서울</span>
+                                                    <span class="area">거주지 - <span th:text="${ person.address }"></span></span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="person-update">
-                                            <span class="date">2021-10-24</span>
+                                            <span class="date" th:text="${#dates.format(person.enrollDate, 'yyyy-MM-dd') }"></span>
                                         </td>
                                         <td class="person-mail">
                                             <div class="mailbox">
-                                                <a th:href="@{/Corp/Person/Find/Resume/View?rNo=9948605}" class="personlink" target="_blank">
+                                                <a th:href="@{/company/mypage/writeMail}" class="personlink" target="_blank">
                                                     메일쓰기
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-                                
-                                
+                                    <tr th:unless="${#lists.size(personList) > 0 }">
+                                        <td class="listNone" colspan="4">
+                                            스크랩한 인재가 없습니다.
+                                        </td>
+                                    </tr>      
                                 </tbody>
                             </table>
+                             <div th:if="${#lists.size(personList) > 0}">
+                                	<div th:replace="common/paging.html"></div>
+                             </div>
                         </div>
-
-                       
-
                     </section>
                     <!-- 인재정보 리스트 //-->
-
                 </div> 
             </div>
         </div>
     </div>  
     
-    <script>
-		// 게시글 목록에 mouseover/mouseout 시 onmouseover 클래스 추가/제거 처리
-		const mtcSchListTb = document.querySelector('.table-list');
-		
-		mtcSchListTb.addEventListener('mouseover', function(){
-			
-			if(event.target.classList.contains('person-info_tr'))
-				event.target.classList.add('onmouseover');
-			else if(event.target.parentNode.classList.contains('person-info_tr'))
-				event.target.parentNode.classList.add('onmouseover');
-		});
-		
-		mtcSchListTb.addEventListener('mouseout', function(){
-			
-			if(event.target.classList.contains('person-info_tr'))
-				event.target.classList.remove('onmouseover');
-			else if(event.target.parentNode.classList.contains('person-info_tr'))
-				event.target.parentNode.classList.remove('onmouseover');
-			
-		});
-		
-   </script>
+<div th:include="common/up.html"></div>    
+<div th:include="common/footer.html"></div>    
+<script th:src="@{/js/company/mypage/personInfo.js}"></script>    
+   
 </body>
 </html>
