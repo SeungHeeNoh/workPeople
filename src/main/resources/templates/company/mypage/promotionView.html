@@ -11,7 +11,7 @@
 	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
-<div th:include="common/header.html"></div>
+<div th:include="common/cpheader.html"></div>
     <div id="wrap">
         <div id="container">
             <!-- 사이드바 -->
@@ -319,10 +319,10 @@
                                                 <div class="inpSel">
                                                     <select id="top_term_popular2">
                                                         <option disabled selected>이용기간 선택하세요</option>
-                                                        <option th:value="${2}">2일</option>
-                                                        <option th:value="${3}">3일</option>
-                                                        <option th:value="${4}">4일</option>
                                                         <option th:value="${5}">5일</option>
+                                                        <option th:value="${7}">7일</option>
+                                                        <option th:value="${10}">10일</option>
+                                                        <option th:value="${14}">14일</option>
                                                     </select>
                                                     <span class="icoArrow"><img th:src="@{/images/companyMyPage/chevron-down.png}" ></span>
                                                 </div>
@@ -512,7 +512,7 @@
                                                 <ul class="list_product_notice">
                                                     <li>'<span class="point">리스트 상단으로 점프업</span> 가능해요'</li> 
                                                     <li>∙ 지역별 + 직종별 페이지 리스트에 노출돼요.</li> 
-                                                    <li>∙ <span class="pointred">총 6회 4시간(일)</span>마다 리스트 최상단으로 자동 점프<br>&nbsp; 됩니다.</li> 
+                                                    <li>∙ <span class="pointred">1시간</span>마다 리스트 최상단으로 자동 점프<br>&nbsp; 됩니다.</li> 
                                                     <li>∙ 구매한 상품은 광고 게재 중 중도 변경이 불가하오니,<br>&nbsp; 신중한 선택이 필요합니다.</li> 
                                                     <li>∙ 노출시엔 회사 로고, 회사명, 공고명이 노출됩니다.</li>
                                                     <li>∙ 결제 후 환불 불가하오니 신중한 결제 바랍니다.</li>
