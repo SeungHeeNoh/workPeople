@@ -50,6 +50,16 @@ public class HomeController {
 		model.addAttribute("chatCount",chatCount);
 
 
+		List<JobVacancyLookUp> applyList = applyCompanyService.jobVacancyLookUpList(user.getNo());
+		model.addAttribute("applyList",applyList);
+//		int jobResult=0;
+//		for(JobVacancyLookUp job : applyList){
+//			if(jobResult++<3){
+//
+//			}
+//		}
+
+
 		Resume resume = homeService.selectResumeStatusY(user.getNo());
 		String elName = null;
 

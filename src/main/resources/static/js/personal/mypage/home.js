@@ -48,11 +48,71 @@
             }
         }
 
+        <!-- Initialize Swiper -->
+
+            var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+            navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        });
+
+        let applyCompanyStatus = document.getElementById("applyCompanyStatus"),
+            resumeBrowseStatus = document.getElementById("resumeBrowseStatus"),
+            scrapStatus = document.getElementById("scrapStatus"),
+            interestedCompanyStatus = document.getElementById("interestedCompanyStatus"),
+            chatStatus = document.getElementById("chatStatus");
+
+        let applyCompanyText = document.getElementById("applyCompanyText"),
+            resumeBrowseText = document.getElementById("resumeBrowseText"),
+            scrapStatusText = document.getElementById("scrapStatusText"),
+            interestedCompanyText = document.getElementById("interestedCompanyText"),
+            chatText = document.getElementById("chatText");
+
+        applyCompanyText.addEventListener('click',applyCompanyEvent);
+        resumeBrowseText.addEventListener('click',resumeBrowseEvent);
+        scrapStatusText.addEventListener('click',scrapEvent);
+        interestedCompanyText.addEventListener('click',interestedCompanyEvent);
+        chatText.addEventListener('click',chatEvent);
 
 
 
 
+        function applyCompanyEvent(){
+            displayNone();
+            applyCompanyStatus.style.display="block";
+        }
+        function resumeBrowseEvent(){
+            displayNone();
+            resumeBrowseStatus.style.display="block";
+        }
+        function scrapEvent(){
+            displayNone();
+            scrapStatus.style.display="block";
+        }
+        function interestedCompanyEvent(){
+            displayNone();
+            interestedCompanyStatus.style.display="block";
+        }
+        function chatEvent(){
+            displayNone();
+            chatStatus.style.display="block";
+        }
 
+        function displayNone(){
+            applyCompanyStatus.style.display="none";
+            resumeBrowseStatus.style.display="none";
+            scrapStatus.style.display="none";
+            interestedCompanyStatus.style.display="none";
+            chatStatus.style.display="none";
+        }
 
 
 

@@ -33,18 +33,19 @@
 
 .home_contents_wrap{
     display: flex;
-    margin-top: 10px;
+    margin-top: 20px;
     justify-content: space-around;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .home_content_header_contents_detail{
     background-color: #f9e2ae;
-    width: 250px;
+    width: 200px;
     height: 128px;
     border-radius: 10px;
     padding: 10px;
     box-sizing: border-box;
+    margin-left: 53px;
 }
 
 .home_content_header_contents_detail_img{
@@ -221,8 +222,21 @@
     right: 44px;
 }
 
+.swiperPadding{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.swiper-slide{
+    display: flex;
+}
 
+.swiper{
+    height: 165px;
+}
 
+#resumeBrowseStatus, #scrapStatus, #interestedCompanyStatus, #chatStatus{
+    display: none;
+}
 
 
 

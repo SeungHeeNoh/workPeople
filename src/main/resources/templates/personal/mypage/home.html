@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="/css/common/common.css">
     <link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
     <link rel="stylesheet" href="/css/personal/myPage/home.css">
-
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
     <title>마이페이지 홈</title>
 
     <script th:inline="javascript">
@@ -32,48 +35,203 @@
             <div class="content_wrap_2">
 
                 <div id="home_content_header_wrap">
-                    <div class="content_header_text">지원 현황</div>
+                    <div class="content_header_text" id="applyCompanyText">지원 현황</div>
                     <div class="content_header_wrap">
                         <div class="content_header_num" th:text="${applyCount}"></div>
                     </div>
-                    <div class="content_header_text">이력서 열람</div>
+                    <div class="content_header_text" id="resumeBrowseText">이력서 열람</div>
                     <div class="content_header_wrap">
                         <div class="content_header_num" th:text="${resumeBrowseCount}"></div>
                     </div>
-                    <div class="content_header_text">스크랩 공고</div>
+                    <div class="content_header_text" id="scrapStatusText">스크랩 공고</div>
                     <div class="content_header_wrap">
                         <div class="content_header_num" th:text="${scrapCount}"></div>
                     </div>
-                    <div class="content_header_text">관심기업 공고</div>
+                    <div class="content_header_text" id="interestedCompanyText">관심기업 공고</div>
                     <div class="content_header_wrap">
                         <div class="content_header_num" th:text="${interestedCompanyCount}"></div>
                     </div>
-                    <div class="content_header_text">채팅 현황</div>
+                    <div class="content_header_text" id="chatText">채팅 현황</div>
                     <div class="content_header_wrap">
                         <div class="content_header_num" th:text="${chatCount}"></div>
                     </div>
                 </div>
-                <div class="home_contents_wrap">
-                    <div class="home_content_header_contents_detail">
-                        <img src="/images/personal/myPage/icon/snb4.svg" class="home_content_header_contents_detail_img"><span
-                            class="home_content_header_contents_detail_1">입사지원 완료</span>
-                        <p class="home_content_header_contents_detail_2">회사이름1</p>
-                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
-                    </div>
-                    <div class="home_content_header_contents_detail">
-                        <img src="/images/personal/myPage/icon/snb4.svg" class="home_content_header_contents_detail_img"><span
-                            class="home_content_header_contents_detail_1">입사지원 완료</span>
-                        <p class="home_content_header_contents_detail_2">회사이름1</p>
-                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
-                    </div>
-                    <div class="home_content_header_contents_detail">
-                        <img src="/images/personal/myPage/icon/snb4.svg" class="home_content_header_contents_detail_img"><span
-                            class="home_content_header_contents_detail_1">입사지원 완료</span>
-                        <p class="home_content_header_contents_detail_2">회사이름1</p>
-                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
-                    </div>
 
+                <div class="home_contents_wrap" id="applyCompanyStatus">
+                        <div class="swiper mySwiper swiperPadding">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="home_content_header_contents_detail">
+                                        <img src="/images/personal/myPage/icon/snb4.svg"
+                                             class="home_content_header_contents_detail_img"><span
+                                            class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                        <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                    </div>
+                                    <div class="home_content_header_contents_detail">
+                                        <img src="/images/personal/myPage/icon/snb4.svg"
+                                             class="home_content_header_contents_detail_img"><span
+                                            class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                        <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                    </div>
+                                    <div class="home_content_header_contents_detail">
+                                        <img src="/images/personal/myPage/icon/snb4.svg"
+                                             class="home_content_header_contents_detail_img"><span
+                                            class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                        <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-next" style="top:40%"></div>
+                            <div class="swiper-button-prev" style="top:40%"></div>
+                            <div class="swiper-pagination"></div>
+                    </div>
                 </div>
+
+                <div class="home_contents_wrap" id="resumeBrowseStatus">
+                    <div class="swiper mySwiper swiperPadding">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">이력서 열람 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next" style="top:40%"></div>
+                        <div class="swiper-button-prev" style="top:40%"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+                <div class="home_contents_wrap" id="scrapStatus">
+                    <div class="swiper mySwiper swiperPadding">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">스크랩 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next" style="top:40%"></div>
+                        <div class="swiper-button-prev" style="top:40%"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+                <div class="home_contents_wrap" id="interestedCompanyStatus">
+                    <div class="swiper mySwiper swiperPadding">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">관심기업 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next" style="top:40%"></div>
+                        <div class="swiper-button-prev" style="top:40%"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+                <div class="home_contents_wrap" id="chatStatus">
+                    <div class="swiper mySwiper swiperPadding">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">채팅 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                                <div class="home_content_header_contents_detail">
+                                    <img src="/images/personal/myPage/icon/snb4.svg"
+                                         class="home_content_header_contents_detail_img"><span
+                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
+                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next" style="top:40%"></div>
+                        <div class="swiper-button-prev" style="top:40%"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
                 <hr class="hr">
 
 
@@ -151,6 +309,7 @@
     </section>
 </div>
 
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <script th:src="@{/js/personal/mypage/home.js}"></script>
 <div th:include="common/footer.html"></div>
 </body>
