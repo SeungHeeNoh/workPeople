@@ -25,6 +25,8 @@ import com.kh.workPeople.common.vo.Member;
 public class MemberLoginFailureHandler implements AuthenticationFailureHandler {
 	
 	private final int MAX_FAILURE_COUNT = 5;
+	private final String PERSONAL_LOGIN = "/account/member/personal/login";
+	private final String COMPANY_LOGIN = "/account/member/company/login";
 	private MemberLoginService memberLoginService;
 	private String defaultUrl ="/account/member/login";
 	
@@ -59,6 +61,12 @@ public class MemberLoginFailureHandler implements AuthenticationFailureHandler {
 			message = "탈퇴한 회원입니다.";
 		}
 		
+		if(request.getParameter("member_type").equals("1")) {
+			defaultUrl = PERSONAL_LOGIN;
+		} else {
+			defaultUrl = COMPANY_LOGIN;
+		}
+
 		FlashMap flashMap = new FlashMap();
 		flashMap.put("message", message);
 		flashMap.put("id", id);
