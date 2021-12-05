@@ -68,19 +68,16 @@
             resumeBrowseStatus = document.getElementById("resumeBrowseStatus"),
             scrapStatus = document.getElementById("scrapStatus"),
             interestedCompanyStatus = document.getElementById("interestedCompanyStatus"),
-            chatStatus = document.getElementById("chatStatus");
 
-        let applyCompanyText = document.getElementById("applyCompanyText"),
+            applyCompanyText = document.getElementById("applyCompanyText"),
             resumeBrowseText = document.getElementById("resumeBrowseText"),
             scrapStatusText = document.getElementById("scrapStatusText"),
-            interestedCompanyText = document.getElementById("interestedCompanyText"),
-            chatText = document.getElementById("chatText");
+            interestedCompanyText = document.getElementById("interestedCompanyText");
 
         applyCompanyText.addEventListener('click',applyCompanyEvent);
         resumeBrowseText.addEventListener('click',resumeBrowseEvent);
         scrapStatusText.addEventListener('click',scrapEvent);
         interestedCompanyText.addEventListener('click',interestedCompanyEvent);
-        chatText.addEventListener('click',chatEvent);
 
 
 
@@ -101,17 +98,12 @@
             displayNone();
             interestedCompanyStatus.style.display="block";
         }
-        function chatEvent(){
-            displayNone();
-            chatStatus.style.display="block";
-        }
 
         function displayNone(){
             applyCompanyStatus.style.display="none";
             resumeBrowseStatus.style.display="none";
             scrapStatus.style.display="none";
             interestedCompanyStatus.style.display="none";
-            chatStatus.style.display="none";
         }
 
 

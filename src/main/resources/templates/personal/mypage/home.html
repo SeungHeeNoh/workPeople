@@ -35,54 +35,70 @@
             <div class="content_wrap_2">
 
                 <div id="home_content_header_wrap">
-                    <div class="content_header_text" id="applyCompanyText">지원 현황</div>
-                    <div class="content_header_wrap">
-                        <div class="content_header_num" th:text="${applyCount}"></div>
+                    <div class="home_content_header_container">
+                        <div class="content_header_text" id="applyCompanyText">지원 현황</div>
+                        <div class="content_header_wrap">
+                            <div class="content_header_num" th:text="${applyCount}"></div>
+                        </div>
                     </div>
-                    <div class="content_header_text" id="resumeBrowseText">이력서 열람</div>
-                    <div class="content_header_wrap">
-                        <div class="content_header_num" th:text="${resumeBrowseCount}"></div>
+                    <div class="home_content_header_container">
+                        <div class="content_header_text" id="resumeBrowseText">이력서 열람</div>
+                        <div class="content_header_wrap">
+                            <div class="content_header_num" th:text="${resumeBrowseCount}"></div>
+                        </div>
                     </div>
-                    <div class="content_header_text" id="scrapStatusText">스크랩 공고</div>
-                    <div class="content_header_wrap">
-                        <div class="content_header_num" th:text="${scrapCount}"></div>
+                    <div class="home_content_header_container">
+                        <div class="content_header_text" id="scrapStatusText">스크랩 공고</div>
+                        <div class="content_header_wrap">
+                            <div class="content_header_num" th:text="${scrapCount}"></div>
+                        </div>
                     </div>
-                    <div class="content_header_text" id="interestedCompanyText">관심기업 공고</div>
-                    <div class="content_header_wrap">
-                        <div class="content_header_num" th:text="${interestedCompanyCount}"></div>
-                    </div>
-                    <div class="content_header_text" id="chatText">채팅 현황</div>
-                    <div class="content_header_wrap">
-                        <div class="content_header_num" th:text="${chatCount}"></div>
+                    <div class="home_content_header_container">
+                        <div class="content_header_text" id="interestedCompanyText">관심기업 공고</div>
+                        <div class="content_header_wrap">
+                            <div class="content_header_num" th:text="${interestedCompanyCount}"></div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="home_contents_wrap" id="applyCompanyStatus">
                         <div class="swiper mySwiper swiperPadding">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="home_content_header_contents_detail">
-                                        <img src="/images/personal/myPage/icon/snb4.svg"
-                                             class="home_content_header_contents_detail_img"><span
-                                            class="home_content_header_contents_detail_1">입사지원 완료</span>
-                                        <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
+
+                                <th:block th:if="${applyCompanyList1 != null}">
+                                    <div class="swiper-slide">
+                                        <div class="home_content_header_contents_detail" th:each="applyCompanyList1 : ${applyCompanyList1}">
+                                            <img src="/images/personal/myPage/icon/snb4.svg"
+                                                 class="home_content_header_contents_detail_img"><span
+                                                class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                            <p class="home_content_header_contents_detail_2" th:text="${applyCompanyList1.mName}">회사이름1</p>
+                                            <p class="home_content_header_contents_detail_3" th:text="${applyCompanyList1.sName}">it/web/통신</p>
+                                        </div>
                                     </div>
-                                    <div class="home_content_header_contents_detail">
-                                        <img src="/images/personal/myPage/icon/snb4.svg"
-                                             class="home_content_header_contents_detail_img"><span
-                                            class="home_content_header_contents_detail_1">입사지원 완료</span>
-                                        <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </th:block>
+                                <th:block th:if="${applyCompanyList2 != null}">
+                                    <div class="swiper-slide">
+                                        <div class="home_content_header_contents_detail" th:each="applyCompanyList2 : ${applyCompanyList2}">
+                                            <img src="/images/personal/myPage/icon/snb4.svg"
+                                                 class="home_content_header_contents_detail_img"><span
+                                                class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                            <p class="home_content_header_contents_detail_2" th:text="${applyCompanyList2.mName}">회사이름1</p>
+                                            <p class="home_content_header_contents_detail_3" th:text="${applyCompanyList2.sName}">it/web/통신</p>
+                                        </div>
                                     </div>
-                                    <div class="home_content_header_contents_detail">
-                                        <img src="/images/personal/myPage/icon/snb4.svg"
-                                             class="home_content_header_contents_detail_img"><span
-                                            class="home_content_header_contents_detail_1">입사지원 완료</span>
-                                        <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                        <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                                </th:block>
+                                <th:block th:if="${applyCompanyList3 != null}">
+                                    <div class="swiper-slide">
+                                        <div class="home_content_header_contents_detail" th:each="applyCompanyList3 : ${applyCompanyList1}">
+                                            <img src="/images/personal/myPage/icon/snb4.svg"
+                                                 class="home_content_header_contents_detail_img"><span
+                                                class="home_content_header_contents_detail_1">입사지원 완료</span>
+                                            <p class="home_content_header_contents_detail_2" th:text="${applyCompanyList3.mName}">회사이름1</p>
+                                            <p class="home_content_header_contents_detail_3" th:text="${applyCompanyList3.sName}">it/web/통신</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </th:block>
+
                             </div>
                             <div class="swiper-button-next" style="top:40%"></div>
                             <div class="swiper-button-prev" style="top:40%"></div>
@@ -93,29 +109,41 @@
                 <div class="home_contents_wrap" id="resumeBrowseStatus">
                     <div class="swiper mySwiper swiperPadding">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="home_content_header_contents_detail">
-                                    <img src="/images/personal/myPage/icon/snb4.svg"
-                                         class="home_content_header_contents_detail_img"><span
-                                        class="home_content_header_contents_detail_1">이력서 열람 완료</span>
-                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+
+                            <th:block th:if="${resumeBrowseList1 != null}">
+                                <div class="swiper-slide">
+                                    <div class="home_content_header_contents_detail" th:each="resumeBrowseList1 : ${resumeBrowseList1}">
+                                        <img src="/images/personal/myPage/icon/snb4.svg"
+                                             class="home_content_header_contents_detail_img"><span
+                                            class="home_content_header_contents_detail_1">내 이력서 열람</span>
+                                        <p class="home_content_header_contents_detail_2" th:text="${resumeBrowseList1.m_name}">회사이름1</p>
+                                        <p class="home_content_header_contents_detail_3" th:text="${resumeBrowseList1.s_name}">it/web/통신</p>
+                                    </div>
                                 </div>
-                                <div class="home_content_header_contents_detail">
-                                    <img src="/images/personal/myPage/icon/snb4.svg"
-                                         class="home_content_header_contents_detail_img"><span
-                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
-                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                            </th:block>
+                            <th:block th:if="${resumeBrowseList2 != null}">
+                                <div class="swiper-slide">
+                                    <div class="home_content_header_contents_detail" th:each="resumeBrowseList2 : ${resumeBrowseList2}">
+                                        <img src="/images/personal/myPage/icon/snb4.svg"
+                                             class="home_content_header_contents_detail_img"><span
+                                            class="home_content_header_contents_detail_1">내 이력서 열람</span>
+                                        <p class="home_content_header_contents_detail_2" th:text="${resumeBrowseList2.m_name}">회사이름1</p>
+                                        <p class="home_content_header_contents_detail_3" th:text="${resumeBrowseList2.s_name}">it/web/통신</p>
+                                    </div>
                                 </div>
-                                <div class="home_content_header_contents_detail">
-                                    <img src="/images/personal/myPage/icon/snb4.svg"
-                                         class="home_content_header_contents_detail_img"><span
-                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
-                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                            </th:block>
+                            <th:block th:if="${resumeBrowseList3 != null}">
+                                <div class="swiper-slide">
+                                    <div class="home_content_header_contents_detail" th:each="resumeBrowseList3 : ${resumeBrowseList3}">
+                                        <img src="/images/personal/myPage/icon/snb4.svg"
+                                             class="home_content_header_contents_detail_img"><span
+                                            class="home_content_header_contents_detail_1">내 이력서 열람</span>
+                                        <p class="home_content_header_contents_detail_2" th:text="${resumeBrowseList3.m_name}">회사이름1</p>
+                                        <p class="home_content_header_contents_detail_3" th:text="${resumeBrowseList3.s_name}">it/web/통신</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </th:block>
+
                         </div>
                         <div class="swiper-button-next" style="top:40%"></div>
                         <div class="swiper-button-prev" style="top:40%"></div>
@@ -126,29 +154,41 @@
                 <div class="home_contents_wrap" id="scrapStatus">
                     <div class="swiper mySwiper swiperPadding">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="home_content_header_contents_detail">
-                                    <img src="/images/personal/myPage/icon/snb4.svg"
-                                         class="home_content_header_contents_detail_img"><span
-                                        class="home_content_header_contents_detail_1">스크랩 완료</span>
-                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+
+                            <th:block th:if="${scrapList1 != null}">
+                                <div class="swiper-slide">
+                                    <div class="home_content_header_contents_detail" th:each="scrapList1 : ${scrapList1}">
+                                        <img src="/images/personal/myPage/icon/snb4.svg"
+                                             class="home_content_header_contents_detail_img"><span
+                                            class="home_content_header_contents_detail_1">내 이력서 열람</span>
+                                        <p class="home_content_header_contents_detail_2" th:text="${scrapList1.m_name}">회사이름1</p>
+                                        <p class="home_content_header_contents_detail_3" th:text="${scrapList1.s_name}">it/web/통신</p>
+                                    </div>
                                 </div>
-                                <div class="home_content_header_contents_detail">
-                                    <img src="/images/personal/myPage/icon/snb4.svg"
-                                         class="home_content_header_contents_detail_img"><span
-                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
-                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                            </th:block>
+                            <th:block th:if="${scrapList2 != null}">
+                                <div class="swiper-slide">
+                                    <div class="home_content_header_contents_detail" th:each="scrapList2 : ${scrapList2}">
+                                        <img src="/images/personal/myPage/icon/snb4.svg"
+                                             class="home_content_header_contents_detail_img"><span
+                                            class="home_content_header_contents_detail_1">내 이력서 열람</span>
+                                        <p class="home_content_header_contents_detail_2" th:text="${resumeBrowseList2.m_name}">회사이름1</p>
+                                        <p class="home_content_header_contents_detail_3" th:text="${resumeBrowseList2.s_name}">it/web/통신</p>
+                                    </div>
                                 </div>
-                                <div class="home_content_header_contents_detail">
-                                    <img src="/images/personal/myPage/icon/snb4.svg"
-                                         class="home_content_header_contents_detail_img"><span
-                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
-                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
+                            </th:block>
+                            <th:block th:if="${resumeBrowseList3 != null}">
+                                <div class="swiper-slide">
+                                    <div class="home_content_header_contents_detail" th:each="resumeBrowseList3 : ${resumeBrowseList3}">
+                                        <img src="/images/personal/myPage/icon/snb4.svg"
+                                             class="home_content_header_contents_detail_img"><span
+                                            class="home_content_header_contents_detail_1">내 이력서 열람</span>
+                                        <p class="home_content_header_contents_detail_2" th:text="${resumeBrowseList3.m_name}">회사이름1</p>
+                                        <p class="home_content_header_contents_detail_3" th:text="${resumeBrowseList3.s_name}">it/web/통신</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </th:block>
+
                         </div>
                         <div class="swiper-button-next" style="top:40%"></div>
                         <div class="swiper-button-prev" style="top:40%"></div>
@@ -188,47 +228,6 @@
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
-
-                <div class="home_contents_wrap" id="chatStatus">
-                    <div class="swiper mySwiper swiperPadding">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="home_content_header_contents_detail">
-                                    <img src="/images/personal/myPage/icon/snb4.svg"
-                                         class="home_content_header_contents_detail_img"><span
-                                        class="home_content_header_contents_detail_1">채팅 완료</span>
-                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
-                                </div>
-                                <div class="home_content_header_contents_detail">
-                                    <img src="/images/personal/myPage/icon/snb4.svg"
-                                         class="home_content_header_contents_detail_img"><span
-                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
-                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
-                                </div>
-                                <div class="home_content_header_contents_detail">
-                                    <img src="/images/personal/myPage/icon/snb4.svg"
-                                         class="home_content_header_contents_detail_img"><span
-                                        class="home_content_header_contents_detail_1">입사지원 완료</span>
-                                    <p class="home_content_header_contents_detail_2">회사이름1</p>
-                                    <p class="home_content_header_contents_detail_3">it/web/통신</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-button-next" style="top:40%"></div>
-                        <div class="swiper-button-prev" style="top:40%"></div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
 
 
 

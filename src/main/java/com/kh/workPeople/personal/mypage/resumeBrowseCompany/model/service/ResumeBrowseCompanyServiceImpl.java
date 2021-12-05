@@ -13,7 +13,7 @@ import java.util.Map;
 @Service
 public class ResumeBrowseCompanyServiceImpl implements ResumeBrowseCompanyService{
 
-    private ResumeBrowseCompanyMapper resumeBrowseCompanyMapper;
+    private final ResumeBrowseCompanyMapper resumeBrowseCompanyMapper;
 
     @Autowired
     public ResumeBrowseCompanyServiceImpl(ResumeBrowseCompanyMapper resumeBrowseCompanyMapper){

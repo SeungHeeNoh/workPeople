@@ -7,7 +7,11 @@
 
 #home_content_header_wrap{
     display: flex;
-    padding-left: 6px;
+    justify-content: space-around;
+}
+
+.home_content_header_container{
+    display: flex;
 }
 .content_header_text{
     font-size: 20px;
@@ -236,6 +240,10 @@
 
 #resumeBrowseStatus, #scrapStatus, #interestedCompanyStatus, #chatStatus{
     display: none;
+}
+#applyCompanyText:hover, #resumeBrowseText:hover, #scrapStatusText:hover, #interestedCompanyText:hover, #chatText:hover{
+    cursor: pointer;
+    color: #85cbcc;
 }
 
 
