@@ -16,10 +16,6 @@
 	left : 0;
 }
 
-#container > .login_area {
-	height : 509px;
-}
-
 #container > .login_area > .type_change_tab {
 	margin-top : 25px;
 }
@@ -48,4 +44,10 @@
 	border : 1px solid #222;
 	border-bottom: none;
 	color : #222;
+}
+
+#container > .login_area > .type_change_tab > li a {
+	display: block;
+	width : 100%;
+	height : 100%;
 }

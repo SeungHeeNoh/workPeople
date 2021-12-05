@@ -13,8 +13,8 @@
 		<div class="login_area">
 			<h2>로그인</h2>
 			<ul class="type_change_tab">
-				<li class="active" data-member-type="1">개인회원</li>
-				<li data-member-type="2">기업회원</li>
+				<li th:classappend="${#strings.equals(type, 'personal') ? 'active' : ''}"><a th:href="@{/account/member/personal/login}">개인회원</a></li>
+				<li th:classappend="${#strings.equals(type, 'company') ? 'active' : ''}"><a th:href="@{/account/member/company/login}">기업회원</a></li>
 			</ul>
 			<div th:replace="account/login/common-login.html"></div>
 		</div>

@@ -3,12 +3,10 @@
 	let cookie = window.common.cookie;
 
 	let login = document.querySelector(".login_area"),
-		typeChangeTabs = login.querySelectorAll(".type_change_tab > li"),
 		loginForm = login.querySelector("form"),
 		rememberIdCheckbox = loginForm.querySelector("#remember_id"),
 		idInput = loginForm.querySelector("input[name='id']"),
-		passwordIntput = loginForm.querySelector("input[name='password']"),
-		memberTypeInput = loginForm.querySelector("input[name='member_type']");
+		passwordIntput = loginForm.querySelector("input[name='password']");
 
 	function init() {
 		viewInit();
@@ -27,8 +25,6 @@
 	function loginClickEventHandler(e) {
 		if(e.target.tagName == "BUTTON") {
 			loginButtonClickEventHandler();
-		} else if(e.target.tagName == "LI") {
-			changeTab(e.target)
 		}
 	}
 
@@ -57,15 +53,6 @@
 			}
 			loginForm.submit();
 		}
-	}
-
-	function changeTab(activeTab) {
-		typeChangeTabs.forEach(function(item, index) {
-			item.classList.remove("active");
-		});
-
-		activeTab.classList.add("active");
-		memberTypeInput.value = activeTab.getAttribute("data-member-type");
 	}
 
 	window.addEventListener("DOMContentLoaded", init);	
