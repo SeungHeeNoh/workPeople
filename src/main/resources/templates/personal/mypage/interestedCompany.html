@@ -42,15 +42,9 @@
 				<form class="delete_form" th:action="@{/personal/mypage/interestedCompany/list/delete}" method="POST">
                	 	<button class="green green1" disabled>삭제</button>
 				</form>
-            
-
-            
-
-            
-
-
-
-       
+                <th:block th:if="${#lists.size(jobList)>0}">
+                    <div th:replace="common/paging.html"></div>
+                </th:block>
         </div>
         </section>
     </div>

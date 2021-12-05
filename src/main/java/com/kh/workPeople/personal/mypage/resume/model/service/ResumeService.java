@@ -27,5 +27,7 @@ public interface ResumeService {
     // 자소서 목록 조회
     List<SelfIntroduction> resumeSelfIntroductionList(int rNo);
 
-
+    // 대표이력서 해제
+    int resumeStatusYtoN(int no);
+    int resumeStatusNtoY(int resumeNo);
 }

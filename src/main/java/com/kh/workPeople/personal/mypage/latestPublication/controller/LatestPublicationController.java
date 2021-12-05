@@ -13,15 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.DatabaseMetaData;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/personal/mypage")
@@ -39,9 +40,11 @@ public class LatestPublicationController {
     }
 
     @GetMapping("latestPublication")
-    public String latestPublication(Model model, @AuthenticationPrincipal MemberImpl user){
+    public String latestPublication(Model model, @AuthenticationPrincipal MemberImpl user, @RequestParam(defaultValue = "1") int page){
 
-        List<JobVacancyLookUp> jobVacancyLookUpList = latestPublicationService.jobVacancyLookUpList(user.getNo());
+        Map<String,Object> lpMap = latestPublicationService.jobVacancyLookUpListPaging(user.getNo(),page);
+
+        List<JobVacancyLookUp> jobVacancyLookUpList = (List<JobVacancyLookUp>)lpMap.get("jobVacancyLookUpList");
 
         for(JobVacancyLookUp job : jobVacancyLookUpList){
             int applyCompanyYN = homeService.applyCompanyYN(user.getNo(),job.getJvNo());
@@ -54,6 +57,7 @@ public class LatestPublicationController {
         }
 
         model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
+        model.addAttribute("pi",lpMap.get("pi"));
 
         Resume resume = homeService.selectResumeStatusY(user.getNo());
         if(resume != null){
@@ -75,8 +79,55 @@ public class LatestPublicationController {
             return "redirect:/common/errorPage";
         }
 
+    }
+
+    @PostMapping("latestPublication/delete")
+    public String latestPublicationDelete(@RequestParam("jvNo") List<Integer> jvNoList, @AuthenticationPrincipal MemberImpl user, RedirectAttributes rttr, HttpServletRequest request){
+
+        Map<String, Object> queryMap = new HashMap<>();
+        int result = 0;
+
+        queryMap.put("userNo", user.getNo());
+        queryMap.put("jvNoList", jvNoList);
+
+        result = latestPublicationService.deleteLatestPublication(queryMap);
+
+        if(result > 0) {
+            rttr.addFlashAttribute("message", "선택하신 최근 본 채용공고 목록 삭제에 성공했습니다.");
+            return "redirect:/personal/mypage/latestPublication";
+        } else {
+            request.setAttribute("errorMessage", "선택하신 스크랩 공고 목록 삭제에 실패했습니다.");
+            return "/common/errorPage";
+        }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

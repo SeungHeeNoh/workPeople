@@ -1,11 +1,14 @@
 package com.kh.workPeople.personal.mypage.applyCompany.model.service;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
+import com.kh.workPeople.common.vo.PageInfo;
 import com.kh.workPeople.personal.mypage.applyCompany.model.dao.ApplyCompanyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ApplyCompanyServiceImpl implements ApplyCompanyService{
@@ -50,5 +53,22 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService{
     @Override
     public int applyCompany(int rNo, int applyBtnNo) {
         return applyCompanyMapper.applyCompany(rNo,applyBtnNo);
+    }
+
+    @Override
+    public Map<String, Object> jobVacancyLookUpListPaging(int no, int page) {
+
+        Map<String, Object> returnMap = new HashMap<>();
+
+        int listCount = applyCompanyMapper.jobVacancyLookUpList(no).size();
+
+        PageInfo pi = new PageInfo(page, listCount, 10, 10, no);
+
+        List<JobVacancyLookUp> jobVacancyLookUpList = applyCompanyMapper.jobVacancyLookUpListPagingQuery(pi);
+
+        returnMap.put("pi",pi);
+        returnMap.put("jobVacancyLookUpList",jobVacancyLookUpList);
+
+        return returnMap;
     }
 }

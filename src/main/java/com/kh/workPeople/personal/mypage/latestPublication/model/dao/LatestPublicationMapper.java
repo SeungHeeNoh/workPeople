@@ -1,6 +1,7 @@
 package com.kh.workPeople.personal.mypage.latestPublication.model.dao;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
+import com.kh.workPeople.common.vo.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface LatestPublicationMapper {
 
 	int insertBrowse(Map<String, Object> queryMap);
 
+    List<JobVacancyLookUp> jobVacancyLookUpListPagingQuery(PageInfo pi);
+
+    int deleteLatestPublication(Map<String, Object> queryMap);
 }

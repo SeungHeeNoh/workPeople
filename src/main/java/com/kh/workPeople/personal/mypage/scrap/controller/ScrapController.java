@@ -52,9 +52,6 @@ public class ScrapController {
 
 		List<JobVacancyLookUp> jobVacancyLookUpList = (List<JobVacancyLookUp>)scrapMap.get("jobVacancyLookUpList");
 
-
-//		List<JobVacancyLookUp> jobVacancyLookUpList = scrapService.jobVacancyLookUpList(user.getNo());
-
 		for(JobVacancyLookUp job : jobVacancyLookUpList){
 			int applyCompanyYN = homeService.applyCompanyYN(user.getNo(),job.getJvNo());
 

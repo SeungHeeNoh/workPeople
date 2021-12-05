@@ -42,6 +42,7 @@
     line-height: 42px;
     padding-left: 20px;
     display: flex;
+    font-size: 20px;
 }
 
 .content2_1 > span{

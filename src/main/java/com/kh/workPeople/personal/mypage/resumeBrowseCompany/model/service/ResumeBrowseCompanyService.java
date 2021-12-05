@@ -10,4 +10,6 @@ public interface ResumeBrowseCompanyService {
     List<ResumeBrowseCompany> selectResumeBrowseCompanyList(int no);
 
     Map<String, Object> selectResumeBrowseCompanyListPaging(int no, int page);
+
+    int deleteResumeBrowseCompanyList(int no, List<Integer> ciNoList);
 }

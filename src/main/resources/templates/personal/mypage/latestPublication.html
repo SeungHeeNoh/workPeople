@@ -35,65 +35,67 @@
                 <div class="home_content_3_3">마감일</div>
             </div>
 
+                <form class="delete_form" th:action="@{/personal/mypage/latestPublication/delete}" method="post">
+                    <div th:each="job : ${jobVacancyLookUpList}" class="content_title_text4_container">
+                        <div class="content_title_text4">
+                            <input type="checkbox" class="checkBtn1" th:value="${job.jvNo}" name="jvNo">
+                            <div class="content_title_text4_1" th:text="${job.mName}"></div>
+                            <div class="content_title_text4_detail_wrap">
+                                <div th:text="${job.jvTitle}"></div>
+                                <div class="content_title_text4_detail">
+                                    <div class="content_title_text4_detail_1" th:text="${job.elName}"></div>
+                                    <div class="content_title_text4_detail_2" th:text="${job.sName}"></div>
+                                    <div class="content_title_text4_detail_3" th:text="${job.jvAddress}"></div>
+                                </div>
+                            </div>
 
-            <div th:each="job : ${jobVacancyLookUpList}" class="content_title_text4_container">
-                <div class="content_title_text4">
-                    <input type="checkbox" class="checkBtn1">
-                    <div class="content_title_text4_1" th:text="${job.mName}"></div>
-                    <div class="content_title_text4_detail_wrap">
-                        <div th:text="${job.jvTitle}"></div>
-                        <div class="content_title_text4_detail">
-                            <div class="content_title_text4_detail_1" th:text="${job.elName}"></div>
-                            <div class="content_title_text4_detail_2" th:text="${job.sName}"></div>
-                            <div class="content_title_text4_detail_3" th:text="${job.jvAddress}"></div>
+
+                            <!--                    <div class="content_title_text4_detail_wrap2">-->
+                            <!--                        <button class="content_title_text4_btn" th:value="${job.jvNo}">즉시지원</button>-->
+                            <!--                        <div class="content_title_text4_2">-->
+                            <!--                            <span>~</span>-->
+                            <!--                            <span th:text="${job.jvPeriodEndFormat}"></span>-->
+                            <!--                        </div>-->
+                            <!--                    </div>-->
+                            <th:block th:if="${job.applyYN == true}">
+                                <div class="content_title_text4_detail_wrap2">
+                                    <div style="color: blue; padding-left:17px;">지원 완료</div>
+                                    <div class="content_title_text4_2" style="color: blue; margin-left:0">
+                                        <span style="color: blue">~</span>
+                                        <span style="color: blue" th:text="${job.jvPeriodEndFormat}"></span>
+                                    </div>
+                                </div>
+                            </th:block>
+                            <th:block th:if="${job.applyYN == false}">
+                                <th:block th:if="${job.jvPeriodEndOver == 1}">
+                                    <div class="content_title_text4_detail_wrap2" style="right: 43px">
+                                        <button class="content_title_text4_btn" th:value="${job.jvNo}">즉시지원</button>
+                                        <div class="content_title_text4_2" style="margin-left: 4px">
+                                            <span style="color: #c4c4c4">~</span>
+                                            <span th:text="${job.jvPeriodEndFormat}"></span>
+                                        </div>
+                                    </div>
+                                </th:block>
+                                <th:block th:if="${job.jvPeriodEndOver == 2}">
+                                    <div class="content_title_text4_detail_wrap2">
+                                        <div style="color: red; padding-left:17px;">마감된 공고</div>
+                                        <div class="content_title_text4_2" style="color: red; margin-left:0">
+                                            <span style="color: red">~</span>
+                                            <span style="color: red" th:text="${job.jvPeriodEndFormat}"></span>
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </th:block>
+
                         </div>
+                        <hr class="hr">
                     </div>
+                    <button class="green green1">삭제</button>
+                </form>
 
-
-<!--                    <div class="content_title_text4_detail_wrap2">-->
-<!--                        <button class="content_title_text4_btn" th:value="${job.jvNo}">즉시지원</button>-->
-<!--                        <div class="content_title_text4_2">-->
-<!--                            <span>~</span>-->
-<!--                            <span th:text="${job.jvPeriodEndFormat}"></span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                    <th:block th:if="${job.applyYN == true}">
-                        <div class="content_title_text4_detail_wrap2">
-                            <div style="color: blue; padding-left:17px;">지원 완료</div>
-                            <div class="content_title_text4_2" style="color: blue; margin-left:0">
-                                <span style="color: blue">~</span>
-                                <span style="color: blue" th:text="${job.jvPeriodEndFormat}"></span>
-                            </div>
-                        </div>
-                    </th:block>
-                    <th:block th:if="${job.applyYN == false}">
-                        <th:block th:if="${job.jvPeriodEndOver == 1}">
-                            <div class="content_title_text4_detail_wrap2" style="right: 43px">
-                                <button class="content_title_text4_btn" th:value="${job.jvNo}">즉시지원</button>
-                                <div class="content_title_text4_2" style="margin-left: 4px">
-                                    <span style="color: #c4c4c4">~</span>
-                                    <span th:text="${job.jvPeriodEndFormat}"></span>
-                                </div>
-                            </div>
-                        </th:block>
-                        <th:block th:if="${job.jvPeriodEndOver == 2}">
-                            <div class="content_title_text4_detail_wrap2">
-                                <div style="color: red; padding-left:17px;">마감된 공고</div>
-                                <div class="content_title_text4_2" style="color: red; margin-left:0">
-                                    <span style="color: red">~</span>
-                                    <span style="color: red" th:text="${job.jvPeriodEndFormat}"></span>
-                                </div>
-                            </div>
-                        </th:block>
-                    </th:block>
-
-                </div>
-                <hr class="hr">
-            </div>
-
-
-            <button class="green green1">삭제</button>
-       
+                <th:block th:if="${#lists.size(jobVacancyLookUpList)>0}">
+                    <div th:replace="common/paging.html"></div>
+                </th:block>
         </div>
         </section>
     </div>

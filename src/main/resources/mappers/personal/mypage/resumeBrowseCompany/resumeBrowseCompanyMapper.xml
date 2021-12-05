@@ -4,27 +4,67 @@
 <mapper namespace="com.kh.workPeople.personal.mypage.resumeBrowseCompany.model.dao.ResumeBrowseCompanyMapper">
 
     <resultMap id="resumeBrowseCompanyResultMap" type="com.kh.workPeople.common.vo.ResumeBrowseCompany">
-        <id property="m_no" column="M_NO"/>
+        <id property="m_no" column="CI_NO"/>
         <result property="m_name" column="M_NAME"/>
         <result property="m_roadAddress" column="M_ROADADDRESS"/>
         <result property="s_name" column="S_NAME"/>
         <result property="rb_date" column="RB_DATE"/>
     </resultMap>
     <select id="selectResumeBrowseCompanyList" resultMap="resumeBrowseCompanyResultMap">
-
-
         SELECT
-            DISTINCT
-            M_NO,
+            RB_DATE,
+            CI_NO,
             M_NAME,
             M_ROADADDRESS,
-            S_NAME,
-            RB_DATE
-        FROM MEMBER
-        JOIN COMPANY_INFO USING(M_NO)
-        JOIN SECTOR USING(S_NO)
-        JOIN RESUME_BROWSE USING(CI_NO)
+            S_NAME
+        FROM RESUME_BROWSE RB
+                 JOIN RESUME R USING(R_NO)
+                 JOIN COMPANY_INFO CI USING(CI_NO)
+                 JOIN MEMBER M ON(M.M_NO = CI.M_NO)
+                 JOIN SECTOR USING(S_NO)
+        WHERE RB.RB_BROWSE = 'recommened'
+          AND R.M_NO=#{no}
+        ORDER BY RB.RB_DATE DESC
 
     </select>
 
+    <select id="selectResumeBrowseCompanyListPagingQuery" resultMap="resumeBrowseCompanyResultMap" resultType="com.kh.workPeople.common.vo.PageInfo">
+        SELECT
+            RB_DATE,
+            CI_NO,
+            M_NAME,
+            M_ROADADDRESS,
+            S_NAME
+        FROM(
+                SELECT ROWNUM RNUM
+                     , NLIST.*
+                FROM(
+                        SELECT *
+                        FROM RESUME_BROWSE RB
+                                 JOIN RESUME R USING(R_NO)
+                                 JOIN COMPANY_INFO CI USING(CI_NO)
+                                 JOIN MEMBER M ON(M.M_NO = CI.M_NO)
+                                 JOIN SECTOR USING(S_NO)
+                        WHERE RB.RB_BROWSE = 'recommened'
+                          AND R.M_NO=#{userNo}
+                        ORDER BY RB.RB_DATE DESC) NLIST)
+        WHERE RNUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
+
+    </select>
+
+    <delete id="deleteResumeBrowseCompanyListMap" parameterType="hashmap">
+        DELETE
+            RESUME_BROWSE
+        WHERE CI_NO=#{ciNo}
+        AND R_NO=(
+            SELECT
+                R_NO
+            FROM RESUME_BROWSE
+            JOIN RESUME USING(R_NO)
+            WHERE RB_BROWSE='recommened'
+            AND M_NO=#{userNo}
+            AND CI_NO=#{ciNo}
+    )
+
+    </delete>
 </mapper>

@@ -9,4 +9,8 @@ public interface LatestPublicationService {
     List<JobVacancyLookUp> jobVacancyLookUpList(int no);
 
 	int updateBrowse(Map<String, Object> queryMap);
+
+    Map<String, Object> jobVacancyLookUpListPaging(int no, int page);
+
+    int deleteLatestPublication(Map<String, Object> queryMap);
 }

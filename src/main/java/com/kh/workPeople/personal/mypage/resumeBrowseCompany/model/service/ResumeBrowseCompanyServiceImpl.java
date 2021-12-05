@@ -43,4 +43,30 @@ public class ResumeBrowseCompanyServiceImpl implements ResumeBrowseCompanyServic
 
         return returnMap;
     }
+
+    @Override
+    public int deleteResumeBrowseCompanyList(int no, List<Integer> ciNoList) {
+
+        int result=0;
+
+        for(Integer ciNo : ciNoList){
+
+            Map<String, Integer> deleteMap = new HashMap<>();
+            deleteMap.put("userNo",no);
+            deleteMap.put("ciNo",ciNo);
+
+            int result2 = resumeBrowseCompanyMapper.deleteResumeBrowseCompanyListMap(deleteMap);
+            result += result2;
+        }
+        return result;
+    }
+
+
+
+
+
+
+
+
+
 }

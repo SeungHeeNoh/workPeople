@@ -3,6 +3,7 @@ package com.kh.workPeople.personal.mypage.applyCompany.model.service;
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ApplyCompanyService {
 
@@ -19,4 +20,6 @@ public interface ApplyCompanyService {
     List<JobVacancyLookUp> jobVacancyLookUpList(int no);
 
     int applyCompany(int rNo, int applyBtnNo);
+
+    Map<String, Object> jobVacancyLookUpListPaging(int no, int page);
 }

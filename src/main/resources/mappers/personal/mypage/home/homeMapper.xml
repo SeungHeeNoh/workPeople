@@ -98,75 +98,57 @@
 
     <select id="recommenedJobVacancyList" resultMap="jobVacancy">
         SELECT
-        DISTINCT
-        JV_NO
-        , JV_TITLE
-        , JV_ADDRESS
-        , JV_PERIOD_END
-        , M_NAME
-        , EL_NAME
-        , S_NAME
-        , AC_DATE
-        , RB_DATE
-        , TO_CHAR(JV_PERIOD_END,'YYYY.MM.dd') JV_PERIOD_END_FORMAT
-        , TO_CHAR(AC_DATE,'YYYY.MM.dd') AC_DATE_FORMAT
-        , TO_CHAR(RB_DATE,'YYYY.MM.dd') RB_DATE_FORMAT
-
-        FROM JOB_VACANCY JV
-        JOIN COMPANY_INFO USING(CI_NO)
-        JOIN MEMBER M USING(M_NO)
+        JV_NO,
+        JV_TITLE,
+        JV_ADDRESS,
+        JV_PERIOD_END,
+        M_NAME,
+        EL_NAME,
+        S_NAME,
+        TO_CHAR(JV_PERIOD_END,'YYYY.MM.dd') JV_PERIOD_END_FORMAT
+        FROM JOB_VACANCY
+        JOIN COMPANY_INFO CI USING(CI_NO)
+        JOIN MEMBER M ON(M.M_NO = CI.M_NO)
         JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
-        JOIN EXPERIENCE_LEVEL EL ON(JVEL.EL_NO=EL.EL_NO)
+        JOIN EXPERIENCE_LEVEL EL ON(EL.EL_NO=JVEL.EL_NO)
         JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
-        JOIN SECTOR S ON(RI.S_NO=S.S_NO)
-        LEFT JOIN APPLY_COMPANY USING (JV_NO)
-        LEFT OUTER JOIN RESUME_BROWSE RB USING (CI_NO)
-        LEFT OUTER JOIN RESUME R ON (R.R_NO = RB.R_NO)
+        JOIN SECTOR ON(SECTOR.S_NO=RI.S_NO)
         WHERE JV_PERIOD_END - SYSDATE > 0
         <if test="elName != null">
             AND S_NAME = #{elName}
         </if>
-        ORDER BY 1
+        ORDER BY 1 desc
     </select>
 
     <select id="jobVacancyLookUpListPagingQuery" resultMap="jobVacancy" parameterType="com.kh.workPeople.common.vo.PageInfo">
         SELECT
-            DISTINCT
-            JV_NO
-                   , JV_TITLE
-                   , JV_ADDRESS
-                   , JV_PERIOD_END
-                   , M_NAME
-                   , EL_NAME
-                   , S_NAME
-                   , AC_DATE
-                   , RB_DATE
-                   , TO_CHAR(JV_PERIOD_END,'YYYY.MM.dd') JV_PERIOD_END_FORMAT
-                   , TO_CHAR(AC_DATE,'YYYY.MM.dd') AC_DATE_FORMAT
-                   , TO_CHAR(RB_DATE,'YYYY.MM.dd') RB_DATE_FORMAT
+        JV_NO,
+        JV_TITLE,
+        JV_ADDRESS,
+        JV_PERIOD_END,
+        M_NAME,
+        EL_NAME,
+        S_NAME,
+        TO_CHAR(JV_PERIOD_END,'YYYY.MM.dd') JV_PERIOD_END_FORMAT
         FROM(
                 SELECT ROWNUM RNUM
                      , NLIST.*
                 FROM(
                         SELECT *
 
-                        FROM JOB_VACANCY JV
-                                 JOIN COMPANY_INFO USING(CI_NO)
-                                 JOIN MEMBER M USING(M_NO)
-                                 JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
-                                 JOIN EXPERIENCE_LEVEL EL ON(JVEL.EL_NO=EL.EL_NO)
-                                 JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
-                                 JOIN SECTOR S ON(RI.S_NO=S.S_NO)
-                                 LEFT JOIN APPLY_COMPANY USING (JV_NO)
-                                 LEFT OUTER JOIN RESUME_BROWSE RB USING (CI_NO)
-                                 LEFT OUTER JOIN RESUME R ON (R.R_NO = RB.R_NO)
-                        WHERE JV_PERIOD_END - SYSDATE > 0
+        FROM JOB_VACANCY
+        JOIN COMPANY_INFO CI USING(CI_NO)
+        JOIN MEMBER M ON(M.M_NO = CI.M_NO)
+        JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
+        JOIN EXPERIENCE_LEVEL EL ON(EL.EL_NO=JVEL.EL_NO)
+        JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
+        JOIN SECTOR ON(SECTOR.S_NO=RI.S_NO)
+        WHERE JV_PERIOD_END - SYSDATE > 0
         <if test="elName != null">
             AND S_NAME = #{elName}
         </if>
-        ORDER BY JV_NO DESC)NLIST)
+        ORDER BY 1 desc)NLIST)
         WHERE RNUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
-        ORDER BY JV_NO DESC
 
     </select>
 

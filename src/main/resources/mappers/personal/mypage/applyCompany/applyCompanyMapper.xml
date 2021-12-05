@@ -53,6 +53,16 @@
 ORDER BY 1 DESC
     </select>
 
+
+
+<!--    <select id="jobVacancyLookUpListPagingQuery" resultType="com.kh.workPeople.common.vo.PageInfo" resultMap="jobVacancy">-->
+
+
+
+<!--    </select>-->
+
+
+
     <select id="applyCount" resultType="_int">
         SELECT
             COUNT(*)

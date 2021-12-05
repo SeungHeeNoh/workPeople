@@ -18,6 +18,24 @@
         WHERE IC.M_NO=#{no}
     </select>
 
+	<select id="jobVacancyLookUpSimpleListPagingQuery" resultMap="jobVacancySimple" parameterType="com.kh.workPeople.common.vo.PageInfo">
+		SELECT
+			CI_NO,
+			M_NAME
+		FROM(
+				SELECT ROWNUM RNUM
+					 , NLIST.*
+				FROM(
+						SELECT *
+						FROM INTERESTED_COMPANY IC
+								 JOIN COMPANY_INFO CI USING(CI_NO)
+								 JOIN MEMBER M ON(CI.M_NO = M.M_NO)
+						WHERE IC.M_NO=#{userNo}
+						ORDER BY IC_DATE DESC)NLIST)
+		WHERE RNUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
+
+	</select>
+
     <select id="jobVacancyCount" resultType="_int">
         SELECT
             COUNT(*)

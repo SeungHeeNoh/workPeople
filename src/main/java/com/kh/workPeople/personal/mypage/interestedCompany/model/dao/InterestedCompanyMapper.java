@@ -1,6 +1,7 @@
 package com.kh.workPeople.personal.mypage.interestedCompany.model.dao;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUpSimple;
+import com.kh.workPeople.common.vo.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,4 +22,5 @@ public interface InterestedCompanyMapper {
 
 	int getInterestedCompanyCount(int companyNo);
 
+    List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleListPagingQuery(PageInfo pi);
 }

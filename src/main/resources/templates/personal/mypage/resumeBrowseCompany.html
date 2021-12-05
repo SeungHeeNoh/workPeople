@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="/css/personal/myPage/resumeBrowseCompany.css">
 
     <title>이력서 열람 기업</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"></script>
 </head>
 <body>
 <div th:include="common/header.html"></div>
@@ -32,9 +29,11 @@
                 <div class="home_content_3_4">열람일</div>
             </div>
 
+            <form class="delete_form" th:action="@{/personal/mypage/resumeBrowseCompany/delete}" method="post">
+
             <div th:each="companyList : ${companyList}">
                 <div class="content_title_text4">
-                    <input type="checkbox" class="resumeChk">
+                    <input type="checkbox" class="resumeChk" th:value="${companyList.m_no}" name="ciNo">
                     <div class="content_title_text4_1" th:text="${companyList.m_name}"></div>
                     <div class="content_title_text4_2" th:text="${companyList.m_roadAddress}"></div>
                     <div class="content_title_text4_3" th:text="${companyList.s_name}"></div>
@@ -44,8 +43,9 @@
                 <hr class="hr">
             </div>
 
-            <button class="green green1">삭제</button>
+            <button type="submit" class="green green1">삭제</button>
 
+            </form>
             <th:block th:if="${#lists.size(companyList)>0}">
                 <div th:replace="common/paging.html"></div>
             </th:block>
@@ -54,6 +54,7 @@
     </section>
 </div>
 <div th:include="common/footer.html"></div>
+<script th:src="@{/js/personal/mypage/resumeBrowseCompany.js}"></script>
 </body>
 
 </html>

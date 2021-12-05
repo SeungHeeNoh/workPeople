@@ -21,36 +21,62 @@
 
     <select id="jobVacancyLookUpList" resultMap="jobVacancy">
         SELECT
-            DISTINCT
-            JV_NO
-           , JV_TITLE
-           , JV_ADDRESS
-           , JV_PERIOD_END
-           , M_NAME
-           , EL_NAME
-           , S_NAME
-           , AC_DATE
-           , RB_DATE
-           , TO_CHAR(AC_DATE,'YYYY.MM.dd') AC_DATE_FORMAT
-           , TO_CHAR(RB_DATE,'YYYY.MM.dd') RB_DATE_FORMAT
-           , TO_CHAR(JV_PERIOD_END,'YYYY.MM.dd') JV_PERIOD_END_FORMAT
-           , CASE WHEN JV_PERIOD_END-SYSDATE <![CDATA[>]]> 0 THEN 1
-                  WHEN JV_PERIOD_END-SYSDATE <![CDATA[<=]]> 0 THEN 2
-            END AS "JV_PERIOD_END_OVER"
-        FROM JOB_VACANCY JV
-         JOIN COMPANY_INFO USING(CI_NO)
-         JOIN MEMBER M USING(M_NO)
-         JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
-         JOIN EXPERIENCE_LEVEL EL ON(JVEL.EL_NO=EL.EL_NO)
-         JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
-         JOIN SECTOR S ON(RI.S_NO=S.S_NO)
-         LEFT JOIN APPLY_COMPANY USING (JV_NO)
-         LEFT OUTER JOIN RESUME_BROWSE RB USING (CI_NO)
-         LEFT OUTER JOIN RESUME R ON (R.R_NO = RB.R_NO)
-         JOIN BROWSE B USING(JV_NO)
+        JV_NO,
+        JV_TITLE,
+        JV_ADDRESS,
+        JV_PERIOD_END,
+        M_NAME,
+        EL_NAME,
+        S_NAME,
+        TO_CHAR(JV_PERIOD_END,'YYYY.MM.dd') JV_PERIOD_END_FORMAT,
+        CASE WHEN JV_PERIOD_END-SYSDATE <![CDATA[>]]> 0 THEN 1
+             WHEN JV_PERIOD_END-SYSDATE <![CDATA[<=]]> 0 THEN 2
+            END AS JV_PERIOD_END_OVER
+        FROM BROWSE B
+        JOIN JOB_VACANCY JV USING(JV_NO)
+        JOIN COMPANY_INFO CI USING(CI_NO)
+        JOIN MEMBER M ON(M.M_NO = CI.M_NO)
+        JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
+        JOIN EXPERIENCE_LEVEL EL ON(EL.EL_NO=JVEL.EL_NO)
+        JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
+        JOIN SECTOR ON(SECTOR.S_NO=RI.S_NO)
         WHERE B.M_NO=#{no}
-        ORDER BY 1
+        ORDER BY B.B_DATE DESC
     </select>
+
+    <select id="jobVacancyLookUpListPagingQuery" resultMap="jobVacancy" parameterType="com.kh.workPeople.common.vo.PageInfo">
+        SELECT
+            JV_NO,
+            JV_TITLE,
+            JV_ADDRESS,
+            JV_PERIOD_END,
+            M_NAME,
+            EL_NAME,
+            S_NAME,
+            TO_CHAR(JV_PERIOD_END,'YYYY.MM.dd') JV_PERIOD_END_FORMAT,
+            CASE WHEN JV_PERIOD_END-SYSDATE <![CDATA[>]]> 0 THEN 1
+                 WHEN JV_PERIOD_END-SYSDATE <![CDATA[<=]]> 0 THEN 2
+                END AS JV_PERIOD_END_OVER
+        FROM (
+                 SELECT ROWNUM RNUM
+                      , NLIST.*
+                 FROM(
+                         SELECT *
+                         FROM BROWSE B
+                          JOIN JOB_VACANCY JV USING(JV_NO)
+                          JOIN COMPANY_INFO CI USING(CI_NO)
+                          JOIN MEMBER M ON(M.M_NO = CI.M_NO)
+                          JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
+                          JOIN EXPERIENCE_LEVEL EL ON(EL.EL_NO=JVEL.EL_NO)
+                          JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
+                          JOIN SECTOR ON(SECTOR.S_NO=RI.S_NO)
+                         WHERE B.M_NO=#{userNo}
+                         ORDER BY B.B_DATE DESC) NLIST)
+        WHERE RNUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
+    </select>
+
+
+
     <select id="getBrowseCount" parameterType="hashmap" resultType="_int">
 		SELECT
 		       COUNT(*)
@@ -61,7 +87,7 @@
     <delete id="deleteBrowse" parameterType="hashmap">
 		DELETE
 		  FROM BROWSE
-		 WHERE M_NO = ${userNo}
+		 WHERE M_NO = #{userNo}
 		   AND JV_NO = #{no}
     </delete>
 	<insert id="insertBrowse" parameterType="hashmap">
@@ -78,4 +104,16 @@
 		  , SYSDATE
 		)
 	</insert>
+
+    <delete id="deleteLatestPublication" parameterType="hashmap">
+        DELETE
+            BROWSE
+        WHERE M_NO=#{userNo}
+        AND JV_NO IN
+        <foreach collection="jvNoList" item="jvNo" open="(" separator=", " close=")">
+            #{jvNo}
+        </foreach>
+    </delete>
+
+
 </mapper>

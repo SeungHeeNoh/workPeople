@@ -72,4 +72,14 @@ public class ResumeServiceImpl implements ResumeService {
     public List<SelfIntroduction> resumeSelfIntroductionList(int rNo) {
         return resumeMapper.resumeSelfIntroductionList(rNo);
     }
+
+    @Override
+    public int resumeStatusYtoN(int no) {
+        return resumeMapper.resumeStatusYtoN(no);
+    }
+
+    @Override
+    public int resumeStatusNtoY(int resumeNo) {
+        return resumeMapper.resumeStatusNtoY(resumeNo);
+    }
 }

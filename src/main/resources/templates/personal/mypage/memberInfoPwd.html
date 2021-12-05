@@ -13,6 +13,7 @@
             margin: 0px auto;
             padding: 166px 0;
             min-height: 450px;
+            display: flex;
         }
         aside {
             width: 210px;
@@ -20,9 +21,10 @@
             border: 1px solid #c4c4c4;
             border-radius: 10px;
             height: 714px;
-            position: fixed;
-            left: 400px;
             top: 210px;
+        }
+        #wrap #container #content{
+            margin-left: 232px;
         }
     </style>
 </head>
@@ -30,9 +32,9 @@
 <div th:include="common/header.html"></div>
 
 <div id="wrap">
-    <div th:include="personal/mypage/mainSnb.html"></div>
-    <div id="container">
 
+    <div id="container">
+        <div th:replace="personal/mypage/mainSnb.html"></div>
         <div id="content">
             <div class="infoContent memberContent">
                 <div class="topHdWrap">
