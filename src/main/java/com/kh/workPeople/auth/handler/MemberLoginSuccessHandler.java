@@ -59,6 +59,8 @@ public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
 			
 			if(savedRequest != null) {
 				redirectUrl = savedRequest.getRedirectUrl();
+			} else if(request.getParameter("loginRedirect").length() > 0) {
+				redirectUrl = request.getParameter("loginRedirect");
 			} else {
 				redirectUrl = defaultUrl;
 			}

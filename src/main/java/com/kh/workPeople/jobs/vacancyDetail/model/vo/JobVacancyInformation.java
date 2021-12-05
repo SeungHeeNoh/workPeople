@@ -1,5 +1,7 @@
 package com.kh.workPeople.jobs.vacancyDetail.model.vo;
 
+import java.util.Date;
+
 import com.kh.workPeople.common.vo.JobVacancy;
 
 public class JobVacancyInformation{
@@ -10,17 +12,19 @@ public class JobVacancyInformation{
 	private String scrapJobVacancy;
 	private String reportedJobVacancy;
 	private JobVacancy jobVacancy;
+	private int dDay;
 
 	public JobVacancyInformation() {}
 
 	public JobVacancyInformation(String companyName, int companyNo, String interestedCompany, String scrapJobVacancy,
-			String reportedJobVacancy, JobVacancy jobVacancy) {
+			String reportedJobVacancy, JobVacancy jobVacancy, int dDay) {
 		this.companyName = companyName;
 		this.companyNo = companyNo;
 		this.interestedCompany = interestedCompany;
 		this.scrapJobVacancy = scrapJobVacancy;
 		this.reportedJobVacancy = reportedJobVacancy;
 		this.jobVacancy = jobVacancy;
+		this.dDay = dDay;
 	}
 
 	public String getCompanyName() {
@@ -71,11 +75,21 @@ public class JobVacancyInformation{
 		this.jobVacancy = jobVacancy;
 	}
 
+	public int getdDay() {
+		Date today = new Date();
+		int dDay = (int)((jobVacancy.getPeriodEnd().getTime() - today.getTime())/(1000*60*60*24));
+		return dDay;
+	}
+
+	public void setdDay(int dDay) {
+		this.dDay = dDay;
+	}
+
 	@Override
 	public String toString() {
 		return "JobVacancyInformation [companyName=" + companyName + ", companyNo=" + companyNo + ", interestedCompany="
 				+ interestedCompany + ", scrapJobVacancy=" + scrapJobVacancy + ", reportedJobVacancy="
-				+ reportedJobVacancy + ", jobVacancy=" + jobVacancy + "]";
+				+ reportedJobVacancy + ", jobVacancy=" + jobVacancy + ", dDay=" + dDay + "]";
 	}
 
 	

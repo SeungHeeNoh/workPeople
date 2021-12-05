@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http:/www.thymeleaf.org">
+<html xmlns:th="http:/www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
 	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 	<title>[[${jobVacancyInformation.companyName}]] - [[${jobVacancyInformation.jobVacancy.title}]]</title>
 	<link rel="stylesheet" th:href="@{/css/jobs/vacancy-detail/job-vacancy-detail.css}">
+	<link rel="stylesheet" th:href="@{/css/account/login/login_modal.css}">
 </head>
 <body>
     <div th:replace="common/header.html"></div>
@@ -38,7 +40,10 @@
 										<span th:unless="${#strings.equals(jobVacancyInformation.interestedCompany, 'Y')}" th:remove="tag">설정</span>
 									</span>
 								</button>
-								<button type="button" class="apply_button"><span>D-1</span>입사지원</button>
+								<button type="button" class="apply_button" th:classappend="${(jobVacancyInformation.dDay < 0 ? 'ended' : '')}">
+									<span th:text="D- + ${jobVacancyInformation.dDay == 0 ? 'day' : jobVacancyInformation.dDay}"></span>
+									입사지원
+								</button>
 							</th:block>
 						</div>
 					</div>
@@ -120,12 +125,20 @@
 		</th:block>
 		</div>
 		<div class="dimmed">
-			<div id ="modal" class="resume_register_modal">
+			<div id ="modal" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_mdoal' : '') + (#authorization.expression('hasRole(''PERSONAL'')') ? 'resume_register_modal':'')}">
 				<div class="modal_inner">
+				<th:block sec:authorize="isAnonymous()">
+					<div class="login_area">
+						<h2 class="blind">개인 회원 로그인</h2>
+						<p>개인회원 로그인이 필요한 서비스입니다.</p>
+						<div th:replace="account/login/common-login :: common-login(loginRedirect='/jobs/vacancy-detail/detail-view?no=' + ${jobVacancyInformation.jobVacancy.no}) "></div>
+					</div>
+				</th:block>
+				<th:block sec:authorize="hasRole('PERSONAL')">
 					<div class="resume_register_area">
 						<div class="resume_register_header">
-							<h3>CJ푸드빌 입사지원</h3>
-							<h2>[CJ푸드빌] 재무팀 경력사원 모집</h2>
+							<h3 th:text="${jobVacancyInformation.companyName}"></h3>
+							<h2 th:text="${jobVacancyInformation.jobVacancy.title}"></h2>
 						</div>
 						<div class="resume_register_content">
 							<form action="#" method="post">
@@ -196,6 +209,7 @@
 							</form>
 						</div>
 					</div>
+				</th:block>
 				</div>
 				<button type="button" class="close_button"></button>
 			</div>

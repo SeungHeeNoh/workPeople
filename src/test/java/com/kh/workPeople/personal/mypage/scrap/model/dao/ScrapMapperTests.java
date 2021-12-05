@@ -31,7 +31,6 @@ public class ScrapMapperTests {
 	
 	@Test
 	@Transactional
-	@Disabled
 	public void testInsertScrap() {
 		Map<String, Integer> queryMap = new HashMap<>();
 		queryMap.put("userNo", 1);
