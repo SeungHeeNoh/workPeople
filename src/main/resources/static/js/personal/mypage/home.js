@@ -48,17 +48,97 @@
             }
         }
 
+        <!-- Initialize Swiper -->
+
+            var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+            navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        });
+
+        let applyCompanyStatus = document.getElementById("applyCompanyStatus"),
+            resumeBrowseStatus = document.getElementById("resumeBrowseStatus"),
+            scrapStatus = document.getElementById("scrapStatus"),
+            interestedCompanyStatus = document.getElementById("interestedCompanyStatus"),
+
+            applyCompanyText = document.getElementById("applyCompanyText"),
+            resumeBrowseText = document.getElementById("resumeBrowseText"),
+            scrapStatusText = document.getElementById("scrapStatusText"),
+            interestedCompanyText = document.getElementById("interestedCompanyText");
+
+        applyCompanyText.addEventListener('click',applyCompanyEvent);
+        resumeBrowseText.addEventListener('click',resumeBrowseEvent);
+        scrapStatusText.addEventListener('click',scrapEvent);
+        interestedCompanyText.addEventListener('click',interestedCompanyEvent);
 
 
 
 
+        function applyCompanyEvent(){
+            displayNone();
+            applyCompanyStatus.style.display="block";
+        }
+        function resumeBrowseEvent(){
+            displayNone();
+            resumeBrowseStatus.style.display="block";
+        }
+        function scrapEvent(){
+            displayNone();
+            scrapStatus.style.display="block";
+        }
+        function interestedCompanyEvent(){
+            displayNone();
+            interestedCompanyStatus.style.display="block";
+        }
+
+        function displayNone(){
+            applyCompanyStatus.style.display="none";
+            resumeBrowseStatus.style.display="none";
+            scrapStatus.style.display="none";
+            interestedCompanyStatus.style.display="none";
+        }
 
 
 
+        let applyCompanyEventPageMove = document.querySelectorAll(".applyCompanyEvent"),
+            resumeBrowseEventPageMove = document.querySelectorAll(".resumeBrowseEvent"),
+            scrapEventPageMove = document.querySelectorAll(".scrapEvent"),
+            interestedCompanyEventPageMove = document.querySelectorAll(".interestedCompanyEvent");
 
 
+        for(let i=0; i<applyCompanyEventPageMove.length; i++) {
+            applyCompanyEventPageMove[i].addEventListener('click', pageMove1);
+        }
+        for(let i=0; i<resumeBrowseEventPageMove.length; i++) {
+            resumeBrowseEventPageMove[i].addEventListener('click', pageMove2);
+        }
+        for(let i=0; i<scrapEventPageMove.length; i++) {
+            scrapEventPageMove[i].addEventListener('click', pageMove3);
+        }
+        for(let i=0; i<interestedCompanyEventPageMove.length; i++) {
+            interestedCompanyEventPageMove[i].addEventListener('click', pageMove4);
+        }
 
-
+        function pageMove1() {
+            location.href = "/personal/mypage/applyCompany";
+        }
+        function pageMove2() {
+            location.href = "/personal/mypage/resumeBrowseCompany";
+        }
+        function pageMove3() {
+            location.href = "/personal/mypage/scrap";
+        }
+        function pageMove4() {
+            location.href = "/personal/mypage/interestedCompany";
+        }
 
 
 

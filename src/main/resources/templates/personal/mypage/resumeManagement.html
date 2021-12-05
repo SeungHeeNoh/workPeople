@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="/css/personal/myPage/resumeManagement.css">
 
     <title>이력서 관리</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -31,13 +29,18 @@
                         <div class="content1_1">대표이력서</div>
                         <div class="content1_2">대표 이력서가 없습니다.</div>
                         <div class="content1_2" id="content1_2">이력서를 대표 이력서로 설정해 주세요.</div>
-                        <div class="content2_container">
-                            <div class="content2_1">
-                                <span>이력서를 선택해주세요.</span>
-                                <img th:src="@{/images/personal/myPage/icon/selectOption.svg}" class="content2_img">
+
+                        <form class="resumeForm" name="resumeForm" method="post" th:action="@{/personal/mypage/changeStatusYResume}">
+                            <div class="content2_container">
+                                <select class="content2_1" th:name="resumeNo">
+                                    <option>이력서를 선택해주세요.</option>
+                                    <div th:each="resume : ${resumeList}">
+                                        <option th:text="${resume.title}" th:value="${resume.no}"></option>
+                                    </div>
+                                </select>
+                                <button class="green green1">설정하기</button>
                             </div>
-                            <button class="green green1">설정하기</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </th:block>
@@ -46,13 +49,17 @@
                 <div class="content1_wrap">
                     <div class="content1_container">
                         <div class="content1_1">대표이력서</div>
-                        <div class="content2_container">
-                            <div class="content2_1">
-                                <span th:text="${repTitle}"></span>
-                                <img th:src="@{/images/personal/myPage/icon/selectOption.svg}" class="content2_img">
+                        <form class="resumeForm" name="resumeForm" method="post" th:action="@{/personal/mypage/changeStatusYResume}">
+                            <div class="content2_container">
+                                <select class="content2_1" th:name="resumeNo">
+                                    <div th:each="resume : ${resumeList}">
+                                        <option th:text="${resume.title}" th:value="${resume.no}"
+                                        th:selected="${#strings.equals(resume.statusYN,'Y')}"></option>
+                                    </div>
+                                </select>
+                                <button class="green green1">변경하기</button>
                             </div>
-                            <button class="green green1">변경하기</button>
-                        </div>
+                        </form>
                         <div class="content3_container">
                             <div class="content3_1">희망 업종 :</div>
                             <div class="content3_2">it/웹/통신</div>

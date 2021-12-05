@@ -7,7 +7,12 @@
 
 #home_content_header_wrap{
     display: flex;
-    padding-left: 6px;
+    justify-content: space-around;
+    padding: 0 42px;
+}
+
+.home_content_header_container{
+    display: flex;
 }
 .content_header_text{
     font-size: 20px;
@@ -33,18 +38,19 @@
 
 .home_contents_wrap{
     display: flex;
-    margin-top: 10px;
+    margin-top: 20px;
     justify-content: space-around;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .home_content_header_contents_detail{
     background-color: #f9e2ae;
-    width: 250px;
+    width: 200px;
     height: 128px;
     border-radius: 10px;
     padding: 10px;
     box-sizing: border-box;
+    margin-left: 53px;
 }
 
 .home_content_header_contents_detail_img{
@@ -59,15 +65,15 @@
 
 .home_content_header_contents_detail_2{
     margin-top: 23px;
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 5px;
-    margin-left: 15px;
+    margin-left: 0px;
     font-weight: 700;
 }
 
 .home_content_header_contents_detail_3{
-    font-size: 18px;
-    margin-left: 25px;
+    font-size: 16px;
+    margin-left: 10px;
 }
 
 .content_title_text2{
@@ -221,10 +227,29 @@
     right: 44px;
 }
 
+.swiperPadding{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.swiper-slide{
+    display: flex;
+}
 
+.swiper{
+    height: 165px;
+}
 
+#resumeBrowseStatus, #scrapStatus, #interestedCompanyStatus, #chatStatus{
+    display: none;
+}
+#applyCompanyText:hover, #resumeBrowseText:hover, #scrapStatusText:hover, #interestedCompanyText:hover, #chatText:hover{
+    cursor: pointer;
+    color: #85cbcc;
+}
 
-
+.applyCompanyEvent:hover, .resumeBrowseEvent:hover, .scrapEvent:hover, .interestedCompanyEvent:hover{
+    cursor: pointer;
+}
 
 
 

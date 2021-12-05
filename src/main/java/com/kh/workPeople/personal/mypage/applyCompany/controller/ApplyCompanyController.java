@@ -4,12 +4,14 @@ import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.personal.mypage.applyCompany.model.service.ApplyCompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/personal/mypage")
@@ -23,7 +25,7 @@ public class ApplyCompanyController {
 	}
 
 	@GetMapping("applyCompany")
-	public String applyCompany(Model model, @AuthenticationPrincipal MemberImpl user) {
+	public String applyCompany(Model model, @AuthenticationPrincipal MemberImpl user, @RequestParam(defaultValue = "1") int page ) {
 
 		int applyCount = applyCompanyService.applyCount(user.getNo());
 		int passCount = applyCompanyService.passCount(user.getNo());
@@ -37,31 +39,20 @@ public class ApplyCompanyController {
 		model.addAttribute("passAllCount",passAllCount);
 		model.addAttribute("failureCount",failureCount);
 
-		List<JobVacancyLookUp> jobVacancyLookUpList = applyCompanyService.jobVacancyLookUpList(user.getNo());
 
-//		for(JobVacancyLookUp jv : jobVacancyLookUpList){
-//			Date beforeDate1 = jv.getAcDate();
-//			Date beforeDate2 = jv.getRbDate();
-//			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.dd");
-//			String afterDate1 = simpleDateFormat.format(beforeDate1);
-//			String afterDate2 = simpleDateFormat.format(beforeDate2);
-//			jv.setAcDateFormat(afterDate1);
-//			jv.setRbDateFormat(afterDate2);
-//		}
+		Map<String, Object> applyCompanyMap = applyCompanyService.jobVacancyLookUpListPaging(user.getNo(),page);
+
+		List<JobVacancyLookUp> jobVacancyLookUpList = (List<JobVacancyLookUp>)applyCompanyMap.get("jobVacancyLookUpList");
+//		List<JobVacancyLookUp> jobVacancyLookUpList = applyCompanyService.jobVacancyLookUpList(user.getNo());
+
 
 		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
+		model.addAttribute("pi",applyCompanyMap.get("pi"));
 
 		return "personal/mypage/applyCompany";
 	}
 
-	@GetMapping("applyCompany/applyCancel")
-	@ResponseBody
-	public String applyCancel(@RequestParam(value="ids") List<String> ids){
-		System.out.println("ids:::::::::::::" + ids);
 
-	return null;
-//		return "redirect:/personal/mypage/applyCompany";
-	}
 
 
 

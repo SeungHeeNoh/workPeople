@@ -13,6 +13,7 @@ public class ResumeBrowseCompany {
     private String m_roadAddress;       // 기업 주소
     private String s_name;              // 업종명
     private Date rb_date;               // 열람일
+
     private String rb_date_format;      // 열람일 형변환
 
     public ResumeBrowseCompany() {

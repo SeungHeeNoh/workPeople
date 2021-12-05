@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -172,6 +172,37 @@ public class ResumeController {
 	}
 
 
+	@PostMapping("changeStatusYResume")
+	public String changeStatusYResume(HttpServletRequest request, @AuthenticationPrincipal MemberImpl user, @RequestParam("resumeNo") int resumeNo, RedirectAttributes rttr){
+
+		List<Resume> resumeList = resumeService.resumeList(user.getNo());
+
+		String str = "";
+
+		for(Resume resume : resumeList){
+
+			if((resume.getStatusYN()).equals("Y")){
+				int result = resumeService.resumeStatusYtoN(resume.getNo());
+				if(result<0){
+					request.setAttribute("errorMessage", "대표이력서 변경에 실패했습니다.");
+					str = "/common/errorPage";
+				}
+			}
+
+			int result = resumeService.resumeStatusNtoY(resumeNo);
+
+			if(result>0){
+				rttr.addFlashAttribute("message", "대표이력서 변경에 성공했습니다.");
+				str="redirect:/personal/mypage/resumeManagement";
+			} else{
+				request.setAttribute("errorMessage", "대표이력서 변경에 실패했습니다.");
+				str = "/common/errorPage";
+			}
+
+		}
+
+		return str;
+	}
 
 
 }

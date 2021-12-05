@@ -18,4 +18,5 @@ public interface InterestedCompanyService {
 
 	int getInterestedCompanyCount(int companyNo);
 
+    Map<String, Object> jobVacancyLookUpSimpleListPaging(int no, int page);
 }

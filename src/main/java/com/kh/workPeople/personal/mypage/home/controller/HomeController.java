@@ -1,10 +1,11 @@
 package com.kh.workPeople.personal.mypage.home.controller;
 
-import com.kh.workPeople.common.vo.JobVacancyLookUp;
-import com.kh.workPeople.common.vo.MemberImpl;
-import com.kh.workPeople.common.vo.Resume;
+import com.kh.workPeople.common.vo.*;
 import com.kh.workPeople.personal.mypage.applyCompany.model.service.ApplyCompanyService;
 import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
+import com.kh.workPeople.personal.mypage.interestedCompany.model.service.InterestedCompanyService;
+import com.kh.workPeople.personal.mypage.resumeBrowseCompany.model.service.ResumeBrowseCompanyService;
+import com.kh.workPeople.personal.mypage.scrap.model.service.ScrapService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +29,17 @@ public class HomeController {
 
 	private final HomeService homeService;
 	private final ApplyCompanyService applyCompanyService;
+	private final ResumeBrowseCompanyService resumeBrowseCompanyService;
+	private final ScrapService scrapService;
+	private final InterestedCompanyService interestedCompanyService;
 
 	@Autowired
-	public HomeController(HomeService homeService, ApplyCompanyService applyCompanyService) {
+	public HomeController(InterestedCompanyService interestedCompanyService,ScrapService scrapService,HomeService homeService, ApplyCompanyService applyCompanyService,ResumeBrowseCompanyService resumeBrowseCompanyService) {
 		this.homeService = homeService;
 		this.applyCompanyService = applyCompanyService;
+		this.resumeBrowseCompanyService = resumeBrowseCompanyService;
+		this.scrapService = scrapService;
+		this.interestedCompanyService = interestedCompanyService;
 	}
 
 	@GetMapping("home")
@@ -48,6 +56,111 @@ public class HomeController {
 		model.addAttribute("scrapCount",scrapCount);
 		model.addAttribute("interestedCompanyCount",interestedCompanyCount);
 		model.addAttribute("chatCount",chatCount);
+
+
+		List<JobVacancyLookUp> applyCompanyList = applyCompanyService.jobVacancyLookUpList(user.getNo());
+
+
+		List<JobVacancyLookUp> applyCompanyList1 = new ArrayList<>(3);
+		List<JobVacancyLookUp> applyCompanyList2 = new ArrayList<>(3);
+		List<JobVacancyLookUp> applyCompanyList3 = new ArrayList<>(3);
+
+		int jobResult=0;
+		for(JobVacancyLookUp job : applyCompanyList){
+
+			if(jobResult<3){
+				applyCompanyList1.add(job);
+				jobResult++;
+			} else if(jobResult<6){
+				applyCompanyList2.add(job);
+				jobResult++;
+			} else if(jobResult<9){
+				applyCompanyList3.add(job);
+				jobResult++;
+			}
+		}
+		model.addAttribute("applyCompanyList1",applyCompanyList1);
+		model.addAttribute("applyCompanyList2",applyCompanyList2);
+		model.addAttribute("applyCompanyList3",applyCompanyList3);
+
+
+		List<ResumeBrowseCompany> resumeBrowseList = resumeBrowseCompanyService.selectResumeBrowseCompanyList(user.getNo());
+
+		List<ResumeBrowseCompany> resumeBrowseList1 = new ArrayList<>(3);
+		List<ResumeBrowseCompany> resumeBrowseList2 = new ArrayList<>(3);
+		List<ResumeBrowseCompany> resumeBrowseList3 = new ArrayList<>(3);
+
+		int rbcResult = 0;
+		for(ResumeBrowseCompany rbc : resumeBrowseList){
+			if(rbcResult<3){
+				resumeBrowseList1.add(rbc);
+				rbcResult++;
+			} else if(rbcResult<6){
+				resumeBrowseList2.add(rbc);
+				rbcResult++;
+			} else if(rbcResult<9){
+				resumeBrowseList3.add(rbc);
+				rbcResult++;
+			}
+		}
+		model.addAttribute("resumeBrowseList1",resumeBrowseList1);
+		model.addAttribute("resumeBrowseList2",resumeBrowseList2);
+		model.addAttribute("resumeBrowseList3",resumeBrowseList3);
+
+
+		List<JobVacancyLookUp> scrapList = scrapService.jobVacancyLookUpList(user.getNo());
+
+		List<JobVacancyLookUp> scrapList1 = new ArrayList<>(3);
+		List<JobVacancyLookUp> scrapList2 = new ArrayList<>(3);
+		List<JobVacancyLookUp> scrapList3 = new ArrayList<>(3);
+
+		int scrapResult = 0;
+		for(JobVacancyLookUp scrap : scrapList){
+			if(scrapResult<3){
+				scrapList1.add(scrap);
+				scrapResult++;
+			} else if(scrapResult<6){
+				scrapList2.add(scrap);
+				scrapResult++;
+			} else if(scrapResult<9){
+				scrapList3.add(scrap);
+				scrapResult++;
+			}
+		}
+		model.addAttribute("scrapList1",scrapList1);
+		model.addAttribute("scrapList2",scrapList2);
+		model.addAttribute("scrapList3",scrapList3);
+
+
+		List<JobVacancyLookUpSimple> interestedCompanyList = interestedCompanyService.jobVacancyLookUpSimpleList(user.getNo());
+
+		for(JobVacancyLookUpSimple job : interestedCompanyList){
+			int jobVacancyCount = interestedCompanyService.jobVacancyCount(job.getNo());
+			job.setCount(jobVacancyCount);
+		}
+
+		List<JobVacancyLookUpSimple> interestedCompanyList1 = new ArrayList<>(3);
+		List<JobVacancyLookUpSimple> interestedCompanyList2 = new ArrayList<>(3);
+		List<JobVacancyLookUpSimple> interestedCompanyList3 = new ArrayList<>(3);
+
+		int icResult = 0;
+		for(JobVacancyLookUpSimple ic : interestedCompanyList){
+			if(icResult<3){
+				interestedCompanyList1.add(ic);
+				icResult++;
+			} else if(icResult<6){
+				interestedCompanyList2.add(ic);
+				icResult++;
+			} else if(icResult<9){
+				interestedCompanyList3.add(ic);
+				icResult++;
+			}
+		}
+		model.addAttribute("interestedCompanyList1",interestedCompanyList1);
+		model.addAttribute("interestedCompanyList2",interestedCompanyList2);
+		model.addAttribute("interestedCompanyList3",interestedCompanyList3);
+
+
 
 
 		Resume resume = homeService.selectResumeStatusY(user.getNo());

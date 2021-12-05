@@ -35,9 +35,11 @@ public class InterestedCompanyController {
     }
 
     @GetMapping("interestedCompany")
-    public String interestedCompany(Model model, @AuthenticationPrincipal MemberImpl user){
+    public String interestedCompany(Model model, @AuthenticationPrincipal MemberImpl user,@RequestParam(defaultValue = "1") int page){
 
-        List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList = interestedCompanyService.jobVacancyLookUpSimpleList(user.getNo());
+		Map<String, Object> ICMap = interestedCompanyService.jobVacancyLookUpSimpleListPaging(user.getNo(),page);
+
+		List<JobVacancyLookUpSimple> jobVacancyLookUpSimpleList = (List<JobVacancyLookUpSimple>)ICMap.get("jobVacancyLookUpSimpleList");
 
         for(JobVacancyLookUpSimple job : jobVacancyLookUpSimpleList){
             int jobVacancyCount = interestedCompanyService.jobVacancyCount(job.getNo());
@@ -45,7 +47,7 @@ public class InterestedCompanyController {
         }
 
         model.addAttribute("jobList",jobVacancyLookUpSimpleList);
-
+		model.addAttribute("pi",ICMap.get("pi"));
         return "personal/mypage/interestedCompany";
     }
     

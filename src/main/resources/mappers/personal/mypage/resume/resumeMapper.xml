@@ -276,7 +276,19 @@
             *
         FROM SELF_INTRODUCTION
         WHERE R_NO=#{rNo}
-
     </select>
+
+    <update id="resumeStatusYtoN" parameterType="com.kh.workPeople.common.vo.Resume">
+        UPDATE RESUME
+        SET R_STATUS_YN = 'N'
+        WHERE R_NO = #{no}
+    </update>
+
+    <update id="resumeStatusNtoY" parameterType="com.kh.workPeople.common.vo.Resume">
+        UPDATE RESUME
+        SET R_STATUS_YN = 'Y'
+        WHERE R_NO = #{resumeNo}
+    </update>
+
 
 </mapper>

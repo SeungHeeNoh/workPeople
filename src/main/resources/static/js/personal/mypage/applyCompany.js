@@ -33,11 +33,11 @@ function applyCancel(){
         }
     });
 
-    // for(let i=0; i<jvNoCheckBox.length; i++){
-    //     if(jvNoCheckBox[i].checked){
-    //         jvNo.push(jvNoCheckBox[i].value);
-    //     }
-    // }
+    for(let i=0; i<jvNoCheckBox.length; i++){
+        if(jvNoCheckBox[i].checked){
+            jvNo.push(jvNoCheckBox[i].value);
+        }
+    }
 
     location.href="/personal/mypage/applyCompany"
 }
