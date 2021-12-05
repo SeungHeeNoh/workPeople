@@ -167,16 +167,21 @@
 	border-bottom: 1px solid #F8F8F8;
 }
 
+.content > .information > div > div > table > tbody > tr > td:first-of-type a:hover {
+	text-decoration: underline;
+}
+
 .content > .information > div > div > table > tbody > tr button {
 	width: 100px;
 	height : 30px;
 	border-radius: 10px;
 }
 
-.content > .information > div.recruit_closed > div > table > tbody > tr button {
+.content > .information > div.expired > div > table > tbody > tr button {
 	background-color: #DCDCDC;
 	color: #FFF;
 	font-weight: bold;
+	cursor : default;
 }
 
 .content > .information > div > div > table > tbody > tr > td:not(:first-of-type) {
@@ -298,6 +303,16 @@
 	line-height: 36px;
 	margin: 0 5px;
 	transition: all 0.3s;
+}
+
+.paging button:disabled {
+	transition: none;
+	opacity: 0.3;
+}
+
+.paging button:disabled:hover {
+	cursor: default;
+	color : #222;
 }
 
 .paging .page_number ul {

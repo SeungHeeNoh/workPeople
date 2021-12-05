@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.workPeople.common.vo.PageInfo;
 import com.kh.workPeople.jobs.companyInformation.model.dao.CompanyInformationMapper;
 import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
-import com.kh.workPeople.jobs.companyInformation.model.vo.ExpiredJobVacancyData;
-import com.kh.workPeople.jobs.companyInformation.model.vo.ProgressingJobVacancyData;
+import com.kh.workPeople.jobs.companyInformation.model.vo.JobVacancyData;
 
 @Service
 public class CompanyInformationServiceImpl implements CompanyInformationService {
@@ -26,29 +25,43 @@ public class CompanyInformationServiceImpl implements CompanyInformationService 
 		CompanyDetailInformation companyDetailInformation = companyInformationMapper.getCompanyDetailInformation(queryMap);
 		
 		if(companyDetailInformation != null) {
-			ProgressingJobVacancyData progressingJobVacancyData = new ProgressingJobVacancyData();
-			ExpiredJobVacancyData expiredJobVacancyData = new ExpiredJobVacancyData();
+			JobVacancyData progressingJobVacancyData = getProgressingJobVacancyData(queryMap, 1);
+			JobVacancyData expiredJobVacancyData = getExpireJobVacancydData(queryMap, 1);
 
-			queryMap.put("sign", ">=");
-			PageInfo progressJVPi = new PageInfo(1, companyInformationMapper.getJobVacancyListCount(queryMap), 5, 6);  
-			queryMap.put("pi", progressJVPi);
-			
-			progressingJobVacancyData.setPageInfo(progressJVPi);
-			progressingJobVacancyData.setProgressingJobVacancyList(companyInformationMapper.getJobVacancyList(queryMap));
-			
-
-			queryMap.put("sign", "<");
-			PageInfo ExpiredJVPi = new PageInfo(1, companyInformationMapper.getJobVacancyListCount(queryMap), 5, 6);
-			queryMap.put("pi", ExpiredJVPi);
-			
-			expiredJobVacancyData.setPageInfo(ExpiredJVPi);
-			expiredJobVacancyData.setExpiredJobVacancyList(companyInformationMapper.getJobVacancyList(queryMap));
-			
 			companyDetailInformation.setProgressingJobVacancyData(progressingJobVacancyData);
 			companyDetailInformation.setExpiredJobVacancyData(expiredJobVacancyData);
 		}
 		
 		return companyDetailInformation;
+	}
+
+	@Override
+	public JobVacancyData getProgressingJobVacancyData(Map<String, Object> queryMap, int page) {
+		JobVacancyData progressingJobVacancyData = new JobVacancyData();
+		
+		queryMap.put("sign", ">=");
+
+		PageInfo pi = new PageInfo(page, companyInformationMapper.getJobVacancyListCount(queryMap), 5, 6);
+		queryMap.put("pi", pi);
+		
+		progressingJobVacancyData.setPageInfo(pi);
+		progressingJobVacancyData.setJobVacancyList(companyInformationMapper.getJobVacancyList(queryMap));
+		
+		return progressingJobVacancyData;
+	}
+
+	@Override
+	public JobVacancyData getExpireJobVacancydData(Map<String, Object> queryMap, int page) {
+		JobVacancyData expiredJobVacancyData = new JobVacancyData();
+		
+		queryMap.put("sign", "<");
+		PageInfo pi = new PageInfo(page, companyInformationMapper.getJobVacancyListCount(queryMap), 5, 6);
+		queryMap.put("pi", pi);
+		
+		expiredJobVacancyData.setPageInfo(pi);
+		expiredJobVacancyData.setJobVacancyList(companyInformationMapper.getJobVacancyList(queryMap));
+		
+		return expiredJobVacancyData;
 	}
 
 }

@@ -83,7 +83,8 @@
 		                                  WHERE JV_STATUS_YN = 'Y'
 									        AND JV_PERIOD_END ${sign} SYSDATE
 		                                    AND CI_NO = #{companyInformationNo}
-		                                  ORDER BY JV_PERIOD_END ASC))
+		                                  ORDER BY JV_PERIOD_END DESC))
 		                     WHERE RNUM BETWEEN (#{pi.page}-1)*(#{pi.boardLimit})+1 AND ((#{pi.page}-1)*(#{pi.boardLimit})+1)+(#{pi.boardLimit}-1))
+		 ORDER BY JV_PERIOD_END DESC
 	</select>
 </mapper>

@@ -9,14 +9,14 @@ public class CompanyDetailInformation {
 	private int interestedCount;
 	private String interestedCompany;
 	private CompanyInformation companyInformation;
-	private ProgressingJobVacancyData progressingJobVacancyData;
-	private ExpiredJobVacancyData expiredJobVacancyData;
+	private JobVacancyData progressingJobVacancyData;
+	private JobVacancyData expiredJobVacancyData;
 	
 	public CompanyDetailInformation() {}
 
 	public CompanyDetailInformation(String companyName, String address, int interestedCount, String interestedCompany,
-			CompanyInformation companyInformation, ProgressingJobVacancyData progressingJobVacancyData,
-			ExpiredJobVacancyData expiredJobVacancyData) {
+			CompanyInformation companyInformation, JobVacancyData progressingJobVacancyData,
+			JobVacancyData expiredJobVacancyData) {
 		this.companyName = companyName;
 		this.address = address;
 		this.interestedCount = interestedCount;
@@ -66,19 +66,19 @@ public class CompanyDetailInformation {
 		this.companyInformation = companyInformation;
 	}
 
-	public ProgressingJobVacancyData getProgressingJobVacancyData() {
+	public JobVacancyData getProgressingJobVacancyData() {
 		return progressingJobVacancyData;
 	}
 
-	public void setProgressingJobVacancyData(ProgressingJobVacancyData progressingJobVacancyData) {
+	public void setProgressingJobVacancyData(JobVacancyData progressingJobVacancyData) {
 		this.progressingJobVacancyData = progressingJobVacancyData;
 	}
 
-	public ExpiredJobVacancyData getExpiredJobVacancyData() {
+	public JobVacancyData getExpiredJobVacancyData() {
 		return expiredJobVacancyData;
 	}
 
-	public void setExpiredJobVacancyData(ExpiredJobVacancyData expiredJobVacancyData) {
+	public void setExpiredJobVacancyData(JobVacancyData expiredJobVacancyData) {
 		this.expiredJobVacancyData = expiredJobVacancyData;
 	}
 
