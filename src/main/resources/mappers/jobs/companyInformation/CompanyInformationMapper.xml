@@ -6,37 +6,20 @@
 		<result property="address" column="ADDRESS"/>
 		<result property="interestedCount" column="INTERESTED_COUNT"/>
 		<result property="interestedCompany" column="INTERESTED"/>
-		<association property="companyInformation" resultMap="companyResultMap"/>
+		<association property="companyInformation" resultMap="Common.companyResultMap"/>
 	</resultMap>
-	<resultMap type="com.kh.workPeople.common.vo.CompanyInformation" id="companyResultMap">
-		<id property="no" column="CI_NO"/>
-		<result property="registerNumber" column="CI_COMPANY_REGISTER_NUMBER"/>
-		<result property="ceoName" column="CI_CEONAME"/>
-		<result property="foundingDate" column="CI_FOUNDING_DATE"/>
-		<result property="employeeNumber" column="CI_EMPLOYEE_NUMBER"/>
-		<result property="businessDetail" column="CI_BUSINESS_DETAIL"/>
-		<result property="companyHistory" column="CI_COMPANY_HISTORY"/>
-		<result property="companyVision" column="CI_COMPANY_VISION"/>
-		<result property="homepage" column="CI_HOMEPAGE"/>
-		<association property="attachment" resultMap="attachmentResultMap"/>
-		<association property="sector" resultMap="sectorResultMap"/>
-		<association property="companyType" resultMap="companyTypeRoleResultMap"/>
+	<resultMap type="com.kh.workPeople.common.vo.JobVacancy" id="jobVacancyResultMap">
+		<result property="no" column="JV_NO"/>
+		<result property="title" column="JV_TITLE"/>
+		<result property="periodEnd" column="JV_PERIOD_END"/>
+		<association property="educationLevel" resultMap="jobVacancyEducationResultMap"/>
+		<collection property="experienceLevelList" resultMap="jobVacancyExperienceResultMap"/>
 	</resultMap>
-	<resultMap type="com.kh.workPeople.common.vo.Attachment" id="attachmentResultMap">
-		<id property="no" column="A_NO"/>
-		<result property="changeName" column="A_CHANGE_NAME"/>
-		<result property="filePath" column="A_FILE_PATH"/>
-		<result property="status" column="A_STATUS"/>
-		<result property="create" column="A_CREATE"/>
-		<result property="update" column="A_UPDATE"/>
+	<resultMap type="com.kh.workPeople.common.vo.EducationLevel" id="jobVacancyEducationResultMap">
+			<result property="name" column="EDUCATION_LEVEL_NAME"/>
 	</resultMap>
-	<resultMap type="com.kh.workPeople.common.vo.Sector" id="sectorResultMap">
-		<id property="no" column="S_NO"/>
-		<result property="name" column="S_NAME"/>
-	</resultMap>
-	<resultMap type="com.kh.workPeople.common.vo.CompanyType" id="companyTypeRoleResultMap">
-		<id property="no" column="CT_NO"/>
-		<result property="name" column="CT_NAME"/>
+	<resultMap type="com.kh.workPeople.common.vo.ExperienceLevel" id="jobVacancyExperienceResultMap">
+			<result property="name" column="EXPERIENCE_LEVEL_NAME"/>
 	</resultMap>
 	<select id="getCompanyDetailInformation" parameterType="hashmap" resultMap="companyDetailInformationResultMap">
 		SELECT 
@@ -56,7 +39,6 @@
 		     , A_FILE_PATH
 		     , A_STATUS
 		     , A_CREATE
-		     , A_UPDATE
 		     , S_NO
 		     , S_NAME
 		     , CT_NO
@@ -72,8 +54,37 @@
 		  <if test="userNo != null">
 		  LEFT OUTER JOIN (SELECT CI_NO
 	      		             FROM INTERESTED_COMPANY
-	                        WHERE M_NO = 1) INTERESTED_COMPANY ON(COMPANY_INFORMATION.CI_NO = INTERESTED_COMPANY.CI_NO)
+	                        WHERE M_NO = #{userNo}) INTERESTED_COMPANY ON(COMPANY_INFORMATION.CI_NO = INTERESTED_COMPANY.CI_NO)
 	      </if>
 		 WHERE COMPANY_INFORMATION.CI_NO = #{companyInformationNo}
+		   AND COMPANY_STATUS = 'Y'
+	</select>
+	<select id="getJobVacancyListCount" parameterType="hashmap" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM JOB_VACANCY
+		 WHERE JV_STATUS_YN = 'Y'
+		   AND JV_PERIOD_END ${sign} SYSDATE
+		   AND CI_NO = #{companyInformationNo}
+	</select>
+	<select id="getJobVacancyList" parameterType="hashmap" resultMap="jobVacancyResultMap">
+		SELECT
+		       JV_NO
+		     , JV_TITLE
+		     , JV_PERIOD_END
+		     , EDUCATION_LEVEL_NAME
+		     , EXPERIENCE_LEVEL_NAME
+		  FROM JOB_VACACY_INFORMATION
+		 WHERE JV_NO IN (SELECT JV_NO
+		                   FROM (SELECT ROWNUM RNUM, JV_NO
+		                           FROM (SELECT
+		                                        JV_NO
+		                                   FROM JOB_VACANCY
+		                                  WHERE JV_STATUS_YN = 'Y'
+									        AND JV_PERIOD_END ${sign} SYSDATE
+		                                    AND CI_NO = #{companyInformationNo}
+		                                  ORDER BY JV_PERIOD_END DESC))
+		                     WHERE RNUM BETWEEN (#{pi.page}-1)*(#{pi.boardLimit})+1 AND ((#{pi.page}-1)*(#{pi.boardLimit})+1)+(#{pi.boardLimit}-1))
+		 ORDER BY JV_PERIOD_END DESC
 	</select>
 </mapper>

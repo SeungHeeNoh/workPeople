@@ -9,16 +9,21 @@ public class CompanyDetailInformation {
 	private int interestedCount;
 	private String interestedCompany;
 	private CompanyInformation companyInformation;
+	private JobVacancyData progressingJobVacancyData;
+	private JobVacancyData expiredJobVacancyData;
 	
 	public CompanyDetailInformation() {}
 
 	public CompanyDetailInformation(String companyName, String address, int interestedCount, String interestedCompany,
-			CompanyInformation companyInformation) {
+			CompanyInformation companyInformation, JobVacancyData progressingJobVacancyData,
+			JobVacancyData expiredJobVacancyData) {
 		this.companyName = companyName;
 		this.address = address;
 		this.interestedCount = interestedCount;
 		this.interestedCompany = interestedCompany;
 		this.companyInformation = companyInformation;
+		this.progressingJobVacancyData = progressingJobVacancyData;
+		this.expiredJobVacancyData = expiredJobVacancyData;
 	}
 
 	public String getCompanyName() {
@@ -61,11 +66,28 @@ public class CompanyDetailInformation {
 		this.companyInformation = companyInformation;
 	}
 
+	public JobVacancyData getProgressingJobVacancyData() {
+		return progressingJobVacancyData;
+	}
+
+	public void setProgressingJobVacancyData(JobVacancyData progressingJobVacancyData) {
+		this.progressingJobVacancyData = progressingJobVacancyData;
+	}
+
+	public JobVacancyData getExpiredJobVacancyData() {
+		return expiredJobVacancyData;
+	}
+
+	public void setExpiredJobVacancyData(JobVacancyData expiredJobVacancyData) {
+		this.expiredJobVacancyData = expiredJobVacancyData;
+	}
+
 	@Override
 	public String toString() {
 		return "CompanyDetailInformation [companyName=" + companyName + ", address=" + address + ", interestedCount="
 				+ interestedCount + ", interestedCompany=" + interestedCompany + ", companyInformation="
-				+ companyInformation + "]";
+				+ companyInformation + ", progressingJobVacancyData=" + progressingJobVacancyData
+				+ ", expiredJobVacancyData=" + expiredJobVacancyData + "]";
 	}
-	
+
 }
