@@ -36,15 +36,9 @@ public class MemberSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		this.webAccessDeniedHandler = webAccessDeniedHandler;
 	}
 	
-	public static final String[] SECURITY_EXCLUDE_PATTERN = {
-			   "/css/**"
-			 , "/js/**"
-			 , "/images/**"
-		};
-
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers(SECURITY_EXCLUDE_PATTERN);
+		web.ignoring().antMatchers(CommonSecurityConfiguration.SECURITY_EXCLUDE_PATTERN);
 	}
 	
 	@Override
