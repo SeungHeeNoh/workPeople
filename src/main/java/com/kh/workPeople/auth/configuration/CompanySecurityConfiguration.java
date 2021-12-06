@@ -44,10 +44,11 @@ public class CompanySecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.requestMatchers()
-				.antMatchers("/account/member/company/**")
+				.antMatchers("/account/member/company/login")
 				.antMatchers("/company/**")
 			.and()
 				.authorizeRequests()
+				.antMatchers("/account/member/company/login").anonymous()
 				.antMatchers("/company/**").hasRole("COMPANY")
 			.and()
 				.formLogin()

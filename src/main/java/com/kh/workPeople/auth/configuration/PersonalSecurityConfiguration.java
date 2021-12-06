@@ -46,11 +46,11 @@ public class PersonalSecurityConfiguration extends WebSecurityConfigurerAdapter 
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.requestMatchers()
-				.antMatchers("/account/member/personal/**")
+				.antMatchers("/account/member/personal/login")
 				.antMatchers("/personal/**")
 			.and()
 				.authorizeRequests()
-				.antMatchers("/account/member/change-password").hasRole("PERSONAL")
+				.antMatchers("/account/member/personal/login").anonymous()
 				.antMatchers("/personal/**").hasRole("PERSONAL")
 			.and()
 				.formLogin()
