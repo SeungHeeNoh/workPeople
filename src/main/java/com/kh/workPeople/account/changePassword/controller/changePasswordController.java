@@ -33,7 +33,7 @@ public class changePasswordController {
 	
 	@PostMapping("/change-password")
 	public String updatePassword(@AuthenticationPrincipal MemberImpl memberImpl, String password, HttpServletRequest request) {
-		String page = "account/change-password/change-password";
+		String page = "redirect:/";
 		int result = changePasswordService.changePassword(memberImpl, password);
 		
 		if(result <= 0) {
