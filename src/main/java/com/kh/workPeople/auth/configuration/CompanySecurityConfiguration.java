@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -21,14 +22,16 @@ public class CompanySecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	private CompanyLoginService companyLoginService;
 	private PasswordEncoder passwordEncoder;
+	private SessionRegistry sessionRegistry;
 	private MemberLoginSuccessHandler memberLoginSuccessHandler;
 	private MemberLoginFailureHandler memberLoginFailureHandler;
 	private WebAccessDeniedHandler webAccessDeniedHandler;
 
 	@Autowired
-	public CompanySecurityConfiguration(CompanyLoginService companyLoginService, PasswordEncoder passwordEncoder,
+	public CompanySecurityConfiguration(CompanyLoginService companyLoginService, PasswordEncoder passwordEncoder, SessionRegistry sessionRegistry,
 									          MemberLoginSuccessHandler memberLoginSuccessHandler, MemberLoginFailureHandler memberLoginFailureHandler, WebAccessDeniedHandler webAccessDeniedHandler) {
 		this.companyLoginService = companyLoginService;
+		this.sessionRegistry = sessionRegistry;
 		this.passwordEncoder = passwordEncoder;
 		this.memberLoginSuccessHandler = memberLoginSuccessHandler;
 		this.memberLoginFailureHandler = memberLoginFailureHandler;
@@ -44,11 +47,14 @@ public class CompanySecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.requestMatchers()
-				.antMatchers("/account/member/company/**")
+				.antMatchers("/account/member/company/login")
 				.antMatchers("/company/**")
+				.antMatchers("/account/member/change-password")
 			.and()
 				.authorizeRequests()
+				.antMatchers("/account/member/company/login").anonymous()
 				.antMatchers("/company/**").hasRole("COMPANY")
+				.antMatchers("/account/member/change-password").hasAnyRole("COMPANY", "PERSONAL")
 			.and()
 				.formLogin()
 				.loginPage("/account/member/company/login")
@@ -70,7 +76,13 @@ public class CompanySecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.userDetailsService(companyLoginService)
 			.and()
 				.exceptionHandling()
-				.accessDeniedHandler(webAccessDeniedHandler);
+				.accessDeniedHandler(webAccessDeniedHandler)
+			.and()
+				.sessionManagement()
+				.maximumSessions(1)
+				.maxSessionsPreventsLogin(false)
+				.expiredUrl("/account/member/personal/login")
+				.sessionRegistry(sessionRegistry);
 	}
 
 	@Override
