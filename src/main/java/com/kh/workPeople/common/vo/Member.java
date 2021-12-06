@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Member {
 	private int no;
+	private int companyNo;
 	private MemberType memberType;
 	private String id;
 	private String pwd;
@@ -22,16 +23,17 @@ public class Member {
 	private int lockCount;
 	private String status;
 	private String tempPwdYn;
+	private String companyStatusYN;
 	private List<MemberRole> memberRoleList;
 	
 	public Member() {}
 
-	public Member(int no, MemberType memberType, String id, String pwd, String name, String phone, String email,
-			String postCode, String roadAddress, String detailAddress, Date enrollDate, Date modifyDate,
+	public Member(int no, int companyNo, MemberType memberType, String id, String pwd, String name, String phone,
+			String email, String postCode, String roadAddress, String detailAddress, Date enrollDate, Date modifyDate,
 			int loginFailCount, String isLock, Date lastestTryLoginDate, int lockCount, String status, String tempPwdYn,
-			List<MemberRole> memberRoleList) {
-		super();
+			String companyStatusYN, List<MemberRole> memberRoleList) {
 		this.no = no;
+		this.companyNo = companyNo;
 		this.memberType = memberType;
 		this.id = id;
 		this.pwd = pwd;
@@ -49,6 +51,7 @@ public class Member {
 		this.lockCount = lockCount;
 		this.status = status;
 		this.tempPwdYn = tempPwdYn;
+		this.companyStatusYN = companyStatusYN;
 		this.memberRoleList = memberRoleList;
 	}
 
@@ -58,6 +61,14 @@ public class Member {
 
 	public void setNo(int no) {
 		this.no = no;
+	}
+
+	public int getCompanyNo() {
+		return companyNo;
+	}
+
+	public void setCompanyNo(int companyNo) {
+		this.companyNo = companyNo;
 	}
 
 	public MemberType getMemberType() {
@@ -196,6 +207,14 @@ public class Member {
 		this.tempPwdYn = tempPwdYn;
 	}
 
+	public String getCompanyStatusYN() {
+		return companyStatusYN;
+	}
+
+	public void setCompanyStatusYN(String companyStatusYN) {
+		this.companyStatusYN = companyStatusYN;
+	}
+
 	public List<MemberRole> getMemberRoleList() {
 		return memberRoleList;
 	}
@@ -206,13 +225,14 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [no=" + no + ", memberType=" + memberType + ", id=" + id + ", pwd=" + pwd + ", name=" + name
-				+ ", phone=" + phone + ", email=" + email + ", postCode=" + postCode + ", roadAddress=" + roadAddress
-				+ ", detailAddress=" + detailAddress + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
-				+ ", loginFailCount=" + loginFailCount + ", isLock=" + isLock + ", lastestTryLoginDate="
-				+ lastestTryLoginDate + ", lockCount=" + lockCount + ", status=" + status + ", tempPwdYn=" + tempPwdYn
-				+ ", memberRoleList=" + memberRoleList + "]";
+		return "Member [no=" + no + ", companyNo=" + companyNo + ", memberType=" + memberType + ", id=" + id + ", pwd="
+				+ pwd + ", name=" + name + ", phone=" + phone + ", email=" + email + ", postCode=" + postCode
+				+ ", roadAddress=" + roadAddress + ", detailAddress=" + detailAddress + ", enrollDate=" + enrollDate
+				+ ", modifyDate=" + modifyDate + ", loginFailCount=" + loginFailCount + ", isLock=" + isLock
+				+ ", lastestTryLoginDate=" + lastestTryLoginDate + ", lockCount=" + lockCount + ", status=" + status
+				+ ", tempPwdYn=" + tempPwdYn + ", companyStatusYN=" + companyStatusYN + ", memberRoleList="
+				+ memberRoleList + "]";
 	}
-	
+
 	
 }

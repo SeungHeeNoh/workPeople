@@ -27,34 +27,6 @@ public class MemberLoginServiceImpl implements MemberLoginService {
 	public MemberLoginServiceImpl(LoginMapper loginMapper) {
 		this.loginMapper = loginMapper;
 	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-		Member member = loginMapper.findMemberById(username);
-
-		if(member == null) {
-			throw new UsernameNotFoundException("");
-		}
-
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		
-		if(member.getMemberRoleList() != null) {
-			List<MemberRole> roleList = member.getMemberRoleList();
-			
-			for(MemberRole role : roleList) {
-				Authority authority = role.getAuthority();
-				
-				if(authority != null) {
-					authorities.add(new SimpleGrantedAuthority(authority.getName()));
-				}
-			}
-		}
-		MemberImpl user = new MemberImpl(member.getId(), member.getPwd(), authorities);
-		user.setDetails(member);
-		
-		return user;
-	}
 	
 	@Override
 	public Member findMemberById(String id) {

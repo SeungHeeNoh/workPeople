@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.workPeople.account.login.model.dao.LoginMapper">
+	<select id="findMemberByIdAndMemberType" resultMap="Common.loginMemberResultMap" parameterType="hashmap">
+		SELECT 
+		      M.M_NO
+		    , MT.MT_NO MT_NO
+		    , MT.MT_NAME MT_NAME
+		    , M.M_ID
+		    , M.M_PWD
+		    , M.M_NAME
+		    , M.M_PHONE
+		    , M.M_EMAIL
+		    , M.M_POSTCODE
+		    , M.M_ROADADDRESS
+		    , M.M_DETAILADDRESS
+		    , M.M_ENROLL_DATE
+		    , M.M_MODIFY_DATE
+		    , M.M_LOGIN_FAIL_COUNT
+		    , M.M_IS_LOCK
+		    , M.M_LATEST_TRY_LOGIN_DATE
+		    , M.M_LOCK_COUNT
+		    , M.M_STATUS
+		    , M.M_TEMP_PWD_YN
+		    , MR.M_NO REF_MEMBER_NO
+		    , MR.A_CODE REF_AUTHORITY_CODE
+		    , A.A_CODE
+		    , A.A_NAME
+		    , A.A_DESC
+		 FROM MEMBER M
+		 LEFT JOIN MEMBER_TYPE MT ON(M.MT_NO = MT.MT_NO)
+		 LEFT JOIN MEMBER_ROLE MR ON(M.M_NO = MR.M_NO)
+		 LEFT JOIN AUTHORITY A ON(MR.A_CODE = A.A_CODE)
+		WHERE M.M_ID = #{userId}
+		  AND MT.MT_NO = #{memberType}
+	</select>
 	<select id="findMemberById" resultMap="Common.loginMemberResultMap">
 		SELECT 
 		      M.M_NO
@@ -69,4 +102,10 @@
 		     , M_LATEST_TRY_LOGIN_DATE = SYSDATE
 		 WHERE M_ID = #{id}
 	</update>
+	<select id="findCompanyNo" parameterType="_int" resultType="hashmap">
+		SELECT CI_NO
+		     , CI_STATUS_YN
+		  FROM COMPANY_INFO
+		 WHERE M_NO = #{mNo}
+	</select>
 </mapper>
