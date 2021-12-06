@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -19,14 +20,16 @@ public class ManagerSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	private ManagerLoginService managerLoginService;
 	private PasswordEncoder passwordEncoder;
+	private SessionRegistry sessionRegistry;
 	private ManagerLoginSuccessHandler managerLoginSuccessHandler;
 	private ManagerLoginFailureHandler managerLoginFailureHandler;
 	private WebAccessDeniedHandler webAccessDeniedHandler;
 
 	@Autowired
-	public ManagerSecurityConfiguration(ManagerLoginService managerLoginService, PasswordEncoder passwordEncoder,
+	public ManagerSecurityConfiguration(ManagerLoginService managerLoginService, PasswordEncoder passwordEncoder, SessionRegistry sessionRegistry,
 										ManagerLoginSuccessHandler managerLoginSuccessHandler, ManagerLoginFailureHandler managerLoginFailureHandler, WebAccessDeniedHandler webAccessDeniedHandler) {
 		this.managerLoginService = managerLoginService;
+		this.sessionRegistry = sessionRegistry;
 		this.passwordEncoder = passwordEncoder;
 		this.managerLoginSuccessHandler = managerLoginSuccessHandler;
 		this.managerLoginFailureHandler = managerLoginFailureHandler;
@@ -59,7 +62,13 @@ public class ManagerSecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.logoutSuccessUrl("/main")
 			.and()
 				.exceptionHandling()
-				.accessDeniedHandler(webAccessDeniedHandler);
+				.accessDeniedHandler(webAccessDeniedHandler)
+			.and()
+				.sessionManagement()
+				.maximumSessions(1)
+				.maxSessionsPreventsLogin(false)
+				.expiredUrl("/account/member/personal/login")
+				.sessionRegistry(sessionRegistry);
 	}
 
 	@Override
