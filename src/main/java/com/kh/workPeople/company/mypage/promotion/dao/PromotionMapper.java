@@ -35,6 +35,9 @@ public interface PromotionMapper {
 
 	int insertPayment(Map<String, Object> map);
 
+
+	PromotionOrder selectOrder(int pno);
+
 	
 
 }

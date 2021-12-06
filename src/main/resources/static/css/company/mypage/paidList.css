@@ -221,7 +221,7 @@
   margin-bottom: 50px;
 }
 .mtcSchListTb {
-  margin-top: 15px;
+  margin-top: 30px;
 }
 .mtcSchListTb table {
   width: 100%;
@@ -276,5 +276,9 @@ table {
 .onmouseover {
   background: rgba(179, 220, 223, 0.21);
   cursor: pointer;
+}
+
+.ho:hover {
+	color: #06d7d7;
 }
 

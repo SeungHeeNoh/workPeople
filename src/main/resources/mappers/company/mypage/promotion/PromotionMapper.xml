@@ -7,8 +7,10 @@
 		<result property="pendDate" column="P_END_DATE"/>
 		<result property="jvno" column="JV_NO"/>
 		<result property="mno" column="M_NO"/>
+		<result property="day" column="DAY"/>
 		<association property="pCode" resultMap="pCode]ResultMap"/>
 		<association property="payment" resultMap="paymentResultMap"/>
+		<association property="jobVacancyLookUp" resultMap="JobVacancyResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.PromotionCode" id="pCode]ResultMap">
 		<id property="pcode" column="P_CODE"/>
@@ -123,7 +125,29 @@
 		)
 	</insert> 
 	
-	
+	<select id="selectOrder" resultMap="orderResultMap">
+		 SELECT
+                      C.P_NAME
+                    , C.P_PRICE
+                    , O.P_NO
+                    , O.P_START_DATE
+                    , O.P_END_DATE
+                    , O.M_NO
+                    , O.JV_NO
+                    , P.PAY_DATE
+                    , P.PAY_PRICE
+                    , P.PAY_METHOD
+                    , P.PAY_DETAIL
+                    , TO_DATE(P_END_DATE, 'YYYY-MM-DD') - TO_DATE(P_START_DATE, 'YYYY-MM-DD') AS DAY
+                    , J.JV_TITLE
+                    , J.JV_PERIOD_END
+		        FROM PROMOTION_CODE C
+                LEFT JOIN PROMOTION_ORDER O ON(C.P_CODE = O.P_CODE)
+                LEFT JOIN PAYMENT P ON(O.P_NO = P.P_NO)
+                LEFT JOIN JOB_VACANCY J ON(O.JV_NO = J.JV_NO)
+                WHERE O.P_NO = #{pno}
+
+	</select>
 	
 
 

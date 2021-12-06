@@ -58,6 +58,10 @@
     .paging > li:nth-last-child(1) > a {
         border: none;
     }
+    .nobtn {
+    	pointer-events: none;
+    	cursor: default;
+    }
 </style>
 </head>
 <body>
@@ -70,12 +74,12 @@
 			</c:if> -->
 		
 			<!-- 맨 처음으로 (<<) -->
-				 <li><a th:href="@{${ currentUrl}(page=1)}">&lt;&lt;</a></li> 
+				 <li><a th:href="@{${ currentUrl}(page=1)}" th:classappend="${pi.page == 1} ? 'nobtn'">&lt;&lt;</a></li> 
 				
 			<!-- 이전 페이지 (<) -->
 			<li th:with="condition=${ pi.page > 1 }">
 				 <a th:if="${condition}" th:href="@{${ currentUrl}(page=${ pi.page - 1})}" class="btn_prev">&lt;</a>
-				 <a th:unless="${condition}" href="#">&lt;</a>
+				 <a th:unless="${condition}" class="nobtn">&lt;</a>
 			</li>
 			
 			<!-- 페이지 목록(최대 10개) -->
@@ -88,11 +92,11 @@
 			<!-- 다음 페이지 (>) -->
 			<li th:with="condition=${ pi.page < pi.maxPage }">
 				 <a th:if="${condition}" th:href="@{${ currentUrl}(page=${ pi.page + 1})}" class="btn_next">&gt;</a>
-				 <a th:unless="${condition}" href="#">&gt;</a>
+				 <a th:unless="${condition}" class="nobtn">&gt;</a>
 			</li>		
 				
 			<!-- 맨 끝으로 (>>) -->
-			<li><a th:href="@{${ currentUrl}(page=${ pi.maxPage })}">&gt;&gt;</a></li>	
+			<li><a th:href="@{${ currentUrl}(page=${ pi.maxPage })}" th:classappend="${pi.page == pi.maxPage} ? 'nobtn'">&gt;&gt;</a></li>	
 						
 		</ul> 
 	</div>

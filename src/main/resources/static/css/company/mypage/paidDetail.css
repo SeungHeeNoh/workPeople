@@ -63,7 +63,6 @@
   border: 1px solid rgb(225, 229, 235);
   background: rgb(255, 255, 255);
   border-radius: 10px;
-  display: table;
   width: 100%;
   padding: 45px 25px;
 }
@@ -77,6 +76,7 @@
   line-height: 43px;
   letter-spacing: -2px;
   vertical-align: top;
+      font-weight: 500;
 }
 [class*="btnSize"].colorWhite {
   border: 1px solid #ddd;
@@ -129,7 +129,6 @@
   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
-  table-layout: fixed;
 }
 .cont_payment_history .tbl_payment th,
 .cont_payment_history .tbl_payment tbody td {
@@ -154,6 +153,10 @@
 .tblWrap td {
   color: rgb(119, 119, 119);
   background: none;
+}
+
+.tblWrap td span {
+  color: rgb(119, 119, 119);
 }
 
 .btn_wrap {
@@ -184,4 +187,5 @@
 }
 .btnSizeM.green:hover {
   background-color: #96bf69;
-}
+} 
+.payNo {color: royalblue;}

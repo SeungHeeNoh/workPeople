@@ -73,6 +73,11 @@ public class PromotionServiceImpl implements PromotionService{
 		
 		return (result1 > 0 && result2 > 0) ? 1 : 0;
 	}
+
+	@Override
+	public PromotionOrder selectOrder(int pno) {
+		return promotionMapper.selectOrder(pno);
+	}
 	
 	
 
