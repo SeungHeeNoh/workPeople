@@ -41,33 +41,6 @@
                         </div>
                 
                         <div class="mngListArea">
-                            <!-- // 검색영역 -->
-                            <div class="listsSchArea devBaseSrchArea">
-                                <form action="#">
-                                    <input type="hidden" name="searchType" id="searchType">
-                                        <div class="periodChoice">
-                                            <span>기간별 조회</span>
-                                            <button type="button" class="btnMtcTpl devDuringSearch btnWeek1" data-during="Week1" value="Week1">1주일</button>
-                                            <button type="button" class="btnMtcTpl devDuringSearch btnMonth1" data-during="Month1" value="Month1">1개월</button>
-                                            <button type="button" class="btnMtcTpl devDuringSearch btnMonth3" data-during="Month3" value="Month3">3개월</button>
-                                        </div>
-                                        <div class="calendarWrap">
-                                            <div class="calendarInp">
-                                                <input type="date" id="startDt" name="startDt" class="devSearchDtClass" value="" title="조회 시작일자">
-                                            </div>
-                                               <span> ~ </span>
-                                                
-                                            <div class="calendarInp">
-                                                <input type="date" id="endDt" name="endDt" class="devSearchDtClass" value="" title="조회 종료일자" >
-                                            </div>
-                                        </div>
-                                    
-                                        <div class="mtcListFillter">
-                                            <button class="btnSearch devBaseSearch green" type="button">검색</button>
-                                        </div>
-                                </form>
-                            </div>
-                            <!-- 검색영역 // -->
                             <!-- // 리스트 영역 -->
                             <div class="schListWrap blockLists" id="PaidList">
                 
@@ -86,17 +59,17 @@
                                             <th scope="col">결제일시</th>
                                             <th scope="col">이용상품</th>
                                             <th scope="col">결제금액</th>
-                                            <th scope="col">결제수단</th>
+                                            <th scope="col">세부내용</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:if="${#lists.size(orderList) > 0}"  class="mtcSch_tr" th:each="order : ${ orderList }">
-                                        <td th:if="${#dates.format(order.pendDate, 'yyyy-MM-dd') >= #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">이용중</td>
-                                        <td th:unless="${#dates.format(order.pendDate, 'yyyy-MM-dd HH:mm') >= #dates.format(#dates.createNow(), 'yyyy-MM-dd') }">이용완료</td>
+                                        <td  th:if="${#dates.format(order.pendDate, 'yyyy-MM-dd') >= #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">이용중</td>
+                                        <td  th:unless="${#dates.format(order.pendDate, 'yyyy-MM-dd HH:mm') >= #dates.format(#dates.createNow(), 'yyyy-MM-dd') }">이용완료</td>
                                         <td th:text="${#dates.format(order.payment.payDate, 'yyyy-MM-dd HH:mm') }">2021-10-24 11:46</td>
                                         <td><span th:text="${ order.pCode.pname }"></span> 상품</td>
                                         <td><span class="point" th:text="${ #numbers.formatInteger(order.payment.payPrice,3,'COMMA') }"></span> 원</td>
-                                        <td th:text="${ order.payment.payMethod }"></td>
+                                        <td class="ho"><a th:href="@{/company/mypage/paidDetail(pno=${order.pno})}">보기</a></td>
                                     </tr>
                                      <tr th:unless="${#lists.size(orderList) > 0 }">
                                         <td class="searchTdNone" colspan="6">
@@ -140,28 +113,6 @@
 				event.target.parentNode.classList.remove('onmouseover');
 			
 		});
-		
-
-        $(document).ready(function () {
-            $("Button").click(function(){
-                if(this.value == "Week1"){
-                    $('.btnWeek1').addClass("on");
-                    $('.btnMonth1').removeClass("on");
-                    $('.btnMonth3').removeClass("on");
-                }else if(this.value == "Month1") {
-                    $('.btnWeek1').removeClass("on");
-                    $('.btnMonth1').addClass("on");
-                    $('.btnMonth3').removeClass("on");
-                } else {
-                    $('.btnWeek1').removeClass("on");
-                    $('.btnMonth1').removeClass("on");
-                    $('.btnMonth3').addClass("on");
-                }
-            
-            });
-
-           
-        });
 
    </script>
 </body>

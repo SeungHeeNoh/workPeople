@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.MemberImpl;
+import com.kh.workPeople.common.vo.PromotionOrder;
 import com.kh.workPeople.company.mypage.promotion.service.PromotionService;
 
 @Controller
@@ -55,7 +56,13 @@ public class PromotionController {
 	}
 	
 	@GetMapping("/paidDetail")
-	public String paidDetail() {
+	public String paidDetail(@RequestParam("pno") int pno, Model model) {
+		
+		
+		PromotionOrder order = promotionService.selectOrder(pno);
+		
+		model.addAttribute("order", order);
+		
 		return "company/mypage/paidDetail";
 	}
 	

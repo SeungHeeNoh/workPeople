@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
+import com.kh.workPeople.common.vo.PromotionOrder;
 
 
 public interface PromotionService {
@@ -16,6 +17,8 @@ public interface PromotionService {
 	List<JobVacancyLookUp> selectAllJob(int cino);
 
 	int insertPayment(Map<String, Object> map);
+
+	PromotionOrder selectOrder(int pno);
 
 	
 
