@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.workPeople.main.model.dao.MainMapper">
+
+	<resultMap type="com.kh.workPeople.common.vo.MainTier" id="mainTierResultMap">
+		<result property="path" column="A_FILE_PATH"/>
+		<result property="fileName" column="A_CHANGE_NAME"/>
+		<result property="companyName" column="M_NAME"/>
+		<result property="title" column="JV_TITLE"/>
+	</resultMap>
+	
+	
+	<select id="getJvCount" resultType="_int">
+		SELECT COUNT(*) FROM JOB_VACANCY
+	</select>
+	<select id="getSkCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE MT_NO = 1
+	</select>
+	<select id="getCmCount" resultType="_int">
+		SELECT COUNT(*) FROM COMPANY_INFO
+	</select>
+	
+		<!-- 플레티넘 -->
+	<select id="getPlatinumList" resultMap="mainTierResultMap">
+		SELECT * FROM 
+		(SELECT F.*,G.A_NO FROM 
+		(SELECT C.*,D.JV_TITLE,E.M_NAME FROM 
+		(SELECT A.*,B.P_START_DATE,B.P_END_DATE,B.JV_NO,B.M_NO FROM
+		        (SELECT   *    FROM PROMOTION_CODE)
+		        A LEFT JOIN PROMOTION_ORDER B ON A.P_CODE = B.P_CODE
+		        WHERE A.P_CODE =1 AND 
+         	<![CDATA[
+       	  TO_CHAR(B.P_START_DATE, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD')
+     	  AND TO_CHAR(B.P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
+      		 ]]>)C
+          LEFT JOIN JOB_VACANCY D  ON C.JV_NO = D.JV_NO
+          LEFT JOIN MEMBER E ON C.M_NO = E.M_NO)F 
+          LEFT JOIN COMPANY_INFO G ON F.M_NO = G.M_NO ) H
+          LEFT JOIN ATTACHMENT I ON H.A_NO = I.A_NO
+  
+	</select>
+	
+	<!-- 베이직 -->
+	<select id="getBasicList" resultMap="mainTierResultMap">
+		SELECT * FROM 
+		(SELECT F.*,G.A_NO FROM 
+		(SELECT C.*,D.JV_TITLE,E.M_NAME FROM 
+		(SELECT A.*,B.P_START_DATE,B.P_END_DATE,B.JV_NO,B.M_NO FROM
+		        (SELECT   *    FROM PROMOTION_CODE)
+		        A LEFT JOIN PROMOTION_ORDER B ON A.P_CODE = B.P_CODE
+		        WHERE A.P_CODE =2 AND 
+         	<![CDATA[
+       	  TO_CHAR(B.P_START_DATE, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD')
+     	  AND TO_CHAR(B.P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
+      		 ]]>)C
+          LEFT JOIN JOB_VACANCY D  ON C.JV_NO = D.JV_NO
+          LEFT JOIN MEMBER E ON C.M_NO = E.M_NO)F 
+          LEFT JOIN COMPANY_INFO G ON F.M_NO = G.M_NO ) H
+          LEFT JOIN ATTACHMENT I ON H.A_NO = I.A_NO
+  
+	</select>
+</mapper>

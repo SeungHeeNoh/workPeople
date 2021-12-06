@@ -206,7 +206,6 @@ label{
 .list_item{
     height: 130px;
 }
-.corp{}
 .corp > div > span {
     max-width: 90%;
     font-size: 25px;
@@ -225,7 +224,6 @@ label{
     top: -4px;
     margin-left: 10px;
 }
-.tit{}
 .tit > span {
     font-size: 20px;
     margin: 0px 0px 30px 38px;
@@ -237,7 +235,6 @@ label{
     font-size: 18px;
     color: #979797;
     display: block;
-  
     
 }
 

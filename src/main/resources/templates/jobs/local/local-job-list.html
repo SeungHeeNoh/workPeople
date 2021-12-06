@@ -114,8 +114,8 @@
 							    </li>
 							  <li class="gu">
 							   <label for="" class="searchSector">중랑구</label>
-							    <input type="checkbox" name="local" value="중랑구" style="display:none;">
-							    </li>
+							   <input type="checkbox" name="local" value="중랑구" style="display:none;">
+							  </li>
                         </ul>
                     </div>
                     <div class="result_box">
@@ -135,10 +135,11 @@
                                     </div>
                                 </dd>
                                 <dd class="btnSet">
-                                    <button type="submit" class="btn_sch" id="btn-sch">
+                                    <button  type="button" onclick="ljlFormSubmit()" class="btn_sch" id="btn-sch">
                                         <span>선택된 조건 <br>
                                             검색하기</span>
                                     </button>
+                                   
                                 </dd>
                             </dl>
                         </div>
@@ -146,7 +147,7 @@
                 </div>
                 </form>
             </div>
-
+	
 
             <div class="local_list_body border_test">
                 <div th:each="localVacancy : ${lcList}" class="list_item border_test_r">
@@ -166,7 +167,8 @@
                         <span th:text="${localVacancy.sName}"></span>
                     </div>
 
-                    <button class="applybtn border_test">지원하기</button>
+                    <a th:href="@{/jobs/vacancy-detail/detail-view(no=${localVacancy.jvNo})}"><button class="applybtn border_test">지원하기</button></a>
+                    
                 	</div>
             	</div>
             </div>
@@ -230,6 +232,24 @@
             }); 
         });
         
+		
+
+		function ljlFormSubmit(){
+			var ccount=0;
+			$.each($('.searchSector'),function(index,item){
+                if($(item).hasClass("search") === true){
+                	ccount++;
+               }	
+    		});
+			if(ccount>0){	
+				$("#form1").submit();
+			}else{
+				alert("검색조건을 선택해주세요");
+				return false;
+			}
+			
+		}
+		
         function removeAllItem() {
             // 필터 영역 uncheck
             $('.list-filter').find('input:checkbox').each(function (idx, item) {

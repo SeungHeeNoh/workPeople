@@ -26,7 +26,7 @@
             
                 <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
                 <li id="snb_3_1" class="snb_sub"><a th:href="@{/manager/company/companyinfo}">기업공고</a></li>
-                <li id="snb_3_2" class="snb_sub"><a th:href="@{/manager/company/reportlit}">신고공고</a></li>
+                <li id="snb_3_2" class="snb_sub"><a th:href="@{/manager/company/report/reportlist}">신고공고</a></li>
                 <li id="snb_3_3" class="snb_sub"><a th:href="@{/manager/company/customerservice}">고객센터</a></li>
             
                 <li id="snb_4" class="snb_main"><a th:href="@{/manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
@@ -84,16 +84,16 @@
                                 </thead>
                                 <tbody>
                                     <tr th:each="companyinfo : ${companyList}">
-                                        <td><img src="" alt=""></td>
+<!--                                     if문써서 companyinfo.affachement.filePath가있을시 지정된 로고이미지출력 아닐시 기본이미지 출력 -->
+										<td th:if="${companyinfo.attachment != null}"><img th:src="@{/images/uploadFiles/{changeName}(changeName=${companyinfo.attachment.changeName})}" alt="기업로고"></td>
+										<td th:unless="${companyinfo.attachment != null}"><img th:src="@{/images/common/no-logo.png}" alt="기업로고"></td>
                                         <td th:text="${companyinfo.member.name}"></td>
                                         <td th:text="${companyinfo.registerNumber}"></td>
                                         <td th:text="${companyinfo.member.email}"></td>
                                         <td th:text="${#dates.format(companyinfo.member.enrollDate, 'yyyy-MM-dd')}"></td>
-                                        <td th:text="${companyinfo.member.status == 'Y' ? '활성화' : '비활성화'}"></td>
-
+                                        <td th:text="${companyinfo.member.status == 'N' ? '비활성화' : '활성화'}"></td>
                                         <td>
-                                            <a class="tag">공고 조회</a>
-                                            <input type="hidden" name="no" th:value="${companyinfo.member.no}"/>
+                                            <a class="tag">공고 조회<input type="hidden" class="no"  name="no" th:value="${companyinfo.member.no}"/></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -183,9 +183,26 @@
     
     
 	$(function(){
+		
+		let no = $('[name="no"]').val();
+		let atag = document.querySelectorAll('.tag');
+		
+		atag.forEach( (atag) => {
+			atag.addEventListener('click', (e) => aa(e));
+			
+		});
+		
+		
 		// 공고 조회시 기업번호 조회
-		$('.tag').click(function(){ 
-			let no = $(this).next().val();
+		function aa(e){ 
+			
+			let nn = e.target,
+			    as = nn.querySelector(".tag"),
+				no = nn.querySelector(".no").value;
+			
+			console.log("nn : " + nn);
+			console.log("no : " + no);
+			
 			$.ajax({
 				url : "jvSelect",
 				type : "get",
@@ -207,10 +224,10 @@
 					console.log(e);
 				}
 				
-			});
-			
-		});
+			});	
+		}
 	});
+	
 	
 	function getJvRow(index,jv){
 		var jvRow = "\n";
@@ -223,16 +240,6 @@
 		jvRow = jvRow +'</tr>';
 		return jvRow;
 	}
-	
-/* 	function toStringByFormatting(source, delimiter = '-') {
-		const year = source.getFullYear(); 
-		const month = leftPad(source.getMonth() + 1); 
-		const day = leftPad(source.getDate()); 
-		return [year, month, day].join(delimiter); 
-		} 
-	
-	 toStringByFormatting(new Date(2021, 0, 1));
- */
 	
 </script>
 </body>

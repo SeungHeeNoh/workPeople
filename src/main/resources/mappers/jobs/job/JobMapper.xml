@@ -100,7 +100,7 @@
      <foreach collection="sc" item="no" index="index" open="("   separator=", " close=")">
  	     	#{no[index]}
  	     </foreach>
-     ORDER BY JV_UPDATE ASC;
+     ORDER BY JV_REGISTER ASC
 	</select>
 	
 	<select id ="jobSearchList" resultMap="companyResultMap" parameterType="hashmap">
@@ -118,7 +118,7 @@
      	<foreach collection="no" item="sec"  open="("   separator=", " close=")">
  	     #{sec}
  	     </foreach>
-     ORDER BY JV_UPDATE ASC
+     ORDER BY JV_REGISTER ASC
 	</select>
 	
 	<select id ="getJobVacancyLookUpList" resultMap="jobVacancyResultMap" parameterType="hashmap">
@@ -135,7 +135,7 @@
       	<foreach collection="no" item="sec"  open="("   separator=", " close=")"> 
  	     #{sec}
  	     </foreach> 
-     ORDER BY JV_UPDATE ASC
+     ORDER BY JV_REGISTER ASC
 	</select>
 	
 	<select id ="getJobVacancyLookUpListBasic" resultMap="jobVacancyResultMap">
@@ -164,7 +164,7 @@
 	     LEFT JOIN PROMOTION_ORDER USING(JV_NO)
 	    WHERE TO_CHAR(JV_PERIOD_START, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD')
 	      AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
-	    ORDER BY BASEDATE DESC
+	    ORDER BY BASEDATECHECK DESC, BASEDATE DESC
       ]]>
 	</select>
 

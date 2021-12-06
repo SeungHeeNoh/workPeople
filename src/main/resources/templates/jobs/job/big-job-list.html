@@ -45,7 +45,7 @@
                                         </div>
                                     </dd>
                                     <dd class="btnSet">
-                                        <button type="submit" class="btn_sch" id="btn-sch">
+                                        <button type="button" onclick="bjlForm1Submit()" class="btn_sch" id="btn-sch">
                                             <span>선택된 조건 <br>
                                                 검색하기</span>
                                         </button>
@@ -72,8 +72,7 @@
                     <div class="sname">
                         <span th:text="${jobVacancy.sName}"></span>
                      </div>
-                    
-                        <button class="applybtn border_test">지원하기</button>
+                        <a th:href="@{/jobs/vacancy-detail/detail-view(no=${jobVacancy.jvNo})}"><button class="applybtn border_test">지원하기</button></a>
                 </div>
             </div>
         </div> 
@@ -84,7 +83,6 @@
     <script>
            
         $(".searchSector").click(function(e){ //searchSector를 클릭시 해당 클릭된 아이템 e로가져옴 
-        	
             var max = 0;
         	var arrOn = new Array();  // 배열생성
         	var obj = $(e.target); // obj = <li>...</li> or <span>...</span>
@@ -134,6 +132,23 @@
 	            } 
             }); 
         }
+        
+
+		function bjlForm1Submit(){
+			var ccount=0;
+			$.each($('.searchSector'),function(index,item){
+                if($(item).hasClass("search") === true){
+                	ccount++;
+               }	
+    		});
+			if(ccount>0){	
+				$("#form1").submit();
+			}else{
+				alert("검색조건을 선택해주세요");
+				return false;
+			}
+			
+		}
 
     </script>
 

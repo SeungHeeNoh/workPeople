@@ -42,7 +42,7 @@ public class LocalListController {
 		ModelAndView mv = new ModelAndView();
 		// log.info("local : {}", Arrays.toString(local));
 		List<JobVacancyLookUp> lcList = service.getLocalVacancyLookUpList(local);
-		// log.info("lcList : {}", lcList);
+	    // log.info("lcList : {}", lcList);
 		mv.addObject("lcList", lcList);
 		mv.setViewName("jobs/local/local-job-list");
 		return mv;

@@ -23,12 +23,17 @@ public class ManagerCompanyInfo {
 	private Member member;
 	private List<JobVacancy> list;
 	private int count;
+	private String logoFilePath;
 	
 	public ManagerCompanyInfo() {}
 
+
+
+
 	public ManagerCompanyInfo(int no, String registerNumber, String ceoName, Date foundingDate, int employeeNumber,
 			String businessDetail, String companyHistory, String companyVision, String homepage, Attachment attachment,
-			Sector sector, CompanyType companyType, Member member, List<JobVacancy> list, int count) {
+			Sector sector, CompanyType companyType, Member member, List<JobVacancy> list, int count,
+			String logoFilePath) {
 		super();
 		this.no = no;
 		this.registerNumber = registerNumber;
@@ -45,11 +50,18 @@ public class ManagerCompanyInfo {
 		this.member = member;
 		this.list = list;
 		this.count = count;
+		this.logoFilePath = logoFilePath;
 	}
 
 
 
+	public String getLogoFilePath() {
+		return logoFilePath;
+	}
 
+	public void setLogoFilePath(String logoFilePath) {
+		this.logoFilePath = logoFilePath;
+	}
 
 	public int getCount() {
 		return count;

@@ -61,10 +61,11 @@
     
 	<select id="selectList" resultMap="managercompanyResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
 		SELECT * FROM 
-			(SELECT  *  FROM(
+			(select * from ( SELECT  a.*,b.A_CODE  FROM(
 					SELECT
 					ROW_NUMBER() OVER (ORDER BY M_NO) NUM,
-		           	   M_NO
+						A_NO
+		           	 ,  M_NO
 				     , M_NAME
                      , CI_COMPANY_REGISTER_NUMBER
 				     , M_EMAIL
@@ -72,7 +73,8 @@
                      , M_STATUS
 				  FROM MEMBER
                   JOIN COMPANY_INFO USING (M_NO)
-			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) WHERE A_CODE=2 ORDER BY a.M_NO)
+			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) 
+			 WHERE A_CODE=2 ORDER BY a.M_NO)c  LEFT JOIN Attachment d on  c.a_no = d.a_no ORDER BY C.M_NO)
 			 WHERE NUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
 	</select>
 	
@@ -86,9 +88,10 @@
 	</select> 
  
  <select id="vacancyNo" resultMap="managercompanyResultMap">
-		 SELECT  *  FROM(
+	 select * from (SELECT  a.*,b.A_CODE  FROM(
 					SELECT
-		           	   M_NO
+                         A_NO
+		           	   ,M_NO
 				     , M_NAME
                      , CI_COMPANY_REGISTER_NUMBER
 				     , M_EMAIL
@@ -96,7 +99,9 @@
                      , M_STATUS
 				  FROM MEMBER
                   JOIN COMPANY_INFO USING (M_NO)
-			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) WHERE A_CODE=2 and b.m_no=${no} ORDER BY a.M_NO
+			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) 
+             WHERE A_CODE=2 and b.m_no=#{no} )c
+             JOIN Attachment d on  c.a_no = d.a_no
 	</select>
 	
 	<select id="getListJobVacanscyByCompanyNum" resultMap="jobVacancyResultMap" parameterType="_int">

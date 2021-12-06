@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.workPeople.manager.company.model.dao.CompanyReportMapper">
+
+	<resultMap type="com.kh.workPeople.common.vo.JobVacancyReportView" id="jvReportMap">
+			<id property="no" column="JV_NO"/>
+			<result property="title" column="JV_TITLE"/>
+			<result property="register" column="JV_REGISTER"/>
+			<result property="count" column="JV_COUNT"/>
+			<result property="companyName" column="M_NAME"/>
+			<result property="reportCount" column="CNT"/>
+	</resultMap>
+
+	<select id="getJvReportList" resultMap = "jvReportMap">
+		SELECT H.M_NAME,G.* FROM 
+			(SELECT F.CI_STATUS_YN,F.M_NO,E.* FROM
+			(SELECT D.CNT,C.* FROM JOB_VACANCY C JOIN(SELECT A.JV_NO,COUNT(*) AS CNT  FROM JOB_VACANCY A 
+			JOIN REPORT_VACANCY B ON A.JV_NO = B.JV_NO GROUP BY A.JV_NO)D ON C.JV_NO = D.JV_NO)E JOIN COMPANY_INFO F ON E.CI_NO =F.CI_NO )G
+			JOIN MEMBER H ON G.M_NO = H.M_NO WHERE CI_STATUS_YN ='N' AND CNT>=10
+	</select>
+	
+	<update id ="disableJobVacancy" parameterType="hashmap">
+		UPDATE COMPANY_INFO SET	CI_STATUS_YN = 'Y' 
+		WHERE CI_NO IN 
+		<foreach collection="no" item="sec"  open="("   separator=", " close=")"> 
+ 	     #{sec}
+ 	    </foreach> 
+		 
+	</update>
+
+</mapper>

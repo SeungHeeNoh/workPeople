@@ -82,7 +82,7 @@ td img{width:120px; height:47px;}
 .table_wrap .table .checkbox input[type="checkbox"] + label{display: block; width: 16px; height: 16px; background:url(../images/checkbox.png) no-repeat 0 0; margin:0 auto;}
 .table_wrap .table .checkbox input[type="checkbox"]:checked + label{background-image:url(../images/checkbox_on.png);}
 
-.conver_content{height:500px; background-color: pink;}
+.conver_content{height:500px; /* background-color: pink; */}
 
 /* 사이드바 */
 .nav{
