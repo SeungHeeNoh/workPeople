@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html xmlns:th="http:/www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>기업계정정지모달창</title>
+
     <link rel="stylesheet" th:href="@{/css/common/common.css}">
     <link rel="stylesheet" th:href="@{/css/company/mypage/accountSuspension.css}">
-</head>
-<body>
-    <div id="wrap">
-        <div id="container">
-            <div class="Info_area">
-                    <a class="SizeM">모달창 열기</a>
                     <!-- 모달창 // -->
                     <div class="modal hidden">
                         <div class="bg"></div>
@@ -18,40 +8,44 @@
                             <div class="text_area">
                                 <img th:src="@{/images/companyMyPage/Warning.png}" width="42%" height="42%">
                                 <ul>
-                                    <li><span class="name">발렌티노 코리아</span>님</li>
+                                    <li><span class="name" sec:authentication="principal.name"></span>님</li>
                                     <li>계정이 <span class="point">정지</span>되어 접근이 <br>불가합니다.</li>
                                 </ul>
                              </div>
                              <div class="reason_area">
                                 <ul>
                                     <li>사유</li>
-                                    <li>'공고제목'의 게시물이 20회 신고누적되어 계정이 정지됐습니다.</li>
-                                    <li>문의가 있으신 경우 02-123-4567 으로 연락주세요.</li>
+                                    <li>노출된 공고 게시물이 신고누적되어 계정이 정지됐습니다.</li>
+                                    <li>자세한 문의는 02-123-4567 으로 연락주세요.</li>
                                 </ul>
                             </div>
                              <button type="button" class="closeBtn btn1" id="disagree_btn"><img th:src="@{/images/companyMyPage/modal_close.png}"></button>
                         </div>
                     </div>
                        <!-- // 모달창 -->
-            </div>
-        </div>
-    </div>    
-    
+      
     <!-- 모달 창 부분 -->
    <script>
     const open = () => {
-        document.querySelector(".modal").classList.remove("hidden");
+    	if(status == 'Y'){
+    		document.querySelector(".modal").classList.remove("hidden");
+    		document.querySelector("body").classList.add("not_scroll");
+    	} else {
+    		 document.location.href="/company/mypage/companyInfoInsert";
+    	}
+       
     }
 
     const close = () => {
         document.querySelector(".modal").classList.add("hidden");
+        document.querySelector("body").classList.remove("not_scroll");
     }
 
-    document.querySelector(".SizeM").addEventListener("click", open);
+   let status = document.querySelector("#yn").value;
+ 
+    
+    document.querySelector(".stop").addEventListener("click", open);
     document.querySelector("#disagree_btn").addEventListener("click", close);
     document.querySelector(".bg").addEventListener("click", close);
-
-
     </script>
-</body>
-</html>
+     <!-- 모달 창 부분 -->

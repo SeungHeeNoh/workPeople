@@ -27,8 +27,8 @@
                         <a  href="/main"><img th:src="@{/images/common/header/mlogo2.png}"></a>
                     </div>
                     <div class="corph">
-                        <div>
-                        <a href="#"><img th:src="@{/images/common/header/home.png}">
+                        <div> 
+                        <a th:href="@{'/jobs/company-information/detail-view?no='+${#authentication.principal.companyNo}}"><img th:src="@{/images/common/header/home.png}"> 
                         <p sec:authentication="principal.name"></p>
                         </a>
                         </div>
