@@ -60,7 +60,7 @@
                     </div>
                     <ul class="submenu1">
                         <li><a th:href="@{/personal/mypage/home}" sec:authorize="hasRole('PERSONAL')">마이페이지</a></li>
-                        <li><a th:href="@{/company/mypage/companyInfoInsert}" sec:authorize="hasRole('COMPANY')">마이페이지</a></li>
+                        <li><a sec:authorize="hasRole('COMPANY')" class="stop">마이페이지</a></li>
                         <li><a href="/account/manager/logout">로그아웃</a></li>
                     </ul>
                 </li>
