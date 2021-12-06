@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 
 public class MemberImpl extends User {
 	private int no;
+	private int companyNo;
 	private MemberType memberType;
 	private String id;
 	private String pwd;
@@ -26,6 +27,7 @@ public class MemberImpl extends User {
 	private int lockCount;
 	private String status;
 	private String tempPwdYn;
+	private String companyStatusYN;
 	private List<MemberRole> memberRoleList;
 
 	public MemberImpl(String username, String password, Collection<? extends GrantedAuthority> authorities) {
@@ -34,6 +36,7 @@ public class MemberImpl extends User {
 	
 	public void setDetails(Member member) {
 		this.no = member.getNo();
+		this.companyNo = member.getCompanyNo();
 		this.memberType = member.getMemberType();
 		this.id = member.getId();
 		this.pwd = member.getPwd();
@@ -51,11 +54,16 @@ public class MemberImpl extends User {
 		this.lockCount = member.getLockCount();
 		this.status = member.getStatus();
 		this.tempPwdYn = member.getTempPwdYn();
+		this.companyStatusYN = member.getCompanyStatusYN();
 		this.memberRoleList = member.getMemberRoleList();
 	}
 
 	public int getNo() {
 		return no;
+	}
+
+	public int getCompanyNo() {
+		return companyNo;
 	}
 
 	public MemberType getMemberType() {
@@ -126,6 +134,10 @@ public class MemberImpl extends User {
 		return tempPwdYn;
 	}
 
+	public String getCompanyStatusYN() {
+		return companyStatusYN;
+	}
+
 	public List<MemberRole> getMemberRoleList() {
 		return memberRoleList;
 	}
@@ -134,6 +146,5 @@ public class MemberImpl extends User {
 	public boolean isEnabled() {
 		return this.status.equals("Y") ? true : false;
 	}
-	
 	
 }

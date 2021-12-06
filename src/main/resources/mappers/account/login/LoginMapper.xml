@@ -102,4 +102,10 @@
 		     , M_LATEST_TRY_LOGIN_DATE = SYSDATE
 		 WHERE M_ID = #{id}
 	</update>
+	<select id="findCompanyNo" parameterType="_int" resultType="hashmap">
+		SELECT CI_NO
+		     , CI_STATUS_YN
+		  FROM COMPANY_INFO
+		 WHERE M_NO = #{mNo}
+	</select>
 </mapper>

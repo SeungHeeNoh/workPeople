@@ -23,5 +23,7 @@ public interface LoginMapper {
 
 	void updateAccountLock(String id);
 
+	Map<String, Object> findCompanyNo(int no);
+
 	
 }

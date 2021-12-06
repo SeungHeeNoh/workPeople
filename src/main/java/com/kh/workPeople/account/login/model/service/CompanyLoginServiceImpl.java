@@ -53,6 +53,11 @@ public class CompanyLoginServiceImpl implements CompanyLoginService {
 				}
 			}
 		}
+		
+		Map<String, Object> resultMap = loginMapper.findCompanyNo(member.getNo()); 
+		member.setCompanyNo(Integer.parseInt(String.valueOf(resultMap.get("CI_NO"))));
+		member.setCompanyStatusYN((String)resultMap.get("CI_STATUS_YN"));
+		
 		MemberImpl user = new MemberImpl(member.getId(), member.getPwd(), authorities);
 		user.setDetails(member);
 		
