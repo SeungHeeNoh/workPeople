@@ -166,4 +166,16 @@
 	   WHERE JI.JV_NO = #{no}
 	     AND JV_STATUS_YN = 'Y'
 	</select>
+	<select id="getResumeList" resultMap="Common.resumeResultMap">
+		SELECT
+		       R_NO
+		     , R_ENROLL_DATE
+		     , R_STATUS_YN
+		     , BI_TITLE
+		  FROM RESUME
+		  JOIN BASIC_INFO BI USING(R_NO)
+		 WHERE M_NO = #{userNo}
+		   AND R_DELETE_YN = 'N'
+		 ORDER BY R_STATUS_YN DESC, R_ENROLL_DATE DESC
+	</select>
 </mapper>
