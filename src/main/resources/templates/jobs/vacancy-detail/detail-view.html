@@ -154,12 +154,13 @@
 							<h3 th:text="${jobVacancyInformation.companyName}"></h3>
 							<h2 th:text="${jobVacancyInformation.jobVacancy.title}"></h2>
 						</div>
-						<div class="resume_register_content">
+						<div class="resume_register_content" th:classappend="${#lists.size(resumeList) == 0 ? 'empty_list' : ''}">
 							<form th:action="@{/jobs/vacancy-detail/apply-company}" method="POST">
 								<input type="hidden" name="jvNo" th:value="${jobVacancyInformation.jobVacancy.no}">
 								<div>
 									<h4>이력서</h4>
 									<div>
+									<th:block th:if="${#lists.size(resumeList) != 0}">
 										<ul>
 											<li class="resume" th:each="resume : ${resumeList}">
 												<input type="radio" name="resumeNo" th:value="${resume.no}" th:id="${resumeStat.index}" th:checked="${resumeStat.index == 0}">
@@ -173,6 +174,11 @@
 												</label>
 											</li> 
 										</ul>
+									</th:block>
+									<th:block th:unless="${#lists.size(resumeList) != 0}">
+										<p>등록된 이력서가 없습니다.</p>
+										<p>이력서를 새로 작성하시겠습니까?<a th:href="@{/personal/mypage/resumeEnroll}">작성하러 가기</a></p>
+									</th:block>
 									</div>
 								</div>
 								<button type="submit">입사지원</button>
