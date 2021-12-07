@@ -495,6 +495,12 @@ body.modal_open {
 	padding-left: 259px;
 }
 
+#modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li .buttons a {
+	font-size: 12px;
+	font-weight: normal;
+	color:#999;
+}
+
 #modal > .modal_inner > .resume_register_area > .resume_register_content > form > div > div > ul > li .buttons button {
 	font-size: 12px;
 	font-weight: normal;
