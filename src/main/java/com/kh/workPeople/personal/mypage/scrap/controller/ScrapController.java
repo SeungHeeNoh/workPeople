@@ -80,24 +80,10 @@ public class ScrapController {
 	public String applyResume(@PathVariable int applyBtnNo, Model model, @AuthenticationPrincipal MemberImpl user){
 
 		int rNo = user.getNo();
+		//입사지원 테이블 삽입
 		int applyCompany = applyCompanyService.applyCompany(user.getNo(),applyBtnNo);
-
-		ResumeDetails basicInfoAndEducation = resumeMapper.resumeDetailsLookUp(rNo);
-		List<Career> resumeCareerList = resumeMapper.resumeCareerList(rNo);
-		List<Activity> resumeActivityList = resumeMapper.resumeActivityList(rNo);
-		List<License> resumeLicenseList = resumeMapper.resumeLicenseList(rNo);
-		List<Language> resumeLanguageList = resumeMapper.resumeLanguageList(rNo);
-		List<Awards> resumeAwardsList = resumeMapper.resumeAwardsList(rNo);
-		List<SelfIntroduction> resumeSelfIntroductionList = resumeMapper.resumeSelfIntroductionList(rNo);
-
-
-
-//		int appliedBasicInfo = applyCompanyService.insertappliedBasicInfo(basicInfoAndEducation);
-//		-> resumeservice로 변경
-
-
-
-
+		// 입사지원한 이력서 테이블에 삽입
+		int appliedInsertCompany = applyCompanyService.insertAppliedTable(user.getNo(),applyBtnNo);
 
 		return "redirect:/personal/mypage/scrap";
 	}

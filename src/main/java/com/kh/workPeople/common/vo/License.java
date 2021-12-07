@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class License {
 
+    private int acNo;                   // 입사지원 구분 번호
     private int lNo;                            // 자격증 번호
     private int rNo;                            // 이력서 번호
     private String lName;                       // 자격증명
@@ -24,6 +25,25 @@ public class License {
         this.lPassYN = lPassYN;
         this.lAcquisitionDate = lAcquisitionDate;
         this.lAcquisitionDateFormat = lAcquisitionDateFormat;
+    }
+
+    public License(int acNo, int lNo, int rNo, String lName, String lDepartment, String lPassYN, Date lAcquisitionDate, String lAcquisitionDateFormat) {
+        this.acNo = acNo;
+        this.lNo = lNo;
+        this.rNo = rNo;
+        this.lName = lName;
+        this.lDepartment = lDepartment;
+        this.lPassYN = lPassYN;
+        this.lAcquisitionDate = lAcquisitionDate;
+        this.lAcquisitionDateFormat = lAcquisitionDateFormat;
+    }
+
+    public int getAcNo() {
+        return acNo;
+    }
+
+    public void setAcNo(int acNo) {
+        this.acNo = acNo;
     }
 
     public int getlNo() {

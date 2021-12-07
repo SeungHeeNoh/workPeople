@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Activity {
 
+    private int acNo;                   // 입사지원 구분 번호
     private int aNo;                    // 활동번호
     private int rNo;                    // 이력서번호
     private String aActivity;           // 활동 구분
@@ -39,6 +40,27 @@ public class Activity {
         this.aEndDate = aEndDate;
         this.aStartDateFormat = aStartDateFormat;
         this.aEndDateFormat = aEndDateFormat;
+    }
+
+    public Activity(int acNo, int aNo, int rNo, String aActivity, String aDepartment, String a_content, Date aStartDate, Date aEndDate, String aStartDateFormat, String aEndDateFormat) {
+        this.acNo = acNo;
+        this.aNo = aNo;
+        this.rNo = rNo;
+        this.aActivity = aActivity;
+        this.aDepartment = aDepartment;
+        this.a_content = a_content;
+        this.aStartDate = aStartDate;
+        this.aEndDate = aEndDate;
+        this.aStartDateFormat = aStartDateFormat;
+        this.aEndDateFormat = aEndDateFormat;
+    }
+
+    public int getAcNo() {
+        return acNo;
+    }
+
+    public void setAcNo(int acNo) {
+        this.acNo = acNo;
     }
 
     public int getaNo() {

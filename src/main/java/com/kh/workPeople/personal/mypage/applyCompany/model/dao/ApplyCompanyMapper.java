@@ -1,5 +1,6 @@
 package com.kh.workPeople.personal.mypage.applyCompany.model.dao;
 
+import com.kh.workPeople.common.vo.ApplyCompany;
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.PageInfo;
 import com.kh.workPeople.common.vo.ResumeDetails;
@@ -30,4 +31,5 @@ public interface ApplyCompanyMapper {
 
     int insertappliedBasicInfo(ResumeDetails basicInfoAndEducation);
 
+    ApplyCompany selectApplyCompany(int rNo, int applyBtnNo);
 }

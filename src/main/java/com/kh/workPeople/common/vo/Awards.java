@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Awards {
 
+    private int acNo;                   // 입사지원 구분 번호
     private int aNo;                        // 수상내역 번호
     private int rNo;                        // 이력서 번호
     private String aName;                   // 수상명
@@ -22,6 +23,24 @@ public class Awards {
         this.aDepartment = aDepartment;
         this.aAcquisition = aAcquisition;
         this.aAcquisitionFormat = aAcquisitionFormat;
+    }
+
+    public Awards(int acNo, int aNo, int rNo, String aName, String aDepartment, Date aAcquisition, String aAcquisitionFormat) {
+        this.acNo = acNo;
+        this.aNo = aNo;
+        this.rNo = rNo;
+        this.aName = aName;
+        this.aDepartment = aDepartment;
+        this.aAcquisition = aAcquisition;
+        this.aAcquisitionFormat = aAcquisitionFormat;
+    }
+
+    public int getAcNo() {
+        return acNo;
+    }
+
+    public void setAcNo(int acNo) {
+        this.acNo = acNo;
     }
 
     public int getaNo() {
