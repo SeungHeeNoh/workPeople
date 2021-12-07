@@ -79,7 +79,6 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService {
 
                 // 회원 대표이력서의 정보 읽어오기
                 ResumeDetails basicInfoAndEducation = resumeMapper.resumeDetailsLookUp(rNo);
-                System.out.println("basicInfoAndEducation : "+basicInfoAndEducation);
                 List<Career> resumeCareerList = resumeMapper.resumeCareerList(rNo);
                 List<Activity> resumeActivityList = resumeMapper.resumeActivityList(rNo);
                 List<License> resumeLicenseList = resumeMapper.resumeLicenseList(rNo);

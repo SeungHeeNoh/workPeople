@@ -9,12 +9,12 @@ a{text-decoration: none;}
 
 .container{ padding: 50px 0px 50px 0px; flex-wrap: nowrap; justify-content: flex-start; flex-direction: row; background-color: #FFFBF1; }
 .wrap{margin: 0 auto; width: 1100px; display: flex;}
-.content{box-sizing: border-box;  padding: 15px; position: static;}
+.content{box-sizing: border-box;  padding: 15px; position: relative;}
 #secion{margin-left:20px; width: 870px; background-color: white; border: 1px solid #C4C4C4; border-radius: 10px; float: right; }
 .h2 {text-align: center; padding-bottom: 20px; font-size: 25px; font-weight: bold;}
 .table_wrap.resident_list .table tbody tr td .tag{display: inline-block; width: 55px; height: 24px; line-height: 24px; text-align: center; color:#000;background:#F5E3B4; font-size: 12px; text-decoration: none; border-radius: 10px; width:68px; height: 28px; font-size: 14px; font-weight: medium;}
 td img{width:120px; height:47px;}
-.chat_content{box-sizing:border-box; width:350px; height:500px; background-color:#F5E3B4; border: solid 1px #000;position: absolute;}
+.chat_content{box-sizing:border-box; width:350px; height:500px; background-color:#F5E3B4; border: solid 1px #000;position: absolute;left: 259px;}
 /* 버튼 */
 .btn_box{padding-top: 20px; display: flex; justify-content: flex-end;}
 .btn_box a{display: block; width: 91px; height: 28px; line-height: 28px; border-radius:3px; background:#F5E3B4; font-size: 14px; color:#000; font-weight: medium; text-align: center; border-radius: 10px; text-decoration: none;}
@@ -127,4 +127,3 @@ td img{width:120px; height:47px;}
     font-size: 16px;
     margin-left: 65px;
 }
-

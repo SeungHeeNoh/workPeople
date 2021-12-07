@@ -6,11 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.workPeople.common.vo.JobVacancy;
@@ -47,10 +43,26 @@ public class CompanayController {
 	  returnInfo.setCount(jvList.size());
 	return returnInfo;
 	}
- 
 
+	/* 모든 채팅방 조회 */
 	@GetMapping("/customerservice")
 	public String customerService(Model model) {
+
+
+
 		return "manager/company/customerservice";
 	}
+
+	@GetMapping("/customerservice/{id}")
+	public String chatRoomEnter(@PathVariable String id, Model model){
+
+
+		return null;
+	}
+
+
+
+
+
+
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http:/www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8">
@@ -8,6 +8,16 @@
 <title>회원고객센터</title>
 <link rel="stylesheet" th:href="@{/css/common/common.css}">
 <link rel="stylesheet" th:href="@{/css/manager/user/customerservice.css}">
+
+<style>
+	.content{
+		position: relative;
+	}
+	.chat_content{
+		left: 259px;
+	}
+
+</style>
 </head>
 <div th:include="common/header.html"></div>
 <div class="container">
@@ -51,46 +61,14 @@
 										<div class="main_table">
 											<table class="table">
 												<tbody>
-													<tr class="item_list">
+													<tr class="item_list" th:each="room : ${roomList}">
 														<td><img th:src="@{/images/common/photo.png}"></td>
-														<td><a href="javascript:;">(회원이름)</a></td>
+														<td th:text="${room.name}"></td>
+														<td>
+															<a th:href="@{/personal/mypage/serviceCenter/{id}(id=${room.id})}">입장하기</a>
+														</td>
 													</tr>
-													<tr class="item_list">
-														<td><img th:src="@{/images/common/photo.png}"></td>
-														<td><a href="javascript:;">(회원이름)</a></td>
-													</tr>
-													<tr class="item_list">
-														<td><img th:src="@{/images/common/photo.png}"></td>
-														<td><a href="javascript:;">(회원이름)</a></td>
-													</tr>
-													<tr class="item_list">
-														<td><img th:src="@{/images/common/photo.png}"></td>
-														<td><a href="javascript:;">(회원이름)</a></td>
-													</tr>
-													<tr class="item_list">
-														<td><img th:src="@{/images/common/photo.png}"></td>
-														<td><a href="javascript:;">(회원이름)</a></td>
-													</tr>
-													<tr class="item_list">
-														<td><img th:src="@{/images/common/photo.png}"></td>
-														<td><a href="javascript:;">(회원이름)</a></td>
-													</tr>
-													<tr class="item_list">
-														<td><img th:src="@{/images/common/photo.png}"></td>
-														<td><a href="javascript:;">(회원이름)</a></td>
-													</tr>
-													<tr class="item_list">
-														<td><img th:src="@{/images/common/photo.png}"></td>
-														<td><a href="javascript:;">(회원이름)</a></td>
-													</tr>
-													<tr class="item_list">
-														<td><img th:src="@{/images/common/photo.png}"></td>
-														<td><a href="javascript:;">(회원이름)</a></td>
-													</tr>
-													<tr class="item_list">
-														<td><img th:src="@{/images/common/photo.png}"></td>
-														<td><a href="javascript:;">(회원이름)</a></td>
-													</tr>
+
 											</table>
 										</div>
 
