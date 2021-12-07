@@ -229,11 +229,11 @@
 }
 
 input:focus {
-  outline: 3px solid rgb(250, 217, 103);
+  outline: 2px solid rgb(250, 217, 103);
 }
 
 select:focus {
-  outline: 3px solid rgb(250, 217, 103);
+  outline: 2px solid rgb(250, 217, 103);
 }
 input::placeholder {
   font-size: 13px;
@@ -311,7 +311,7 @@ select:focus + .icoArrow img {
 }
 
 textarea:focus {
-  outline: 3px solid rgb(250, 217, 103);
+  outline: 2px solid rgb(250, 217, 103);
 }
 textarea::placeholder {
   font-size: 13px;
