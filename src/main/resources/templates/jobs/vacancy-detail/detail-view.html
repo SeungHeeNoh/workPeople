@@ -106,15 +106,15 @@
 					<div class="count">
 						<dl>
 							<dt>지원자수</dt>
-							<dd><span>56</span>명</dd>
+							<dd><span th:text="${jobVacancyInformation.appliedTotalCount}"></span>명</dd>
 						</dl>
 					</div>
 					<div class="gender">
 						<p>성별 현황</p>
-						<div class="graph"><div class="men"></div></div>
+						<div class="graph"><div class="men" th:style="'width:' + ${800/jobVacancyInformation.appliedTotalCount*jobVacancyInformation.appliedManCount} + 'px'"></div></div>
 						<div class="legend">
-							<div>남자 : 28명</div>
-							<div>여자 : 28명</div>
+							<div>남자 : [[${jobVacancyInformation.appliedManCount}]]명</div>
+							<div>여자 : [[${jobVacancyInformation.appliedTotalCount - jobVacancyInformation.appliedManCount}]]명</div>
 						</div>
 					</div>
 				</div>

@@ -12,19 +12,24 @@ public class JobVacancyInformation{
 	private String scrapJobVacancy;
 	private String reportedJobVacancy;
 	private String appliedJobVacancy;
+	private int appliedTotalCount;
+	private int appliedManCount;
 	private JobVacancy jobVacancy;
 	private int dDay;
 
 	public JobVacancyInformation() {}
 
 	public JobVacancyInformation(String companyName, int companyNo, String interestedCompany, String scrapJobVacancy,
-			String reportedJobVacancy, String appliedJobVacancy, JobVacancy jobVacancy, int dDay) {
+			String reportedJobVacancy, String appliedJobVacancy, int appliedTotalCount, int appliedManCount,
+			JobVacancy jobVacancy, int dDay) {
 		this.companyName = companyName;
 		this.companyNo = companyNo;
 		this.interestedCompany = interestedCompany;
 		this.scrapJobVacancy = scrapJobVacancy;
 		this.reportedJobVacancy = reportedJobVacancy;
 		this.appliedJobVacancy = appliedJobVacancy;
+		this.appliedTotalCount = appliedTotalCount;
+		this.appliedManCount = appliedManCount;
 		this.jobVacancy = jobVacancy;
 		this.dDay = dDay;
 	}
@@ -77,6 +82,22 @@ public class JobVacancyInformation{
 		this.appliedJobVacancy = appliedJobVacancy;
 	}
 
+	public int getAppliedTotalCount() {
+		return appliedTotalCount;
+	}
+
+	public void setAppliedTotalCount(int appliedTotalCount) {
+		this.appliedTotalCount = appliedTotalCount;
+	}
+
+	public int getAppliedManCount() {
+		return appliedManCount;
+	}
+
+	public void setAppliedManCount(int appliedManCount) {
+		this.appliedManCount = appliedManCount;
+	}
+
 	public JobVacancy getJobVacancy() {
 		return jobVacancy;
 	}
@@ -97,8 +118,9 @@ public class JobVacancyInformation{
 	public String toString() {
 		return "JobVacancyInformation [companyName=" + companyName + ", companyNo=" + companyNo + ", interestedCompany="
 				+ interestedCompany + ", scrapJobVacancy=" + scrapJobVacancy + ", reportedJobVacancy="
-				+ reportedJobVacancy + ", appliedJobVacancy=" + appliedJobVacancy + ", jobVacancy=" + jobVacancy
-				+ ", dDay=" + dDay + "]";
+				+ reportedJobVacancy + ", appliedJobVacancy=" + appliedJobVacancy + ", appliedTotalCount="
+				+ appliedTotalCount + ", appliedManCount=" + appliedManCount + ", jobVacancy=" + jobVacancy + ", dDay="
+				+ dDay + "]";
 	}
 
 }
