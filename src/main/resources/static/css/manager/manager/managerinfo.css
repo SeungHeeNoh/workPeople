@@ -8,7 +8,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
 
 
 .container{ padding: 50px 0px 0px 0px; flex-wrap: nowrap; justify-content: flex-start; flex-direction: row; background-color: #FFFBF1; }
-.wrapper{margin: 0 auto; width: 1100px; display: flex;}
+.wrapper{margin: 0 auto; width: 1100px; display: flex; margin-bottom:50px;}
 .content{box-sizing: border-box;  padding: 15px; position: static;}
 #secion{margin-left:20px; width: 870px; background-color: white; border: 1px solid #F5E3B4; border-radius: 10px; float: right; }
 .h2 {text-align: center; padding:25px 0px 20px 0px; font-size: 25px; font-weight: bold;}
