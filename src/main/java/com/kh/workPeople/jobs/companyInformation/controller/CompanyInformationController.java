@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.workPeople.common.vo.MemberImpl;
+import com.kh.workPeople.jobs.common.JobsCommon;
 import com.kh.workPeople.jobs.companyInformation.model.service.CompanyInformationService;
 import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
 import com.kh.workPeople.jobs.companyInformation.model.vo.JobVacancyData;
@@ -26,6 +27,8 @@ public class CompanyInformationController {
 	
 	@Autowired
 	private CompanyInformationService companyInformationService;
+	@Autowired
+	private JobsCommon jobsCommon;
 
 	@GetMapping("/detail-view")
 	public ModelAndView detailView(@RequestParam(defaultValue="0") int no, @AuthenticationPrincipal UserDetails user) {
@@ -35,8 +38,10 @@ public class CompanyInformationController {
 		
 		queryMap.put("companyInformationNo", no);
 		
-		if(user != null && user instanceof MemberImpl && ((MemberImpl)user).getMemberType().getNo() == 1) {
+		if(jobsCommon.isPersonalUser(user)) {
 			queryMap.put("userNo", ((MemberImpl)user).getNo());
+			
+			mv.addObject("resumeList", companyInformationService.getResumeList(((MemberImpl)user).getNo()));
 		}
 
 		companyDetailInformation = companyInformationService.getCompanyDetailInformation(queryMap);		

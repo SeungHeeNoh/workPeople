@@ -9,6 +9,7 @@
 	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 	<title th:text="${companyDetailInformation.companyName}"></title>
 	<link rel="stylesheet" th:href="@{/css/jobs/company-information/company-information.css}">
+	<link rel="stylesheet" th:href="@{/css/account/login/login_modal.css}">
 </head>
 <body>
     <div th:replace="common/header.html"></div>
@@ -110,7 +111,7 @@
 											<span th:each="experienceLevel : ${jobVacancy.experienceLevelList}" th:text="${experienceLevel.name} + (${experienceLevelStat.size-1 > experienceLevelStat.index} ? ', ' : '')" th:remove="tag"></span>
 											| <span th:text="${jobVacancy.educationLevel.name}" th:remove="tag"></span>
 										<td th:text="'~' + ${#dates.format(jobVacancy.periodEnd, 'M/d (E)')}"></td>
-										<td><button type="button" class="green">입사지원</button></td>
+										<td><button type="button" class="green apply_button">입사지원</button></td>
 									</tr>
 								</th:block>
 							</tbody>
@@ -181,6 +182,58 @@
 						</th:block>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="dimmed">
+			<div id ="modal" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_mdoal' : '') + (#authorization.expression('hasRole(''PERSONAL'')') ? 'resume_register_modal':'')}">
+				<div class="modal_inner">
+				<th:block sec:authorize="isAnonymous()">
+					<div class="login_area">
+						<h2 class="blind">개인 회원 로그인</h2>
+						<p>개인회원 로그인이 필요한 서비스입니다.</p>
+						<div th:replace="account/login/common-login :: common-login(loginRedirect='/jobs/company-information/detail-view?no=' + ${companyDetailInformation.companyInformation.no}) "></div>
+					</div>
+				</th:block>
+				<th:block sec:authorize="hasRole('PERSONAL')">
+					<div class="resume_register_area">
+						<div class="resume_register_header">
+							<h3 th:text="${companyDetailInformation.companyName}"></h3>
+							<h2></h2>
+						</div>
+						<div class="resume_register_content">
+							<form th:action="@{/jobs/vacancy-detail/apply-company}" method="POST">
+								<input type="hidden" name="jvNo" value="">
+								<div>
+									<h4>이력서</h4>
+									<div>
+									<th:block th:if="${#lists.size(resumeList) != 0}">
+										<ul>
+											<li class="resume" th:each="resume : ${resumeList}">
+												<input type="radio" name="resumeNo" th:value="${resume.no}" th:id="${resumeStat.index}" th:checked="${resumeStat.index == 0}">
+												<label th:for="${resumeStat.index}">
+													<span class="register_date" th:text="${#dates.format(resume.enrollDate, 'yyyy.M.d 등록')}"></span>
+													<p><span th:if="${#strings.equals(resume.statusYN, 'Y')}">대표이력서</span>[[${resume.title}]]</p>
+													<span class="buttons">
+														<a th:href="@{personal/mypage/resumeManagement/resumeEdit/} + ${resume.no}">수정</a>
+														<button type="button" class="open_resume" th:attr="data-resume-no=${resume.no}">미리보기</button>
+													</span>
+												</label>
+											</li> 
+										</ul>
+									</th:block>
+									<th:block th:unless="${#lists.size(resumeList) != 0}">
+										<p>등록된 이력서가 없습니다.</p>
+										<p>이력서를 새로 작성하시겠습니까?<a th:href="@{/personal/mypage/resumeEnroll}">작성하러 가기</a></p>
+									</th:block>
+									</div>
+								</div>
+								<button type="submit">입사지원</button>
+							</form>
+						</div>
+					</div>
+				</th:block>
+				</div>
+				<button type="button" class="close_button"></button>
 			</div>
 		</div>
 	</div>

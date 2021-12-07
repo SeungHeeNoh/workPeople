@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.kh.workPeople.common.vo.JobVacancy;
+import com.kh.workPeople.common.vo.Resume;
 import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
 
 @Mapper
@@ -16,4 +17,6 @@ public interface CompanyInformationMapper {
 	int getJobVacancyListCount(Map<String, Object> queryMap);
 
 	List<JobVacancy> getJobVacancyList(Map<String, Object> queryMap);
+
+	List<Resume> getResumeList(int userNo);
 }

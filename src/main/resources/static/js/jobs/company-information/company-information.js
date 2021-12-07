@@ -2,7 +2,10 @@
 	let token = document.querySelector("meta[name='_csrf']").getAttribute("content"),
 		tokenHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
 
-	let content = document.body.querySelector(".content"),
+	let body = document.body,
+		dimmed = body.querySelector(".dimmed"),
+		modal = dimmed.querySelector("#modal"),
+		content = body.querySelector(".content"),
 		infoHeader = content.querySelector(".info_header"),
 		interestedCompanyCount = infoHeader.querySelector(".like_button .count"),
 		floatingNaviWrapper = content.querySelector(".floating-navi"),
@@ -59,6 +62,7 @@
 		infoHeader.addEventListener("click", infoHeaderClickEventHandler);
 		floatingNavi.addEventListener("click", naviClickEventHanlder);
 		information.addEventListener("click", informationClickEventHandler);
+		modal.addEventListener("click", modalClickEventHandler);
 	}
 
 	function floatingNaviInit() {
@@ -212,11 +216,12 @@
 	function progressingClickEventHandler(target) {
 		if(target.tagName == "BUTTON") {
 			let button = target;
-			button.setAttribute("disabled", true);
 
 			if(button.classList.contains("apply_button")) {
-
+				openModal();
 			} else if(button.closest(".paging")) {
+				button.setAttribute("disabled", true);
+
 				let jobVacancyTable = jobVacancyTables.progressing,
 					page =  Number(button.getAttribute("data-page"));
 
@@ -249,9 +254,10 @@
 	function expiredClickEventHandler(target) {
 		if(target.tagName == "BUTTON") {
 			let button = target;
-			button.setAttribute("disabled", true);
 
 			if(button.closest(".paging")) {
+				button.setAttribute("disabled", true);
+
 				let jobVacancyTable = jobVacancyTables.progressing,
 					page =  Number(button.getAttribute("data-page"));
 
@@ -349,6 +355,31 @@
 
 			tbody.insertAdjacentHTML("beforeend", html);
 		}
+	}
+
+	function modalClickEventHandler(e) {
+		if(e.target.tagName == "BUTTON") {
+			let button = e.target;
+
+			if(button.classList.contains("close_button")) {
+				closeModal();
+			} else if(button.classList.contains("open_resume")) {
+				let resumeNo = button.getAttribute("data-resume-no"),
+				option = 'top=50, left=150, width=920, height=600, status=no, menubar=no, toolbar=no, resizable=no';
+
+					window.open("/jobs/vacancy-detail/resume-view?rNo=" + resumeNo, "이력서 보기", option);
+			}
+		}
+	}
+
+	function openModal() {
+		body.classList.add("modal_open");
+		dimmed.classList.add("show");
+	}
+
+	function closeModal() {
+		body.classList.remove("modal_open");
+		dimmed.classList.remove("show");
 	}
 
 	window.addEventListener("DOMContentLoaded", init);
