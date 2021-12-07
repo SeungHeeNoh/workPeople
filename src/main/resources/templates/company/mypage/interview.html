@@ -9,15 +9,16 @@
 <link rel="stylesheet" th:href="@{/css/company/mypage/interview.css}">
 </head>
 <body>
+<div th:include="common/cpheader.html"></div>
 <div class="wrap">
         <div class="container">
             <!-- nav -->
             <div class="sideNav">
                 <div class="nav">
                     <ul>
-                        <li class="jvManage"><a href="@{company/mypage/jvManage}">공고 관리</a></li>
-                        <li class="personalManage"><a href="@{company/mypage/personalManage}">지원자 관리</a></li>
-                        <li class="interview"><a href="@{company/mypage/interview}">면접</a></li>
+                        <li class="jvManage"><a th:href="@{company/mypage/jvManage}">공고 관리</a></li>
+                        <li class="personalManage"><a th:href="@{company/mypage/personalManage}">지원자 관리</a></li>
+                        <li class="interview"><a th:href="@{company/mypage/interview}">면접</a></li>
                     </ul>
                 </div>
             </div>
@@ -116,11 +117,10 @@
                     </table>
                 </div>
             </div>
-
-
         </div>
     </div>
-    
+    <div th:include="common/up.html"></div>    
+	<div th:include="common/footer.html"></div>
 
 </body>
 </html>

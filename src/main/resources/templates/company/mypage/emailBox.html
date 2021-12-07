@@ -8,12 +8,11 @@
 <link rel="stylesheet" th:href="@{/css/company/mypage/companyCommon.css}">
 <link rel="stylesheet" th:href="@{/css/company/mypage/emailBox.css}">
 
-<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js}"></script>
-
 <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css}"/>
 </head>
 <body>
+<div th:include="common/cpheader.html"></div>
 	<div class="wrap">
         <div class="container">
             <!-- nav -->
@@ -205,6 +204,8 @@
             </div>
         </div>
     </div>
+    <div th:include="common/up.html"></div>    
+	<div th:include="common/footer.html"></div>
     <script th:src="@{/js/company/mypage/tab.js}"></script>
 
 </body>
