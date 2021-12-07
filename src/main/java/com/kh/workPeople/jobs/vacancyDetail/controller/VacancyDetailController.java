@@ -67,6 +67,8 @@ public class VacancyDetailController {
 		if(jobVacancyInformation != null) {
 			if(isPersonalUser(user)) {
 				latestPublicationService.updateBrowse(queryMap);
+				
+				mv.addObject("resumeList", vacancyDetailService.getResumeList(((MemberImpl)user).getNo()));
 			}
 
 			mv.addObject("jobVacancyInformation", jobVacancyInformation);

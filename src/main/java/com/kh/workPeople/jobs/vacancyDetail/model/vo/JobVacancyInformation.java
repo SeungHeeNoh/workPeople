@@ -1,7 +1,5 @@
 package com.kh.workPeople.jobs.vacancyDetail.model.vo;
 
-import java.util.Date;
-
 import com.kh.workPeople.common.vo.JobVacancy;
 
 public class JobVacancyInformation{
