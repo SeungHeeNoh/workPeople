@@ -6,13 +6,13 @@
 
 <link rel="stylesheet" th:href="@{/css/common/common.css}">
 <link rel="stylesheet" th:href="@{/css/company/mypage/companyCommon.css}">
-<link rel="stylesheet" th:href="@{/css/company/maypage/companyMain.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/companyMain.css}">
+<link rel="stylesheet" th:href="@{/css/company/mypage/mainPopup.css}">
 
-<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js}"></script>
 </head>
 <body>
-<div th:include="common/header.html"></div>
+<div th:include="common/cpheader.html"></div>
+
 	 <!-- page content -->
     <div class="wrap">
         <div class="container">
@@ -27,7 +27,7 @@
                     <p>0 건</p>
                 </dic>
                 <div class="jv_insert">
-                    <button onclick="location.href='/mypage/insertJv'">공고 등록하기</button>
+                    <button onclick="location.href=''">공고 등록하기</button>
                 </div>
             </div>
             <div class="content_top2">
@@ -54,96 +54,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>공고제목,공고제목,공고제목,공고제목</td>
-                            <td>서울 강서구</td>
-                            <td>
-                                <p class="status_ing">공고중</p>
-                            </td>
-                            <td>2021-11-30</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>공고제목,공고제목,공고제목,공고제목</td>
-                            <td>서울 강서구</td>
-                            <td>
-                                <p class="status_ing">공고중</p>
-                            </td>
-                            <td>2021-11-30</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>공고제목,공고제목,공고제목,공고제목</td>
-                            <td>서울 강서구</td>
-                            <td>
-                                <p class="status_ing">공고중</p>
-                            </td>
-                            <td>2021-11-30</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>공고제목,공고제목,공고제목,공고제목</td>
-                            <td>서울 강서구</td>
-                            <td>
-                                <p class="status_ing">공고중</p>
-                            </td>
-                            <td>2021-11-30</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>공고제목,공고제목,공고제목,공고제목</td>
-                            <td>서울 강서구</td>
-                            <td>
-                                <p class="status_ing">공고중</p>
-                            </td>
-                            <td>2021-11-30</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>공고제목,공고제목,공고제목,공고제목</td>
-                            <td>서울 강서구</td>
-                            <td>
-                                <p class="status_ing">공고중</p>
-                            </td>
-                            <td>2021-11-30</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>공고제목,공고제목,공고제목,공고제목</td>
-                            <td>서울 강서구</td>
-                            <td>
-                                <p class="status_ing">공고중</p>
-                            </td>
-                            <td>2021-11-30</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>공고제목,공고제목,공고제목,공고제목</td>
-                            <td>서울 강서구</td>
-                            <td>
-                                <p class="status_ing">공고중</p>
-                            </td>
-                            <td>2021-11-30</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>공고제목,공고제목,공고제목,공고제목</td>
-                            <td>서울 강서구</td>
-                            <td>
-                                <p class="status_ing">공고중</p>
-                            </td>
-                            <td>2021-11-30</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>공고제목,공고제목,공고제목,공고제목</td>
-                            <td>서울 강서구</td>
-                            <td>
-                                <p class="status_ing">공고중</p>
-                            </td>
-                            <td>2021-11-30</td>
-                        </tr>
+                        <tr th:each="jv, i : ${jv}">
+                            <td th:text="${i.index+1}"></td>
+                            <td th:text="${jv.title}"></td>
+                            <td th:text="${jv.address}"></td>
+                            <td></td>
+                            <td th:text="${jv.periodEnd}"></td>
+                        </tr>                    
                     </tbody>
                 </table>
             </div>
@@ -181,7 +98,7 @@
             </div>
             <div class="footer">
                 <div class="footer_inner">
-                    <a href="javascript:;" class="btnTodayHide"><u>오늘 하루 보지 않기</u></a>
+                    <a href="javascript:;" class="btnTodayHide">오늘 하루 보지 않기</a>
                     <a href="javascript:;" class="btnClose">닫기</a>
                 </div>
             </div>
@@ -189,7 +106,8 @@
     </div>
     <div th:include="common/up.html"></div>    
 	<div th:include="common/footer.html"></div>
-    <script th:src="@{/js/company/mypage/Popup.js"></script>
+    <script th:src="@{/js/company/mypage/Popup.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js}"></script>
 	
 
 </body>

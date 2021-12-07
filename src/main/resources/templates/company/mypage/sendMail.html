@@ -10,6 +10,7 @@
 
 </head>
 <body>
+<div th:include="common/cpheader.html"></div>
 <div class="wrap">
         <div class="container">
             <!-- nav -->
@@ -18,7 +19,6 @@
                     <ul>
                        	<li class="sendEmail"><a th:href="@{/company/mypage/writeMail}">메일쓰기</a></li>
                         <li class="mailBox"><a th:href="@{/compnay/mypage/emailBox}">메일함</a></li>
-
                     </ul>
                 </div>
             </div>
@@ -57,6 +57,7 @@
             </div>
         </div>
     </div>
-
+    <div th:include="common/up.html"></div>    
+	<div th:include="common/footer.html"></div>
 </body>
 </html>

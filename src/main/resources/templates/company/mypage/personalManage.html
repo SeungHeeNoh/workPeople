@@ -8,24 +8,20 @@
 <link rel="stylesheet" th:href="@{/css/company/mypage/companyCommon.css}">
 <link rel="stylesheet" th:href="@{/css/company/mypage/personalManage.css}">
 
-<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js}"></script>
-<script th:src="@{/js/company/monthpicker/jquery.ui.monthpicker.js}"></script>
-
 <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css}"/>
 <link rel="stylesheet" th:href="@{/css/company/mypage/calendar/calendar.css}">
-
 </head>
 <body>
+<div th:include="common/cpheader.html"></div>
  <div class="wrap">
         <div class="container">
             <!-- nav -->
             <div class="sideNav">
                 <div class="nav">
                     <ul>
-                        <li class="jvManage"><a href="@{company/mypage/jvManage}">공고 관리</a></li>
-                        <li class="personalManage"><a href="@{company/mypage/personalManage}">지원자 관리</a></li>
-                        <li class="interview"><a href="@{company/mypage/interview}">면접</a></li>
+                        <li class="jvManage"><a th:href="@{company/mypage/jvManage}">공고 관리</a></li>
+                        <li class="personalManage"><a th:href="@{company/mypage/personalManage}">지원자 관리</a></li>
+                        <li class="interview"><a th:href="@{company/mypage/interview}">면접</a></li>
                     </ul>
                 </div>
             </div>
@@ -62,7 +58,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr onclick="location.href='jvManage.html'">
+                            <tr onclick="location.href=''">
                                 <td>1</td>
                                 <td>공고제목,공고제목,공고제목,공고제목</td>
                                 <td>3</td>
@@ -155,13 +151,13 @@
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
-
         </div>
     </div>
-    
+    <div th:include="common/up.html"></div>    
+	<div th:include="common/footer.html"></div>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js}"></script>
+<script th:src="@{/js/company/monthpicker/jquery.ui.monthpicker.js}"></script>
 
     <script>
         $(".monthpicker").monthpicker({
