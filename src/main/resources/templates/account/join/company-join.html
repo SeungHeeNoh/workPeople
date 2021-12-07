@@ -5,10 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>회원가입</title>
-	<link rel="stylesheet" th:href="@{/css/common/common.css}">
 	<link rel="stylesheet" th:href="@{/css/account/join/join.css}">
 </head>
 <body>
+	<div th:replace="common/header.html"></div>
 	<div id="container">
 		<div class="content">
 			<h2>회원가입</h2>
@@ -103,6 +103,8 @@
 			</div>
 		</div>
 	</div>
+	<div th:include="common/up.html"></div>    
+	<div th:replace="common/footer.html"></div>
 	<script th:src="@{/js/common/joinValidate.js}"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script th:src="@{/js/account/join/join.js}"></script>

@@ -51,7 +51,7 @@
 					companyLikeButtonToggleEventHandler(button);
 				}else if(button.classList.contains("scrap_button")) {
 					scrapButtonToggleEventHanlder(button);
-				} else if(button.classList.contains("apply_button")) {
+				} else if(button.classList.contains("apply_button") && !button.classList.contains("ended")) {
 					applyButtonClickEventHandler();
 				} else if(button.classList.contains("report_button")) {
 					reportButtonClickEventHandler(button);

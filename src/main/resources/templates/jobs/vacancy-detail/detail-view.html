@@ -42,7 +42,8 @@
 								</button>
 								<button type="button" class="apply_button" th:classappend="${(jobVacancyInformation.dDay < 0 ? 'ended' : '')}">
 									<span th:text="D- + ${jobVacancyInformation.dDay == 0 ? 'day' : jobVacancyInformation.dDay}"></span>
-									입사지원
+									<span th:if="${jobVacancyInformation.dDay < 0}" th:remove="tag">접수 마감</span>
+									<span th:if="${jobVacancyInformation.dDay >= 0}" th:remove="tag">입사지원</span>
 								</button>
 							</th:block>
 						</div>
@@ -51,8 +52,8 @@
 			</div>
 			<div class="job_vacancy_summary">
 				<div class="period">
-					<p class="start"><span>시작일</span>[[${#dates.format(jobVacancyInformation.jobVacancy.peiodStart, 'yyyy.MM.dd hh:mm:ss')}]]</p>
-					<p class="end"><span>마감일</span> [[${#dates.format(jobVacancyInformation.jobVacancy.periodEnd, 'yyyy.MM.dd hh:mm:ss')}]]</p>
+					<p class="start"><span>시작일</span>[[${#dates.format(jobVacancyInformation.jobVacancy.peiodStart, 'yyyy.MM.dd 00:00:00')}]]</p>
+					<p class="end"><span>마감일</span> [[${#dates.format(jobVacancyInformation.jobVacancy.periodEnd, 'yyyy.MM.dd 23:59:59')}]]</p>
 				</div>
 				<table>
 					<tbody>
