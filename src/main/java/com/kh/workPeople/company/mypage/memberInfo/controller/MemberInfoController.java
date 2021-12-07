@@ -39,8 +39,6 @@ public class MemberInfoController {
 		
 		model.addAttribute("member", user);
 		
-		log.info("memberPwd : " + user.getPwd());
-		
 		return "company/mypage/memberInfoPwd";
 	}
 	
@@ -49,8 +47,6 @@ public class MemberInfoController {
 	public String memberUpdate(Model model, @AuthenticationPrincipal MemberImpl user) {
 		
 		model.addAttribute("member", user);
-		
-		log.info("memberInfo : " + user.getPwd());
 		
 		return "company/mypage/memberInfoUpdate";
 	}
@@ -81,7 +77,7 @@ public class MemberInfoController {
 		if (passwordEncoder.matches(password, user.getPwd())) {
 			result = "redirect:/company/mypage/memberInfoUpdate";
 		} else {
-			rttr.addFlashAttribute("message", "비밀번호가 일치하지 않습니다.");
+			rttr.addFlashAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
 			result = "redirect:/company/mypage/memberInfoPwd";
 		}
 		
@@ -110,7 +106,7 @@ public class MemberInfoController {
 			result = "redirect:/company/mypage/memberInfoUpdate";
 		} else {
 			System.out.println("에러가 발생헀습니다.");
-			rttr.addFlashAttribute("message", "에러가 발생헀습니다.");
+			rttr.addFlashAttribute("errorMessage", "에러가 발생헀습니다.");
 			result = "redirect:/common/errorPage";
 		}
 		

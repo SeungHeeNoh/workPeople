@@ -1,18 +1,12 @@
 package com.kh.workPeople.company.mypage.companyInfo.controller;
 
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.security.Principal;
 import java.util.UUID;
 
-import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +23,6 @@ import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.company.mypage.companyInfo.serivce.CompanyInfoService;
-import com.kh.workPeople.configuration.FileConfiguration;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -70,13 +63,19 @@ public class CompanyInfoController {
 		member.setNo(userNO);
 		companyInformation.setNo(companyNO);
 		
-		int result = companyInfoService.info(member, companyInformation);
+		String result;
 		
-		if (result > 0) {
+		int result1 = companyInfoService.info(member, companyInformation);
+		
+		if (result1 > 0) {
 			rttr.addFlashAttribute("message", "기업 정보가 변경되었습니다.");
+			result = "redirect:/company/mypage/companyInfoInsert";
+		} else {
+			rttr.addFlashAttribute("errorMessage", "에러가 발생했습니다.");
+			result = "redirect:/common/errorPage";
 		}
 		
-		return "redirect:/company/mypage/companyInfoInsert";
+		return result;
 	}
 	
 	@PostMapping("/uploadFile")
