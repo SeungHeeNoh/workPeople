@@ -330,9 +330,6 @@ textarea::placeholder {
   background-color: #fff;
 }
 
-body {
-  background: rgb(255, 251, 241);
-}
 .infoBtnApply {
   width: 208px;
   height: 64px;
