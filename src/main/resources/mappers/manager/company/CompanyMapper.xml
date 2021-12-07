@@ -101,7 +101,7 @@
                   JOIN COMPANY_INFO USING (M_NO)
 			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) 
              WHERE A_CODE=2 and b.m_no=#{no} )c
-             JOIN Attachment d on  c.a_no = d.a_no
+             LEFT JOIN Attachment d on  c.a_no = d.a_no
 	</select>
 	
 	<select id="getListJobVacanscyByCompanyNum" resultMap="jobVacancyResultMap" parameterType="_int">
@@ -111,8 +111,8 @@
 	       ,JV_PERIOD_END
 	       ,JV_PERIOD_START
 	     FROM COMPANY_INFO 
-	     JOIN MEMBER USING(M_NO)
-	     JOIN JOB_VACANCY USING(CI_NO)
+	     LEFT JOIN MEMBER USING(M_NO)
+	     LEFT JOIN JOB_VACANCY USING(CI_NO)
 	     WHERE  M_NO=#{no}
 	</select>
 	

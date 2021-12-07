@@ -3,6 +3,7 @@
 <mapper namespace="com.kh.workPeople.main.model.dao.MainMapper">
 
 	<resultMap type="com.kh.workPeople.common.vo.MainTier" id="mainTierResultMap">
+		<result property="jvNo" column="JV_NO"/>
 		<result property="path" column="A_FILE_PATH"/>
 		<result property="fileName" column="A_CHANGE_NAME"/>
 		<result property="companyName" column="M_NAME"/>
