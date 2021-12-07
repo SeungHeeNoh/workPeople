@@ -5,10 +5,10 @@
 	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
 	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 	<title>workPeople</title>
-	<link rel="stylesheet" th:href="@{/css/common/common.css}">
 	<link rel="stylesheet" th:href="@{/css/account/find-id-pwd/find-id-pwd.css}">
 </head>
 <body>
+	<div th:replace="common/header.html"></div>
 	<div id="container">
 		<div class="content">
 			<h2>비밀번호 찾기</h2>
@@ -39,6 +39,7 @@
 			</form>
 		</div>
 	</div>
+	<div th:replace="common/footer.html"></div>
 	<script th:src="@{/js/common/joinValidate.js}"></script>
 	<script th:src="@{/js/account/find-id-pwd/find-id-pwd.js}" ></script>
 </body>
