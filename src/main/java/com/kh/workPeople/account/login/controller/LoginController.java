@@ -30,7 +30,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/member/company/login")
-	public String companyLogin(HttpServletRequest request, RedirectAttributes rttr, Model model) {
+	public String companyLogin(HttpServletRequest request, RedirectAttributes rttr, Model model) { 
 		Map<String, String> redirectMap = (Map<String, String>) RequestContextUtils.getInputFlashMap(request);
 		
 		if(redirectMap != null) {

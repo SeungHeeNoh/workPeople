@@ -9,6 +9,10 @@
 <link rel="stylesheet" th:href="@{/css/company/mypage/companyMain.css}">
 <link rel="stylesheet" th:href="@{/css/company/mypage/mainPopup.css}">
 
+<style>
+.wrap .container{height:520px;}
+</style>
+
 </head>
 <body>
 <div th:include="common/cpheader.html"></div>
@@ -20,14 +24,14 @@
                 <div class="jv_status">공고현황</div>
                 <div class="ing">
                     <p>진행중 공고</p>
-                    <p>0 건</p>
+                    <span class="num" th:text="${jvIngCount}"></span>건
                 </div>
-                <dic class="end">
+                <div class="end">
                     <p>마감된 공고</p>
-                    <p>0 건</p>
-                </dic>
+                    <span class="num">0건</span>
+                </div>
                 <div class="jv_insert">
-                    <button onclick="location.href=''">공고 등록하기</button>
+                    <button type="button" th:onclick="location.href='@{/company/mypage/insertJv}'">공고 등록하기</button>
                 </div>
             </div>
             <div class="content_top2">
@@ -54,16 +58,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="jv, i : ${jv}">
+                        <tr th:each="jv, i : ${jobVacancy}">
                             <td th:text="${i.index+1}"></td>
                             <td th:text="${jv.title}"></td>
                             <td th:text="${jv.address}"></td>
-                            <td></td>
-                            <td th:text="${jv.periodEnd}"></td>
+                            <td>공고 중</td>
+                            <td th:text="${#dates.format(jv.periodEnd, 'yyyy-MM-dd')}"></td>
                         </tr>                    
                     </tbody>
                 </table>
             </div>
+            
         </div>
     </div>
 

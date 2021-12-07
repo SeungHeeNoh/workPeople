@@ -1,10 +1,62 @@
 @charset "UTF-8";
-.wrap .container .sideNav .nav > ul .insertJv > a{color: #85cabb;}
-.wrap .container .content{margin-bottom: 20px;}
-.wrap .container .content .content_wrap{width: 840px; margin-left: 15px;}
-.wrap .container .content .content_wrap .content_title{margin-top: 25px; padding-bottom: 25px; text-align: center; font-size: 26px; border-bottom: 1px solid rgb(225, 229, 235);}
-.wrap .container .content .content_wrap .content1{margin-top: 20px; text-align: center; margin-bottom: 25px;}
-.wrap .container .content .content_wrap .content1 > input{width: 800px;height: 50px;}
+.wrap{position: relative; min-width: 1440px; background-color: #fffbf1;}
+.wrap .content_wrap{position: relative; width: 1100px; margin: 0 auto; padding: 50px 0;}
+.wrap .content_wrap::after{content: ""; display: block; clear: both;}
+.wrap .content_wrap > form .content{box-sizing: border-box; border: 1px solid rgb(225, 229, 235); background: rgb(255, 255, 255); border-radius: 10px; margin-bottom: 30px;}
+
+.content_title{text-align: center; margin-top: 20px; font-size: 26px; margin-left: 15px; margin-right: 15px; padding-bottom: 15px; border-bottom: 1px solid #3333;}
+
+.content1{padding-top: 20px; padding-bottom: 20px; text-align: center;}
+.content1 > input{width: 800px; height: 60px; font-size: 20px;}
+
+.content2{padding-top: 20px; padding-bottom: 20px; padding-left: 60px;}
+.content2 > label{margin-right: 20px; font-size: 16px;}
+.content2 #sector{width: 200px; text-align: center;}
+
+.content2_1{padding-top: 20px; padding-bottom: 20px; padding-left: 60px;}
+.content2_1 > label{margin-right: 20px; font-size: 16px;}
+.content2_1 > input{margin-right: 3px;}
+
+.content2_2{padding-top: 20px; padding-bottom: 20px; padding-left: 60px;}
+.content2_2 > label{margin-right: 13px; font-size: 16px;}
+.content2_2 > input{margin-right: 3px;}
+
+.content3{padding-top: 20px; padding-bottom: 20px; padding-left: 60px;}
+.content3 > label{margin-right: 20px; font-size: 16px;}
+.content3 > select{width: 180px; text-align: center;}
+
+.content3_1{padding-top: 20px; padding-bottom: 20px; padding-left: 60px;}
+.content3_1 > label{margin-right: 50px; font-size: 16px;}
+.content3_1 > select{text-align: center;}
+.content3_1 > input{margin-left: 10px; width: 300px; height: 22px;}
+
+.content3_2{padding-top: 20px; padding-bottom: 20px; padding-left: 60px;}
+.content3_2 > label{margin-right: 20px; font-size: 16px;}
+.content3_2 > input{width: 400px; height: 100px;}
+
+.content4{padding-top: 20px; padding-bottom: 20px; padding-left: 60px;}
+.content4 > label{margin-right: 50px; font-size: 16px;}
+.content4 > select{text-align: center; width: 200px;}
+.content4 > input{margin-right: 3px;}
+
+.content4_1{padding-top: 20px; padding-bottom: 20px; padding-left: 60px;}
+.content4_1 > label{margin-right: 50px; font-size: 16px;}
+.content4_1 > input{width: 500px; height: 50px;}
+
+.content4_2{padding-top: 20px; padding-bottom: 20px; padding-left: 60px;}
+.content4_2 > label{margin-right: 38px; font-size: 16px;}
+.content4_2 > input{width: 600px; height: 100px;}
+
+
+.submitBtn{margin-left: 400px; width: 100px; height: 30px; background: #B1D581; border: none; border-radius: 10px;}
+.submitBtn:hover{border: 1px solid #323232;}
+.resetBtn{margin-left: 100px; width: 100px; height: 30px; background: #F3C995; border: none; border-radius: 10px;}
+.resetBtn:hover{border: 1px solid #323232;}
+
+
+
+
+
 
 
 
