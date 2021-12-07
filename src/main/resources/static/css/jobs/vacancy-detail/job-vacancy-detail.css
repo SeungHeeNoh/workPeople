@@ -113,6 +113,7 @@
 
 .content > .job_vacancy_header_wrap > .job_vacancy_header > .job_vacancy_header_inner > div:last-of-type > .apply_button.ended {
 	background-color: #888;
+	cursor: default;
 }
 
 .content > .job_vacancy_header_wrap > .job_vacancy_header > .job_vacancy_header_inner > div:last-of-type > .apply_button > span {
