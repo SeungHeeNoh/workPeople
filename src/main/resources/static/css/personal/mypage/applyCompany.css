@@ -53,6 +53,7 @@
     box-sizing: border-box;
     font-size: 14px;
     position: relative;
+    border-bottom: 1px solid #c4c4c4;
 }
 
 .content_title_text4_detail_wrap{
@@ -99,7 +100,7 @@
 
 .content_title_text4_2{
     color:#979797;
-    margin-left: 8px;
+    margin-left: -3px;
     text-align: center;
     display: flex;
 }
@@ -124,7 +125,7 @@
     width: 125px;
     height: 38px;
     margin-top: 15px;
-    margin-left: 538px;
+    margin-left: 662px;
     font-size: 20px;
 }
 

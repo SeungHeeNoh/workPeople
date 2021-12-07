@@ -51,7 +51,7 @@ function onMessage(evt){
     /* 채팅창에 누군가 입장한 경우 */
     if(strArray.length >1){
         var host = strArray[0].substr(1, strArray[0].indexOf(":")-1);
-        var ck_host = '[[${host}]]';
+
 
         console.log("host : "+host);
         console.log("ck_host : "+ck_host);
@@ -64,7 +64,7 @@ function onMessage(evt){
                 + "</div>";
         } else{
             /* 다른 사람이 작성한 메세지일 때*/
-            printHTML += "<div>"
+            printHTML += "<div style='margin-left:2%'>"
                 + "<sub>"+printDate+"</sub><br>"
                 + "<strong>["+strArray[1]+"] : " + strArray[2] + "</strong>"
                 + "</div>";

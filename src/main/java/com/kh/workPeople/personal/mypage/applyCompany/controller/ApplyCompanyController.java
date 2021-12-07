@@ -45,6 +45,13 @@ public class ApplyCompanyController {
 		List<JobVacancyLookUp> jobVacancyLookUpList = (List<JobVacancyLookUp>)applyCompanyMap.get("jobVacancyLookUpList");
 //		List<JobVacancyLookUp> jobVacancyLookUpList = applyCompanyService.jobVacancyLookUpList(user.getNo());
 
+		for(JobVacancyLookUp job : jobVacancyLookUpList){
+			JobVacancyLookUp job2 =applyCompanyService.applyCompanyRbDateFormat(job.getJvNo());
+			if(job2 != null) {
+				job.setRbDateFormat(job2.getRbDateFormat());
+			}
+		}
+
 
 		model.addAttribute("jobVacancyLookUpList",jobVacancyLookUpList);
 		model.addAttribute("pi",applyCompanyMap.get("pi"));

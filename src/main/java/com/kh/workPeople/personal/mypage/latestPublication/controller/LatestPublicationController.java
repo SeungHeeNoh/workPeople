@@ -68,11 +68,12 @@ public class LatestPublicationController {
     }
 
     @GetMapping("latestPublication/applyResume/{rNo},{applyBtnNo}")
-    public String applyResume(@PathVariable int rNo, @PathVariable int applyBtnNo, RedirectAttributes rttr){
+    public String applyResume(@AuthenticationPrincipal MemberImpl user,@PathVariable int applyBtnNo, RedirectAttributes rttr){
 
-        int applyCompany = applyCompanyService.applyCompany(rNo,applyBtnNo);
+        int applyCompany = applyCompanyService.applyCompany(user.getNo(),applyBtnNo);
 
         if(applyCompany>0){
+            rttr.addFlashAttribute("message","입사지원이 완료되었습니다.");
             return "redirect:/personal/mypage/latestPublication";
         } else{
             rttr.addFlashAttribute("errorMessage","입사지원에 실패하셨습니다.");

@@ -18,7 +18,11 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        let ck_host = [[${host}]];
+        /*]]>*/
+    </script>
 </head>
 <body>
 <div th:include="common/header.html"></div>
@@ -34,7 +38,9 @@
                 </div>
                 <div class="content2_container">
                     <div class="content2_container_padding">
-                        <span th:text="${username}"></span>
+                        <span class="content2_beginWord">
+                            <span th:text="${username}"></span><span>님이 입장하였습니다.</span>
+                        </span>
                     </div>
                 </div>
                 <div class="content3_container">

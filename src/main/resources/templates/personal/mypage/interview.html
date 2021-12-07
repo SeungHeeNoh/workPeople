@@ -7,13 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="/css/common/common.css">
-    <link rel="stylesheet" href="/css/personal/myPage/mainSnb.css">
-    <link rel="stylesheet" href="/css/personal/myPage/interview.css">
+    <link rel="stylesheet" href="/css/personal/mypage/mainSnb.css">
+    <link rel="stylesheet" href="/css/personal/mypage/interview.css">
     
     <title>면접 현황</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -33,42 +30,57 @@
 
                 <div th:each="job : ${jobVacancyLookUpSimpleList}">
                     <div class="content_title_text4">
-                        <input type="checkbox" class="checkBox">
+                        <form class="delete_form" th:action="@{/personal/mypage/interview/delete}" method="post" name="delete_form">
+                            <input type="checkbox" class="checkBox" th:value="${job.aiNo}" name="aiNo">
+                        </form>
                         <div class="content_title_text4_1" th:text="${job.name}"></div>
                         <div class="content_title_text4_2"><div th:text="${job.aiDateFormat}"></div> <div th:text="${job.aiTimeFormat}"></div></div>
 
-                        <th:block th:if="${#strings.equals(job.type,'interview')}">
+                        <th:block th:if="${job.aiStatusYNFormat == 1}">
                             <div class="content_title_text4_3">면접 대기</div>
                         </th:block>
 
-                        <th:block th:if="!${#strings.equals(job.type,'interview')}">
+                        <th:block th:if="${job.aiStatusYNFormat == 0}">
                             <div class="content_title_text4_3">면접 종료</div>
                         </th:block>
 
-                        <th:block th:if="${#strings.equals(job.type,'interview')}">
+                        <th:block th:if="${job.aiStatusYNFormat == 1}">
                             <button class="content_title_text4_4">입장하기</button>
                         </th:block>
                     </div>
                     <hr class="hr">
                 </div>
 
-
-                
-
                 <button class="green green1">삭제</button>
 
-            
+                <th:block th:if="${#lists.size(jobVacancyLookUpSimpleList)>0}">
+                    <div th:replace="common/paging.html"></div>
+                </th:block>
 
-            
-
-            
-
-
-
-       
         </div>
         </section>
     </div>
+<script>
+    let deleteBtn = document.querySelector(".green1"),
+        delete_form = document.querySelectorAll(".delete_form");
+    deleteBtn.addEventListener("click",deleteEvent);
+
+    function deleteEvent(){
+
+        confirm("선택하신 항목을 삭제하시겠습니까?");
+
+        if(confirm){
+
+            for(let i=0; i<delete_form.length; i++){
+
+            }
+
+            delete_form.submit();
+        }
+
+
+    }
+</script>
 </body>
 
 </html>

@@ -1,8 +1,11 @@
 package com.kh.workPeople.personal.mypage.applyCompany.model.service;
 
+import com.kh.workPeople.common.vo.Career;
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.PageInfo;
+import com.kh.workPeople.common.vo.ResumeDetails;
 import com.kh.workPeople.personal.mypage.applyCompany.model.dao.ApplyCompanyMapper;
+import com.kh.workPeople.personal.mypage.resume.model.dao.ResumeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +18,11 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService{
 
     private final ApplyCompanyMapper applyCompanyMapper;
 
+
     @Autowired
     public ApplyCompanyServiceImpl(ApplyCompanyMapper applyCompanyMapper){
         this.applyCompanyMapper = applyCompanyMapper;
+
     }
 
     @Override
@@ -71,4 +76,16 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService{
 
         return returnMap;
     }
+
+    @Override
+    public JobVacancyLookUp applyCompanyRbDateFormat(int jvNo) {
+        return applyCompanyMapper.applyCompanyRbDateFormat(jvNo);
+    }
+
+    @Override
+    public int insertappliedBasicInfo(ResumeDetails basicInfoAndEducation) {
+        return applyCompanyMapper.insertappliedBasicInfo(basicInfoAndEducation);
+    }
+
+
 }

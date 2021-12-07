@@ -51,12 +51,12 @@ public class ResumeController {
 			}
 		}
 
-		if(repResumeNo != 0){
+
 			int resumeBrowseCount = resumeService.resumeBrowseCount(repResumeNo);
-			int applyCompanyCount = resumeService.applyCompanyCount(repResumeNo);
+			int applyCompanyCount = resumeService.applyCompanyCount(user.getNo());
 			model.addAttribute("resumeBrowseCount",resumeBrowseCount);
 			model.addAttribute("applyCompanyCount",applyCompanyCount);
-		}
+
 
 		model.addAttribute("resumeList",resumeList);
 		model.addAttribute("repExist",rep);
@@ -150,11 +150,7 @@ public class ResumeController {
 	@GetMapping("resumeManagement/resumeDelete/{rNo}")
 	public String resumeManagementDelete(@PathVariable int rNo, Model model){
 
-		int resumeIsApplyCompanyYN = homeService.resumeIsApplyCompanyYN(rNo);
 
-		if(resumeIsApplyCompanyYN > 0){
-			int resumeDelete = homeService.resumeDelete(rNo);
-		} else{
 			int basicInfoDeleteFromDB = homeService.basicInfoDeleteFromDB(rNo);
 			int educationDeleteFromDB = homeService.educationDeleteFromDB(rNo);
 			int careerDeleteFromDB = homeService.careerDeleteFromDB(rNo);
@@ -165,7 +161,7 @@ public class ResumeController {
 			int selfIntroductionDeleteFromDB = homeService.selfIntroductionDeleteFromDB(rNo);
 			int resumeBrowseDeleteFromDB = homeService.resumeBrowseDeleteFromDB(rNo);
 			int resumeDeleteFromDB = homeService.resumeDeleteFromDB(rNo);
-		}
+
 
 
 		return "redirect:/personal/mypage/resumeManagement";

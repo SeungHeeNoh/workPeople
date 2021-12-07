@@ -167,7 +167,7 @@
         SELECT
             COUNT(*)
         FROM APPLY_COMPANY
-        WHERE R_NO=#{repResumeNo}
+        WHERE M_NO=#{repResumeNo}
     </select>
 
     <select id="resumeDetailsLookUp" resultMap="resumeDetails">
@@ -289,6 +289,22 @@
         SET R_STATUS_YN = 'Y'
         WHERE R_NO = #{resumeNo}
     </update>
+
+<!--    <insert id="insertappliedBasicInfo" parameterType="com.kh.workPeople.common.vo.ResumeDetails">-->
+<!--        INSERT INTO APPLIED_BASIC_INFO-->
+<!--        (-->
+
+<!--        )-->
+<!--        VALUES-->
+<!--        (-->
+
+<!--         #{}-->
+<!--        )-->
+
+<!--    </insert>-->
+
+
+
 
 
 </mapper>

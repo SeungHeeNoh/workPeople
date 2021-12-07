@@ -6,30 +6,64 @@
     <resultMap id="jobVacancy" type="com.kh.workPeople.common.vo.JobVacancyLookUpSimple">
         <id property="no" column="CI_NO"/>
         <result property="name" column="M_NAME"/>
-        <result property="Type" column="AC_TYPE"/>
+        <result property="type" column="AC_TYPE"/>
         <result property="aiDate" column="AI_DATE"/>
         <result property="aiTime" column="AI_TIME"/>
         <result property="aiDateFormat" column="AI_DATEFORMAT"/>
         <result property="aiTimeFormat" column="AI_TIMEFORMAT"/>
         <result property="aiStatusYN" column="AI_STATUS_YN"/>
-
+        <result property="aiNo" column="AI_NO"/>
     </resultMap>
 
-    <select id="jobVacancyLookUpList" resultMap="jobVacancy">
+    <select id="jobVacancyLookUpSimpleList" resultMap="jobVacancy">
         SELECT
-            CI_NO
+            AC_NO
+            , CI_NO
              , M_NAME
              , AC_TYPE
              , AI_DATE
              , AI_TIME
+             , AI_STATUS_YN
              , TO_CHAR(AI_DATE,'YYYY.MM.dd') AS "AI_DATEFORMAT"
              , TO_CHAR(AI_TIME,'hh24:mi') AS "AI_TIMEFORMAT"
-        FROM COMPANY_INFO
-         JOIN MEMBER USING(M_NO)
-         JOIN JOB_VACANCY USING(CI_NO)
-         JOIN APPLY_COMPANY USING(JV_NO)
-         JOIN APPLY_INTERVIEW USING(JV_NO,R_NO)
-
+        FROM APPLY_INTERVIEW
+         JOIN APPLY_COMPANY AC USING(AC_NO)
+         JOIN JOB_VACANCY USING(JV_NO)
+         JOIN COMPANY_INFO CI USING(CI_NO)
+         JOIN MEMBER M ON(M.M_NO=CI.M_NO)
+        WHERE AC.M_NO = #{no}
+        ORDER BY AI_DATE DESC
     </select>
 
+    <select id="jobVacancyLookUpSimpleListPagingQuery" resultMap="jobVacancy" parameterType="com.kh.workPeople.common.vo.PageInfo">
+        SELECT
+            AC_NO
+            ,  CI_NO
+             , M_NAME
+             , AC_TYPE
+             , AI_DATE
+             , AI_TIME
+             , AI_STATUS_YN
+             , TO_CHAR(AI_DATE,'YYYY.MM.dd') AS "AI_DATEFORMAT"
+             , TO_CHAR(AI_TIME,'hh24:mi') AS "AI_TIMEFORMAT"
+        FROM (
+                 SELECT ROWNUM RNUM
+                      , NLIST.*
+                 FROM(
+                         SELECT *
+                         FROM APPLY_INTERVIEW
+                          JOIN APPLY_COMPANY AC USING(AC_NO)
+                          JOIN JOB_VACANCY USING(JV_NO)
+                          JOIN COMPANY_INFO CI USING(CI_NO)
+                          JOIN MEMBER M ON(M.M_NO=CI.M_NO)
+                         WHERE AC.M_NO = #{userNo}
+                         ORDER BY AI_DATE DESC) NLIST)
+        WHERE RNUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
+    </select>
+
+    <delete id="deleteInterviewList" parameterType="_int">
+        DELETE
+            FROM APPLY_INTERVIEW
+        WHERE AI_NO = #{aiNo}
+    </delete>
 </mapper>

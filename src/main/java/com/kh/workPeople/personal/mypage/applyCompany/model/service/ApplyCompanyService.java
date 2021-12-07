@@ -1,6 +1,7 @@
 package com.kh.workPeople.personal.mypage.applyCompany.model.service;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
+import com.kh.workPeople.common.vo.ResumeDetails;
 
 import java.util.List;
 import java.util.Map;
@@ -22,4 +23,8 @@ public interface ApplyCompanyService {
     int applyCompany(int rNo, int applyBtnNo);
 
     Map<String, Object> jobVacancyLookUpListPaging(int no, int page);
+
+    JobVacancyLookUp applyCompanyRbDateFormat(int jvNo);
+
+    int insertappliedBasicInfo(ResumeDetails basicInfoAndEducation);
 }
