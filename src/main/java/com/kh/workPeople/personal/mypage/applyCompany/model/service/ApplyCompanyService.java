@@ -28,4 +28,5 @@ public interface ApplyCompanyService {
 
     JobVacancyLookUp applyCompanyRbDateFormat(int jvNo);
 
+    int applyCancel(int no, List<Integer> jvNoList);
 }

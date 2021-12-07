@@ -9,7 +9,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -28,14 +30,14 @@ public class ApplyCompanyController {
 	public String applyCompany(Model model, @AuthenticationPrincipal MemberImpl user, @RequestParam(defaultValue = "1") int page ) {
 
 		int applyCount = applyCompanyService.applyCount(user.getNo());
-		int passCount = applyCompanyService.passCount(user.getNo());
-		int interviewCount = applyCompanyService.interviewCount(user.getNo());
+//		int passCount = applyCompanyService.passCount(user.getNo());
+//		int interviewCount = applyCompanyService.interviewCount(user.getNo());
 		int passAllCount = applyCompanyService.passAllCount(user.getNo());
 		int failureCount = applyCompanyService.failureCount(user.getNo());
 
 		model.addAttribute("applyCount",applyCount);
-		model.addAttribute("passCount",passCount);
-		model.addAttribute("interviewCount",interviewCount);
+//		model.addAttribute("passCount",passCount);
+//		model.addAttribute("interviewCount",interviewCount);
 		model.addAttribute("passAllCount",passAllCount);
 		model.addAttribute("failureCount",failureCount);
 
@@ -59,6 +61,19 @@ public class ApplyCompanyController {
 		return "personal/mypage/applyCompany";
 	}
 
+	@PostMapping("applyCompany/applyCancel")
+	public String applyCancel(@RequestParam("jvNo") List<Integer> jvNoList, @AuthenticationPrincipal MemberImpl user, RedirectAttributes rttr, HttpServletRequest request){
+
+		int result = applyCompanyService.applyCancel(user.getNo(), jvNoList);
+
+		if(result>0){
+			rttr.addFlashAttribute("message","선택하신 이력서 열람기업 삭제에 성공했습니다.");
+			return "redirect:/personal/mypage/applyCompany";
+		}else{
+			request.setAttribute("message","선택하신 이력서 열람기업 삭제에 실패했습니다.");
+			return "/common/errorPage";
+		}
+	}
 
 
 

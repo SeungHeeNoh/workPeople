@@ -2,7 +2,9 @@
 .header_text{
     margin-bottom: 15px;
 }
-
+.rbcCssHover:hover{
+    cursor: pointer;
+}
 .home_content_3{
     display: flex;
     justify-content: space-between;

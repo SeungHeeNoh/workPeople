@@ -12,7 +12,7 @@
 
 .content1_container{
     text-align: center;
-    width: calc( 100% / 5);
+    width: calc( 100% / 3);
     margin-bottom: 20px;
     line-height: 52px;
 }
@@ -104,10 +104,17 @@
     text-align: center;
     display: flex;
 }
-
+.acCss1{
+    display: flex;
+}
 
 .content_title_text4_1{
     margin-top: 10px;
+}
+
+.content_title_text4_1:hover,
+.content_title_text4_detail_wrap:hover{
+    cursor: pointer;
 }
 
 .checkBtn1{

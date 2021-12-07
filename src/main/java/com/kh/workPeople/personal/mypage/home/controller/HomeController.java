@@ -230,7 +230,7 @@ public class HomeController {
 		int applyCompany = applyCompanyService.applyCompany(user.getNo(),applyBtnNo);
 		int appliedInsertCompany = applyCompanyService.insertAppliedTable(user.getNo(),applyBtnNo);
 
-		if(applyCompany>0){
+		if(applyCompany>0 && appliedInsertCompany>0){
 			return "redirect:/personal/mypage/home";
 		} else{
 			rttr.addFlashAttribute("errorMessage","입사지원에 실패하셨습니다.");
