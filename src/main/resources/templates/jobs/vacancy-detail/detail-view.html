@@ -40,12 +40,22 @@
 										<span th:unless="${#strings.equals(jobVacancyInformation.interestedCompany, 'Y')}" th:remove="tag">설정</span>
 									</span>
 								</button>
-								<button type="button" class="apply_button" th:classappend="${(jobVacancyInformation.dDay < 0 ? 'ended' : '') + (#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y') ? 'applied' : '')}">
+								<th:block th:unless="${jobVacancyInformation.dDay} >= 0 and ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}">
+								<button type="button" class="apply_button" th:classappend="${(jobVacancyInformation.dDay < 0 ? 'ended' : '')}">
 									<span th:text="D- + ${jobVacancyInformation.dDay == 0 ? 'day' : jobVacancyInformation.dDay}"></span>
 									<span th:if="${jobVacancyInformation.dDay < 0}" th:remove="tag">접수 마감</span>
 									<span th:if="${jobVacancyInformation.dDay} >= 0 and not ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}" th:remove="tag">입사지원</span>
-									<span th:if="${jobVacancyInformation.dDay} >= 0 and ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}" th:remove="tag">지원취소</span>
 								</button>
+								</th:block>
+								<th:block th:if="${jobVacancyInformation.dDay} >= 0 and ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}">
+								<form th:action="@{/jobs/vacancy-detail/cancel-apply-company/}" method="POST">
+									<input type="hidden" name="jvNo" th:value="${jobVacancyInformation.jobVacancy.no}">
+									<button type="submit" th:classappend="${(#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y') ? 'applied' : '')}">
+										<span th:text="D- + ${jobVacancyInformation.dDay == 0 ? 'day' : jobVacancyInformation.dDay}"></span>
+										<span th:if="${jobVacancyInformation.dDay} >= 0 and ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}" th:remove="tag">지원취소</span>
+									</button>
+								</form>
+								</th:block>					
 							</th:block>
 						</div>
 					</div>
