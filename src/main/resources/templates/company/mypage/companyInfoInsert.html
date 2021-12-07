@@ -9,7 +9,7 @@
  
 </head>
 <body>
-<div th:include="common/cpheader.html"></div>
+<div th:replace="common/cpheader.html"></div>
     <div id="wrap">
         <div id="container">
             <!-- 사이드바 -->
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="popCont">
                                         <ul class="ntcList">
-                                            <li>- <em>JPEG,JPG,PNG</em> 파일형식으로, 200KB 용량 이내의 파일만 등록가능합니다.</li>
+                                            <li>- <em>JPEG,JPG,PNG</em> 파일형식만 등록가능합니다.</li>
                                             <li>- 로고 업로드 시 자동으로 최적화 되어 노출됩니다.</li>
                                         </ul>
                                         <!--// 파일첨부한 경우 -->
@@ -224,8 +224,8 @@
          
         </div>
      </div>  
-<div th:include="common/up.html"></div>    
-<div th:include="common/footer.html"></div>
+<div th:replace="common/up.html"></div>    
+<div th:replace="common/footer.html"></div>
 	
 	<!-- 주소 "검색" 팝업 레이어 -->
 	<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
