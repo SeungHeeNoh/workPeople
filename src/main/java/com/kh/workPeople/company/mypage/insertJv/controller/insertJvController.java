@@ -15,10 +15,9 @@ public class insertJvController {
 		return "/company/mypage/insertJv";
 	}
 	
-	@PostMapping("/insert-jobvacancy")
+	@PostMapping("/insertJv")
 	public String insertJobVacancy() {
-		
-		return "redirect:/main";
+		return "";
 	}
 
 }

@@ -13,7 +13,6 @@ import com.kh.workPeople.company.mypage.companyMain.model.dao.CompanyMainMapper;
 @Service
 public class CompanyMainServiceImpl implements CompanyMainService{
 	
-	
 	private CompanyMainMapper companyMainMapper;
 	
 	@Autowired
@@ -22,27 +21,31 @@ public class CompanyMainServiceImpl implements CompanyMainService{
 	}
 
 	@Override
-	public Member memberInfoSelect(String userId) {
-		
-		return companyMainMapper.memberInfoSelect(userId);
+	public Member memberInfoselect(String userId) {
+		return companyMainMapper.memberInfoselect(userId);
 	}
 
 	@Override
 	public CompanyInformation companyInfoSelect(int userNo) {
-		
 		return companyMainMapper.companyInfoSelect(userNo);
 	}
 
 	@Override
-	public JobVacancy jvInfoSelect(int ciNo) {
-		
-		return companyMainMapper.jvInfoSelect(ciNo);
+	public JobVacancy jobVacancyInfoSelect(int ciNo) {
+		return companyMainMapper.jobVacancyInfoSelect(ciNo);
 	}
 
 	@Override
-	public List<JobVacancy> findAllJvList() {
-		
-		return companyMainMapper.findAllJvList();
+	public int jvIngCount(int no) {
+		return companyMainMapper.jvIngCount(no);
 	}
+
+	
+
+
+	
+	
+	
+	
 
 }
