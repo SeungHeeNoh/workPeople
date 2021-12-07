@@ -28,9 +28,6 @@ public class CompanayController {
 	  @GetMapping("/companyinfo") 
 	  public ModelAndView companyList(ModelAndView mv, @RequestParam(defaultValue = "1") int page) { 
 		  Map<String, Object> map = companyService.clist(page);
-		  
-//		  System.out.println( map.get("companyList"));
-		  
 		  mv.addObject("companyList", map.get("companyList")); 
 		  mv.addObject("pi", map.get("pi"));
 		  mv.setViewName("manager/company/companyinfo");
@@ -44,7 +41,7 @@ public class CompanayController {
 	public ManagerCompanyInfo vacancyNo( @RequestParam("no") int no){
 	  ManagerCompanyInfo returnInfo = companyService.vacancyNo(no); //ManagerCompanyInfo의 기능이 목적이아닌 커스텀가능한 리턴용 선물상자
 	  List<JobVacancy> jvList = companyService.getJobVacancyListByCompanyNum(returnInfo.getMember().getNo());
-	  
+//	  System.out.println(jvList);
 	  
 	  returnInfo.setList(jvList);
 	  returnInfo.setCount(jvList.size());

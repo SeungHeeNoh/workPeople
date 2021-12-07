@@ -11,5 +11,6 @@ import com.kh.workPeople.common.vo.JobVacancyReportView;
 public interface CompanyReportMapper {
 
 	List<JobVacancyReportView> getJvReportList();
+	void disableCompanyInfo(HashMap<String, String[]> map);
 	void disableJobVacancy(HashMap<String, String[]> map);
 }

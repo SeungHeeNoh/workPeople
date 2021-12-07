@@ -17,6 +17,8 @@ header > div > ul.gnb > li {
     margin-left: 78px;
 }
 
+
+
 header .gnb li a{
     text-align: center;
     font-size: 18px;
@@ -44,28 +46,40 @@ header .gnb {
 
 .loginArea{
     border-radius: 20px;
-    width: 164px;
+   /* width: 164px;  */
     background-color: #F5E3B4;
     font-size: 18px;
     color: black;
-    padding: 10px 0px;
+    padding: 10px 10px;
     text-align: center;
     cursor: pointer;
 }
 
 #menu > ul > li > ul {
     display: none;
-    position: absolute;
+    position: relative; 
     background: white;
 }
 #menu > ul > li:hover > ul {
     display:block;
   
 }
+.local{
+	position: relative;
+    top: 45px;
+    left: 200px;
+    font-size: 20px;
+}
 
+.job{
+	     position: relative;
+    top: 45px;
+    left: 300px;
+    font-size: 20px;
+}
 ul .submenu1 > li {
     font-size: 12px;
-    margin: 0 35px;
+    margin: 0px auto;
     text-align: center;
 }
 
@@ -84,11 +98,11 @@ ul .submenu1 > li {
   
 }
 
-ul .submenu2 > li {
+/* ul .submenu2 > li {
     font-size: 12px;
-    margin: 0 35px;
+    margin: 0px auto;
     text-align: center;
-}
+} */
 
 header .gnb2{
     float: left;

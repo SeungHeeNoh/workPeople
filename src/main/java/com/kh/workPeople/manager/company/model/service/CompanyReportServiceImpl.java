@@ -29,8 +29,12 @@ public class CompanyReportServiceImpl implements CompanyReportService{
 	public void disableJobVacancy(String[] no) {
 		HashMap<String, String[]> map = new HashMap<>();
 		map.put("no", no);
-		 mapper.disableJobVacancy(map);
+		mapper.disableJobVacancy(map);
+		mapper.disableCompanyInfo(map);
+		
 	}
+	
+	
 	
 	
 	

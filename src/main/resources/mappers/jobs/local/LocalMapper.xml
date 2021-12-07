@@ -81,25 +81,39 @@
 		<id property="no" column="CT_NO"/>
 		<result property="name" column="CT_NAME"/>
 	</resultMap>
-	
-	<select id ="getJobVacancyLookUpList" resultMap="jobVacancyResultMap" parameterType="hashmap">
-     SELECT
+
+ 	<select id ="getJobVacancyLookUpList" resultMap="jobVacancyResultMap" parameterType="hashmap">
+	   SELECT
         JV_NO
        ,JV_TITLE
        ,M_NAME
        ,S_NAME
        ,JV_ADDRESS
        ,JV_PERIOD_END
+        , case when P_CODE = 3 
+	               and <![CDATA[TO_CHAR(P_START_DATE, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD') ]]>
+	               and <![CDATA[TO_CHAR(P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') 
+	               then to_date(to_char(SYSDATE, 'YYYY-MM-DD HH24:')|| '00:00', 'YYYY-MM-DD HH24:MI:SS') ]]>
+	          else JV_REGISTER end as BASEDATE
+               , case when P_CODE = 3 
+	               and <![CDATA[ TO_CHAR(P_START_DATE, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD')  ]]>
+	               and <![CDATA[ TO_CHAR(P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') ]]>
+	               then 1
+	          else 0 end as BASEDATECHECK   
      FROM COMPANY_INFO 
-     JOIN  SECTOR USING(S_NO)
-     JOIN MEMBER USING(M_NO)
-     JOIN JOB_VACANCY USING(CI_NO)
-     WHERE  
-     <foreach collection="local" item="lc"  separator=" OR ">
- 	    JV_ADDRESS LIKE '%' || #{lc} || '%'
- 	     </foreach>
-     ORDER BY JV_UPDATE ASC
-	</select>
+      JOIN SECTOR USING(S_NO) 
+	     JOIN MEMBER USING(M_NO)
+	     JOIN JOB_VACANCY USING(CI_NO)
+	     LEFT JOIN PROMOTION_ORDER USING(JV_NO)
+	    WHERE <![CDATA[TO_CHAR(JV_PERIOD_START, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD')
+	      AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')  ]]>
+	      AND JV_STATUS_YN = 'Y'
+          AND 
+           <foreach collection="local" item="lc"  separator=" OR ">
+ 	    	JV_ADDRESS LIKE '%' || #{lc} || '%'
+ 	     	</foreach>
+	    ORDER BY BASEDATE DESC
+	    </select> 
 	
 	<select id="getJobVacancyLookUpListBasic" resultMap="jobVacancyResultMap">
 		<![CDATA[
@@ -127,6 +141,7 @@
 	     LEFT JOIN PROMOTION_ORDER USING(JV_NO)
 	    WHERE TO_CHAR(JV_PERIOD_START, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD')
 	      AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
+	      AND JV_STATUS_YN = 'Y'
 	    ORDER BY BASEDATE DESC
       ]]>
 	</select>
