@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.kh.workPeople.common.vo.*;
+import com.kh.workPeople.personal.mypage.resume.model.dao.ResumeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -23,9 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.SessionFlashMapManager;
 
-import com.kh.workPeople.common.vo.JobVacancyLookUp;
-import com.kh.workPeople.common.vo.MemberImpl;
-import com.kh.workPeople.common.vo.Resume;
 import com.kh.workPeople.personal.mypage.applyCompany.model.service.ApplyCompanyService;
 import com.kh.workPeople.personal.mypage.home.model.service.HomeService;
 import com.kh.workPeople.personal.mypage.scrap.model.service.ScrapService;
@@ -37,12 +36,14 @@ public class ScrapController {
 	private final ScrapService scrapService;
 	private final HomeService homeService;
 	private final ApplyCompanyService applyCompanyService;
+	private final ResumeMapper resumeMapper;
 
 	@Autowired
-	public ScrapController(ScrapService scrapService, HomeService homeService, ApplyCompanyService applyCompanyService) {
+	public ScrapController(ResumeMapper resumeMapper,ScrapService scrapService, HomeService homeService, ApplyCompanyService applyCompanyService) {
 		this.scrapService = scrapService;
 		this.homeService=homeService;
 		this.applyCompanyService = applyCompanyService;
+		this.resumeMapper = resumeMapper;
 	}
 
 	@GetMapping("scrap")
@@ -76,9 +77,27 @@ public class ScrapController {
 	}
 
 	@GetMapping("scrap/applyResume/{rNo},{applyBtnNo}")
-	public String applyResume(@PathVariable int rNo, @PathVariable int applyBtnNo, Model model, @AuthenticationPrincipal MemberImpl user){
+	public String applyResume(@PathVariable int applyBtnNo, Model model, @AuthenticationPrincipal MemberImpl user){
 
-		int applyCompany = applyCompanyService.applyCompany(rNo,applyBtnNo);
+		int rNo = user.getNo();
+		int applyCompany = applyCompanyService.applyCompany(user.getNo(),applyBtnNo);
+
+		ResumeDetails basicInfoAndEducation = resumeMapper.resumeDetailsLookUp(rNo);
+		List<Career> resumeCareerList = resumeMapper.resumeCareerList(rNo);
+		List<Activity> resumeActivityList = resumeMapper.resumeActivityList(rNo);
+		List<License> resumeLicenseList = resumeMapper.resumeLicenseList(rNo);
+		List<Language> resumeLanguageList = resumeMapper.resumeLanguageList(rNo);
+		List<Awards> resumeAwardsList = resumeMapper.resumeAwardsList(rNo);
+		List<SelfIntroduction> resumeSelfIntroductionList = resumeMapper.resumeSelfIntroductionList(rNo);
+
+
+
+//		int appliedBasicInfo = applyCompanyService.insertappliedBasicInfo(basicInfoAndEducation);
+//		-> resumeservice로 변경
+
+
+
+
 
 		return "redirect:/personal/mypage/scrap";
 	}

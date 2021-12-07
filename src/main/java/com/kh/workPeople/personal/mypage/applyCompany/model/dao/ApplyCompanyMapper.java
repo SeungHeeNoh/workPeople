@@ -2,6 +2,7 @@ package com.kh.workPeople.personal.mypage.applyCompany.model.dao;
 
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.common.vo.PageInfo;
+import com.kh.workPeople.common.vo.ResumeDetails;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -24,4 +25,9 @@ public interface ApplyCompanyMapper {
     int applyCompany(int rNo, int applyBtnNo);
 
     List<JobVacancyLookUp> jobVacancyLookUpListPagingQuery(PageInfo pi);
+
+    JobVacancyLookUp applyCompanyRbDateFormat(int jvNo);
+
+    int insertappliedBasicInfo(ResumeDetails basicInfoAndEducation);
+
 }

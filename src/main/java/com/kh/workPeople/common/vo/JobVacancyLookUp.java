@@ -25,6 +25,7 @@ public class JobVacancyLookUp {
     private int check;               // 랭킹업 상품인지 구분 
 
     private boolean applyYN;         // 해당 공고에 지원 여부
+	private String acType;			// 입사지원상태
 
     public JobVacancyLookUp() {
     }
@@ -69,6 +70,36 @@ public class JobVacancyLookUp {
 		this.baseDate = baseDate;
 		this.check = check;
 		this.applyYN = applyYN;
+	}
+
+	public JobVacancyLookUp(int jvNo, String mName, String jvTitle, String elName, String sName, String jvAddress, Date acDate, Date rbDate, Date jvPeriodEnd, String acDateFormat, String rbDateFormat, String jvPeriodEndFormat, int jvPeriodEndOver, Sector sector, Member member, Date baseDate, int check, boolean applyYN, String acType) {
+		this.jvNo = jvNo;
+		this.mName = mName;
+		this.jvTitle = jvTitle;
+		this.elName = elName;
+		this.sName = sName;
+		this.jvAddress = jvAddress;
+		this.acDate = acDate;
+		this.rbDate = rbDate;
+		this.jvPeriodEnd = jvPeriodEnd;
+		this.acDateFormat = acDateFormat;
+		this.rbDateFormat = rbDateFormat;
+		this.jvPeriodEndFormat = jvPeriodEndFormat;
+		this.jvPeriodEndOver = jvPeriodEndOver;
+		this.sector = sector;
+		this.member = member;
+		this.baseDate = baseDate;
+		this.check = check;
+		this.applyYN = applyYN;
+		this.acType = acType;
+	}
+
+	public String getAcType() {
+		return acType;
+	}
+
+	public void setAcType(String acType) {
+		this.acType = acType;
 	}
 
 	public int getJvNo() {

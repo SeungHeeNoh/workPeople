@@ -179,6 +179,11 @@ body {
     font-size: 26px;
     margin-bottom: 10px;
     margin-top: 60px;
+    padding-bottom: 10px;
+}
+
+.content_title2{
+    border-bottom: 1px solid #c4c4c4;
 }
 
 .content-resume-title{
@@ -249,3 +254,72 @@ body {
 .content-basicInfo-img{
     padding: 2px 2px 0 0 ;
 }
+
+.content_basicInfo_education_container{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.content_basicInfo_education_type{
+    width: 250px;
+    height: 50px;
+    font-size: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #c4c4c4;
+}
+.content_title_education{
+
+    border-bottom: none;
+}
+
+.isUnderhigh{
+    font-size: 16px;
+    color: #c4c4c4;
+}
+
+
+.content-detail-input-date-text{
+    line-height: 37px;
+    margin: 0 20px;
+}
+
+.paddingBottom{
+    padding-bottom: 20px;
+}
+
+.credit1, .credit2{
+    width: 180px;
+}
+.credit2{
+    left: 280px;
+}
+.content-detail-date{
+    display: flex;
+    left: 100px;
+    position: absolute;
+    left: 100px;
+    height: 40px;
+}
+
+.careerBorderBottom{
+    height: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

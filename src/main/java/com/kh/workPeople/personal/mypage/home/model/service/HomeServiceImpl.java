@@ -58,19 +58,8 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int resumeDelete(int rNo) {
-        return homeMapper.resumeDelete(rNo);
-    }
-
-    @Override
     public int applyCompanyYN(int no, int jvNo) {
         return homeMapper.applyCompanyYN(no,jvNo);
-    }
-
-    @Override
-    public int resumeIsApplyCompanyYN(int rNo) {
-        return homeMapper.resumeIsApplyCompanyYN(rNo);
     }
 
     @Override

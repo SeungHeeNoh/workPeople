@@ -30,8 +30,7 @@
     <select id="applyCount" resultType="_int">
         SELECT
             COUNT(*)
-        FROM RESUME
-                 JOIN APPLY_COMPANY USING(R_NO)
+        FROM APPLY_COMPANY
         WHERE M_NO = #{no}
     </select>
 
@@ -74,11 +73,9 @@
     <select id="applyCompanyYN" resultType="_int">
         SELECT
             COUNT(*)
-        FROM RESUME
-        JOIN APPLY_COMPANY USING (R_NO)
+        FROM APPLY_COMPANY
         WHERE M_NO=#{no}
           AND JV_NO=#{jvNo}
-
     </select>
 
     <select id="selectResumeStatusY" resultMap="simpleResume">
@@ -152,14 +149,6 @@
 
     </select>
 
-    <select id="resumeIsApplyCompanyYN" resultType="_int">
-        SELECT
-            COUNT(*)
-        FROM APPLY_COMPANY
-        WHERE R_NO= #{rNo}
-    </select>
-
-
     <delete id="resumeDeleteFromDB" parameterType="_int">
         DELETE
             FROM RESUME
@@ -220,13 +209,5 @@
         WHERE R_NO=#{rNo}
     </delete>
 
-
-
-
-    <update id="resumeDelete" parameterType="com.kh.workPeople.common.vo.Resume">
-        UPDATE RESUME
-            SET R_DELETE_YN = 'Y'
-        WHERE R_NO = #{rNo}
-    </update>
 
 </mapper>

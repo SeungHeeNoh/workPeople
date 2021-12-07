@@ -53,8 +53,7 @@
             <form th:action="@{/personal/mypage/applyCompany/applyCancel}" method="post">
                 <div th:each="job : ${jobVacancyLookUpList}">
                     <div class="content_title_text4">
-                        <input type="checkbox" class="checkBtn1" th:value="${job.jvNo}"
-                               th:onclick="test([[${job.jvNo}]]);"/>
+                        <input type="checkbox" class="checkBtn1" th:value="${job.jvNo}"/>
                         <div class="content_title_text4_1" th:text="${job.mName}"></div>
                         <div class="content_title_text4_detail_wrap">
                             <div th:text="${job.jvTitle}"></div>
@@ -69,13 +68,13 @@
                                 <div th:text="${job.acDateFormat}"></div>
                             </div>
 
-                            <th:block th:if="${job.rbDate != null}">
+                            <th:block th:if="${job.rbDateFormat != null}">
                                 <div class="content_title_text4_2">열람일 :
                                     <div th:text="${job.rbDateFormat}"></div>
                                 </div>
                             </th:block>
-                            <th:block th:if="${job.rbDate == null}">
-                                <div class="content_title_text4_2" style="padding-left: 30px">미열람</div>
+                            <th:block th:if="${job.rbDateFormat == null}">
+                                <div class="content_title_text4_2" style="padding-left: 41px">미열람</div>
                             </th:block>
                         </div>
                     </div>
@@ -85,7 +84,6 @@
 
 
             <button class="orange orange1">지원취소</button>
-            <button class="green green1">삭제</button>
 
             <th:block th:if="${#lists.size(jobVacancyLookUpList)>0}">
                 <div th:replace="common/paging.html"></div>

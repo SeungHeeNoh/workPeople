@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ResumeDetails {
 
+    private int acNo;                   // 입사지원 구분 번호
     private int rNo;                    // 이력서번호
     private String biTitle;             // 이력서 제목
     private String biName;              // 이름
@@ -151,6 +152,14 @@ public class ResumeDetails {
         this.eDoctorMajor = eDoctorMajor;
         this.eDoctorCredit = eDoctorCredit;
         this.eDoctorStandardCredit = eDoctorStandardCredit;
+    }
+
+    public int getAcNo() {
+        return acNo;
+    }
+
+    public void setAcNo(int acNo) {
+        this.acNo = acNo;
     }
 
     public String getsName() {

@@ -43,7 +43,7 @@
 }
 
 .content_title_text4_2{
-    left: 230px;
+    left: 222px;
 }
 
 .content_title_text4_3{
@@ -70,4 +70,14 @@
 .checkBox{
     left: 20px;
     top: 13px;
+}
+
+.content_title_text4{
+    border-bottom: 1px solid #c4c4c4;
+}
+.content_title_text4_2{
+    display: flex;
+}
+.content_title_text4_2 > div{
+    margin-right: 10px;
 }

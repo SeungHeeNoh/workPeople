@@ -5,8 +5,9 @@ import java.util.Date;
 public class ApplyCompany {
 
     private int jvNo;                   // 공고 번호
-    private int rNo;                    // 이력서 번호
-    private String acType;              // 지원 상태
+    private int mNo;                    // 회원 번호
+    private int acNo;                   // 입사지원 구분번호
+    private String acType;              // 지원상태
     private Date acDate;                // 지원일
     private String acDeleteYN;          // 삭제 여부
 
@@ -15,12 +16,14 @@ public class ApplyCompany {
     public ApplyCompany() {
     }
 
-    public ApplyCompany(int jvNo, int rNo, String acType, Date acDate, String acDeleteYN) {
+    public ApplyCompany(int jvNo, int mNo, int acNo, String acType, Date acDate, String acDeleteYN, String acDateFormat) {
         this.jvNo = jvNo;
-        this.rNo = rNo;
+        this.mNo = mNo;
+        this.acNo = acNo;
         this.acType = acType;
         this.acDate = acDate;
         this.acDeleteYN = acDeleteYN;
+        this.acDateFormat = acDateFormat;
     }
 
     public int getJvNo() {
@@ -31,12 +34,20 @@ public class ApplyCompany {
         this.jvNo = jvNo;
     }
 
-    public int getrNo() {
-        return rNo;
+    public int getmNo() {
+        return mNo;
     }
 
-    public void setrNo(int rNo) {
-        this.rNo = rNo;
+    public void setmNo(int mNo) {
+        this.mNo = mNo;
+    }
+
+    public int getAcNo() {
+        return acNo;
+    }
+
+    public void setAcNo(int acNo) {
+        this.acNo = acNo;
     }
 
     public String getAcType() {
@@ -75,10 +86,12 @@ public class ApplyCompany {
     public String toString() {
         return "ApplyCompany{" +
                 "jvNo=" + jvNo +
-                ", rNo=" + rNo +
+                ", mNo=" + mNo +
+                ", acNo=" + acNo +
                 ", acType='" + acType + '\'' +
                 ", acDate=" + acDate +
                 ", acDeleteYN='" + acDeleteYN + '\'' +
+                ", acDateFormat='" + acDateFormat + '\'' +
                 '}';
     }
 }

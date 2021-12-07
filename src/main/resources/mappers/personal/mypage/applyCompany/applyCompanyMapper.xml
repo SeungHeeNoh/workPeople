@@ -15,59 +15,89 @@
         <result property="acDateFormat" column="AC_DATE_FORMAT"/>
         <result property="rbDateFormat" column="RB_DATE_FORMAT"/>
         <result property="jvPeriodEndFormat" column="JV_PERIOD_END_FORMAT"/>
+        <result property="acType" column="AC_TYPE"/>
     </resultMap>
 
     <resultMap id="applyCompany" type="com.kh.workPeople.common.vo.ApplyCompany">
-        <id property="jvNo" column="JV_NO"/>
-        <result property="rNo" column="R_NO"/>
+        <id property="acNo" column="AC_NO"/>
+        <result property="jvNo" column="JV_NO"/>
+        <result property="mNo" column="M_NO"/>
         <result property="acType" column="AC_TYPE"/>
         <result property="acDate" column="AC_DATE"/>
         <result property="acDeleteYN" column="AC_DELETEYN"/>
-        <result property="acDateFormat" column="AC_DATEFORMAT"/>
+        <result property="acDateFormat" column="AC_DATE_FORMAT"/>
     </resultMap>
 
     <select id="jobVacancyLookUpList" resultMap="jobVacancy">
         SELECT
-            DISTINCT
-            JV_NO
-                   , JV_TITLE
-                   , JV_ADDRESS
-                   , M_NAME
-                   , EL_NAME
-                   , S_NAME
-                   , AC_DATE
-                   , RB_DATE
-                   , TO_CHAR(TO_DATE(AC_DATE,'YYYY.MM.dd')) AC_DATE_FORMAT
-                   , TO_CHAR(TO_DATE(RB_DATE,'YYYY.MM.dd')) RB_DATE_FORMAT
-        FROM JOB_VACANCY JV
-                 JOIN COMPANY_INFO USING(CI_NO)
-                 JOIN MEMBER M USING(M_NO)
-                 JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
-                 JOIN EXPERIENCE_LEVEL EL ON(JVEL.EL_NO=EL.EL_NO)
-                 JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
-                 JOIN SECTOR S ON(RI.S_NO=S.S_NO)
-                 LEFT JOIN APPLY_COMPANY USING (JV_NO)
-                 LEFT OUTER JOIN RESUME_BROWSE RB USING (CI_NO)
-                 LEFT OUTER JOIN RESUME R ON (R.R_NO = RB.R_NO)
-        WHERE R.M_NO = #{ no }
-ORDER BY 1 DESC
+            AC_TYPE,
+            AC_DATE,
+            JV_NO,
+            JV_TITLE,
+            JV_ADDRESS,
+            M_NAME,
+            S_NAME,
+            EL_NAME,
+            TO_CHAR(AC_DATE,'YYYY.MM.dd') AC_DATE_FORMAT
+        FROM APPLY_COMPANY AC
+         JOIN JOB_VACANCY JV USING(JV_NO)
+         JOIN COMPANY_INFO CI USING(CI_NO)
+         JOIN MEMBER M ON (CI.M_NO = M.M_NO)
+         JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
+         JOIN SECTOR S ON(S.S_NO = RI.S_NO)
+         JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
+         JOIN EXPERIENCE_LEVEL EL ON(EL.EL_NO = JVEL.EL_NO)
+        WHERE AC.M_NO=#{no}
+        ORDER BY AC_DATE
     </select>
 
 
 
-<!--    <select id="jobVacancyLookUpListPagingQuery" resultType="com.kh.workPeople.common.vo.PageInfo" resultMap="jobVacancy">-->
+    <select id="jobVacancyLookUpListPagingQuery" resultType="com.kh.workPeople.common.vo.PageInfo" resultMap="jobVacancy">
+        SELECT
+            AC_TYPE,
+            AC_DATE,
+            JV_NO,
+            JV_TITLE,
+            JV_ADDRESS,
+            M_NAME,
+            S_NAME,
+            EL_NAME,
+            TO_CHAR(AC_DATE,'YYYY.MM.dd') AC_DATE_FORMAT
+        FROM(
+                SELECT ROWNUM RNUM
+                     , NLIST.*
+                FROM(
+                        SELECT *
+                        FROM APPLY_COMPANY AC
+                                 JOIN JOB_VACANCY JV USING(JV_NO)
+                                 JOIN COMPANY_INFO CI USING(CI_NO)
+                                 JOIN MEMBER M ON (CI.M_NO = M.M_NO)
+                                 JOIN RECRUITMENT_INDUSTRY RI USING(JV_NO)
+                                 JOIN SECTOR S ON(S.S_NO = RI.S_NO)
+                                 JOIN JOB_VACANCY_EXPERIENCE_LEVEL JVEL USING(JV_NO)
+                                 JOIN EXPERIENCE_LEVEL EL ON(EL.EL_NO = JVEL.EL_NO)
+                        WHERE AC.M_NO=#{userNo}
+                        ORDER BY AC_DATE DESC) NLIST)
+        WHERE RNUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
+    </select>
 
+    <select id="applyCompanyRbDateFormat" resultMap="jobVacancy">
+        SELECT
+            TO_CHAR(RB_DATE,'YYYY.MM.dd') RB_DATE_FORMAT
+        FROM JOB_VACANCY
+                 JOIN COMPANY_INFO USING(CI_NO)
+                 JOIN RESUME_BROWSE USING(CI_NO)
+        WHERE JV_NO=#{jvNo}
+          AND RB_BROWSE = 'application'
 
-
-<!--    </select>-->
-
+    </select>
 
 
     <select id="applyCount" resultType="_int">
         SELECT
             COUNT(*)
         FROM APPLY_COMPANY
-        JOIN RESUME USING(R_NO)
         WHERE M_NO=#{no}
           AND AC_TYPE = 'apply'
     </select>
@@ -76,7 +106,6 @@ ORDER BY 1 DESC
         SELECT
             COUNT(*)
         FROM APPLY_COMPANY
-                 JOIN RESUME USING(R_NO)
         WHERE M_NO=#{no}
           AND AC_TYPE = 'pass'
     </select>
@@ -85,7 +114,6 @@ ORDER BY 1 DESC
         SELECT
             COUNT(*)
         FROM APPLY_COMPANY
-                 JOIN RESUME USING(R_NO)
         WHERE M_NO=#{no}
           AND AC_TYPE = 'interview'
     </select>
@@ -94,7 +122,6 @@ ORDER BY 1 DESC
         SELECT
             COUNT(*)
         FROM APPLY_COMPANY
-                 JOIN RESUME USING(R_NO)
         WHERE M_NO=#{no}
           AND AC_TYPE = 'passAll'
     </select>
@@ -103,7 +130,6 @@ ORDER BY 1 DESC
         SELECT
             COUNT(*)
         FROM APPLY_COMPANY
-                 JOIN RESUME USING(R_NO)
         WHERE M_NO=#{no}
           AND AC_TYPE = 'failure'
     </select>
@@ -111,21 +137,22 @@ ORDER BY 1 DESC
     <insert id="applyCompany" parameterType="com.kh.workPeople.common.vo.ApplyCompany">
         INSERT INTO APPLY_COMPANY
         (
-            JV_NO,
-            R_NO,
+            AC_NO,
             AC_TYPE,
             AC_DATE,
-            AC_DELETEYN
+            AC_DELETEYN,
+            M_NO,
+            JV_NO
         )
         VALUES
             (
-                #{applyBtnNo},
-                #{rNo},
-                'apply',
-                sysdate,
-                default
+             SEQ_APPLY_COMPANY_NO.NEXTVAL,
+             'apply',
+             sysdate,
+             default,
+             #{rNo},
+             #{applyBtnNo}
             )
-
     </insert>
 
 

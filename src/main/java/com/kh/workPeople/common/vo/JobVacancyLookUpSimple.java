@@ -3,6 +3,7 @@ package com.kh.workPeople.common.vo;
 import java.util.Date;
 
 public class JobVacancyLookUpSimple {
+
     private int no;             // 기업번호
     private String name;        // 기업이름
     private int count;          // 채용중인 공고 갯수
@@ -16,7 +17,9 @@ public class JobVacancyLookUpSimple {
 
     private String aiDateFormat;    // 면접일 문자열
     private String aiTimeFormat;    // 면접 시간 문자열
-    
+
+    private int aiNo;               // 면접방 번호
+
     public JobVacancyLookUpSimple() {
 
     }
@@ -48,6 +51,28 @@ public class JobVacancyLookUpSimple {
         this.aiStatusYNFormat = aiStatusYNFormat;
         this.aiDateFormat = aiDateFormat;
         this.aiTimeFormat = aiTimeFormat;
+    }
+
+    public JobVacancyLookUpSimple(int no, String name, int count, String type, Date aiDate, Date aiTime, String aiStatusYN, int aiStatusYNFormat, String aiDateFormat, String aiTimeFormat, int aiNo) {
+        this.no = no;
+        this.name = name;
+        this.count = count;
+        this.type = type;
+        this.aiDate = aiDate;
+        this.aiTime = aiTime;
+        this.aiStatusYN = aiStatusYN;
+        this.aiStatusYNFormat = aiStatusYNFormat;
+        this.aiDateFormat = aiDateFormat;
+        this.aiTimeFormat = aiTimeFormat;
+        this.aiNo = aiNo;
+    }
+
+    public int getAiNo() {
+        return aiNo;
+    }
+
+    public void setAiNo(int aiNo) {
+        this.aiNo = aiNo;
     }
 
     public String getAiStatusYN() {

@@ -56,6 +56,7 @@ public class ScrapMapperTests {
 	
 	@Test
 	@Transactional
+	@Disabled
 	public void testDeleteScrapList() {
 		List<Integer> jvNoList = new ArrayList<>();
 		jvNoList.add(1);
@@ -70,5 +71,12 @@ public class ScrapMapperTests {
 		
 		assertEquals(result, 3);
 	}
+
+
+
+
+
+
+
 
 }

@@ -35,7 +35,7 @@
                 <div class="home_content_3_3">마감일</div>
             </div>
 
-                <form class="delete_form" th:action="@{/personal/mypage/latestPublication/delete}" method="post">
+
                     <div th:each="job : ${jobVacancyLookUpList}" class="content_title_text4_container">
                         <div class="content_title_text4">
                             <input type="checkbox" class="checkBtn1" th:value="${job.jvNo}" name="jvNo">
@@ -91,7 +91,7 @@
                         <hr class="hr">
                     </div>
                     <button class="green green1">삭제</button>
-                </form>
+
 
                 <th:block th:if="${#lists.size(jobVacancyLookUpList)>0}">
                     <div th:replace="common/paging.html"></div>
