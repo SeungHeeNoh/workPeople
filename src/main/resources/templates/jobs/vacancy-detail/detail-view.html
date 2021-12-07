@@ -42,7 +42,8 @@
 								</button>
 								<button type="button" class="apply_button" th:classappend="${(jobVacancyInformation.dDay < 0 ? 'ended' : '')}">
 									<span th:text="D- + ${jobVacancyInformation.dDay == 0 ? 'day' : jobVacancyInformation.dDay}"></span>
-									입사지원
+									<span th:if="${jobVacancyInformation.dDay < 0}" th:remove="tag">접수 마감</span>
+									<span th:if="${jobVacancyInformation.dDay >= 0}" th:remove="tag">입사지원</span>
 								</button>
 							</th:block>
 						</div>
