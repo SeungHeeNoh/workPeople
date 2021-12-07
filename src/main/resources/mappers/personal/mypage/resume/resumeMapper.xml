@@ -28,6 +28,7 @@
         <result property="biPhone" column="BI_PHONE"/>
         <result property="biAddress" column="BI_ADDRESS"/>
         <result property="biAddressDetail" column="BI_ADDRESS_DETAIL"/>
+        <result property="sNo" column="S_NO"/>
         <result property="sName" column="S_NAME"/>
         <result property="aNo" column="A_NO"/>
         <result property="aOriginName" column="A_ORIGIN_NAME"/>
@@ -139,7 +140,137 @@
         <result property="siContent" column="SI_CONTENT"/>
     </resultMap>
 
+    <insert id="appliedbasicInfoAndEducation" parameterType="com.kh.workPeople.common.vo.ResumeDetails">
+        INSERT INTO APPLIED_BASIC_INFO
+        VALUES
+        (
+         #{acNo},
+         #{biTitle},
+         #{biName},
+         #{biGender},
+         #{biBirthDate},
+         #{biAge},
+         #{biEmail},
+         #{biPhone},
+         #{biAddress},
+         #{biAddressDetail},
+         #{sNo},
+         #{aNo}
+        )
+    </insert>
 
+    <insert id="appliedbasicInfoAndEducation2" parameterType="com.kh.workPeople.common.vo.ResumeDetails">
+        INSERT INTO APPLIED_EDUCATION
+        VALUES
+        (
+         #{acNo},
+         #{eType},
+         #{eHighName},
+         #{eHighMajor},
+         #{eHighAdmission},
+         #{eHighGraduation},
+         #{eColleageType},
+         #{eColleageName},
+         #{eColleageAdmission},
+         #{eColleageAdmissionType},
+         #{eColleageGraduate},
+         #{eColleageGraduateType},
+         #{eColleageMajor},
+         #{eColleageCredit},
+         #{eColleageStandardCredit},
+         #{eMasterName},
+         #{eMasterAdmission},
+         #{eMasterAdmissionType},
+         #{eMasterGraduate},
+         #{eMasterGraduateType},
+         #{eMasterMajor},
+         #{eMasterCredit},
+         #{eMasterStandardCredit},
+         #{eDoctorName},
+         #{eDoctorAdmission},
+         #{eDoctorAdmissionType},
+         #{eDoctorGraduate},
+         #{eDoctorGraduateType},
+         #{eDoctorMajor},
+         #{eDoctorCredit},
+         #{eDoctorStandardCredit}
+        )
+    </insert>
+<insert id="appliedappliedCareer" parameterType="com.kh.workPeople.common.vo.Career">
+    INSERT INTO APPLIED_CAREER
+    VALUES
+    (
+        SEQ_APPLIED_CAREER_NO.NEXTVAL,
+        #{acNo},
+        #{cYn},
+        #{cName},
+        #{cEmploymentDate},
+        #{cUnemploymentDate},
+        #{cPosition},
+        #{cDepartment},
+        #{cTask},
+        #{cReSignation}
+    )
+</insert>
+<insert id="appliedActivity" parameterType="com.kh.workPeople.common.vo.Activity">
+    INSERT INTO APPLIED_ACTIVITY
+    VALUES
+    (
+        SEQ_APPLIED_ACTIVITY_NO.NEXTVAL,
+        #{acNo},
+        #{aActivity},
+        #{aDepartment},
+        #{aStartDate},
+        #{aEndDate},
+        #{a_content}
+    )
+</insert>
+    <insert id="appliedLicense" parameterType="com.kh.workPeople.common.vo.License">
+    INSERT INTO APPLIED_LICENSE
+    VALUES
+    (
+        SEQ_APPLIED_LICENSE_NO.NEXTVAL,
+        #{acNo},
+        #{lName},
+        #{lDepartment},
+        #{lPassYN},
+        #{lAcquisitionDate}
+    )
+    </insert>
+
+    <insert id="appliedLanguage" parameterType="com.kh.workPeople.common.vo.Language">
+        INSERT INTO APPLIED_LANGUAGE
+        VALUES
+        (
+            SEQ_APPLIED_LANGUAGE_NO.NEXTVAL,
+            #{acNo},
+            #{lName},
+            #{lDepartment},
+            #{lScore},
+            #{lAcquisition}
+        )
+    </insert>
+<insert id="appliedAwards" parameterType="com.kh.workPeople.common.vo.Awards">
+    INSERT INTO APPLIED_AWARDS
+    VALUES
+        (
+            SEQ_APPLIED_AWARDS_NO.NEXTVAL,
+            #{acNo},
+            #{aName},
+            #{aDepartment},
+            #{aAcquisition}
+        )
+</insert>
+<insert id="appliedSelfIntroduction" parameterType="com.kh.workPeople.common.vo.SelfIntroduction">
+    INSERT INTO APPLIED_SELF_INTRODUCTION
+    VALUES
+        (
+            SEQ_APPLIED_SELFINTR_NO.NEXTVAL,
+            #{acNo},
+            #{siTitle},
+            #{siContent}
+        )
+</insert>
 
     <select id="resumeList" resultMap="simpleResume">
         SELECT

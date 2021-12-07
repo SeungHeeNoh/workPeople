@@ -21,6 +21,7 @@ public class ResumeDetails {
     private String biAddress;           // 주소
     private String biAddressDetail;     // 상세주소
     private String sName;                    // 업종 이름
+    private int sNo;                    // 업종 번호
     private int aNo;                    // 첨부파일번호
 
     private String aOriginName;         // 첨부파일 기존 이름
@@ -160,6 +161,14 @@ public class ResumeDetails {
 
     public void setAcNo(int acNo) {
         this.acNo = acNo;
+    }
+
+    public int getsNo() {
+        return sNo;
+    }
+
+    public void setsNo(int sNo) {
+        this.sNo = sNo;
     }
 
     public String getsName() {

@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Career {
 
+    private int acNo;                   // 입사지원 구분 번호
     private int cNo;                                // 경력 번호
     private int rNo;                                // 이력서 번호
     private String cYn;                             // 경력 여부
@@ -48,6 +49,30 @@ public class Career {
         this.cDepartment = cDepartment;
         this.cTask = cTask;
         this.cReSignation = cReSignation;
+    }
+
+    public Career(int acNo, int cNo, int rNo, String cYn, String cName, Date cEmploymentDate, Date cUnemploymentDate, String cEmploymentDateFormat, String cUnemploymentDateFormat, String cPosition, String cDepartment, String cTask, String cReSignation) {
+        this.acNo = acNo;
+        this.cNo = cNo;
+        this.rNo = rNo;
+        this.cYn = cYn;
+        this.cName = cName;
+        this.cEmploymentDate = cEmploymentDate;
+        this.cUnemploymentDate = cUnemploymentDate;
+        this.cEmploymentDateFormat = cEmploymentDateFormat;
+        this.cUnemploymentDateFormat = cUnemploymentDateFormat;
+        this.cPosition = cPosition;
+        this.cDepartment = cDepartment;
+        this.cTask = cTask;
+        this.cReSignation = cReSignation;
+    }
+
+    public int getAcNo() {
+        return acNo;
+    }
+
+    public void setAcNo(int acNo) {
+        this.acNo = acNo;
     }
 
     public int getcNo() {

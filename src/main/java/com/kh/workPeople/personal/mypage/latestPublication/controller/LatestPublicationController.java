@@ -71,6 +71,8 @@ public class LatestPublicationController {
     public String applyResume(@AuthenticationPrincipal MemberImpl user,@PathVariable int applyBtnNo, RedirectAttributes rttr){
 
         int applyCompany = applyCompanyService.applyCompany(user.getNo(),applyBtnNo);
+        int appliedInsertCompany = applyCompanyService.insertAppliedTable(user.getNo(),applyBtnNo);
+
 
         if(applyCompany>0){
             rttr.addFlashAttribute("message","입사지원이 완료되었습니다.");

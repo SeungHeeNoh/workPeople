@@ -22,9 +22,10 @@ public interface ApplyCompanyService {
 
     int applyCompany(int rNo, int applyBtnNo);
 
+    int insertAppliedTable(int rNo, int applyBtnNo);
+
     Map<String, Object> jobVacancyLookUpListPaging(int no, int page);
 
     JobVacancyLookUp applyCompanyRbDateFormat(int jvNo);
 
-    int insertappliedBasicInfo(ResumeDetails basicInfoAndEducation);
 }

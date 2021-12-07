@@ -155,5 +155,12 @@
             )
     </insert>
 
+    <select id="selectApplyCompany" resultMap="applyCompany">
+        SELECT
+            *
+        FROM APPLY_COMPANY
+        WHERE M_NO=#{rNo}
+        AND JV_NO = #{applyBtnNo}
+    </select>
 
 </mapper>

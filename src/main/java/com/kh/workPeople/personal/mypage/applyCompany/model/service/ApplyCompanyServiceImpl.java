@@ -1,10 +1,8 @@
 package com.kh.workPeople.personal.mypage.applyCompany.model.service;
 
-import com.kh.workPeople.common.vo.Career;
-import com.kh.workPeople.common.vo.JobVacancyLookUp;
-import com.kh.workPeople.common.vo.PageInfo;
-import com.kh.workPeople.common.vo.ResumeDetails;
+import com.kh.workPeople.common.vo.*;
 import com.kh.workPeople.personal.mypage.applyCompany.model.dao.ApplyCompanyMapper;
+import com.kh.workPeople.personal.mypage.home.model.dao.HomeMapper;
 import com.kh.workPeople.personal.mypage.resume.model.dao.ResumeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +12,18 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ApplyCompanyServiceImpl implements ApplyCompanyService{
+public class ApplyCompanyServiceImpl implements ApplyCompanyService {
 
     private final ApplyCompanyMapper applyCompanyMapper;
+    private final ResumeMapper resumeMapper;
+    private final HomeMapper homeMapper;
 
 
     @Autowired
-    public ApplyCompanyServiceImpl(ApplyCompanyMapper applyCompanyMapper){
+    public ApplyCompanyServiceImpl(HomeMapper homeMapper,ResumeMapper resumeMapper,ApplyCompanyMapper applyCompanyMapper){
         this.applyCompanyMapper = applyCompanyMapper;
-
+        this.resumeMapper = resumeMapper;
+        this.homeMapper = homeMapper;
     }
 
     @Override
@@ -56,8 +57,75 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService{
     }
 
     @Override
-    public int applyCompany(int rNo, int applyBtnNo) {
-        return applyCompanyMapper.applyCompany(rNo,applyBtnNo);
+    public int applyCompany(int userNo, int jvNo) {
+
+
+        return applyCompanyMapper.applyCompany(userNo,jvNo);
+    }
+    @Override
+    public int insertAppliedTable(int userNo, int jvNo){
+        // 회원의 대표이력서 번호 알아오기
+        Resume statusYResume = homeMapper.selectResumeStatusY(userNo);
+
+        System.out.println("statusYResume : "+statusYResume);
+
+        if(statusYResume != null) {
+
+            int rNo = statusYResume.getNo();
+
+            // 회원의 입사지원한 구분번호 알아오기
+            ApplyCompany applyCompanyNo = applyCompanyMapper.selectApplyCompany(userNo, jvNo);
+
+            System.out.println("applyCompanyNo : "+applyCompanyNo);
+            if (applyCompanyNo != null) {
+
+                int acNo = applyCompanyNo.getAcNo();
+
+                // 회원 대표이력서의 정보 읽어오기
+                ResumeDetails basicInfoAndEducation = resumeMapper.resumeDetailsLookUp(rNo);
+                System.out.println("basicInfoAndEducation : "+basicInfoAndEducation);
+                List<Career> resumeCareerList = resumeMapper.resumeCareerList(rNo);
+                List<Activity> resumeActivityList = resumeMapper.resumeActivityList(rNo);
+                List<License> resumeLicenseList = resumeMapper.resumeLicenseList(rNo);
+                List<Language> resumeLanguageList = resumeMapper.resumeLanguageList(rNo);
+                List<Awards> resumeAwardsList = resumeMapper.resumeAwardsList(rNo);
+                List<SelfIntroduction> resumeSelfIntroductionList = resumeMapper.resumeSelfIntroductionList(rNo);
+
+
+//        각각의 테이블에 입사지원 구분번호 삽입,
+                // applied_테이블에 데이터 삽입
+
+                basicInfoAndEducation.setAcNo(acNo);
+                int appliedbasicInfo = resumeMapper.appliedbasicInfoAndEducation(basicInfoAndEducation);
+                int appliedbasicEducation = resumeMapper.appliedbasicInfoAndEducation2(basicInfoAndEducation);
+
+                for (Career career : resumeCareerList) {
+                    career.setAcNo(acNo);
+                    int appliedCareer = resumeMapper.appliedappliedCareer(career);
+                }
+                for (Activity activity : resumeActivityList) {
+                    activity.setAcNo(acNo);
+                    int appliedActivity = resumeMapper.appliedActivity(activity);
+                }
+                for (License license : resumeLicenseList) {
+                    license.setAcNo(acNo);
+                    int appliedLicense = resumeMapper.appliedLicense(license);
+                }
+                for (Language language : resumeLanguageList) {
+                    language.setAcNo(acNo);
+                    int appliedLanguage = resumeMapper.appliedLanguage(language);
+                }
+                for (Awards awards : resumeAwardsList) {
+                    awards.setAcNo(acNo);
+                    int appliedAwards = resumeMapper.appliedAwards(awards);
+                }
+                for (SelfIntroduction selfIntroduction : resumeSelfIntroductionList) {
+                    selfIntroduction.setAcNo(acNo);
+                    int appliedSelfIntroduction = resumeMapper.appliedSelfIntroduction(selfIntroduction);
+                }
+            }
+        }
+        return 1;
     }
 
     @Override
@@ -82,10 +150,6 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService{
         return applyCompanyMapper.applyCompanyRbDateFormat(jvNo);
     }
 
-    @Override
-    public int insertappliedBasicInfo(ResumeDetails basicInfoAndEducation) {
-        return applyCompanyMapper.insertappliedBasicInfo(basicInfoAndEducation);
-    }
 
 
 }

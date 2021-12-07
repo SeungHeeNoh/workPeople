@@ -33,4 +33,20 @@ public interface ResumeMapper {
     int resumeStatusYtoN(int no);
     int resumeStatusNtoY(int resumeNo);
 
+
+    int appliedbasicInfoAndEducation(ResumeDetails basicInfoAndEducation);
+
+    int appliedbasicInfoAndEducation2(ResumeDetails basicInfoAndEducation);
+
+    int appliedappliedCareer(Career career);
+
+    int appliedActivity(Activity activity);
+
+    int appliedLicense(License license);
+
+    int appliedLanguage(Language language);
+
+    int appliedAwards(Awards awards);
+
+    int appliedSelfIntroduction(SelfIntroduction selfIntroduction);
 }

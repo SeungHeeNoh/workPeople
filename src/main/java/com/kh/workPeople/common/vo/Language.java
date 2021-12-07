@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Language {
 
+    private int acNo;                   // 입사지원 구분 번호
     private int lNo;                        // 어학 번호
     private int rNo;                        // 이력서 번호
     private String lName;                   // 언어/시험명
@@ -24,6 +25,25 @@ public class Language {
         this.lScore = lScore;
         this.lAcquisition = lAcquisition;
         this.lAcquisitionFormat = lAcquisitionFormat;
+    }
+
+    public Language(int acNo, int lNo, int rNo, String lName, String lDepartment, String lScore, Date lAcquisition, String lAcquisitionFormat) {
+        this.acNo = acNo;
+        this.lNo = lNo;
+        this.rNo = rNo;
+        this.lName = lName;
+        this.lDepartment = lDepartment;
+        this.lScore = lScore;
+        this.lAcquisition = lAcquisition;
+        this.lAcquisitionFormat = lAcquisitionFormat;
+    }
+
+    public int getAcNo() {
+        return acNo;
+    }
+
+    public void setAcNo(int acNo) {
+        this.acNo = acNo;
     }
 
     public int getlNo() {

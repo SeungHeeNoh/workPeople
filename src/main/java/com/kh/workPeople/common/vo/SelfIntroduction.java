@@ -2,6 +2,7 @@ package com.kh.workPeople.common.vo;
 
 public class SelfIntroduction {
 
+    private int acNo;                   // 입사지원 구분 번호
     private int siNo;               // 자기소개서 번호
     private int rNo;                // 이력서 번호
     private String siTitle;         // 자소서 항목 제목
@@ -15,6 +16,22 @@ public class SelfIntroduction {
         this.rNo = rNo;
         this.siTitle = siTitle;
         this.siContent = siContent;
+    }
+
+    public SelfIntroduction(int acNo, int siNo, int rNo, String siTitle, String siContent) {
+        this.acNo = acNo;
+        this.siNo = siNo;
+        this.rNo = rNo;
+        this.siTitle = siTitle;
+        this.siContent = siContent;
+    }
+
+    public int getAcNo() {
+        return acNo;
+    }
+
+    public void setAcNo(int acNo) {
+        this.acNo = acNo;
     }
 
     public int getSiNo() {

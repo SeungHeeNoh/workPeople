@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class ApplyCompany {
 
+    private int acNo;                   // 입사지원 구분번호
     private int jvNo;                   // 공고 번호
     private int mNo;                    // 회원 번호
-    private int acNo;                   // 입사지원 구분번호
     private String acType;              // 지원상태
     private Date acDate;                // 지원일
     private String acDeleteYN;          // 삭제 여부
@@ -16,10 +16,10 @@ public class ApplyCompany {
     public ApplyCompany() {
     }
 
-    public ApplyCompany(int jvNo, int mNo, int acNo, String acType, Date acDate, String acDeleteYN, String acDateFormat) {
+    public ApplyCompany(int acNo, int jvNo, int mNo, String acType, Date acDate, String acDeleteYN, String acDateFormat) {
+        this.acNo = acNo;
         this.jvNo = jvNo;
         this.mNo = mNo;
-        this.acNo = acNo;
         this.acType = acType;
         this.acDate = acDate;
         this.acDeleteYN = acDeleteYN;
