@@ -20,7 +20,7 @@
 					<div class="job_vacancy_header_inner">
 						<div>
 							<div>
-								<h3><a th:href="@{/company-information/detail-view?no=} + ${jobVacancyInformation.companyNo}">[[${jobVacancyInformation.companyName}]]</a></h3>
+								<h3><a th:href="@{/jobs/company-information/detail-view?no=} + ${jobVacancyInformation.companyNo}">[[${jobVacancyInformation.companyName}]]</a></h3>
 							<th:block th:if="${#authorization.expression('isAnonymous()') or #authorization.expression('hasRole(''PERSONAL'')')}">
 								<button type="button" class="like_button" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_button' : '') + (#strings.equals(jobVacancyInformation.interestedCompany, 'Y') ? 'active':'')}" th:attr="data-company-no=${jobVacancyInformation.companyNo}">관심기업 등록
 									<span class="blind">
