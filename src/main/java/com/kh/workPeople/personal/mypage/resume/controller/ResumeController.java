@@ -74,8 +74,8 @@ public class ResumeController {
 		return "personal/mypage/resumeEnroll";
 	}
 
-	@GetMapping("resumeManagement/resumeEdit")
-	public String resumeManagementResumeEdit(Model model){
+	@GetMapping("resumeManagement/resumeEdit/{rNo}")
+	public String resumeManagementResumeEdit(Model model,@PathVariable int rNo){
 
 
 
