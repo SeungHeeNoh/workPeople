@@ -83,6 +83,16 @@ body {
     line-height: 40px;
     color: #979797;
 }
+.content-detail-title {    
+	width: 760px;
+    height: 80px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+    }
+.point {
+	color: red; 
+}    
 
 .content1{
 
@@ -235,6 +245,35 @@ body {
     position:absolute;
     left: 100px;
     height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.content-detail-select {
+	width: 100px;
+    position:absolute;
+    left: 100px;
+    height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+     border: 1px solid #dcdcdc;
+     color: #979797;
+	
+}
+#search {
+	font-size: 12px;
+    text-underline-position: under;
+    text-decoration: underline;
+    position: relative;
+    left: 460px;
+    top: 11px;
+    color: dodgerblue;
+	cursor: pointer;
+}
+.dateInput {color: #979797;}
+.selectSector {
+	border: 1px solid #dcdcdc;
+	color: #979797;
 }
 .content-basicInfo-wrap2{
     box-sizing: border-box;
@@ -269,6 +308,16 @@ body {
     justify-content: center;
     border: 1px solid #c4c4c4;
 }
+.content-detail-select-type {
+	width: 100px;
+    left: 100px;
+    height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+     border: 1px solid #dcdcdc;
+     color: #979797;
+	
+}
 .content_title_education{
 
     border-bottom: none;
@@ -283,6 +332,10 @@ body {
 .content-detail-input-date-text{
     line-height: 37px;
     margin: 0 20px;
+}
+.content-detail-input-date {
+	padding: 0 20px;
+	color: #979797;
 }
 
 .paddingBottom{
