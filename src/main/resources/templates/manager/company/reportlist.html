@@ -25,7 +25,6 @@
                 <li id="snb_2"class="snb_main"><img id="snbImg2" th:src="@{/images/common/usersetting.png}">회원관리</li>
                 <li id="snb_2_1" class="snb_sub"><a th:href="@{/manager/user/userinfo}">회원정보</a></li>
                 <li id="snb_2_2" class="snb_sub"><a th:href="@{/manager/user/customerservice}">고객센터</a></li>
-                <li id="snb_2_3" class="snb_sub"><a href="#">면접후기</a></li>
             
                 <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
                 <li id="snb_3_1" class="snb_sub"><a th:href="@{/manager/company/companyinfo}">기업공고</a></li>
@@ -55,11 +54,9 @@
                                 <input type="text" class="input">
                                 <button type="button" class="btn">검색</button>
                             </div>
-
                         </div>
                     </div>
 
-                    <div class="list_content">
                         <div class="table_wrap resident_list">
                             <table class="table">
                                 <colgroup>
@@ -122,15 +119,8 @@
                             <a href="javascript:;" class="disabled">비활성화</a>
                         </div>
 				</form>
-                        <div class="paging_wrap">
-                            <a href="javascript:;" class="btn_prev"></a>
-                            <a href="javascript:;" class="btn_num on">1</a>
-                            <a href="javascript:;" class="btn_num">2</a>
-                            <a href="javascript:;" class="btn_num">3</a>
-                            <a href="javascript:;" class="btn_num">4</a>
-                            <a href="javascript:;" class="btn_num">5</a>
-                            <a href="javascript:;" class="btn_next"></a>
-                        </div>
+				
+                    
                     </div>
                 </div>
             </div>
@@ -139,8 +129,7 @@
      <div th:include="common/up.html"></div> 
      <div th:include="common/footer.html"></div>
      
-     
-     
+
     <div id="popup01">
         <div class="dim"></div>
         <div class="item">
@@ -152,6 +141,7 @@
             </div>
         </div>
     </div>
+    </body>
     <script>
     	function jvRpSubmit(){
     		$("#jvReport").submit();
@@ -240,6 +230,5 @@
      
 
 
-</body>
 
 </html>
