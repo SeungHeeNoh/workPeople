@@ -14,6 +14,7 @@
 
     <resultMap id="jobVacancy" type="com.kh.workPeople.common.vo.JobVacancyLookUp">
         <id property="jvNo" column="JV_NO"/>
+        <result property="ciNo" column="CI_NO"/>
         <result property="jvTitle" column="JV_TITLE"/>
         <result property="jvAddress" column="JV_ADDRESS"/>
         <result property="jvPeriodEnd" column="JV_PERIOD_END"/>
@@ -119,6 +120,7 @@
 
     <select id="jobVacancyLookUpListPagingQuery" resultMap="jobVacancy" parameterType="com.kh.workPeople.common.vo.PageInfo">
         SELECT
+        CI_NO,
         JV_NO,
         JV_TITLE,
         JV_ADDRESS,

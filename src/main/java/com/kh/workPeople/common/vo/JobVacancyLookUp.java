@@ -3,6 +3,7 @@ package com.kh.workPeople.common.vo;
 import java.util.Date;
 
 public class JobVacancyLookUp {
+	private int ciNo;				// 기업 번호
     private int jvNo;               // 공고번호
     private String mName;           // 회사이름
     private String jvTitle;           // 공고 제목
@@ -92,6 +93,14 @@ public class JobVacancyLookUp {
 		this.check = check;
 		this.applyYN = applyYN;
 		this.acType = acType;
+	}
+
+	public int getCiNo() {
+		return ciNo;
+	}
+
+	public void setCiNo(int ciNo) {
+		this.ciNo = ciNo;
 	}
 
 	public String getAcType() {

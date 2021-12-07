@@ -31,13 +31,13 @@
 
             <form class="delete_form" th:action="@{/personal/mypage/resumeBrowseCompany/delete}" method="post">
 
-            <div th:each="companyList : ${companyList}">
+            <div class="rbcCssHover" th:each="companyList : ${companyList}">
                 <div class="content_title_text4">
                     <input type="checkbox" class="resumeChk" th:value="${companyList.m_no}" name="ciNo">
-                    <div class="content_title_text4_1" th:text="${companyList.m_name}"></div>
-                    <div class="content_title_text4_2" th:text="${companyList.m_roadAddress}"></div>
-                    <div class="content_title_text4_3" th:text="${companyList.s_name}"></div>
-                    <div class="content_title_text4_4" th:text="${companyList.rb_date_format}"></div>
+                    <div class="content_title_text4_1" th:text="${companyList.m_name}" th:onclick="|location.href='@{/jobs/company-information/detail-view?no={no}(no=${companyList.m_no})}'|"></div>
+                    <div class="content_title_text4_2" th:text="${companyList.m_roadAddress}" th:onclick="|location.href='@{/jobs/company-information/detail-view?no={no}(no=${companyList.m_no})}'|"></div>
+                    <div class="content_title_text4_3" th:text="${companyList.s_name}" th:onclick="|location.href='@{/jobs/company-information/detail-view?no={no}(no=${companyList.m_no})}'|"></div>
+                    <div class="content_title_text4_4" th:text="${companyList.rb_date_format}" th:onclick="|location.href='@{/jobs/company-information/detail-view?no={no}(no=${companyList.m_no})}'|"></div>
                     <div></div>
                 </div>
                 <hr class="hr">

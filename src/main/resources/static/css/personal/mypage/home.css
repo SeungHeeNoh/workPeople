@@ -256,7 +256,10 @@
 .applyCompanyEvent:hover, .resumeBrowseEvent:hover, .scrapEvent:hover, .interestedCompanyEvent:hover{
     cursor: pointer;
 }
-
+.content_title_text4_detail_wrap:hover,
+.content_title_text4_1:hover{
+    cursor: pointer;
+}
 
 
 

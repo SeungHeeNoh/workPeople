@@ -58,8 +58,7 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService {
 
     @Override
     public int applyCompany(int userNo, int jvNo) {
-
-
+//        System.out.println("applyCompanyMapper.applyCompany(userNo,jvNo) : " + applyCompanyMapper.applyCompany(userNo,jvNo));
         return applyCompanyMapper.applyCompany(userNo,jvNo);
     }
     @Override
@@ -67,7 +66,7 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService {
         // 회원의 대표이력서 번호 알아오기
         Resume statusYResume = homeMapper.selectResumeStatusY(userNo);
 
-        System.out.println("statusYResume : "+statusYResume);
+//        System.out.println("statusYResume : "+statusYResume);
 
         if(statusYResume != null) {
 
@@ -150,6 +149,50 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService {
         return applyCompanyMapper.applyCompanyRbDateFormat(jvNo);
     }
 
+    @Override
+    public int applyCancel(int no, List<Integer> jvNoList) {
+
+
+        for(Integer i : jvNoList){
+
+            ApplyCompany applyCompany = applyCompanyMapper.selectApplyCompany(no,i);
+            int acNo = applyCompany.getAcNo();
+
+            int deleteAppliedBasicInfo = applyCompanyMapper.deleteAppliedBasicInfo(acNo);
+            int deleteAppliedEducation = applyCompanyMapper.deleteAppliedEducation(acNo);
+
+            int appliedCareerNum = applyCompanyMapper.appliedCareerNum(acNo);
+            int appliedActivityNum = applyCompanyMapper.appliedActivityNum(acNo);
+            int appliedLicenseNum = applyCompanyMapper.appliedLicenseNum(acNo);
+            int appliedLanguageNum = applyCompanyMapper.appliedLanguageNum(acNo);
+            int appliedAwardsNum = applyCompanyMapper.appliedAwardsNum(acNo);
+            int appliedSelfIntroduction = applyCompanyMapper.appliedSelfIntroduction(acNo);
+
+            if(appliedCareerNum>0){
+                int deleteAppliedCareer = applyCompanyMapper.deleteAppliedCareer(acNo);
+            }
+            if(appliedActivityNum>0){
+                int deleteAppliedActivity = applyCompanyMapper.deleteAppliedActivity(acNo);
+            }
+            if(appliedLicenseNum>0){
+                int deleteAppliedLicense = applyCompanyMapper.deleteAppliedLicense(acNo);
+            }
+            if(appliedLanguageNum>0){
+                int deleteAppliedLanguage = applyCompanyMapper.deleteAppliedLanguage(acNo);
+            }
+            if(appliedAwardsNum>0){
+                int deleteAppliedAwards = applyCompanyMapper.deleteAppliedAwards(acNo);
+            }
+            if(appliedSelfIntroduction>0){
+                int deleteAppliedSelfIntroduction = applyCompanyMapper.deleteAppliedSelfIntroduction(acNo);
+            }
+
+            int deleteApplyCompany = applyCompanyMapper.deleteApplyCompany(acNo);
+
+        }
+
+        return 1;
+    }
 
 
 }

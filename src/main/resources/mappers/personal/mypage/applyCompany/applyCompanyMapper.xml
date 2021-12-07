@@ -4,6 +4,7 @@
 <mapper namespace="com.kh.workPeople.personal.mypage.applyCompany.model.dao.ApplyCompanyMapper">
     <resultMap id="jobVacancy" type="com.kh.workPeople.common.vo.JobVacancyLookUp">
         <id property="jvNo" column="JV_NO"/>
+        <result property="ciNo" column="CI_NO"/>
         <result property="jvTitle" column="JV_TITLE"/>
         <result property="jvAddress" column="JV_ADDRESS"/>
         <result property="jvPeriodEnd" column="JV_PERIOD_END"/>
@@ -55,6 +56,7 @@
 
     <select id="jobVacancyLookUpListPagingQuery" resultType="com.kh.workPeople.common.vo.PageInfo" resultMap="jobVacancy">
         SELECT
+            CI_NO,
             AC_TYPE,
             AC_DATE,
             JV_NO,
@@ -162,5 +164,103 @@
         WHERE M_NO=#{rNo}
         AND JV_NO = #{applyBtnNo}
     </select>
+
+    <delete id="applyCancel" parameterType="hashmap">
+        DELETE APPLY_COMPANY
+        WHERE M_NO=#{userNo}
+        AND JV_NO=#{jvNo}
+    </delete>
+
+    <delete id="deleteAppliedBasicInfo" parameterType="_int">
+        DELETE APPLIED_BASIC_INFO
+        WHERE AC_NO=#{acNo}
+    </delete>
+
+    <delete id="deleteAppliedEducation" parameterType="_int">
+        DELETE APPLIED_EDUCATION
+        WHERE AC_NO=#{acNo}
+    </delete>
+
+
+
+    <delete id="deleteAppliedCareer" parameterType="_int">
+        DELETE APPLIED_Career
+        WHERE AC_NO=#{acNo}
+    </delete>
+
+    <delete id="deleteAppliedActivity" parameterType="_int">
+        DELETE APPLIED_Activity
+        WHERE AC_NO=#{acNo}
+    </delete>
+
+    <delete id="deleteAppliedLicense" parameterType="_int">
+        DELETE APPLIED_License
+        WHERE AC_NO=#{acNo}
+    </delete>
+
+    <delete id="deleteAppliedLanguage" parameterType="_int">
+        DELETE APPLIED_Language
+        WHERE AC_NO=#{acNo}
+    </delete>
+
+    <delete id="deleteAppliedAwards" parameterType="_int">
+        DELETE APPLIED_Awards
+        WHERE AC_NO=#{acNo}
+    </delete>
+
+    <delete id="deleteAppliedSelfIntroduction" parameterType="_int">
+        DELETE APPLIED_Self_Introduction
+        WHERE AC_NO=#{acNo}
+    </delete>
+
+    <delete id="deleteApplyCompany" parameterType="_int">
+        DELETE APPLY_COMPANY
+        WHERE AC_NO=#{acNo}
+    </delete>
+
+
+    <select id="appliedCareerNum" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLIED_CAREER
+        WHERE AC_NO=#{acNo}
+    </select>
+
+    <select id="appliedActivityNum" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLIED_ACTIVITY
+        WHERE AC_NO=#{acNo}
+    </select>
+
+    <select id="appliedLicenseNum" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLIED_LICENSE
+        WHERE AC_NO=#{acNo}
+    </select>
+
+    <select id="appliedLanguageNum" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLIED_LANGUAGE
+        WHERE AC_NO=#{acNo}
+    </select>
+
+    <select id="appliedAwardsNum" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLIED_AWARDS
+        WHERE AC_NO=#{acNo}
+    </select>
+
+    <select id="appliedSelfIntroduction" resultType="_int">
+        SELECT
+            COUNT(*)
+        FROM APPLIED_SELF_INTRODUCTION
+        WHERE AC_NO=#{acNo}
+    </select>
+
+
 
 </mapper>
