@@ -2,8 +2,8 @@
 <html xmlns:th="http:/www.thymeleaf.org" >
 <div th:fragment="common-login (loginRedirect)" th:remove="tag">
 	<link rel="stylesheet" th:href="@{/css/account/login/common-login.css}">
-	<form th:action="${#strings.equals(type, 'personal')} ? @{/account/member/personal/login} : @{/account/member/company/login}" method="post">
-		<input type="hidden" name="member_type" th:value="${#strings.equals(type, 'personal')} ? '1' : '2'">
+	<form th:action="${#strings.equals(type, 'company')} ? @{/account/member/company/login} : @{/account/member/personal/login}" method="post">
+		<input type="hidden" name="member_type" th:value="${#strings.equals(type, 'company')} ? '2' : '1'">
 		<input type="hidden" name="loginRedirect" th:value="${loginRedirect}">
 		<div class="loginSetting">
 			<input type="checkbox" name="remember-me" id="remember-me"><label for="remember-me">로그인 유지</label>
