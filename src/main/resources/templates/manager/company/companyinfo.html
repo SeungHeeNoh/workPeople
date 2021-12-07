@@ -24,7 +24,7 @@
                 <li id="snb_2_2" class="snb_sub"><a th:href="@{/manager/user/customerservice}">고객센터</a></li>
             
                 <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
-                <li id="snb_3_1" class="snb_sub"><a th:href="@{/manager/company/companyinfo}">기업공고</a></li>
+                <li id="snb_3_1" class="snb_sub"><a th:href="@{/manager/company/companyinfo}">기업정보</a></li>
                 <li id="snb_3_2" class="snb_sub"><a th:href="@{/manager/company/report/reportlist}">신고공고</a></li>
                 <li id="snb_3_3" class="snb_sub"><a th:href="@{/manager/company/customerservice}">고객센터</a></li>
             
@@ -90,7 +90,7 @@
                                         <td th:text="${companyinfo.registerNumber}"></td>
                                         <td th:text="${companyinfo.member.email}"></td>
                                         <td th:text="${#dates.format(companyinfo.member.enrollDate, 'yyyy-MM-dd')}"></td>
-                                        <td th:text="${companyinfo.member.status == 'N' ? '비활성화' : '활성화'}"></td>
+                                        <td th:text="${companyinfo.member.companyStatusYN == 'Y' ? '비활성화' : '활성화'}"></td>
                                         <td>
                                             <a class="tag">공고 조회<input type="hidden" class="no"  name="no" th:value="${companyinfo.member.no}"/></a>
                                         </td>
@@ -234,7 +234,11 @@
 		jvRow = jvRow +'<td class="pnum">'+(index+1)+'</td>';
 		jvRow = jvRow +'<td class="ptit">'+jv.title+'</td>';
 		jvRow = jvRow +'<td>'+jv.address+'</td>';
-		jvRow = jvRow +'<td>공고중</td>';
+		if(jv.to>0){
+	    jvRow = jvRow +'<td>공고중</td>'; 
+		}else{
+	    jvRow = jvRow +'<td>공고마감</td>'; 
+		}
 		jvRow = jvRow +'<td>'+jv.periodEnd+'</td>';
 		jvRow = jvRow +'</tr>';
 		return jvRow;

@@ -102,41 +102,40 @@
  	     </foreach>
      ORDER BY JV_REGISTER ASC
 	</select>
-	
-	<select id ="jobSearchList" resultMap="companyResultMap" parameterType="hashmap">
-		SELECT
-        JV_NO
-       ,JV_TITLE
-       ,M_NAME
-       ,S_NAME
-     FROM COMPANY_INFO 
-     JOIN  SECTOR USING(S_NO) 
-     JOIN MEMBER USING(M_NO)
-     JOIN JOB_VACANCY USING(CI_NO)
-     WHERE S_NO IN 
-     
-     	<foreach collection="no" item="sec"  open="("   separator=", " close=")">
- 	     #{sec}
- 	     </foreach>
-     ORDER BY JV_REGISTER ASC
-	</select>
-	
+
 	<select id ="getJobVacancyLookUpList" resultMap="jobVacancyResultMap" parameterType="hashmap">
-		SELECT
+	  	SELECT
         JV_NO
        ,JV_TITLE
        ,M_NAME
        ,S_NAME
-     FROM COMPANY_INFO 
-     JOIN  SECTOR USING(S_NO) 
-     JOIN MEMBER USING(M_NO)
-     JOIN JOB_VACANCY USING(CI_NO)
-     WHERE S_NO IN
-      	<foreach collection="no" item="sec"  open="("   separator=", " close=")"> 
- 	     #{sec}
+       , JV_PERIOD_START
+       , JV_PERIOD_END
+       	       , case when P_CODE = 3 
+	               and <![CDATA[TO_CHAR(P_START_DATE, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD') ]]>
+	               and <![CDATA[TO_CHAR(P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') 
+	               then to_date(to_char(SYSDATE, 'YYYY-MM-DD HH24:')|| '00:00', 'YYYY-MM-DD HH24:MI:SS') ]]>
+	          else JV_REGISTER end as BASEDATE
+	       , case when P_CODE = 3 
+	               and <![CDATA[ TO_CHAR(P_START_DATE, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD') ]]>
+	               and <![CDATA[ TO_CHAR(P_END_DATE, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') ]]>
+	               then 1
+	          else 0 end as BASEDATECHECK 
+                FROM COMPANY_INFO 
+	     JOIN SECTOR USING(S_NO) 
+	     JOIN MEMBER USING(M_NO)
+	     JOIN JOB_VACANCY USING(CI_NO)
+	     LEFT JOIN PROMOTION_ORDER USING(JV_NO)
+	    WHERE <![CDATA[ TO_CHAR(JV_PERIOD_START, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD')
+	      AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') ]]>
+	      AND JV_STATUS_YN = 'Y'
+          AND S_NO IN 
+          	<foreach collection="no" item="sec"  open="("   separator=", " close=")"> 
+ 	    	 #{sec}
  	     </foreach> 
-     ORDER BY JV_REGISTER ASC
-	</select>
+	    ORDER BY BASEDATE DESC
+	    </select>
+	    
 	
 	<select id ="getJobVacancyLookUpListBasic" resultMap="jobVacancyResultMap">
 	<![CDATA[
@@ -164,7 +163,8 @@
 	     LEFT JOIN PROMOTION_ORDER USING(JV_NO)
 	    WHERE TO_CHAR(JV_PERIOD_START, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD')
 	      AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
-	    ORDER BY BASEDATECHECK DESC, BASEDATE DESC
+	      AND JV_STATUS_YN = 'Y'
+	    ORDER BY BASEDATE DESC
       ]]>
 	</select>
 

@@ -18,6 +18,8 @@
 		<result property="lastestTryLoginDate" column="M_LATEST_TRY_LOGIN_DATE"/>
 		<result property="lockCount" column="M_LOCK_COUNT"/>
 		<result property="status" column="M_STATUS"/>
+		<result property="companyStatusYN" column="CI_STATUS_YN"/>
+		
 		<result property="tempPwdYn" column="M_TEMP_PWD_YN"/>
 		<collection property="memberRoleList" resultMap="memberRoleResultMap"/>
 	</resultMap>
@@ -57,6 +59,7 @@
         <result property="address" column="JV_ADDRESS"/>
         <result property="periodEnd" column="JV_PERIOD_END"/>
         <result property="peiodStart" column="JV_PERIOD_START"/>
+        <result property="to" column="VALID"/>
     </resultMap>
     
 	<select id="selectList" resultMap="managercompanyResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
@@ -66,6 +69,7 @@
 					ROW_NUMBER() OVER (ORDER BY M_NO) NUM,
 						A_NO
 		           	 ,  M_NO
+		           	 , CI_STATUS_YN
 				     , M_NAME
                      , CI_COMPANY_REGISTER_NUMBER
 				     , M_EMAIL
@@ -105,15 +109,22 @@
 	</select>
 	
 	<select id="getListJobVacanscyByCompanyNum" resultMap="jobVacancyResultMap" parameterType="_int">
-		SELECT 
+	
+	<![CDATA[
+	      SELECT 
 	        jv_title
 	       ,jv_address
 	       ,JV_PERIOD_END
 	       ,JV_PERIOD_START
-	     FROM COMPANY_INFO 
-	     LEFT JOIN MEMBER USING(M_NO)
-	     LEFT JOIN JOB_VACANCY USING(CI_NO)
-	     WHERE  M_NO=#{no}
+	       ,case when TO_CHAR(JV_PERIOD_START, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD') 
+           	and TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
+           	then 1 else 0 END as VALID 
+		     FROM COMPANY_INFO 
+		     LEFT JOIN MEMBER USING(M_NO)
+		     LEFT JOIN JOB_VACANCY USING(CI_NO)
+		     WHERE  M_NO=#{no}
+	     ]]>
+	     
 	</select>
 	
 

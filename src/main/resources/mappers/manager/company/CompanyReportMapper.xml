@@ -19,13 +19,22 @@
 			JOIN MEMBER H ON G.M_NO = H.M_NO WHERE CI_STATUS_YN ='N' AND CNT>=10
 	</select>
 	
-	<update id ="disableJobVacancy" parameterType="hashmap">
-		UPDATE COMPANY_INFO SET	CI_STATUS_YN = 'Y' 
+	<update id ="disableCompanyInfo" parameterType="hashmap">
+		UPDATE COMPANY_INFO SET
+			CI_STATUS_YN = 'Y' 
 		WHERE CI_NO IN 
 		<foreach collection="no" item="sec"  open="("   separator=", " close=")"> 
  	     #{sec}
  	    </foreach> 
-		 
+	</update>
+	
+	<update id ="disableJobVacancy" parameterType="hashmap">
+		UPDATE JOB_VACANCY SET
+			JV_STATUS_YN = 'N'
+		WHERE CI_NO IN 
+		<foreach collection="no" item="sec"  open="("   separator=", " close=")"> 
+ 	     #{sec}
+ 	    </foreach> 
 	</update>
 
 </mapper>
