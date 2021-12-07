@@ -66,8 +66,6 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService {
         // 회원의 대표이력서 번호 알아오기
         Resume statusYResume = homeMapper.selectResumeStatusY(userNo);
 
-//        System.out.println("statusYResume : "+statusYResume);
-
         if(statusYResume != null) {
 
             int rNo = statusYResume.getNo();
@@ -75,7 +73,6 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService {
             // 회원의 입사지원한 구분번호 알아오기
             ApplyCompany applyCompanyNo = applyCompanyMapper.selectApplyCompany(userNo, jvNo);
 
-            System.out.println("applyCompanyNo : "+applyCompanyNo);
             if (applyCompanyNo != null) {
 
                 int acNo = applyCompanyNo.getAcNo();
@@ -125,6 +122,70 @@ public class ApplyCompanyServiceImpl implements ApplyCompanyService {
             }
         }
         return 1;
+    }
+
+    @Override
+    public int insertNotStatusYAppliedTable(int userNo, int jvNo,int rNo) {
+
+
+            // 회원의 입사지원한 구분번호 알아오기
+            ApplyCompany applyCompanyNo = applyCompanyMapper.selectApplyCompany(userNo, jvNo);
+
+            if (applyCompanyNo != null) {
+
+                int acNo = applyCompanyNo.getAcNo();
+
+                // 선택한 회원 이력서의 정보 읽어오기
+                ResumeDetails basicInfoAndEducation = resumeMapper.resumeDetailsLookUp(rNo);
+                List<Career> resumeCareerList = resumeMapper.resumeCareerList(rNo);
+                List<Activity> resumeActivityList = resumeMapper.resumeActivityList(rNo);
+                List<License> resumeLicenseList = resumeMapper.resumeLicenseList(rNo);
+                List<Language> resumeLanguageList = resumeMapper.resumeLanguageList(rNo);
+                List<Awards> resumeAwardsList = resumeMapper.resumeAwardsList(rNo);
+                List<SelfIntroduction> resumeSelfIntroductionList = resumeMapper.resumeSelfIntroductionList(rNo);
+
+
+//        각각의 테이블에 입사지원 구분번호 삽입,
+                // applied_테이블에 데이터 삽입
+
+                basicInfoAndEducation.setAcNo(acNo);
+                int appliedbasicInfo = resumeMapper.appliedbasicInfoAndEducation(basicInfoAndEducation);
+                int appliedbasicEducation = resumeMapper.appliedbasicInfoAndEducation2(basicInfoAndEducation);
+
+                for (Career career : resumeCareerList) {
+                    career.setAcNo(acNo);
+                    int appliedCareer = resumeMapper.appliedappliedCareer(career);
+                }
+                for (Activity activity : resumeActivityList) {
+                    activity.setAcNo(acNo);
+                    int appliedActivity = resumeMapper.appliedActivity(activity);
+                }
+                for (License license : resumeLicenseList) {
+                    license.setAcNo(acNo);
+                    int appliedLicense = resumeMapper.appliedLicense(license);
+                }
+                for (Language language : resumeLanguageList) {
+                    language.setAcNo(acNo);
+                    int appliedLanguage = resumeMapper.appliedLanguage(language);
+                }
+                for (Awards awards : resumeAwardsList) {
+                    awards.setAcNo(acNo);
+                    int appliedAwards = resumeMapper.appliedAwards(awards);
+                }
+                for (SelfIntroduction selfIntroduction : resumeSelfIntroductionList) {
+                    selfIntroduction.setAcNo(acNo);
+                    int appliedSelfIntroduction = resumeMapper.appliedSelfIntroduction(selfIntroduction);
+                }
+
+        }
+        return 1;
+
+
+
+
+
+
+
     }
 
     @Override

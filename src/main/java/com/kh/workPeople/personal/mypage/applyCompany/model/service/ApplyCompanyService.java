@@ -24,9 +24,13 @@ public interface ApplyCompanyService {
 
     int insertAppliedTable(int rNo, int applyBtnNo);
 
+    int insertNotStatusYAppliedTable(int userNo, int jvNo,int rNo);
+
     Map<String, Object> jobVacancyLookUpListPaging(int no, int page);
 
     JobVacancyLookUp applyCompanyRbDateFormat(int jvNo);
 
     int applyCancel(int no, List<Integer> jvNoList);
+
+
 }
