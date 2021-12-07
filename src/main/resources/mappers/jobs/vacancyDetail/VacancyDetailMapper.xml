@@ -7,6 +7,9 @@
 		<result property="interestedCompany" column="INTERESTED"/>
 		<result property="scrapJobVacancy" column="SCRAPED"/>
 		<result property="reportedJobVacancy" column="REPORTED"/>
+		<result property="appliedJobVacancy" column="APPLIED"/>
+		<result property="appliedTotalCount" column="APPLIED_COUNT"/>
+		<result property="appliedManCount" column="APPLIED_MAN_COUNT"/>
 		<association property="jobVacancy" resultMap="jobVacancyResultMap"/>
 	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.JobVacancy" id="jobVacancyResultMap">
@@ -125,7 +128,13 @@
 		        WHEN REPORT_INFORMATION.JV_NO IS NULL THEN 'N'
 		        ELSE 'Y'
 		       END REPORTED
+		     , CASE
+		        WHEN APPLY_INFORMATION.JV_NO IS NULL THEN 'N'
+		        ELSE 'Y'
+		       END APPLIED
 		 </if>
+		      , APPLIY_COUNT.APPLIED_COUNT
+		      , APPLIED_MAN_COUNT.APPLIED_MAN_COUNT
 		FROM COMPANY_INFORMATION
 		JOIN JOB_VACACY_INFORMATION JI ON(COMPANY_INFORMATION.CI_NO = JI.CI_NO)
 		<if test="userNo != null">
@@ -138,7 +147,22 @@
 		LEFT OUTER JOIN (SELECT JV_NO
 		                   FROM REPORT_VACANCY
 		                  WHERE M_NO = #{userNo}) REPORT_INFORMATION ON(JI.JV_NO = REPORT_INFORMATION.JV_NO)
+		LEFT OUTER JOIN (SELECT JV_NO
+		                   FROM APPLY_COMPANY
+		                  WHERE M_NO = #{userNo}) APPLY_INFORMATION ON(JI.JV_NO = APPLY_INFORMATION.JV_NO)                  
 		</if>
+		LEFT OUTER JOIN (SELECT
+			 					JV_NO
+			 				  , COUNT(*) APPLIED_COUNT
+                  		   FROM APPLY_COMPANY
+                  		  GROUP BY JV_NO) APPLIY_COUNT ON(APPLIY_COUNT.JV_NO = JI.JV_NO)
+		LEFT OUTER JOIN (SELECT
+		                        JV_NO
+		                      , COUNT(*) APPLIED_MAN_COUNT
+		                   FROM APPLY_COMPANY
+		                   JOIN APPLIED_BASIC_INFO USING(AC_NO)
+		                  WHERE BI_GENDER = '남'
+		                  GROUP BY JV_NO, BI_GENDER) APPLIED_MAN_COUNT ON(APPLIED_MAN_COUNT.JV_NO = JI.JV_NO)
 	   WHERE JI.JV_NO = #{no}
 	     AND JV_STATUS_YN = 'Y'
 	</select>

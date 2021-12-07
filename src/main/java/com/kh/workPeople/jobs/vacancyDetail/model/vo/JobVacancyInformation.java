@@ -11,18 +11,25 @@ public class JobVacancyInformation{
 	private String interestedCompany;
 	private String scrapJobVacancy;
 	private String reportedJobVacancy;
+	private String appliedJobVacancy;
+	private int appliedTotalCount;
+	private int appliedManCount;
 	private JobVacancy jobVacancy;
 	private int dDay;
 
 	public JobVacancyInformation() {}
 
 	public JobVacancyInformation(String companyName, int companyNo, String interestedCompany, String scrapJobVacancy,
-			String reportedJobVacancy, JobVacancy jobVacancy, int dDay) {
+			String reportedJobVacancy, String appliedJobVacancy, int appliedTotalCount, int appliedManCount,
+			JobVacancy jobVacancy, int dDay) {
 		this.companyName = companyName;
 		this.companyNo = companyNo;
 		this.interestedCompany = interestedCompany;
 		this.scrapJobVacancy = scrapJobVacancy;
 		this.reportedJobVacancy = reportedJobVacancy;
+		this.appliedJobVacancy = appliedJobVacancy;
+		this.appliedTotalCount = appliedTotalCount;
+		this.appliedManCount = appliedManCount;
 		this.jobVacancy = jobVacancy;
 		this.dDay = dDay;
 	}
@@ -67,6 +74,30 @@ public class JobVacancyInformation{
 		this.reportedJobVacancy = reportedJobVacancy;
 	}
 
+	public String getAppliedJobVacancy() {
+		return appliedJobVacancy;
+	}
+
+	public void setAppliedJobVacancy(String appliedJobVacancy) {
+		this.appliedJobVacancy = appliedJobVacancy;
+	}
+
+	public int getAppliedTotalCount() {
+		return appliedTotalCount;
+	}
+
+	public void setAppliedTotalCount(int appliedTotalCount) {
+		this.appliedTotalCount = appliedTotalCount;
+	}
+
+	public int getAppliedManCount() {
+		return appliedManCount;
+	}
+
+	public void setAppliedManCount(int appliedManCount) {
+		this.appliedManCount = appliedManCount;
+	}
+
 	public JobVacancy getJobVacancy() {
 		return jobVacancy;
 	}
@@ -76,8 +107,6 @@ public class JobVacancyInformation{
 	}
 
 	public int getdDay() {
-		Date today = new Date();
-		int dDay = (int)((jobVacancy.getPeriodEnd().getTime() - today.getTime())/(1000*60*60*24));
 		return dDay;
 	}
 
@@ -89,8 +118,9 @@ public class JobVacancyInformation{
 	public String toString() {
 		return "JobVacancyInformation [companyName=" + companyName + ", companyNo=" + companyNo + ", interestedCompany="
 				+ interestedCompany + ", scrapJobVacancy=" + scrapJobVacancy + ", reportedJobVacancy="
-				+ reportedJobVacancy + ", jobVacancy=" + jobVacancy + ", dDay=" + dDay + "]";
+				+ reportedJobVacancy + ", appliedJobVacancy=" + appliedJobVacancy + ", appliedTotalCount="
+				+ appliedTotalCount + ", appliedManCount=" + appliedManCount + ", jobVacancy=" + jobVacancy + ", dDay="
+				+ dDay + "]";
 	}
 
-	
 }

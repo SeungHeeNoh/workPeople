@@ -20,7 +20,7 @@
 					<div class="job_vacancy_header_inner">
 						<div>
 							<div>
-								<h3><a th:href="@{/company-information/detail-view?no=} + ${jobVacancyInformation.companyNo}">[[${jobVacancyInformation.companyName}]]</a></h3>
+								<h3><a th:href="@{/jobs/company-information/detail-view?no=} + ${jobVacancyInformation.companyNo}">[[${jobVacancyInformation.companyName}]]</a></h3>
 							<th:block th:if="${#authorization.expression('isAnonymous()') or #authorization.expression('hasRole(''PERSONAL'')')}">
 								<button type="button" class="like_button" th:classappend="${(#authorization.expression('isAnonymous()') ? 'login_button' : '') + (#strings.equals(jobVacancyInformation.interestedCompany, 'Y') ? 'active':'')}" th:attr="data-company-no=${jobVacancyInformation.companyNo}">관심기업 등록
 									<span class="blind">
@@ -40,10 +40,11 @@
 										<span th:unless="${#strings.equals(jobVacancyInformation.interestedCompany, 'Y')}" th:remove="tag">설정</span>
 									</span>
 								</button>
-								<button type="button" class="apply_button" th:classappend="${(jobVacancyInformation.dDay < 0 ? 'ended' : '')}">
+								<button type="button" class="apply_button" th:classappend="${(jobVacancyInformation.dDay < 0 ? 'ended' : '') + (#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y') ? 'applied' : '')}">
 									<span th:text="D- + ${jobVacancyInformation.dDay == 0 ? 'day' : jobVacancyInformation.dDay}"></span>
 									<span th:if="${jobVacancyInformation.dDay < 0}" th:remove="tag">접수 마감</span>
-									<span th:if="${jobVacancyInformation.dDay >= 0}" th:remove="tag">입사지원</span>
+									<span th:if="${jobVacancyInformation.dDay} >= 0 and not ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}" th:remove="tag">입사지원</span>
+									<span th:if="${jobVacancyInformation.dDay} >= 0 and ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}" th:remove="tag">지원취소</span>
 								</button>
 							</th:block>
 						</div>
@@ -105,15 +106,17 @@
 					<div class="count">
 						<dl>
 							<dt>지원자수</dt>
-							<dd><span>56</span>명</dd>
+							<dd><span th:text="${jobVacancyInformation.appliedTotalCount}"></span>명</dd>
 						</dl>
 					</div>
 					<div class="gender">
 						<p>성별 현황</p>
-						<div class="graph"><div class="men"></div></div>
+						<div class="graph" th:classappend="${jobVacancyInformation.appliedTotalCount == 0 ? 'no-apply' : ''}">
+							<div class="men" th:style="'width:' + ${jobVacancyInformation.appliedTotalCount > 0 ? 800/jobVacancyInformation.appliedTotalCount*jobVacancyInformation.appliedManCount : 0} + 'px'"></div>
+						</div>
 						<div class="legend">
-							<div>남자 : 28명</div>
-							<div>여자 : 28명</div>
+							<div>남자 : [[${jobVacancyInformation.appliedManCount}]]명</div>
+							<div>여자 : [[${jobVacancyInformation.appliedTotalCount - jobVacancyInformation.appliedManCount}]]명</div>
 						</div>
 					</div>
 				</div>
