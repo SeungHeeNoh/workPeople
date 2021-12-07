@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 
 <head>
     <meta charset="UTF-8">
@@ -18,11 +18,11 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        let ck_host = [[${host}]];
-        /*]]>*/
-    </script>
+<!--    <script th:inline="javascript">-->
+<!--        /*<![CDATA[*/-->
+<!--        let ck_host = [[${host}]];-->
+<!--        /*]]>*/-->
+<!--    </script>-->
 </head>
 <body>
 <div th:include="common/header.html"></div>
@@ -34,26 +34,117 @@
             <div class="content_wrap">
                 
                 <div class="content1_container">
-                    <div class="content1_1">고객센터</div>
+                    <div class="content1_1" >고객센터</div>
                 </div>
-                <div class="content2_container">
+                <div class="content2_container" id="chatroom">
                     <div class="content2_container_padding">
                         <span class="content2_beginWord">
-                            <span th:text="${username}"></span><span>님이 입장하였습니다.</span>
+<!--                            <span th:text="${username}"></span><span>님이 입장하였습니다.</span>-->
+                            <span th:text="*{room.id}"></span>
+                            <span th:text="*{room.name}"></span>
                         </span>
                     </div>
                 </div>
                 <div class="content3_container">
                     <input type="text" class="content3_1" id="message" name="message" placeholder="전송할 메세지를 입력해주세요.">
-                    <button class="green green1">전송</button>
+                    <button class="green green1" id="send">전송</button>
                 </div>
 
             </div>
         </section>
     </div>
 <div th:include="common/footer.html"></div>
-<script th:src="@{/js/personal/mypage/serviceCenter.js}"></script>
+<!--<script th:src="@{/js/personal/mypage/serviceCenter.js}"></script>-->
+<script>
 
+    var nickname = '[[${room.name}]]';
+    var webSocket;
+    var roomId = '[[${room.id}]]';
+
+
+    // /* 닉네임 입력 후 참가 */
+    // document.getElementById("join").addEventListener("click",function(){
+    //     nickname = document.getElementById("nickname").value;
+    //     document.getElementById("nickname").style.display = "none";
+    //     document.getElementById("join").style.display="none";
+    //     /* 웹소켓 연결 */
+    //
+    // })
+
+    connect();
+    /* 웹소켓 연결 */
+    function connect(){
+        /* 웹소켓 객체 */
+        webSocket = new WebSocket("ws://localhost:8800/multi-chat");
+        /* 연결 되었을 때, 메세지가 왔을 때, 닫혔을 때에 대한 이벤트 핸들러 */
+        webSocket.onopen = onOpen;
+        webSocket.onclose = onClose;
+        webSocket.onmessage = onMessage;
+    }
+    /* 웹 소켓 연결 되었을 떄*/
+    function onOpen(){
+        /* JSON 형식으로 데이터 전송 */
+        webSocket(JSON.stringify({chatRoomId : roomId, messageType:'JOIN',sender:nickname}));
+    }
+
+    // /* 나가기 버튼을 눌렀을 때 */
+    // document.getElementById("exit").addEventListener("click",function(){
+    //     disconnect();
+    // })
+
+    /* 문서, 리소스가 언로드 되기 직전에 발생하는 이벤트 */
+    window.onbeforeunload = function(){
+        disconnect();
+    }
+
+
+
+    /* 연결 끊기 */
+    function disconnect(){
+        if(webSocket) {
+            /* JSON 형식으로 데이터 전송 */
+            webSocket.send(JSON.stringify({chatRoomId: roomId, messageType: 'LEAVE', sender: nickname}));
+            webSocket.close();
+        } else{
+        //    접속하지 않고 채팅방에서 나ㅏㄱ기를 클릭했을 경우 방 목록으로
+            onClose();
+        }
+    }
+
+    /* 웹 소켓 연결 닫혔을 떄*/
+    function onClose(){
+        // location.href='/room/list';
+        history.go(-1);
+    }
+
+
+    /* 메세지 전송 버튼 누를 시 */
+    document.getElementById("send").addEventListener("click",function(){
+        send();
+    });
+
+    /* 메세지 발송 */
+    function send(){
+        var msg = document.getElementById("message").value;
+        webSocket.send(JSON.stringify({chatRoomId : roomId,
+            messageType:'CHAT',sender:nickname, message : msg}));
+        document.getElementById("message").value="";
+    }
+
+
+    /* 웹 소켓 메세지 왔을 떄*/
+    function onMessage(e){
+        var data = e.data.replace(/\"/g,'');
+        console.log(e);
+        console.log(data);
+        document.getElementById("chatroom").innerHTML += "<div>" + data + "</div>";
+
+
+    }
+
+
+
+</script>
 </body>
 
 </html>

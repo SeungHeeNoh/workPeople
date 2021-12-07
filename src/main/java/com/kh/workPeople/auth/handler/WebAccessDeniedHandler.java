@@ -15,8 +15,11 @@ public class WebAccessDeniedHandler implements AccessDeniedHandler {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
+		System.out.println("doNotAccessHandler");
+
 		request.setAttribute("errorMessage", "잘못된 접근입니다.");
 		request.getRequestDispatcher("/common/errorPage").forward(request, response);
+
 	}
 
 }
