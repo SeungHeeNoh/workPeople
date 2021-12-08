@@ -10,7 +10,7 @@
 <link rel="stylesheet" th:href="@{/css/company/mypage/mainPopup.css}">
 
 <style>
-.wrap .container{height:520px;}
+.wrap .container{min-height:520px;}
 </style>
 
 </head>
@@ -31,7 +31,7 @@
                     <span class="num" th:text="${jvEndCount}"></span>건
                 </div>
                 <div class="jv_insert">
-                    <button type="button" th:onclick="location.href='@{/company/mypage/insertJv}'">공고 등록하기</button>
+                    <button type="button" th:onclick="|location.href='@{/company/mypage/insertJv}'|">공고 등록하기</button>
                 </div>
             </div>
             <div class="content_top2">
@@ -69,7 +69,6 @@
                     </tbody>
                 </table>
             </div>
-            
         </div>
     </div>
 
@@ -112,8 +111,9 @@
     </div>
     <div th:include="common/up.html"></div>    
 	<div th:include="common/footer.html"></div>
+	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js}"></script>
     <script th:src="@{/js/company/mypage/Popup.js}"></script>
-    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js}"></script>
+    
 	
 
 </body>

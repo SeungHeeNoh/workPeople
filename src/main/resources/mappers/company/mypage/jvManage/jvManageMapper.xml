@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.workPeople.company.mypage.jvManage.model.dao.jvManageMapper">
+
+	<resultMap type="com.kh.workPeople.common.vo.JobVacancy" id="jobVacancyResultMap">
+		<id property="no" column="JV_NO"/>
+		<result property="title" column="JV_TITLE"/>
+		<result property="periodEnd" column="JV_PERIOD_END"/> 
+		<result property="address" column="JV_ADDRESS"/>
+		<result property="count" column="CNT"/>
+	</resultMap>
+	
+	<select id="jobVacancyInfoSelect" resultMap="jobVacancyResultMap">
+		 SELECT
+		       JV_TITLE
+		     , JV_ADDRESS
+		     , JV_PERIOD_END
+             , (SELECT
+                  count(*)
+              FROM JOB_VACANCY 
+             WHERE CI_NO = #{cino}
+               AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')) CNT
+		  FROM JOB_VACANCY 
+		 WHERE CI_NO = #{cino}
+		 ORDER BY JV_REGISTER
+	</select>
+
+</mapper>
