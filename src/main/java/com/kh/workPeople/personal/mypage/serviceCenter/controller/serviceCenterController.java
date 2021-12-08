@@ -53,10 +53,16 @@ public class serviceCenterController {
 
     // 특정 채팅방 입장
     @GetMapping("/serviceCenter/{id}")
-    public String chatRoomEnter(@PathVariable String id, Model model){
+    public String chatRoomEnter(HttpServletRequest request,@PathVariable String id, Model model,@AuthenticationPrincipal MemberImpl user){
+
+        String host = request.getRemoteAddr();
+        model.addAttribute("host",host);
+        System.out.println("host"+host);
 
         ChatRoom room = chatService.findChatRoomById(id);
+        String userName = user.getName();
         model.addAttribute("room",room);
+        model.addAttribute("userName",userName);
 
 
         return "personal/mypage/serviceCenter";

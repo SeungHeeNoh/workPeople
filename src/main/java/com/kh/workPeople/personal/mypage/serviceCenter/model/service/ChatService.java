@@ -15,6 +15,6 @@ public interface ChatService {
 //    특정 채팅방 조회 - 채팅방 입장
     ChatRoom findChatRoomById(String chatRoomId);
 
-
+//      세션에 아무도 없을시 채팅방 삭제
     void deleteChatRoom(String chatRoomId);
 }

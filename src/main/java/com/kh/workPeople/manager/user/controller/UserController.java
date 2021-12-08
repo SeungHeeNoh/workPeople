@@ -5,6 +5,7 @@ import java.util.Map;
 import com.kh.workPeople.common.vo.ChatRoom;
 import com.kh.workPeople.personal.mypage.serviceCenter.model.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.workPeople.manager.user.model.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -53,10 +55,14 @@ public class UserController {
 		}
 
 	@GetMapping("/serviceCenter/{id}")
-	public String chatRoomEnter(@PathVariable String id, Model model){
+	public String chatRoomEnter(HttpServletRequest request, @PathVariable String id, Model model){
+		String host = request.getRemoteAddr();
+		model.addAttribute("host",host);
+		System.out.println("host"+host);
 
 		ChatRoom room = chatService.findChatRoomById(id);
 		model.addAttribute("room",room);
+		model.addAttribute("userName","고객센터");
 
 
 		return "personal/mypage/serviceCenter";

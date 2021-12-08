@@ -20,6 +20,7 @@ section{
 .content2_container{
     height: 624px;
     background-color: #FFEEC2;
+    overflow: auto;
 }
 
 .content3_container{
@@ -47,5 +48,12 @@ section{
 }
 
 .content2_beginWord{
-    /*background: white;*/
+    background: white;
+    width: 70%;
+}
+.content2_beginWord2{
+    width: 70%;
+    text-align: left;
+    margin-left: 129px;
+    background-color: #F7E600;
 }

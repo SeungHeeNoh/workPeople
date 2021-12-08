@@ -66,10 +66,6 @@ public class ChatRoomHandler extends TextWebSocketHandler {
        /* 접속 리스트에서 session 삭제 */
        sessions.remove(session);
 
-       if(sessions.isEmpty()){
-
-       }
-
        /* 퇴장 메세지 전달 */
        for(WebSocketSession wss : sessions) {
            wss.sendMessage(new TextMessage(session.getAttributes().get("username") + "님이 퇴장하셨습니다."));

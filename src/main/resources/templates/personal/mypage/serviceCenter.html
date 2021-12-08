@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -18,17 +18,20 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<!--    <script th:inline="javascript">-->
-<!--        /*<![CDATA[*/-->
-<!--        let ck_host = [[${host}]];-->
-<!--        /*]]>*/-->
-<!--    </script>-->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        let ck_host = [[${host}]];
+        var userName = [[${userName}]];
+        /*]]>*/
+    </script>
 </head>
 <body>
 <div th:include="common/header.html"></div>
     <div class="wrapper">
-        
-    <div th:include="personal/mypage/mainSnb.html"></div>
+
+        <th:block th:if="!${#strings.equals(userName,'고객센터')}">
+            <div th:include="personal/mypage/mainSnb.html"></div>
+        </th:block>
 
         <section>
             <div class="content_wrap">
@@ -38,11 +41,11 @@
                 </div>
                 <div class="content2_container" id="chatroom">
                     <div class="content2_container_padding">
-                        <span class="content2_beginWord">
-<!--                            <span th:text="${username}"></span><span>님이 입장하였습니다.</span>-->
-                            <span th:text="*{room.id}"></span>
-                            <span th:text="*{room.name}"></span>
-                        </span>
+                        <div class="content2_beginWord">
+<!--                            <span th:text="${username}
+"></span><span>님이 입장하였습니다.</span>-->
+
+                        </div>
                     </div>
                 </div>
                 <div class="content3_container">
@@ -57,7 +60,7 @@
 <!--<script th:src="@{/js/personal/mypage/serviceCenter.js}"></script>-->
 <script>
 
-    var nickname = '[[${room.name}]]';
+    var nickname = '[[${userName}]]';
     var webSocket;
     var roomId = '[[${room.id}]]';
 
@@ -80,11 +83,17 @@
         webSocket.onopen = onOpen;
         webSocket.onclose = onClose;
         webSocket.onmessage = onMessage;
+
+        // webSocket2 = new WebSocket("ws://127.0.0.1:8800/multi-chat");
+        // /* 연결 되었을 때, 메세지가 왔을 때, 닫혔을 때에 대한 이벤트 핸들러 */
+        // webSocket2.onopen = onOpen;
+        // webSocket2.onclose = onClose;
+        // webSocket2.onmessage = onMessage;
     }
     /* 웹 소켓 연결 되었을 떄*/
     function onOpen(){
         /* JSON 형식으로 데이터 전송 */
-        webSocket(JSON.stringify({chatRoomId : roomId, messageType:'JOIN',sender:nickname}));
+        webSocket.send(JSON.stringify({chatRoomId : roomId, messageType:'JOIN',sender:nickname}));
     }
 
     // /* 나가기 버튼을 눌렀을 때 */
@@ -134,11 +143,25 @@
 
     /* 웹 소켓 메세지 왔을 떄*/
     function onMessage(e){
+        var data2 = e.data;
+        var strArray = data2.split("|");
+        var host = strArray[0].substr(1, strArray[0].indexOf(":")-1);
+
         var data = e.data.replace(/\"/g,'');
         console.log(e);
         console.log(data);
-        document.getElementById("chatroom").innerHTML += "<div>" + data + "</div>";
 
+
+
+        if(host !== ck_host){
+            document.getElementById("chatroom").innerHTML += "<div class='content2_container_padding'>"
+                + "<div class='content2_beginWord'>"
+                + data + "</div></div>";
+        } else{
+            document.getElementById("chatroom").innerHTML += "<div class='content2_container_padding'>"
+                + "<div class='content2_beginWord2'>"
+                + data + "</div></div>";
+        }
 
     }
 
