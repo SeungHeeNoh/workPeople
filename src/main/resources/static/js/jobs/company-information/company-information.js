@@ -357,15 +357,29 @@
 				if(j != 0) experienceLevel += ", "
 				experienceLevel += jobVacancyData.jobVacancy.experienceLevelList[j].name;
 			}
-			
+
 			let html = "<tr>"
-				html += "	<td><a href='/jobs/vacancy-detail/detail-view?no=" + jobVacancyData.no + "'>" + jobVacancyData.jobVacancy.title + "</a></td>"
-				html += "	<td>" + experienceLevel + " | " + jobVacancyData.jobVacancy.educationLevel.name + " </td>"
-				html += "	<td>~" + (date.getMonth()+1) + "/" + date.getDate() + " (" + weekArray[date.getDay()] + ")</td>"
+				html += "	<td><a href='/jobs/vacancy-detail/detail-view?no=" + jobVacancyData.no + "' class='title'>" + jobVacancyData.jobVacancy.title + "</a></td>";
+				html += "	<td>" + experienceLevel + " | " + jobVacancyData.jobVacancy.educationLevel.name + " </td>";
+				html += "	<td>~" + (date.getMonth()+1) + "/" + date.getDate() + " (" + weekArray[date.getDay()] + ")</td>";
 				if(type == "expired") {
-					html += "	<td><button type='button' class='closed'>마감</button></td>"
+					html += "	<td><button type='button' class='closed'>마감</button></td>";
 				} else {
-					html += "	<td><button type='button' class='green apply_button'>입사지원</button></td>"
+					if(!isLogined) {
+						html += "	<td><button type='button' class='green apply_button'>입사지원</button></td>";
+					} else {
+						if(jobVacancyData.applied != "Y") {
+							html += "	<td><button type='button' class='green apply_button' data-jv-no='" + jobVacancyData.no + "'>입사지원</button></td>";
+						} else {
+							html += "<td>";
+							html += "<form action='/jobs/job-vacancy/cancel-apply' method='POST'>";
+							html += "<input type='hidden' name='_csrf' value='" + token + "'>";
+							html += "<input type='hidden' name='jvNo' value='" + jobVacancyData.no + "'>";
+							html += "<button type='submit'>지원취소</button>";
+							html += "</form>";
+							html += "</td>";
+						}
+					}
 				}
 
 			tbody.insertAdjacentHTML("beforeend", html);
@@ -382,7 +396,7 @@
 				let resumeNo = button.getAttribute("data-resume-no"),
 				option = 'top=50, left=150, width=920, height=600, status=no, menubar=no, toolbar=no, resizable=no';
 
-					window.open("/jobs/vacancy-detail/resume-view?rNo=" + resumeNo, "이력서 보기", option);
+					window.open("/jobs/job-vacancy/resume-view?rNo=" + resumeNo, "이력서 보기", option);
 			}
 		}
 	}

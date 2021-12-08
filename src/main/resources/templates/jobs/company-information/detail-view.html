@@ -111,7 +111,17 @@
 											<span th:each="experienceLevel : ${jobVacancyData.jobVacancy.experienceLevelList}" th:text="${experienceLevel.name} + (${experienceLevelStat.size-1 > experienceLevelStat.index} ? ', ' : '')" th:remove="tag"></span>
 											| <span th:text="${jobVacancyData.jobVacancy.educationLevel.name}" th:remove="tag"></span>
 										<td th:text="'~' + ${#dates.format(jobVacancyData.jobVacancy.periodEnd, 'M/d (E)')}"></td>
-										<td><button type="button" class="green apply_button" th:attr="data-jv-no=${jobVacancyData.no}">입사지원</button></td>
+										<td>
+										<th:block th:unless="${#strings.equals(jobVacancyData.applied, 'Y')}">
+											<button type="button" class="green apply_button" th:attr="data-jv-no=${jobVacancyData.no}">입사지원</button>
+										</th:block>
+										<th:block th:if="${#strings.equals(jobVacancyData.applied, 'Y')}">
+											<form th:action="@{/jobs/company-information/cancel-apply-company/}" method="POST">
+												<input type="hidden" name="jvNo" th:value="${jobVacancyData.no}">
+												<button type="submit">지원취소</button>
+											</form>
+										</th:block>
+										</td>
 									</tr>
 								</th:block>
 							</tbody>
@@ -201,7 +211,7 @@
 							<h2></h2>
 						</div>
 						<div class="resume_register_content">
-							<form th:action="@{/jobs/vacancy-detail/apply-company}" method="POST">
+							<form th:action="@{/jobs/job-vacancy/apply}" method="POST">
 								<input type="hidden" name="jvNo" value="">
 								<div>
 									<h4>이력서</h4>

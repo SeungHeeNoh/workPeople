@@ -177,6 +177,11 @@
 	border-radius: 10px;
 }
 
+.content > .information > div > div > table > tbody > tr form button {
+	background-color: #FBC78D;
+	color : #FFF;
+	font-weight: bold;
+}
 .content > .information > div.expired > div > table > tbody > tr button {
 	background-color: #DCDCDC;
 	color: #FFF;

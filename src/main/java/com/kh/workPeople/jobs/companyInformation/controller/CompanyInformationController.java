@@ -60,21 +60,28 @@ public class CompanyInformationController {
 	
 	@PostMapping("/progressingJobVacancyData/{companyInformationNo}/{page}")
 	@ResponseBody
-	public JobVacancyAndPageInfo getProgressingJobVacancyData(@PathVariable int companyInformationNo, @PathVariable int page) {
+	public JobVacancyAndPageInfo getProgressingJobVacancyData(@PathVariable int companyInformationNo, @PathVariable int page, @AuthenticationPrincipal UserDetails user) {
 		Map<String, Object> queryMap = new HashMap<>();
 		
 		queryMap.put("companyInformationNo", companyInformationNo);
+		if(jobsCommon.isPersonalUser(user)) {
+			queryMap.put("userNo", ((MemberImpl)user).getNo());
+		}
 		
 		return companyInformationService.getProgressingJobVacancyData(queryMap, page);
 	}
 	
 	@PostMapping("/expireJobVacancydData/{companyInformationNo}/{page}")
 	@ResponseBody
-	public JobVacancyAndPageInfo getExpireJobVacancydData(@PathVariable int companyInformationNo, @PathVariable int page) {
+	public JobVacancyAndPageInfo getExpireJobVacancydData(@PathVariable int companyInformationNo, @PathVariable int page, @AuthenticationPrincipal UserDetails user) {
 		Map<String, Object> queryMap = new HashMap<>();
 		
 		queryMap.put("companyInformationNo", companyInformationNo);
+		if(jobsCommon.isPersonalUser(user)) {
+			queryMap.put("userNo", ((MemberImpl)user).getNo());
+		}
 		
 		return companyInformationService.getExpireJobVacancydData(queryMap, page);
 	}
+	
 }
