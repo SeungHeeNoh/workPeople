@@ -1,5 +1,7 @@
 package com.kh.workPeople.jobs.vacancyDetail.model.vo;
 
+import java.util.Date;
+
 import com.kh.workPeople.common.vo.JobVacancy;
 
 public class JobVacancyInformation{
@@ -105,6 +107,8 @@ public class JobVacancyInformation{
 	}
 
 	public int getdDay() {
+		Date today = new Date();
+		int dDay = (int)((jobVacancy.getPeriodEnd().getTime() - today.getTime())/(1000*60*60*24));
 		return dDay;
 	}
 

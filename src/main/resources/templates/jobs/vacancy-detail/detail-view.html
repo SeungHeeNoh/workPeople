@@ -48,11 +48,11 @@
 								</button>
 								</th:block>
 								<th:block th:if="${jobVacancyInformation.dDay} >= 0 and ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}">
-								<form th:action="@{/jobs/vacancy-detail/cancel-apply-company/}" method="POST">
+								<form th:action="@{/jobs/job-vacancy/cancel-apply/}" method="POST">
 									<input type="hidden" name="jvNo" th:value="${jobVacancyInformation.jobVacancy.no}">
-									<button type="submit" th:classappend="${(#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y') ? 'applied' : '')}">
+									<button type="submit" class="applied">
 										<span th:text="D- + ${jobVacancyInformation.dDay == 0 ? 'day' : jobVacancyInformation.dDay}"></span>
-										<span th:if="${jobVacancyInformation.dDay} >= 0 and ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}" th:remove="tag">지원취소</span>
+										지원취소
 									</button>
 								</form>
 								</th:block>					
@@ -155,7 +155,7 @@
 							<h2 th:text="${jobVacancyInformation.jobVacancy.title}"></h2>
 						</div>
 						<div class="resume_register_content" th:classappend="${#lists.size(resumeList) == 0 ? 'empty_list' : ''}">
-							<form th:action="@{/jobs/vacancy-detail/apply-company}" method="POST">
+							<form th:action="@{/jobs/job-vacancy/apply}" method="POST">
 								<input type="hidden" name="jvNo" th:value="${jobVacancyInformation.jobVacancy.no}">
 								<div>
 									<h4>이력서</h4>

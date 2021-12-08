@@ -168,7 +168,7 @@
 				let resumeNo = button.getAttribute("data-resume-no"),
 					option = 'top=50, left=150, width=920, height=600, status=no, menubar=no, toolbar=no, resizable=no';
 
-				window.open("/jobs/vacancy-detail/resume-view?rNo=" + resumeNo, "이력서 보기", option);
+				window.open("/jobs/job-vacancy/resume-view?rNo=" + resumeNo, "이력서 보기", option);
 			}
 		}
 	}
