@@ -18,24 +18,22 @@
 		jobVacancyTitle,
 		jvNoInput;
 
-
 	if(isLogined) {
 		jobVacancyTitle = modal.querySelector("h2");
 		jvNoInput = modal.querySelector("input[name='jvNo']");
 	}
 
-	let windowPageYOffset = window.pageYOffset,
-		position = {
-			floatingNaviWrapper : windowPageYOffset + floatingNaviWrapper.getBoundingClientRect().top,
-			info : {}
-		},
-		positionNameArray = "",
-		info = new Array(),
-		jobVacancyTables = {},
-		weekArray = new Array('일', '월', '화', '수', '목', '금', '토');
+	let position = {
+		floatingNaviWrapper : window.pageYOffset + floatingNaviWrapper.getBoundingClientRect().top,
+		info : {}
+	},
+	positionNameArray = "",
+	info = new Array(),
+	jobVacancyTables = {},
+	weekArray = new Array('일', '월', '화', '수', '목', '금', '토');
 
 	jobVacancyTable.forEach(function(struct) {
-		let name = struct.classList[1];
+		let name = struct.classList[0];
 
 		if(!struct.querySelector("table").classList.contains("empty_result")){
 			jobVacancyTables[name] = {
@@ -66,7 +64,6 @@
 	}
 
 	function init() {
-		floatingNaviInit();
 		window.addEventListener("scroll", scrollEventHandler);
 		window.addEventListener("resize", debounce(resizeEventHandler));
 		infoHeader.addEventListener("click", infoHeaderClickEventHandler);
@@ -85,7 +82,7 @@
 		setTimeout(function() {
 			setInfoPosition();
 			scrollEventHandler();
-		}, 100);
+		}, 150);
 	}
 
 	function getPositionNameArray() {
@@ -100,7 +97,7 @@
 
 	function setInfoPosition() {
 		info.forEach(function(info) {
-			position.info[info.classList[1]] = windowPageYOffset + info.getBoundingClientRect().top;
+			position.info[info.classList[0]] = window.pageYOffset + info.getBoundingClientRect().top;
 		});
 	}
 
@@ -136,8 +133,7 @@
 	}
 
 	function resizeEventHandler() {
-		windowPageYOffset = window.pageYOffset;
-		position.floatingNaviWrapper = windowPageYOffset + floatingNaviWrapper.getBoundingClientRect().top;
+		position.floatingNaviWrapper = window.pageYOffset + floatingNaviWrapper.getBoundingClientRect().top;
 		setInfoPosition();
 	}
 
@@ -412,4 +408,5 @@
 	}
 
 	window.addEventListener("DOMContentLoaded", init);
+	window.addEventListener("load", floatingNaviInit);
 })();
