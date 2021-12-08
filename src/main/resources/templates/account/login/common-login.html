@@ -26,12 +26,6 @@
 		<p><a th:href="@{/account/find-id-pwd/main}">아이디/비밀번호 찾기</a></p>
 		<p><a th:href="@{/account/manager/login}">관리자 로그인</a></p>
 	</div>
-	<th:block th:if="${not #strings.equals(type, 'company')}">
-	<div class="sns_login">
-		<button>네이버 로그인</button>
-		<button>카카오 로그인</button>
-	</div>
-	</th:block>
 	<script th:src="@{/js/common/cookie.js}"></script>
 	<script th:src="@{/js/account/login/login.js}"></script>
 </div>

@@ -17,10 +17,6 @@
 					<li class="active"><a th:href="@{/account/join/personal-join}">개인회원</a></li>
 					<li><a th:href="@{/account/join/company-join}">기업회원</a></li>
 				</ul>
-				<div class="sns_login">
-					<button>네이버 로그인</button>
-					<button>카카오 로그인</button>
-				</div>
 				<form th:action="@{/account/join/personal-signUp}" method="post">
 					<input type="hidden" name="memberType.no" value="1">
 					<div class="join_row">
