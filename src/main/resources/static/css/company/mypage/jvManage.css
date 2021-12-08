@@ -1,10 +1,10 @@
 @charset "UTF-8";
 .wrap .container .sideNav .nav > ul .jvManage > a{color: #85cabb;}
 .wrap .container .content .tab_cont{padding-left: 15px; padding-top: 25px; width: 840px; text-align: center;}
-.wrap .container .content .tab_cont .searchBox > p{float: left; padding-left: 100px; padding-right: 22px; font-size: 16px;}
-.wrap .container .content .tab_cont .searchBox .input_title{padding-left: 22px; width: 332px; height: 29px;}
-.wrap .container .content .tab_cont .searchBox > button{margin-left: 35px; width: 60px; height: 29px; background: #B1D581; border-radius: 10px;}
-.wrap .container .content .tab_cont .searchBox > button{text-align: center; color: #ffffff;}
+.wrap .container .content .tab_cont .searchBox > form > p{float: left; padding-left: 100px; padding-right: 22px; font-size: 16px;}
+.wrap .container .content .tab_cont .searchBox > form  .input_title{padding-left: 22px; width: 332px; height: 29px;}
+.wrap .container .content .tab_cont .searchBox > form  > .btn{margin-left: 35px; width: 60px; height: 29px; background: #B1D581; border-radius: 10px;}
+.wrap .container .content .tab_cont .searchBox > form  > .btn{text-align: center; color: #ffffff;}
 
 .wrap .container .content .tab_cont .table{padding-top: 25px;}
 .wrap .container .content .tab_cont .table .jvList{box-sizing: border-box; width: 840px; text-align: center;}
