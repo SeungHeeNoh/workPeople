@@ -16,11 +16,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.kh.workPeople.common.vo.JobVacancy;
 import com.kh.workPeople.common.vo.PageInfo;
 import com.kh.workPeople.configuration.WorkPeopleApplication;
 import com.kh.workPeople.jobs.companyInformation.model.dao.CompanyInformationMapper;
 import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
+import com.kh.workPeople.jobs.companyInformation.model.vo.JobVacancyData;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -83,17 +83,21 @@ public class CompanyInformationMapperTests {
 		Map<String, Object> queryMap = new HashMap<>();
 		queryMap.put("companyInformationNo", 1);
 		queryMap.put("sign", ">=");
+		queryMap.put("userNo", 1);
 		
 		int listCount =  companyInformationMapper.getJobVacancyListCount(queryMap);
 		
 		PageInfo pi = new PageInfo(1, listCount, 5, 6);
 		queryMap.put("pi", pi);
 		
-		List<JobVacancy> progressingJobVacancyList = companyInformationMapper.getJobVacancyList(queryMap);
-		
-		for(JobVacancy job : progressingJobVacancyList) {
+		List<JobVacancyData> progressingJobVacancyList = companyInformationMapper.getJobVacancyDataList(queryMap);
+
+		log.info("size : {}", progressingJobVacancyList.size());
+		for(JobVacancyData job : progressingJobVacancyList) {
 			log.info(job.toString());
 		}
+		
+		assertEquals(progressingJobVacancyList.size(), 6);
 		
 	}
 }

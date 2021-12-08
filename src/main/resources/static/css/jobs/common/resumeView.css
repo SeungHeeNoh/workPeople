@@ -1,0 +1,13 @@
+body > .wrapper {
+	width : 870px;
+	display: block;
+	margin: 25px auto 30px;
+}
+
+.wrapper > section {
+	margin : 0;
+}
+
+.orange.resumeOrange {
+	display : none;
+}

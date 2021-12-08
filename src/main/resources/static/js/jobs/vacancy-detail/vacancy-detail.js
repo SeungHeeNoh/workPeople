@@ -43,7 +43,7 @@
 	function contentClickEventHandler(e) {
 		if(e.target.tagName == "BUTTON") {
 			if(e.target.classList.contains("login_button")) {
-				openMoadl();
+				openModal();
 			} else {
 				let button = e.target;
 
@@ -155,16 +155,25 @@
 	}
 
 	function applyButtonClickEventHandler() {
-		openMoadl();
+		openModal();
 	}
 
 	function modalClickEventHandler(e) {
-		if(e.target.tagName == "BUTTON" && e.target.classList.contains("close_button")) {
-			closeModal();
+		if(e.target.tagName == "BUTTON") {
+			let button = e.target;
+
+			if(button.classList.contains("close_button")) {
+				closeModal();
+			} else if(button.classList.contains("open_resume")) {
+				let resumeNo = button.getAttribute("data-resume-no"),
+					option = 'top=50, left=150, width=920, height=600, status=no, menubar=no, toolbar=no, resizable=no';
+
+				window.open("/jobs/job-vacancy/resume-view?rNo=" + resumeNo, "이력서 보기", option);
+			}
 		}
 	}
 
-	function openMoadl() {
+	function openModal() {
 		body.classList.add("modal_open");
 		dimmed.classList.add("show");
 	}

@@ -48,11 +48,11 @@
 								</button>
 								</th:block>
 								<th:block th:if="${jobVacancyInformation.dDay} >= 0 and ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}">
-								<form th:action="@{/jobs/vacancy-detail/cancel-apply-company/}" method="POST">
+								<form th:action="@{/jobs/job-vacancy/cancel-apply/}" method="POST">
 									<input type="hidden" name="jvNo" th:value="${jobVacancyInformation.jobVacancy.no}">
-									<button type="submit" th:classappend="${(#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y') ? 'applied' : '')}">
+									<button type="submit" class="applied">
 										<span th:text="D- + ${jobVacancyInformation.dDay == 0 ? 'day' : jobVacancyInformation.dDay}"></span>
-										<span th:if="${jobVacancyInformation.dDay} >= 0 and ${#strings.equals(jobVacancyInformation.appliedJobVacancy, 'Y')}" th:remove="tag">지원취소</span>
+										지원취소
 									</button>
 								</form>
 								</th:block>					
@@ -154,12 +154,13 @@
 							<h3 th:text="${jobVacancyInformation.companyName}"></h3>
 							<h2 th:text="${jobVacancyInformation.jobVacancy.title}"></h2>
 						</div>
-						<div class="resume_register_content">
-							<form th:action="@{/jobs/vacancy-detail/apply-company}" method="POST">
+						<div class="resume_register_content" th:classappend="${#lists.size(resumeList) == 0 ? 'empty_list' : ''}">
+							<form th:action="@{/jobs/job-vacancy/apply}" method="POST">
 								<input type="hidden" name="jvNo" th:value="${jobVacancyInformation.jobVacancy.no}">
 								<div>
 									<h4>이력서</h4>
 									<div>
+									<th:block th:if="${#lists.size(resumeList) != 0}">
 										<ul>
 											<li class="resume" th:each="resume : ${resumeList}">
 												<input type="radio" name="resumeNo" th:value="${resume.no}" th:id="${resumeStat.index}" th:checked="${resumeStat.index == 0}">
@@ -167,12 +168,17 @@
 													<span class="register_date" th:text="${#dates.format(resume.enrollDate, 'yyyy.M.d 등록')}"></span>
 													<p><span th:if="${#strings.equals(resume.statusYN, 'Y')}">대표이력서</span>[[${resume.title}]]</p>
 													<span class="buttons">
-														<button type="button">수정</button>
-														<button type="button">미리보기</button>
+														<a th:href="@{personal/mypage/resumeManagement/resumeEdit/} + ${resume.no}">수정</a>
+														<button type="button" class="open_resume" th:attr="data-resume-no=${resume.no}">미리보기</button>
 													</span>
 												</label>
 											</li> 
 										</ul>
+									</th:block>
+									<th:block th:unless="${#lists.size(resumeList) != 0}">
+										<p>등록된 이력서가 없습니다.</p>
+										<p>이력서를 새로 작성하시겠습니까?<a th:href="@{/personal/mypage/resumeEnroll}">작성하러 가기</a></p>
+									</th:block>
 									</div>
 								</div>
 								<button type="submit">입사지원</button>

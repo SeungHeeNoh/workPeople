@@ -2,7 +2,10 @@
 	let token = document.querySelector("meta[name='_csrf']").getAttribute("content"),
 		tokenHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
 
-	let content = document.body.querySelector(".content"),
+	let body = document.body,
+		dimmed = body.querySelector(".dimmed"),
+		modal = dimmed.querySelector("#modal"),
+		content = body.querySelector(".content"),
 		infoHeader = content.querySelector(".info_header"),
 		interestedCompanyCount = infoHeader.querySelector(".like_button .count"),
 		floatingNaviWrapper = content.querySelector(".floating-navi"),
@@ -10,6 +13,16 @@
 		naviTabs = floatingNavi.querySelectorAll("li"),
 		information = content.querySelector(".information"),
 		jobVacancyTable = information.querySelectorAll(".job_vacancy_table");
+
+	let isLogined = modal.classList.contains("resume_register_modal"),
+		jobVacancyTitle,
+		jvNoInput;
+
+
+	if(isLogined) {
+		jobVacancyTitle = modal.querySelector("h2");
+		jvNoInput = modal.querySelector("input[name='jvNo']");
+	}
 
 	let windowPageYOffset = window.pageYOffset,
 		position = {
@@ -59,6 +72,7 @@
 		infoHeader.addEventListener("click", infoHeaderClickEventHandler);
 		floatingNavi.addEventListener("click", naviClickEventHanlder);
 		information.addEventListener("click", informationClickEventHandler);
+		modal.addEventListener("click", modalClickEventHandler);
 	}
 
 	function floatingNaviInit() {
@@ -212,11 +226,17 @@
 	function progressingClickEventHandler(target) {
 		if(target.tagName == "BUTTON") {
 			let button = target;
-			button.setAttribute("disabled", true);
 
 			if(button.classList.contains("apply_button")) {
+				if(isLogined) {
+					jobVacancyTitle.innerHTML = button.closest("tr").querySelector(".title").innerHTML;
+					jvNoInput.value = button.getAttribute("data-jv-no");
+				}
 
+				openModal();
 			} else if(button.closest(".paging")) {
+				button.setAttribute("disabled", true);
+
 				let jobVacancyTable = jobVacancyTables.progressing,
 					page =  Number(button.getAttribute("data-page"));
 
@@ -249,9 +269,10 @@
 	function expiredClickEventHandler(target) {
 		if(target.tagName == "BUTTON") {
 			let button = target;
-			button.setAttribute("disabled", true);
 
 			if(button.closest(".paging")) {
+				button.setAttribute("disabled", true);
+
 				let jobVacancyTable = jobVacancyTables.progressing,
 					page =  Number(button.getAttribute("data-page"));
 
@@ -327,28 +348,67 @@
 		}
 
 		tbody.innerHTML = "";
-		for(let i=0; i<data.jobVacancyList.length; i++) {
-			let jobVacancy = data.jobVacancyList[i],
-				date = new Date(jobVacancy.periodEnd),
+		for(let i=0; i<data.jobVacancyDataList.length; i++) {
+			let jobVacancyData = data.jobVacancyDataList[i],
+				date = new Date(jobVacancyData.jobVacancy.periodEnd),
 				experienceLevel = "";
 			
-			for(let j=0; j<jobVacancy.experienceLevelList.length; j++) {
+			for(let j=0; j<jobVacancyData.jobVacancy.experienceLevelList.length; j++) {
 				if(j != 0) experienceLevel += ", "
-				experienceLevel += jobVacancy.experienceLevelList[j].name;
+				experienceLevel += jobVacancyData.jobVacancy.experienceLevelList[j].name;
 			}
-			
+
 			let html = "<tr>"
-				html += "	<td><a href='/jobs/vacancy-detail/detail-view?no=" + jobVacancy.no + "'>" + jobVacancy.title + "</a></td>"
-				html += "	<td>" + experienceLevel + " | " + jobVacancy.educationLevel.name + " </td>"
-				html += "	<td>~" + (date.getMonth()+1) + "/" + date.getDate() + " (" + weekArray[date.getDay()] + ")</td>"
+				html += "	<td><a href='/jobs/vacancy-detail/detail-view?no=" + jobVacancyData.no + "' class='title'>" + jobVacancyData.jobVacancy.title + "</a></td>";
+				html += "	<td>" + experienceLevel + " | " + jobVacancyData.jobVacancy.educationLevel.name + " </td>";
+				html += "	<td>~" + (date.getMonth()+1) + "/" + date.getDate() + " (" + weekArray[date.getDay()] + ")</td>";
 				if(type == "expired") {
-					html += "	<td><button type='button' class='closed'>마감</button></td>"
+					html += "	<td><button type='button' class='closed'>마감</button></td>";
 				} else {
-					html += "	<td><button type='button' class='green apply_button'>입사지원</button></td>"
+					if(!isLogined) {
+						html += "	<td><button type='button' class='green apply_button'>입사지원</button></td>";
+					} else {
+						if(jobVacancyData.applied != "Y") {
+							html += "	<td><button type='button' class='green apply_button' data-jv-no='" + jobVacancyData.no + "'>입사지원</button></td>";
+						} else {
+							html += "<td>";
+							html += "<form action='/jobs/job-vacancy/cancel-apply' method='POST'>";
+							html += "<input type='hidden' name='_csrf' value='" + token + "'>";
+							html += "<input type='hidden' name='jvNo' value='" + jobVacancyData.no + "'>";
+							html += "<button type='submit'>지원취소</button>";
+							html += "</form>";
+							html += "</td>";
+						}
+					}
 				}
 
 			tbody.insertAdjacentHTML("beforeend", html);
 		}
+	}
+
+	function modalClickEventHandler(e) {
+		if(e.target.tagName == "BUTTON") {
+			let button = e.target;
+
+			if(button.classList.contains("close_button")) {
+				closeModal();
+			} else if(button.classList.contains("open_resume")) {
+				let resumeNo = button.getAttribute("data-resume-no"),
+				option = 'top=50, left=150, width=920, height=600, status=no, menubar=no, toolbar=no, resizable=no';
+
+					window.open("/jobs/job-vacancy/resume-view?rNo=" + resumeNo, "이력서 보기", option);
+			}
+		}
+	}
+
+	function openModal() {
+		body.classList.add("modal_open");
+		dimmed.classList.add("show");
+	}
+
+	function closeModal() {
+		body.classList.remove("modal_open");
+		dimmed.classList.remove("show");
 	}
 
 	window.addEventListener("DOMContentLoaded", init);
