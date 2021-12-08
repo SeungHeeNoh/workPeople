@@ -49,4 +49,6 @@ public interface ResumeMapper {
     int appliedAwards(Awards awards);
 
     int appliedSelfIntroduction(SelfIntroduction selfIntroduction);
+
+    int insertResume(int no);
 }

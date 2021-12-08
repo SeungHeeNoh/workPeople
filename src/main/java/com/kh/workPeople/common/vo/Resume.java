@@ -8,7 +8,9 @@ public class Resume {
     private int no;                     // 이력서 번호
     private Date enrollDate;            // 등록일
     private String statusYN;            // 대표이력서여부
-    private String deleteYN;            // 이력서 삭제 여부
+    private String deleteYN;
+    private int mNo;
+    // 이력서 삭제 여부
     private String title;               // 이력서제목
     private String s_name;              // 업종명
 
@@ -23,6 +25,14 @@ public class Resume {
         this.statusYN = statusYN;
         this.title = title;
         this.s_name = s_name;
+    }
+
+    public int getmNo() {
+        return mNo;
+    }
+
+    public void setmNo(int mNo) {
+        this.mNo = mNo;
     }
 
     public String getDeleteYN() {

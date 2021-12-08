@@ -82,4 +82,11 @@ public class ResumeServiceImpl implements ResumeService {
     public int resumeStatusNtoY(int resumeNo) {
         return resumeMapper.resumeStatusNtoY(resumeNo);
     }
+
+    @Override
+    public int insertResume(int no) {
+        return resumeMapper.insertResume(no);
+    }
+
+
 }

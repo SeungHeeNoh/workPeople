@@ -8,13 +8,17 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -199,6 +203,63 @@ public class ResumeController {
 
 		return str;
 	}
+
+	@PostMapping("resumeEnroll")
+	public String resumeEnrollAll(@RequestParam MultipartFile singleFile,@AuthenticationPrincipal MemberImpl user){
+
+		String dir = System.getProperty("user.dir");
+
+		String filePath = dir + "\\src\\main\\resources\\uploadFiles";
+		String filePathDb = "/images/uploadFiles/";
+
+		System.out.println("filePath : "  + filePath);
+
+		File mkdir = new File(filePath);
+		if (!mkdir.exists()) mkdir.mkdirs();
+
+		String originFileName = singleFile.getOriginalFilename();
+		String ext = originFileName.substring(originFileName.lastIndexOf("."));  // 확장자 추출
+		String savedName = UUID.randomUUID().toString().replace("-", "") + ext;
+
+		try {
+			singleFile.transferTo(new File(filePath + "\\" + savedName));
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+			new File(filePath + "\\" + savedName).delete();
+		}
+
+		Attachment att = new Attachment();
+		att.setOriginName(originFileName);
+		att.setChangeName(savedName);
+		att.setFilePath(filePathDb);
+
+		int insertResume = resumeService.insertResume(user.getNo());
+
+//		int result = resumeService.insertAttachment(att, companyNO);
+
+
+		return "personal/mypage/resumeManagement";
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

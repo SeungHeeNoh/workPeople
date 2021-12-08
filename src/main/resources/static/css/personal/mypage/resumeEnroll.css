@@ -359,7 +359,11 @@ body {
 .careerBorderBottom{
     height: 20px;
 }
-
+#educationType1:hover,
+#educationType2:hover,
+#educationType3:hover{
+    cursor: pointer;
+}
 
 
 
