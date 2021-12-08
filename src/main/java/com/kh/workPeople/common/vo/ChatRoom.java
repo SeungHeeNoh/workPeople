@@ -26,13 +26,19 @@ public class ChatRoom {
         if(chatMessage.getMessageType() == MessageType.JOIN){
             /* 사용자 입장 */
             sessions.add(session);
-            chatMessage.setMessage(chatMessage.getSender() + "님이 입장하셨습니다.");
+            System.out.println("session"+session);
+
+            if(chatMessage.getSender().equals("고객센터")){
+                chatMessage.setMessage(chatMessage.getSender() + "와의 채팅이 연결되었습니다.<br> 안녕하세요, Work People 고객센터입니다. <br>무엇을 도와드릴까요?");
+            } else{
+                chatMessage.setMessage(chatMessage.getSender() + "님, 상담 신청이 접수되었습니다.<br>담당 상담원과 연결이 될 때까지 잠시만 기다려주세요.");
+            }
+
         } else if(chatMessage.getMessageType() == MessageType.LEAVE){
             /* 사용자 퇴장 */
             sessions.remove(session);
             chatMessage.setMessage(chatMessage.getSender() + "님이 퇴장하셨습니다.");
         } else{
-
             /* 메세지 전달 */
             chatMessage.setMessage(chatMessage.getSender()+ " : "+chatMessage.getMessage());
         }

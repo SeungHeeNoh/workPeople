@@ -9,7 +9,7 @@ import java.util.*;
 public class ServiceCenterServiceImpl implements ChatService{
 
     //만들어진 채팅방이 관리 되는 공간 - db대신, 나중에 연결
-    private Map<String,ChatRoom> chatRooms;
+    private final Map<String,ChatRoom> chatRooms;
 
     public ServiceCenterServiceImpl(){
         this.chatRooms = new LinkedHashMap<>();
