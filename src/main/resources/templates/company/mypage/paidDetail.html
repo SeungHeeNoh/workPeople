@@ -35,10 +35,10 @@
 									상세보기</b>ㅣ 결제번호 : <span class="payNo" th:text="${#strings.substring(order.payment.payDetail,4)}"></span>
 								&nbsp;
 							</div>
-							<div style="float: right">
+							<!-- <div style="float: right">
 								<a th:href="@{/zf_user/help/inquery}" target="_blank"
 									class="btnSizeXS colorWhite">1 :1 채팅 문의</a>
-							</div>
+							</div> -->
 						</div>
 						<!-- 일반 채용정보 시작 -->
 						<div class="rec-subtitle area_list_top">
@@ -129,10 +129,10 @@
 						</div>
 						<div class="btn_wrap">
 							<a class="btnSizeM orange" href="javascript:history.go(-1)">이전 페이지로</a> 
-							<a class="btnSizeM green" href="/zf_user/memcom/index/main">MYpage 메인</a>
+							<a class="btnSizeM green" th:href="@{/company/mypage/companyMain }">MYpage 메인</a>
 						</div>
 					</div>
-				</div>
+				</div> 
 			</div>
 		</div>
 	</div>

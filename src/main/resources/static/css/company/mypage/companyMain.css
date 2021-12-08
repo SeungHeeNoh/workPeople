@@ -4,7 +4,9 @@
 .wrap .container .content_top1{box-sizing: border-box; width: 883px; height: 173px; background: #ffffff; border: 1px solid #c4c4c4; float: left;}
 .wrap .container .content_top1 .jv_status{margin-top: 34px; margin-left: 44px; font-size: 13px; font-weight: 300; font-style: normal;}
 .wrap .container .content_top1 .ing{margin-top: 14px; margin-left: 44px; font-size: 24px; font-weight: 500px; font-style: normal; color: #323232; float: left;}
+.wrap .container .content_top1 .ing .num{font-size: 24px; font-weight:500px; font-style: normal; color: #323232;}
 .wrap .container .content_top1 .end{margin-top: 14px; margin-left: 152px; font-size: 24px; font-weight: 500px; font-style: normal; color: #323232; float: left;}
+.wrap .container .content_top1 .end .num{font-size: 24px; font-weight:500px; font-style: normal; color: #323232;}
 .wrap .container .content_top1 .jv_insert > button{margin-top: 14px; margin-left: 152px; width: 187px; height: 55px; background: #a7d676; border-radius: 10px;}
 .wrap .container .content_top1 .jv_insert > button{font-size: 20px; font-weight: 500; font-style: normal; color: #323232;}
 
