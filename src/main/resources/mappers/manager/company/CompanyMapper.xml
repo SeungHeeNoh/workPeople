@@ -53,7 +53,6 @@
 		<result property="create" column="A_CREATE"/>
 		<result property="update" column="A_UPDATE"/>
 	</resultMap>
-	
 	<resultMap type="com.kh.workPeople.common.vo.JobVacancy" id="jobVacancyResultMap">
         <result property="title" column="JV_TITLE"/>
         <result property="address" column="JV_ADDRESS"/>
@@ -64,7 +63,7 @@
     
 	<select id="selectList" resultMap="managercompanyResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
 		SELECT * FROM 
-			(select * from ( SELECT  a.*,b.A_CODE  FROM(
+			(SELECT * FROM ( SELECT  A.*,B.A_CODE  FROM(
 					SELECT
 					ROW_NUMBER() OVER (ORDER BY M_NO) NUM,
 						A_NO
@@ -77,8 +76,8 @@
                      , M_STATUS
 				  FROM MEMBER
                   JOIN COMPANY_INFO USING (M_NO)
-			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) 
-			 WHERE A_CODE=2 ORDER BY a.M_NO)c  LEFT JOIN Attachment d on  c.a_no = d.a_no ORDER BY C.M_NO)
+			 )A JOIN MEMBER_ROLE B ON (A.M_NO = B.M_NO) 
+			 WHERE A_CODE=2 ORDER BY A.M_NO)C  LEFT JOIN ATTACHMENT D ON  C.A_NO = D.A_NO ORDER BY C.M_NO)
 			 WHERE NUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
 	</select>
 	
@@ -88,11 +87,11 @@
 		  FROM(SELECT
            *
 		  FROM MEMBER
-		 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) where A_CODE=2
+		 )A JOIN MEMBER_ROLE B ON (A.M_NO = B.M_NO) WHERE A_CODE=2
 	</select> 
  
- <select id="vacancyNo" resultMap="managercompanyResultMap">
-	 select * from (SELECT  a.*,b.A_CODE  FROM(
+	 <select id="vacancyNo" resultMap="managercompanyResultMap">
+	 SELECT * FROM (SELECT  A.*,B.A_CODE  FROM(
 					SELECT
                          A_NO
 		           	   ,M_NO
@@ -103,31 +102,25 @@
                      , M_STATUS
 				  FROM MEMBER
                   JOIN COMPANY_INFO USING (M_NO)
-			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) 
-             WHERE A_CODE=2 and b.m_no=#{no} )c
-             LEFT JOIN Attachment d on  c.a_no = d.a_no
+			 )A JOIN MEMBER_ROLE B ON (A.M_NO = B.M_NO) 
+             WHERE A_CODE=2 AND B.M_NO=#{no} )C
+             LEFT JOIN ATTACHMENT D ON  C.A_NO = D.A_NO
 	</select>
 	
 	<select id="getListJobVacanscyByCompanyNum" resultMap="jobVacancyResultMap" parameterType="_int">
-	
 	<![CDATA[
 	      SELECT 
-	        jv_title
-	       ,jv_address
+	        JV_TITLE
+	       ,JV_ADDRESS
 	       ,JV_PERIOD_END
 	       ,JV_PERIOD_START
-	       ,case when TO_CHAR(JV_PERIOD_START, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD') 
-           	and TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
-           	then 1 else 0 END as VALID 
+	       ,CASE WHEN TO_CHAR(JV_PERIOD_START, 'YYMMDD') <= TO_CHAR(SYSDATE, 'YYMMDD') 
+           	AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
+           	THEN 1 ELSE 0 END AS VALID 
 		     FROM COMPANY_INFO 
 		     LEFT JOIN MEMBER USING(M_NO)
 		     LEFT JOIN JOB_VACANCY USING(CI_NO)
 		     WHERE  M_NO=#{no}
 	     ]]>
-	     
 	</select>
-	
-
-
-
 </mapper>

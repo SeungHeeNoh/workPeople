@@ -1,8 +1,5 @@
 package com.kh.workPeople.jobs.local.controller;
 
-
-
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.workPeople.common.vo.JobVacancyLookUp;
 import com.kh.workPeople.jobs.local.service.LocalListService;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequestMapping("/jobs/local")
 public class LocalListController {
@@ -40,9 +35,8 @@ public class LocalListController {
 	@GetMapping("/localSearch")
 	public ModelAndView localSearch(Model model,@RequestParam(value="local") String[] local) {
 		ModelAndView mv = new ModelAndView();
-		// log.info("local : {}", Arrays.toString(local));
 		List<JobVacancyLookUp> lcList = service.getLocalVacancyLookUpList(local);
-	    // log.info("lcList : {}", lcList);
+		
 		mv.addObject("lcList", lcList);
 		mv.setViewName("jobs/local/local-job-list");
 		return mv;

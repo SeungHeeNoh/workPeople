@@ -29,7 +29,6 @@
                 <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
                 <li id="snb_3_1" class="snb_sub"><a th:href="@{/manager/company/companyinfo}">기업정보</a></li>
                 <li id="snb_3_2" class="snb_sub"><a th:href="@{/manager/company/report/reportlist}">신고공고</a></li>
-                <li id="snb_3_3" class="snb_sub"><a th:href="@{/manager/company/customerservice}">고객센터</a></li>
             
                 <li id="snb_4" class="snb_main"><a th:href="@{/manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
             </ul>
@@ -86,7 +85,7 @@
                                 </thead>
                                 <!-- 게시글일시 -->
                                 <tbody>
-                                    <tr class="warning" th:each="jv : ${list}">
+                                    <tr class="warning" th:each="jv : ${getJvReportList}">
                                         <td>
                                             <div class="checkbox">
                                                 <input type="checkbox" name="reportCheck" id="reportNo" th:value="${jv.no}">
@@ -103,7 +102,7 @@
                                            KH기업
                                         </td>
                                         <td>
-                                            <p class="status_after" th:text="${#dates.format(jv.register,'yyyy-MM-dd HH:mm')}">2021.08.24 21:24</p> 
+                                            <p class="status_after" th:text="${#dates.format(jv.register,'yyyy-MM-dd')}"></p> 
                                         </td>
                                         <td>
                                             <p class="status_after" th:text="${jv.count}"></p>
@@ -116,12 +115,11 @@
                             </table>
                         </div>
                         <div class="btn_box">
-                            <a href="javascript:;" class="disabled">비활성화</a>
+                            <a class="disabled">비활성화</a>
                         </div>
-				</form>
-				
-                    
+					</form> 
                     </div>
+                    <div th:replace="common/paging.html"></div>
                 </div>
             </div>
         </div>
@@ -134,7 +132,7 @@
         <div class="dim"></div>
         <div class="item">
             <h3 class="tit">기업 비활성화</h3>
-            <p class="txt">선택한 기업을 비활성화 하시겠습니까?</p>
+            <p class="txt">선택하신 기업을 비활성화 하시겠습니까?</p>
             <div class="btn_box">
                 <a href="javascript:jvRpSubmit();" class="ok">확인</a>
                 <a href="javascript:;" class="cancle">취소</a>
@@ -149,22 +147,25 @@
     	}
     		let checkboxs = [];
        $(function(){
+    	   
     	// 체크박스
     	     let checkboxs = [];
     	     $('#checkAll').change(function(){
     	    	 let checked = $(this).is(':checked');
     	    	 if(checked){
+    	    		 
     	    		 $('input[name=reportCheck]').prop('checked', true);
     	    		 $('input[name=reportCheck]:disabled').prop('checked', false);
     	    	 }else{
     	    		 $('input[name=reportCheck]').prop('checked', false);
     	    	 }
-    	    	 
+	    	 
     	    	 checkArr();
     	    	 
     	    	 
     	     });
-    	     
+   	    
+   	     
     	     $('input[name=reportCheck]').change(function(){
     	    	// 체크박스 갯수
     	    	let checkSize = $('input[name=reportCheck]').length;
@@ -184,10 +185,8 @@
     	    	checkArr();
     	    	
     	     });
-    	   
-    	   
-    	   
        })
+       
        
        // 체크박스 배열로 변환
 	     function checkArr(){
@@ -201,21 +200,19 @@
 	    	 // console.log(checkboxs);
 	     }
        
-     	function remove_popOpen(){
-    	 let check = $('input[name=reportCheck]:checked').length;
-    	 if(check > 0){
-    		 $('.nub').text(check);
-    		 popShow('reportPop1');
-    	 }else{
-    		 alert('체크박스를 1개이상 선택해주세요.');
-    	 }
-     }
 
          $(document).ready(function ($) {
         $(".disabled").on("click", function (event) {  //팝업오픈 버튼 누르면
-            $("#popup01").show();   //팝업 오픈
-            $("body").append('<div class="backon"></div>'); //뒷배경 생성
+        	 let check = $('input[name=reportCheck]:checked').length; 
+			if(check>0){
+				$("#popup01").show();   //팝업 오픈
+	            $("body").append('<div class="backon"></div>'); //뒷배경 생성	
+			}else{
+				 alert('체크박스를 1개이상 선택해주세요.');
+			}
+            
         });
+        
 
         $("body").on("click", function (event) {
             if (event.target.className == 'cancle' || event.target.className == 'backon') {

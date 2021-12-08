@@ -193,10 +193,12 @@
 				</div>
 			</div>
 		</div>
+		
 		<th:block sec:authorize= "hasRole('COMPANY')">
 		<input type="hidden" id="yn" th:value="${#authentication.principal.companyStatusYN}">
 		<div th:include="company/mypage/accountSuspension.html"></div> 
 		</th:block>
+		
 		<div th:include="common/up.html"></div> 
 		<div th:include="common/footer.html"></div>
 	</div>
@@ -206,7 +208,7 @@
 					url : "getPlatinumList",
 					success : function(result){
 						console.log(result);
-						var size = result.size; //몇개인지
+						var size = result.size; // 몇개
 					 	var rows = ""; 
 					 	var rows1 = ""; 
 					 	var rows2 = ""; 
@@ -214,10 +216,8 @@
 					 	var rows4 = ""; 
 					 	var rows5 = ""; 
 						var list = result.list;
-					
-					 	console.log('리스트길이:'+size);
 					 	
-					    $.each(list, function(index, item) { //리스트로반복
+					    $.each(list, function(index, item) { // 리스트 반복
 					    	if(0<=index&&index<=11){
 					    		 rows1 = rows1 + getTierRow(item);
 						 	}else if(12<=index&&index<=23){
@@ -348,13 +348,7 @@
 					
 					return jvRow;
 				}
-				
-				
-				
-				
-		</script>
-
-		<script>
+		
 		        var swiper = new Swiper(".mySwiper", {
 		          slidesPerView: 1,
 		          spaceBetween: 30,

@@ -30,7 +30,6 @@
                 <li id="snb_3" class="snb_main"><img id="snbImg3" th:src="@{/images/common/cisetting.png}">기업관리</li>
                 <li id="snb_3_1" class="snb_sub"><a th:href="@{/manager/company/companyinfo}">기업정보</a></li>
                 <li id="snb_3_2" class="snb_sub"><a th:href="@{/manager/company/report/reportlist}">신고공고</a></li>
-                <li id="snb_3_3" class="snb_sub"><a th:href="@{/manager/company/customerservice}">고객센터</a></li>
             
                 <li id="snb_4" class="snb_main"><a th:href="@{/manager/manager/managerinfo}"><img id="snbImg4" th:src="@{/images/common/managersetting.png}">관리자 정보</a></li>
             </ul>
@@ -107,8 +106,8 @@
             </div>
         </div>
     </div>
-       <div th:include="common/footer.html"></div>
        <div th:include="common/up.html"></div> 
+       <div th:include="common/footer.html"></div>
 </div>
 <!-- 관리자 직급 변경 -->
 <div id="popup01">
@@ -190,9 +189,6 @@
 		frm.submit();
 
 	}  
-
-	
-
 </script>
 
 

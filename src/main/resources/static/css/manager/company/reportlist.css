@@ -67,7 +67,7 @@ margin-left: 8px; width:40%; padding: 0 10px;}
 .table_wrap .table thead tr{border:1px solid #000;}
 th.s{height: 40px; padding: 3px 10px; font-size: 14px; line-height: 18px; text-align: center;}
 .table_wrap .table thead tr th{font-size: 15px; font-weight: 600; height: 40px; box-sizing: border-box; padding: 0 2px; text-align: center;}
-.table_wrap .table tbody{height: 200px; overflow:scroll}
+.table_wrap .table tbody{height: 0px; overflow:scroll}
 .table_wrap .table tbody tr{border-bottom:1px solid #E6E6E6;}
 .table_wrap .table tbody tr td{height: 40px; padding: 3px 1px; font-size: 14px; line-height: 18px; text-align: center;}
 .table_wrap .table tbody tr td .bold{font-weight: medium;}

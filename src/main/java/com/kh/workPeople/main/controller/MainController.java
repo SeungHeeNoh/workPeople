@@ -52,6 +52,7 @@ public class MainController {
 		MainTier returnTier = new MainTier();
 		List<MainTier> tierList =  service.getPlatinumList();
 		returnTier.setSize(tierList.size());
+		
 		if(tierList.size()>0) {
 			returnTier.setList(tierList);
 		}else {
@@ -60,6 +61,8 @@ public class MainController {
 	
 		return returnTier;
 	}
+	
+	
 	@RequestMapping(value="/getBasicList")
 	@ResponseBody
 	public MainTier getBasicList(){

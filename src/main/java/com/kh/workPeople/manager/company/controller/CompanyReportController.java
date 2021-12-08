@@ -1,6 +1,7 @@
 package com.kh.workPeople.manager.company.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +21,12 @@ public class CompanyReportController {
 	private CompanyReportService service;
 
 	  @GetMapping("/reportlist")
-	  public ModelAndView reportList(ModelAndView mv) { 
-		List<JobVacancyReportView> list = service.getJvReportList();
-		mv.addObject("list",list);
+	  public ModelAndView reportList(ModelAndView mv, @RequestParam(defaultValue = "1") int page) { 
+		  Map<String, Object> map = service.getJvReportList(page);
+		  mv.addObject("getJvReportList", map.get("reportList"));
+		  mv.addObject("pi",map.get("pi"));
+		/* List<JobVacancyReportView> list = service.getJvReportList(); */
+		/* mv.addObject("list",list); */
 		mv.setViewName("manager/company/reportlist");
 		
 		return mv; 

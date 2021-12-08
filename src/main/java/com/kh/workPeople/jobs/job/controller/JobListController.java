@@ -32,26 +32,24 @@ public class JobListController {
 		ModelAndView mv = new ModelAndView();
 		List<Sector> sectorList = service.getSectorList();
 		List<JobVacancyLookUp> jvList = service.getJobVacancyLookUpListBasic();
+		
 		mv.addObject("jvList", jvList);
 		mv.addObject("sectorList",sectorList);
 		mv.setViewName("jobs/job/big-job-list");
-		
 		return mv;
 	}
 	
 	@GetMapping("/jobSearch")
 	public ModelAndView jobSearch(Model model, @RequestParam(value="no") String[] no) {
 		ModelAndView mv = new ModelAndView();
-		log.info("no : {}", Arrays.toString(no));
-		List<JobVacancyLookUp> jvList = service.getJobVacancyLookUpList(no);
 		
+		List<JobVacancyLookUp> jvList = service.getJobVacancyLookUpList(no);
 		List<Sector> sectorList = service.getSectorList();
 		
 		mv.addObject("jvList", jvList);
 		mv.addObject("sectorList",sectorList);
 		
 		mv.setViewName("jobs/job/big-job-list");
-		
 		return mv;
 	}
 	
