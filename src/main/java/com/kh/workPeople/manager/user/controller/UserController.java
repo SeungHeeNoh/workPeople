@@ -51,6 +51,19 @@ public class UserController {
 
 			return "manager/user/customerservice";
 		}
+
+	@GetMapping("/serviceCenter/{id}")
+	public String chatRoomEnter(@PathVariable String id, Model model){
+
+		ChatRoom room = chatService.findChatRoomById(id);
+		model.addAttribute("room",room);
+
+
+		return "personal/mypage/serviceCenter";
+	}
+
+
+
 		// 특정 채팅방 입장
 //	@GetMapping("/customerservice/{id}")
 //		public String chatRoomEnter(@PathVariable String id, Model model){

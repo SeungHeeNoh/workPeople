@@ -16,7 +16,5 @@ public interface ChatService {
     ChatRoom findChatRoomById(String chatRoomId);
 
 
-
-
-
+    void deleteChatRoom(String chatRoomId);
 }

@@ -41,4 +41,10 @@ public class ServiceCenterServiceImpl implements ChatService{
 //        id값 일치하는 채팅방 리턴
         return chatRooms.get(chatRoomId);
     }
+
+    @Override
+    public void deleteChatRoom(String chatRoomId) {
+
+        chatRooms.remove(chatRoomId);
+    }
 }

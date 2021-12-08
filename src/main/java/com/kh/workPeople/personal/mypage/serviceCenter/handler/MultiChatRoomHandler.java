@@ -34,7 +34,11 @@ public class MultiChatRoomHandler extends TextWebSocketHandler {
         String msg = message.getPayload();
         ChatMessage chatMessage = objectMapper.readValue(msg,ChatMessage.class);
         ChatRoom chatRoom = chatService.findChatRoomById(chatMessage.getChatRoomId());
+
         chatRoom.handleMessage(session,chatMessage);
+        if(chatRoom.getSessions().isEmpty()){
+            chatService.deleteChatRoom(chatMessage.getChatRoomId());
+        }
 
         super.handleTextMessage(session, message);
     }
