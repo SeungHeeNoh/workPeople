@@ -164,7 +164,7 @@
                             <div class="tbRow">
                                 <div class="tbCell">
                                     <div class="info_wrap">
-                                        <button type="button" class="addressbtn" id="postcodify_search_button">검색</button>
+                                        <button type="button" class="addressbtn" id="postcodify_search_button" onclick="findAddr()">검색</button>
                                         <label for="postCode" class="ph">우편주소 <span class="point">*</span></label>
                                         <input type="text" name="postCode" id="postcode" class="inpDefault postcodify_postcode5" th:value="${meber.postCode}"  required readonly>
                                     </div>
@@ -226,14 +226,25 @@
      </div>  
 <div th:replace="common/up.html"></div>    
 <div th:replace="common/footer.html"></div>
-	
-	<!-- 주소 "검색" 팝업 레이어 -->
-	<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
-   
-	<script th:src="@{/js/company/mypage/companyInfoInsert.js}"></script>
-    <!-- Postcodify 로딩 (주소 검색) -->
-	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-  
 </body>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script th:src="@{/js/company/mypage/companyInfoInsert.js}"></script>
+<script >
+/* 주소검색 다음 api */
+function findAddr(){
+new daum.Postcode({
+    oncomplete: function(data) {
+        var roadAddr = data.roadAddress; // 도로명 주소 변수
+        var jibunAddr = data.jibunAddress; // 지번 주소 변수
+        document.getElementById('postcode').value = data.zonecode;
+        if(roadAddr !== ''){
+            document.getElementById("road_address").value = roadAddr;
+        } 
+        else if(jibunAddr !== ''){
+            document.getElementById("road_address").value = jibunAddr;
+            }
+        }
+    }).open();
+}
+</script>
 </html>
