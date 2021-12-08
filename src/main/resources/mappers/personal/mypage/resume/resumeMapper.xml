@@ -3,10 +3,10 @@
 
 <mapper namespace="com.kh.workPeople.personal.mypage.resume.model.dao.ResumeMapper">
 
-    <resultMap id="Resume" type="com.kh.workPeople.common.vo.Resume">
-        <id property="no"
+<!--    <resultMap id="Resume" type="com.kh.workPeople.common.vo.Resume">-->
+<!--        <id property="no"-->
 
-    </resultMap>
+<!--    </resultMap>-->
 
 
 <!--    이력서 목록 노출시 필요한 정보-->
