@@ -8,13 +8,12 @@ import com.kh.workPeople.common.vo.Member;
 
 public interface CompanyMainService {
 
-	Member memberInfoselect(String userId);
 
-	CompanyInformation companyInfoSelect(int userNo);
+	List<JobVacancy> jobVacancyInfoSelect(int cino);
 
-	JobVacancy jobVacancyInfoSelect(int ciNo);
+	int jvIngCount(int cino);
 
-	int jvIngCount(int no);
+	int jvEndCount(int cino);
 
 	
 

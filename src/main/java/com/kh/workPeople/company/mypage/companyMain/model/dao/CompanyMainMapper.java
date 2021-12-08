@@ -11,13 +11,11 @@ import com.kh.workPeople.common.vo.Member;
 @Mapper
 public interface CompanyMainMapper {
 
-	Member memberInfoselect(String userId);
+	List<JobVacancy> jobVacancyInfoSelect(int cino);
 
-	CompanyInformation companyInfoSelect(int userNo);
+	int jvIngCount(int cino);
 
-	JobVacancy jobVacancyInfoSelect(int ciNo);
-
-	int jvIngCount(int no);
+	int jvEndCount(int cino);
 
 
 
