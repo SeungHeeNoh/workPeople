@@ -15,7 +15,7 @@
 			cookieIndex = document.cookie.indexOf(cookieName);
 
 		if(cookieIndex >= 0) {
-			let end = document.cookie.indexOf(";", cookieName.length);
+			let end = document.cookie.indexOf(";", cookieIndex + cookieName.length);
 			if(end < 0) end = document.cookie.length;
 
 			value = document.cookie.substring(cookieIndex+cookieName.length+1, end);
