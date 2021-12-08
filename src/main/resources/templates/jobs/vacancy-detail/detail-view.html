@@ -122,7 +122,7 @@
 					<div class="gender">
 						<p>성별 현황</p>
 						<div class="graph" th:classappend="${jobVacancyInformation.appliedTotalCount == 0 ? 'no-apply' : ''}">
-							<div class="men" th:style="'width:' + ${jobVacancyInformation.appliedTotalCount > 0 ? 800/jobVacancyInformation.appliedTotalCount*jobVacancyInformation.appliedManCount : 0} + 'px'"></div>
+							<div class="men" th:style="'width:' + ${jobVacancyInformation.appliedTotalCount > 0 ? (jobVacancyInformation.appliedTotalCount == jobVacancyInformation.appliedManCount ? 800 : 800/jobVacancyInformation.appliedTotalCount*jobVacancyInformation.appliedManCount) : 0} + 'px'"></div>
 						</div>
 						<div class="legend">
 							<div>남자 : [[${jobVacancyInformation.appliedManCount}]]명</div>
