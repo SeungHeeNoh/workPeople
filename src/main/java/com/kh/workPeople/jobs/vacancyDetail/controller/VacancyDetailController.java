@@ -21,20 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.kh.workPeople.common.vo.Activity;
-import com.kh.workPeople.common.vo.Awards;
-import com.kh.workPeople.common.vo.Career;
-import com.kh.workPeople.common.vo.Language;
-import com.kh.workPeople.common.vo.License;
 import com.kh.workPeople.common.vo.MemberImpl;
-import com.kh.workPeople.common.vo.ResumeDetails;
-import com.kh.workPeople.common.vo.SelfIntroduction;
 import com.kh.workPeople.jobs.common.JobsCommon;
 import com.kh.workPeople.jobs.vacancyDetail.model.service.VacancyDetailService;
 import com.kh.workPeople.jobs.vacancyDetail.model.vo.JobVacancyInformation;
 import com.kh.workPeople.personal.mypage.applyCompany.model.service.ApplyCompanyService;
 import com.kh.workPeople.personal.mypage.latestPublication.model.service.LatestPublicationService;
-import com.kh.workPeople.personal.mypage.resume.model.service.ResumeService;
 
 @Controller
 @RequestMapping("/jobs/vacancy-detail")

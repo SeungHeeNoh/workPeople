@@ -14,6 +14,16 @@
 		information = content.querySelector(".information"),
 		jobVacancyTable = information.querySelectorAll(".job_vacancy_table");
 
+	let isLogined = modal.classList.contains("resume_register_modal"),
+		jobVacancyTitle,
+		jvNoInput;
+
+
+	if(isLogined) {
+		jobVacancyTitle = modal.querySelector("h2");
+		jvNoInput = modal.querySelector("input[name='jvNo']");
+	}
+
 	let windowPageYOffset = window.pageYOffset,
 		position = {
 			floatingNaviWrapper : windowPageYOffset + floatingNaviWrapper.getBoundingClientRect().top,
@@ -218,6 +228,11 @@
 			let button = target;
 
 			if(button.classList.contains("apply_button")) {
+				if(isLogined) {
+					jobVacancyTitle.innerHTML = button.closest("tr").querySelector(".title").innerHTML;
+					jvNoInput.value = button.getAttribute("data-jv-no");
+				}
+
 				openModal();
 			} else if(button.closest(".paging")) {
 				button.setAttribute("disabled", true);
@@ -333,19 +348,19 @@
 		}
 
 		tbody.innerHTML = "";
-		for(let i=0; i<data.jobVacancyList.length; i++) {
-			let jobVacancy = data.jobVacancyList[i],
-				date = new Date(jobVacancy.periodEnd),
+		for(let i=0; i<data.jobVacancyDataList.length; i++) {
+			let jobVacancyData = data.jobVacancyDataList[i],
+				date = new Date(jobVacancyData.jobVacancy.periodEnd),
 				experienceLevel = "";
 			
-			for(let j=0; j<jobVacancy.experienceLevelList.length; j++) {
+			for(let j=0; j<jobVacancyData.jobVacancy.experienceLevelList.length; j++) {
 				if(j != 0) experienceLevel += ", "
-				experienceLevel += jobVacancy.experienceLevelList[j].name;
+				experienceLevel += jobVacancyData.jobVacancy.experienceLevelList[j].name;
 			}
 			
 			let html = "<tr>"
-				html += "	<td><a href='/jobs/vacancy-detail/detail-view?no=" + jobVacancy.no + "'>" + jobVacancy.title + "</a></td>"
-				html += "	<td>" + experienceLevel + " | " + jobVacancy.educationLevel.name + " </td>"
+				html += "	<td><a href='/jobs/vacancy-detail/detail-view?no=" + jobVacancyData.no + "'>" + jobVacancyData.jobVacancy.title + "</a></td>"
+				html += "	<td>" + experienceLevel + " | " + jobVacancyData.jobVacancy.educationLevel.name + " </td>"
 				html += "	<td>~" + (date.getMonth()+1) + "/" + date.getDate() + " (" + weekArray[date.getDay()] + ")</td>"
 				if(type == "expired") {
 					html += "	<td><button type='button' class='closed'>마감</button></td>"

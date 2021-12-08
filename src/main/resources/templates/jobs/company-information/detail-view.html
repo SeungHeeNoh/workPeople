@@ -89,7 +89,7 @@
 					<div>
 						<input type="hidden" class="page" id="progressing_page" value="1">
 						<input type="hidden" class="company_information_no" th:value="${companyDetailInformation.companyInformation.no}">
-						<table th:classappend="${#lists.size(companyDetailInformation.progressingJobVacancyData.jobVacancyList) == 0 ? 'empty_result' : ''}">
+						<table th:classappend="${#lists.size(companyDetailInformation.progressingJobVacancyData.jobVacancyDataList) == 0 ? 'empty_result' : ''}">
 							<thead>
 								<tr>
 									<th scope="col">공고명</th>
@@ -99,24 +99,24 @@
 								</tr>
 							</thead>
 							<tbody>
-								<th:block th:if="${#lists.size(companyDetailInformation.progressingJobVacancyData.jobVacancyList) == 0}">
+								<th:block th:if="${#lists.size(companyDetailInformation.progressingJobVacancyData.jobVacancyDataList) == 0}">
 								<tr>
 									<td colspan="4">진행중인 공고가 존재하지 않습니다.</td>
 								</tr>
 								</th:block>
-								<th:block th:unless="${#lists.size(companyDetailInformation.progressingJobVacancyData.jobVacancyList) == 0}">
-									<tr th:each="jobVacancy : ${companyDetailInformation.progressingJobVacancyData.jobVacancyList}" >
-										<td><a th:href="@{/jobs/vacancy-detail/detail-view?no=} + ${jobVacancy.no}" th:text="${jobVacancy.title}"></a></td>
+								<th:block th:unless="${#lists.size(companyDetailInformation.progressingJobVacancyData.jobVacancyDataList) == 0}">
+									<tr th:each="jobVacancyData : ${companyDetailInformation.progressingJobVacancyData.jobVacancyDataList}" >
+										<td><a class="title" th:href="@{/jobs/vacancy-detail/detail-view?no=} + ${jobVacancyData.no}" th:text="${jobVacancyData.jobVacancy.title}"></a></td>
 										<td>
-											<span th:each="experienceLevel : ${jobVacancy.experienceLevelList}" th:text="${experienceLevel.name} + (${experienceLevelStat.size-1 > experienceLevelStat.index} ? ', ' : '')" th:remove="tag"></span>
-											| <span th:text="${jobVacancy.educationLevel.name}" th:remove="tag"></span>
-										<td th:text="'~' + ${#dates.format(jobVacancy.periodEnd, 'M/d (E)')}"></td>
-										<td><button type="button" class="green apply_button">입사지원</button></td>
+											<span th:each="experienceLevel : ${jobVacancyData.jobVacancy.experienceLevelList}" th:text="${experienceLevel.name} + (${experienceLevelStat.size-1 > experienceLevelStat.index} ? ', ' : '')" th:remove="tag"></span>
+											| <span th:text="${jobVacancyData.jobVacancy.educationLevel.name}" th:remove="tag"></span>
+										<td th:text="'~' + ${#dates.format(jobVacancyData.jobVacancy.periodEnd, 'M/d (E)')}"></td>
+										<td><button type="button" class="green apply_button" th:attr="data-jv-no=${jobVacancyData.no}">입사지원</button></td>
 									</tr>
 								</th:block>
 							</tbody>
 						</table>
-						<th:block th:unless="${#lists.size(companyDetailInformation.progressingJobVacancyData.jobVacancyList) == 0}">
+						<th:block th:unless="${#lists.size(companyDetailInformation.progressingJobVacancyData.jobVacancyDataList) == 0}">
 						<ul class="paging" th:with="pi=${companyDetailInformation.progressingJobVacancyData.pageInfo}">
 							<li class="max_prev"><button type="button" data-page="1" disabled>&lt;&lt;</button></li>
 							<li class="prev"><button type="button" data-page="1" disabled>&lt;</button></li>
@@ -138,7 +138,7 @@
 					<div>
 						<input type="hidden" class="page" id="expired_page" value="1">
 						<input type="hidden" class="company_information_no" th:value="${companyDetailInformation.companyInformation.no}">
-						<table th:classappend="${#lists.size(companyDetailInformation.expiredJobVacancyData.jobVacancyList) == 0 ? 'empty_result' : ''}">
+						<table th:classappend="${#lists.size(companyDetailInformation.expiredJobVacancyData.jobVacancyDataList) == 0 ? 'empty_result' : ''}">
 							<thead>
 								<tr>
 									<th scope="col">공고명</th>
@@ -148,24 +148,24 @@
 								</tr>
 							</thead>
 							<tbody>
-								<th:block th:if="${#lists.size(companyDetailInformation.expiredJobVacancyData.jobVacancyList) == 0}">
+								<th:block th:if="${#lists.size(companyDetailInformation.expiredJobVacancyData.jobVacancyDataList) == 0}">
 								<tr>
 									<td colspan="4">지난 채용 공고가 존재하지 않습니다.</td>
 								</tr>
 								</th:block>
-								<th:block th:unless="${#lists.size(companyDetailInformation.expiredJobVacancyData.jobVacancyList) == 0}">
-									<tr th:each="jobVacancy : ${companyDetailInformation.expiredJobVacancyData.jobVacancyList}" >
-										<td><a th:href="@{/jobs/vacancy-detail/detail-view?no=} + ${jobVacancy.no}" th:text="${jobVacancy.title}"></a></td>
+								<th:block th:unless="${#lists.size(companyDetailInformation.expiredJobVacancyData.jobVacancyDataList) == 0}">
+									<tr th:each="jobVacancyData : ${companyDetailInformation.expiredJobVacancyData.jobVacancyDataList}" >
+										<td><a th:href="@{/jobs/vacancy-detail/detail-view?no=} + ${jobVacancyData.no}" th:text="${jobVacancyData.jobVacancy.title}"></a></td>
 										<td>
-											<span th:each="experienceLevel : ${jobVacancy.experienceLevelList}" th:text="${experienceLevel.name} + (${experienceLevelStat.size-1 > experienceLevelStat.index} ? ', ' : '')" th:remove="tag"></span>
-											| <span th:text="${jobVacancy.educationLevel.name}" th:remove="tag"></span>
-										<td th:text="'~' + ${#dates.format(jobVacancy.periodEnd, 'M/d (E)')}"></td>
+											<span th:each="experienceLevel : ${jobVacancyData.jobVacancy.experienceLevelList}" th:text="${experienceLevel.name} + (${experienceLevelStat.size-1 > experienceLevelStat.index} ? ', ' : '')" th:remove="tag"></span>
+											| <span th:text="${jobVacancyData.jobVacancy.educationLevel.name}" th:remove="tag"></span>
+										<td th:text="'~' + ${#dates.format(jobVacancyData.jobVacancy.periodEnd, 'M/d (E)')}"></td>
 										<td><button type="button" class="closed">마감</button></td>
 									</tr>
 								</th:block>
 							</tbody>
 						</table>
-						<th:block th:unless="${#lists.size(companyDetailInformation.expiredJobVacancyData.jobVacancyList) == 0}">
+						<th:block th:unless="${#lists.size(companyDetailInformation.expiredJobVacancyData.jobVacancyDataList) == 0}">
 						<ul class="paging" th:with="pi=${companyDetailInformation.expiredJobVacancyData.pageInfo}">
 							<li class="max_prev"><button type="button" data-page="1" disabled>&lt;&lt;</button></li>
 							<li class="prev"><button type="button" data-page="1" disabled>&lt;</button></li>

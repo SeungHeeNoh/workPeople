@@ -8,8 +8,12 @@
 		<result property="interestedCompany" column="INTERESTED"/>
 		<association property="companyInformation" resultMap="Common.companyResultMap"/>
 	</resultMap>
+	<resultMap type="com.kh.workPeople.jobs.companyInformation.model.vo.JobVacancyData" id="jobVacancyDataResultMap">
+		<id property="no" column="JV_NO"/>
+		<result property="applied" column="APPLIED"/>
+		<association property="jobVacancy" resultMap="jobVacancyResultMap"/>
+	</resultMap>
 	<resultMap type="com.kh.workPeople.common.vo.JobVacancy" id="jobVacancyResultMap">
-		<result property="no" column="JV_NO"/>
 		<result property="title" column="JV_TITLE"/>
 		<result property="periodEnd" column="JV_PERIOD_END"/>
 		<association property="educationLevel" resultMap="jobVacancyEducationResultMap"/>
@@ -67,15 +71,26 @@
 		   AND JV_PERIOD_END ${sign} SYSDATE
 		   AND CI_NO = #{companyInformationNo}
 	</select>
-	<select id="getJobVacancyList" parameterType="hashmap" resultMap="jobVacancyResultMap">
+	<select id="getJobVacancyDataList" parameterType="hashmap" resultMap="jobVacancyDataResultMap">
 		SELECT
-		       JV_NO
+		       JOB_VACACY_INFORMATION.JV_NO
 		     , JV_TITLE
 		     , JV_PERIOD_END
 		     , EDUCATION_LEVEL_NAME
 		     , EXPERIENCE_LEVEL_NAME
+		     <if test='userNo != null and sign == ">="'>
+		     , CASE 
+		         WHEN APPLY_INFORMATION.JV_NO IS NULL THEN 'N'
+		         ELSE 'Y'
+		       END APPLIED
+		     </if>
 		  FROM JOB_VACACY_INFORMATION
-		 WHERE JV_NO IN (SELECT JV_NO
+		  <if test='userNo != null and sign == ">="'>
+	      LEFT OUTER JOIN (SELECT JV_NO
+          		             FROM APPLY_COMPANY
+                 		    WHERE M_NO = #{userNo}) APPLY_INFORMATION ON(JOB_VACACY_INFORMATION.JV_NO = APPLY_INFORMATION.JV_NO)
+		  </if>
+		 WHERE JOB_VACACY_INFORMATION.JV_NO IN (SELECT JV_NO
 		                   FROM (SELECT ROWNUM RNUM, JV_NO
 		                           FROM (SELECT
 		                                        JV_NO

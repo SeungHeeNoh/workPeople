@@ -19,7 +19,7 @@ import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.jobs.common.JobsCommon;
 import com.kh.workPeople.jobs.companyInformation.model.service.CompanyInformationService;
 import com.kh.workPeople.jobs.companyInformation.model.vo.CompanyDetailInformation;
-import com.kh.workPeople.jobs.companyInformation.model.vo.JobVacancyData;
+import com.kh.workPeople.jobs.companyInformation.model.vo.JobVacancyAndPageInfo;
 
 @Controller
 @RequestMapping("/jobs/company-information")
@@ -60,7 +60,7 @@ public class CompanyInformationController {
 	
 	@PostMapping("/progressingJobVacancyData/{companyInformationNo}/{page}")
 	@ResponseBody
-	public JobVacancyData getProgressingJobVacancyData(@PathVariable int companyInformationNo, @PathVariable int page) {
+	public JobVacancyAndPageInfo getProgressingJobVacancyData(@PathVariable int companyInformationNo, @PathVariable int page) {
 		Map<String, Object> queryMap = new HashMap<>();
 		
 		queryMap.put("companyInformationNo", companyInformationNo);
@@ -70,7 +70,7 @@ public class CompanyInformationController {
 	
 	@PostMapping("/expireJobVacancydData/{companyInformationNo}/{page}")
 	@ResponseBody
-	public JobVacancyData getExpireJobVacancydData(@PathVariable int companyInformationNo, @PathVariable int page) {
+	public JobVacancyAndPageInfo getExpireJobVacancydData(@PathVariable int companyInformationNo, @PathVariable int page) {
 		Map<String, Object> queryMap = new HashMap<>();
 		
 		queryMap.put("companyInformationNo", companyInformationNo);
