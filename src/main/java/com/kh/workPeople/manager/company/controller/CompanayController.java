@@ -24,24 +24,22 @@ public class CompanayController {
 	  @GetMapping("/companyinfo") 
 	  public ModelAndView companyList(ModelAndView mv, @RequestParam(defaultValue = "1") int page) { 
 		  Map<String, Object> map = companyService.clist(page);
+		  
 		  mv.addObject("companyList", map.get("companyList")); 
 		  mv.addObject("pi", map.get("pi"));
 		  mv.setViewName("manager/company/companyinfo");
-	  
-	  return mv; 
-	  
+		  return mv; 
 	  }
 	  
 	@RequestMapping(value="/jvSelect", method=RequestMethod.GET)
 	@ResponseBody
 	public ManagerCompanyInfo vacancyNo( @RequestParam("no") int no){
-	  ManagerCompanyInfo returnInfo = companyService.vacancyNo(no); //ManagerCompanyInfo의 기능이 목적이아닌 커스텀가능한 리턴용 선물상자
+	  ManagerCompanyInfo returnInfo = companyService.vacancyNo(no);
 	  List<JobVacancy> jvList = companyService.getJobVacancyListByCompanyNum(returnInfo.getMember().getNo());
-//	  System.out.println(jvList);
 	  
 	  returnInfo.setList(jvList);
 	  returnInfo.setCount(jvList.size());
-	return returnInfo;
+	  return returnInfo;
 	}
 
 	/* 모든 채팅방 조회 */
