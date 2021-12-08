@@ -21,23 +21,18 @@ public class CompanyMainServiceImpl implements CompanyMainService{
 	}
 
 	@Override
-	public Member memberInfoselect(String userId) {
-		return companyMainMapper.memberInfoselect(userId);
+	public List<JobVacancy> jobVacancyInfoSelect(int cino) {
+		return companyMainMapper.jobVacancyInfoSelect(cino);
 	}
 
 	@Override
-	public CompanyInformation companyInfoSelect(int userNo) {
-		return companyMainMapper.companyInfoSelect(userNo);
+	public int jvIngCount(int cino) {
+		return companyMainMapper.jvIngCount(cino);
 	}
 
 	@Override
-	public JobVacancy jobVacancyInfoSelect(int ciNo) {
-		return companyMainMapper.jobVacancyInfoSelect(ciNo);
-	}
-
-	@Override
-	public int jvIngCount(int no) {
-		return companyMainMapper.jvIngCount(no);
+	public int jvEndCount(int cino) {
+		return companyMainMapper.jvEndCount(cino);
 	}
 
 	

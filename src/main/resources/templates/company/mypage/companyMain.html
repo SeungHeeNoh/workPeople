@@ -28,7 +28,7 @@
                 </div>
                 <div class="end">
                     <p>마감된 공고</p>
-                    <span class="num">0건</span>
+                    <span class="num" th:text="${jvEndCount}"></span>건
                 </div>
                 <div class="jv_insert">
                     <button type="button" th:onclick="location.href='@{/company/mypage/insertJv}'">공고 등록하기</button>
@@ -62,7 +62,8 @@
                             <td th:text="${i.index+1}"></td>
                             <td th:text="${jv.title}"></td>
                             <td th:text="${jv.address}"></td>
-                            <td>공고 중</td>
+                            <td th:if="${jv.count} == 1"><span>공고 중</span></td>
+                            <td th:unless="${jv.count} == 1"><span>마감 됨</span></td>
                             <td th:text="${#dates.format(jv.periodEnd, 'yyyy-MM-dd')}"></td>
                         </tr>                    
                     </tbody>

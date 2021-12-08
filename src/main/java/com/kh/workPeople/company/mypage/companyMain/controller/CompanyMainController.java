@@ -1,5 +1,7 @@
 package com.kh.workPeople.company.mypage.companyMain.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -27,23 +29,18 @@ public class CompanyMainController {
 	
 	@GetMapping("/companyMain")
 	public String companyMain(@AuthenticationPrincipal MemberImpl user, Model model) {
+		// 메인페이지 공고 게시판
+		int cino = user.getCompanyNo();
+		List<JobVacancy> jobVacancy = companyMainService.jobVacancyInfoSelect(cino);
+		
 		// 메인페이지 공고 현황
-		int jvIngCount = companyMainService.jvIngCount(user.getNo());
+		// 진행중 공고 수
+		int jvIngCount = companyMainService.jvIngCount(cino);
+		// 마감된 공고 수
+		int jvEndCount = companyMainService.jvEndCount(cino);
 		
 		model.addAttribute("jvIngCount", jvIngCount);
-		
-		// 메인페이지 공고 게시판
-		String userId = user.getId();
-		Member member = companyMainService.memberInfoselect(userId);
-		
-		int userNo = member.getNo();
-		CompanyInformation companyInfo = companyMainService.companyInfoSelect(userNo);
-		
-		int ciNo = companyInfo.getNo();
-		JobVacancy jobVacancy = companyMainService.jobVacancyInfoSelect(ciNo);
-		
-		model.addAttribute("member", member);
-		model.addAttribute("companyInfo", companyInfo);
+		model.addAttribute("jvEndCount", jvEndCount);
 		model.addAttribute("jobVacancy", jobVacancy);
 		
 		
