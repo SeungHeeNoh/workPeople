@@ -30,4 +30,6 @@ public interface ResumeService {
     // 대표이력서 해제
     int resumeStatusYtoN(int no);
     int resumeStatusNtoY(int resumeNo);
+
+    int insertResume(int no);
 }

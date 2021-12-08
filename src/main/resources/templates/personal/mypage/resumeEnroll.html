@@ -12,22 +12,23 @@
     <title>이력서 등록</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-            
+
 </head>
 
 <body>
 <div th:include="common/header.html"></div>
 <div class="wrapper">
 
+
     <section>
         <div id="content_wrap">
             <p class="header_text">이력서 등록</p>
             <div class="content-wrap2">
-                <form action="#">
+                <form id="resumeDetail" method="post" th:action="@{/personal/mypage/resumeEnroll}" enctype="multipart/form-data">
                     <div class="content_title">이력서 제목 <span class="point"> *</span></div>
                     <div>
-                    <input type="text" name="title" class="content-detail-title" placeholder="나를 가장 잘 소개할 수 있는 이력서 제목을 입력하세요.(최대 30자)" maxlength="30" required>
-					</div>
+                        <input type="text" name="title" class="content-detail-title" placeholder="나를 가장 잘 소개할 수 있는 이력서 제목을 입력하세요.(최대 30자)" maxlength="30" required>
+                    </div>
                     <div class="content_title content_title2" >기본정보</div>
                     <hr class="hr">
                     <div class="content-basicInfo-wrap">
@@ -35,7 +36,7 @@
                             <div class="content-detail-container">
                                 <div class="content-detail-name1">이름</div>
                                 <div class="content-detail-needs">*</div>
-                                <input type="text" class="content-detail-input" placeholder="이름 입력" required> 
+                                <input type="text" class="content-detail-input" placeholder="이름 입력" required>
                             </div>
                             <div class="content-detail-container">
                                 <div class="content-detail-name1">성별</div>
@@ -95,6 +96,7 @@
                             <div class="content-basicInfo-img-container"></div>
 
                             <div class="content-basicInfo-img-container2">
+                                <input type="file" name="singleFile" accept=".jpg, .jpeg, .png">
                                 <img src="/images/personal/myPage/icon/subSnbIcon.svg" class="content-basicInfo-img">
                                 <div>사진업로드</div>
                             </div>
@@ -103,177 +105,186 @@
 
                     <div class="content_title content_title_education">학력사항</div>
                     <div class="content_basicInfo_education_container">
-                        <div class="content_basicInfo_education_type">고등학교 미만 졸업</div>
-                        <div class="content_basicInfo_education_type">고등학교 졸업</div>
-                        <div class="content_basicInfo_education_type">대학/대학원 이상 졸업</div>
+                        <div class="content_basicInfo_education_type" id="educationType1">고등학교 미만 졸업</div>
+                        <div class="content_basicInfo_education_type" id="educationType2">고등학교 졸업</div>
+                        <div class="content_basicInfo_education_type" id="educationType3">대학/대학원 이상 졸업</div>
                     </div>
+                    <input type="hidden" name="eType" id="EducationeType">
 
-                    <div class="content_title content_title2">고등학교 정보 입력</div>
-                    <div class="isUnderhigh">
-                        <input type="checkbox">
-                        검정고시
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">학교명</div>
-                        <div class="content-detail-needs">*</div>
-                        <input type="text" class="content-detail-input"  placeholder="고등학교명 입력" required>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">재학기간</div>
-                        <div class="content-detail-needs">*</div>
-                        <div class="content-detail-date">
-                            <input type="date" class="content-detail-input-date content-detail-input-date2" required>
-                            <div class="content-detail-input-date-text">~</div>
-                            <input type="date" class="content-detail-input-date" required>
+                    <div id="highSchoolFormAll">
+                        <div class="content_title content_title2">고등학교 정보 입력</div>
+                        <div class="isUnderhigh">
+                            <input type="checkbox" id="educationType4">
+                            검정고시
+                        </div>
+
+                        <div id="highSchoolForm">
+                            <div class="content-detail-container">
+                                <div class="content-detail-name1">학교명</div>
+                                <input type="text" class="content-detail-input" placeholder="고등학교명 입력" required>
+                            </div>
+                            <div class="content-detail-container">
+                                <div class="content-detail-name1">재학기간</div>
+                                <div class="content-detail-date">
+                                    <input type="date" class="content-detail-input-date content-detail-input-date2"
+                                           required>
+                                    <div class="content-detail-input-date-text">~</div>
+                                    <input type="date" class="content-detail-input-date" required>
+                                </div>
+                            </div>
+                            <div class="content-detail-container content_title2 paddingBottom">
+                                <div class="content-detail-name1">전공 계열</div>
+                                <select id="highMajor" th:name="highMajor" class="content-detail-input selectSector"
+                                        required>
+                                    <option disabled selected>전공 계열 선택</option>
+                                    <option th:value="문과계열">문과계열</option>
+                                    <option th:value="이과계열">이과계열</option>
+                                    <option th:value="전문계">전문(실업)계</option>
+                                    <option th:value="예체능계">예체능계</option>
+                                    <option th:value="특성화마이스터고">특성화/마이스터고</option>
+                                    <option th:value="특수목적고">특수목적고</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="content-detail-container content_title2 paddingBottom">
-                        <div class="content-detail-name1">전공 계열</div>
-                        <div class="content-detail-needs">*</div>
-                        <select id="highMajor" th:name="highMajor" class="content-detail-input selectSector" required>
-                             <option disabled selected>전공 계열 선택</option>
-                             <option th:value="문과계열" >문과계열</option>
-                             <option th:value="이과계열" >이과계열</option>
-                             <option th:value="전문계" >전문(실업)계</option>
-                             <option th:value="예체능계" >예체능계</option>
-                             <option th:value="특성화마이스터고" >특성화/마이스터고</option>
-                             <option th:value="특수목적고" >특수목적고</option>
-                         </select>
-                    </div>
 
-
-                    <div class="content_title content_title2">대학/대학원 정보 입력</div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">대학</div>
-                        <div class="content-detail-needs">*</div>
-                        <select id="colleageType" th:name="colleageType" class="content-detail-input selectSector" required>
-                             <option th:value="대학23년" >대학(2,3년)</option>
-                             <option th:value="대학교4년" >대학교(4년)</option>
-                             <option th:value="대학원석사" >대학원(석사)</option>
-                             <option th:value="대학원박사" >대학원(박사)</option>
-                         </select>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">학교명</div>
-                        <div class="content-detail-needs">*</div>
-                        <input type="text" class="content-detail-input"  placeholder="학교명 입력" required>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">재학기간</div>
-                        <div class="content-detail-needs">*</div>
-
-                        <div class="content-detail-date">
-                            <input type="date" class="content-detail-input-date content-detail-input-date2" required>
-                            <select th:name="colleage_admission_type" class="content-detail-select-type" required>
-                                 <option th:value="입학" >입학</option>
-                                 <option th:value="편입" >편입</option>
-                             </select>
-                            <div class="content-detail-input-date-text">~</div>
-                            <input type="date" class="content-detail-input-date"  required>
-                            <select th:name="e_colleage_graduate_type" class="content-detail-select-type" required>
-                                  <option th:value="졸업" >졸업</option>
-                                  <option th:value="재학중" >재학중</option>
-                                  <option th:value="휴학중" >휴학중</option>
-                                  <option th:value="수료" >수료</option>
-                                  <option th:value="중퇴" >중퇴</option>
-                                  <option th:value="자퇴" >자퇴</option>
-                                  <option th:value="졸업예정" >졸업예정</option>
-                              </select>
+                    <div id="ColleageForm">
+                        <div class="content_title content_title2">대학/대학원 정보 입력</div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">대학</div>
+                            <div class="content-detail-needs">*</div>
+                            <select id="colleageType" th:name="colleageType" class="content-detail-input selectSector"
+                                    required>
+                                <option th:value="대학23년">대학(2,3년)</option>
+                                <option th:value="대학교4년">대학교(4년)</option>
+                                <option th:value="대학원석사">대학원(석사)</option>
+                                <option th:value="대학원박사">대학원(박사)</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">전공</div>
-                        <div class="content-detail-needs">*</div>
-                        <input type="text" class="content-detail-input"  placeholder="전공학과 입력" required>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">전공</div>
-                        <div class="content-detail-needs">*</div>
-                        <input type="text" class="content-detail-input credit1"  placeholder="학점 입력" required>
-                        <input type="text" class="content-detail-input credit2"  placeholder="기준학점 입력" required>
-                    </div>
-
-                    <div class="content_title content_title2">대학원(석사) 정보 입력</div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">학교명</div>
-                        <div class="content-detail-needs">*</div>
-                        <input type="text" class="content-detail-input"  placeholder="학교명 입력" required>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">재학기간</div>
-                        <div class="content-detail-needs">*</div>
-
-                        <div class="content-detail-date">
-                            <input type="date" class="content-detail-input-date content-detail-input-date2" >
-                            <select th:name="colleage_admission_type" class="content-detail-select-type" required>
-                                 <option th:value="입학" >입학</option>
-                                 <option th:value="편입" >편입</option>
-                             </select>
-                            <div class="content-detail-input-date-text">~</div>
-                            <input type="date" class="content-detail-input-date" >
-                             <select th:name="e_colleage_graduate_type" class="content-detail-select-type" required>
-                                  <option th:value="졸업" >졸업</option>
-                                  <option th:value="재학중" >재학중</option>
-                                  <option th:value="휴학중" >휴학중</option>
-                                  <option th:value="수료" >수료</option>
-                                  <option th:value="중퇴" >중퇴</option>
-                                  <option th:value="자퇴" >자퇴</option>
-                                  <option th:value="졸업예정" >졸업예정</option>
-                              </select>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">학교명</div>
+                            <div class="content-detail-needs">*</div>
+                            <input type="text" class="content-detail-input" placeholder="학교명 입력" required>
                         </div>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">전공</div>
-                        <div class="content-detail-needs">*</div>
-                        <input type="text" class="content-detail-input"  placeholder="전공학과 입력" required>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">전공</div>
-                        <div class="content-detail-needs">*</div>
-                        <input type="text" class="content-detail-input credit1"  placeholder="학점 입력" required>
-                        <input type="text" class="content-detail-input credit2"  placeholder="기준학점 입력" required>
-                    </div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">재학기간</div>
+                            <div class="content-detail-needs">*</div>
 
-
-                    <div class="content_title content_title2">대학원(박사) 정보 입력</div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">학교명</div>
-                        <div class="content-detail-needs">*</div>
-                        <input type="text" class="content-detail-input"  placeholder="학교명 입력" required>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">재학기간</div>
-                        <div class="content-detail-needs">*</div>
-
-                        <div class="content-detail-date">
-                            <input type="date" class="content-detail-input-date content-detail-input-date2" required>
-                            <select th:name="colleage_admission_type" class="content-detail-select-type" required>
-                                 <option th:value="입학" >입학</option>
-                                 <option th:value="편입" >편입</option>
-                             </select>
-                            <div class="content-detail-input-date-text">~</div>
-                            <input type="date" class="content-detail-input-date"  required>
-                             <select th:name="e_colleage_graduate_type" class="content-detail-select-type" required>
-                                  <option th:value="졸업" >졸업</option>
-                                  <option th:value="재학중" >재학중</option>
-                                  <option th:value="휴학중" >휴학중</option>
-                                  <option th:value="수료" >수료</option>
-                                  <option th:value="중퇴" >중퇴</option>
-                                  <option th:value="자퇴" >자퇴</option>
-                                  <option th:value="졸업예정" >졸업예정</option>
-                              </select>
+                            <div class="content-detail-date">
+                                <input type="date" class="content-detail-input-date content-detail-input-date2"
+                                       required>
+                                <select th:name="colleage_admission_type" class="content-detail-select-type" required>
+                                    <option th:value="입학">입학</option>
+                                    <option th:value="편입">편입</option>
+                                </select>
+                                <div class="content-detail-input-date-text">~</div>
+                                <input type="date" class="content-detail-input-date" required>
+                                <select th:name="e_colleage_graduate_type" class="content-detail-select-type" required>
+                                    <option th:value="졸업">졸업</option>
+                                    <option th:value="재학중">재학중</option>
+                                    <option th:value="휴학중">휴학중</option>
+                                    <option th:value="수료">수료</option>
+                                    <option th:value="중퇴">중퇴</option>
+                                    <option th:value="자퇴">자퇴</option>
+                                    <option th:value="졸업예정">졸업예정</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">전공</div>
-                        <div class="content-detail-needs">*</div>
-                        <input type="text" class="content-detail-input"  placeholder="전공학과 입력" required>
-                    </div>
-                    <div class="content-detail-container">
-                        <div class="content-detail-name1">전공</div>
-                        <div class="content-detail-needs">*</div>
-                        <input type="text" class="content-detail-input credit1"  placeholder="학점 입력" required>
-                        <input type="text" class="content-detail-input credit2"  placeholder="기준학점 입력" required>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">전공</div>
+                            <div class="content-detail-needs">*</div>
+                            <input type="text" class="content-detail-input" placeholder="전공학과 입력" required>
+                        </div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">전공</div>
+                            <div class="content-detail-needs">*</div>
+                            <input type="text" class="content-detail-input credit1" placeholder="학점 입력" required>
+                            <input type="text" class="content-detail-input credit2" placeholder="기준학점 입력" required>
+                        </div>
+
+                        <div class="content_title content_title2">대학원(석사) 정보 입력</div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">학교명</div>
+                            <div class="content-detail-needs">*</div>
+                            <input type="text" class="content-detail-input" placeholder="학교명 입력" required>
+                        </div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">재학기간</div>
+                            <div class="content-detail-needs">*</div>
+
+                            <div class="content-detail-date">
+                                <input type="date" class="content-detail-input-date content-detail-input-date2">
+                                <select th:name="colleage_admission_type" class="content-detail-select-type" required>
+                                    <option th:value="입학">입학</option>
+                                    <option th:value="편입">편입</option>
+                                </select>
+                                <div class="content-detail-input-date-text">~</div>
+                                <input type="date" class="content-detail-input-date">
+                                <select th:name="e_colleage_graduate_type" class="content-detail-select-type" required>
+                                    <option th:value="졸업">졸업</option>
+                                    <option th:value="재학중">재학중</option>
+                                    <option th:value="휴학중">휴학중</option>
+                                    <option th:value="수료">수료</option>
+                                    <option th:value="중퇴">중퇴</option>
+                                    <option th:value="자퇴">자퇴</option>
+                                    <option th:value="졸업예정">졸업예정</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">전공</div>
+                            <div class="content-detail-needs">*</div>
+                            <input type="text" class="content-detail-input" placeholder="전공학과 입력" required>
+                        </div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">전공</div>
+                            <div class="content-detail-needs">*</div>
+                            <input type="text" class="content-detail-input credit1" placeholder="학점 입력" required>
+                            <input type="text" class="content-detail-input credit2" placeholder="기준학점 입력" required>
+                        </div>
+
+
+                        <div class="content_title content_title2">대학원(박사) 정보 입력</div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">학교명</div>
+                            <div class="content-detail-needs">*</div>
+                            <input type="text" class="content-detail-input" placeholder="학교명 입력" required>
+                        </div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">재학기간</div>
+                            <div class="content-detail-needs">*</div>
+
+                            <div class="content-detail-date">
+                                <input type="date" class="content-detail-input-date content-detail-input-date2"
+                                       required>
+                                <select th:name="colleage_admission_type" class="content-detail-select-type" required>
+                                    <option th:value="입학">입학</option>
+                                    <option th:value="편입">편입</option>
+                                </select>
+                                <div class="content-detail-input-date-text">~</div>
+                                <input type="date" class="content-detail-input-date" required>
+                                <select th:name="e_colleage_graduate_type" class="content-detail-select-type" required>
+                                    <option th:value="졸업">졸업</option>
+                                    <option th:value="재학중">재학중</option>
+                                    <option th:value="휴학중">휴학중</option>
+                                    <option th:value="수료">수료</option>
+                                    <option th:value="중퇴">중퇴</option>
+                                    <option th:value="자퇴">자퇴</option>
+                                    <option th:value="졸업예정">졸업예정</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">전공</div>
+                            <div class="content-detail-needs">*</div>
+                            <input type="text" class="content-detail-input" placeholder="전공학과 입력" required>
+                        </div>
+                        <div class="content-detail-container">
+                            <div class="content-detail-name1">전공</div>
+                            <div class="content-detail-needs">*</div>
+                            <input type="text" class="content-detail-input credit1" placeholder="학점 입력" required>
+                            <input type="text" class="content-detail-input credit2" placeholder="기준학점 입력" required>
+                        </div>
                     </div>
 
 
@@ -299,9 +310,9 @@
                             <div class="content-detail-input-date-text">~</div>
                             <input type="date" class="content-detail-input-date"  required>
                             <select th:name="colleage_admission_type" class="content-detail-select-type" required>
-                                 <option th:value="퇴사" >퇴사</option>
-                                 <option th:value="재직중" >재직중</option>
-                             </select>
+                                <option th:value="퇴사" >퇴사</option>
+                                <option th:value="재직중" >재직중</option>
+                            </select>
                         </div>
                     </div>
 
@@ -330,6 +341,14 @@
                     </div>
 
                     <div class="content_title2 careerBorderBottom"></div>
+
+
+
+
+
+
+
+
 
 
 
@@ -377,17 +396,17 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/personal/mypage/resumeEnroll.js"></script>
 <script>
-window.onload = function(){
-    document.getElementById("search").addEventListener("click", function(){ //주소입력칸을 클릭하면
-        //카카오 지도 발생
-        new daum.Postcode({
-            oncomplete: function(data) { //선택시 입력값 세팅
-                document.getElementById("address_kakao").value = data.address; // 주소 넣기
-                document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
-            }
-        }).open();
-   	 });
-	}
+    window.onload = function(){
+        document.getElementById("search").addEventListener("click", function(){ //주소입력칸을 클릭하면
+            //카카오 지도 발생
+            new daum.Postcode({
+                oncomplete: function(data) { //선택시 입력값 세팅
+                    document.getElementById("address_kakao").value = data.address; // 주소 넣기
+                    document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+                }
+            }).open();
+        });
+    }
 
 </script>
 </html>
