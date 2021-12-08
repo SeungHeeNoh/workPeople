@@ -1,13 +1,8 @@
-// input 숫자, 날짜 작성
+// input 숫자 작성
 $(function() {
 
-    // 두 칸 모두 숫자만 입력되도록
+    // 숫자만 입력되도록
     $("#number").keypress(function(event) {
-      if (event.which < 48 || event.which > 57) {
-        event.preventDefault();
-      }
-    })
-    $("#date").keypress(function(event) {
       if (event.which < 48 || event.which > 57) {
         event.preventDefault();
       }
@@ -15,82 +10,14 @@ $(function() {
   
     var RegNotNum = /[^0-9]/g;
   
-    /* 1. 숫자 */
+    /* 숫자 */
     $("#number").keyup(function() {
       this.value = this.value.replace(RegNotNum, '');
     });
   
-    /* 2. 날짜 */
-    $("#date").attr("maxlength", 10); // 최대길이 설정
-    $("#date").keyup(function() {
-  
-      var date = this.value;
-  
-      date = date.replace(RegNotNum, ''); // 숫자만 남기기
-  
-      if (date == "" || date == null || date.length < 5) {
-        this.value = date;
-        return;
-      }
-  
-      var DataFormat;
-      var RegPhonNum;
-  
-      // 날짜 포맷(yyyy-mm-dd) 만들기 
-      if (date.length <= 6) {
-        DataFormat = "$1-$2"; // 포맷을 바꾸려면 이곳을 변경
-        RegPhonNum = /([0-9]{4})([0-9]+)/;
-      } else if (date.length <= 8) {
-        DataFormat = "$1-$2-$3"; // 포맷을 바꾸려면 이곳을 변경
-        RegPhonNum = /([0-9]{4})([0-9]{2})([0-9]+)/;
-      }
-  
-      date = date.replace(RegPhonNum, DataFormat);
-  
-      this.value = date;
-  
-      // 모두 입력됐을 경우 날짜 유효성 확인
-      if (date.length == 10) {
-  
-        var isVaild = true;
-  
-        if (isNaN(Date.parse(date))) {
-          // 유효 날짜 확인 여부
-          isVaild = false;
-        } else {
-  
-          // 년, 월, 일 0 이상 여부 확인
-          var date_sp = date.split("-");
-          date_sp.forEach(function(sp) {
-            if (parseInt(sp) == 0) {
-              isVaild = false;
-            }
-          });
-  
-          // 마지막 일 확인
-          var last = new Date(new Date(date).getFullYear(), new Date(date).getMonth()+1, 0);
-          // 일이 달의 마지막날을 초과했을 경우 다음달로 자동 전환되는 현상이 있음 (예-2월 30일 -> 3월 1일)
-          if (parseInt(date_sp[1]) != last.getMonth()+1) {
-                      var date_sp2 = date_sp.slice(0);
-                      date_sp2[2] = '01';
-                      var date2 = date_sp2.join("-");
-                      last = new Date(new Date(date2).getFullYear(), new Date(date2).getMonth()+1, 0);
-                  }
-          if (last.getDate() < parseInt(date_sp[2])) {
-            isVaild = false;
-          }
-        }
-  
-        if (!isVaild) {
-          alert("잘못된 날짜입니다. \n다시 입력하세요.");
-          this.value = "";
-          this.focus();
-          return;
-        }
-      }
-    });
+   
   });
-// input 숫자, 날짜 작성 
+// input 숫자 작성 
 
 // 글자 수 카운팅
   $(document).ready(function() {
@@ -289,6 +216,7 @@ $(function() {
 	}
     
     
+
     
     
 });

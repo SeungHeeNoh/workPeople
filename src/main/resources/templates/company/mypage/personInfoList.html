@@ -42,14 +42,14 @@
                                     <col class="col1">
                                     <col class="col2">
                                     <col class="col3">
-                                    <col class="col4">
+                                   <!--  <col class="col4"> -->
                                 </colgroup>
                                 <thead>
                                     <tr>
                                         <th scope="col" class="first-cell" style="text-align: center;">이름</th>
                                         <th scope="col2"  style="text-align: center;">이력서 요약</th>
                                         <th scope="col3"  style="text-align: center;">등록일</th>
-                                        <th scope="col4"  style="text-align: center;"></th>
+                                     <!--    <th scope="col4"  style="text-align: center;"></th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -107,13 +107,13 @@
                                         <td class="person-update">
                                             <span class="date" th:text="${#dates.format(person.enrollDate, 'yyyy-MM-dd') }"></span>
                                         </td>
-                                        <td class="person-mail">
+                                        <!-- <td class="person-mail">
                                             <div class="mailbox">
                                                 <a th:href="@{/company/mypage/writeMail}" class="personlink" target="_blank">
                                                     메일쓰기
                                                 </a>
                                             </div>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                     <tr th:unless="${#lists.size(personList) > 0 }">
                                         <td class="listNone" colspan="4">
