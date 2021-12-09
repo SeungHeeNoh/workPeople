@@ -77,7 +77,7 @@ public class MemberInfoController {
 		if (passwordEncoder.matches(password, user.getPwd())) {
 			result = "redirect:/company/mypage/memberInfoUpdate";
 		} else {
-			rttr.addFlashAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
+			rttr.addFlashAttribute("message", "비밀번호가 일치하지 않습니다.");
 			result = "redirect:/company/mypage/memberInfoPwd";
 		}
 		
