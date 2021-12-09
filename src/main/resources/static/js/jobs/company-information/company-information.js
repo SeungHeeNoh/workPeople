@@ -269,7 +269,7 @@
 			if(button.closest(".paging")) {
 				button.setAttribute("disabled", true);
 
-				let jobVacancyTable = jobVacancyTables.progressing,
+				let jobVacancyTable = jobVacancyTables.expired,
 					page =  Number(button.getAttribute("data-page"));
 
 					if(page != jobVacancyTable.page.value) {
