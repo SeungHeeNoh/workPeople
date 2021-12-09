@@ -193,6 +193,13 @@
 		
 		// 공고 조회시 기업번호 조회
 		function aa(e){ 
+			let nn = e.target,
+		    as = nn.querySelector(".tag"),
+			no = nn.querySelector(".no").value;
+
+			// console.log("nn : " + nn);
+			// console.log("no : " + no); 
+			
 			$.ajax({
 				url : "jvSelect",
 				type : "get",

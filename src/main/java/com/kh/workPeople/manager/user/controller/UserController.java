@@ -40,7 +40,6 @@ public class UserController {
 			mv.addObject("pi", map.get("pi"));
 			mv.setViewName("manager/user/userinfo");
 			
-			
 			return mv;
 		}
 
