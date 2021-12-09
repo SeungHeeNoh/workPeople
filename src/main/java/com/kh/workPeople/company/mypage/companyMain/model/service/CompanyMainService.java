@@ -15,6 +15,8 @@ public interface CompanyMainService {
 
 	int jvEndCount(int cino);
 
+	CompanyInformation companyInfoSelect(int cino);
+
 	
 
 	

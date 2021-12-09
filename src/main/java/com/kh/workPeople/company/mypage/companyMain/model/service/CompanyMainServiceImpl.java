@@ -35,6 +35,11 @@ public class CompanyMainServiceImpl implements CompanyMainService{
 		return companyMainMapper.jvEndCount(cino);
 	}
 
+	@Override
+	public CompanyInformation companyInfoSelect(int cino) {
+		return companyMainMapper.companyInfoSelect(cino);
+	}
+
 	
 
 

@@ -34,10 +34,11 @@
                     <button type="button" th:onclick="|location.href='@{/company/mypage/insertJv}'|">공고 등록하기</button>
                 </div>
             </div>
-            <div class="content_top2">
-                <img th:src="@{/images/companyMyPage/ServiceCenter.PNG}">
-                <br>
-                <button onclick="location.href=''">채팅하기</button>
+            <div class="content_top2" th:if="${companyInfo.attachment == null}">
+               <img th:src="@{/images/common/no-logo.png}">
+           </div>
+            <div class="content_top2" th:unless="${companyInfo.attachment == null}">
+                <img th:src="@{/images/uploadFiles/{changeName}(changeName=${companyInfo.attachment.changeName})}">
             </div>
             <div class="content_bottom">
                 <table class="jv_list">
