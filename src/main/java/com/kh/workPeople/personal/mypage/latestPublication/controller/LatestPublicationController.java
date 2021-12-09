@@ -84,9 +84,11 @@ public class LatestPublicationController {
 
     }
 
-    @PostMapping("latestPublication/delete")
-    public String latestPublicationDelete(@RequestParam("jvNo") List<Integer> jvNoList, @AuthenticationPrincipal MemberImpl user, RedirectAttributes rttr, HttpServletRequest request){
+    @GetMapping("latestPublication/delete/{jvNo}")
+    public String latestPublicationDelete(@PathVariable("jvNo") List<Integer> jvNoList, @AuthenticationPrincipal MemberImpl user, RedirectAttributes rttr, HttpServletRequest request){
 
+
+//        System.out.println("jvnolist : "+jvNoList);
         Map<String, Object> queryMap = new HashMap<>();
         int result = 0;
 
