@@ -75,4 +75,23 @@
 		 WHERE C.CI_NO = #{cino}
 	</select>
 	
+	<select id="getJvList" resultMap="jobVacancyResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
+		SELECT
+		       JV_TITLE
+		     , JV_ADDRESS
+		     , JV_PERIOD_END
+             , case when TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') then 1
+             else 0 end as CNT  
+		  FROM (
+		  		 SELECT ROWNUM RNUM
+		  		 	  ,  NLIST.*
+		  		 FROM(
+		  		 		SELECT * 
+		  		 		FROM JOB_VACANCY 
+						 WHERE CI_NO = #{cino}
+						 ORDER BY JV_REGISTER DESC) NLIST)
+		WHERE RNUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
+	</select>
+	
+	
 </mapper>

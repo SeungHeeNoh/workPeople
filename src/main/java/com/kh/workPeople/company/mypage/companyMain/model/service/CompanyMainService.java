@@ -1,6 +1,7 @@
 package com.kh.workPeople.company.mypage.companyMain.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.JobVacancy;
@@ -16,6 +17,8 @@ public interface CompanyMainService {
 	int jvEndCount(int cino);
 
 	CompanyInformation companyInfoSelect(int cino);
+
+	Map<String, Object> getJvList(int page);
 
 	
 
