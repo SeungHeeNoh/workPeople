@@ -19,7 +19,9 @@
 .home_content_3_3{
     margin-right: 25px;
 }
-
+.home_content_3_1{
+    margin-left: 20px;
+}
 .content_title_text4{
     display: flex;
     justify-content: space-between;
