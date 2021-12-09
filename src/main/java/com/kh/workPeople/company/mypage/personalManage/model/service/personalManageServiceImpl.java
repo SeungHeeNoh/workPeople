@@ -1,4 +1,4 @@
-package com.kh.workPeople.company.mypage.jvManage.model.service;
+package com.kh.workPeople.company.mypage.personalManage.model.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,28 +9,22 @@ import org.springframework.stereotype.Service;
 
 import com.kh.workPeople.common.vo.JobVacancy;
 import com.kh.workPeople.common.vo.PageInfo;
-import com.kh.workPeople.company.mypage.jvManage.model.dao.jvManageMapper;
+import com.kh.workPeople.company.mypage.personalManage.model.dao.personalManageMapper;
 
 @Service
-public class jvManageServiceImpl implements jvManageService{
+public class personalManageServiceImpl implements personalManageService{
 
-	private jvManageMapper jvManageMapper;
+	private personalManageMapper personalManageMapper;
 	
 	@Autowired
-	public jvManageServiceImpl(jvManageMapper jvManageMapper) {
-		this.jvManageMapper = jvManageMapper;
+	public personalManageServiceImpl(personalManageMapper personalManageMapper) {
+		this.personalManageMapper = personalManageMapper;
 	}
 	
 	@Override
 	public List<JobVacancy> jobVacancyInfoSelect(int cino) {
 		
-		return jvManageMapper.jobVacancyInfoSelect(cino);
-	}
-
-	@Override
-	public List<JobVacancy> jobVacancyInfoSelectEnd(int cino) {
-
-		return jvManageMapper.jobVacancyInfoSelectEnd(cino);
+		return personalManageMapper.jobVacancyInfoSelect(cino);
 	}
 
 	@Override
@@ -38,22 +32,21 @@ public class jvManageServiceImpl implements jvManageService{
 		Map<String, Object> returnMap = new HashMap<>();
 		Map<String, Object> noMap = new HashMap<>();
 		
-		int listCount = jvManageMapper.getJvListCount(cino);
+		int listCount = personalManageMapper.getJvListCount(cino);
 		
-		PageInfo pi = new PageInfo(page, listCount, 5, 10);
+		PageInfo pi = new PageInfo(page, listCount, 1, 10);
 		
 		noMap.put("pi", pi);
 		noMap.put("cino", cino);
 		
-		List<JobVacancy> jobVacancy = jvManageMapper.getJvList(noMap);
+		List<JobVacancy> jobVacancy = personalManageMapper.getJvList(noMap);
 		
 		returnMap.put("pi", pi);
 		returnMap.put("jobVacancy", jobVacancy);
 		
 		return returnMap;
 	}
-
-
+	
 	
 
 }

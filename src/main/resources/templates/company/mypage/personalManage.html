@@ -10,6 +10,10 @@
 
 <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css}"/>
 <link rel="stylesheet" th:href="@{/css/company/mypage/calendar/calendar.css}">
+<style>
+.wrap .container{min-height:520px;}
+</style>
+
 </head>
 <body>
 <div th:include="common/cpheader.html"></div>
@@ -19,10 +23,9 @@
             <div class="sideNav">
                 <div class="nav">
                     <ul>
-                        <li class="jvManage"><a th:href="@{company/mypage/jvManage}">공고 관리</a></li>
-                        <li class="personalManage"><a th:href="@{company/mypage/personalManage}">지원자 관리</a></li>
-                        <li class="interview"><a th:href="@{company/mypage/interview}">면접</a></li>
-                    </ul>
+                        <li class="jvManage"><a th:href="@{/company/mypage/jvManage}">공고 관리</a></li>
+                        <li class="personalManage"><a th:href="@{/company/mypage/personalManage}">지원자 관리</a></li>
+                    </ul>  
                 </div>
             </div>
 
@@ -30,27 +33,24 @@
             <div class="content">
                 <div class="searchBox">
                     <div class="input_date">
-                        From : <input type="text" class="monthpicker">
-                        To : <input type="text" class="monthpicker">
+                     
                     </div>
                     <div class="input_title">
-                        <p>검색조건</p>
-                        <input type="text">
-                        <button type="submit">검색</button>
+                    
                     </div>
                 </div>
                 <div class="table">
                     <table class="jvList">
                         <colgroup>
-                            <col width="10%">
-                            <col width="40%">
+                            <col width="5%">
+                            <col width="45%">
                             <col width="20%">
                             <col width="10%">
                             <col width="20%">
                         </colgroup>
                         <thead>
                             <tr>
-                                <td>게시글 번호</td>
+                                <td>번호</td>
                                 <td>공고 제목</td>
                                 <td>지원자(명)</td>
                                 <td>공고 상태</td>
@@ -58,32 +58,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr onclick="location.href=''">
-                                <td>1</td>
-                                <td>공고제목,공고제목,공고제목,공고제목</td>
-                                <td>3</td>
-                                <td>
-                                    <p class="status_ing">공고중</p>
-                                </td>
-                                <td>2021-11-30</td>
+                            <tr th:each="jv, i : ${jobVacancy}">
+                                <td th:text="${i.index+1}"></td>
+                                <td th:text="${jv.title}"></td>
+                                <td>0</td>
+                                <td>공고 중</td>
+                                <td th:text="${#dates.format(jv.periodEnd, 'yyyy-MM-dd')}"></td>
                             </tr>  
                         </tbody>
                     </table>
+                     <div th:if="${#lists.size(jobVacancy) > 0}">
+	                   	<div th:replace="common/paging.html"></div>
+	                 </div>
                 </div>
             </div>
         </div>
     </div>
     <div th:include="common/up.html"></div>    
 	<div th:include="common/footer.html"></div>
-<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js}"></script>
-<script th:src="@{/js/company/monthpicker/jquery.ui.monthpicker.js}"></script>
+	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js}"></script>
+	<script th:src="@{/js/company/monthpicker/jquery.ui.monthpicker.js}"></script>
 
     <script>
         $(".monthpicker").monthpicker({
             monthNames:['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
             monthNamesShort:['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
             showOn:"both",
-            buttonImage:"../../../static/images/calendar.PNG",
+            buttonImage:"/images/companyMyPage/calendar.PNG",
             buttonImageOnly:true,
             changeYear:false,
             yearRange:'c-2:c+2',
