@@ -14,7 +14,8 @@
 <div th:include="common/cpheader.html"></div>
  <div class="wrap">
         <div class="content_wrap">
-            <form th:action="@{/company/mypage/insertJv}" method="post">
+            <form th:action="" method="post">
+            <input type="hidden" name="companyNO" value="${companyInfo.no}">
                 <div class="content">
                     <div class="content_inner">
                         <div class="content_title">채용제목을 입력해주세요.</div>
@@ -33,26 +34,26 @@
                         </div>
                         <div class="content2">
                             <label>접수기간</label>
-                            <input type="date" name="peiodStart"> ~ <input type="date" name="periodEnd">
+                            <input type="date" name="jvStart"> ~ <input type="date" name="jvEnd">
                         </div>
                         <div class="content2_1">
                             <label>경력여부</label>
-                            <input type="checkbox" name="experienceLevelList" th:value="1" onclick="checkOnlyOne(this)">신입&nbsp;
-                            <input type="checkbox" name="experienceLevelList" th:value="2" onclick="checkOnlyOne(this)">경력&nbsp;
-                            <input type="checkbox" name="experienceLevelList" th:value="3" onclick="checkOnlyOne(this)">경력 무관&nbsp;
+                            <input type="checkbox" name="expLevel" th:value="1" onclick="checkOnlyOne(this)">신입&nbsp;
+                            <input type="checkbox" name="expLevel" th:value="2" onclick="checkOnlyOne(this)">경력&nbsp;
+                            <input type="checkbox" name="expLevel" th:value="3" onclick="checkOnlyOne(this)">경력 무관&nbsp;
                         </div>
                         <div class="content2_2">
                             <label>직급/직책</label>
-                            <input type="checkbox" name="roleList" th:value="1" onclick="checkOnlyOne2(this)">사원&nbsp;
-                            <input type="checkbox" name="roleList" th:value="2" onclick="checkOnlyOne2(this)">주임&nbsp;
-                            <input type="checkbox" name="roleList" th:value="3" onclick="checkOnlyOne2(this)">대리&nbsp;
-                            <input type="checkbox" name="roleList" th:value="4" onclick="checkOnlyOne2(this)">과장&nbsp;
-                            <input type="checkbox" name="roleList" th:value="5" onclick="checkOnlyOne2(this)">차장&nbsp;
-                            <input type="checkbox" name="roleList" th:value="6" onclick="checkOnlyOne2(this)">부장&nbsp;
-                            <input type="checkbox" name="roleList" th:value="7" onclick="checkOnlyOne2(this)">임원&nbsp;
-                            <input type="checkbox" name="roleList" th:value="8" onclick="checkOnlyOne2(this)">팀장&nbsp;
-                            <input type="checkbox" name="roleList" th:value="9" onclick="checkOnlyOne2(this)">매니저&nbsp;
-                            <input type="checkbox" name="roleList" th:value="10" onclick="checkOnlyOne2(this)">실장
+                            <input type="checkbox" name="role" th:value="1" onclick="checkOnlyOne2(this)">사원&nbsp;
+                            <input type="checkbox" name="role" th:value="2" onclick="checkOnlyOne2(this)">주임&nbsp;
+                            <input type="checkbox" name="role" th:value="3" onclick="checkOnlyOne2(this)">대리&nbsp;
+                            <input type="checkbox" name="role" th:value="4" onclick="checkOnlyOne2(this)">과장&nbsp;
+                            <input type="checkbox" name="role" th:value="5" onclick="checkOnlyOne2(this)">차장&nbsp;
+                            <input type="checkbox" name="role" th:value="6" onclick="checkOnlyOne2(this)">부장&nbsp;
+                            <input type="checkbox" name="role" th:value="7" onclick="checkOnlyOne2(this)">임원&nbsp;
+                            <input type="checkbox" name="role" th:value="8" onclick="checkOnlyOne2(this)">팀장&nbsp;
+                            <input type="checkbox" name="role" th:value="9" onclick="checkOnlyOne2(this)">매니저&nbsp;
+                            <input type="checkbox" name="role" th:value="10" onclick="checkOnlyOne2(this)">실장
                         </div>
                     </div>
                 </div>
@@ -61,7 +62,7 @@
                         <div class="content_title">근무조건을 입력해주세요.</div>
                         <div class="content3">
                             <label>근무요일</label>
-                            <select th:name="day">
+                            <select th:name="d.no">
                                 <option th:value="1">요일무관</option>
                                 <option th:value="2">매일</option>
                                 <option th:value="3">주 6일(월~토)</option>
@@ -72,11 +73,11 @@
                         </div>
                         <div class="content3">
                             <label>근무일시</label>
-                            <input type="text" name="workdayStartTime" class="timepicker"> ~ <input type="text" name="workdayEndTime" class="timepicker">
+                            <input type="text" name="workStart" class="timepicker"> ~ <input type="text" name="workEnd" class="timepicker">
                         </div>
                         <div class="content3_1">
                             <label>급여</label>
-                            <select th:name="payType">
+                            <select th:name="pt.no">
                                 <option th:value="1">연봉</option>
                                 <option th:value="2">월급</option>
                                 <option th:value="3">주급</option>
@@ -99,7 +100,7 @@
                         <div class="content_title">우대조건을 입력해주세요.</div>
                         <div class="content4">
                            <label>성별</label>
-                           <select th:name="gender">
+                           <select th:name="gender.no">
                                <option th:value="1">성별무관</option>
                                <option th:value="2">남자</option>
                                <option th:value="3">여자</option>
@@ -107,7 +108,7 @@
                         </div>
                         <div class="content4">
                             <label>학력</label>
-                            <select th:name="educationLevel">
+                            <select th:name="el.no">
                                 <option th:value="1">고등학교 졸업</option>
                                 <option th:value="2">대학 졸업(2,3년)</option>
                                 <option th:value="3">대학교 졸업(4년)</option>
@@ -195,7 +196,7 @@
 	<script>
         function checkOnlyOne(element){
             const checkboxes
-                = document.getElementsByName("experienceLevelList");
+                = document.getElementsByName("expLevel");
              checkboxes.forEach((cb) => {
                  cb.checked = false;
              })
@@ -205,7 +206,7 @@
     <script>
         function checkOnlyOne2(element){
             const checkboxes
-                = document.getElementsByName("roleList");
+                = document.getElementsByName("role");
              checkboxes.forEach((cb) => {
                  cb.checked = false;
              })
