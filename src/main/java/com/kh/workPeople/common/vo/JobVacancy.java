@@ -3,9 +3,9 @@ package com.kh.workPeople.common.vo;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class JobVacancy {
 
@@ -16,9 +16,11 @@ public class JobVacancy {
 	private Date display;
 	private int count;
 	private int to;
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone= "Asia/Seoul")
 	private Date peiodStart;
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone= "Asia/Seoul")
 	private Date periodEnd;
 	private String workdayStartTime;
 	private String workdayEndTime;
