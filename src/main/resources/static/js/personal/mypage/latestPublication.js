@@ -33,13 +33,14 @@ let deleteBtn = document.querySelector(".green1"),
 
         for(let i=0; i<inputValues.length; i++){
             if(inputValues[i].checked){
-                jvNoList.push(inputValues.values());
+                console.log()
+                jvNoList.push(inputValues[i].value);
             }
         }
         console.log(jvNoList);
         let jvnoFormat = jvNoList.join(',');
         console.log(jvNoList);
-        location.href = "/personal/mypage/latestPublication/delete/" + jvnoFormat;
+        location.href = "/personal/mypage/latestPublication/delete/" + jvNoList;
 
     }
 
