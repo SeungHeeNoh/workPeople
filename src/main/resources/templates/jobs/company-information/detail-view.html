@@ -116,7 +116,7 @@
 											<button type="button" class="green apply_button" th:attr="data-jv-no=${jobVacancyData.no}">입사지원</button>
 										</th:block>
 										<th:block th:if="${#strings.equals(jobVacancyData.applied, 'Y')}">
-											<form th:action="@{/jobs/company-information/cancel-apply-company/}" method="POST">
+											<form th:action="@{/jobs/job-vacancy/cancel-apply}" method="POST">
 												<input type="hidden" name="jvNo" th:value="${jobVacancyData.no}">
 												<button type="submit">지원취소</button>
 											</form>
