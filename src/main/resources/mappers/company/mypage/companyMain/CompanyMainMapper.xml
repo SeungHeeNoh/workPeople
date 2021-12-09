@@ -31,18 +31,6 @@
 		<result property="update" column="A_UPDATE"/>
 	</resultMap>
 	
-	<select id="jobVacancyInfoSelect" resultMap="jobVacancyResultMap">
-		SELECT
-		       JV_TITLE
-		     , JV_ADDRESS
-		     , JV_PERIOD_END
-             , case when TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') then 1
-             else 0 end as CNT  
-		  FROM JOB_VACANCY 
-		 WHERE CI_NO = #{cino}
-		 ORDER BY JV_REGISTER DESC
-	</select>
-	
 	<select id="jvIngCount" resultType="_int">
 	<![CDATA[
 		 SELECT
@@ -75,7 +63,16 @@
 		 WHERE C.CI_NO = #{cino}
 	</select>
 	
-	<select id="getJvList" resultMap="jobVacancyResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
+	
+	<!-- 페이징 저리 Count -->
+	<select id="getListCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM JOB_VACANCY 
+		 WHERE CI_NO = #{cino}
+	</select>
+	
+	<!-- 페이징 저리 -->
+	<select id="getJvList" resultMap="jobVacancyResultMap" parameterType="Map">
 		SELECT
 		       JV_TITLE
 		     , JV_ADDRESS
@@ -90,7 +87,7 @@
 		  		 		FROM JOB_VACANCY 
 						 WHERE CI_NO = #{cino}
 						 ORDER BY JV_REGISTER DESC) NLIST)
-		WHERE RNUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
+		 WHERE RNUM BETWEEN (#{pi.page}-1)*(#{pi.boardLimit})+1 AND ((#{pi.page}-1)*(#{pi.boardLimit})+1)+(#{pi.boardLimit}-1)
 	</select>
 	
 	

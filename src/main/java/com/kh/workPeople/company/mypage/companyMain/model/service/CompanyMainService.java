@@ -10,7 +10,6 @@ import com.kh.workPeople.common.vo.Member;
 public interface CompanyMainService {
 
 
-	List<JobVacancy> jobVacancyInfoSelect(int cino);
 
 	int jvIngCount(int cino);
 
@@ -18,7 +17,7 @@ public interface CompanyMainService {
 
 	CompanyInformation companyInfoSelect(int cino);
 
-	Map<String, Object> getJvList(int page);
+	Map<String, Object> getJvList(int page, int cino);
 
 	
 
