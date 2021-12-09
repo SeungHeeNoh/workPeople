@@ -1,5 +1,7 @@
 package com.kh.workPeople.company.mypage.insertJv.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,25 +20,17 @@ public class insertJvServiceImpl implements insertJvService{
 		this.insertJvMapper = insertJvMapper;
 	}
 	
-	@Override
-	public Member memberInfoselect(String userId) {
-		return insertJvMapper.memberInfoselect(userId);
-	}
-
-	@Override
-	public CompanyInformation companyInfoSelect(int userNo) {
-		return insertJvMapper.companyInfoSelect(userNo);
-	}
-
-	@Override
-	public JobVacancy jobVacancyInfoSelect(int ciNo) {
-		return insertJvMapper.jobVacancyInfoSelect(ciNo);
-	}
 
 	@Override
 	public int insertInfo(JobVacancy jobVacancy) {
 		return insertJvMapper.registNewJobVacancy(jobVacancy);
 		
+	}
+
+
+	@Override
+	public List<JobVacancy> jobVacancyInfoSelect(int cino) {
+		return insertJvMapper.jobVacancyInfoSelect(cino);
 	}
 
 }
