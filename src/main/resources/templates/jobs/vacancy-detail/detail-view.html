@@ -168,7 +168,7 @@
 													<span class="register_date" th:text="${#dates.format(resume.enrollDate, 'yyyy.M.d 등록')}"></span>
 													<p><span th:if="${#strings.equals(resume.statusYN, 'Y')}">대표이력서</span>[[${resume.title}]]</p>
 													<span class="buttons">
-														<a th:href="@{personal/mypage/resumeManagement/resumeEdit/} + ${resume.no}">수정</a>
+														<a th:href="@{/personal/mypage/resumeManagement/resumeEdit/} + ${resume.no}">수정</a>
 														<button type="button" class="open_resume" th:attr="data-resume-no=${resume.no}">미리보기</button>
 													</span>
 												</label>
