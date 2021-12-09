@@ -33,6 +33,9 @@ public class CompanyMainController {
 		int cino = user.getCompanyNo();
 		List<JobVacancy> jobVacancy = companyMainService.jobVacancyInfoSelect(cino);
 		
+		// 기업 로고
+		CompanyInformation companyInfo = companyMainService.companyInfoSelect(cino);
+		
 		// 메인페이지 공고 현황
 		// 진행중 공고 수
 		int jvIngCount = companyMainService.jvIngCount(cino);
@@ -42,7 +45,7 @@ public class CompanyMainController {
 		model.addAttribute("jvIngCount", jvIngCount);
 		model.addAttribute("jvEndCount", jvEndCount);
 		model.addAttribute("jobVacancy", jobVacancy);
-		
+		model.addAttribute("companyInfo", companyInfo);
 		
 		return "company/mypage/companyMain";
 	}

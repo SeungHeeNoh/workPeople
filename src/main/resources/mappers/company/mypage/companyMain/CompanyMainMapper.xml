@@ -10,6 +10,27 @@
 		<result property="count" column="CNT"/>
 	</resultMap>
 	
+	<resultMap type="com.kh.workPeople.common.vo.CompanyInformation" id="companyResultMap">
+		<id property="no" column="CI_NO"/>
+		<result property="registerNumber" column="CI_COMPANY_REGISTER_NUMBER"/>
+		<result property="ceoName" column="CI_CEONAME"/>
+		<result property="foundingDate" column="CI_FOUNDING_DATE"/>
+		<result property="employeeNumber" column="CI_EMPLOYEE_NUMBER"/>
+		<result property="businessDetail" column="CI_BUSINESS_DETAIL"/>
+		<result property="companyHistory" column="CI_COMPANY_HISTORY"/>
+		<result property="companyVision" column="CI_COMPANY_VISION"/>
+		<result property="homepage" column="CI_HOMEPAGE"/>
+		<association property="attachment" resultMap="attachmentResultMap"/>
+	</resultMap>
+	<resultMap type="com.kh.workPeople.common.vo.Attachment" id="attachmentResultMap">
+		<id property="no" column="A_NO"/>
+		<result property="changeName" column="A_CHANGE_NAME"/>
+		<result property="filePath" column="A_FILE_PATH"/>
+		<result property="status" column="A_STATUS"/>
+		<result property="create" column="A_CREATE"/>
+		<result property="update" column="A_UPDATE"/>
+	</resultMap>
+	
 	<select id="jobVacancyInfoSelect" resultMap="jobVacancyResultMap">
 		 SELECT
 		       JV_TITLE
@@ -44,6 +65,17 @@
 		 WHERE CI_NO = #{cino}
 		   AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') < TO_CHAR(SYSDATE, 'YYMMDD')
 	 ]]>	   
+	</select>
+	
+	<select id="companyInfoSelect" resultMap="companyResultMap">
+		SELECT 
+			  C.CI_NO
+			, A.A_NO
+		    , A.A_CHANGE_NAME
+		    , A.A_FILE_PATH
+		 FROM COMPANY_INFO C
+		 LEFT JOIN ATTACHMENT A ON(C.A_NO = A.A_NO)
+		 WHERE C.CI_NO = #{cino}
 	</select>
 	
 </mapper>

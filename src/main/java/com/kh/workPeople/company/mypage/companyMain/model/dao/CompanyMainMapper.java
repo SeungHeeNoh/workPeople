@@ -17,6 +17,8 @@ public interface CompanyMainMapper {
 
 	int jvEndCount(int cino);
 
+	CompanyInformation companyInfoSelect(int cino);
+
 
 
 	
