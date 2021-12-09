@@ -14,13 +14,13 @@
 <div th:include="common/cpheader.html"></div>
  <div class="wrap">
         <div class="content_wrap">
-            <form th:action="" method="post">
+            <form th:action="" method="post" th:object="${jobVacancy}">
             <input type="hidden" name="companyNO" value="${companyInfo.no}">
                 <div class="content">
                     <div class="content_inner">
                         <div class="content_title">채용제목을 입력해주세요.</div>
                         <div class="content1">
-                            <input type="text" name="title" maxlength="60" placeholder="  Ex. JAVA/JSP WEB 개발자 모집(최대 60자)">
+                            <input type="text" name="title" maxlength="60" th:text="*{title}">
                         </div>
                     </div>
                 </div>
@@ -126,11 +126,11 @@
                         </div>
                         <div class="content4_1">
                             <label>전공</label>
-                            <input type="text" name="major" maxlength="120" placeholder="  학과 이름을 입력해주세요.">
+                            <input type="text" name="major" maxlength="120" th:text="*{major}">
                         </div>
                         <div class="content4_2">
                             <label>자격증</label>
-                            <input type="text" name="certificate">
+                            <input type="text" name="certificate" th:text="*{certificate}">
                         </div>
                     </div>
                 </div>
@@ -138,12 +138,12 @@
                     <div class="content_inner">
                         <div class="content_title">상세내용을 입력해주세요.</div>
                         <div class="content5">
-                            <textarea name="detailText" class="summernote"></textarea>
+                            <textarea name="detailText" class="summernote" th:text="*{detailText}"></textarea>
                         </div>
                     </div>
                 </div>
-                <input class="submitBtn" type="submit" value="등록하기">
-                <input class="resetBtn" type="reset" value="취소하기">
+                <input class="submitBtn" type="submit" value="수정하기">
+                <input class="resetBtn" type="reset" value="삭제하기">
             </form>
         </div>
     </div>

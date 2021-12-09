@@ -40,12 +40,8 @@
                 <div class="tab_cont">
                     <div class="on">
                         <div class="searchBox">
-                        	<form name="search-form" autocomplete="off">
-	                            <p>검색조건</p>
-	                            <input type="text" class="monthpicker">
-	                            <input type="text" class="input_title">
-	                            <input type="button" name="keyword" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색">
-	                        </form>
+                        	
+	                            
                         </div>
                         <div class="table">
                             <table class="jvList" id="boardtable">
@@ -68,23 +64,21 @@
                                 <tbody>
                                     <tr th:each="jv, i : ${jobVacancy}">
                                         <td th:text="${i.index+1}"></td>
-                                        <td th:text="${jv.title}" th:onclick="|location.href='@{/company/mypage/jvInfoUpdate}'|"></td>
+                                        <td th:text="${jv.title}"></td>
                                         <td th:text="${jv.address}"></td>
                                         <td>공고 중</td>
                                         <td th:text="${#dates.format(jv.periodEnd, 'yyyy-MM-dd')}"></td>
                                     </tr>
                                 </tbody>
                             </table>
+                             <div th:if="${#lists.size(jobVacancy) > 0}">
+			                   	<div th:replace="common/paging.html"></div>
+			                 </div>
                         </div>
                     </div>
                     <div style="display:none;">
                         <div class="searchBox">
-                        	<form name="search-form" autocomplete="off">
-	                            <p>검색조건</p>
-	                            <input type="text" class="monthpicker">
-	                            <input type="text" class="input_title">
-	                            <input type="button" name="keyword" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색">
-	                        </form>
+                        	
                         </div>
                         <div class="table">
                             <table class="jvList">
@@ -114,6 +108,9 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <div th:if="${#lists.size(jobVacancy) > 0}">
+			                   	<div th:replace="common/paging.html"></div>
+			                 </div>
                         </div>
                     </div>
                 </div>
