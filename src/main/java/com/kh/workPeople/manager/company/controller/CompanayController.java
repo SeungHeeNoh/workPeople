@@ -36,7 +36,7 @@ public class CompanayController {
 	public ManagerCompanyInfo vacancyNo(@RequestParam("no") int no){
 	  ManagerCompanyInfo returnInfo = companyService.vacancyNo(no);
 	  List<JobVacancy> jvList = companyService.getJobVacancyListByCompanyNum(returnInfo.getMember().getNo());
-	  System.out.println(jvList);
+	  
 	  returnInfo.setList(jvList);
 	  returnInfo.setCount(jvList.size());
 	  return returnInfo;

@@ -22,29 +22,28 @@ public class CompanyReportController {
 
 	  @GetMapping("/reportlist")
 	  public ModelAndView reportList(ModelAndView mv, @RequestParam(defaultValue = "1") int page) { 
-		  Map<String, Object> map = service.getJvReportList(page);
-		  mv.addObject("getJvReportList", map.get("reportList"));
-		  mv.addObject("pi",map.get("pi"));
-		/* List<JobVacancyReportView> list = service.getJvReportList(); */
-		/* mv.addObject("list",list); */
-		mv.setViewName("manager/company/reportlist");
+		Map<String, Object> map = service.getJvReportList(page);
+		mv.addObject("getJvReportList", map.get("reportList"));
+		mv.addObject("pi",map.get("pi"));
 		
+		List<JobVacancyReportView> list = service.getJvReportList(); 
+		mv.addObject("list",list); 
+		mv.setViewName("manager/company/reportlist");
 		return mv; 
-			  
 	}
+	  
 	  @GetMapping("/disable")
-	  public ModelAndView disableJvList(ModelAndView mv, @RequestParam(value="reportCheck") String[] no) {
-//		 no = 비활성화 할려는 공고의 고유번호
-		service.disableJobVacancy(no);
-		  
+	  public ModelAndView disableJvList(ModelAndView mv, @RequestParam(value="reportCheck") String[] no, @RequestParam(defaultValue = "1") int page) {
+		service.disableJobVacancy(no); 	// no = 비활성화 할려는 공고의 고유번호
+		Map<String, Object> map = service.getJvReportList(page);
+		mv.addObject("getJvReportList", map.get("reportList"));
+		mv.addObject("pi",map.get("pi"));
 		  
 		List<JobVacancyReportView> list = service.getJvReportList();
-		mv.addObject("list",list);
+		mv.addObject("list",list); 
 		mv.setViewName("manager/company/reportlist");
-		
 		return mv; 
 			  
 	}
-
 
 }
