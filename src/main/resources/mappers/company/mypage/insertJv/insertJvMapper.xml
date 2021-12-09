@@ -180,14 +180,18 @@
 	</select>
 	
 	<select id="jobVacancyInfoSelect" resultMap="registNewJobVacancy">
-		SELECT
+		 SELECT
 		       JV_TITLE
 		     , JV_ADDRESS
 		     , JV_PERIOD_END
-		  FROM JOB_VACANCY j, MEMBER m, COMPANY_INFO c
-		 WHERE c.M_NO = m.M_NO
-		   AND j.CI_NO = c.CI_NO
-		   AND m.M_ID = 'cuser02'
+             , (SELECT
+                  count(*)
+              FROM JOB_VACANCY 
+             WHERE CI_NO = #{cino}
+               AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')) CNT
+		  FROM JOB_VACANCY 
+		 WHERE CI_NO = #{cino}
+		 ORDER BY JV_REGISTER
 	</select>
 	
 	<insert id="registNewJobVacancy" parameterType="com.kh.workPeople.common.vo.JobVacancy">

@@ -1,5 +1,7 @@
 package com.kh.workPeople.company.mypage.insertJv.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.workPeople.common.vo.CompanyInformation;
 import com.kh.workPeople.common.vo.JobVacancy;
-import com.kh.workPeople.common.vo.Member;
 import com.kh.workPeople.common.vo.MemberImpl;
 import com.kh.workPeople.company.mypage.insertJv.model.service.insertJvService;
 
@@ -31,17 +32,10 @@ public class insertJvController {
 	@GetMapping("/insertJv")
 	public String insertJv(@AuthenticationPrincipal MemberImpl user, Model model) {
 		
-		String userId = user.getId();
-		Member member = insertJvService.memberInfoselect(userId);
+		int cino = user.getCompanyNo();
+		List<JobVacancy> jobVacancy = insertJvService.jobVacancyInfoSelect(cino);
 		
-		int userNo = member.getNo();
-		CompanyInformation companyInfo = insertJvService.companyInfoSelect(userNo);
 		
-		int ciNo = companyInfo.getNo();
-		JobVacancy jobVacancy = insertJvService.jobVacancyInfoSelect(ciNo);
-		
-		model.addAttribute("member", member);
-		model.addAttribute("companyInfo", companyInfo);
 		model.addAttribute("jobVacancy", jobVacancy);
 		
 		return "/company/mypage/insertJv";
@@ -49,9 +43,9 @@ public class insertJvController {
 	
 	@PostMapping("/insertJv")
 	public String insertJobVacancy(CompanyInformation companyInfomation, JobVacancy jobVacancy, RedirectAttributes rttr,
-			@RequestParam("ciNo") int ciNo) {
+			@RequestParam("companyNO") int companyNO) {
 		
-		companyInfomation.setNo(ciNo);
+		companyInfomation.setNo(companyNO);
 		
 		String result;
 		
