@@ -81,9 +81,10 @@ public class VacancyDetailController {
 			}
 
 			mv.addObject("jobVacancyInformation", jobVacancyInformation);
+			mv.addObject("newLineChar", "\n");
 			mv.setViewName("/jobs/vacancy-detail/detail-view");
 		} else {
-			mv.addObject("errorMessage", "공고 상세 조회에 실패했습니다.");
+			mv.addObject("errorMessage", "잘못된 접근입니다.");
 			mv.setViewName("/common/errorPage");
 		}
 		
