@@ -68,7 +68,7 @@
                                 <tbody>
                                     <tr th:each="jv, i : ${jobVacancy}">
                                         <td th:text="${i.index+1}"></td>
-                                        <td th:text="${jv.title}"></td>
+                                        <td th:text="${jv.title}" th:onclick="|location.href='@{/company/mypage/jvInfoUpdate}'|"></td>
                                         <td th:text="${jv.address}"></td>
                                         <td th:if="${jv.count} == 1"><span>공고 중</span></td>
                                         <td th:text="${#dates.format(jv.periodEnd, 'yyyy-MM-dd')}"></td>

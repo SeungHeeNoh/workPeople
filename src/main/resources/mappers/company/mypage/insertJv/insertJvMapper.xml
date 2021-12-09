@@ -230,22 +230,22 @@
 		  , DEFAULT
 		  , DEFAULT
 		  , #{job.to}
-		  , #{job.jvStart}
-		  , #{job.jvEnd}
-		  , #{job.workStart}
-		  , #{job.workEnd}
+		  , #{job.peiodStart}
+		  , #{job.periodEnd}
+		  , #{job.workdayStartTime}
+		  , #{job.workdayEndTime}
 		  , #{job.address}
 		  , #{job.gender.no}
-		  , #{job.el.no}
+		  , #{job.educationLevel.no}
 		  , #{job.major}
 		  , #{cino}
-		  , #{job.d.no}
+		  , #{job.day.no}
 		  , DEFAULT
 		  , #{job.detailText}
 		  , #{job.certificate}
 		  , #{job.age}
 		  , #{job.pay}
-		  , #{job.pt.no}
+		  , #{job.payType.no}
 		)
 	</insert>
 	
