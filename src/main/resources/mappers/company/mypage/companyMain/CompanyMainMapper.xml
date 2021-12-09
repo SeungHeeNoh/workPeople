@@ -32,15 +32,12 @@
 	</resultMap>
 	
 	<select id="jobVacancyInfoSelect" resultMap="jobVacancyResultMap">
-		 SELECT
+		SELECT
 		       JV_TITLE
 		     , JV_ADDRESS
 		     , JV_PERIOD_END
-             , (SELECT
-                  count(*)
-              FROM JOB_VACANCY 
-             WHERE CI_NO = #{cino}
-               AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')) CNT
+             , case when TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD') then 1
+             else 0 end as CNT  
 		  FROM JOB_VACANCY 
 		 WHERE CI_NO = #{cino}
 		 ORDER BY JV_REGISTER
