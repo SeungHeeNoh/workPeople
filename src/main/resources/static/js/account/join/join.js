@@ -246,13 +246,13 @@
 			if(confirm("인증 메일을 전송하시겠습니까?")) {
 				updateValidState(inputId);
 				setDisabled(button);
-				setDisabled(joinRows[inputId]["input"]);
+				joinRows[inputId]["input"].setAttribute("readonly", true);
 				sendMail(inputId, joinRows[inputId]["input"].value, button);
 				hideNotice(joinRows["email_check"]["joinRow"]);
 			} else {
 				deleteValidState(inputId, "인증이 완료되지 않았습니다.");
 				deleteValidState("email_check", "인증이 완료되지 않았습니다.");
-				removeDisabled(joinRows[inputId]["input"]);
+				joinRows[inputId]["input"].removeAttribute("readonly");
 				clearCertStringTimer();
 			}
 		}
