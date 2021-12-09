@@ -8,4 +8,6 @@ public interface jvManageService {
 
 	List<JobVacancy> jobVacancyInfoSelect(int cino);
 
+	List<JobVacancy> jobVacancyInfoSelectEnd(int cino);
+
 }

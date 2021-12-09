@@ -11,18 +11,27 @@
 	</resultMap>
 	
 	<select id="jobVacancyInfoSelect" resultMap="jobVacancyResultMap">
-		 SELECT
-		       JV_TITLE
-		     , JV_ADDRESS
-		     , JV_PERIOD_END
-             , (SELECT
-                  count(*)
-              FROM JOB_VACANCY 
-             WHERE CI_NO = #{cino}
-               AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')) CNT
-		  FROM JOB_VACANCY 
-		 WHERE CI_NO = #{cino}
-		 ORDER BY JV_REGISTER
+		SELECT
+				JV_TITLE
+			  , JV_ADDRESS
+			  , JV_PERIOD_END
+		   FROM JOB_VACANCY
+		  WHERE CI_NO = #{cino}
+		    AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') >= TO_CHAR(SYSDATE, 'YYMMDD')
+	   ORDER BY JV_REGISTER
+	</select>
+	
+	<select id="jobVacancyInfoSelectEnd" resultMap="jobVacancyResultMap">
+	<![CDATA[
+		SELECT
+				JV_TITLE
+			  , JV_ADDRESS
+			  , JV_PERIOD_END
+		   FROM JOB_VACANCY
+		  WHERE CI_NO = #{cino}
+		    AND TO_CHAR(JV_PERIOD_END, 'YYMMDD') < TO_CHAR(SYSDATE, 'YYMMDD')
+	   ORDER BY JV_REGISTER
+	   ]]>
 	</select>
 
 </mapper>

@@ -70,7 +70,7 @@
                                         <td th:text="${i.index+1}"></td>
                                         <td th:text="${jv.title}" th:onclick="|location.href='@{/company/mypage/jvInfoUpdate}'|"></td>
                                         <td th:text="${jv.address}"></td>
-                                        <td th:if="${jv.count} == 1"><span>공고 중</span></td>
+                                        <td>공고 중</td>
                                         <td th:text="${#dates.format(jv.periodEnd, 'yyyy-MM-dd')}"></td>
                                     </tr>
                                 </tbody>
@@ -105,12 +105,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                   <tr th:each="jv2, i : ${jobVacancy2}">
+                                        <td th:text="${i.index+1}"></td>
+                                        <td th:text="${jv2.title}"></td>
+                                        <td th:text="${jv2.address}"></td>
+                                        <td>마감됨</td>
+                                        <td th:text="${#dates.format(jv2.periodEnd, 'yyyy-MM-dd')}"></td>
                                     </tr>
                                 </tbody>
                             </table>

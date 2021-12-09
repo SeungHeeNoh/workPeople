@@ -11,4 +11,6 @@ public interface jvManageMapper {
 
 	List<JobVacancy> jobVacancyInfoSelect(int cino);
 
+	List<JobVacancy> jobVacancyInfoSelectEnd(int cino);
+
 }

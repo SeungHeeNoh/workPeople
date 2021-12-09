@@ -30,7 +30,10 @@ public class jvManageController {
 		int cino = user.getCompanyNo();
 		List<JobVacancy> jobVacancy = jvManageService.jobVacancyInfoSelect(cino);
 		
+		List<JobVacancy> jobVacancy2 = jvManageService.jobVacancyInfoSelectEnd(cino);
+		
 		model.addAttribute("jobVacancy", jobVacancy);
+		model.addAttribute("jobVacancy2", jobVacancy2);
 		
 		return "/company/mypage/jvManage";
 	}
