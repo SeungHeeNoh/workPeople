@@ -1,6 +1,7 @@
 package com.kh.workPeople.company.mypage.insertJv.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,5 +16,7 @@ public interface insertJvMapper {
 	int registNewJobVacancy(JobVacancy newJobVacancy);
 
 	List<JobVacancy> jobVacancyInfoSelect(int cino);
+
+	int insertInfo(Map<String, Object> map);
 	
 }

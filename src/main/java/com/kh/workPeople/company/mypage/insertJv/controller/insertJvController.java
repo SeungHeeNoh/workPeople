@@ -42,25 +42,30 @@ public class insertJvController {
 	}
 	
 	@PostMapping("/insertJv")
-	public String insertJobVacancy(CompanyInformation companyInfomation, JobVacancy jobVacancy, RedirectAttributes rttr,
-			@RequestParam("companyNO") int companyNO) {
+	public String insertJobVacancy(@AuthenticationPrincipal MemberImpl user, CompanyInformation companyInfomation, JobVacancy jobVacancy, RedirectAttributes rttr
+		) {
 		
-		companyInfomation.setNo(companyNO);
+		int cino = user.getCompanyNo();
 		
 		String result;
 		
-		int result1 = insertJvService.insertInfo(jobVacancy);
+		System.out.println("cino : " + cino);
+		System.out.println("jobVacancy : " + jobVacancy);
 		
-		if(result1 > 0) {
-			rttr.addFlashAttribute("message", "공고 등록이 완료되었습니다.");
-			result = "redirect:/company/mypage/insertJv";
-		} else {
-			rttr.addFlashAttribute("errorMessage", "에러 발생");
-			result = "redirect:/common/errorPage";
-		}
+//		int result1 = insertJvService.insertInfo(jobVacancy, cino);
+//		
+//		System.out.println("result1 : " + result1);
+//		
+//		if(result1 > 0) {
+//			rttr.addFlashAttribute("message", "공고 등록이 완료되었습니다.");
+//			result = "redirect:/company/mypage/insertJv";
+//		} else {
+//			rttr.addFlashAttribute("errorMessage", "에러 발생");
+//			result = "redirect:/common/errorPage";
+//		}
+//		
 		
-		
-		return result;
+		return "redirect:/company/mypage/insertJv";
 	}
 
 }
