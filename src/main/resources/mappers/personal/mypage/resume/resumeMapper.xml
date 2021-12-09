@@ -427,6 +427,84 @@
         WHERE R_NO = #{resumeNo}
     </update>
 
+    <insert id="insertResume" parameterType="_int">
+        INSERT INTO RESUME
+        VALUES
+        (
+            SEQ_RESUME_NO.NEXTVAL,
+            SYSDATE,
+            'N',
+            'N',
+            #{no}
+        )
+    </insert>
+
+    <insert id="insertBasicInfo" parameterType="com.kh.workPeople.common.vo.ResumeDetails">
+        INSERT INTO BASIC_INFO
+        VALUES
+        (
+         SEQ_RESUME_NO.CURRVAL,
+         #{biTitle},
+         #{biName},
+         #{biGender},
+         #{biBirthDate},
+         #{biAge},
+         #{biEmail},
+         #{biPhone},
+         #{biAddress},
+         #{biAddressDetail},
+         #{sName},
+         SEQ_ATTACHMENT_NO.CURRVAL
+        )
+    </insert>
+
+    <insert id="insertEducation" parameterType="com.kh.workPeople.common.vo.ResumeDetails">
+        INSERT INTO Education
+        VALUES
+            (
+                SEQ_RESUME_NO.CURRVAL,
+                #{eType},
+                #{eHighName},
+                #{eHighMajor},
+                #{eHighAdmission},
+                #{eHighGraduation},
+                #{eColleageType},
+                #{eColleageName},
+                #{eColleageAdmission},
+                #{eColleageAdmissionType},
+                #{eColleageGraduate},
+                #{eColleageGraduateType},
+                #{eColleageMajor},
+                #{eColleageCredit},
+                #{eColleageStandardCredit},
+                #{eMasterName},
+                #{eMasterAdmission},
+                #{eMasterAdmissionType},
+                #{eMasterGraduate},
+                #{eMasterGraduateType},
+                #{eMasterMajor},
+                #{eMasterCredit},
+                #{eMasterStandardCredit},
+                #{eDoctorName},
+                #{eDoctorAdmission},
+                #{eDoctorAdmissionType},
+                #{eDoctorGraduate},
+                #{eDoctorGraduateType},
+                #{eDoctorMajor},
+                #{eDoctorCredit},
+                #{eDoctorStandardCredit}
+            )
+    </insert>
+
+
+
+
+
+
+
+
+
+
 <!--    <insert id="insertappliedBasicInfo" parameterType="com.kh.workPeople.common.vo.ResumeDetails">-->
 <!--        INSERT INTO APPLIED_BASIC_INFO-->
 <!--        (-->

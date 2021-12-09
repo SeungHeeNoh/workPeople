@@ -286,7 +286,6 @@ body {
     margin: 13px 0 0 30px;
 }
 .content-basicInfo-img-container2{
-    display: flex;
     padding-left: 40px;
     padding-top: 5px;
 }
@@ -308,6 +307,7 @@ body {
     justify-content: center;
     border: 1px solid #c4c4c4;
 }
+
 .content-detail-select-type {
 	width: 100px;
     left: 100px;
@@ -365,14 +365,50 @@ body {
     cursor: pointer;
 }
 
+.green1{
+    width: 210px;
+    height: 60px;
+    font-size: 20px;
+    margin-left: 285px;
+}
 
+.singleFile{
+    width: 180px;
+    border: none;
+    margin-left: -29px;
+}
 
+#careerType1:hover, #careerType2:hover{
+    cursor: pointer;
+}
 
+.internTextarea{
+    height: 100px;
+}
 
+.content4:hover,.content5:hover,.content6:hover,.content7:hover,.content8:hover{
+    cursor: pointer;
+}
 
+#internForms
+,#licenseForm
+,#languageForm
+,#awardsForm
+,#selfIntroduceForm{
+    display: none;
+}
 
+#addCareer,#addInterview,#addLicense,#addLanguage,#addAwards,#addSelfIntroduce{
+    width: 170px;
+    height: 40px;
+    font-size: 20px;
+    margin-left: 570px;
+    margin-top: 10px;
+}
 
-
+.selfIntroduceTextarea{
+    height: 150px;
+}
 
 
 

@@ -32,4 +32,8 @@ public interface ResumeService {
     int resumeStatusNtoY(int resumeNo);
 
     int insertResume(int no);
+
+    int insertAttachment(Attachment att);
+
+    int insertBasicInfo(ResumeDetails resumeDetails);
 }

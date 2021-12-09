@@ -26,7 +26,7 @@ public class ChatRoom {
         if(chatMessage.getMessageType() == MessageType.JOIN){
             /* 사용자 입장 */
             sessions.add(session);
-            System.out.println("session"+session);
+//            System.out.println("session"+session);
 
             if(chatMessage.getSender().equals("고객센터")){
                 chatMessage.setMessage(chatMessage.getSender() + "와의 채팅이 연결되었습니다.<br> 안녕하세요, Work People 고객센터입니다. <br>무엇을 도와드릴까요?");

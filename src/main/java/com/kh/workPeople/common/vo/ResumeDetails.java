@@ -10,7 +10,7 @@ public class ResumeDetails {
     private String biName;              // 이름
     private String biGender;            // 성별
     private Date biBirthDate;           // 생년월일
-
+//
     private String biBirthDateYearFormat;       // 생년월일 년도만 문자열 포멧팅(ex : 1994)
 
     private int biAge;                  // 나이(한국식나이) int로 포멧팅 (ex : 28)
@@ -39,7 +39,7 @@ public class ResumeDetails {
 
     private String eHighAdmissionFormat;    // 고등학교 입학년월 문자열 포멧팅(ex : 2000.02)
     private String eHighGraduationFormat;   // 고등학교 졸업년월 문자열 포멧팅(ex : 2000.02)
-    
+
     private String eColleageType;       // 대학교 학력 구분(전문학사,학사)
     private String eColleageName;       // 대학교 이름
     private Date eColleageAdmission;    // 대학교 입학년월
@@ -55,7 +55,6 @@ public class ResumeDetails {
     private String eColleageMajor;      // 대학 전공
     private String eColleageCredit;     // 대학 학점
     private String eColleageStandardCredit;     // 대학 기준 학점
-
 
 
     private String eMasterName;         // 대학원(석사) 이름
