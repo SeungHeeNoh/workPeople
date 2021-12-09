@@ -206,7 +206,7 @@
 			<script>
 				$.ajax({
 					url : "getPlatinumList",
-					success : function(result){
+					success : function(result){  //result==mainTier
 						console.log(result);
 						var size = result.size; // 몇개
 					 	var rows = ""; 
@@ -216,7 +216,6 @@
 					 	var rows4 = ""; 
 					 	var rows5 = ""; 
 						var list = result.list;
-					 	
 					    $.each(list, function(index, item) { // 리스트 반복
 					    	if(0<=index&&index<=11){
 					    		 rows1 = rows1 + getTierRow(item);
@@ -306,7 +305,6 @@
 					
 				});
 				
-				
 				function getTierRow(item){
 					console.log(item);
 					var jvRow = "\n";
@@ -325,14 +323,11 @@
 					jvRow = jvRow += '<li class="item"><a href=""> </a></li>';
 					return jvRow;
 				}
+				
+				
 				function getNoTierRow2(){
 					var jvRow = "\n";
 					jvRow = jvRow += '<li class="item2"><a href=""> </a></li>';
-					return jvRow;
-				}
-				function getNoTierRow3(){
-					var jvRow = "\n";
-					jvRow = jvRow += '<li class="item2"><a href="">5번테스트</a></li>';
 					return jvRow;
 				}
 				

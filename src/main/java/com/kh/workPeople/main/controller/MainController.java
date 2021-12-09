@@ -58,7 +58,6 @@ public class MainController {
 		}else {
 			returnTier.setList(new ArrayList<>());
 		}
-	
 		return returnTier;
 	}
 	
