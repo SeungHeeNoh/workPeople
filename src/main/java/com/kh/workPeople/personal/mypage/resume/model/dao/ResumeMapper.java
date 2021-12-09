@@ -51,4 +51,8 @@ public interface ResumeMapper {
     int appliedSelfIntroduction(SelfIntroduction selfIntroduction);
 
     int insertResume(int no);
+
+    int insertBasicInfo(ResumeDetails resumeDetails);
+    int insertEducation(ResumeDetails resumeDetails);
+
 }

@@ -1,6 +1,7 @@
 package com.kh.workPeople.personal.mypage.resume.model.service;
 
 import com.kh.workPeople.common.vo.*;
+import com.kh.workPeople.company.mypage.companyInfo.dao.CompanyInfoMapper;
 import com.kh.workPeople.personal.mypage.resume.model.dao.ResumeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,12 @@ import java.util.List;
 public class ResumeServiceImpl implements ResumeService {
 
     private final ResumeMapper resumeMapper;
+    private final CompanyInfoMapper companyInfoMapper;
 
     @Autowired
-    public ResumeServiceImpl(ResumeMapper resumeMapper){
+    public ResumeServiceImpl(ResumeMapper resumeMapper,CompanyInfoMapper companyInfoMapper){
         this.resumeMapper = resumeMapper;
+        this.companyInfoMapper=companyInfoMapper;
     }
 
     @Override
@@ -85,7 +88,36 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public int insertResume(int no) {
+
+        int result = resumeMapper.insertResume(no);
+
+
+
         return resumeMapper.insertResume(no);
+    }
+
+    @Override
+    public int insertAttachment(Attachment att) {
+
+
+
+
+
+
+        return companyInfoMapper.insertAttachment(att);
+    }
+
+    @Override
+    public int insertBasicInfo(ResumeDetails resumeDetails) {
+
+        int result1 = resumeMapper.insertBasicInfo(resumeDetails);
+        int result2 = resumeMapper.insertEducation(resumeDetails);
+
+        System.out.println("result1 : "+result1);
+        System.out.println("result2 : "+result2);
+        int result = result1 + result2;
+
+        return result == 2 ? 1 : 0;
     }
 
 

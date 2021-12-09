@@ -151,9 +151,10 @@
         console.log(e);
         console.log(data);
 
+        var whoSendMessage = e.data.substr(0,4);
 
-
-        if(host !== ck_host){
+        // if(whoSendMessage === ck_host){
+        if(whoSendMessage === "고객센터"){
             document.getElementById("chatroom").innerHTML += "<div class='content2_container_padding'>"
                 + "<div class='content2_beginWord'>"
                 + data + "</div></div>";
