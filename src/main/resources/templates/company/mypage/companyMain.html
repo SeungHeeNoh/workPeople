@@ -69,6 +69,11 @@
                         </tr>                    
                     </tbody>
                 </table>
+                 <!-- // 페이징 -->
+                 <div th:if="${#lists.size(jobVacancy) > 0}">
+                   	<div th:replace="common/paging.html"></div>
+                 </div>
+                 <!--  페이징 // -->
             </div>
         </div>
     </div>

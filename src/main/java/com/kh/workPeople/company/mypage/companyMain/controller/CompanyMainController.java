@@ -29,13 +29,10 @@ public class CompanyMainController {
 	
 	@GetMapping("/companyMain")
 	public String companyMain(@AuthenticationPrincipal MemberImpl user, @RequestParam(defaultValue="1") int page, Model model) {
-		Map<String, Object> map = companyMainService.getJvList(page);
-		
-		
 		
 		// 메인페이지 공고 게시판
 		int cino = user.getCompanyNo();
-		List<JobVacancy> jobVacancy = companyMainService.jobVacancyInfoSelect(cino);
+		Map<String, Object> map = companyMainService.getJvList(page, cino);
 		
 		// 기업 로고
 		CompanyInformation companyInfo = companyMainService.companyInfoSelect(cino);
@@ -48,8 +45,10 @@ public class CompanyMainController {
 		
 		model.addAttribute("jvIngCount", jvIngCount);
 		model.addAttribute("jvEndCount", jvEndCount);
-		model.addAttribute("jobVacancy", jobVacancy);
 		model.addAttribute("companyInfo", companyInfo);
+		/* 페이징 */
+		model.addAttribute("pi", map.get("pi"));
+		model.addAttribute("jobVacancy", map.get("jobVacancy"));
 		
 		return "company/mypage/companyMain";
 	}
