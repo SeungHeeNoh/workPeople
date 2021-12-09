@@ -37,22 +37,22 @@
                         </div>
                         <div class="content2_1">
                             <label>경력여부</label>
-                            <input type="checkbox" name="experienceLevelList" th:value="1" onclick="checkOnlyOne(this)">신입&nbsp;
-                            <input type="checkbox" name="experienceLevelList" th:value="2" onclick="checkOnlyOne(this)">경력&nbsp;
-                            <input type="checkbox" name="experienceLevelList" th:value="3" onclick="checkOnlyOne(this)">경력 무관&nbsp;
+                            <input type="checkbox" th:name="experienceLevelList.no" th:value="1" onclick="checkOnlyOne(this)">신입&nbsp;
+                            <input type="checkbox" th:name="experienceLevelList.no" th:value="2" onclick="checkOnlyOne(this)">경력&nbsp;
+                            <input type="checkbox" th:name="experienceLevelList.no" th:value="3" onclick="checkOnlyOne(this)">경력 무관&nbsp;
                         </div>
                         <div class="content2_2">
                             <label>직급/직책</label>
-                            <input type="checkbox" name="roleList" th:value="1" onclick="checkOnlyOne2(this)">사원&nbsp;
-                            <input type="checkbox" name="roleList" th:value="2" onclick="checkOnlyOne2(this)">주임&nbsp;
-                            <input type="checkbox" name="roleList" th:value="3" onclick="checkOnlyOne2(this)">대리&nbsp;
-                            <input type="checkbox" name="roleList" th:value="4" onclick="checkOnlyOne2(this)">과장&nbsp;
-                            <input type="checkbox" name="roleList" th:value="5" onclick="checkOnlyOne2(this)">차장&nbsp;
-                            <input type="checkbox" name="roleList" th:value="6" onclick="checkOnlyOne2(this)">부장&nbsp;
-                            <input type="checkbox" name="roleList" th:value="7" onclick="checkOnlyOne2(this)">임원&nbsp;
-                            <input type="checkbox" name="roleList" th:value="8" onclick="checkOnlyOne2(this)">팀장&nbsp;
-                            <input type="checkbox" name="roleList" th:value="9" onclick="checkOnlyOne2(this)">매니저&nbsp;
-                            <input type="checkbox" name="roleList" th:value="10" onclick="checkOnlyOne2(this)">실장
+                            <input type="checkbox" th:name="roleList.no" th:value="1" onclick="checkOnlyOne2(this)">사원&nbsp;
+                            <input type="checkbox" th:name="roleList.no" th:value="2" onclick="checkOnlyOne2(this)">주임&nbsp;
+                            <input type="checkbox" th:name="roleList.no" th:value="3" onclick="checkOnlyOne2(this)">대리&nbsp;
+                            <input type="checkbox" th:name="roleList.no" th:value="4" onclick="checkOnlyOne2(this)">과장&nbsp;
+                            <input type="checkbox" th:name="roleList.no" th:value="5" onclick="checkOnlyOne2(this)">차장&nbsp;
+                            <input type="checkbox" th:name="roleList.no" th:value="6" onclick="checkOnlyOne2(this)">부장&nbsp;
+                            <input type="checkbox" th:name="roleList.no" th:value="7" onclick="checkOnlyOne2(this)">임원&nbsp;
+                            <input type="checkbox" th:name="roleList.no" th:value="8" onclick="checkOnlyOne2(this)">팀장&nbsp;
+                            <input type="checkbox" th:name="roleList.no" th:value="9" onclick="checkOnlyOne2(this)">매니저&nbsp;
+                            <input type="checkbox" th:name="roleList.no" th:value="10" onclick="checkOnlyOne2(this)">실장
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         <div class="content_title">근무조건을 입력해주세요.</div>
                         <div class="content3">
                             <label>근무요일</label>
-                            <select th:name="day">
+                            <select th:name="day.no">
                                 <option th:value="1">요일무관</option>
                                 <option th:value="2">매일</option>
                                 <option th:value="3">주 6일(월~토)</option>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="content3_1">
                             <label>급여</label>
-                            <select th:name="payType">
+                            <select th:name="payType.no">
                                 <option th:value="1">연봉</option>
                                 <option th:value="2">월급</option>
                                 <option th:value="3">주급</option>
@@ -99,7 +99,7 @@
                         <div class="content_title">우대조건을 입력해주세요.</div>
                         <div class="content4">
                            <label>성별</label>
-                           <select th:name="gender">
+                           <select th:name="gender.no">
                                <option th:value="1">성별무관</option>
                                <option th:value="2">남자</option>
                                <option th:value="3">여자</option>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="content4">
                             <label>학력</label>
-                            <select th:name="educationLevel">
+                            <select th:name="educationLevel.no">
                                 <option th:value="1">고등학교 졸업</option>
                                 <option th:value="2">대학 졸업(2,3년)</option>
                                 <option th:value="3">대학교 졸업(4년)</option>
@@ -195,7 +195,7 @@
 	<script>
         function checkOnlyOne(element){
             const checkboxes
-                = document.getElementsByName("experienceLevelList");
+                = document.getElementsByName("experienceLevelList.no");
              checkboxes.forEach((cb) => {
                  cb.checked = false;
              })
@@ -205,7 +205,7 @@
     <script>
         function checkOnlyOne2(element){
             const checkboxes
-                = document.getElementsByName("roleList");
+                = document.getElementsByName("roleList.no");
              checkboxes.forEach((cb) => {
                  cb.checked = false;
              })
