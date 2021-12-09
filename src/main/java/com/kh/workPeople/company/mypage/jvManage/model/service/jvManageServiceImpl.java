@@ -24,4 +24,10 @@ public class jvManageServiceImpl implements jvManageService{
 		return jvManageMapper.jobVacancyInfoSelect(cino);
 	}
 
+	@Override
+	public List<JobVacancy> jobVacancyInfoSelectEnd(int cino) {
+
+		return jvManageMapper.jobVacancyInfoSelectEnd(cino);
+	}
+
 }
