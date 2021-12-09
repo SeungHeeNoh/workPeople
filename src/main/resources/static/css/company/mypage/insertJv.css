@@ -47,7 +47,7 @@
 .content4_2 > label{margin-right: 38px; font-size: 16px;}
 .content4_2 > input{width: 600px; height: 100px;}
 
-.content5{padding-top: 20px; padding-bottom: 20px; padding-left: 10px; padding-right: 10px;}
+.content5{padding-top: 20px; padding-bottom: 20px; padding-left: 50px; padding-right: 10px;}
 
 .submitBtn{margin-left: 400px; width: 100px; height: 30px; background: #B1D581; border: none; border-radius: 10px;}
 .submitBtn:hover{border: 1px solid #323232;}
