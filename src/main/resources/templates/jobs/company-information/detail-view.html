@@ -247,6 +247,10 @@
 			</div>
 		</div>
 	</div>
+	<th:block sec:authorize= "hasRole('COMPANY')">
+      <input type="hidden" id="yn" th:value="${#authentication.principal.companyStatusYN}">
+      <div th:include="company/mypage/accountSuspension.html"></div> 
+    </th:block>
 	<script th:src="@{/js/jobs/company-information/company-information.js}"></script>
     <div th:replace="common/footer.html"></div>
 </body>
