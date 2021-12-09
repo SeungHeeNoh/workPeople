@@ -47,9 +47,7 @@ public class UserController {
 		@GetMapping("/customerservice")
 		public String userCustomerService(Model model) {
 
-
 			model.addAttribute("roomList",chatService.findAllChatRoom());
-
 			return "manager/user/customerservice";
 		}
 
@@ -57,7 +55,6 @@ public class UserController {
 	public String chatRoomEnter(HttpServletRequest request, @PathVariable String id, Model model){
 		String host = request.getRemoteAddr();
 		model.addAttribute("host",host);
-		System.out.println("host"+host);
 
 		ChatRoom room = chatService.findChatRoomById(id);
 		model.addAttribute("room",room);

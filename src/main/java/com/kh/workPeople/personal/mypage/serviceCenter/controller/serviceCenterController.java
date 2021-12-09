@@ -34,7 +34,6 @@ public class serviceCenterController {
         String username = user.getName();
         model.addAttribute("username",username);
         session.setAttribute("username",username);
-
         log.info("고객의 대화명 : {}",username);
 
         // ip저장
@@ -42,12 +41,9 @@ public class serviceCenterController {
         model.addAttribute("host",host);
         log.info("host 주소 : {}",host);
 
-
         // 채팅방 생성
        ChatRoom chatRoom = chatService.createChatRoom(user.getName());
 
-
-//        return "personal/mypage/serviceCenter";
         return "redirect:/personal/mypage/serviceCenter/"+chatRoom.getId();
     }
 
