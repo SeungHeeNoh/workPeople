@@ -194,7 +194,7 @@
 		 ORDER BY JV_REGISTER
 	</select>
 	
-	<insert id="registNewJobVacancy" parameterType="com.kh.workPeople.common.vo.JobVacancy">
+	<insert id="insertInfo" parameterType="com.kh.workPeople.common.vo.JobVacancy">
 		INSERT INTO JOB_VACANCY
 		(
 		    JV_NO
@@ -224,28 +224,28 @@
 		VALUES
 		(
 		    SEQ_JV_NO.NEXTVAL
-		  , #{title}
+		  , #{job.title}
 		  , DEFAULT
 		  , DEFAULT
 		  , DEFAULT
 		  , DEFAULT
-		  , #{to}
-		  , #{jvStart}
-		  , #{jvEnd}
-		  , #{workStart}
-		  , #{workEnd}
-		  , #{address}
-		  , #{gender.no}
-		  , #{el.no}
-		  , #{major}
-		  , #{ciNo}
-		  , #{d.no}
+		  , #{job.to}
+		  , #{job.jvStart}
+		  , #{job.jvEnd}
+		  , #{job.workStart}
+		  , #{job.workEnd}
+		  , #{job.address}
+		  , #{job.gender.no}
+		  , #{job.el.no}
+		  , #{job.major}
+		  , #{cino}
+		  , #{job.d.no}
 		  , DEFAULT
-		  , #{detailText}
-		  , #{certificate}
-		  , #{age}
-		  , #{pay}
-		  , #{pt.no}
+		  , #{job.detailText}
+		  , #{job.certificate}
+		  , #{job.age}
+		  , #{job.pay}
+		  , #{job.pt.no}
 		)
 	</insert>
 	

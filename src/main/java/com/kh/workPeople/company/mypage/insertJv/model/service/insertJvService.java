@@ -9,7 +9,7 @@ import com.kh.workPeople.common.vo.Member;
 public interface insertJvService {
 
 
-	int insertInfo(JobVacancy jobVacancy);
+	int insertInfo(JobVacancy jobVacancy, int cino);
 
 	List<JobVacancy> jobVacancyInfoSelect(int cino);
 

@@ -1,6 +1,8 @@
 package com.kh.workPeople.company.mypage.insertJv.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +23,23 @@ public class insertJvServiceImpl implements insertJvService{
 	}
 	
 
-	@Override
-	public int insertInfo(JobVacancy jobVacancy) {
-		return insertJvMapper.registNewJobVacancy(jobVacancy);
-		
-	}
-
 
 	@Override
 	public List<JobVacancy> jobVacancyInfoSelect(int cino) {
 		return insertJvMapper.jobVacancyInfoSelect(cino);
+	}
+
+
+	@Override
+	public int insertInfo(JobVacancy jobVacancy, int cino) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("job", jobVacancy);
+		map.put("cino", cino);
+		
+		int result = insertJvMapper.insertInfo(map);
+		
+		return result;
 	}
 
 }
