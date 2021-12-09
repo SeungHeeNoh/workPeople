@@ -22,9 +22,8 @@
 	</resultMap>
 	<select id="selectList" resultMap="loginMemberResultMap" parameterType="com.kh.workPeople.common.vo.PageInfo">
 		SELECT * FROM 
-			(SELECT  *  FROM(
+			(SELECT  ROW_NUMBER() OVER (ORDER BY A.M_NO) NUM,A.*,B.A_CODE  FROM(
 					SELECT
-					ROW_NUMBER() OVER (ORDER BY M_NO) NUM,
 		           	   M_NO
 				     , M_ID
 				     , M_NAME
@@ -33,7 +32,7 @@
 				     , M_PHONE
 				     , M_ENROLL_DATE
 				  FROM MEMBER
-			 )a JOIN MEMBER_ROLE b ON (a.M_NO = b.M_NO) WHERE A_CODE=1 ORDER BY a.M_NO)
+			 )A JOIN MEMBER_ROLE B ON (A.M_NO = B.M_NO) WHERE B.A_CODE=1 ORDER BY A.M_NO)
 			 WHERE NUM BETWEEN (#{page}-1)*(#{boardLimit})+1 AND ((#{page}-1)*(#{boardLimit})+1)+(#{boardLimit}-1)
 	</select> 
 	
