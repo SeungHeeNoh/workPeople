@@ -68,11 +68,6 @@
 	<div th:with="currentUrl=(${#request.getRequestURI() + '?'})">
  	
  	  <ul class="paging" >
-			<!-- 검색 결과 화면인 경우 넘겨줄 searchParam 정의 -->
-			<!-- <c:if test="${ !empty param.searchCondition && !empty param.searchValue }">
-				<c:set var="searchParam" value="&searchCondition=${ param.searchCondition }&searchValue=${ param.searchValue }"/>
-			</c:if> -->
-		
 			<!-- 맨 처음으로 (<<) -->
 				 <li><a th:href="@{${ currentUrl}(page=1)}" th:classappend="${pi.page == 1} ? 'nobtn'">&lt;&lt;</a></li> 
 				
