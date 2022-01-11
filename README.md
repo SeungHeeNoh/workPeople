@@ -9,11 +9,8 @@
 - Development Tool : STS 4.4.12.1
 - [페이지 메인 링크] : http://localhost:8800/main
 - 로그인 정보 
-  1. 개인회원 : 아이디 user08  
-               비밀번호 user08!!<br> 
-  2. 기업회원 : 아이디 cuser11   
-               비밀번호 cuser11!!<br> 
-  3. 관리자 : 아이디 master
-             비밀번호 master<br> 
+  1. 개인회원 : 아이디 user08 비밀번호 user08!! 
+  2. 기업회원 : 아이디 cuser11 비밀번호 cuser11!!
+  3. 관리자 : 아이디 master 비밀번호 master
              
 - 기업회원으로 로그인 후 마이페이지 > 인재맞춤추천 / 기업정보 / 유료서비스 탭           
