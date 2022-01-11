@@ -9,8 +9,16 @@
 - Development Tool : STS 4.4.12.1
 - [페이지 메인 링크] : http://localhost:8800/main
 - 로그인 정보 
-  1. 개인회원 : 아이디 user08 비밀번호 user08!! 
-  2. 기업회원 : 아이디 cuser11 비밀번호 cuser11!!
+  1. 개인회원 대표 로그인 정보 : 아이디 user08 비밀번호 user08!!   (개인회원 user01~11 총 11개 이용가능.비밀번호는 아이디 뒤에 !! 붙여줌)
+  2. 기업회원 대표 로그인 정보 : 아이디 cuser11 비밀번호 cuser11!!  (기업회원 cuser01~11 총 11개 이용가능.비밀번호는 아이디 뒤에 !! 붙여줌)
   3. 관리자 : 아이디 master 비밀번호 master
              
-- 기업회원으로 로그인 후 마이페이지 > 인재맞춤추천 / 기업정보 / 유료서비스 탭           
+- 기업회원으로 로그인 후 마이페이지 > 인재맞춤추천 / 기업정보 / 유료서비스 탭 
+- 기업회원 로고 이미지 파일 보여지도록 하려면 application.yml 에서 file config 링크 본인이 다운받은 프로젝트 경로 작성해줘야함. 
+  링크에서 C:/Users/82106/eclipse-workspace/Framework/3. spring work/workPeople/ 이부분 본인 경로로 수정
+```  
+#file config    
+custom:
+  path:
+    upload-images: 'C:/Users/82106/eclipse-workspace/Framework/3. spring work/workPeople/src/main/resources/'
+```
